@@ -19,10 +19,17 @@
 #### Puis Advanced ⬆️
 #### Pour finir Find now => touver le/les groupes concerné(s) => OK
 ![ad1](https://github.com/user-attachments/assets/64837a7a-12e3-4b89-bd9b-7aedf49ca084)
-
-
-
-
+#### Choisir les programme ou autre à partager.
+#### Les déposer dans le fichier Créer à la racine de This PC
+#### Puis éditer un GPO ⬇️
+![ad1](https://github.com/user-attachments/assets/50aee1fb-08c1-477b-8099-6111d92e78d2)
+#### Computer configuration => Software installation => New => Package
+![ad1](https://github.com/user-attachments/assets/8459bcb5-a2f7-4b63-b800-5dc94b605fa5)
+#### Choisir le programme 
+![ad1](https://github.com/user-attachments/assets/e1d66936-4419-4874-bddb-6846b809cef0)
+#### Dans la fenêtre suivante, choix entre Assigned et Advanced :
+#### Assigned valide directement le package
+#### Advanced permet de configurer le package
 
 
 
