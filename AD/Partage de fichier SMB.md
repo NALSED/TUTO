@@ -21,7 +21,7 @@
 
 ---
 ## Configurer le serveur SMB.
-### :one Créer un nouveau partage SMB 
+###  Créer un nouveau partage SMB 
 ### SERVEUR => Disk => Volumes => C: clic droit puis "New Shares"
 ![ad1](https://github.com/user-attachments/assets/81949bab-44f7-499e-8da5-a05495659590)
 ### SMB Share- Quick
@@ -52,8 +52,9 @@
 ![ad1](https://github.com/user-attachments/assets/aca750f6-f644-4683-8752-b28af9620e47)
 
 ## Configuration de la connection client serveur au partage :
-  New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\NOM_DU_SERVEUR\NOM_DU_PARTAGE" -Persist
-  New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\WIN-35VEAKCKMFU\Docs" -Persist
+    New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\NOM_DU_SERVEUR\NOM_DU_PARTAGE" -Persist
+  
+    New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\WIN-35VEAKCKMFU\Docs" -Persist
 ![ad1](https://github.com/user-attachments/assets/e1c38cb5-b16a-44c3-89d4-fed1925b5450)
 
 
