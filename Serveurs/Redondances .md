@@ -1,4 +1,4 @@
-#### Prérequis 2 serveurs win 2022.
+#### :pencil2:Prérequis 2 serveurs win 2022.:pencil2:
 
 ### Le détails des instalations des différents role n'est pas détaillé ici
 
@@ -36,7 +36,70 @@
 ### Puis finish
 ### Vérifier d'être en Successful partout
 ![ad1](https://github.com/user-attachments/assets/c8f106f4-e136-4b07-b66b-7b0ecc3a7dab)
-## Redondance DNS :
+
+
+# Redondance DNS :
+### :pencil2:Prérequis un serveur DNS sur un premier serveur:pencil2:
+
+### clic droit sur le serveur DNS => DNS Manage
+![ad1](https://github.com/user-attachments/assets/6d21eac5-8bcd-4820-9afc-30939426051e)
+### Clic droit sur Forward Lookup Zones(bleu) => New Zone...(rouge)
+![ad1](https://github.com/user-attachments/assets/8c68f4d2-2204-4a2b-84a9-8483b32beda1)
+### Next jusqu'au choix des zones
+### Renseigner le nom de la zone, sur laquelle on veux appliquer la redondance
+![ad1](https://github.com/user-attachments/assets/0e6013d5-cc8c-425c-b2d1-ce135727372e)
+### Renseigner l'adresse IP (de l'autre serveur), Résultat ⬇️
+![ad1](https://github.com/user-attachments/assets/6d423ca6-8242-4ba4-82ca-6d2d11b9481b)
+### Retourner sur le serveur principale (master)
+### Créer un nouvel enregistrement de type A ou AAAA.
+![ad1](https://github.com/user-attachments/assets/594eff4f-9494-4643-9e44-5a49ecac86e3)
+### Remplir le nom du nouvel enregistrement(peux importe le nom) (bleu)
+##### ⚠️Une Reverse Lookup Zone doit être présente sur le serveur maitre, dans le cas contraire,la créer!⚠️
+### Ip du serveur secondaire (rouge)
+### Cocher la case Create associated (PTR) record (vert)
+![ad1](https://github.com/user-attachments/assets/882bb546-5b39-44d6-92ec-b23ad9dcfe5c)
+###  Puis Add Host
+### Sur le serveur maitre Action => Properties
+![ad1](https://github.com/user-attachments/assets/6b701638-b0ad-4151-853f-7453dbc8052f)
+### Name server (bleu)
+### Add (rouge)
+### renseigner le nom complet du serveur secondaire (vert) => Resolve
+
+### (En cas de doute sur le nom du serveur il se trouve ici) ⬇️⬇️⬇️⬇️
+![ad1](https://github.com/user-attachments/assets/f10776d0-f11e-42b1-a214-24792b2f0a19)
+![ad1](https://github.com/user-attachments/assets/f13627d7-fb02-4c43-976d-deed7af11771)
+### Le message d'erreur est normal le second serveur ne fait pas autorité.
+![ad1](https://github.com/user-attachments/assets/867bc3c1-cd9e-41bf-80c7-bbd392120b08)
+![ad1](https://github.com/user-attachments/assets/607f1543-995c-4bcd-87a3-a6c1b17559f3)
+### Pour finir Zone Transfers (bleu) 
+### Cocher Only to servers listed on the Name Server tab (rouge)
+![ad1](https://github.com/user-attachments/assets/72f50913-50b5-4b9a-9423-72e43b30b55e)
+
+
+
+
+
+
+
+
+###  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -55,7 +118,7 @@
 
 
 
-
+### SOURCES
 
 
 
