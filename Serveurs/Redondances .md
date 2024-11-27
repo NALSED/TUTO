@@ -36,7 +36,7 @@
 ### Puis finish
 ### Vérifier d'être en Successful partout
 ![ad1](https://github.com/user-attachments/assets/c8f106f4-e136-4b07-b66b-7b0ecc3a7dab)
-# Redondance DNS :
+## Redondance DNS :
 
 
 
@@ -46,7 +46,7 @@
 
 
 
-### Redondance ADDS :
+## Redondance ADDS :
 
 
 
