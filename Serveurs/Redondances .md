@@ -1,13 +1,30 @@
-#### :pencil2:Prérequis 2 serveurs win 2022.:pencil2:
-
-### Le détails des instalations des différents role n'est pas détaillé ici
-
+## REDONDANCE
+* ### 1) Windows 2022 + rôles
+  * ### 1.1) Redondance AD-DS, DHCP, DNS
+* ### 2) windows Core + rôles
+* ### 3) ADDS 
+  * ### 3.1) OU et Groupes
+  * ### 3.2) Utilisateurs
+* ### 4) Debian
+---
+---
+---
+### 1) Windows 2022 + rôles
+---
+---
 ### :one: Installation des roles 
+
+### Le détails des instalations des différents role n'est pas détaillé, dans ce document INSTALL.md , mais ici ⬇️
+
 * #### [DHCP](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#4422-windows-22) 
 * #### [DNS](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#414-windows-1)
-* #### [ADDS](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#368-cr%C3%A9er-un-adds-)
+* #### [ADDS](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#368-cr%C3%A9er-un-adds-) 
 
-# Redondance DHCP :
+   ### 1.1) Redondance AD-DS, DHCP, DNS
+---
+#### :pencil2:Prérequis 2 serveurs win 2022, un maitre et un secondaire :pencil2:
+#### :pencil2:Premièrement créer les rôles sur le maitre, puis créer les rôles sur le second :pencil2:
+# 2️⃣Redondance DHCP :
 ### Vérifier les serveurs autorisés => clic droit DHCP (bleu) => Manage authorized servers...(rouge)
 ![ad1](https://github.com/user-attachments/assets/2eb6d9e9-f246-4b1b-b7bb-fb9c22b64c2a)
 ### Ici le serveur à répliquer nest pas autorisé
@@ -39,7 +56,7 @@
 
 
 # Redondance DNS :
-### :pencil2:Prérequis un serveur DNS sur un premier serveur:pencil2:
+### :pencil2:Prérequis un serveur DNS :pencil2:
 
 ### clic droit sur le serveur DNS => DNS Manage
 ![ad1](https://github.com/user-attachments/assets/6d21eac5-8bcd-4820-9afc-30939426051e)
@@ -64,61 +81,52 @@
 ### Name server (bleu)
 ### Add (rouge)
 ### renseigner le nom complet du serveur secondaire (vert) => Resolve
-
+![ad1](https://github.com/user-attachments/assets/f13627d7-fb02-4c43-976d-deed7af11771)
 ### (En cas de doute sur le nom du serveur il se trouve ici) ⬇️⬇️⬇️⬇️
 ![ad1](https://github.com/user-attachments/assets/f10776d0-f11e-42b1-a214-24792b2f0a19)
-![ad1](https://github.com/user-attachments/assets/f13627d7-fb02-4c43-976d-deed7af11771)
 ### Le message d'erreur est normal le second serveur ne fait pas autorité.
 ![ad1](https://github.com/user-attachments/assets/867bc3c1-cd9e-41bf-80c7-bbd392120b08)
 ![ad1](https://github.com/user-attachments/assets/607f1543-995c-4bcd-87a3-a6c1b17559f3)
 ### Pour finir Zone Transfers (bleu) 
 ### Cocher Only to servers listed on the Name Server tab (rouge)
 ![ad1](https://github.com/user-attachments/assets/72f50913-50b5-4b9a-9423-72e43b30b55e)
+# Redondance ADDS
+#### ⚠️Les deux serveurs doivent être sur le même réseau, et le DNS du serveur maitre renseigné dans le serveur secondaire. 
+### sur un second serveur créer un rôle ADDS
+### Puis Promote ths server to a domain controller
+### Cocher la case Add a domain contoller to an existing domain 
+### Puis renseigner le nom du domaine maitre(bleu)
+### Cliquer change sur puis renseigner le nom(comme présent sur l'écran de connection) et MDT du serveur maitre.(rouge)
+![ad1](https://github.com/user-attachments/assets/883eb080-4c21-4cdf-a780-1b6627d273ba)
+### Laisser par defaut (ou voir avec reda notament RODC), puis rentrer MDT 
+![ad1](https://github.com/user-attachments/assets/90313b3b-ceda-450a-a00e-2cce26d6fd9e)
+### Next
+### Spécifier le domaine
+![ad1](https://github.com/user-attachments/assets/baefd9d0-0382-4fd8-baf1-756ae837341e)
+### Next jusqu'a Install.
+* ### 2) windows Core + rôles
+* ### 3) ADDS 
+  * ### 3.1) OU et Groupes
+  * ### 3.2) Utilisateurs
+* ### 4) Debian
+### Intégration du serveur débian => ADDS maitre
+### Configurer les deuxcarte réseaux(interne, bridge)
+### Se connecter en root
+  nano /etc/network/interfaces
+![ad1](https://github.com/user-attachments/assets/8a46e58a-32d0-4abd-832e-b5a348b4d96a)
 
+  systemctl restart networking
+![ad2](https://github.com/user-attachments/assets/880a767b-fc37-4026-b9b8-b82d75e64e79)
+### Ici le mieux est de se connecter en ssh depuis le serveur maitre( le commande sont longue)
+  apt install packagekit samba-common-bin sssd-tools sssd libnss-sss libpam-sss policykit-1 sssd ntpdate ntp realmd
+### Editer le fichier de configuretion DNS
+  nano /etc/resolv.conf
+![ad1](https://github.com/user-attachments/assets/9dadd937-8732-45a5-9c90-738351a311db)
+### Resultet attendu ⬇️
+![ad2](https://github.com/user-attachments/assets/9e486877-1727-4c84-b498-ff0fb610572b)
+### Editer le fichier hostname avec le FQDN
+### 
 
-
-
-
-
-
-
-###  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Redondance ADDS :
-
-
-
-
-
-
-
-
-### SOURCES
 
 
 
