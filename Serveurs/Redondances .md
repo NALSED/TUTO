@@ -62,6 +62,7 @@
 ![ad1](https://github.com/user-attachments/assets/6d21eac5-8bcd-4820-9afc-30939426051e)
 ### Clic droit sur Forward Lookup Zones(bleu) => New Zone...(rouge)
 ![ad1](https://github.com/user-attachments/assets/8c68f4d2-2204-4a2b-84a9-8483b32beda1)
+### Création de zone secondaire.
 ### Next jusqu'au choix des zones
 ### Renseigner le nom de la zone, sur laquelle on veux appliquer la redondance
 ![ad1](https://github.com/user-attachments/assets/0e6013d5-cc8c-425c-b2d1-ce135727372e)
