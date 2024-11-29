@@ -1,30 +1,6 @@
-## REDONDANCE
-* ### 1) Windows 2022 + rôles
-  * ### 1.1) Redondance AD-DS, DHCP, DNS
-* ### 2) windows Core + rôles
-* ### 3) ADDS 
-  * ### 3.1) OU et Groupes
-  * ### 3.2) Utilisateurs
-* ### 4) Debian
----
----
----
-### 1) Windows 2022 + rôles
----
----
-### :one: Installation des roles 
 
-### Le détails des instalations des différents role n'est pas détaillé, dans ce document INSTALL.md , mais ici ⬇️
 
-* #### [DHCP](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#4422-windows-22) 
-* #### [DNS](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#414-windows-1)
-* #### [ADDS](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#368-cr%C3%A9er-un-adds-) 
-
-   ### 1.1) Redondance AD-DS, DHCP, DNS
----
-#### :pencil2:Prérequis 2 serveurs win 2022, un maitre et un secondaire :pencil2:
-#### :pencil2:Premièrement créer les rôles sur le maitre, puis créer les rôles sur le second :pencil2:
-# 2️⃣Redondance DHCP :
+# 1️⃣ Redondance DHCP :
 ### Vérifier les serveurs autorisés => clic droit DHCP (bleu) => Manage authorized servers...(rouge)
 ![ad1](https://github.com/user-attachments/assets/2eb6d9e9-f246-4b1b-b7bb-fb9c22b64c2a)
 ### Ici le serveur à répliquer nest pas autorisé
@@ -55,7 +31,7 @@
 ![ad1](https://github.com/user-attachments/assets/c8f106f4-e136-4b07-b66b-7b0ecc3a7dab)
 
 
-# Redondance DNS :
+# 2️⃣ Redondance DNS :
 ### :pencil2:Prérequis un serveur DNS :pencil2:
 
 ### clic droit sur le serveur DNS => DNS Manage
@@ -91,7 +67,7 @@
 ### Pour finir Zone Transfers (bleu) 
 ### Cocher Only to servers listed on the Name Server tab (rouge)
 ![ad1](https://github.com/user-attachments/assets/72f50913-50b5-4b9a-9423-72e43b30b55e)
-# Redondance ADDS
+# 3️⃣ Redondance ADDS
 #### ⚠️Les deux serveurs doivent être sur le même réseau, et le DNS du serveur maitre renseigné dans le serveur secondaire. 
 ### sur un second serveur créer un rôle ADDS
 ### Puis Promote ths server to a domain controller
@@ -105,11 +81,8 @@
 ### Spécifier le domaine
 ![ad1](https://github.com/user-attachments/assets/baefd9d0-0382-4fd8-baf1-756ae837341e)
 ### Next jusqu'a Install.
-* ### 2) windows Core + rôles
-* ### 3) ADDS 
-  * ### 3.1) OU et Groupes
-  * ### 3.2) Utilisateurs
-* ### 4) Debian
+
+* # 4️⃣ Debian
 ### Intégration du serveur débian => ADDS maitre
 ### Configurer les deuxcarte réseaux(interne, bridge)
 ### Se connecter en root
@@ -126,7 +99,7 @@
 ### Resultet attendu ⬇️
 ![ad2](https://github.com/user-attachments/assets/9e486877-1727-4c84-b498-ff0fb610572b)
 ### Editer le fichier hostname avec le FQDN
-### 
+
 
 
 
