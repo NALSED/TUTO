@@ -36,10 +36,15 @@
 * ### `step 9`
    * #### finish ⬇️
 ![ad1](https://github.com/user-attachments/assets/099c2f4b-d737-484c-9acd-362150aa621e)
-
-
-
-
+### 4️⃣ Bloquer la connection sur le client
+   * #### Avant édition de régle
+![ad1](https://github.com/user-attachments/assets/2f492a98-76e9-4658-939f-ed8812bbd22b)
+   * #### Dans l'Interface GUI Firewall/Rules/Edit Puis ⬇️
+![ad1](https://github.com/user-attachments/assets/26fbf581-5964-4ce0-8658-035f3db2b375)
+   * #### Editer la régle 
+![ad1](https://github.com/user-attachments/assets/b0fe6511-c4c2-4589-b4ab-8f5d6ebbd824)
+   * #### Résultat  
+![ad1](https://github.com/user-attachments/assets/8e17fce6-c252-4a68-9c5d-3b81899e108f)
 
 
 
