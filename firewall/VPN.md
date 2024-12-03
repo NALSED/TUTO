@@ -47,18 +47,36 @@
    * #### 🔴 Redirect IPv4 Gateway : si vous cochez cette option, vous passez sur un full tunnel c'est-à-dire que tous les flux réseau du PC distant vont passer dans le VPN, sinon nous sommes en split-tunnel.
    * #### 🟢 IPv4 Local network : les adresses réseau des LAN que vous souhaitez rendre accessibles via ce tunnel VPN. Si l'on à plusieurs valeurs à indiquer, il faut les séparer par une virgule.
    * #### 🟡 Concurrent connections : le nombre de connexions VPN simultanés que vous autorisez.
-
-:yell
-
-
-
-
-
-
-
-
-
-
+![ad1](https://github.com/user-attachments/assets/d46e0ea2-6522-4cb1-bba0-ca5796a4f7e0)
+   * ### 🔵 Dynamic IP : si l'adresse IP publique d'un client change, il pourra maintenir sa connexion VPN.
+   * ### 🔴 net30 - isolated /30 network per client
+   * ##### ⚠️ Au niveau de la `Topology`, pour des raisons de sécurité, il vaut mieux utiliser la topologie "net30 - isolated /30 network per client" pour que chaque client soit isolé dans un sous-réseau (de la plage réseau VPN) afin que les clients ne puissent pas communiquer entre eux !
+##### Cela n'est pas sans conséquence : plutôt qu'une connexion VPN consomme une adresse IP sur la plage réseau dédiée au VPN, elle va consommer 4 adresses IP : une adresse IP pour le PC, une adresse IP pour le pare-feu et les adresses de réseau et broadcast du sous-réseau en /30.
+##### Si vous avez besoin de plus de 60 connexions VPN en simultanés, vous ne devez pas utiliser un réseau VPN en /24, mais vous devez prendre plus large. Dans ce cas, modifiez la valeur "IPv4 Tunnel Network" définie précédemment.
+![ad1](https://github.com/user-attachments/assets/324d88a9-e4ab-42c8-9ce1-28e1b4957521)
+   * ### La prochaine section concerne le DNS mais dans notre cas pas de résolution DNS
+   * ### 🔵 Custom options", indiquez : auth-nocache. Cette option offre une protection supplémentaire contre le vol des identifiants en refusant la mise en cache.
+   * ### 🔴 Save :sweat_smile: :ok_hand:
+ ![ad1](https://github.com/user-attachments/assets/1f521504-b4ef-4ec9-8bcd-eb2244eb7382)
+## 5️⃣ Exporter la configuration OpenVPN
+##### Pour télécharger la configuration au format ".ovpn", il est nécessaire d'installer un paquet supplémentaire sur notre pare-feu.
+   * ###  System => Package Manager => Available Packages.
+   * ### 🔵 Taper openvpn
+   * ### 🔴 + Install
+![ad1](https://github.com/user-attachments/assets/d95ee0e5-bb5a-492f-bae0-3994c4e27741)
+   * ### VPN => 🔵 OpenVPN => 🔴 Client Export
+   * ### Laisser par defaut => Advanced => rentrer auth-nocache => Save as default
+![ad1](https://github.com/user-attachments/assets/19ced4b5-1763-4643-904e-b08b42d13098)
+   * ### Possibilité d'archiver le VPN 
+![ad1](https://github.com/user-attachments/assets/ccdaef7c-6038-42ee-8fc9-4bc081c79525)
+## 6️⃣ Règles de firewall pour OpenVPN
+   * ### Autoriser le flux VPN 
+   * ### Firewall => Rules => WAN
+   * ### Protocol UDP 
+![ad1](https://github.com/user-attachments/assets/4d0c9b27-3796-4f8f-aae6-2bfa89e5f5e2)
+   * ### Source Any
+   * ### 🔵 Destination : WAN / 🔴 Destination Port Range : openVPN(1194) 
+![ad1](https://github.com/user-attachments/assets/4c82f825-e7cf-49ec-b136-1840bc4f0b39)
 
 
 
