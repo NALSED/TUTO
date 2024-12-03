@@ -70,13 +70,48 @@
    * ### Possibilité d'archiver le VPN 
 ![ad1](https://github.com/user-attachments/assets/ccdaef7c-6038-42ee-8fc9-4bc081c79525)
 ## 6️⃣ Règles de firewall pour OpenVPN
-   * ### Autoriser le flux VPN 
+  * ###  ▶️ Autoriser le flux VPN 
    * ### Firewall => Rules => WAN
    * ### Protocol UDP 
 ![ad1](https://github.com/user-attachments/assets/4d0c9b27-3796-4f8f-aae6-2bfa89e5f5e2)
    * ### Source Any
    * ### 🔵 Destination : WAN / 🔴 Destination Port Range : openVPN(1194) 
 ![ad1](https://github.com/user-attachments/assets/4c82f825-e7cf-49ec-b136-1840bc4f0b39)
+   * ### Dans Extra Options : Log => Save
+![ad1](https://github.com/user-attachments/assets/aa492e67-0b4f-4e7d-b7bd-29182cc916de)
+   * ### ▶️ Autoriser les flux vers les ressources :
+   * ### Par defaut => Destination
+   * ### 🔵 Address or Alias => adresse de l'hôte 172.16.10.10
+   * ### 🔴 Destination Port Range : 3389 pour le RDP
+   * ### Save 
+# 🎆
+## 7️⃣ Tester sur le client 
+   * ### Télécharger [OpenVPN](https://openvpn.net/community-downloads/)
+   * ### Importe le fichier de configuration depuis host => client
+   * ### Puis copier le contenu du dossier dans C:\Programmes\OpenVPN\Config
+![ad1](https://github.com/user-attachments/assets/15742578-b971-467c-a393-9519fa63c833)
+   * ### clic droit sur OpenVPN
+![ad2](https://github.com/user-attachments/assets/0cb6575f-cb9d-4713-be8f-2a61c2a6909d)
+   * ### Fournir Login et Password de pfSense GUI
+![ad1](https://github.com/user-attachments/assets/5c134401-b323-4323-8f77-3f69441c39b8)
+   * ### On peux vérifier au niveau de l'icon OpenVPN
+![ad1](https://github.com/user-attachments/assets/2289df16-a4f2-4a86-a29a-d139f015b223)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
