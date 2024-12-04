@@ -54,14 +54,14 @@
 ![ad1](https://github.com/user-attachments/assets/d928c515-afd0-49e2-a4c9-61aaea865a32)
 * ##### Donner le chemin voulu 
 ![ad1](https://github.com/user-attachments/assets/5db9c63a-52f4-411b-974d-6cb59c80a31e)
-
-
 #### 3. `Restriction des périphériques amovible`
-
-
-
+* ##### Removable Storage Access => All Removable Strorage classes : Deny all access
+![ad1](https://github.com/user-attachments/assets/14c41c08-7300-4e76-97f5-bd886c280e7c)
 #### 4. `Écran de veille avec mot de passe en sortie`
-
+* ##### Policies => System => Power Management => Sleep settings
+* ##### Require a password when a computer wakes (plugged in) et Require a password when a computer wakes (on battery ) 
+![ad1](https://github.com/user-attachments/assets/52ecf1f7-6a1c-4588-9a5e-b8fff59b3967)
+![ad1](https://github.com/user-attachments/assets/4f2bd06b-2f5e-482b-80b5-369813235f41)
 
 
 #### 5. `Blocage complet ou partiel au panneau de configuration`
