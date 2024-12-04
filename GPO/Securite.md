@@ -59,13 +59,13 @@
 ![ad1](https://github.com/user-attachments/assets/14c41c08-7300-4e76-97f5-bd886c280e7c)
 #### 4. `Écran de veille avec mot de passe en sortie`
 * ##### Policies => System => Power Management => Sleep settings
-* ##### Require a password when a computer wakes (plugged in) et Require a password when a computer wakes (on battery ) 
+* ##### Require a password when a computer wakes (plugged in) et  (on battery ) 
 ![ad1](https://github.com/user-attachments/assets/52ecf1f7-6a1c-4588-9a5e-b8fff59b3967)
-![ad1](https://github.com/user-attachments/assets/4f2bd06b-2f5e-482b-80b5-369813235f41)
-
-
+* ##### Specify the system sleep time out (plugged in) et  (on battery ) 
+![ad1](https://github.com/user-attachments/assets/d7ac9ac6-ad76-47d3-84fa-2a1454df5dbd)
 #### 5. `Blocage complet ou partiel au panneau de configuration`
-
+* ##### User Configuration => Policies => Administrative Templates ... => Control Panel => Prohibit access to Control Panel and PC settings
+![ad1](https://github.com/user-attachments/assets/5d5d8b5e-70de-42c3-a027-e0b544671775)
 
 
 #### 6. `Gestion de Windows update` 
@@ -76,17 +76,12 @@
 #### 11. `Limitation des tentatives d'élévation de privilèges`
 #### 12. `Définition de scripts de démarrage pour les machines et/ou les utilisateurs`
 #### 13. `Politique de sécurité PowerShell`
-
-
-
-### `2) STANDART`
-
-
-
+### `2) STANDARD`
 #### 1. `Fond d'écran`
-
-
-
+##### ⚠️ créer un [partage de fichier](https://github.com/NALSED/Future-R-vision/blob/main/AD/Partage%20de%20fichier.md) our le fond d'écran
+* ##### User configuration => Policies => Administrative Templates => Desktop => Desktop Wallpaper
+* ##### Renseigner le chemin du partage 🔴
+![ad1](https://github.com/user-attachments/assets/e625b515-2e85-4b0f-bc38-c4de248fe5bc)
 #### 2. `Mappage de lecteurs`
 
 
