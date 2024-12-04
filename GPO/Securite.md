@@ -83,17 +83,24 @@
 * ##### Renseigner le chemin du partage 🔴
 ![ad1](https://github.com/user-attachments/assets/e625b515-2e85-4b0f-bc38-c4de248fe5bc)
 #### 2. `Mappage de lecteurs`
-
-
-
+* ##### User policy => Policies => preferences => Windows settings => Drive Maps
+![ad6](https://github.com/user-attachments/assets/0b4ae39b-ee7c-4de8-800e-6bc749be4951)
+* ##### Clic droit => New  
+![ad2](https://github.com/user-attachments/assets/4a838cdd-ab3d-4868-8502-6dbe2abccc46)
+* ##### Renseigner le chemin du partage 
+![AD3](https://github.com/user-attachments/assets/b0754a21-2723-4fda-a045-86e881de7dda)
+* ##### Le mappage s'affiche ici
+![ad5](https://github.com/user-attachments/assets/59c978ec-471f-482a-9395-c40788f96bbe)
 #### 3. `Gestion de l'alimentation`
-
-
-
+* ##### Computer configuration => System => Power configuration => Select an active power plan
+![ad1](https://github.com/user-attachments/assets/8fa1b7d7-8cfd-4c8c-a619-591a6caf234d)
 #### 4. `Déploiement de logiciels`
-
-
-
+* ##### Computer Configuration => Policies => Software Settings => Software Instalation
+* ##### New 
+![ad2](https://github.com/user-attachments/assets/d5c1340b-8cdd-4fd5-a30b-bc0fc5615fc5)
+* ##### Renseigner le chemin du logiciel à déployer via Le partage.
+* ##### Le fichier apparait ici après configuration
+![ad33](https://github.com/user-attachments/assets/f9deb51f-ea6c-473d-9f95-8317e81ceb2e)
 #### 5. `Configuration des paramètres du navigateur`
 
 
