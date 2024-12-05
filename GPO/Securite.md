@@ -5,26 +5,26 @@
 ## Classement des GPO par importance
 ## **SOMMAIRE**
 ### `1) SECURITE`
-#### 1. [Politique de mot de passe  + Verrouillage de compte]
-#### 2. [Restriction d'installation de logiciel pour les utilisateurs non-administrateurs]
-#### 3. [Restriction des périphériques amovible]
-#### 4. [Écran de veille avec mot de passe en sortie]
-#### 5. [Blocage complet ou partiel au panneau de configuration]
-#### 6. [Gestion de Windows update] 
-#### 7. [Gestion du pare-feu]	
-#### 8. [Gestion d'un compte du domaine qui est administrateur local des machines]
-#### 9. [Forçage du type d'utilisation sécurisée du bureau à distance]
-#### 10. [Blocage de l'accès à la base de registre]
-#### 11. [Limitation des tentatives d'élévation de privilèges]
-#### 12. [Définition de scripts de démarrage pour les machines et/ou les utilisateurs]
-#### 13. [Politique de sécurité PowerShell]
-### `2) STANDART`
-#### 1. [Fond d'écran]
-#### 2. [ Mappage de lecteurs]
-#### 3. [Gestion de l'alimentation]
-#### 4. [Déploiement de logiciels]
-#### 5. [Configuration des paramètres du navigateur] 
-#### 6. [Redirection de dossiers] 
+#### 1. [Politique de mot de passe  + Verrouillage de compte](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#1-politique-de-mot-de-passe--verrouillage-de-compte)
+#### 2. [Restriction d'installation de logiciel pour les utilisateurs non-administrateurs](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#2-restriction-dinstallation-de-logiciel-pour-les-utilisateurs-non-administrateurs-1)
+#### 3. [Restriction des périphériques amovible](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#3-restriction-des-p%C3%A9riph%C3%A9riques-amovible-1)
+#### 4. [Écran de veille avec mot de passe en sortie](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#4-%C3%A9cran-de-veille-avec-mot-de-passe-en-sortie-1)
+#### 5. [Blocage complet ou partiel au panneau de configuration](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#5-blocage-complet-ou-partiel-au-panneau-de-configuration-1)
+#### 6. [Gestion de Windows update]() 
+#### 7. [Gestion du pare-feu]()	
+#### 8. [Gestion d'un compte du domaine qui est administrateur local des machines]()
+#### 9. [Forçage du type d'utilisation sécurisée du bureau à distance]()
+#### 10. [Blocage de l'accès à la base de registre]()
+#### 11. [Limitation des tentatives d'élévation de privilèges]()
+#### 12. [Définition de scripts de démarrage pour les machines et/ou les utilisateurs]()
+#### 13. [Politique de sécurité PowerShell]()
+### 2) [`STANDART`](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#2-standard)
+#### 1. [Fond d'écran](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#1-fond-d%C3%A9cran-1)
+#### 2. [ Mappage de lecteurs](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#2-mappage-de-lecteurs)
+#### 3. [Gestion de l'alimentation](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#3-gestion-de-lalimentation-1)
+#### 4. [Déploiement de logiciels](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#4-d%C3%A9ploiement-de-logiciels-1)
+#### 5. [Configuration des paramètres du navigateur](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#5-configuration-des-param%C3%A8tres-du-navigateur-1)
+#### 6. [Redirection de dossiers]()
 ## **SOMMAIRE**
 ### `1) SECURITE`
 #### 1. `Politique de mot de passe + Verrouillage de compte` 
@@ -95,14 +95,14 @@
 * ##### Computer configuration => System => Power configuration => Select an active power plan
 ![ad1](https://github.com/user-attachments/assets/8fa1b7d7-8cfd-4c8c-a619-591a6caf234d)
 #### 4. `Déploiement de logiciels`
-### `.msi`
+🔵### `.msi`
 * ##### Computer Configuration => Policies => Software Settings => Software Instalation
 * ##### New 
 ![ad2](https://github.com/user-attachments/assets/d5c1340b-8cdd-4fd5-a30b-bc0fc5615fc5)
 * ##### Renseigner le chemin du logiciel à déployer via Le partage.
 * ##### Le fichier apparait ici après configuration
 ![ad33](https://github.com/user-attachments/assets/f9deb51f-ea6c-473d-9f95-8317e81ceb2e)
-### `.exe`
+🔵### `.exe`
 * #### 1) Script installer un exécutable
       ### Variables
       # Chemin UNC vers le partage qui contient l'exécutable ADAPTER LE CHEMIN
@@ -139,58 +139,58 @@
 }
 * #### 3) Script le logiciel est-il à jour ?
       ### Variables
-    # Chemin UNC vers le partage qui contient l'exécutable ADAPTER LE CHEMIN
-    $SharedFolder = "\\SRVWIN-ADDS-GUI\applications$"
+        # Chemin UNC vers le partage qui contient l'exécutable ADAPTER LE CHEMIN
+         $SharedFolder = "\\SRVWIN-ADDS-GUI\applications$"
 
-    # Chemin vers le dossier temporaire local sur le poste
-    $LocalFolder = "C:\TEMP"
+        # Chemin vers le dossier temporaire local sur le poste
+         $LocalFolder = "C:\TEMP"
 
-    # Nom de l'exécutable ADAPTER LE NOM
-    $ExeName = "7z2409-x64.exe"
+         # Nom de l'exécutable ADAPTER LE NOM
+        $ExeName = "7z2409-x64.exe"
 
-    # Argument(s) à associer à l'exécutable
-    $ExeArgument = "/S"
+        # Argument(s) à associer à l'exécutable
+        $ExeArgument = "/S"
 
-    # Version cible de l'exécutable (obtenue sur une installation manuelle)
-    $ExeVersion = "7.2.1.0"
+        # Version cible de l'exécutable (obtenue sur une installation manuelle)
+        $ExeVersion = "7.2.1.0"
 
-    # Chemin vers l'exécutable une fois l'installation terminée
-    $ExeInstallPath = "C:\Program Files\7-Zip.exe"
+        # Chemin vers l'exécutable une fois l'installation terminée
+         $ExeInstallPath = "C:\Program Files\7-Zip.exe"
 
-    # Le logiciel est-il déjà installé dans la bonne version ?
-    $InstalledVersion = (Get-ItemProperty -Path "C:\Program Files\7-Zip.exe" -ErrorAction             SilentlyContinue).VersionInfo.FileVersion
+         # Le logiciel est-il déjà installé dans la bonne version ?
+         $InstalledVersion = (Get-ItemProperty -Path "C:\Program Files\7-Zip.exe" -ErrorAction             SilentlyContinue).VersionInfo.FileVersion
 
-    if(($InstalledVersion -eq $null) -or ($InstalledVersion -ne $null -and $InstalledVersion -ne $ExeVersion)){
+        if(($InstalledVersion -eq $null) -or ($InstalledVersion -ne $null -and $InstalledVersion -ne $ExeVersion)){
 
-     # Si $InstalledVersion n'est pas null et que la version est différente : c'est qu'il faut faire une mise à jour
-     if($InstalledVersion -ne $null){ 
-      Write-Output "Le logiciel va être mis à jour : $InstalledVersion -> $ExeVersion"
-     }
+        # Si $InstalledVersion n'est pas null et que la version est différente : c'est qu'il faut faire une mise à jour
+        if($InstalledVersion -ne $null){ 
+        Write-Output "Le logiciel va être mis à jour : $InstalledVersion -> $ExeVersion"
+        }
 
-     # Si le chemin réseau vers l'exécutable est valide, on continue
-     if(Test-Path "$SharedFolder\$ExeName"){
+        # Si le chemin réseau vers l'exécutable est valide, on continue
+        if(Test-Path "$SharedFolder\$ExeName"){
 
-     # Créer le dossier temporaire en local et copier l'exécutable sur le poste
-     New-Item -ItemType Directory -Path "$LocalFolder" -ErrorAction SilentlyContinue
-     Copy-Item "$SharedFolder\$ExeName" "$LocalFolder" -Force
+        # Créer le dossier temporaire en local et copier l'exécutable sur le poste
+        New-Item -ItemType Directory -Path "$LocalFolder" -ErrorAction SilentlyContinue
+        Copy-Item "$SharedFolder\$ExeName" "$LocalFolder" -Force
 
-     # Si l'on trouve bien l'exécutable en local, on lance l'installation
-     if(Test-Path "$LocalFolder\$ExeName"){
+        # Si l'on trouve bien l'exécutable en local, on lance l'installation
+        if(Test-Path "$LocalFolder\$ExeName"){
         Start-Process -Wait -FilePath "$LocalFolder\$ExeName" -ArgumentList "$ExeArgument"
-     }
+        }
 
-     # On supprime l'exécutable à la fin de l'installation
-     Remove-Item "$LocalFolder\$ExeName"
+        # On supprime l'exécutable à la fin de l'installation
+        Remove-Item "$LocalFolder\$ExeName"
 
-     }else{
+        }else{
 
        Write-Warning "L'exécutable ($ExeName) est introuvable sur le partage !"
-     }
-    }else{
+        }
+        }else{
        Write-Output "Le logiciel est déjà installé dans la bonne version !"
-    }
-### GLPI instalation GLPI Agent
-* 1) ### Se rendre sur GUI GLPI
+        }
+🔵### GLPI instalation GLPI Agent
+*  ###  1) Se rendre sur GUI GLPI
 * ##### Acceuil => Administration => Inventaire => Activer l'inventaire 
 ![ad1](https://github.com/user-attachments/assets/efe7f65c-ac41-4789-8c52-71038e55769e)
 * ##### Télécharger l'agent GLPI 
@@ -200,7 +200,7 @@
 * ##### Computer Configuration => Policies => Software Settings => clic droit Software installation 
 ![ad1](https://github.com/user-attachments/assets/2a155358-a1b4-4dce-b578-50d4c29b2b84)
 * ##### Assigned
-* 2) ### Configurer l'agent GLPI avec le Registre Windows
+*  ### 2) Configurer l'agent GLPI avec le Registre Windows
 * ##### Computer Configuration => Policies => Preferences => Windows Settings => Regitry
 * ##### Clic droit New => Registry Item
 * ##### Renseigner dans la fenêtre comme ci dessous
