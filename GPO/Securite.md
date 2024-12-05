@@ -38,7 +38,7 @@
 ![ad1](https://github.com/user-attachments/assets/c9056c3a-ca67-4fff-85b0-da020e58461b)
 * ##### Politique de MDP :
 ![ad1](https://github.com/user-attachments/assets/dae7f4d0-aadc-4289-8945-ee5594fd34ca)
-#### 2.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Restriction d'installation de logiciel pour les utilisateurs non-administrateurs`
+#### 2.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Restriction d'installation de logiciel pour les utilisateurs non-administrateurs`
 * ###### Se rendre dans Sofware Restriction Policies => clic droit New Software Restriction Policies 
 ![ad2](https://github.com/user-attachments/assets/b1e9b43e-6b92-4db4-9dc8-a323ced558fe)
 ![ad1](https://github.com/user-attachments/assets/2f8d9141-3800-4f3e-9571-7c07be6fb0be)
@@ -54,35 +54,35 @@
 ![ad1](https://github.com/user-attachments/assets/d928c515-afd0-49e2-a4c9-61aaea865a32)
 * ##### Donner le chemin voulu 
 ![ad1](https://github.com/user-attachments/assets/5db9c63a-52f4-411b-974d-6cb59c80a31e)
-#### 3.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Restriction des périphériques amovible`
+#### 3.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Restriction des périphériques amovible`
 * ##### Removable Storage Access => All Removable Strorage classes : Deny all access
 ![ad1](https://github.com/user-attachments/assets/14c41c08-7300-4e76-97f5-bd886c280e7c)
-#### 4.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Écran de veille avec mot de passe en sortie`
+#### 4.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Écran de veille avec mot de passe en sortie`
 * ##### Policies => System => Power Management => Sleep settings
 * ##### Require a password when a computer wakes (plugged in) et  (on battery ) 
 ![ad1](https://github.com/user-attachments/assets/52ecf1f7-6a1c-4588-9a5e-b8fff59b3967)
 * ##### Specify the system sleep time out (plugged in) et  (on battery ) 
 ![ad1](https://github.com/user-attachments/assets/d7ac9ac6-ad76-47d3-84fa-2a1454df5dbd)
-#### 5.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Blocage complet ou partiel au panneau de configuration`
+#### 5.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Blocage complet ou partiel au panneau de configuration`
 * ##### User Configuration => Policies => Administrative Templates ... => Control Panel => Prohibit access to Control Panel and PC settings
 ![ad1](https://github.com/user-attachments/assets/5d5d8b5e-70de-42c3-a027-e0b544671775)
 
 
-#### 6.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Gestion de Windows update` 
-#### 7.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Gestion du pare-feu`	
-#### 8.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Gestion d'un compte du domaine qui est administrateur local des machines`
-#### 9.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Forçage du type d'utilisation sécurisée du bureau à distance`
-#### 10.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Blocage de l'accès à la base de registre`
-#### 11.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Limitation des tentatives d'élévation de privilèges`
-#### 12.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Définition de scripts de démarrage pour les machines et/ou les utilisateurs`
-#### 13.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Politique de sécurité PowerShell`
+#### 6.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Gestion de Windows update` 
+#### 7.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Gestion du pare-feu`	
+#### 8.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Gestion d'un compte du domaine qui est administrateur local des machines`
+#### 9.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Forçage du type d'utilisation sécurisée du bureau à distance`
+#### 10.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Blocage de l'accès à la base de registre`
+#### 11.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Limitation des tentatives d'élévation de privilèges`
+#### 12.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Définition de scripts de démarrage pour les machines et/ou les utilisateurs`
+#### 13.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Politique de sécurité PowerShell`
 ### `2) STANDARD`
-#### 1.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Fond d'écran`
+#### 1.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Fond d'écran`
 ##### ⚠️ créer un [partage de fichier](https://github.com/NALSED/Future-R-vision/blob/main/AD/Partage%20de%20fichier.md) our le fond d'écran
 * ##### User configuration => Policies => Administrative Templates => Desktop => Desktop Wallpaper
 * ##### Renseigner le chemin du partage 🔴
 ![ad1](https://github.com/user-attachments/assets/e625b515-2e85-4b0f-bc38-c4de248fe5bc)
-#### 2.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Mappage de lecteurs`
+#### 2.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Mappage de lecteurs`
 * ##### User policy => Policies => preferences => Windows settings => Drive Maps
 ![ad6](https://github.com/user-attachments/assets/0b4ae39b-ee7c-4de8-800e-6bc749be4951)
 * ##### Clic droit => New  
@@ -91,10 +91,10 @@
 ![AD3](https://github.com/user-attachments/assets/b0754a21-2723-4fda-a045-86e881de7dda)
 * ##### Le mappage s'affiche ici
 ![ad5](https://github.com/user-attachments/assets/59c978ec-471f-482a-9395-c40788f96bbe)
-#### 3.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Gestion de l'alimentation`
+#### 3.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Gestion de l'alimentation`
 * ##### Computer configuration => System => Power configuration => Select an active power plan
 ![ad1](https://github.com/user-attachments/assets/8fa1b7d7-8cfd-4c8c-a619-591a6caf234d)
-#### 4.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Déploiement de logiciels`
+#### 4.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Déploiement de logiciels`
 🔵### `.msi`
 * ##### Computer Configuration => Policies => Software Settings => Software Instalation
 * ##### New 
@@ -221,8 +221,8 @@
 * ##### Computer configuration => Policies => Administrative Templates => Windows Composents => Windows Powershell => Turn on Script Execution
 * ##### Allow local script and remote signed scripts
 ![ad1](https://github.com/user-attachments/assets/3122d858-badf-4f8a-8256-e75b53072631)
-#### 5.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Configuration des paramètres du navigateur`
-#### 6.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Redirection de dossiers`
+#### 5.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Configuration des paramètres du navigateur`
+#### 6.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Redirection de dossiers`
 
 
 
