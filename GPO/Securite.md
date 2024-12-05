@@ -27,7 +27,7 @@
 #### 6. [Redirection de dossiers](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#6-redirection-de-dossiers-1)
 ## **SOMMAIRE**
 ### `1) SECURITE`
-#### 1.[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire) `Politique de mot de passe + Verrouillage de compte` 
+#### 1.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Politique de mot de passe + Verrouillage de compte` 
 * ##### Clic droite sur L'OU => Create a GPO in this domain, and Link it here 
 ![ad1](https://github.com/user-attachments/assets/7354a6bf-ba09-4024-b7ad-74b06717644f)
 * ##### Nommer la GPO  
