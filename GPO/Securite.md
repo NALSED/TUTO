@@ -1,4 +1,4 @@
-[⏫](https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire)
+
 
 # 1️⃣ Execution des scripts OU et Users
 # 2️⃣ Définition et Installation des GPO
