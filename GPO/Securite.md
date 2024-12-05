@@ -95,16 +95,133 @@
 * ##### Computer configuration => System => Power configuration => Select an active power plan
 ![ad1](https://github.com/user-attachments/assets/8fa1b7d7-8cfd-4c8c-a619-591a6caf234d)
 #### 4. `Déploiement de logiciels`
+### `.msi`
 * ##### Computer Configuration => Policies => Software Settings => Software Instalation
 * ##### New 
 ![ad2](https://github.com/user-attachments/assets/d5c1340b-8cdd-4fd5-a30b-bc0fc5615fc5)
 * ##### Renseigner le chemin du logiciel à déployer via Le partage.
 * ##### Le fichier apparait ici après configuration
 ![ad33](https://github.com/user-attachments/assets/f9deb51f-ea6c-473d-9f95-8317e81ceb2e)
+### `.exe`
+* #### 1) Script installer un exécutable
+      ### Variables
+      # Chemin UNC vers le partage qui contient l'exécutable ADAPTER LE CHEMIN
+      $SharedFolder = "\\SRVWIN-ADDS-GUI\applications$"
+      # Chemin vers le dossier temporaire local sur le poste
+      $LocalFolder = "C:\TEMP"
+      # Nom de l'exécutable ADAPTER LE NOM
+      $ExeName = "7z2409-x64.exe"
+
+      # Argument(s) à associer à l'exécutable
+      $ExeArgument = "/S"
+      # Si le chemin réseau vers l'exécutable est valide, on continue
+      if(Test-Path "$SharedFolder\$ExeName"){
+
+      # Créer le dossier temporaire en local et copier l'exécutable sur le poste
+      New-Item -ItemType Directory -Path "$LocalFolder" -ErrorAction SilentlyContinue
+      Copy-Item "$SharedFolder\$ExeName" "$LocalFolder" -Force
+
+      # Si l'on trouve bien l'exécutable en local, on lance l'installation
+      if(Test-Path "$LocalFolder\$ExeName"){
+        Start-Process -Wait -FilePath "$LocalFolder\$ExeName" -ArgumentList "$ExeArgument"
+      }
+
+      # On supprime l'exécutable à la fin de l'installation
+      Remove-Item "$LocalFolder\$ExeName"
+
+      }else{
+      Write-Warning "L'exécutable ($ExeName) est introuvable sur le partage !"
+      }
+* #### 2) Script le logiciel est-il installé ?
+      # ADAPTER LE NOM 
+      if(Get-Package -Name "7z2409-x64.exe"){
+   Write-Output "Le logiciel 7z2409-x64.exe est présent sur la machine !"
+}
+* #### 3) Script le logiciel est-il à jour ?
+      ### Variables
+    # Chemin UNC vers le partage qui contient l'exécutable ADAPTER LE CHEMIN
+    $SharedFolder = "\\SRVWIN-ADDS-GUI\applications$"
+
+    # Chemin vers le dossier temporaire local sur le poste
+    $LocalFolder = "C:\TEMP"
+
+    # Nom de l'exécutable ADAPTER LE NOM
+    $ExeName = "7z2409-x64.exe"
+
+    # Argument(s) à associer à l'exécutable
+    $ExeArgument = "/S"
+
+    # Version cible de l'exécutable (obtenue sur une installation manuelle)
+    $ExeVersion = "7.2.1.0"
+
+    # Chemin vers l'exécutable une fois l'installation terminée
+    $ExeInstallPath = "C:\Program Files\7-Zip.exe"
+
+    # Le logiciel est-il déjà installé dans la bonne version ?
+    $InstalledVersion = (Get-ItemProperty -Path "C:\Program Files\7-Zip.exe" -ErrorAction             SilentlyContinue).VersionInfo.FileVersion
+
+    if(($InstalledVersion -eq $null) -or ($InstalledVersion -ne $null -and $InstalledVersion -ne $ExeVersion)){
+
+     # Si $InstalledVersion n'est pas null et que la version est différente : c'est qu'il faut faire une mise à jour
+     if($InstalledVersion -ne $null){ 
+      Write-Output "Le logiciel va être mis à jour : $InstalledVersion -> $ExeVersion"
+     }
+
+     # Si le chemin réseau vers l'exécutable est valide, on continue
+     if(Test-Path "$SharedFolder\$ExeName"){
+
+     # Créer le dossier temporaire en local et copier l'exécutable sur le poste
+     New-Item -ItemType Directory -Path "$LocalFolder" -ErrorAction SilentlyContinue
+     Copy-Item "$SharedFolder\$ExeName" "$LocalFolder" -Force
+
+     # Si l'on trouve bien l'exécutable en local, on lance l'installation
+     if(Test-Path "$LocalFolder\$ExeName"){
+        Start-Process -Wait -FilePath "$LocalFolder\$ExeName" -ArgumentList "$ExeArgument"
+     }
+
+     # On supprime l'exécutable à la fin de l'installation
+     Remove-Item "$LocalFolder\$ExeName"
+
+     }else{
+
+       Write-Warning "L'exécutable ($ExeName) est introuvable sur le partage !"
+     }
+    }else{
+       Write-Output "Le logiciel est déjà installé dans la bonne version !"
+    }
+### GLPI instalation GLPI Agent
+* 1) ### Se rendre sur GUI GLPI
+* ##### Acceuil => Administration => Inventaire => Activer l'inventaire 
+![ad1](https://github.com/user-attachments/assets/efe7f65c-ac41-4789-8c52-71038e55769e)
+* ##### Télécharger l'agent GLPI 
+      https://github.com/glpi-project/glpi-agent/releases/tag/1.5
+![ad1](https://github.com/user-attachments/assets/30239544-45d0-4dc0-954f-016d66b4cc1c)
+* ##### Placer le .msi dans le fichier de partage
+* ##### Computer Configuration => Policies => Software Settings => clic droit Software installation 
+![ad1](https://github.com/user-attachments/assets/2a155358-a1b4-4dce-b578-50d4c29b2b84)
+* ##### Assigned
+* 2) ### Configurer l'agent GLPI avec le Registre Windows
+* ##### Computer Configuration => Policies => Preferences => Windows Settings => Regitry
+* ##### Clic droit New => Registry Item
+* ##### Renseigner dans la fenêtre comme ci dessous
+![ad1](https://github.com/user-attachments/assets/904967da-e7c0-4104-992a-208640541c83)
+* ##### Clic droit New => Registry Item 
+* ##### Renseigner dans la fenêtre comme ci dessous
+![ad2](https://github.com/user-attachments/assets/7ed3a7dd-8686-4819-b423-0801c63178e2)
+* ##### Resultat 
+![ad3](https://github.com/user-attachments/assets/64687da4-4725-4ae6-b76a-b727aebd3004)
+* ### 4) Rendre le script executable dans la GPO
+* ##### Computer Configuration => Windows Settings => Scripts => Startup
+![ad1](https://github.com/user-attachments/assets/5a8b2bbf-b3eb-46bf-9ec6-2fb3ce2e554a)
+* ##### ⚠️Conserver le chemin présent à l'ouverture de la fenétre
+![ad1](https://github.com/user-attachments/assets/bccae377-9ae8-41fd-a647-1905773669b3)
+* ##### Choisir Run Windows PowerShell script first
+![ad1](https://github.com/user-attachments/assets/3ca8c003-a7f7-44c6-a9f9-fef41f157b5d)
+* ##### Modification de la politique d'exécution de la GPO
+* ##### Computer configuration => Policies => Administrative Templates => Windows Composents => Windows Powershell => Turn on Script Execution
+* ##### Allow local script and remote signed scripts
+![ad1](https://github.com/user-attachments/assets/3122d858-badf-4f8a-8256-e75b53072631)
 #### 5. `Configuration des paramètres du navigateur`
-
-
-
 #### 6. `Redirection de dossiers`
 
 
