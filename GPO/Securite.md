@@ -1,7 +1,5 @@
-
-
 # 1️⃣ Execution des scripts OU et Users
-# 2️⃣ Définition et Installation des GPO
+# 2️⃣ Définition et Installation des GPO => 16 GPO's
 ## Classement des GPO par importance
 ## **SOMMAIRE**
 ### `1) SECURITE`
