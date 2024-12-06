@@ -96,14 +96,14 @@
 ![ad1](https://github.com/user-attachments/assets/8fa1b7d7-8cfd-4c8c-a619-591a6caf234d)
 #### 4.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Déploiement de logiciels`
 
-🔵### `.msi`
+### 🔵`.msi`
 * ##### Computer Configuration => Policies => Software Settings => Software Instalation
 * ##### New 
 ![ad2](https://github.com/user-attachments/assets/d5c1340b-8cdd-4fd5-a30b-bc0fc5615fc5)
 * ##### Renseigner le chemin du logiciel à déployer via Le partage.
 * ##### Le fichier apparait ici après configuration
 ![ad33](https://github.com/user-attachments/assets/f9deb51f-ea6c-473d-9f95-8317e81ceb2e)
-🔵### `.exe`
+### 🔵 `.exe`
 * #### 1) Script installer un exécutable
       ### Variables
       # Chemin UNC vers le partage qui contient l'exécutable ADAPTER LE CHEMIN
