@@ -66,9 +66,12 @@
 #### 5.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Blocage complet ou partiel au panneau de configuration`
 * ##### User Configuration => Policies => Administrative Templates ... => Control Panel => Prohibit access to Control Panel and PC settings
 ![ad1](https://github.com/user-attachments/assets/5d5d8b5e-70de-42c3-a027-e0b544671775)
-
-
 #### 6.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Gestion de Windows update` 
+* ##### Computer Configuration => Policies => Administrative Templates => Windows Components => Windows Update.
+* ##### Configure Automatic Updates
+* ##### Configurer comme si dessous, pour que les mises à jours se fassent le 1er lundi de chaques mois 
+
+![ad1](https://github.com/user-attachments/assets/75870b66-bc24-48c4-99c7-f6a89c7df192)
 #### 7.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Gestion du pare-feu`	
 #### 8.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Gestion d'un compte du domaine qui est administrateur local des machines`
 #### 9.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Forçage du type d'utilisation sécurisée du bureau à distance`
@@ -223,6 +226,21 @@
 * ##### Allow local script and remote signed scripts
 ![ad1](https://github.com/user-attachments/assets/3122d858-badf-4f8a-8256-e75b53072631)
 #### 5.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Configuration des paramètres du navigateur`
+### 1️⃣ Définir le navigateur par défaut
+* ##### Computer Configuration => Policies => Administrative Template => Windows Composents => File Explorer
+* #####  Set a default association configuration file
+* ##### Rentrer le chemin du partage et valider
+![ad1](https://github.com/user-attachments/assets/2351a6ec-40d8-40cd-a299-e36d9df9bffd)
+### 2️⃣ Configurer le navigateur
+* ##### Récupérer le fichier admx et adml sur le GitHub
+* ##### Copier le fichier admx et adml (=> US, sinon risque d'incompatiblité).
+            Dans => %SYSTEMROOT%\PolicyDefinitions
+![ad1](https://github.com/user-attachments/assets/be6226e1-c13d-402e-b40d-30d1797be03a)
+* ##### Les nouvelles options GPO sont ici ⏬
+![ad1](https://github.com/user-attachments/assets/d64dd2e1-e1f6-48f3-bbbb-07f5177f3e44)
+   * ##### GPO éditées pour firefox
+       * ##### Page acceuil
+       * ##### Bloquer la localisation
 #### 6.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Redirection de dossiers`
 
 
