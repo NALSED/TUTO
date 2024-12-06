@@ -95,6 +95,7 @@
 * ##### Computer configuration => System => Power configuration => Select an active power plan
 ![ad1](https://github.com/user-attachments/assets/8fa1b7d7-8cfd-4c8c-a619-591a6caf234d)
 #### 4.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Déploiement de logiciels`
+
 🔵### `.msi`
 * ##### Computer Configuration => Policies => Software Settings => Software Instalation
 * ##### New 
