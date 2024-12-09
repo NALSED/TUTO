@@ -3,7 +3,7 @@
 #### Pour ce faire il existe 4 types de Raid:
 * #### `Raid 0`(striped ou spanned) => deux disques mini, les données sont réparties sur les deux disques(très sensible à la panne, utilisé pour ça rapidité) 
 ![ad0](https://github.com/user-attachments/assets/22eeb378-d6e5-499f-bd12-9eb69ef178dd)
-#### ⚠️Différences entre 1️⃣Striped (Abrégé par Bandes) ou 2️⃣Spanned (Fractionné)
+#### ⚠️Différences entre 1️⃣Spanned (Fractionné) ou 2️⃣Striped (Abrégé par Bandes)
 #### 1️⃣ Pour un disque fractionné, les données sont placées les unes après les autres. Une partition peut être étendue sur plusieurs disques de manière totalement transparente donnant l'impression qu'elle se trouve sur un seul disque. Cela est très pratique si une partition manque d'espace car elle peut être étendue en rajoutant un disque. Il n'y a aucun gain de performances. Si un disque tombe, seules les données sur ce disque sont perdues , le reste pouvant être récupéré avec des logiciels tiers.
 #### 2️⃣ Les donnés sont répartie sue les N Disques
 * ####  `Raid 1`(mirroring) => deux disques mini, les données sont copiées sur les deux disques
