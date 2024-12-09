@@ -80,9 +80,11 @@
 ![ad1](https://github.com/user-attachments/assets/e46bcd6f-9587-4467-b93b-7aa6d9ac3d8c)
 ##### Appliquer les changement et redémarer
       sudo update-initramfs -u
-
-
-
+##### Créer un fichier/dossier dans le dossier DATA-RAID1(ouvir le dossier dans le terminal => mkdir)  
+![ad1](https://github.com/user-attachments/assets/85cf8406-5534-4115-b559-87fe58f9e2a4)
+##### Le disque à été retiré via VB
+##### Reconstituer le RAID 
+                  sudo mdadm --manage /dev/md0 --add /dev/sdd1
 
 
 
