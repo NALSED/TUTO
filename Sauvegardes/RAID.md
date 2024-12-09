@@ -58,11 +58,11 @@
 ##### Les disque md0 s'appelent maintenant "PersonalData".
 ### 4️⃣ `Montage du RAID :`
 ##### Ajoute d'un dossier Data-Raid1 sous /home/wilder, pour monter la partition md0 :     
-      sudo mkdir /home/wilder/Data-RAID1 -p
+      sudo mkdir /home/sednal/Data-RAID1 -p
 ##### Monter la partition md0 dans ce dossier : 
-      sudo mount /dev/md0 /home/wilder/Data-RAID1/
+      sudo mount /dev/md0 /home/sednal/Data-RAID1/
 ##### Pour que le RAID soit monté automatiquement ajouter la ligne suivante au fichier /etc/fstab
-      /dev/md0 /home/wilder/Data-RAID1 ext4 nofail 0 0
+      /dev/md0 /home/sednal/Data-RAID1 ext4 nofail 0 0
 ##### 📝 Explication :
 * ##### ▶️ /dev/md0 : Le RAID
 * ##### ▶️ /home/wilder/Data-RAID1 : Le point de montage de la partition RAID
