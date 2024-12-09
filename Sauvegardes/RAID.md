@@ -22,7 +22,7 @@
 2 ) WINDOWS ### RAID
 #### Se rendre dans Disk Manager, on peux y retrouver les différent disk
 ![ad1](https://github.com/user-attachments/assets/c1e33a78-1228-4172-aaab-89f01c2ed2e0)
-
+#### Lors d'un clic droit sur le disk ou l'on souhaite faire un RAID, choisir les option et ce laisser guider.
 
 
 
