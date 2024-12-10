@@ -50,7 +50,7 @@ après la commande rajouter le disque souhaité :
 
 </details>
 
-##### Initialiser le nouveau volume
+#### Odre => 1️⃣ Initialiser un Volume => 2️⃣ Créer un groupe => 3️⃣ Créer un volume logique.
 
 
 
