@@ -24,6 +24,7 @@
 ![ad1](https://github.com/user-attachments/assets/c1e33a78-1228-4172-aaab-89f01c2ed2e0)
 #### Lors d'un clic droit sur le disk ou l'on souhaite faire un RAID, choisir les option et ce laisser guider.
 3 ## LINUX
+### RAID 1
 ##### Créer les volumes sur VB, cocher la case branchable à chaux
 ![ad1](https://github.com/user-attachments/assets/a0646a97-8859-4ff8-af53-c651ed07ebda)
 ### 1️⃣ `Préparation disk`
@@ -85,15 +86,25 @@
 ##### Le disque à été retiré via VB
 ##### Reconstituer le RAID 
                   sudo mdadm --manage /dev/md0 --add /dev/sdd1
-
-
-
-
-
-
-
-
-
+### RAID 5 (https://www.youtube.com/watch?v=j_y25HkWSOs&ab_channel=KnowledgeSharingTech)
+##### Deux nouvelles partion on été créer, formater sdb/c comme précedement, juste a la fin formater avec fd( type de partition) 
+![ad1](https://github.com/user-attachments/assets/15ba5d6d-d771-4288-8c81-5606d19f4d93)
+sdb
+![ad1](https://github.com/user-attachments/assets/aa2212ee-3e02-4e4d-a2e8-387e10afb2dc)
+sdc
+![ad1](https://github.com/user-attachments/assets/18de9db4-f675-4f7f-8bf6-193441a61869)
+##### créer md0 
+            sudo mdadm --create /dev/md0 --level=mirror --raid-devices=2 /dev/sdb1 /dev/sdc1
+##### Créer et monter la partition
+##### Il est possible de le réaliser depuis l'utilitaire Disks               
+        sudo mkfs.ext4 /dev/md0 -L "PersonalData"    
+##### Montage du RAID
+            sudo mkdir /home/wilder/Data-RAID1 -p
+            sudo mount /dev/md0 /home/wilder/Data-RAID1/
+##### Lorsque le disque à eu un probléme, ajouter un nouveau et le coupler au RAID
+![ad1](https://github.com/user-attachments/assets/1235826f-b03b-405c-8a08-c1be8ec93e1c)
+            sudo mdadm --manage /dev/md0 --add /dev/sdd1
+![ad1](https://github.com/user-attachments/assets/8cb7da7f-3e50-431d-9d19-aadaebc18a2a)
 
 
 
