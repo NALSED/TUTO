@@ -1,5 +1,7 @@
 #### 📝 LVM est à la fois une méthode et un logiciel de gestion de l'utilisation des espaces de stockage d'un ordinateur
 [LVM](https://doc.ubuntu-fr.org/lvm)
+[IT](https://www.it-connect.fr/chapitres/creation-et-gestion-dune-structure-lvm/)
+[AVANCE](https://www.linuxtricks.fr/wiki/lvm-avance-les-snapshots)
 ### `Création et visualisation`
 ![ad1](https://github.com/user-attachments/assets/af28c1c7-7a03-443a-8b76-cc3d76962a6f)
 ##### Partition de disques :
@@ -51,6 +53,40 @@ après la commande rajouter le disque souhaité :
 </details>
 
 #### Odre => 1️⃣ Initialiser un Volume => 2️⃣ Créer un groupe => 3️⃣ Créer un volume logique.
+
+### Exercice :
+
+## 1️⃣ `Renomer en vg-debian et ajouter un disque`
+![ad1](https://github.com/user-attachments/assets/5013e7ea-3ea5-495e-93b4-6dec2ba12844)
+### ➡️ Ajout de sdb => debian-vg
+![ad1](https://github.com/user-attachments/assets/698fd0df-0a44-4a39-b4fd-eaa003b809da)
+## 2️⃣ `Snapshot de LV home`
+![ad1](https://github.com/user-attachments/assets/175f6dbc-6902-4c88-97d2-602d78ad51c1)
+![ad1](https://github.com/user-attachments/assets/82df2bca-83bc-4422-95a2-264b3cfd3fff)
+![ad1](https://github.com/user-attachments/assets/23df7fee-51b5-47a3-93e4-47b3ec2ac8e2)
+## 3️⃣ `Montage`
+![image](https://github.com/user-attachments/assets/02576552-0cd4-4227-b700-f00cc402b663)
+## 4️⃣ `Vérification copie`
+![image](https://github.com/user-attachments/assets/11332af6-3f33-4e14-ac35-6cba502391e2)
+## 5️⃣ `Démontage et supression`
+![image](https://github.com/user-attachments/assets/1d3588fb-b015-4b84-b437-19c8161e5859)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
