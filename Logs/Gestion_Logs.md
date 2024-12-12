@@ -57,6 +57,8 @@
 ![image](https://github.com/user-attachments/assets/130944d9-430f-4a2c-b0fe-a846919cf0ee)
 ## 2️⃣ Configuration du Serveur 
 * ### `créer un abonnement`
+#### Event Viewer => clic droit Create Subsciption...
+![image](https://github.com/user-attachments/assets/d81c7eac-4ab0-4632-808e-7db5ca8e13c3)
 
 
 
