@@ -1,4 +1,6 @@
 # Instalation/Configuration de WinRM
+##### Source [IT1](https://www.it-connect.fr/observateur-devenements-transferts-et-abonnements/)
+##### [IT2](https://www.it-connect.fr/activer-winrm-par-gpo-sous-windows-server/)
 ---
 ## 1️⃣ Configuration de WinRM => Client
 ---
@@ -42,7 +44,19 @@
       winrm get winrm/config/client
 #### On voit que le client de confiance est bien présent :
 ![image](https://github.com/user-attachments/assets/41b2a654-bbc6-4223-9d19-179310bf83ac)
-
+---
+* ### `Autorisation de lecture`
+##### ⚠️La configuration est effectué sur une machine, mais il faut l'effectuer en GPO pour l'entreprise
+#### Computer Management => System tools => Local Users and Groups => Groups => Event Log Readers
+![image](https://github.com/user-attachments/assets/76161ea9-3587-435f-81e3-8aacbf3a7b79)
+##### Cocher ordinateur
+![image](https://github.com/user-attachments/assets/acbe0bcc-e857-4f0d-b25e-1a653d4a08d1)
+#### Rentrer le nom du serveur
+![image](https://github.com/user-attachments/assets/4f29e518-77a6-494d-bef6-8f8829790583)
+#### Résultat
+![image](https://github.com/user-attachments/assets/130944d9-430f-4a2c-b0fe-a846919cf0ee)
+## 2️⃣ Configuration du Serveur 
+* ### `créer un abonnement`
 
 
 
