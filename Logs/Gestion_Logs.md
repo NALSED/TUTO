@@ -59,8 +59,17 @@
 * ### `créer un abonnement`
 #### Event Viewer => clic droit Create Subsciption...
 ![image](https://github.com/user-attachments/assets/d81c7eac-4ab0-4632-808e-7db5ca8e13c3)
-
-
+#### 🔵 Renseigner le Nom du serveur colecteur et une description.
+#### 🔴 Ici le nom du journal dans lequel l'abonement sera collecté.
+#### 🟢 Ici c'est le serveur colecteur qui est à l'initiative de la collecte, renseiger sont FQDN.
+![image](https://github.com/user-attachments/assets/7a807ef6-f053-4f18-9adb-1f1c971a05d1)
+#### 🔵 Select Events... => Filtrages des Evenements
+#### 🔴 Event Level => Critical + Warning
+#### 🟢 By log(filtres) Secutity + System
+![image](https://github.com/user-attachments/assets/d212babd-3845-4e77-8818-c4aefe5a830c)
+#### 🔵Advenced...
+#### 🔴 Normal
+![image](https://github.com/user-attachments/assets/d14a9037-c4fd-4bb9-92b8-962c6570073c)
 
 
 
