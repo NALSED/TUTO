@@ -11,7 +11,7 @@
 ![image](https://github.com/user-attachments/assets/890c875e-f02c-42d6-95c8-2d0b6e99f0a1)
 ---
 * ### `Firewall`
-#### Dans les régle rentrante => New Rules ⚠️Attention deux régles sont à éditer à la suite!! 
+#### Dans les régle rentrante => New Rules 
 ![image](https://github.com/user-attachments/assets/d10bddad-6dd2-49b7-a52b-84ba5f389711)
 #### Cocher Predefined => Windows Remote Management et par la suite Remote Management(compatibility
 ![image](https://github.com/user-attachments/assets/58edd5e1-7735-46f4-a2cc-6db7c8ffd39f)
