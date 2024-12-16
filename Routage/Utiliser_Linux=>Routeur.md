@@ -47,13 +47,13 @@
 |:-:|:-:|:-:|
 |enp0s3 |10.0.1.1/24|fd35:e225:65cf:192::251/64|
 |enp0s8|dhcp|dhcp|
-|enp0s9|192.168.0.250/24|fdd1:e40a:c2fc:1::1/64|
+|enp0s9|192.168.0.251/24|fdd1:e40a:c2fc:1::1/64|
 * ### `R2_LX Debian 12`
 |Interface|IPv4|IPv6|
 |:-:|:-:|:-:|
 |enp0s3 |10.0.2.1/24|fd79:f27e:a64c:192::252/64|
 |enp0s8|dhcp|dhcp|
-|enp0s9|192.168.0.250/24|fd09:7bcc:9a0f:2::1/64|
+|enp0s9|192.168.0.252/24|fd09:7bcc:9a0f:2::1/64|
 ### 6️⃣ `Captures et Résultats`
 
 * ### `R0_LX Debian 12`
