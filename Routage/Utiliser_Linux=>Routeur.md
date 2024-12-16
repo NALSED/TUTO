@@ -42,7 +42,7 @@
 |Interface|IPv4|IPv6|
 |:-:|:-:|:-:|
 |enp0s3 |10.0.2.13/24|fd1d:53c6:6dae:2::13/64|
-* ### `R2_LX Debian 12`
+* ### `R1_LX Debian 12`
 |Interface|IPv4|IPv6|
 |:-:|:-:|:-:|
 |enp0s3 |10.0.1.1/24|fd35:e225:65cf:192::251/64|
