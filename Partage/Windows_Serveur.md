@@ -39,9 +39,13 @@
 ![image](https://github.com/user-attachments/assets/1beacc67-914c-498a-a87e-4cd636ee95fc)
 #### Résultat
 ![image](https://github.com/user-attachments/assets/60a1610d-34e9-45eb-98c8-deb506897145)
-
-
-
+### 3️⃣ Mappage du lecteur
+#### Drive Maps remplir comme si dessous chemin + nom + plus lettre mappage
+![image](https://github.com/user-attachments/assets/d5c7c66c-d7e9-415f-a2f4-d9420088d27f)
+#### Puis common=> cocher les deux case en bleu => Targeting 
+![image](https://github.com/user-attachments/assets/fc3460c7-97d9-4579-ac52-5acafea114f9)
+#### New Item => Security Group
+![image](https://github.com/user-attachments/assets/eca241f3-b934-450c-a1b4-1df202a8b2ec)
 
 
 
