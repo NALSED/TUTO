@@ -31,7 +31,61 @@
 #### Résultat attendu
 ![image](https://github.com/user-attachments/assets/05b66a3a-ab7f-4b1b-adf4-e4fc805a32c9)
 ### 2️⃣ Création de la stratégie de groupe
-#### 
+#### Group Policy Management => Créer un GPO
+#### User Configuration => Preferences => Windows Settings => Folder => New
+#### Renseigner le chemin du partage dans Path et rajouter %LogonUser% pour spécifier que c'est l'utilisateur connecté qui partage le dossier
+![image](https://github.com/user-attachments/assets/2f3a838a-f9c1-44f1-8fd2-00c0952f7858)
+#### Cocher la case suivante 
+![image](https://github.com/user-attachments/assets/1beacc67-914c-498a-a87e-4cd636ee95fc)
+#### Résultat
+![image](https://github.com/user-attachments/assets/60a1610d-34e9-45eb-98c8-deb506897145)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
