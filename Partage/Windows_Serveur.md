@@ -1,5 +1,5 @@
 # Création de dossier de partage personalisé et commun 
-
+## ⚠️A la création des Groupes avec un un carractère dans Description' exemple 
 ### 1️⃣ Création d'un dossier de partage à la racine.
 #### Mettre les deux serveurs sur le même réseaux
 #### Partage du dossier (En ajoutant le symbole dollar « $ »après le nom de partage, vous cachez le nom de partage sur le réseau)
@@ -46,7 +46,9 @@
 ![image](https://github.com/user-attachments/assets/fc3460c7-97d9-4579-ac52-5acafea114f9)
 #### New Item => Security Group
 ![image](https://github.com/user-attachments/assets/eca241f3-b934-450c-a1b4-1df202a8b2ec)
-
+#### User Configuration => Preferences => Windows Settings => ShortCuts => New
+#### Remplir la page comme ci dessous
+![image](https://github.com/user-attachments/assets/9056db85-4fa1-4860-b956-1a9d1d8045b2)
 
 
 
