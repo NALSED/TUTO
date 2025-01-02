@@ -9,20 +9,13 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 ### 1️⃣ `Shéma synoptique`
 ### 2️⃣ `Lab`
 ### 3️⃣ `Configuration Routage`
-### 4️⃣ ``
+### 4️⃣ `Régles NAT`
 ### 5️⃣ ``
 ### 6️⃣ ``
 ### 7️⃣ ``
 ### 8️⃣ ``
 ### 9️⃣ ``
 ### 🔟 ``
-
-
-
-
-
-
-
 ---
 ### 1️⃣ 📒`Shéma synoptique`
 
@@ -45,21 +38,27 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 	- ROM (50 Go)
 	- 1 carte réseau (en réseau interne)
 ### Utiliser la description du lab pour l'instalation des machines
+## ⚠️Dans ce labo nous utiliserons SSH pour passer d'un routeur à l'autre
 ### 3️⃣ `Configuration Network et Routage`
 #### * Network R-EDGE
 ### ✏️ IP Static et DHCP
           nano /etc/network/interfaces
 ![image](https://github.com/user-attachments/assets/fb526709-5242-4ae6-824e-fb9e7f260630)
-#### * Network R-INTER
-### ✏️ IP Static  
-![image](https://github.com/user-attachments/assets/4e972086-425c-4e21-9279-38e85026b069)
 #### * Routage R-EDGE 
 ### ✏️ configuration du routage persistant
         nano /etc/sysclt.conf
 ![image](https://github.com/user-attachments/assets/5852c7e9-9c6c-41ee-aea1-2e2abd10f51f)
         systemctl restart networking
-
-
+#### * Routage R-INTER
+### ✏️ configuration du routage persistant
+![image](https://github.com/user-attachments/assets/cecd2cc4-17cc-44ac-a651-64e5af86bb41)
+#### * Network R-INTER
+### 🖥️ Activer les 4 cartes réseaux sur VB
+### ✏️ IP Static  
+![image](https://github.com/user-attachments/assets/e44fad4c-eeaf-4047-8cc9-e0cb4f5e14cf)
+### ✏️ Carte réseaux
+![image](https://github.com/user-attachments/assets/f1cf094f-fb51-430d-91c3-03c993421937)
+### 4️⃣ `Régles NAT`
 
 
 
