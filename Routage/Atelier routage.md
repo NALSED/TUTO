@@ -43,34 +43,38 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 #### * Network Client 
 ### mettre le client sur le même Vlan que le réseau du routeur( intnet 2 pour le routeur donc intnet pour le Client)  
 ![image](https://github.com/user-attachments/assets/3d9a4080-a353-4dc2-a992-ae0db6f44f09)
-#### * Network R-EDGE
+___
+___
+* ####  Network R-EDGE
 ### ✏️ IP Static et DHCP
           nano /etc/network/interfaces
 ![image](https://github.com/user-attachments/assets/fb526709-5242-4ae6-824e-fb9e7f260630)
-#### * Routage R-EDGE 
+* ####  Routage R-EDGE 
 ### ✏️ configuration du routage persistant
         nano /etc/sysclt.conf
 ![image](https://github.com/user-attachments/assets/5852c7e9-9c6c-41ee-aea1-2e2abd10f51f)
         systemctl restart networking
-#### * Routage R-INTER
+___
+___
+* ####  Routage R-INTER
 ### ✏️ configuration du routage persistant
 ![image](https://github.com/user-attachments/assets/cecd2cc4-17cc-44ac-a651-64e5af86bb41)
-#### * Network R-INTER
+* ####  Network R-INTER
 ### 🖥️ Activer les 4 cartes réseaux sur VB
 ### ✏️ IP Static  
 ![image](https://github.com/user-attachments/assets/e44fad4c-eeaf-4047-8cc9-e0cb4f5e14cf)
 ### ✏️ Carte réseaux
 ![image](https://github.com/user-attachments/assets/f1cf094f-fb51-430d-91c3-03c993421937)
 ### 4️⃣ `Régles NAT`
-
-
-
-
-
-
-
-
-
+* ###  R-EDGE
+		nft add table ip table_NAT		
+* #### `nft add table ip` : création de la table
+* #### `table_NAT` : Nom de la table
+		nft add chain ip table_NAT chain_postrouting { type nat hook postrouting priority 0\; }
+* #### `nft add chain ip` : création de la chaine
+* #### `table_NAT` : la chaine est créer dans la table_NAT
+* #### `chain_postrouting` : Nom de la chaine
+* #### `type nat hook postrouting priority 0\;``: Type et priotité de la chaine 
 
 
 
