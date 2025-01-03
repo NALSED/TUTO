@@ -92,7 +92,9 @@ ___
 * ### Sur R-EDGE dans l'interface en DHCP	
   		nano /etc/network/interfaces 
 * ### Ajouter la ligne 
-	pre-up nft -f /root/table_NAT.nft	
+
+		pre-up nft -f /root/table_NAT.nft	
+
 ![image](https://github.com/user-attachments/assets/a8f1eff4-0bba-4ced-a651-c250249c0434)
 
 
