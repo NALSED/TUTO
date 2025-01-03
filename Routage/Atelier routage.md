@@ -40,6 +40,9 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 ### Utiliser la description du lab pour l'instalation des machines
 ## ⚠️Dans ce labo nous utiliserons SSH pour passer d'un routeur à l'autre
 ### 3️⃣ `Configuration Network et Routage`
+#### * Network Client 
+### mettre le client sur le même Vlan que le réseau du routeur( intnet 2 pour le routeur donc intnet pour le Client)  
+![image](https://github.com/user-attachments/assets/3d9a4080-a353-4dc2-a992-ae0db6f44f09)
 #### * Network R-EDGE
 ### ✏️ IP Static et DHCP
           nano /etc/network/interfaces
