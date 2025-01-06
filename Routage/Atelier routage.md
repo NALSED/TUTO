@@ -51,9 +51,10 @@ ___
 ![image](https://github.com/user-attachments/assets/fb526709-5242-4ae6-824e-fb9e7f260630)
 * ####  Routage R-EDGE 
 ### ✏️ configuration du routage persistant
-        nano /etc/sysclt.conf
+        nano /etc/sysctl.conf
 ![image](https://github.com/user-attachments/assets/5852c7e9-9c6c-41ee-aea1-2e2abd10f51f)
-        systemctl restart networking
+       
+	systemctl restart networking
 ___
 ___
 * ####  Routage R-INTER
