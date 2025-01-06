@@ -79,12 +79,17 @@ ___
 * #### `table_NAT` : la chaine est créer dans la table_NAT
 * #### `chain_postrouting` : Nom de la chaine
 * #### `type nat hook postrouting priority 0\;``: Type et priotité de la chaine 
-		nft add rule table_NAT chain_postrouting ip saddr 10.0.99.252/30 oif enp0s8 snat 192.168.10.11
+		nft add rule table_NAT chain_postrouting 	ip saddr 10.0.99.252/30 oif enp0s8 snat 192.168.10.11
+								ip saddr 10.0.0.0/22 oif "enp0s8" snat to 192.168.0.104
+
 * #### `nft add rule table_NAT chain_postrouting` : création de la régle
 * #### `ip saddr 10.0.99.252/30` : addresse ip source
 * #### `oif enp0s8 snat 192.168.10.11` : adresse de sortie
 * #### Ajout d'une second régle NAT afin de pouvoir connecter les clients à internet
-  		
+
+![image](https://github.com/user-attachments/assets/f8f05654-d6e0-4a68-81c0-9aadcb91c50a)
+
+    
 * ## SAUVEGARDE :
 ___
   		nft list table ip table_NAT > table_NAT.nft
@@ -118,6 +123,6 @@ ___
   		ip route add 10.0.1.0/24 via 10.0.99.253
 ### Le ping depuis le cliens fontionne depuis 10.0.1.1 => 192.168.0.104
 
-
+## ICI il est possible de pinger internet depuis le client
 
 
