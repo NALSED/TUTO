@@ -97,7 +97,8 @@ ___
 		pre-up nft -f /root/table_NAT.nft	
 
 ![image](https://github.com/user-attachments/assets/a8f1eff4-0bba-4ced-a651-c250249c0434)
-
+### Si on ping 8.8.8.8 avec R-INTER c'est bien R-EDGE qui envoie la requéte
+![image](https://github.com/user-attachments/assets/9a3203b5-dd17-49d2-82d6-d4f2f12f7277)
 
 
 
