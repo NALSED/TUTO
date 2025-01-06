@@ -121,7 +121,7 @@ ___
 ### Si l'on ajoute la route suivante
 		
   		ip route add 10.0.1.0/24 via 10.0.99.253
-### Le ping depuis le cliens fontionne depuis 10.0.1.1 => 192.168.0.104
+### Le ping depuis le cliens fontionne depuis 10.0.1.1 => 8.8.8.8
 
 ## ICI il est possible de pinger internet depuis le client
 
