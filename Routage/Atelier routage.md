@@ -83,6 +83,8 @@ ___
 * #### `nft add rule table_NAT chain_postrouting` : création de la régle
 * #### `ip saddr 10.0.99.252/30` : addresse ip source
 * #### `oif enp0s8 snat 192.168.10.11` : adresse de sortie
+* #### Ajout d'une second régle NAT afin de pouvoir connecter les clients à internet
+  		
 * ## SAUVEGARDE :
 ___
   		nft list table ip table_NAT > table_NAT.nft
@@ -99,14 +101,22 @@ ___
 ![image](https://github.com/user-attachments/assets/a8f1eff4-0bba-4ced-a651-c250249c0434)
 ### Si on ping 8.8.8.8 avec R-INTER c'est bien R-EDGE qui envoie la requéte
 ![image](https://github.com/user-attachments/assets/9a3203b5-dd17-49d2-82d6-d4f2f12f7277)
-### 
+### ⚠️TEST⚠️(est sera supprimé) Copier le fichier NAT de R-EDGE sur R-INTER en modifiant la dernière ligne
 
+![image](https://github.com/user-attachments/assets/879a7d9a-a7df-4ce1-aaf3-0f23d43a5472)
+ 
+ ### Ajouter la ligne suivante à /etc/network/interfaces
+ 		pre-up nft -f /root/table.nft
+		systemctl restart networking.service
 
+### 🪄Magie de la technique 
 
-
-
-
-
+![image](https://github.com/user-attachments/assets/6a77a93e-a225-4b69-8b39-b481f1b8c6e6)
+### Ajout de routes test
+### Si l'on ajoute la route suivante
+		
+  		ip route add 10.0.1.0/24 via 10.0.99.253
+### Le ping depuis le cliens fontionne depuis 10.0.1.1 => 192.168.0.104
 
 
 
