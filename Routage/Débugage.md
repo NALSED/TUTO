@@ -1,3 +1,12 @@
+
+
+# debian ne télécharge pas les paquet
+
+### Regarder le fichier  /etc/resolv.conf
+### Et vérifier le nom du DNS
+
+# Pas internet
+
 1) Cable
 
 2) Cartes Réseaux // Vlan
