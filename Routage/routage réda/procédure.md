@@ -9,8 +9,8 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 ### 1️⃣ `Shéma synoptique`
 ### 2️⃣ `Configuration Routage`
 ### 3️⃣ `Régles NAT et Route`
-### 4️⃣ ``
-### 5️⃣ ``
+### 4️⃣ `protocole RIP avec FRRouting`
+### 5️⃣ `Vérification`
 ### 6️⃣ ``
 ### 7️⃣ ``
 ### 8️⃣ ``
@@ -97,6 +97,110 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 ### Le ping depuis le cliens fontionne depuis 10.0.1.1 => 8.8.8.8
 ***
 ***
+## 4️⃣ `protocole RIP avec FRRouting`
+### RIP: protocole de routage dynamique à vecteur de distance, il calcule la route la plus courte.
+### ⚠️Utilisé dans une infra ou il y à beaucoup de routeur.
+
+### ospf protocole de routage dynamique à état de liens, il cherche la route avec le meilleur flux. 
+### ⚠️Utiliser pour un réseau en maillage.
+* #### Supprimer la route existante dans /etc/network/interfaces
+
+  		up ip route add 10.0.0.0/22 via 10.0.99.253
+***
+* ### Sur `R-INTER`
+
+  		apt install frr
+
+* #### Se rendre dans le fichier de conf daemons
+		nano /etc/frr/daemons
+* #### Activer le protocole RIP	et restart	
+		ripd=yes
+![image](https://github.com/user-attachments/assets/d3f993a2-995a-470c-aea8-7dfbe7f3073f)
+
+		systemctl restart frr.service
+
+
+* #### Se rendre dans le fichier de conf frr et éditer
+
+		nano /etc/frr/frr.conf
+
+![image](https://github.com/user-attachments/assets/772099c3-cd77-415e-ba95-a081269a64eb)
+
+* #### Et restart
+
+  		systemctl restart frr.service
+
+*** 
+* ### Sur `R-EDGE`
+
+  		apt install frr
+
+* #### Se rendre dans le fichier de conf daemons
+		nano /etc/frr/daemons
+* #### Activer le protocole RIP	et restart	
+		ripd=yes
+![image](https://github.com/user-attachments/assets/d3f993a2-995a-470c-aea8-7dfbe7f3073f)
+
+		systemctl restart frr.service
+
+
+* #### Se rendre dans le fichier de conf frr et éditer
+
+		nano /etc/frr/frr.conf
+
+![image](https://github.com/user-attachments/assets/3695d40b-913d-4657-a35d-41759aedf922)
+
+* #### Et restart
+		systemctl restart frr.service
+
+
+
+
+* #### Vérif de la prise en copte de son "voisin"
+
+  * #### entrer dans le shell de frr
+			vtysh
+ 			show ip neigh
+
+***
+***
+
+### 5️⃣ `Vérification`
+
+* #### Sur R-EDGE
+
+  ![image](https://github.com/user-attachments/assets/94ea1f92-d843-450b-9492-071940f3f66d)
+
+* #### Depuis le shell ffr
+
+![image](https://github.com/user-attachments/assets/78a06edc-591e-45e6-847b-0498e0fce82d)
+
+![image](https://github.com/user-attachments/assets/c6b77b36-80c9-4ccd-b28e-d2719c98e686)
+
+* #### Et pour finir le client :
+![image](https://github.com/user-attachments/assets/d423e9cf-c4ab-4291-b743-4eb220e9bdc1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
