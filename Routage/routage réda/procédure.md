@@ -91,9 +91,9 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 
 		pre-up nft -f /root/table_NAT.nft
 ***
-### Si l'on ajoute la route suivante
+### Si l'on ajoute la route suivante => /etc/network/interfaces
 		
-  		ip route add 10.0.1.0/24 via 10.0.99.253
+  		up ip route add 10.0.0.0/22 via 10.0.99.253
 ### Le ping depuis le cliens fontionne depuis 10.0.1.1 => 8.8.8.8
 ***
 ***
