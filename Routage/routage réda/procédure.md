@@ -74,7 +74,7 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 * #### `ip saddr 10.0.99.252/30` : addresse ip source
 * #### `oif enp0s8 snat 192.168.10.11` : adresse de sortie
 * #### Ajout d'une second régle NAT afin de pouvoir connecter les clients à internet
-
+* #### `ip saddr 10.0.0.0/22 oif "enp0s8" snat to 192.168.0.104`: pour router 10.0.1.0//10.0.2.0//10.0.3.0 avec une seul ligne( voir IPv4 calcul )
 ![image](https://github.com/user-attachments/assets/f8f05654-d6e0-4a68-81c0-9aadcb91c50a)
 
     
