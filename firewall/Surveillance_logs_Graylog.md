@@ -2,7 +2,7 @@
 ### Graylog est une solution open source de type "puits de logs" dont l'objectif est de permettre la centralisation, le stockage, et l'analyse en temps réel des journaux de vos machines et vos périphériques réseaux.
 
 ## SOMMAIRE :
-### 1️⃣`Installation`
+### 1️⃣`Installation addon`
 ### 2️⃣
 ### 3️⃣
 ### 4️⃣
@@ -11,7 +11,7 @@
 ***
 ***
 
-### 1️⃣`Installation`
+### 1️⃣`Installation addon`
 
 ## 1)
 * ### Mettre le bon fuseau horaire
@@ -70,6 +70,32 @@
 
 * ### Faire la configuration minimale
         nano /etc/opensearch/opensearch.yml
+
+                  cluster.name: graylog
+                  node.name: ${HOSTNAME}
+                  path.data: /var/lib/opensearch
+                  path.logs: /var/log/opensearch
+                  discovery.type: single-node
+                  network.host: 127.0.0.1
+                  action.auto_create_index: false
+                  plugins.security.disabled: true
+
+## 4) 
+## `Configurer Java (JVM)` (si la mémoir à alouer a openseach doit être sup a 1G)
+### Nous garderons la conf de base.
+
+## 5) 
+* ## configuration du paramètre `max_map_count`
+                  cat /proc/sys/vm/max_map_count    
+
+* ### Si la sortie différente de "262144"
+                  sysctl -w vm.max_map_count=262144
+
+* ### Activez le démarrage automatique d'OpenSearch et lancez le service associé
+                   systemctl daemon-reload
+                   systemctl enable opensearch
+                   systemctl restart opensearch
+
 
 
 
