@@ -1,0 +1,45 @@
+# Journalisations des Scripts
+
+### Cette pratique à pour but de surveiller, l''activité de powershell, et de l''éxécution des scripts.
+### Pour des raisons de sécurité, des attaquants peuvent s'en servir.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
