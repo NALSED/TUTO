@@ -1,4 +1,4 @@
-# Journalisations des Scripts
+https://www.it-connect.fr/powershell-activer-la-journalisation-des-commandes-et-scripts/#:~:text=Le%20script%20block%20logging%20enregistre,%C3%A0%20mesure%20de%20son%20ex%C3%A9cution.# Journalisations des Scripts
 
 ### Cette pratique à pour but de surveiller, l''activité de powershell, et de l''éxécution des scripts.
 ### Pour des raisons de sécurité, des attaquants peuvent s'en servir.
