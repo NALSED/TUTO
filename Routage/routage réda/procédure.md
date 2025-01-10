@@ -4,7 +4,9 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 - Un routeur de bordure de zone sous Linux permettant aux réseaux locaux d'atteindre internet.
 - Un routeur inter-LANs sous Linux permettant aux différents LANs de communiquer entre eux selon la politique de contrôle de flux.
 - Les protocoles suivant seront implémentés (NAT, RIP, DHCP, IPv4, IPv6).
-- Différents clients seront répartis dans les LANs.## 📖 Sommaire :
+- Différents clients seront répartis dans les LANs.
+
+- ## 📖 Sommaire :
 
 ### 1️⃣ `Shéma synoptique`
 ### 2️⃣ `Configuration Routage`
