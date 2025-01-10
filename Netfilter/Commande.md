@@ -13,6 +13,9 @@
 
 ![image](https://github.com/user-attachments/assets/88b4ef36-99da-4c3f-9372-1d9187526ea4)
 
+
+## table => Chain => rules
+
 ### `Hook NF_IP_PRE_ROUTING` qui correspond à la chaine PREROUTING dans nftables
 ### Dans ce crochet, les paquets sont analysés dans leur forme brute, sans traitement préalable du système. On peut alors déterminer si on autorise le paquet à entrer plus loin dans le système ou non.
 
@@ -33,6 +36,8 @@
 ## ⚠️ L'ordre des règles a une importance, il faut donc mettre les règles les plus restrictives en dernier. ⚠️
 
 2️⃣ `Commande`
+
+## [DETAILS COMMANDE](https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes)
 
 ### Syntaxe fichier Nano
 
@@ -64,7 +69,7 @@
 ***
 
 
-
+***
 
 #### 1) Tables
 
@@ -75,6 +80,7 @@
         #Supprime
         nft delete table mon_filtreIPv4
 
+***
 
 ### 2) Chaines
 
@@ -86,6 +92,8 @@
         nft list table ip mon_filtreIPv4
         # deuxième table
         nft add table ip filtre2
+
+***
 
 ### 3 ) insérer un Régle
 
@@ -115,15 +123,76 @@ Utilisation :
                 nft add rule mon_filtreIPv4 input position 5 tcp dport 22 accept # ajoute une régle qui accept, sur la chaine mon_filtreIPv4 en input , en 5 eme position, concernant le protocol tcp sur le port 22
                 nft add rule mon_filtreIPv4 output position 8 tcp sport 22 accept
 
-###  l'insertion de la règle se fera juste après la position ciblée.
+###  Avec `add` l'insertion de la règle se fera juste après la position ciblée
+
+                nft insert rule mon_filtreIPv4 output position 11 tcp sport 23 accept
+
+### Avec `insert` Pour l'insérer avant
+
+
 
 </details>
 
 
+### Supprimer un régle
+
+                        nft -a list table ip mon_filtreIPv4 #lister les régle
+                        nft delete rule mon_filtreIPv4 output handle 22 # Supprimer
+
+### Bannir via nftables
+
+                                nft add rule mon_filtreIPv4 input ip saddr 192.168.10.1 drop
+                                nft add rule mon_filtreIPv4 output ip daddr 192.168.10.1 drop
+
+### ⚠️ préciser la chaine input ou output en fonction de celle visée puis utiliser ip suivi de `saddr` pour source address ou `daddr` pour destination addres
+### Pour bloquer une plage d'adresse ajouter le CIDR
+
+### Gérer [Les flag TCP et ICMP](https://www.it-connect.fr/chapitres/gerer-les-flags-tcp-et-licmp-avec-nftables/)
+
+***
+ 
+### 4 ) Les logs
+
+### Il est possible avec NFtables de réaliser plusieurs actions par régles
+### Ici => Bloquer les comunications avec 192.16.10.1 et au serveur DNS 8.8.8.8 => et mettre le tout dans les logs  `/var/log/kern.log`
+
+                        nft add rule mon_filtreIPv4 input ip saddr 192.168.10.1 log drop #Bloque les comunications avec 192.16.10.1
 
 
+                                table ip mon_filtre {
+                                    chain output {
+                                        type filter hook output priority filter; policy accept;
+                                        ip daddr 8.8.8.8 log drop #Bloquer les comunications au serveur DNS 8.8.8.8
+                                    }
+                                }
 
 
+### Test de communication : 
+
+                        root@debian:~# nslookup <NOM DE DOMAIN> 8.8.8.8
+
+### Accés au Logs: 
+
+                         tail -n 1 /var/log/kern.log 
+
+### Résultats : 
+
+Jan 9 15:30:30 debian kernel: [32255.907870] IN= OUT=ens33 SRC=192.168.34.7 DST=8.8.8.8 LEN=59 TOS=0x00 PREC=0x00 TTL=64 ID=7996 PROTO=UDP SPT=39219 DPT=53 LEN=39
+
+5) Nat
+
+### `NAT Classique:`
+### [Voir](https://github.com/NALSED/Future-R-vision/blob/main/Routage/routage%20r%C3%A9da/proc%C3%A9dure.md)
+
+### `Nat Unidirectionnel`
+### Tous les paquets qui viennent de la plage IP du réseau du client A (192.168.1.0/24) et sortant par l'interface eth1 (celle qui se trouve du côté du réseau B) auront leur adresse IP source réécrite en 192.168.2.1, l'adresse IP de l'interface du réseau B :
+
+                                nft add rule mon_filtreIPv4 postrouting ip saddr 192.168.1.0/24 oif eth1 snat 192.168.2.1
+
+### Elle est dite unidirectionnel car pe hook prerouting n'est pas configuré.
+
+
+### `Destination NAT`
 
 
 
