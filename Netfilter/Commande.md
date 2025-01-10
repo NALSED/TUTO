@@ -87,7 +87,37 @@
         # deuxième table
         nft add table ip filtre2
 
-### 3 ) Régles
+### 3 ) insérer un Régle
+
+### Utiliser `a`=> nft `a` list table ip mon_filtreIPv4 : pour lister les identifiants des règles. ( #handle)
+ 
+ 
+ 
+ 
+ 
+ <details>
+<summary>
+<h2>
+Utilisation :
+</h2>
+</summary>
+ 
+         table ip mon_filtreIPv4 { # handle 4
+                chain input { # handle 1
+                type filter hook input priority filter; policy accept;
+                tcp dport 80 accept # handle 4
+                tcp dport 443 accept # handle 5
+        drop # handle 6
+    }
+
+### Si on peux rajouter des régle en repectant l'ordre en fontion de la contrainte des régle :
+
+                nft add rule mon_filtreIPv4 input position 5 tcp dport 22 accept # ajoute une régle qui accept, sur la chaine mon_filtreIPv4 en input , en 5 eme position, concernant le protocol tcp sur le port 22
+                nft add rule mon_filtreIPv4 output position 8 tcp sport 22 accept
+
+###  l'insertion de la règle se fera juste après la position ciblée.
+
+</details>
 
 
 
