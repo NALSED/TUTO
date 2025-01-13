@@ -303,8 +303,7 @@ Destination NAT
 
 # 3️⃣ `Exemples cas pratique`
 
-[IT](https://www.it-connect.fr/modules/cas-pratique-nftables-en-contexte-reel/){:target="_blank" }
-
+[IT](https://www.it-connect.fr/modules/cas-pratique-nftables-en-contexte-reel/)
 
 
 
