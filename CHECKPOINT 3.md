@@ -2,21 +2,21 @@
 # Révision Checkpoint 3 : Odyssey
 
 ## **Semaine 1 : Fichiers et dossiers**
-- **Quête** : Terminal 2 - Fichiers et dossiers. https://odyssey.wildcodeschool.com/quests/1316/pages/10344
+~~- **Quête** : Terminal 2 - Fichiers et dossiers. https://odyssey.wildcodeschool.com/quests/1316/pages/10344~~
 
 ## **Semaine 2 : Gestion du stockage**
-- **Cours** : La gestion du stockage. https://docs.google.com/presentation/d/1zUtuppSgLyEa7_vuupI6a2VcIcErOFL4Bo_jQY8HU_8/edit#slide=id.g2bc83f42ece_0_0
-- **Démonstration 1** : Linux - Montage de disque et partition (Checkpoint 1). https://drive.google.com/file/d/1z6INNIjR9WLOTIUDo5PageuxQGcfAJXO/view?ts=66fc13d7 
+~~- **Cours** : La gestion du stockage. https://docs.google.com/presentation/d/1zUtuppSgLyEa7_vuupI6a2VcIcErOFL4Bo_jQY8HU_8/edit#slide=id.g2bc83f42ece_0_0~~
+~~- **Démonstration 1** : Linux - Montage de disque et partition (Checkpoint 1). https://drive.google.com/file/d/1z6INNIjR9WLOTIUDo5PageuxQGcfAJXO/view?ts=66fc13d7~~ 
   - Méthode **UUID** et méthode **LABEL** avec Debian.  
   - Référence : [Debian Wiki - fstab](https://wiki.debian.org/fr/fstab).
 
 ## **Semaine 3 : Gestion des utilisateurs**
-- **Cours** : Gestion des utilisateurs - Partie 1. https://docs.google.com/presentation/d/1-NRyY9eTwp3NtaFZb-tCBepgpTpumRhl9wt2lGTm2Oc/edit#slide=id.g2bc83f42ece_0_0
+~~- **Cours** : Gestion des utilisateurs - Partie 1. https://docs.google.com/presentation/d/1-NRyY9eTwp3NtaFZb-tCBepgpTpumRhl9wt2lGTm2Oc/edit#slide=id.g2bc83f42ece_0_0~~
 - **Cours** : Gestion des utilisateurs - Partie 2. https://docs.google.com/presentation/d/1zmEnRcU47Kqf36x16Wd8Ru5VfDVELPqKmE5w1Bv8xFs/edit#slide=id.g2bc83f42ece_0_0
 - **Démonstration** : Gestion des utilisateurs locaux dans le shell : fichiers `/etc/passwd`, `/etc/shadow`.
 
 ## **Semaine 4 : VirtualBox et réseaux**
-- **Quête** : La gestion des interfaces réseaux. https://odyssey.wildcodeschool.com/quests/1977/pages/9983
+~~- **Quête** : La gestion des interfaces réseaux. https://odyssey.wildcodeschool.com/quests/1977/pages/9983~~
 
 ## **Semaine 8 : DNS et Active Directory**
 - **Cours** : DNS. https://docs.google.com/presentation/d/1qu0hixb3JYSSZEqMRqgfc5_qlGzqPGaxHBiuriM-2-I/edit#slide=id.p
