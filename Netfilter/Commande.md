@@ -6,7 +6,7 @@
 
 # 2️⃣ `Commande`
 
-# 3️⃣ # 3️⃣ `Exemples cas pratique`
+# 3️⃣ `Exemples cas pratique`
 
 ***
 ***
