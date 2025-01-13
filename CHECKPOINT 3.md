@@ -27,8 +27,8 @@
   ~~4. Les stratégies de groupe (GPO). https://odyssey.wildcodeschool.com/quests/1949~~
 
 ## **Semaine 9 : Active Directory et SSH**
-- **Cours** : Active Directory - Partie 1. https://docs.google.com/presentation/d/1UwMCvRYPZhz1NWEC-LudniwFNxt-YoFLjRw48MLvyjo/edit#slide=id.p 
-- **Cours** : Active Directory - Partie 2. https://docs.google.com/presentation/d/1O11geGxibnEthxL_4qxNF_rewpm7y5HWiiZ8pxaxyOs/edit#slide=id.p 
+~~- **Cours** : Active Directory - Partie 1. https://docs.google.com/presentation/d/1UwMCvRYPZhz1NWEC-LudniwFNxt-YoFLjRw48MLvyjo/edit#slide=id.p~~ 
+~~- **Cours** : Active Directory - Partie 2. https://docs.google.com/presentation/d/1O11geGxibnEthxL_4qxNF_rewpm7y5HWiiZ8pxaxyOs/edit#slide=id.p~~ 
 - **Cours** : Gestion des GPO. https://docs.google.com/presentation/d/1eKtowVPLC0uyn9dZqSCUzs1nLEP50O9dDutx9AKduY0/edit#slide=id.p 
 - **Quête** : Installer un serveur SSH. https://odyssey.wildcodeschool.com/quests/2367/pages/10080 
 - **Atelier** :  
