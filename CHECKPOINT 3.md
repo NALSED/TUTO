@@ -19,12 +19,12 @@
 ~~- **Quête** : La gestion des interfaces réseaux. https://odyssey.wildcodeschool.com/quests/1977/pages/9983~~
 
 ## **Semaine 8 : DNS et Active Directory**
-- **Cours** : DNS. https://docs.google.com/presentation/d/1qu0hixb3JYSSZEqMRqgfc5_qlGzqPGaxHBiuriM-2-I/edit#slide=id.p
+~~- **Cours** : DNS. https://docs.google.com/presentation/d/1qu0hixb3JYSSZEqMRqgfc5_qlGzqPGaxHBiuriM-2-I/edit#slide=id.p~~
 - **Quêtes Active Directory** :  
-  1. Découvrir Active Directory. https://odyssey.wildcodeschool.com/quests/1944/pages/5830 
-  2. Les Unités Organisationnelles (OU). https://odyssey.wildcodeschool.com/quests/1945 
-  3. Domaine, arborescences et forêts. https://odyssey.wildcodeschool.com/quests/1950/pages/13751 
-  4. Les stratégies de groupe (GPO). https://odyssey.wildcodeschool.com/quests/1949
+ ~~1. Découvrir Active Directory. https://odyssey.wildcodeschool.com/quests/1944/pages/5830~~ 
+  ~~2. Les Unités Organisationnelles (OU). https://odyssey.wildcodeschool.com/quests/1945~~
+  ~~3. Domaine, arborescences et forêts. https://odyssey.wildcodeschool.com/quests/1950/pages/13751~~ 
+  ~~4. Les stratégies de groupe (GPO). https://odyssey.wildcodeschool.com/quests/1949~~
 
 ## **Semaine 9 : Active Directory et SSH**
 - **Cours** : Active Directory - Partie 1. https://docs.google.com/presentation/d/1UwMCvRYPZhz1NWEC-LudniwFNxt-YoFLjRw48MLvyjo/edit#slide=id.p 
