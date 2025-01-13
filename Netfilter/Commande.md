@@ -2,14 +2,15 @@
 ***
 ## SOMMAIRE :
 
-1️⃣`Fontionnement`
+# 1️⃣`Fontionnement`
 
-2️⃣ `Commande`
+# 2️⃣ `Commande`
 
-3️⃣
+# 3️⃣ # 3️⃣ `Exemples cas pratique`
+
 ***
 ***
-1️⃣`Fontionnement`
+# 1️⃣`Fontionnement`
 
 ![image](https://github.com/user-attachments/assets/88b4ef36-99da-4c3f-9372-1d9187526ea4)
 
@@ -35,7 +36,7 @@
 
 ## ⚠️ L'ordre des règles a une importance, il faut donc mettre les règles les plus restrictives en dernier. ⚠️
 
-2️⃣ `Commande`
+# 2️⃣ `Commande`
 
 ## [DETAILS COMMANDE](https://wiki.nftables.org/wiki-nftables/index.php/Quick_reference-nftables_in_10_minutes)
 
@@ -71,7 +72,7 @@
 
 ***
 
-#### 1) Tables
+## 1) Tables
 
          #Créer
         nft add table mon_filtreIPv4
@@ -82,7 +83,7 @@
 
 ***
 
-### 2) Chaines
+## 2) Chaines
 
         # ajouter la chaine en input piotité 0
         nft add chain ip mon_filtreIPv4 input { type filter hook input priority 0 \; }
@@ -95,7 +96,7 @@
 
 ***
 
-### 3 ) insérer un Régle
+## 3 ) insérer un Régle
 
 ### Utiliser `a`=> nft `a` list table ip mon_filtreIPv4 : pour lister les identifiants des règles. ( #handle)
  
@@ -106,7 +107,7 @@
  <details>
 <summary>
 <h2>
-Utilisation :
+↔️ Utilisation :
 </h2>
 </summary>
  
@@ -151,7 +152,7 @@ Utilisation :
 
 ***
  
-### 4 ) Les logs
+## 4 ) Les logs
 
 ### Il est possible avec NFtables de réaliser plusieurs actions par régles
 ### Ici => Bloquer les comunications avec 192.16.10.1 et au serveur DNS 8.8.8.8 => et mettre le tout dans les logs  `/var/log/kern.log`
@@ -177,9 +178,9 @@ Utilisation :
 
 ### Résultats : 
 
-Jan 9 15:30:30 debian kernel: [32255.907870] IN= OUT=ens33 SRC=192.168.34.7 DST=8.8.8.8 LEN=59 TOS=0x00 PREC=0x00 TTL=64 ID=7996 PROTO=UDP SPT=39219 DPT=53 LEN=39
+> Jan 9 15:30:30 debian kernel: [32255.907870] IN= OUT=ens33 SRC=192.168.34.7 DST=8.8.8.8 LEN=59 TOS=0x00 PREC=0x00 TTL=64 ID=7996 PROTO=UDP SPT=39219 DPT=53 LEN=39
 
-5) Nat
+## 5) Nat
 
 ### `NAT Classique:`
 ### [Voir](https://github.com/NALSED/Future-R-vision/blob/main/Routage/routage%20r%C3%A9da/proc%C3%A9dure.md)
@@ -194,16 +195,115 @@ Jan 9 15:30:30 debian kernel: [32255.907870] IN= OUT=ens33 SRC=192.168.34.7 DST=
 
 ### `Destination NAT`
 
+### Créer  du NAT avec des execption ou régles.
+
+![image](https://github.com/user-attachments/assets/064e0f24-35ac-405a-8771-8dac50063593)
+
+Exemple :
+
+<details>
+<summary>
+<h2>
+Destination NAT
+</h2>
+</summary>
+
+### ↔️ Créer  du NAT avec des execption ou régles.
+
+![image](https://github.com/user-attachments/assets/064e0f24-35ac-405a-8771-8dac50063593)
+
+### Exemple :
+
+## En s'appuiyant sur le schema ci dessus créer la régle suivante :
+
+### Grâce au destination NAT, les paquets arrivant sur le routeur Linux avec pour port destination le port 21 auront l'IP de destination 192.168.2.1. Nous allons donc créer une règle qui dit que quand l'IP de destination est 192.168.2.1 et que le port visé est le port 21, nous allons rediriger ces paquets vers l'IP 192.168.1.102, toujours sur le port 21
+
+
+                                 nft add table mon_filtreIPv4
+                                 nft add chain mon_filtreIPv4 prerouting { type nat hook prerouting priority 0 \; }
+                                 nft add chain mon_filtreIPv4 postrouting { type nat hook postrouting priority 0 \; }
+                                 nft add rule mon_filtreIPv4 prerouting iif eth1 tcp dport 21 dnat 192.168.1.102
+
+
+
+</details>
+
+## 6) Mode d'édition
+
+### 1° `La méthode interactive`
+
+### Entrer dans le mode interactif de nftables en utilisant l'option -i 
+
+                        root@debian# nft -i
+                        nft> list tables
+                        table ip nat
+                        nft> list table nat
+                        table ip nat {
+                           chain prerouting {
+                              type nat hook
+                        [...]
+                        nft> quit
 
 
 
 
+### 2° `La méthode fichier`
+
+### La méthode fichier permet de faire lire à nftables un fichier dont le contenu contiendra nos tables, chaines et règles. Cela se peut se faire via l'option -f qui va lire le fichier
+
+                        nft -f nftables.rules
+
+
+### 3° `nano` 
+
+### Utiliser l'éditeur nano affind'éditer une régle préalablement créer.
+
+
+## 7) Sauvegarde/Restauration/Application
+
+### 1° Sauvegarde
+
+### Les régles de ma table `mon_filtreIPv4` sont sauvegardées dans le fichier `nftables.rules`                        
+                        
+                        nft list table mon_filtreIPv4 > nftables.rules
+
+### 2° Restauration
+
+                        nft –f nftables.rules
+
+### 3° Application au démarrage
+
+### Utiliser la syntaxe suivante dans `/etc/network/interfaces` :
+
+                        auto eth0
+                        iface eth0 inet static
+                                        address 192.168.10.135
+                                        netmask 255.255.255.0
+                                        pre-up nft –f /root/nftables/nftables.rules
 
 
 
 
+## 8) ⚠️Template⚠️
+
+### Il est possible dans NFtables d'accéder à des fichier template.
+
+                        nft –f chemin_nftables/files/nftables/fichier_preconf
 
 
+### Pour les lister 
+
+                        ls -al /usr/share/doc/nftables/examples
+
+
+### Création de template
+
+                        nft list table ma_table > files/nftables/nom_fichier
+
+
+# 3️⃣ `Exemples cas pratique`
+
+[IT](https://www.it-connect.fr/modules/cas-pratique-nftables-en-contexte-reel/)
 
 
 
