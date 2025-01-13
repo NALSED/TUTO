@@ -12,8 +12,8 @@
 
 ## **Semaine 3 : Gestion des utilisateurs**
 ~~- **Cours** : Gestion des utilisateurs - Partie 1. https://docs.google.com/presentation/d/1-NRyY9eTwp3NtaFZb-tCBepgpTpumRhl9wt2lGTm2Oc/edit#slide=id.g2bc83f42ece_0_0~~
-- **Cours** : Gestion des utilisateurs - Partie 2. https://docs.google.com/presentation/d/1zmEnRcU47Kqf36x16Wd8Ru5VfDVELPqKmE5w1Bv8xFs/edit#slide=id.g2bc83f42ece_0_0
-- **Démonstration** : Gestion des utilisateurs locaux dans le shell : fichiers `/etc/passwd`, `/etc/shadow`.
+~~- **Cours** : Gestion des utilisateurs - Partie 2. https://docs.google.com/presentation/d/1zmEnRcU47Kqf36x16Wd8Ru5VfDVELPqKmE5w1Bv8xFs/edit#slide=id.g2bc83f42ece_0_0~~
+~~- **Démonstration** : Gestion des utilisateurs locaux dans le shell : fichiers `/etc/passwd`, `/etc/shadow`.~~
 
 ## **Semaine 4 : VirtualBox et réseaux**
 ~~- **Quête** : La gestion des interfaces réseaux. https://odyssey.wildcodeschool.com/quests/1977/pages/9983~~
