@@ -34,7 +34,7 @@
 - **Atelier** :  
   ~~- Installation et configuration d’Active Directory. https://odyssey.wildcodeschool.com/quests/3035/pages/11428~~ 
   ~~- Gestion des GPO. https://odyssey.wildcodeschool.com/quests/3036/pages/11431~~ 
-- **AD Console** : Administration d'AD en mode serveur Core sous Windows. https://odyssey.wildcodeschool.com/quests/3035/pages/11428
+~~- **AD Console** : Administration d'AD en mode serveur Core sous Windows. https://odyssey.wildcodeschool.com/quests/3035/pages/11428~~
 
 ## **Semaine 10 : SSH**
 - **Cours** : SSH. https://docs.google.com/presentation/d/1aTQW21Vg32PtKMMmgbWzQCUZVX9efWr6-_p_TUQoL6A/edit#slide=id.p
