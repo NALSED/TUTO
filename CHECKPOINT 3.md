@@ -37,8 +37,8 @@
 ~~- **AD Console** : Administration d'AD en mode serveur Core sous Windows. https://odyssey.wildcodeschool.com/quests/3035/pages/11428~~
 
 ## **Semaine 10 : SSH**
-- **Cours** : SSH. https://docs.google.com/presentation/d/1aTQW21Vg32PtKMMmgbWzQCUZVX9efWr6-_p_TUQoL6A/edit#slide=id.p
-- **Atelier** : Connexion SSH par clés de chiffrement. https://odyssey.wildcodeschool.com/quests/2924/pages/13823
+~~- **Cours** : SSH. https://docs.google.com/presentation/d/1aTQW21Vg32PtKMMmgbWzQCUZVX9efWr6-_p_TUQoL6A/edit#slide=id.p~~
+~~- **Atelier** : Connexion SSH par clés de chiffrement. https://odyssey.wildcodeschool.com/quests/2924/pages/13823~~
 
 ## **Semaine 11 : Sécurité réseau**
 - **Installation** : Firewall **pfSense**. https://odyssey.wildcodeschool.com/quests/1390/pages/13852 
