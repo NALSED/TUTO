@@ -60,4 +60,4 @@
 
 ## **Semaine 14 : Journalisation et Rsyslog**
 ~~- **Cours** : Journalisation. https://docs.google.com/presentation/d/1F7DWGMsez244waO8MaJqrle-eboN-BNf7DIV56kRu_c/edit#slide=id.p~~  
-- **Atelier** : Rsync. https://odyssey.wildcodeschool.com/quests/2358/pages/11671
+~~- **Atelier** : Rsync. https://odyssey.wildcodeschool.com/quests/2358/pages/11671~~
