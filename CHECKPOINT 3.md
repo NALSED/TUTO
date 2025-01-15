@@ -41,8 +41,8 @@
 ~~- **Atelier** : Connexion SSH par clés de chiffrement. https://odyssey.wildcodeschool.com/quests/2924/pages/13823~~
 
 ## **Semaine 11 : Sécurité réseau**
-- **Installation** : Firewall **pfSense**. https://odyssey.wildcodeschool.com/quests/1390/pages/13852 
-- **Quête** : NFtables. https://odyssey.wildcodeschool.com/quests/2246/pages/7939
+~~- **Installation** : Firewall **pfSense**. https://odyssey.wildcodeschool.com/quests/1390/pages/13852~~ 
+~~- **Quête** : NFtables. https://odyssey.wildcodeschool.com/quests/2246/pages/7939~~
 
 ## **Semaine 12 : Gestion des disques et sauvegardes**
 - **Quêtes** :  
