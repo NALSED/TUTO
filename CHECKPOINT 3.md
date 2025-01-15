@@ -46,18 +46,18 @@
 
 ## **Semaine 12 : Gestion des disques et sauvegardes**
 - **Quêtes** :  
-  - Gestion du RAID sous Linux. https://odyssey.wildcodeschool.com/quests/2426/pages/8814 
-  - Disques dynamiques et RAID. https://odyssey.wildcodeschool.com/quests/2291/pages/8097 
-  - Gestion des volumes logiques (**LVM**). https://odyssey.wildcodeschool.com/quests/2294/pages/8111 
+  ~~- Gestion du RAID sous Linux. https://odyssey.wildcodeschool.com/quests/2426/pages/8814~~ 
+    ~~- Disques dynamiques et RAID. https://odyssey.wildcodeschool.com/quests/2291/pages/8097~~  
+    ~~- Gestion des volumes logiques (**LVM**). https://odyssey.wildcodeschool.com/quests/2294/pages/8111~~  
 - **Cours** : Firewall. https://docs.google.com/presentation/d/1OiZZ_YypF5SrSkiFTDAlmXoQ33y3-WVe5aHJ8ZBZ2E0/edit#slide=id.p 
 - **Atelier** :  
   - Bareos - Gestion centralisée des sauvegardes. https://odyssey.wildcodeschool.com/quests/2359/pages/11673 
-  - Filtrage réseau sur un serveur GNU/Linux. https://odyssey.wildcodeschool.com/quests/2390/pages/14498
+  ~~ - Filtrage réseau sur un serveur GNU/Linux. https://odyssey.wildcodeschool.com/quests/2390/pages/14498~~ 
 
 ## **Semaine 13 : Logs et stockage avancé**
 - **Quête** : Gestion des logs. https://odyssey.wildcodeschool.com/quests/3105/pages/11880 
 - **Cours** : Stockage avancé. https://docs.google.com/presentation/d/1A2NEvuxKGyv2vGvawDZ3J_CsXHcvjMnaAVZmsZKHkjs/edit#slide=id.p
 
 ## **Semaine 14 : Journalisation et Rsyslog**
-- **Cours** : Journalisation. https://docs.google.com/presentation/d/1F7DWGMsez244waO8MaJqrle-eboN-BNf7DIV56kRu_c/edit#slide=id.p 
+~~- **Cours** : Journalisation. https://docs.google.com/presentation/d/1F7DWGMsez244waO8MaJqrle-eboN-BNf7DIV56kRu_c/edit#slide=id.p~~  
 - **Atelier** : Rsync. https://odyssey.wildcodeschool.com/quests/2358/pages/11671
