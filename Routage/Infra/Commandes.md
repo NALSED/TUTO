@@ -4,13 +4,11 @@
 
 ***
 ### niveau de configuration :
-                  W
-* `-Utilisateur`  |
-                  |
-* `Privilégié`    |
-                  |
-* `configuration` |
-``                V
+                  
+* `Utilisateur`  
+* `Privilégié`    
+* `configuration` 
+               
 
 
 ## Les commande suivante sont réalisé sur un Switch de niveau 2:
