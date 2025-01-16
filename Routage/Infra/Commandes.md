@@ -21,16 +21,18 @@
 ## En Utilisateur + privilégié
 
 ### Savoir ce que l'on peux faire avec la commande 
-      ?
+      saiph>?
       
 ### Savoir ce que l'on peux consulter
-      show => sh
+      saiph>show => sh
 
 ### Elévation de privilége
-      enable => en 
+     saiph>enable => en 
+     saiph#
 
 ### Passer en mode configuration(terminal) + entrer pour avoir les option de configuration:
-      configure 
+     saiph#configure 
+     saiph(config)#
 
 ![image](https://github.com/user-attachments/assets/315a820d-a652-4c49-a605-f8f88856df2b)
 
@@ -57,22 +59,27 @@
 # 2 `Configuration + Création`
 
 ### Rentrer le switch dans un domaine en (#conf ter)
-        ip domain-name <domain name>
+      saiph(config)#ip domain-name <domain name>
 
 ## VLAN  
 ### Créer un Vlan
-      vlan <number>
+       saiph(config)#vlan <number>
 
 ## INTERFACES
 ### configuration UNE interfaces dans le menu de configuration
-        interface fastEthernet <interface number>
+        saiph(config)#interface fastEthernet <interface number>
+        saiph(config-if)#
+
 ### Configurer une étendu pour les interfaces 1 => 24
-     interface range fastEthernet <0/1-24>   
+     saiph(config-if)#interface range fastEthernet <0/1-24>   
+     saiph(config-if-range)#
+
 ### Empécher le Trunk sur une interface (en conf t et après avoir selectioné la/les interfaces)
 ### ⚠️Pensez à le faire sur fastEthernet et GigabitEthernet     
-     switchport mode access     
+     saiph(config-if)#switchport mode access     
 
-
+### Déplacer une/des interfaces sur un Vlan
+      saiph(config-if-range)#switchport access vlan 399
 
 
 
