@@ -75,6 +75,10 @@
         saiph(config)#vlan 99     
         saiph(config-vlan)#name admin
 
+### 
+
+
+
 ***
 ## INTERFACES
 ### configuration UNE interfaces dans le menu de configuration
@@ -92,7 +96,9 @@
 ### Déplacer une/des interfaces sur un Vlan
       saiph(config-if-range)#switchport access vlan 399
 
-
+### Créer et Attribuer un Vlan à une interface
+      saiph(config)#interface fastEthernet 0/4
+      saiph(config-if)#switchport access vlan 10
 
 
 
