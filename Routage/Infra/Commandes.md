@@ -61,10 +61,21 @@
 ### Rentrer le switch dans un domaine en (#conf ter)
       saiph(config)#ip domain-name <domain name>
 
+***
+
 ## VLAN  
 ### Créer un Vlan
        saiph(config)#vlan <number>
 
+### Suprimmer un Vlan/interface vlan 100
+       saiph(config)#no vlan <number>
+       saiph(config)#no interface vlan <number>
+
+### Changer le nom d'un Vlan
+        saiph(config)#vlan 99     
+        saiph(config-vlan)#name admin
+
+***
 ## INTERFACES
 ### configuration UNE interfaces dans le menu de configuration
         saiph(config)#interface fastEthernet <interface number>
