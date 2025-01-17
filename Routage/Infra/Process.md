@@ -82,7 +82,7 @@
 ***
 ***
 
-### 3️⃣`SSH et Sécurité`
+### 3️⃣`SSH et Sécurité VTY`
 
 ### 3.1) Sécuriser la connection => enable
 ### Le mot de passe ne sera plus en claire dans run/start-config
@@ -90,27 +90,43 @@
 
 
 ### Créer le MDP ici (131213)
+            saiph(config)# enable secret <MDP>
 ![image](https://github.com/user-attachments/assets/5293facc-62c0-49b2-a877-e22dabcd6fb1)
 
-### 3.2) SSH
+### 3.2) `SSH`
 
-### 3.2.1) Créer un utilisateur
-            username admin1
+### 3.2.1) Créer un utilisateur et mot de passe ici (131213)
+            saiph(config)#username admin1 sercret <MDP>
 
+![image](https://github.com/user-attachments/assets/6bda7cbf-25ad-4a05-8af1-93c3e4578dfa)
 
+### 3.2.2) Création ssh
+            saiph(config)#ip ssh version 2
 
+### 3.2.3) MDP
+            saiph(config)#crypto key generate rsa => 2048 bit
 
-
-
-
-
-
-
-
-
+### 3.2.4) Domain
 
 
+### 3.3) `VTY et Line Console`
 
+### La bonne pratique est de configurer au moins 3 lignes, afin de pouvoir se connecter à distance (1), en même temps qu'un autre admin (2), et un troisiéme lignes de secours (3).
+### Et configuration des interfaces consoles afin de les rendre impossible sans MDP.
+
+![image](https://github.com/user-attachments/assets/28455763-60f9-4c46-ba0d-8cc76a1cdc72)
+
+### 3.3.1) Configuration line login console ⏫ 
+### Rentrer dans ça conf
+                 saiph(config)#line console 0
+
+### Utiliser un login local (ici admin1)
+                 saiph(config-line)#login local
+
+### Mettre un time out sur cette interface(si une utilisation inactive prolongué est détecté la session est fermé)
+                 saiph(config-line)#exec-timeout 3 => en minutes
+
+### ⚠️Maintenant si on se connect avec le cable bleu sur le switch un login et un MDP sera demandé.
 
 
 
