@@ -106,9 +106,6 @@
 ***
 ***
 ## `Mot de passe`
-
-
-
 ### Avec un mot de passe chiffré:
             saiph(config)#enable algorithm-type sha-256 secret <motDePasse> 
 ### impossible ici sha-256 n'est pas implémenté sur IOS
@@ -121,8 +118,36 @@
                  <1-15>  Level number
 ### Chiffre bas = privilége bas [DOC CISCO](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/security/d1/sec-d1-xe-3se-3650-cr-book/sec-d1-xe-3se-3850-cr-book_chapter_010.pdf)
 
+***
+
+### `Console line MDP`
+       
+        saiph(config)# line console 0
+        saiph(config-line)# login local
+        saiph(config-line)# exec-timeout 5
+        saiph(config-line)# exit
+
+***
+### `VTY`
 
 
+
+
+
+
+
+***
+### `SSH`
+
+
+
+
+
+
+
+
+***
+*** 
 
 
 
