@@ -1,4 +1,4 @@
-      # Procédé  afin de gérer/ sécuriser l'infra
+# Procédé  afin de gérer/ sécuriser l'infra
 ***
 ## SOMMAIRE
 
@@ -106,7 +106,18 @@
 ### 3.2.3) MDP
             saiph(config)#crypto key generate rsa => 2048 bit
 
-### 3.2.4) Domain
+### 3.2.4) Time out
+            saiph(config)#ip ssh time-out 120 => en secondes .. ⚠️
+
+### 3.2.5) Configurer le nombre de tentatives de connection
+            saiph(config)#ip ssh authentication-retries 3
+
+
+
+![image](https://github.com/user-attachments/assets/e9124b0b-5ecb-46ec-a527-df0120d4f6f8)
+
+
+
 
 
 ### 3.3) `VTY et Line Console`
@@ -116,7 +127,7 @@
 
 ![image](https://github.com/user-attachments/assets/28455763-60f9-4c46-ba0d-8cc76a1cdc72)
 
-### 3.3.1) Configuration line login console ⏫ 
+### 3.3.1) Configuration `Line Console` ⏫ 
 ### Rentrer dans ça conf
                  saiph(config)#line console 0
 
@@ -128,13 +139,31 @@
 
 ### ⚠️Maintenant si on se connect avec le cable bleu sur le switch un login et un MDP sera demandé.
 
+### 3.2.2) `VTY`
+### Ici configuration du nombre de lignes dédiées à la gestion à distance du switch
+
+### Selectionner la/les ligne(s)
+             saiph(config)# line vty 0 2                 
+
+### Accées par user local
+            saiph(config-line)# login local
+
+### Time out ⚠️en minutes
+            saiph(config-line)# exec-timeout 5
+
+### Quel protocol passe par VTY en input => ICI SSH
+            saiph(config-line)# transport input ssh
+
+### Quel protocol resort  
+            saiph(config-line)# transport output none
+
+### Sécuriser les autre line VTY (pas de connection)
+            saiph(config)#line vty 3 15
+            saiph(config-line)#no login
 
 
 
-
-
-
-
+            saiph# copy running-config startup-config
 
 
 
