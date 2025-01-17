@@ -121,17 +121,38 @@
 ***
 
 ### `Console line MDP`
-       
+
+### Line concernée      
         saiph(config)# line console 0
+
+ ### Utilisation d'un compte local pour la connection       
         saiph(config-line)# login local
-        saiph(config-line)# exec-timeout 5
-        saiph(config-line)# exit
+        
+### Time Out en Minutes ⚠️        
+        saiph(config-line)# exec-timeout 3
+       
 
 ***
 ### `VTY`
 
+### Selectionner la/les interface(s)
+          saiph(config)# line vty <number>
 
+### Demande d'authentification
+            saiph(config-line)# login local
 
+### Time out ⚠️en minutes
+            saiph(config-line)# exec-timeout <number>
+
+### Quel protocole peux entrer
+            saiph(config-line)# transport input <protocol>
+
+### Quel protocole peux sortir
+            saiph(config-line)# transport output <protocol>
+
+### Sécuriser les autres interfaces
+            saiph(config)#line vty <number>
+            saiph(config-line)#no login
 
 
 
@@ -139,7 +160,23 @@
 ***
 ### `SSH`
 
+### User pour le SSH
+        saiph(config)# username nonUser secret motDePasse
 
+### Version du SSH
+        saiph(config)# ip ssh version 2
+
+### Générer la keys
+        saiph(config)# crypto key generate rsa
+
+### Force du chiffrement ici 2048 bits        
+        saiph(config)# 2048
+
+### Time Out en seconde ⚠️        
+        saiph(config)# ip ssh time-out 120
+
+### Nombre de tentative        
+        saiph(config)# ip ssh authentication-retries 3
 
 
 
