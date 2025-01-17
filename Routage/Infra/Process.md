@@ -4,7 +4,7 @@
 
 ### 1️⃣`Sécurisation du Switch`
 ### 2️⃣`Vlan administration et IP`
-### 3️⃣``
+### 3️⃣`SSH et Sécurité`
 ### 4️⃣``
 ### 5️⃣``
 ### 6️⃣``
@@ -18,14 +18,14 @@
 
 #### I)
 #### C'est un mauvaise pratique d'avoir tout les port sur le même Vlan, comme dans la configuration par defaut.
-#### 1.1) Changer son nom grace
+#### 1.1) Changer son nom 
       saiph#hostname <name>
 
 #### 1.2) Rentrer le switch sur un domaine, le domaine sert entre autre à créer des clé SSH
          saiph(config)#ip domain-name stars.local
 
 #### 1.3) Création d'un Vlan exotique et le fermer administrativement(afin de retarder un attaquant évantuel, qui chercherai à accéder à l'infra via les interfaces)
-        saiph(config)#vlan 399
+        saiph(config)#vlan 3000
         saiph(config) shutdown
 
 #### 1.4) Passer les Interfaces en mode access(pour éviter qu'elles ne se fassent négocier en mode trunck) 
@@ -33,8 +33,8 @@
 
 ![image](https://github.com/user-attachments/assets/5cb509b3-912b-4173-906f-cb5687907e79)
 
-#### 1.5) Déplacer les interfaces sur le Vlan 399 créer précédement 
-       saiph(config-if)#switchport access vlan 399
+#### 1.5) Déplacer les interfaces sur le Vlan 3000 créer précédement 
+       saiph(config-if)#switchport access vlan 3000
     
 
 ![image](https://github.com/user-attachments/assets/aba67810-14e0-4a7d-ae8e-7736462ec0eb)
@@ -60,14 +60,15 @@
 
 #### 2.1) Création du Vlan Admin
             saiph#conf ter
-            saiph(config)#vlan 99
-            saiph(config-vlan)#name admin
+            saiph(config)#vlan 100
+            saiph(config-vlan)#name <NAME> (NET)
 
-### 2.2) Donner une IP au Vlan 99
-            saiph(config-if)#ip address
+### 2.2) Donner une IP au Vlan 100
+            saiph(config-if)#ip address (10.100.100.252 255.255.255.248)
 
 ### 2.3) Renseigner le default gateway
-            ip default-gateway 192.168.99.254
+            saiph(config)# interface vlan 100
+            saiph(config-if)#ip default-gateway gateway(10.100.100.254)
 
 
 ### 2.4) Copier running-config => startup-config 
@@ -78,17 +79,23 @@
 
 ![image](https://github.com/user-attachments/assets/0bd2acf3-c617-41c2-8513-ba72ec8c49eb)
 
+***
+***
+
+### 3️⃣`SSH et Sécurité`
+
+### 3.1) Sécuriser la connection => enable
+### Le mot de passe ne sera plus en claire dans run/start-config
+            saiph(config)#service password-encryption 
 
 
+### Créer le MDP ici (131213)
+![image](https://github.com/user-attachments/assets/5293facc-62c0-49b2-a877-e22dabcd6fb1)
 
+### 3.2) SSH
 
-
-
-
-
-
-
-
+### 3.2.1) Créer un utilisateur
+            username admin1
 
 
 
