@@ -52,7 +52,10 @@
         show ip interfaces brief => sh ip int br
 
 ## FILTRES : 
-        show <arguments> | include/exclude <arguments>
+
+### Pour faire apparaitre plusieur lignes
+        show <argument> | include/exclude <argument>
+
 
 ***
 ***
@@ -63,7 +66,7 @@
 
 ***
 
-## VLAN  
+## `VLAN`  
 ### Créer un Vlan
        saiph(config)#vlan <number>
 
@@ -80,7 +83,7 @@
 
 
 ***
-## INTERFACES
+## `INTERFACES`
 ### configuration UNE interfaces dans le menu de configuration
         saiph(config)#interface fastEthernet <interface number>
         saiph(config-if)#
@@ -100,15 +103,23 @@
       saiph(config)#interface fastEthernet 0/4
       saiph(config-if)#switchport access vlan 10
 
+***
+***
+## `Mot de passe`
 
 
 
+### Avec un mot de passe chiffré:
+            saiph(config)#enable algorithm-type sha-256 secret <motDePasse> 
+### impossible ici sha-256 n'est pas implémenté sur IOS
 
-
-
-
-
-
+### Activer le criptage du mot de passe(invisible dans run/start-conf)
+            saiph(config)#service password-encrytion
+            saiph(config)#enable password salut => le mot de passe ne sera plus en claire 
+### Pour activer/désactiver des privilége en fontion du poste de la personne qui se connect
+            saiph(config)#enable secret level ?
+                 <1-15>  Level number
+### Chiffre bas = privilége bas [DOC CISCO](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/security/d1/sec-d1-xe-3se-3650-cr-book/sec-d1-xe-3se-3850-cr-book_chapter_010.pdf)
 
 
 
