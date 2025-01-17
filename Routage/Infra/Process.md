@@ -161,6 +161,7 @@
             saiph(config)#line vty 3 15
             saiph(config-line)#no login
 
+![image](https://github.com/user-attachments/assets/cb0ef47f-69d6-45e0-b27e-4fd22aefa992)
 
 
             saiph# copy running-config startup-config
