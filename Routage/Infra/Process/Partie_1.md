@@ -79,6 +79,7 @@
             saiph(config-vlan)#name <NAME> (NET)
 
 ### 2.2) Donner une IP au Vlan 100
+            saiph(config)#interface vlan 100
             saiph(config-if)#ip address (10.100.100.252 255.255.255.248)
 
 ### 2.3) Renseigner le default gateway
@@ -208,7 +209,7 @@
 #### 4.4) Déplacer les interfaces sur les bon Vlan ici :
 #### * fast ethernet 0/1-2 => vlan10
                alnilam#conf ter   
-               alnilam(config)#interface rangefastEthernet 0/1-2
+               alnilam(config)#interface range fastEthernet 0/1-2
                alnilam(config-if_range)# switchport access vlan 10
 
 #### * fast ethernet 0/13 => vlan12
@@ -241,19 +242,37 @@
 #### 5.3) Activer le mode trunk
             alnilam(config-if)#switchport mode trunk 
 
+#### 5.4) Créer le Vlan 30
+            alnilam(config)#vlan 30
+            ainitak(config-vlan)#name MARK
 
 
+#### 5.5) Lui donner des port Ethernet
+            ainitak(config)#interface range fastEthernet 0/1-12
+            ainitak(config-if-range)#switch access vlan 30
 
+#### 5.6) Allumer les interface utilisées
+#### Ici sur ainitak => Fa0/1 et Fa 0/24
 
+            ainitak(config-if)#interface fastEthernet 0/24
+            ainitak(config-if)#no sh
+            ainitak(config-if)#exit
+            ainitak(config)#interface fastEthernet 0/1
+            ainitak(config-if)#no sh
 
+#### 5.7) "Ratacher" le port fastEthernet 0/24
+#### ⚠️Ici on recréer un Vlan 10 sur le switch ainitak, il faut donc le renomer, et c'est le mode trunck qui va faire le taf             
+            ainitak(config-if)#switchport access vlan 10
+            % Access VLAN does not exist. Creating vlan 10
+            ainitak(config)# vlan 10
+            ainitak(config-vlan)#name DIR
+                 
+#### 5.8) Créer le Vlan 10 => saiph
+            saiph#conf t
+            saiph(config)#vlan 10
+            saiph(config-vlan)#name DIR
 
-
-
-
-
-
-
-
+#### ==> ping fontionne entre PC2 10.10.10.2 et PC1 10.10.10.1 🍾
 
 
 
