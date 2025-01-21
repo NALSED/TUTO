@@ -21,7 +21,7 @@
 <details>
 <summary>
 <h2>
-:arrow_forward: 1️⃣`Sécurisation du Switch`
+:arrow_forward: 1️⃣Sécurisation du Switch
 </h2>
 </summary>
 
@@ -69,7 +69,7 @@
 <details>
 <summary>
 <h2>
-:arrow_forward: 2️⃣`Vlan administration et IP` 
+:arrow_forward: 2️⃣Vlan administration et IP`
 </h2>
 </summary>
       
@@ -102,7 +102,7 @@
 <details>
 <summary>
 <h2>
-:arrow_forward: 3️⃣`SSH et Sécurité VTY`
+:arrow_forward: 3️⃣SSH et Sécurité VTY
 </h2>
 </summary>
 
@@ -191,7 +191,7 @@
 <details>
 <summary>
 <h2>
-:arrow_forward: 4️⃣`Création des Vlan  
+:arrow_forward: 4️⃣Création des Vlan  
 </h2>
 </summary>
 
@@ -224,7 +224,7 @@
 <details>
 <summary>
 <h2>
-:arrow_forward: 5️⃣`Trunk et basculement Vlan`
+:arrow_forward: 5️⃣Trunk et basculement Vlan
 </h2>
 </summary>
 
@@ -274,40 +274,4 @@
 
 #### ==> ping fontionne entre PC2 10.10.10.2 et PC1 10.10.10.1 🍾
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </details>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
