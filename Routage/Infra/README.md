@@ -14,7 +14,7 @@
 ### 4) Liens Reda
 
 ## Commandes 
-### est un résumé des commandes utilisées
+### résumé des commandes utilisées
 
 ## Fichier
 ### Contient les fichiers Cisco
