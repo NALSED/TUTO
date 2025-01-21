@@ -5,7 +5,7 @@
 ### 1️⃣`Sécurisation du Switch`
 ### 2️⃣`Vlan administration et IP`
 ### 3️⃣`SSH et Sécurité`
-### 4️⃣``
+### 4️⃣`Création des Vlan`
 ### 5️⃣``
 ### 6️⃣``
 ### 7️⃣``
@@ -163,19 +163,31 @@
 
 ***
 ***
+
+### 4️⃣`Création des Vlan`
+
 ### ⚠️Ici un deuxiéme switch est configuré en copiant la configuration de saiph
-#### Brancher PC1 (FastEthernet 0/1) et PC2  (FastEthernet 0/2) sur alnilam
-#### Renseigner les IP des interfaces 
+#### 4.1) Brancher PC1 (FastEthernet 0/1) et PC2  (FastEthernet 0/2) sur alnilam
+#### 4.2) Renseigner les IP des interfaces 
 ![image](https://github.com/user-attachments/assets/452b3aaa-676c-4c16-aa01-e97ca8f1bf96)
 * #### PC1 10.10.10.1 255.255.255.0
 * #### PC2 10.10.10.2 255.255.255.0
 
+#### 4.3) Créer les Vlan 10 et Vlan 20
+            alnilam(config)#vlan 10
+            alnilam(config)#vlan 20
 
+#### 4.4) Déplacer les interfaces sur les bon Vlan ici :
+#### * fast ethernet 0/1-2 => vlan10
+               alnilam#conf ter   
+               alnilam(config)#interface rangefastEthernet 0/1-2
+               alnilam(config-if_range)# switchport access vlan 10
 
-
-
-
-
+#### * fast ethernet 0/13 => vlan12
+               alnilam#conf ter   
+               alnilam(config)#interface rangefastEthernet 0/13
+               alnilam(config-if)# switchport access vlan 20
+               alnilam(config-if)#no shutdown
 
 
 
