@@ -161,10 +161,14 @@
 
             saiph#copy running-config startup-config
 
-
-
-
-
+***
+***
+### ⚠️Ici un deuxiéme switch est configuré en copiant la configuration de saiph
+#### Brancher PC1 (FastEthernet 0/1) et PC2  (FastEthernet 0/2) sur alnilam
+#### Renseigner les IP des interfaces 
+![image](https://github.com/user-attachments/assets/452b3aaa-676c-4c16-aa01-e97ca8f1bf96)
+* #### PC1 10.10.10.1 255.255.255.0
+* #### PC2 10.10.10.2 255.255.255.0
 
 
 
