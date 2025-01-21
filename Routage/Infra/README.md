@@ -1,4 +1,4 @@
-# Résumé
+# Résumé Process
 
 ## Partie 1
 ### 1) Sécurisation du Switch
