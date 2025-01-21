@@ -112,12 +112,7 @@
 ### 3.2.5) Configurer le nombre de tentatives de connection
             saiph(config)#ip ssh authentication-retries 3
 
-
-
 ![image](https://github.com/user-attachments/assets/e9124b0b-5ecb-46ec-a527-df0120d4f6f8)
-
-
-
 
 
 ### 3.3) `VTY et Line Console`
@@ -154,7 +149,7 @@
 ### Quel protocol passe par VTY en input => ICI SSH
             saiph(config-line)# transport input ssh
 
-### Quel protocol resort  
+### Qu'on ne puisse faire que du ssh  
             saiph(config-line)# transport output none
 
 ### Sécuriser les autre line VTY (pas de connection)
@@ -164,7 +159,7 @@
 ![image](https://github.com/user-attachments/assets/cb0ef47f-69d6-45e0-b27e-4fd22aefa992)
 
 
-            saiph# copy running-config startup-config
+            saiph#copy running-config startup-config
 
 
 
