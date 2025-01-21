@@ -1,5 +1,6 @@
 # Copier la configuration d'un switch
-
+## ⚠️SI un/des Vlan on une adresse IP dédié penser à créer le Vlan existant sur le switch d'origine et lui attribuer un IP, ICI le Vlan 100 NET avec une IP n'a pas suivit la config.
+## A vérifier mais ce qui n'est pas présent dans la startup/running config, n'est pas copié!!
 ***
 
 ## SOMMAIRE 
