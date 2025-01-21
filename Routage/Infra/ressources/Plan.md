@@ -3,7 +3,8 @@
 
 # SHEMA
 
-![image](https://github.com/user-attachments/assets/debdcfd0-7e3b-4ffe-bf86-9b75e2676d2c)
+![image](https://github.com/user-attachments/assets/a0ce9d09-9b61-4e5e-9fb9-ac861a1c9737)
+
 
 
 
