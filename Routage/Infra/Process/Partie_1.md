@@ -7,7 +7,7 @@
 ### 2️⃣`Vlan administration et IP`
 ### 3️⃣`SSH et Sécurité`
 ### 4️⃣`Création des Vlan`
-### 5️⃣`Trunk et basulement Vlan`
+### 5️⃣`Trunk et basculement Vlan`
 ### 6️⃣``
 ### 7️⃣``
 ### 8️⃣``
@@ -219,7 +219,63 @@
 
 </details>
 
+***
+<details>
+<summary>
+<h2>
+:arrow_forward: 5️⃣`Trunk et basculement Vlan`
+</h2>
+</summary>
 
+#### 5.1) Connecter alnilam => saiph <= ainitak via GigabitEthernet
+#### 5.2) Configuration des ports GiGabit afin de créer des Truncks
+#### ⚠️La séquance réalisée ci desous est à répéter sur les 3 switchs.
+#### L'idée est de repartir sur un configuration de base des ports pour les configurer.
+#### Réactiver le port (en mode switchport mode access)
+            alnilam(config)#interface gigabitEthernet 0/1
+            alnilam(config-if)#no switchport mode access
+#### Sortir le port du Vlan exotique et allumer
+            alnilam(config-if)#no switchport access vlan 3000
+            alnilam(config-if)#no shutdown
+
+#### 5.3) Activer le mode trunk
+            alnilam(config-if)#switchport mode trunk 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
 
 
 
