@@ -2,22 +2,32 @@
 ***
 ## SOMMAIRE
 
+## I Partie 1
 ### 1️⃣`Sécurisation du Switch`
 ### 2️⃣`Vlan administration et IP`
 ### 3️⃣`SSH et Sécurité`
 ### 4️⃣`Création des Vlan`
-### 5️⃣``
+### 5️⃣`Trunk et basulement Vlan`
 ### 6️⃣``
 ### 7️⃣``
 ### 8️⃣``
 
+
+
+
+
 ***
 ***
+<details>
+<summary>
+<h2>
+:arrow_forward: 1️⃣`Sécurisation du Switch`
+</h2>
+</summary>
 
-### 1️⃣`Sécurisation du Switch`
 
-#### I)
 #### C'est un mauvaise pratique d'avoir tout les port sur le même Vlan, comme dans la configuration par defaut.
+
 #### 1.1) Changer son nom 
       saiph#hostname <name>
 
@@ -52,12 +62,17 @@
 
 ![image](https://github.com/user-attachments/assets/bb3be8f8-51b1-4cfb-abf9-0e5c92ed274e)
 
+</details>
+
 
 ***
-***
-
-### 2️⃣`Vlan administration et IP`
-
+<details>
+<summary>
+<h2>
+:arrow_forward: 2️⃣`Vlan administration et IP` 
+</h2>
+</summary>
+      
 #### 2.1) Création du Vlan Admin
             saiph#conf ter
             saiph(config)#vlan 100
@@ -79,10 +94,16 @@
 
 ![image](https://github.com/user-attachments/assets/0bd2acf3-c617-41c2-8513-ba72ec8c49eb)
 
-***
+</details>
+
 ***
 
-### 3️⃣`SSH et Sécurité VTY`
+<details>
+<summary>
+<h2>
+:arrow_forward: 3️⃣`SSH et Sécurité VTY`
+</h2>
+</summary>
 
 ### 3.1) Sécuriser la connection => enable
 ### Le mot de passe ne sera plus en claire dans run/start-config
@@ -161,10 +182,17 @@
 
             saiph#copy running-config startup-config
 
-***
+</details>
+
+
 ***
 
-### 4️⃣`Création des Vlan`
+<details>
+<summary>
+<h2>
+:arrow_forward: 4️⃣`Création des Vlan  
+</h2>
+</summary>
 
 ### ⚠️Ici un deuxiéme switch est configuré en copiant la configuration de saiph
 #### 4.1) Brancher PC1 (FastEthernet 0/1) et PC2  (FastEthernet 0/2) sur alnilam
@@ -188,6 +216,9 @@
                alnilam(config)#interface rangefastEthernet 0/13
                alnilam(config-if)# switchport access vlan 20
                alnilam(config-if)#no shutdown
+
+</details>
+
 
 
 
