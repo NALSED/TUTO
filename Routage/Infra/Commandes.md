@@ -66,7 +66,7 @@
 
 ***
 
-## `VLAN`  
+## `VLANS`  
 ### Créer un Vlan
        saiph(config)#vlan <number>
 
@@ -78,9 +78,9 @@
         saiph(config)#vlan 99     
         saiph(config-vlan)#name admin
 
-### 
-
-
+### Donner une IP à l'interface Vlan sur le switch
+        ainitak(config)#interface vlan 100
+        ainitak(config-if)#ip address 10.100.100.250 255.255.255.248
 
 ***
 ## `INTERFACES`
@@ -102,6 +102,45 @@
 ### Créer et Attribuer un Vlan à une interface
       saiph(config)#interface fastEthernet 0/4
       saiph(config-if)#switchport access vlan 10
+
+***
+
+## `TRUNCKS`
+
+### Création d'un trunk
+      ainilam(config)#interface gigabitEthernet 0/2
+      alnilam(config-if)#switchport mode trunk 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ***
 ***
