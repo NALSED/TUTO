@@ -7,11 +7,16 @@
 ### 4) Création des Vlan infra
 ### 5) Trunk et basculement Vlan
 
+## Résumé Ressources
+### 1) Copier la configuration d'un switch
+### 2) Mot de passe Infra
+### 3) Plan
+### 4) Liens Reda
 
+## Commandes 
+### est un résumé des commandes utilisées
 
-
-
-
-
+## Fichier
+### Contient les fichiers Cisco
 
 
