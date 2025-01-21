@@ -35,6 +35,7 @@
 ### copier depuis le fichier texte =>  Switch(config)#
         alnilam#copy running-config startup-config
 
+![image](https://github.com/user-attachments/assets/204d14c6-a428-4b21-bd85-67386093b33a)
 
 
 
