@@ -57,59 +57,8 @@
 #### Copie de la config
      Router(config-subif)#do wr
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### ⚠️Tout les Vlan doivent être déclarer sur tous les switchs, sinon ça ne fontionne pas!!⚠️
+### Si l'on oubli des Vlans en raport avec la division on a stick impossible de se connecter.
 
 
 
