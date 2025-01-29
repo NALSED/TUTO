@@ -274,4 +274,15 @@
 
 #### ==> ping fontionne entre PC2 10.10.10.2 et PC1 10.10.10.1 🍾
 
+![image](https://github.com/user-attachments/assets/b396ca59-6a57-4743-a969-4646333b5a13)
+
+
+### en résumé pour le mode trunk
+#### interface 0/24 => alnilam et saiph en mode trunk
+#### interface 0/23 => saiph et ainitak en mode trunk
+
+#### alnilam interface 0/1 => Vlan 10 et 0/13 => vlan 20
+
+#### ainitak interface 0/24 => Vlan 10 et 0/1 => vlan 30
+
 </details>
