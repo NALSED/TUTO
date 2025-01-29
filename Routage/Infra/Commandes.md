@@ -111,13 +111,15 @@
       ainilam(config)#interface gigabitEthernet 0/2
       alnilam(config-if)#switchport mode trunk 
 
+## `Routeur`
 
 
-
-
-
-
-
+### Création d'un routage inter Vlan 
+        Router#  conf t
+### Division de l'interface       
+        Router(config-if)#interface gigabitEthernet 0/0/1.10
+### On lui applique le protocole `iE802.1Q` et on le tag avec le numéro du Vlan que l'on veut cibler       
+        Router(config-subif)#encapsulation dot1Q <numéro Vlan>
 
 
 
