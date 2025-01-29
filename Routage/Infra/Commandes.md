@@ -113,7 +113,6 @@
 
 ## `Routeur`
 
-
 ### Création d'un routage inter Vlan 
         Router#  conf t
 ### Division de l'interface       
