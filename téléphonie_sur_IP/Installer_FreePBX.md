@@ -123,9 +123,11 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 #### Password : Azerty1*
 #### I am in the office - local IP : l'adresse IP du serveur 10.15.0.41
 
+#### 4.6) appeler 
+![image](https://github.com/user-attachments/assets/2bac823d-5456-4937-b548-6f7ea7e42e99)
 
-
-
+#### 4.7) répondre
+![image](https://github.com/user-attachments/assets/50f4d7ee-fc92-4218-b07d-53fe71a03ed4)
 
 
 
