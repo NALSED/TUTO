@@ -86,8 +86,8 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 
 |Numéro de ligne/User Extention|Nom|MDP|
 |:-:|:-:|:-:|
-|80100|Adrian Schultz|Azerty1*|
-|80101|Virginie Perrin|Azerty1*|
+|80100|Adrian Schultz|Azerty1*131213|
+|80101|Virginie Perrin|Azerty1*131213|
 
 ![image](https://github.com/user-attachments/assets/d861d4a9-845f-4987-81d8-e109dc05f6ed)
 
