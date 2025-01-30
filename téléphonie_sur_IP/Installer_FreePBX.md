@@ -7,7 +7,7 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 ### 1️⃣ `Installation de FreePbx`
 ### 2️⃣ `Configuration WebUi`
 ### 3️⃣ `Création d'Utilisateur`
-### 4️⃣ ``
+### 4️⃣ `SIP`
 ### 5️⃣ ``
 ### 6️⃣ ``
 ### 7️⃣ ``
@@ -91,19 +91,37 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 
 ![image](https://github.com/user-attachments/assets/d861d4a9-845f-4987-81d8-e109dc05f6ed)
 
+### 4️⃣ `SIP`
 
+#### 4.1) Se rendre sur l'Url et télécharger:
 
+                    https://3cxphone.software.informer.com/download/
 
+![image](https://github.com/user-attachments/assets/09999152-a44e-48ab-94d9-cf5277c07bd9)
 
+#### 4.2) next => I accept => Install
+#### 4.3) Create account => New
 
+![image](https://github.com/user-attachments/assets/d4f5c587-7f8d-4f3d-8b7d-752a0449ff4b)
 
+#### 4.4) 
+#### Account Name : Adrian Schultz
+#### Caller ID : 80100
+#### Extension : 80100
+#### ID : 80100
+#### Password : Azerty1*
+#### I am in the office - local IP : l'adresse IP du serveur 10.15.0.41
 
+![image](https://github.com/user-attachments/assets/2a612d3b-8798-4fc8-9c85-ec6b01bfc840)
 
-
-
-
-
-
+#### 4.5) Faire la même chose sur le deuxiéme client
+ 
+#### Account Name : Virginie Perrin
+#### Caller ID : 80100
+#### Extension : 80100
+#### ID : 80100
+#### Password : Azerty1*
+#### I am in the office - local IP : l'adresse IP du serveur 10.15.0.41
 
 
 
