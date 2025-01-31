@@ -8,7 +8,7 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 ### 2️⃣ `Configuration WebUi`
 ### 3️⃣ `Création d'Utilisateur`
 ### 4️⃣ `SIP`
-### 5️⃣ ``
+### 5️⃣ `Intégration à l'AD`
 ### 6️⃣ ``
 ### 7️⃣ ``
 ### 8️⃣ ``
@@ -70,6 +70,8 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 
 ![image](https://github.com/user-attachments/assets/4b6d8d6d-220e-40e5-ae4e-d999a8375aea)
 
+***
+
 ### 3️⃣ `Création d'Utilisateur`
 
 #### 3.1) Se rendre dans Connectivity => Extention
@@ -90,6 +92,8 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 |80101|Virginie Perrin|Azerty1*131213|
 
 ![image](https://github.com/user-attachments/assets/d861d4a9-845f-4987-81d8-e109dc05f6ed)
+
+***
 
 ### 4️⃣ `SIP`
 
@@ -128,6 +132,59 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 
 #### 4.7) répondre
 ![image](https://github.com/user-attachments/assets/50f4d7ee-fc92-4218-b07d-53fe71a03ed4)
+
+***
+
+### 5️⃣ `Intégration à l'AD`
+
+#### 5.1) Tester le port n°389 du Client => AD
+#### Utiliser Telnet
+#### Télécharger Telnet sur le client et AD
+          dism /online /Enable-Feature /FeatureName:TelnetClient
+
+![image](https://github.com/user-attachments/assets/fb8d8ff1-dfec-4e17-8d95-be472a9961eb)
+
+#### Lancer la requête : telnet 10.15.0.36 389
+#### Si aucun message d'érreur et le shell change => port ouvert
+![image](https://github.com/user-attachments/assets/fb1a3b76-a0f8-490e-bbff-221fded9b420)
+
+#### 5.2) Se rendre dans Admin => User Management => Directories Add
+![image](https://github.com/user-attachments/assets/590529cb-f888-4411-830d-543599273797)
+
+![image](https://github.com/user-attachments/assets/d089c0cb-c77b-442b-8670-a7ad54a2efd2)
+
+#### 5.3) Choisir `Microsoft Active Directory` et renseigner les infos:
+#### Page de base => ! Not connected 
+![image](https://github.com/user-attachments/assets/0a30f759-b568-438f-a8b5-f30631cdc7a0)
+
+#### Renseigner :
+
+#### Hôte : adresse IP du serveur AD
+#### Port : la valeur par défaut est 389
+#### Nom d'utilisateur : Administrator(ayant les droits de gestion AD)
+#### Mot de passe : Mot de passe Administrator
+#### Domaine : Pharmgreen.com
+#### Base DN :DC=Pharmgreen,DC=com
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
