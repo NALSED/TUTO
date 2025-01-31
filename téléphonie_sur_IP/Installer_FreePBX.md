@@ -166,14 +166,23 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 #### Domaine : Pharmgreen.com
 #### Base DN :DC=Pharmgreen,DC=com
 
+#### => Submit retourner dans l'édition de AD 
+![image](https://github.com/user-attachments/assets/64ccfd83-4647-46cd-9ae2-2f5063211b6c)
 
- 
+#### Le status à changer 
+![image](https://github.com/user-attachments/assets/f1fd55be-47f6-4f06-8db0-b90d7b703794)
 
+ #### 5.4) Renseigner l'ogject class ici par defaut
 
+ #### 5.5) User object filter 
+ #### Ici il faut créer un filtre prenant tout les utilisateur appartenant au groupe Domain User
+                     (&(objectCategory=Person)(sAMAccountName=*)(memberOf=cn=Domain User,ou=Departments,dc=Pharmgreen,dc=com))
 
+#### => Submit
 
+#### Les utilisateur apparaissent dans User
 
-
+![image](https://github.com/user-attachments/assets/eeeddd69-0ec9-4879-a82b-ee2c7eeb4088)
 
 
 
