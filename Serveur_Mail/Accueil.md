@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BILLU - Accueil</title>
+    <title>Gestion - Accueil</title>
     <style>
         /* Animation du fond */
         @keyframes bg-scrolling-reverse {
@@ -166,21 +166,18 @@
 <body>
     <!-- Header -->
     <header>
-        <h1>BILLU</h1>
+        <h1>INFRA</h1>
         <nav>
             <ul>
                 <li><a href="next.html">Services</a></li>
-                <li><a href="infra.html">Infra</a></li>
-                <li><a href="apropos.html">À propos</a></li>
-                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- Contenu principal -->
     <div class="container">
-        <h2>Bienvenue chez BILLU</h2>
-        <p>L'avenir de la facturation, simple et efficace.</p>
+        <h2>gestion</h2>
+        <p>Infra</p>
     </div>
 
     <!-- Google Search juste en dessous du bloc "Bienvenue chez BILLU" -->
