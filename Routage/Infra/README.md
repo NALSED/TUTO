@@ -7,6 +7,14 @@
 ### 4) Création des Vlan infra
 ### 5) Trunk et basculement Vlan
 
+***
+
+## Partie 2
+### 1) Routeur on a stick
+### 2) Routage Switch N3
+
+***
+
 ## Résumé Ressources
 ### 1) Copier la configuration d'un switch
 ### 2) Mot de passe Infra
