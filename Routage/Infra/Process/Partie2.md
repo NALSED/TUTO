@@ -188,29 +188,46 @@
             rigel(config-if-range)#switchport mode trunk 
             rigel(config-if-range)#no shutdown
 
-##### ⚠️Les differentes machines peuvent communiquer
+##### ⚠️Les differentes machines peuvent communiquer ⚠️
+
+## Création d'un `UP-Link` entre Betelgeuse et Rigel
+
+#### configuration de interface gigabitEthernet 1/0/24
+
+#### 2.12)
+
+### ⚠️SANS CETTE COMMANDE IMPOSSIBLE DE CONFIGURER (no switch port)⚠️
+    rigel(config-if)#no switchport    
+    rigel(config-if)#ip address 10.0.0.1 255.255.255.252
+
+#### 2.13) Configuration de Betelgeuse
+       betelgeuse(config)#interface gigabitEthernet 0/0/1
+       betelgeuse(config-if)#no shutdown 
+        betelgeuse(config-if)ip address 10.10.0.2 255.255.255.0
+
+### TEST AVEC "INTERNET"
+
+#### INTERNET
+#### ADDRESS 8.8.8.8 255.0.0.0
+#### Gateway 8.0.0.1 255.0.0.0
+
+#### 2.14) Configuration route Betelgeuse et Rigel
+
+#### `BETELGEUSE`
+     betelgeuse(config)#ip route 10.10.10.0 255.255.255.0 10.0.0.1
+     betelgeuse(config)#ip route 10.20.20.0 255.255.255.0 10.0.0.1
+     betelgeuse(config)#ip route 10.30.30.0 255.255.255.0 10.0.0.1
+     betelgeuse(config)#ip route 10.40.40.0 255.255.255.0 10.0.0.1
+     betelgeuse(config)#do wr
 
 
+#### `RIGEL`
+     rigel(config)#ip route 8.0.0.0 255.0.0.0 10.0.0.2
+     rigel(config)#do wr
 
+### ⚠️ Il est possible de ping depuis Pc1 8.8.8.8
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+![image](https://github.com/user-attachments/assets/f6aa6ec6-93b9-4019-b96d-ac83ddeb74fa)
 
 
 
