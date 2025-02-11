@@ -168,13 +168,26 @@
 
 ### AINITAK 
 
+#### 2.9)  Configuration de interface FastEthernet0/23,interface GigabitEthernet0/2
 
+         interface FastEthernet0/23
+         switchport access vlan 3000
+         switchport mode access
+         shutdown
 
+         interface GigabitEthernet0/2
+         switchport mode trunk
 
+#### 2.10) Relier le switch N3 avec les switch N2
 
+![image](https://github.com/user-attachments/assets/a90db12a-04e1-4e15-b367-259eb8bce20e)
 
+#### 2.11) Passer les interfaces de Rigel en Trunk
+            rigel(config)#interface range gigabitEthernet 1/0/1-3
+            rigel(config-if-range)#switchport mode trunk 
+            rigel(config-if-range)#no shutdown
 
-
+##### ⚠️Les differentes machines peuvent communiquer
 
 
 
