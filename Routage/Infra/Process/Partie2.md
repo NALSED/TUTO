@@ -74,7 +74,7 @@
 <details>
 <summary>
 <h2>
-:arrow_forward: 2️⃣ `Routage avec switch N3` <details> 
+:arrow_forward: 2️⃣ `Routage avec switch N3`
 </h2>
 </summary>
 
