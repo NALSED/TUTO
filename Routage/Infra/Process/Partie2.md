@@ -31,9 +31,9 @@
 
 #### 1.3) Configurer le routeur Routeur3
 
-#### Passer l'interface Gigabiteeternet 0/1 en Trunk
+#### Passer l'interface Gigabiteeternet 0/1 en Trunk (sur saiph)
      saiph(config)#interface gigabitEthernet 0/1
-     saiph(config-if)#switch mode trunk
+     saiph(config-if)#switchport mode trunk
      saiph(config-if)#no switchport access vlan 3000
      saiph(config-if)#no shutdown 
 
@@ -59,6 +59,7 @@
 
 ### ⚠️Tout les Vlan doivent être déclarer sur tous les switchs, sinon ça ne fontionne pas!!⚠️
 ### Si l'on oubli des Vlans en raport avec la division on a stick impossible de se connecter.
+### ⚠️Panne possible sur saiph vvlan non déclaré, juste vvlan 10 les autres non donc pas de routage possible......
 
 
 
