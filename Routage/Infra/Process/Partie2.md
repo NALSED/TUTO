@@ -3,7 +3,7 @@
 
 ## SOMMAIRE :
 ### 1️⃣ `Router on a Stick`
-### 2️⃣
+### 2️⃣ `Routage avec switch N3`
 ### 3️⃣
 ### 4️⃣
 ### 5️⃣
@@ -66,8 +66,168 @@
  </details> 
 
 
+***
+***
 
 
+<details>
+<summary>
+<h2>
+:arrow_forward: 2️⃣ `Routage avec switch N3`<details> 
+</h2>
+</summary>
+
+
+#### Ici utilisation d'un switch de niveau 3 afin de réaliser un routage pour notre réseau.
+
+#### Switch utilisé sur cisco 3650 24PS
+
+#### 2.1) Ajouter les modules d'alimentation
+![image](https://github.com/user-attachments/assets/4bda0f2e-c3ca-42de-ac29-cb1f2676f545)
+
+#### 2.2) Changer de nom et Sécuriser le switch en éteignant les interfaces GigabitEtehrnet 
+         Switch(config)#hostname rigel
+         rigel>en
+         rigel#conf t
+         rigel(config)#interface range gigabitEthernet 1/0/1-24 
+         rigel(config-if-range)#shutdown
+         rigel(config)#interface range gigabitEthernet 1/1/1-4 
+         rigel(config-if-range)#shutdown 
+
+#### 2.3) Activer le routage sur le switch 
+        rigel(config)#ip routing
+
+
+#### 2.4) Création des Vlan
+        rigel(config-vlan)#name DIR
+        rigel(config-vlan)#ex
+        rigel(config)#vlan 20
+        rigel(config-vlan)#name FIN
+        rigel(config-vlan)#EX
+        rigel(config)#VLAN 30
+        rigel(config-vlan)#name MARK
+        rigel(config-vlan)#ex
+        rigel(config)#vlan 40
+        rigel(config-vlan)#name PROD
+        rigel(config-vlan)#ex
+
+#### 2.5) Donner des adresses au Vlan
+        rigel#conf t
+        rigel(config)#interface vlan 10
+        rigel(config-if)#ip address 10.10.10.254 255.255.255.0
+        rigel(config-if)#ex
+        rigel(config)#interface vlan 20
+        rigel(config-if)#ip address 10.20.20.254 255.255.255.0
+        rigel(config-if)#ex
+        rigel(config)#interface vlan 30
+        rigel(config-if)#ip address 10.30.30.254 255.255.255.0
+        rigel(config-if)#ex
+        rigel(config)#interface vlan 40
+        rigel(config-if)#ip address 10.40.40.254 255.255.255.0
+        rigel(config-if)#ex
+        rigel(config)#do wr
+
+
+## CHANGEMENT DES INTERFACES DES SWITCH
+
+### `SAIPH`
+
+#### 2.6) Eteindre et sécuriser interface FastEthernet0/23 et interface FastEthernet0/24
+
+           interface FastEthernet0/23
+           switchport access vlan 3000
+           switchport mode access
+           shutdown
+           !
+           interface FastEthernet0/24
+           switchport access vlan 3000
+           switchport mode access
+           shutdown
+
+
+#### 2.7) changer le configuration de interface GigabitEthernet0/1 et interface GigabitEthernet0/2
+          interface GigabitEthernet0/1
+          switchport access vlan 3000
+          switchport mode access
+          shutdown
+          !
+          interface GigabitEthernet0/2
+          switchport mode trunk
+
+### ALNILAM
+
+#### 2.8)  Configuration de interface FastEthernet0/24,interface GigabitEthernet0/2
+         interface FastEthernet0/24
+         switchport access vlan 3000
+         switchport mode access
+         shutdown
+
+         interface GigabitEthernet0/2
+         switchport mode trunk
+         !
+
+### AINITAK 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
 
 
 
