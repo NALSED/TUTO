@@ -1,4 +1,5 @@
 spamer e changer la ligne
+                       
                         linux /vmlinuz-6.1.0... root=/dev/mapper/debian--vg-root rw init=/bin/bash
 
       
