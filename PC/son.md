@@ -7,4 +7,4 @@
 ### 🟢 Entrée ligne
 ### 🔴 Ecouteurs
 
-
+## DANS LE PANNEAU ARRIERE LES SORTIE ET ENTR2E SONT INVERSE!!!!
