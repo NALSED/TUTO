@@ -94,8 +94,47 @@
 **reporting/xml** Permet de faire un export XML des résultats
  
  
- ### [vidéo](https://www.youtube.com/watch?v=3M4jJhTuy6Q&ab_channel=%E2%99%A4%CA%82%C4%85%C6%96%C9%AC%C4%B1%E1%83%9D%E1%83%AA%C4%85%C5%8B%C6%99%E2%99%A4)
- #### a partir de 40:56.
+ ##### [vidéo](https://www.youtube.com/watch?v=3M4jJhTuy6Q&ab_channel=%E2%99%A4%CA%82%C4%85%C6%96%C9%AC%C4%B1%E1%83%9D%E1%83%AA%C4%85%C5%8B%C6%99%E2%99%A4)
+ ##### a partir de 40:56.
+ 
+ ### Ici D(dépendance des moduleS) et K(API KEY) 
+![image](https://github.com/user-attachments/assets/0186ec73-7b18-4d9b-b0ab-641fe5553905)
+
+### Pour avoir les info sur un module
+        marketplace info <NOM DU MODULE>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
