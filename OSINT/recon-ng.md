@@ -103,9 +103,20 @@
 ### Pour avoir les info sur un module
         marketplace info <NOM DU MODULE>
 
+## 4) UTILISER UN MODULE 
+### Dans le workspace
+                workspaces ceate test
+                workspaces load test
 
+### charger le module
+                modules load <nom du module>
 
+### 5) Utilisation module
 
+#### 5.1) hunter_io
+        options set SOURCE <source> # rentrer la cible
+        input # voir la/les entrées
+        run # lancer la recherche.
 
 
 
