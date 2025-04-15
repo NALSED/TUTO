@@ -4,7 +4,7 @@
 #### 2)Sur recon-ng commande help
 ![image](https://github.com/user-attachments/assets/8774e7da-eee7-47e9-97b1-ee3cbcedae43)
 #### 2.1) Pour chaque test/recherche créer un espace de travail
-        workspace create <EXEMPLE>
+        workspaces create <EXEMPLE>
 
 #### 3) MODULE(liste non exaustive) : 
 **discovery/info_disclosure/interesting_files** Extrait des fichiers type robot.txt d'un domaine
