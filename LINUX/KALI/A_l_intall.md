@@ -14,7 +14,8 @@
 ---
 ---
 ### 1️⃣ `Mise a jour et install`
-        sudo apt update && sudo aapt full-upgrade -y
+        sudo apt update && sudo apt full-upgrade -y
+        sudo apt install kali linux-everything
 
 
 
