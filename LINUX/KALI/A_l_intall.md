@@ -1,4 +1,4 @@
-## A chaque instalation de kali
+https://manpages.ubuntu.com/manpages/trusty/man8/ufw.8.html## A chaque instalation de kali
 ### En  point
 ---
 ### 1️⃣ `Mise a jour et install`
@@ -13,7 +13,7 @@
 ### 🔟
 ---
 ---
-### 1️⃣ `Mise a jour et install`
+### 1️⃣ `Mise a jour et install` ⚠️1h:⚠️
         sudo apt update && sudo apt full-upgrade -y
         sudo apt install kali linux-everything
 
