@@ -11,8 +11,8 @@
 
 ### 1️⃣ Instalation
       sudo apt install proxychains
-      sudo apt install proxychains4 proxycheck proxytrack proxytunnel to torsocks tor brower-launcher
-
+      sudo apt install proxychains4 proxycheck proxytrack proxytunnel torsocks torbrowser-launcher
+      
 ### 2️⃣ Configuration
 #### Se rendre sur les liens suivant pour récupérer des liste de proxy gratuit et anonymes
 [PROXY-TOOLS](https://fr.proxy-tools.com/proxy/socks)
