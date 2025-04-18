@@ -48,8 +48,16 @@
 ---
 
 ## 4️⃣ Utilisation
+#### Laisser Whonix allumé
 
+#### Sur Kali passer le mode d'accès réseau en Réseau interne et choisir Whonix
+![image](https://github.com/user-attachments/assets/888ad1d8-c32a-4dca-a3c3-87bde813708a)
 
+#### Ralumer Kali et modifier la configuration IP
+![image](https://github.com/user-attachments/assets/ea10a0d9-f6b6-4f3d-b9ed-de3df687ebed)
+
+#### Mettre Kali sur le même réseau que Whonix, Gateway Whonix ainsi que DNS => Apply
+![image](https://github.com/user-attachments/assets/d7535efd-efa2-4783-b7dd-f03e77ca15d7)
 
 
 
