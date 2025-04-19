@@ -1,12 +1,38 @@
-# recon-ng
+# recon-ng 🕶️
 
+---
+
+## 1️⃣ `Instalation`
+## 2️⃣ `Utilisation`
+
+---
+---
+
+## 1️⃣ `Instalation`
 #### 1) Installer Kali => VM
-#### 2)Sur recon-ng commande help
+
+        apt-get update && apt-get install recon-ng
+        recon-ng
+
+![image](https://github.com/user-attachments/assets/2a4ab893-92e1-49d8-b38d-c299ce2446e3)
+
+
+## 2️⃣ `Utilisation`
+
+##### Recon-ng permet decoupler des modules de recherche OSINT les un à la suite des autres pour accélérer les recherches, le tout dans un espace de travail.
+
+
+
+### 2.1) `Help workspace`
+
+        help
 ![image](https://github.com/user-attachments/assets/8774e7da-eee7-47e9-97b1-ee3cbcedae43)
-#### 2.1) Pour chaque test/recherche créer un espace de travail
+
+
+####  Pour chaque test/recherche créer un espace de travail
         workspaces create <EXEMPLE>
 
-#### 3) MODULE(liste non exaustive) : 
+#### 2.2)) MODULE(liste non exaustive) : 
 **discovery/info_disclosure/interesting_files** Extrait des fichiers type robot.txt d'un domaine
 
 **recon/credentials-credentials/bozocrack** Tente de trouver dans Google le décryptage d un mot de passe
