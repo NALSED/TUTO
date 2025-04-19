@@ -70,7 +70,7 @@
 
 ## 4️⃣ Créer dossier de partage
 
-    mkdir <CHEMIN DECLARER DANS LE FICHIER DE CONF DE SAMBA> # Ici /srv/partage
+    mkdir <CHEMIN DECLARER DANS LE FICHIER DE CONF DE SAMBA> # Ici /home/practoxx/Documents
     chgrp -R partage <CHEMIN> # Attribuer le groupe "partage" comme groupe propriétaire de ce dossier
     chmod -R g+rw /srv/partage/ # Ajouter les droits de lecture/écriture à ce groupe sur ce dossier
     ls -l /srv/ # Vérif
