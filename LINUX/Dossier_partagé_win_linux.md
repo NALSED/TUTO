@@ -55,7 +55,7 @@
 
 ## 3️⃣ Créer utilisateur et groupe du partage
 
-        adduser <USER> # Créer utilisateur
+        adduser <USER> # Créer utilisateur , j'utilisea un user déjà présent
 
 >Pour que l'utilisateur puisse se connecter au partage, il faut l'autoriser dans Samba, en plus de la création au sein du système Linux.
 >
