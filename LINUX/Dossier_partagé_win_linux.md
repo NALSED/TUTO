@@ -27,7 +27,7 @@
 
       [partage]
      comment = Partage de données
-     path = /srv/partage
+     path = <CHEMIN> ici /home/<USER>/Documents/partage2
      guest ok = no
      read only = no
      browseable = yes
@@ -53,7 +53,9 @@
 
 
 
-## 3️⃣ Créer utilisateur et groupe du partage
+## 3️⃣ Créer utilisateur et groupe du partage OU utiliser un utilisateur existant
+
+### 3.1) Créaation
 
         adduser <USER> # Créer utilisateur , j'utilisea un user déjà présent
 
@@ -66,11 +68,18 @@
         groupadd <GROUPE> #Créer le groupe partage et ajouter l'utilisateur créer précédement
         gpasswd -a <USER><GROUPE>
 
+
+### 3.2) Utiliser les même commande ⬆️ avec l'utilisateur voulu.
+
 ---
 
 ## 4️⃣ Créer dossier de partage
 
-    mkdir <CHEMIN DECLARER DANS LE FICHIER DE CONF DE SAMBA> # Ici /home/practoxx/Documents
+#### TUTO [BELGINUX](https://belginux.com/creer-un-partage-samba/)
+    mkdir <CHEMIN DECLARER DANS LE FICHIER DE CONF DE SAMBA> # Ici /home/<USER>/Documents/partage2
+    sudo chmod -R 777 <CHEMIN>
+
+#### TUTO [IT](https://www.it-connect.fr/serveur-de-fichiers-debian-installer-et-configurer-samba-4/)
     chgrp -R partage <CHEMIN> # Attribuer le groupe "partage" comme groupe propriétaire de ce dossier
     chmod -R g+rw /srv/partage/ # Ajouter les droits de lecture/écriture à ce groupe sur ce dossier
     ls -l /srv/ # Vérif
@@ -81,7 +90,7 @@
 
 ## 5️⃣ Accéder au partage
 
-
+#### Entrer l'ip de la machine, avec les identifiant créer via smb.
 
 
 
