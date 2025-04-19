@@ -18,7 +18,8 @@
 #### Solution trouvées [ICI POUR WHONIX](https://www.whonix.org/wiki/Host_a_Bridge_or_Tor_Relay) // [ICI POUR LA REDIRECTION](https://blog.microlinux.fr/ssh-virtualbox-nat/)
 #### DANS Whonix-Gateway-Xfce => Configuration => Réseau => Passer en NAT => Redirection de port
 #### Remplir comme ci dessous ⬇️
-![image](https://github.com/user-attachments/assets/4e92582d-9b49-4966-bb36-56394e7ffd7b)
+![image](https://github.com/user-attachments/assets/1530b51d-eb82-4499-82be-7409cb63255d)
+
 #### Lancer La VM
 
 ---
