@@ -32,7 +32,10 @@
 ####  Pour chaque test/recherche créer un espace de travail
         workspaces create <EXEMPLE>
 
-#### 2.2)) MODULE(liste non exaustive) : 
+---
+
+
+#### 2.2) MODULE(liste non exaustive) : 
 **discovery/info_disclosure/interesting_files** Extrait des fichiers type robot.txt d'un domaine
 
 **recon/credentials-credentials/bozocrack** Tente de trouver dans Google le décryptage d un mot de passe
@@ -126,10 +129,20 @@
  ### Ici D(dépendance des moduleS) et K(API KEY) 
 ![image](https://github.com/user-attachments/assets/0186ec73-7b18-4d9b-b0ab-641fe5553905)
 
-### Pour avoir les info sur un module
-        marketplace info <NOM DU MODULE>
 
-## 4) UTILISER UN MODULE 
+
+#### 2.3) Installer un module 
+        marketplace search # liste les modules dispo
+        marketplace install <NOM DU MODULES> #Install le module
+         marketplace info <NOM DU MODULE> #Info sur le module
+
+#### 2.4) API keys:
+#### Dans certain cas des modules demande un API keys, se rende sur le site concerné et intégrer la clé à recon-ng
+
+        keys add <NOM DU MODULE> <VALEUR>
+
+
+## 2.5) UTILISER UN MODULE 
 ### Dans le workspace
                 workspaces ceate test
                 workspaces load test
@@ -137,9 +150,9 @@
 ### charger le module
                 modules load <nom du module>
 
-### 5) Utilisation module
 
-#### 5.1) hunter_io
+
+#### 2.6) hunter_io
         options set SOURCE <source> # rentrer la cible
         input # voir la/les entrées
         run # lancer la recherche.
