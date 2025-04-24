@@ -7,7 +7,7 @@
 ## 3️⃣ Créer utilisateur et groupe de partage
 ## 4️⃣ Créer dossier de partage
 ## 5️⃣ Accéder au partage
-
+## 6️⃣ Si ufw
 ---
 ---
 
@@ -92,10 +92,15 @@
 
 #### Entrer l'ip de la machine, avec les identifiant créer via smb.
 
+---
 
+## 6️⃣ Si ufw
 
+#### Si ufw est installer sur la machine 
 
-
+    sudo ufw allow 139
+    sudo ufw allow 445
+    sudo ufw allow samba
 
 
 
