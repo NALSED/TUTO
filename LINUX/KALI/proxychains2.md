@@ -53,26 +53,21 @@
 
 ## 4️⃣ `Config proxychains4`
 
+     sudo gedit proxychains4.conf
+     dynamic_chain
+     #strict_chain
 
-
-
----cl
-
-
-
-
-
-
-
+### Remplir les proxy
+### Revenir dans le fichier de TotGhost et le lancer
+---
 
 
 
 
 
-## 5️⃣ ``
-## 6️⃣ ``
-## 7️⃣ ``
-## 8️⃣ ``
-## 9️⃣ ``
+
+
+
+
 
 
