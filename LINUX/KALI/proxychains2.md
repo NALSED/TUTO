@@ -57,7 +57,7 @@
      dynamic_chain
      #strict_chain
 
-### Remplir les proxy
+### Remplir les proxy https://geonode.com/free-proxy-list
 ### Revenir dans le fichier de TotGhost et le lancer
 ---
 
