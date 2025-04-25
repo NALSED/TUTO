@@ -57,7 +57,7 @@
 #### Ralumer Kali et modifier la configuration IP
 ![image](https://github.com/user-attachments/assets/ea10a0d9-f6b6-4f3d-b9ed-de3df687ebed)
 
-#### Mettre Kali sur le même réseau que Whonix, Gateway Whonix ainsi que DNS => Apply
+#### Mettre Kali sur le même réseau que Whonix, Gateway Whonix ainsi que DNS (eth1) => Apply
 
 
 
