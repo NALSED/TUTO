@@ -6,11 +6,7 @@
 ## 2️⃣ `Install TorGhost`
 ## 3️⃣ `Config TorGhost`
 ## 4️⃣ `Config proxychains4`
-## 5️⃣ ``
-## 6️⃣ ``
-## 7️⃣ ``
-## 8️⃣ ``
-## 9️⃣ ``
+
 
 
 
