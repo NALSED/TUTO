@@ -1,7 +1,7 @@
 #!bin/bash
 
 # Hash originel à comparer
-hash=
+read -p 'Entrer le hash :' hash
 # Dictionnaire
 fichier=
 # Type de hash utilisé pour le hash originel
