@@ -14,7 +14,7 @@ cat $fichier | while read line
         #Cette variable va écrire pour chaque ligne du fichier le hash.
         #-n sypprime le retour à la ligne et awk ne va afficher que la premiere colone
         digest=$(echo -n $line | $type_hash | awk '{print $1}')
-        if [$digest=$hash]
+        if [ $digest = $hash ]
         then
               echo'bingo le pot de passe est :'$line
               break
