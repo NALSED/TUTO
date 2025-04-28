@@ -85,9 +85,72 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 
 
 ## 3️⃣ `Rules`
+### Les régles sont à éditer dans le fichier de conf de john et appeler ensuite pour le craquage.
+    sudo gedit /tec/john/john.conf
+
+### Editer les régles en leurs donnant un nom qui sera appelé via la commande
+    john --rules=<RULESNAME>
+
+### Utiliser les régles ci dessous
+
+<details>
+<summary>
+<h2>
+:arrow_forward:RULES
+</h2>
+</summary>
+
+## 🏴 `Flags de Rejet`
+
+-:  Pas d’effet (no-op) — ne rejette jamais
+
+-c  Rejette si le hash n’est pas sensible à la casse
+
+-8  Rejette si le hash n’utilise pas de caractères 8 bits
+
+-s  Rejette si aucun hash n’a été splitté au chargement
+
+-p  Rejette si les commandes sur les paires de mots sont désactivées
+
+---
+
+## 🔢  `Constantes Numériques et Variables`
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
 
 
 ---
