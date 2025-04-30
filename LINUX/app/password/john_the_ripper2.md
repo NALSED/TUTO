@@ -5,8 +5,8 @@ https://www.openwall.com/john/doc/
 ## 1️⃣ `Intro`
 ## 2️⃣ `Modes`
 ## 3️⃣ `Rules`
-## 4️⃣ `mask`
-## 5️⃣ `Exemple`
+## 4️⃣ `Exemple`
+## 5️⃣ ``
 ## 6️⃣ ``
 ## 7️⃣ ``
 ## 8️⃣ ``
@@ -79,6 +79,7 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 ###  2) Word List Mode
 ###  3) Incremental Mode
 ###  3) External Mode
+
 ---
 
 
@@ -105,13 +106,16 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 # Syntaxe générale + Explications et exemples des commandes
 
 ## ⚠️L'ordre dans lequel apparaisse les explication est une sugestion de syntaxe global pour une création de régle dans JtR
+
 ## 1️⃣ 🏴 `Reject Flag` => pour filtrer la commande qui suit
 ## 2️⃣  🧮 Opérations de Bases
+## A partir de la on peux utiliser les commandes dans l'ordre qu l'on veux en foction des besoin
 ## 3️⃣ 🔢 Constantes Numérique et Variables => utilisées en complément des Opérations de bases ou en variable
 ## 4️⃣ ⛓️ Commande de chaines(strings) => Encomplément
-
-
-
+## 5️⃣ 🟥 Commandes d'insertion / suppression / extraction
+## 6️⃣ ↔️ Commandes de modification de caractères
+## utiliser 7️⃣ et 8️⃣ ensemble
+## 7️⃣ 🔣 Classe de caractères
 
 ### sous [List.Rules:monTest] écrire la régle ⬇️ 
 
@@ -267,111 +271,121 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
     'N=8 Testera des mot de passe de exactement 8 caractères
 
 
+---
+---
 
+## 🟥 Commandes d'insertion / suppression / extraction
 
+### `[`	Supprime le premier caractère du mot. (Ex: "admin" → "dmin")
+### 📝 `EXEMPLE
+        admin => dmin
 
+### `]`	Supprime le dernier caractère du mot. (Ex: "admin" → "admi")
+### 📝 `EXEMPLE
+        admin => admi
 
+### `DN`	Supprime le caractère à la position N. (Ex: D1 sur "admin" → "amin")
+### 📝 `EXEMPLE
+        sur admin => amin
 
+### `xNM`	Extrait une sous-chaîne à partir de la position N, sur une longueur de M caractères.
+### 📝 `EXEMPLE
+         x13 sur admin => dmi # A partir de la position 1 (a) on extrait les 3 caractére suivant (dmi)
 
+### `iNX`	Insère le caractère X à la position N, les caractères suivants sont décalés.
+### 📝 `EXEMPLE
+        i1- sur admin => a-dmin
 
+### `oNX`	Remplace le caractère à la position N par le caractère X. 
+        o2# sur admin => ad#in
 
+---
+---
 
+## ↔️ Commandes de modification de caractères
 
+### `S` : inverse la casse de chaque caractère (minuscule ↔ majuscule).
 
+### `V` : Mettre les voyelles en minuscules et les consonnes en majuscules.
 
+### `R` : Décaler chaque caractère vers la droite, comme sur un clavier => abc donne bcd
 
+### `L` : Décaler chaque caractère vers la gauche, comme sur un clavier => abc donne zab
 
+---
+---
 
+## 🔣 Classe de caractères :
 
+### `??` :Correspond à ?.
+### ?? : Permet de désigner le caractère ? littéral dans une règle, car ? est normalement un caractère spécial dans les règles.
 
+### `?v` : "aeiouAEIOU" (toutes les voyelles, en minuscules et en majuscules).
+### Utilisé pour cibler toutes les voyelles dans un mot de passe.
 
+### `?c`: "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ".
+### Cela cible toutes les consonnes, en minuscules et en majuscules.
 
+### `?w` : correspond à l'espace (" ") et à la tabulation horizontale ("\t").
+### Utile pour inclure des espaces dans les mots de passe.
 
+### `?p` : caractères suivants : ".,:;'?!" 
 
+### `?s` : caractères spéciaux comme "$%^&*()-_+=|<>[]{}#@/~".
+### Utilisé pour désigner des symboles courants que l'on trouve dans les mots de passe complexes.
 
+### `?l`: toutes les lettres minuscules de a à z.
 
+### `?u` toutes les lettres majuscules de A à Z.
 
+### `?d : les chiffres de 0 à 9.
 
+### `?a` : toutes les lettres de l'alphabet, en minuscules et majuscules (a-zA-Z).
 
+### `?x` : toutes les lettres et les chiffres (c'est-à-dire a-zA-Z0-9).
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### `?z` : tous les caractères possibles.
+### Cela inclut tout, des lettres aux chiffres en passant par les symboles, y compris les espaces et la ponctuation.
 
 
 ---
+---
 
-## 🔢  `Constantes Numériques et Variables`
+## 🎮 Commandes classe de caractéres : 
 
+## Trois partie 
+## 1️⃣ 🔤 Commandes de remplacement / suppression de caractères
+## 2️⃣ ❌ Commandes de rejet de mot
+## 3️⃣ ✅ Commandes de validation (garde seulement les mots qui...)
 
+---
 
+## ⚠️ La lettre C corespond aux Classes de caractéres ( /?C + ?d => /?d)
 
+## 1️⃣ 🔤 Commandes de remplacement / suppression de caractères
 
+### `sXY` :	Remplace tous les caractères X par Y.
+### `s?CY` : Remplace tous les caractères de la classe C par Y.
+### `@X` : Supprime tous les caractères X.
+### `@?C` : Supprime tous les caractères de la classe C.
 
+## 2️⃣ ❌ Commandes de rejet de mot
 
+### `!X` : il contient le caractère X.
+### `!?C` : il contient un caractère de la classe C.
 
+## 3️⃣ ✅ Commandes de validation (garde seulement les mots qui...)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### `/X` : il contient le caractère X.
+### `/?C` : il contient un caractère de la classe C.
+### `=NX` : le caractère à la position N est X.
+### `=N?C` : le caractère à la position N est dans la classe C.
+### `(X` : le premier caractère est X.
+### `(?C` : le premier caractère est dans la classe C.
+### `)X` : le dernier caractère est X.
+### `)?C` : le dernier caractère est dans la classe C.
+### `%NX` : il contient au moins N fois le caractère X.
+### `%N?C` : il contient au moins N caractères de la classe C.
 
 
 
@@ -400,11 +414,3 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 
 
 
-----
-
-## 4️⃣ ``
-## 5️⃣ ``
-## 6️⃣ ``
-## 7️⃣ ``
-## 8️⃣ ``
-## 9️⃣ ``
