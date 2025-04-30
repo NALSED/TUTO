@@ -411,7 +411,8 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 ## 9️⃣ `Sources Aides`
 
 https://www.stationx.net/how-to-use-john-the-ripper/
-
+https://github.com/danielmiessler/SecLists
+liste mdp
 
 
 
