@@ -87,7 +87,7 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 
 ## 3️⃣ `Rules`
 ### Les régles sont à éditer dans le fichier de conf de john et appeler ensuite pour le craquage.
-    sudo gedit /etc/john/john.conf
+    sudo gedit /etc/john/john.conf # ligne 697
     EXEMPLE=[List.Rules:monTest]
 
 ### Editer les régles en leurs donnant un nom qui sera appelé via la commande
