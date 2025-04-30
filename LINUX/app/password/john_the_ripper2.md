@@ -5,8 +5,8 @@ https://www.openwall.com/john/doc/
 ## 1️⃣ `Intro`
 ## 2️⃣ `Modes`
 ## 3️⃣ `Rules`
-## 4️⃣ `Exemple`
-## 5️⃣ ``
+## 4️⃣ `mask`
+## 5️⃣ `Exemple`
 ## 6️⃣ ``
 ## 7️⃣ ``
 ## 8️⃣ ``
@@ -87,9 +87,10 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 ## 3️⃣ `Rules`
 ### Les régles sont à éditer dans le fichier de conf de john et appeler ensuite pour le craquage.
     sudo gedit /tec/john/john.conf
+    EXEMPLE=[List.Rules:monTest]
 
 ### Editer les régles en leurs donnant un nom qui sera appelé via la commande
-    john --rules=<RULESNAME>
+    john --rules=<EXEMPLE>
 
 ### Utiliser les régles ci dessous
 
@@ -99,18 +100,242 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 :arrow_forward:RULES
 </h2>
 </summary>
+ 
 
-## 🏴 `Flags de Rejet`
+# Syntaxe générale + Explications et exemples des commandes
 
--:  Pas d’effet (no-op) — ne rejette jamais
+## ⚠️L'ordre dans lequel apparaisse les explication est une sugestion de syntaxe global pour une création de régle dans JtR
+## 1️⃣ 🏴 `Reject Flag` => pour filtrer la commande qui suit
+## 2️⃣  🧮 Opérations de Bases
+## 3️⃣ 🔢 Constantes Numérique et Variables => utilisées en complément des Opérations de bases ou en variable
+## 4️⃣ ⛓️ Commande de chaines(strings) => Encomplément
 
--c  Rejette si le hash n’est pas sensible à la casse
 
--8  Rejette si le hash n’utilise pas de caractères 8 bits
 
--s  Rejette si aucun hash n’a été splitté au chargement
 
--p  Rejette si les commandes sur les paires de mots sont désactivées
+### sous [List.Rules:monTest] écrire la régle ⬇️ 
+
+
+## 🏴 `Reject Flag`
+
+### Ces régles permet de trier des commandes en foctions des drapeaux
+
+### `-:` Ne rien faire avec le mot d'entrée.
+
+### `-c` : Rejeter cette règle sauf si le type de hachage actuel est sensible à la casse.
+### Cela permet d'éviter d'appliquer certaines transformations (comme la conversion en minuscules ou en majuscules) à des hachages qui ne distinguent pas entre les lettres majuscules et minuscules.
+
+### 📝 `EXEMPLE`  
+
+    -c l # Utilise la commande "l" (convertir en minuscules), mais elle sera rejetée si le type de hachage n'est pas sensible à la casse.
+
+
+### `-8` : Rejeter cette règle sauf si le type de hachage actuel utilise des caractères sur 8 bits (1octets, comme MD5 DES.)
+
+### 📝 `EXEMPLE`  
+
+      -8 u # "u" (mettre le mot de passe en majuscules) sera appliquée uniquement si le type de hachage utilise des caractères à 8 bits. 
+
+
+### `-s` : Rejeter cette règle sauf si certains mots de passe ont été divisés lors du chargement.
+
+>Lorsque John the Ripper charge un ensemble de mots de passe pour effectuer un craquage, certains mots de passe peuvent être divisés en morceaux ou traités par segments. Cela est souvent utilisé dans des configurations où les mots de passe sont plus complexes ou lorsqu'il y a besoin de manipuler des parties du mot de passe séparément (par exemple, des mots de passe longs ou des formats de hachage spécifiques).
+
+### 📝 `EXEMPLE`  
+    -s d # Cette règle applique la commande d (dupliquer le mot de passe), mais elle ne sera exécutée que si les mots de passe ont été divisés lors du processus de chargement.
+
+### `-p` : Rejeter cette règle sauf si les commandes de paires de mots sont actuellement autorisées.
+
+### 📝 `EXEMPLE`  
+    -p d  # duplique le mot de passe  si l'option de paire de mots est activée. 
+
+>Les "word pair commands" (commandes de paire de mots) dans John the Ripper sont utilisées dans un mode avancé appelé "Single crack mode", où deux mots peuvent être combinés ou manipulés simultanément pour générer des mots de passe candidats plus complexes.
+
+### -p peux être utilisé avec les extra commandes :
+
+### `1` : Utilise le premier mot de la ligne d'entrée (souvent le nom d'utilisateur ou une partie associée).
+
+### `2` : Utilise le second mot de l'entrée (par exemple, un nom complet ou un commentaire).
+
+### `+` Combine les deux mots (1 et 2) pour créer un seul mot, puis applique les transformations.
+### ⚠️ À utiliser seulement après 1 ou 2.
+
+### 📝 `EXEMPLE` `1` // `2` // `+` : 
+     john:...:John Smith # Si l'entrée est comme ça ⬅️
+
+### Alors 
+`1` → prend "John"
+
+`2` → prend "Smith"
+
+`1+` → crée "JohnSmith"
+
+`2+` → crée "SmithJohn"
+
+### 📝 `EXEMPLE` ``-p // `1` // `2` // `+` : 
+
+### Avec l'entrée :
+    
+    first = "Admin"
+    second = "PASSword"
+    -p 1u2l+c # Ici uniquement sur paire de mots => 1u → "ADMIN" 2l → "password" +r → concatène → "ADMINpassword" → puis renverse → "drowssapNIMDA"
+
+---
+---
+
+## 🧮 Opérations de Bases
+
+### `:` (no-op) : Ne rien faire avec le mot d'entrée.
+
+### `l` : Convertir le mot en minuscules.
+
+### `u` : Convertir le mot en majuscules.
+
+### `c` : Mettre la première lettre en majuscule.
+
+### `C` : Mettre la première lettre en minuscule et les autres en majuscules.
+
+### `t` : Inverser la casse de tous les caractères du mot.
+
+### `TN` : Inverser la casse du caractère à la position N.
+
+### `r` : Inverser l'ordre des caractères du mot.
+
+### `d` : Dupliquer le mot.
+
+### `f` : Réfléchir le mot (ajouter un reflet du mot).
+
+### `{` : Faire tourner le mot vers la gauche.
+
+### `}` : Faire tourner le mot vers la droite.
+
+### `$X` : Ajouter le caractère X à la fin du mot. Ajoute uniquement un caractère contrairement à Az "!/*-" qui peux ajouter une chaine de caractère
+
+### `^X` : Ajouter le caractère X au début du mot. Ajoute uniquement un caractère contrairement à A0 "!/*-" qui peux ajouter une chaine de caractère
+
+ ---
+ ---
+
+ ## 🔢 Constantes Numérique et Variables
+
+### Principalement utilisé dans le variable avec la lettre v pour déclarer la variable
+    v<VARIABLE> <VALEUR>  
+### 📝 `EXEMPLE`     
+    va*l   # Définit la variable A avec la longueur du mot actuel
+
+### `0...9` : chiffres de 0 à 9 → représentent les valeurs numériques 0 à 9.
+
+### `A...Z` : lettres de A à Z → représentent les valeurs numériques 10 à 35.
+
+### `*` : : pour max_length (longueur maximale).
+
+### `-`  pour (max_length - 1).
+
+### `+`  pour (max_length + 1).
+
+### `a...k` : pour des variables numériques définies par l'utilisateur (avec la commande "v").
+
+### `l` : longueur du mot initial ou mis à jour (mise à jour chaque fois que "v" est utilisé).
+
+### `m` : position du dernier caractère du mot initial ou mémorisé.
+
+### `p` : position du caractère trouvé en dernier avec les commandes "/" ou "%".
+
+### `z` : position ou longueur "infinie" (au-delà de la fin du mot).
+
+
+---
+---
+
+## ⛓️ Commande de chaines(strings)
+
+### `AN"STR"`: Insérer la chaîne "STR" dans le mot à la position N.
+### N = 0 => début de mot
+### N = z => fin de mot
+
+### 📝 `EXEMPLE`
+    Az"!"      # Ajoute "!" à la fin du mot
+
+### `N` : Rejeter le mot à moins qu'il ne fasse plus de N caractères.
+
+### 📝 `EXEMPLE`
+    N=8        # Test les MDP d'une longueur mini de 8 caractéres, en dessous ils seront ignorés 
+
+### `'N` : Test exactement le nombre N de caractères
+
+### 📝 `EXEMPLE`
+    'N=8 Testera des mot de passe de exactement 8 caractères
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ---
 
