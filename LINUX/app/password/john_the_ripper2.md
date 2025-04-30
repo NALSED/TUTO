@@ -265,10 +265,10 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 ### 📝 `EXEMPLE`
     N=8        # Test les MDP d'une longueur mini de 8 caractéres, en dessous ils seront ignorés 
 
-### `'N` : Test exactement le nombre N de caractères
+### `'N` : Tronque le mot
 
 ### 📝 `EXEMPLE`
-    'N=8 Testera des mot de passe de exactement 8 caractères
+    'N=8 tronquera le mot à 8 caractére.
 
 
 ---
