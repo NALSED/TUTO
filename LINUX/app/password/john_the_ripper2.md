@@ -10,7 +10,7 @@ https://www.openwall.com/john/doc/
 ## 6️⃣ ``
 ## 7️⃣ ``
 ## 8️⃣ ``
-## 9️⃣ ``
+## 9️⃣ `Sources Aides`
 
 
 
@@ -406,9 +406,9 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 ## 6️⃣ ``
 ## 7️⃣ ``
 ## 8️⃣ ``
-## 9️⃣ ``
+## 9️⃣ `Sources Aides`
 
-
+https://www.stationx.net/how-to-use-john-the-ripper/
 
 
 
