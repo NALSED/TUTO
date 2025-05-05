@@ -143,49 +143,32 @@
 
 ![image](https://github.com/user-attachments/assets/06a17126-8a39-46b4-9e89-ffd6b50e7c89)
 
-### Trouvvé ici 
+### Trouvé ici 
 
-## Debian Squeeze sources.list
+            ## Debian Squeeze sources.list
 
-## Debian.org FR mirror
-deb http://ftp.fr.debian.org/debian/ squeeze main contrib non-free
-deb-src http://ftp.fr.debian.org/debian/ squeeze main contrib non-free
+            ## Debian.org FR mirror
+            deb http://ftp.fr.debian.org/debian/ squeeze main contrib non-free
+            deb-src http://ftp.fr.debian.org/debian/ squeeze main contrib non-free
 
-## Debian security updates
-deb http://security.debian.org/ squeeze/updates main contrib non-free
-deb-src http://security.debian.org/ squeeze/updates main contrib non-free
-
-
+            ## Debian security updates
+            deb http://security.debian.org/ squeeze/updates main contrib non-free
+            deb-src http://security.debian.org/ squeeze/updates main contrib non-free
 
 
+### Installer unzip
+     apt install unzip
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### On passe à la partie 4 MAIN
 
 </details>
+
+
+
+
+
+
+
 
 
 
@@ -196,7 +179,33 @@ deb-src http://security.debian.org/ squeeze/updates main contrib non-free
 :arrow_forward: 4. MAIN  
 </h2>
 </summary>
-blabla
+
+>Challenge 1 : trouver url et mot de passe
+>Mot de passe du fichier :
+>Mot de passe classique de la formation concaténé avec la somme des 2 ports
+>utilisée dans la première partie. Si tu as utilisé une méthode sans utilisation de
+>port spécifique, demande à ton formateur le mot de passe...
+
+>Challenge 2 : trouver le nombre
+>Mot de passe du fichier :
+>11 premiers caractères du nom du site (après le https://) trouvé au challenge 1
+>Et les 6 derniers caractères du mot de passe trouvé au challenge 1
+
+>Challenge 3 : trouver l'id
+>Mot de passe du fichier :
+>20 premiers caractères du sha512sum du numéro de coffre trouvé au
+>challenge 2
+
+>Challenge 4 : trouver le mot de passe
+>Mot de passe du fichier :
+>10 premiers chiffres du code du bouton (trouvé au challenge 3) mis au cube
+
+>Challenge 5 : trouver le mot de passe
+>Mot de passe du fichier :
+>Date de naissance (en français) sur 6 chiffres concatenée avec le nom de
+>famille
+
+
 </details>
 
 
