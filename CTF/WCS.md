@@ -94,7 +94,97 @@
 :arrow_forward: 3. FILES ?  
 </h2>
 </summary>
-blabla
+
+## 1️⃣ `Accéder à la VM`
+
+### Au démarage spammer e
+### On arrive sur cette page
+![image](https://github.com/user-attachments/assets/5b4dcb50-0cec-4332-9dd3-48ec8b6c6f41)
+
+### A laide des fléches descendre jusquà la ligne commençant "linux"
+![image](https://github.com/user-attachments/assets/f17c24bf-e563-4784-b83a-93058ca2a100)
+
+### Derrière le mot quiet
+![image](https://github.com/user-attachments/assets/906445e9-68aa-47f6-9033-09d0c9df2138)
+
+### Ecrire rw init=/bin/bash ⚠️ Clavier en qwerty ⚠️ Puis sauvegarder.
+
+### Résultat attendu
+![image](https://github.com/user-attachments/assets/39cf6d06-daf0-48ff-9a18-381f9b697da3)
+
+### changer le mot de passe de root
+      passwd
+
+![image](https://github.com/user-attachments/assets/7e81867e-ea42-44eb-8f10-8e181dbfc66e)
+
+### lister les utilisateur 
+      getent passwd {1000..1003} # liste les utilisateur avec UUID entre 1000 et 1003
+
+![image](https://github.com/user-attachments/assets/8ab3159d-8c20-4bd8-a67f-583a55f7d99a)
+
+### Changer les MDP des deux utilisateurs
+      passwd wildssh
+      passwd ftponly
+
+### Quitter ce mode avec la commande
+      exec /sbin/init
+
+### On peux accéder à la machine via root
+
+## 2️⃣ `trouver les fichiers`
+
+      cd /home/ftponly/ftp/files
+      
+![image](https://github.com/user-attachments/assets/3741657c-7994-42be-b1e6-a2591bcb1039)
+
+### ⚠️ Message erreur après => apt install unzip : en attente de l'entête
+### Probléme avec le fichier => etc/apt/sources.list
+### Ajouter la première ligne
+
+![image](https://github.com/user-attachments/assets/06a17126-8a39-46b4-9e89-ffd6b50e7c89)
+
+### Trouvvé ici 
+
+## Debian Squeeze sources.list
+
+## Debian.org FR mirror
+deb http://ftp.fr.debian.org/debian/ squeeze main contrib non-free
+deb-src http://ftp.fr.debian.org/debian/ squeeze main contrib non-free
+
+## Debian security updates
+deb http://security.debian.org/ squeeze/updates main contrib non-free
+deb-src http://security.debian.org/ squeeze/updates main contrib non-free
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </details>
 
 
