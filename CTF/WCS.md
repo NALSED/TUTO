@@ -57,7 +57,7 @@
 
 ### `> haszip` dans ce fichier
       
-      john --wordlist=/home/practoxx/Documents/wordlist.lst /home/practoxx/haszip
+     sudo john --wordlist=/home/practoxx/Documents/wordlist.lst /home/practoxx/haszip
 
 ### `john` appel john à exécuter >>>
 
@@ -65,8 +65,9 @@
 
 ### `/home/practoxx/haszip` sur le fichier contenant le hash précédemement extrait. 
 
+### Et voila le MDP
 
-
+![image](https://github.com/user-attachments/assets/3c5f1eba-cf97-4548-b0a0-716e89ee77a1)
 
 
 
