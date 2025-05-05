@@ -23,27 +23,51 @@
 
 ### 1️⃣ Prise en main de [JtR](https://github.com/NALSED/Future-R-vision/blob/main/LINUX/app/password/john_the_ripper2.md)
 
-### 2️⃣ Création de la régle pour casser le MDP
-#### En utilisant commande vu précédement voici la régle:
+### 2️⃣ Utilisation de [crunch](https://ns3edu.com/blog/a-detailed-guide-on-crunch-tool/) [crunch2](https://itintegrity.wordpress.com/2012/08/18/crunch-un-generateur-de-wordlist-simple-et-efficace/) pour généger une wordlist.
 
-  'N=8 # chaine de 8 caractére
-  A0"Az" # Ajoute Az au début
-  $7 ou Az"7" # Fini par 7
-  @M # Supprime le carractére M
-  @5 # Supprime le carractére 5
+### Vérifier que crunch est installé et version
+      crunch -h
 
-### 3️⃣ extraire le Hash du Zip et liste de mot
-#### Pour extraire utiliser zip2john
-    zip2john challengeTSSR.zip > tssr.hashes
+### Editer le fichier de charset dans `/usr/share/crunch/charset.lst`
 
-#### Le fichier tssr.hashes contient maintenant le hash du mdp sur lequel nous utilisons notre régle john
-#### Je vais utiliser la liste de base sur Kali rockyou.txt
-  cd /usr/share/wordlists
-  sudo gzip -d rockyou.txt.gz
+![image](https://github.com/user-attachments/assets/69eaf5fd-95d6-4355-b929-ea250f4ad418)
 
-### 4️⃣ Faire la recherche via rockyou et notre régle  
-#### Lancer la commande
-    john 
+### On peux par la suite réutiliser ce charset dans la commandes crunch:
+
+    crunch 8 8 -f /usr/share/crunch/charset.lst tssr -t Az@@@@@7 -o wordlist.lst
+
+### `crunch` appel l'utilisation de crunch
+
+### `8 8` Min et Max pour le MDP
+
+### `-f /usr/share/crunch/charset.lst tssr` Appel le charset créer précédement
+
+### `-t Az@@@@@7` spécifie que le MDP doit commencer par Az finir par 7 et les @ autres caractéres
+
+### `-o wordlist.lst` redirige la sortie vers le fichier demandé
+
+
+### 3️⃣ Utiliser le fichier wordlist.lst créer avec JtR / 
+
+      zip2john chalengeTSSR.zip > haszip
+
+### ` zip2john` appel l'extraction du hash d'un fichier zip
+
+### `chalengeTSSR.zip ` extrait le hash de ce fichier
+
+### `> haszip` dans ce fichier
+      
+      john --wordlist=/home/practoxx/Documents/wordlist.lst /home/practoxx/haszip
+
+### `john` appel john à exécuter >>>
+
+### `--wordlist=/home/practoxx/Documents/wordlist.lst` chemin vers la liste créer avec crunch
+
+### `/home/practoxx/haszip` sur le fichier contenant le hash précédemement extrait. 
+
+
+
+
 
 
 
