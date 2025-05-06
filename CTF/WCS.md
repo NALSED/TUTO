@@ -358,25 +358,28 @@ https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 >10 premiers chiffres du code du bouton (trouvé au challenge 3) mis au cube
 
 
+### 1️⃣ Mot de passe du fichier
 
 
+### 15700413^3 = 3 870 198 409 143 870 344 997=> MDP = 3 870 198 409
+
+### 2️⃣ A la découverte du SQL
+
+### Après avoir télécharger le fichier et ouvert avec gedit
+      ctrl f admin
+
+![image](https://github.com/user-attachments/assets/6cc7cf32-38fc-4ed2-802c-bbb9c2d1b072)
+
+insert into user (id, first_name, last_name, email, gender, birth_date, password, role) values 
+(657, 'Loïcus', 'Mecanicus', 'loicus.mecanicus@argo.gr', 'Non-binary', '1980-07-04', '796a80b899e3e787173eff40a3778dd6', 'admin')
 
 
-
-
-
-
+### MDP ARGOS `796a80b899e3e787173eff40a3778dd6`
 
 
 
 
 </details>
-
-
-
-
-
-
 
 
 
@@ -394,15 +397,14 @@ https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 >Date de naissance (en français) sur 6 chiffres concatenée avec le nom de
 >famille
 
+### 1️⃣ MDP 
 
 
+ ### Mot de passe avec le fichier précédent `040780mecanicus`
 
+### 2️⃣ MDP AGRGOS décrypté
 
-
-
-
-
-
+### Utilistaion de Hashcat
 
 
 
@@ -451,13 +453,35 @@ https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 
 
 
->Challenge 5 : trouver le mot de passe
->Mot de passe du fichier :
->Date de naissance (en français) sur 6 chiffres concatenée avec le nom de
->famille
-
 
 </details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
