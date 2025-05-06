@@ -172,7 +172,7 @@
 >port spécifique, demande à ton formateur le mot de passe...
 
 
-### 1️⃣ Trouver le MPD :
+### 1️⃣ Trouver le MPD du fichier challenge1.zip :
 
 ### Somme des deux ports ftp + ssh (pour les deux user ftponty et wild ssh)
 ### ftp 21 ou 20 et ssh 22 => 43 ou 42 avec le mot de passe classique de la formation Azerty1*43 ou 42
@@ -185,10 +185,16 @@
 ### Déziper le fichier avec le MDP `Azerty1*43` 
 
 ### 2️⃣ Analyser le PDF
+
 ### Le PDF nous racconte l'hisoire des argonautes et à la fin une URL nous est donné :
 https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 
-### Une fois cette url entrée dans le navigateur un fichier wireshark est téléchargé
+### Une fois cette url entrée dans le navigateur un fichier wireshark est téléchargé => challenge.pcap
+
+### 3️⃣ Wireshark
+
+### 💻URL
+
 ### Quand on regarde les captures http une autre url nous est donnée
 
 ![image](https://github.com/user-attachments/assets/44035f1c-ab7f-40a6-b191-4ab37d608f95)
@@ -198,18 +204,28 @@ https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 
 ### l'entrée de la grotte
 
+---
+
+### 🔐 MDP
+
+### En http tout les envois de donnés se font en claire, il faut donc trouver la ligne contenant le MDP
+
+### 1) Filtrer uniquement les échange http (dans la barre en haut à gauche)
+![image](https://github.com/user-attachments/assets/aed8c145-975a-4ebc-9e72-31af0297a721)
+
+### 2) Recherche les ligne POST qui indique un échange de données
+![image](https://github.com/user-attachments/assets/6df7ebe9-6997-4227-b4c3-de7b1e789b02)
+
+### 3) Dérouler les infos et bingo
+![image](https://github.com/user-attachments/assets/b921aa6f-2b23-4703-b5f1-40f9da04221a)
+
+### `M0t2passeS3cr3T`
+
+### Le site contient 100 coffres avec des suites de mots aléatoire
 
 
-
-
-
-
-
-
-
-
-
-
+---
+---
 
 
 
@@ -220,14 +236,118 @@ https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 >11 premiers caractères du nom du site (après le https://) trouvé au challenge 1
 >Et les 6 derniers caractères du mot de passe trouvé au challenge 1
 
+
+### 1️⃣ Trouver le mot de passe du fichier challenge2.zip
+
+### Mot de passe `cyber-coursS3cr3T`
+### Au passage l'url est en http.. et pas en https comme dans la consigne ce qui porte à confusion.
+
+### 2️⃣ Création de script pour passer en revu les pages, je me tourne vers velarion 🥳
+
+                  #!/bin/bash
+
+                  # Configuration
+                  BASE_URL="http://cyber-course.wildcodeschool.com/coffre.php?n=" # URL de base, il reste que le nombre à la fin pour parcourir
+                  MOT_RECHERCHE="toison"   # mot à chercher
+                  NB_PAGES=100 # nombre de pages total
+
+                  # Vérifie que html2text est installé  
+                  # Cet outil convertit une page HTML en texte brut (plus facile pour chercher un mot dedans)
+                  # Si ce n’est pas installé, il affiche un message et arrête le script
+                  command -v html2text >/dev/null 2>&1 || { echo >&2 "html2text n'est pas installé. Lance : sudo apt install html2text"; exit 1; }
+
+                  # Boucle pour parcourir toutes les pages en commençant par 1 et jusqu'à 100
+                  for i in $(seq 1 $NB_PAGES); do
+                      URL="${BASE_URL}${i}"
+                      echo "📄 Page $i : $URL"
+
+                      # Téléchargement de la page web en construisant l'adresse et il la stocke dans un fichier temporaire.  
+                      wget -q -O temp_page.html "$URL"
+
+                      # Transforme le HTML en texte brut avec "html2text"
+                      TEXTE=$(html2text temp_page.html)
+
+                      # Cherche le mot et affiche si le mot est trouvé
+                      if echo "$TEXTE" | grep -qi "$MOT_RECHERCHE"; then
+                          echo "✅ Mot trouvé sur la page $i : $URL"
+                      else
+                          echo "❌ Mot non trouvé"
+                      fi
+                  done
+
+                  # supprime le fichier temporaire une fois que tout est terminé.
+                  rm -f temp_page.html
+
+### Avec le super script de velarion 🤙 bingo page 51 le mot toison d'or à bien été trouvé.
+
+
+---
+---
+
 >Challenge 3 : trouver l'id
 >Mot de passe du fichier :
 >20 premiers caractères du sha512sum du numéro de coffre trouvé au
 >challenge 2
 
+
+### 1️⃣ Mot de passe du zip
+
+### Pour trouver le sha512 du nombre 51 : 
+      echo -n "51" | sha512sum # -n supprime le retour à la ligne
+
+![image](https://github.com/user-attachments/assets/52547285-b10f-468c-bc04-921596f2087b)
+
+### Donc mot de passe `861522120d559ea5f946`
+
+### 2️⃣ Trouver le digicode pour ouvrir le coffre
+
+### Le boutton ne fonctione pas, se tourner vers le code html
+### Clic droit sur la page du coffre 51 contenant la toison d'or => inspecter
+### On se rend compte que le boutton est désactivé
+
+![image](https://github.com/user-attachments/assets/38410803-ef25-4707-9a8d-3de45f413dc8)
+
+### Remplacer disabled => enabled (clic droit sur la ligne de code => edit HTML)
+### On peux maintenant cliquer sur le boutton d'ouverture :
+
+![image](https://github.com/user-attachments/assets/1e1aa62f-90b2-46b1-8189-2bc314964978)
+
+### Digicode `15700413`
+
 >Challenge 4 : trouver le mot de passe
 >Mot de passe du fichier :
 >10 premiers chiffres du code du bouton (trouvé au challenge 3) mis au cube
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 >Challenge 5 : trouver le mot de passe
 >Mot de passe du fichier :
