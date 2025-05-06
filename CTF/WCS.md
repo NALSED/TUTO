@@ -69,21 +69,6 @@
 
 ![image](https://github.com/user-attachments/assets/3c5f1eba-cf97-4548-b0a0-716e89ee77a1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </details>
 
 
@@ -185,6 +170,50 @@
 >Mot de passe classique de la formation concaténé avec la somme des 2 ports
 >utilisée dans la première partie. Si tu as utilisé une méthode sans utilisation de
 >port spécifique, demande à ton formateur le mot de passe...
+
+
+### 1️⃣ Trouver le MPD :
+
+### Somme des deux ports ftp + ssh (pour les deux user ftponty et wild ssh)
+### ftp 21 ou 20 et ssh 22 => 43 ou 42 avec le mot de passe classique de la formation Azerty1*43 ou 42
+
+### Copier le fichier du debian challenge => kali perso
+      sudo ufw allow 22 # autorise le port 22 ufw (kali)
+      sudo service ssh start # démare le ssh
+      scp challenge1.zip practoxx@192.168.0.131:/home/practoxx/Documents
+      
+### Déziper le fichier avec le MDP `Azerty1*43` 
+
+### 2️⃣ Analyser le PDF
+### Le PDF nous racconte l'hisoire des argonautes et à la fin une URL nous est donné :
+https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
+
+### Une fois cette url entrée dans le navigateur un fichier wireshark est téléchargé
+### Quand on regarde les captures http une autre url nous est donnée
+
+![image](https://github.com/user-attachments/assets/44035f1c-ab7f-40a6-b191-4ab37d608f95)
+### En entrant cette adresse http://cyber-course.wildcodeschool.com/
+
+![image](https://github.com/user-attachments/assets/ecf6be0b-fc13-4723-ba1c-ede8da81876d)
+
+### l'entrée de la grotte
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 >Challenge 2 : trouver le nombre
 >Mot de passe du fichier :
