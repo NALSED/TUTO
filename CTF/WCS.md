@@ -165,6 +165,17 @@
 </h2>
 </summary>
 
+
+
+
+<details>
+<summary>
+<h2>
+:arrow_forward: CHALLENGE1
+</h2>
+</summary>
+
+
 >Challenge 1 : trouver url et mot de passe
 >Mot de passe du fichier :
 >Mot de passe classique de la formation concaténé avec la somme des 2 ports
@@ -224,11 +235,16 @@ https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 ### Le site contient 100 coffres avec des suites de mots aléatoire
 
 
----
----
+
+</details>
 
 
-
+<details>
+<summary>
+<h2>
+:arrow_forward: CHALLENGE2
+</h2>
+</summary>
 
 
 >Challenge 2 : trouver le nombre
@@ -281,8 +297,15 @@ https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 ### Avec le super script de velarion 🤙 bingo page 51 le mot toison d'or à bien été trouvé.
 
 
----
----
+</details>
+
+
+<details>
+<summary>
+<h2>
+:arrow_forward: CAHLLENGE3  
+</h2>
+</summary>
 
 >Challenge 3 : trouver l'id
 >Mot de passe du fichier :
@@ -314,9 +337,88 @@ https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 
 ### Digicode `15700413`
 
+
+
+</details>
+
+
+
+
+
+<details>
+<summary>
+<h2>
+:arrow_forward:CHALLENGE4
+</h2>
+</summary>
+
+
 >Challenge 4 : trouver le mot de passe
 >Mot de passe du fichier :
 >10 premiers chiffres du code du bouton (trouvé au challenge 3) mis au cube
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+<details>
+<summary>
+<h2>
+:arrow_forward:CHALLENGE5  
+</h2>
+</summary>
+
+
+>Challenge 5 : trouver le mot de passe
+>Mot de passe du fichier :
+>Date de naissance (en français) sur 6 chiffres concatenée avec le nom de
+>famille
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
 
 
 
