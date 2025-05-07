@@ -111,25 +111,35 @@
 
         #!/bin/bash
 
+        # Variable en fontion des besoins
         MOTDEPASSE=""
         UTILISATEUR=""
-
+        
+        # MAJ
         sudo apt update && sudo apt upgrade
 
+        # Instal samba
         sudo apt-get install -y samba
 
+        # Démarre samba au démarage
         sudo systemctl enable smbd
 
-        sudo echo -e "[partage] \ncomment = Partage de données\npath = /home/$UTILISATEUR/Documents/Partage\nguest ok = no\nread only = no\nbrowseable = yes\nvalid users = practoxx" | sudo tee -a /etc/samba/smb.conf 
+        # Créer le partage dans le fichier de conf de samba ? SI PBM remplacer users = $UTILISATEUR => users = nom d'utilisateur sans la variable
+        sudo echo -e "[partage] \ncomment = Partage de données\npath = /home/$UTILISATEUR/Documents/Partage\nguest ok = no\nread only = no\nbrowseable = yes\nvalid users = $UTILISATEUR" | sudo tee -a /etc/samba/smb.conf 
 
+        # Redémare SMB
         sudo systemctl restart smbd
 
+        # Créer un MDP pour l'utilisateur 
         sudo sudo echo -e "$MOTDEPASSE\n$MOTDEPASSE" | sudo smbpasswd -a $UTILISATEUR
 
+        # Autorise cet utilisateur à utiliser Samba
         sudo smbpasswd -e $UTILISATEUR 
 
+        # Créer le dossier de partage ⚠️ il doit être le même que dans le fichier de conf ⚠️
         sudo mkdir /home/$UTILISATEUR/Documents/Partage
 
+        # Change les droit sur le dossier, à changer 777 en fonction de la sensibilité des infos.
         sudo chmod -R 777 /home/$UTILISATEUR/Documents/Partage
 
 
