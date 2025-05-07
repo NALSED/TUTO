@@ -1,0 +1,4 @@
+# LISTE DE COMMANDE POUR KALI
+
+## `DESACTIVER LA VEILLE`
+  xset -display :0 -dpms
