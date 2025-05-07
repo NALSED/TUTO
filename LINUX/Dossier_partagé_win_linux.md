@@ -8,6 +8,7 @@
 ## 4️⃣ Créer dossier de partage
 ## 5️⃣ Accéder au partage
 ## 6️⃣ Si ufw
+## 7️⃣ Script mise en place
 ---
 ---
 
@@ -103,10 +104,33 @@
     sudo ufw allow samba
 
 
+---
+
+## 7️⃣ Script mise en place
 
 
+        #!/bin/bash
 
+        MOTDEPASSE=""
+        UTILISATEUR=""
 
+        sudo apt update && sudo apt upgrade
+
+        sudo apt-get install -y samba
+
+        sudo systemctl enable smbd
+
+        sudo echo -e "[partage] \ncomment = Partage de données\npath = /home/$UTILISATEUR/Documents/Partage\nguest ok = no\nread only = no\nbrowseable = yes\nvalid users = practoxx" | sudo tee -a /etc/samba/smb.conf 
+
+        sudo systemctl restart smbd
+
+        sudo sudo echo -e "$MOTDEPASSE\n$MOTDEPASSE" | sudo smbpasswd -a $UTILISATEUR
+
+        sudo smbpasswd -e $UTILISATEUR 
+
+        sudo mkdir /home/$UTILISATEUR/Documents/Partage
+
+        sudo chmod -R 777 /home/$UTILISATEUR/Documents/Partage
 
 
 
