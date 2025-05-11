@@ -4,7 +4,7 @@
 ---
 
 ## 1️⃣ `Installer bind et présentation`
-## 2️⃣ ``
+## 2️⃣ `Configuration : named.conf.options`
 ## 3️⃣ ``
 ## 4️⃣ ``
 ## 5️⃣ ``
@@ -44,7 +44,23 @@
     cp named.conf.local /home/sednal/Documents/Bkp_DNS 
 ---
 
-## 2️⃣ ``
+## 2️⃣ `Configuration : named.conf.options`
+
+### La syntaxe est dispo ici [It-Connect](https://www.it-connect.fr/dns-avec-bind-9/)
+### Conf dans l'ordre : 
+
+### Avant le bloc Option
+![Screenshot from 2025-05-11 19-16-17](https://github.com/user-attachments/assets/1a770200-9cd9-4ce5-8cc2-86f35f65d2ad)
+
+### Bloc option:
+![Screenshot from 2025-05-11 19-05-20](https://github.com/user-attachments/assets/5b4c59ad-370d-4646-8753-9929443e8ed5)
+
+![Screenshot from 2025-05-11 19-19-54](https://github.com/user-attachments/assets/392587b9-6b34-4bdd-b1d4-a66ffe4a09e2)
+
+    sudo named-checkconf
+
+### Si la commande est ok pas de messages d'erreurs.
+
 
 ---
 
