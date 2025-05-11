@@ -30,13 +30,13 @@
 
 ### Les principaux fichiers que nous allons utilisés :
 
-### 🟢  Les fichiers "db.<nom>" correspondent aux fichiers de zones intégrés par défaut dans Bind. A copier pour créer ses propres fichiers
+## 🟢  Les fichiers "db.<nom>" correspondent aux fichiers de zones intégrés par défaut dans Bind. A copier pour créer ses propres fichiers
 
-### 🔵 Le fichier "named.conf" est le fichier de configuration principal de Bind9. Il contient des directives "include" pour charger 3 autres fichiers :
+## 🔵 Le fichier "named.conf" est le fichier de configuration principal de Bind9. Il contient des directives "include" pour charger 3 autres fichiers :
 
-### 🔴 "named.conf.options" contient les options de configuration de Bind => Copier pour faire une backup.
-### 🔴 "named.conf.local" sert à déclarer des zones => Copier pour faire une backup.
-### 🔴 "named.conf.default-zones" contient la définition des zones incluses par défaut avec Bind.
+## 🔴 "named.conf.options" contient les options de configuration de Bind => Copier pour faire une backup.
+## 🔴 "named.conf.local" sert à déclarer des zones => Copier pour faire une backup.
+## 🔴 "named.conf.default-zones" contient la définition des zones incluses par défaut avec Bind.
 
 ### Copier les fichiers named.conf.options et named.conf.local
 
