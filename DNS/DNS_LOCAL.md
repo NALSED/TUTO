@@ -5,6 +5,15 @@
 ![image](https://github.com/user-attachments/assets/7934ad91-7f2b-482f-a3a7-3523cf6df6cc)
 
 
+
+
+
+
+# plex 192.168.0.245
+# Serveur_Web 192.168.0.133
+# PiHole 192.168.0.241
+# routeur 192.168.0.1
+# wifi 192.168.0.100
 ---
 
 ## 1️⃣ `Installer bind et présentation`
