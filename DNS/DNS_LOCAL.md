@@ -7,9 +7,9 @@
 ## 2️⃣ `Configuration : named.conf.options`
 ## 3️⃣ `Configuration : named.conf.local`
 ## 4️⃣ `Configuration : db.local`
-## 5️⃣ ``
-## 6️⃣ ``
-## 7️⃣ ``
+## 5️⃣ `Configuration : named.conf.local `
+## 6️⃣ `Test`
+## 7️⃣ `Récap`
 ## 8️⃣ ``
 ## 9️⃣ ``
 
@@ -143,35 +143,7 @@
 
 ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué dans le fichier de conf.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </details>
-
-
-
-
-
-
        
 ### Tester le config
         named-checkzone sednal.local /etc/bind/db.sednal.local
@@ -182,20 +154,84 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ---
 
-## 5️⃣ ``
+## 5️⃣ `Configuration : named.conf.local `
+
+### Ici nous allons configuré une recherche inversée pour le réseau 192.168.0.0/24 pour obtenir un nom d'hôte à partir d'une adresse IP.
+
+### Edition de la zone inverse
+
+        zone "0.168.192.in-addr.arpa" {
+            type master;
+            file "/etc/bind/db.reverse.sednal.local";
+            allow-update { none; };
+
+### Edition du fichier db.reverse.sednal.local depuis db.it-connect.local
+        sudo cp /etc/bind/db.sednal.local /etc/bind/db.reverse.sednal.local
+        sudo nano /etc/bind/db.reverse.sednal.local
+
+### Editer les services comme ceci
+
+                ;
+        ; BIND data file for 0.168.192.in-addr.arpa
+        ;
+        $TTL    604800
+        @       IN      SOA     srv-dns.sednal.local. admin.sednal.local. (
+                                      2         ; Serial
+                                 604800         ; Refresh
+                                  86400         ; Retry
+                                2419200         ; Expire
+                                 604800 )       ; Negative Cache TTL
+        ;
+        @       IN      NS      srv-dns.sednal.local.
+        122     IN      PTR     srv-dns.sednal.local.
+        ;
+        241     IN      PTR     srv-pihole.sednal.local.
+        ;
+        244     IN      PTR     srv-web.sednal.local.
+        ;
+        245     IN      PTR     srv-plex.sednal.local.
+        ;
+        1       IN      PTR     service-routeur.sednal.local.
+        ;
+        100     IN      PTR     service-wifi.sednal.local.
+
+### Tester le fichier
+
+        named-checkzone 0.168.192.in-addr.arpa /etc/bind/db.reverse.sednal.local
+
+### Résultat attendu
+
+![image](https://github.com/user-attachments/assets/47df5bda-94aa-42f7-b612-1648b164ddd8)
+
+
 
 ---
 
-## 6️⃣ ``
+## 6️⃣ `Test`
+
+
+
+
 
 ---
 
-## 7️⃣ ``
+## 7️⃣ `Récap`
+
+## 1️⃣ Instalation
 
 ---
 
-## 8️⃣ ``
+## 2️⃣ Déclarer les options sur le serveur DNS (Configuration de base)
 
 ---
 
-## 9️⃣ ``
+## 3️⃣ Déclaration de zone (on pourrai faire la zonne simple et inversé en même temps)
+
+### * Faire un backup du document de base `named.conf.local`
+### * Dans `named.conf.local` déclarer la zone simple => `db.sednal.local`
+### * Editer la zone simple db.sednal.local et vérif
+### * Copier la zone simple `db.sednal.local` dans le fichier de zone inverse `db.reverse.sednal.local`, pour éviter une typo et gagne du temps.
+### * Editer la zone inverse `db.reverse.sednal.local` et vérif.
+### Test
+
+
