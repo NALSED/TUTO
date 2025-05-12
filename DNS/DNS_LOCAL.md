@@ -2,8 +2,8 @@
 # `DNS LOCAL VIA BIND`
 
 ---
+![image](https://github.com/user-attachments/assets/7934ad91-7f2b-482f-a3a7-3523cf6df6cc)
 
-![cartographie de parcours utilisateur.pdf](https://github.com/user-attachments/files/20161835/cartographie.de.parcours.utilisateur.pdf)
 
 ---
 
