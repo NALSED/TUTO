@@ -102,7 +102,78 @@
         @       IN      NS      srv-dns.sednal.local.
         srv-dns IN      A       192.168.0.122
         dns     IN      CNAME   srv-dns
-        # Tester le config
+        ;
+        srv-pihole IN   A       192.168.0.241
+        pihole  IN      CNAME   srv-pihole
+        ;
+        srv-web IN      A       192.168.0.244
+        serveur_web IN  CNAME   srv-web
+        ;
+        srv-plex IN     A       192.168.0.245
+        serveur_plex IN CNAME   srv-plex
+        ;
+        service-routeur IN A    192.168.0.1
+        routeur2 IN     CNAME   service-routeur
+        ;
+        service-wifi IN A       192.168.0.100
+        wifi     IN     CNAME   service-wifi
+       
+<details>
+<summary>
+<h2>
+:arrow_forward: 📝 EXPLICATION
+</h2>
+</summary>
+
+* "$TTL 604800" correspond à la durée de vie des informations fournies en seconde
+
+* @ : désigne la racine de la zone, => sednal.local.
+
+* "SOA"Start Of Authority, soit les paramètres principaux de la zone => serveur qui a autorité sur la zone, puis l’adresse e-mail du contact technique dont le caractère « @ » est remplacé par un «.». La valeur "srv-dns.sednal.local." sert à indiquer le serveur DNS primaire (même si c'est pihole en réalité)
+
+* Serial "1" : numéro de série de la zone. À incrémenter chaque fois que le fichier de zone est modifié pour notifier les serveurs secondaires d'une mise à jour.
+ 
+ * Refresh "604800" : c’est le délai de rafraichissement pour la synchronisation des configurations entre plusieurs serveurs DNS.
+ 
+ * Retry "86400" : c’est le délai au bout duquel un serveur DNS secondaire devra retenter une synchronisation si celle qu'il a faite au bout du temps "refresh" a échoué.
+ 
+ * Expire "2419200" : si toutes les tentatives de synchronisation échouent, un serveur DNS secondaire considérera qu'il ne peut plus répondre aux requêtes concernant cette zone une fois que le temps est écoulé. Par défaut, le temps est de "2419200" secondes, soit 28 jours.
+
+* Negative Cache TTL "86400" : durée de conservation dans le cache de l'information "NXDOMAIN" lorsqu'un incident se produit (échec de résolution).
+
+ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué dans le fichier de conf.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
+
+
+
+
+
+
+       
+### Tester le config
         named-checkzone sednal.local /etc/bind/db.sednal.local
 
 ### Sortie attendu
