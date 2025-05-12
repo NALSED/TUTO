@@ -3,6 +3,10 @@
 
 ---
 
+[cartographie de parcours utilisateur.pdf](https://github.com/user-attachments/files/20161835/cartographie.de.parcours.utilisateur.pdf)
+
+---
+
 ## 1️⃣ `Installer bind et présentation`
 ## 2️⃣ `Configuration : named.conf.options`
 ## 3️⃣ `Configuration : named.conf.local`
@@ -203,15 +207,32 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ![image](https://github.com/user-attachments/assets/47df5bda-94aa-42f7-b612-1648b164ddd8)
 
+### Démarage et autorisation de bind9
+
+        sudo systemctl start bind9
+        sudo systemctl enable named.service
+        sudo systemctl status bind9
+
+### Dans resolv.conf 
+
+    search sednal.local
+    domain sednal.local
+
+
+
+
+
+
+
 
 
 ---
 
 ## 6️⃣ `Test`
 
+### Test réalisé sur le PC admin
 
-
-
+![image](https://github.com/user-attachments/assets/282f6885-c296-4d22-a954-ac06855e28c6)
 
 ---
 
@@ -223,6 +244,7 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ## 2️⃣ Déclarer les options sur le serveur DNS (Configuration de base)
 
+
 ---
 
 ## 3️⃣ Déclaration de zone (on pourrai faire la zonne simple et inversé en même temps)
@@ -231,6 +253,10 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 ### * Dans `named.conf.local` déclarer la zone simple => `db.sednal.local`
 ### * Editer la zone simple db.sednal.local et vérif
 ### * Copier la zone simple `db.sednal.local` dans le fichier de zone inverse `db.reverse.sednal.local`, pour éviter une typo et gagne du temps.
+ 
+### Fichier `named.conf.local`
+![image](https://github.com/user-attachments/assets/1aa6150a-0b08-4e53-ac61-46a0b9c21f39)
+
 ### * Editer la zone inverse `db.reverse.sednal.local` et vérif.
 ### Test
 
