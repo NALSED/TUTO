@@ -7,13 +7,13 @@
 
 
 
-
-
+# DNS1_PiHole 192.168.0.241
+# DNS2_bind9 192.168.0.122
+# routeur 192.168.0.1
 # plex 192.168.0.245
 # Serveur_Web 192.168.0.133
-# PiHole 192.168.0.241
-# routeur 192.168.0.1
 # wifi 192.168.0.100
+
 ---
 
 ## 1️⃣ `Installer bind et présentation`
