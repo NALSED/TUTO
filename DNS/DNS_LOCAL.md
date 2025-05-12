@@ -177,7 +177,7 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
             file "/etc/bind/db.reverse.sednal.local";
             allow-update { none; };
 
-### Edition du fichier db.reverse.sednal.local depuis db.it-connect.local
+### Edition du fichier db.reverse.sednal.local depuis db.sednal.local
         sudo cp /etc/bind/db.sednal.local /etc/bind/db.reverse.sednal.local
         sudo nano /etc/bind/db.reverse.sednal.local
 
