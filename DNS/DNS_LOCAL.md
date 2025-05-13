@@ -118,11 +118,11 @@
         srv-pihole IN   A       192.168.0.241
         pihole  IN      CNAME   srv-pihole
         ;
-        srv-web IN      A       192.168.0.244
-        serveur_web IN  CNAME   srv-web
+        srv-web IN      A       192.168.0.133
+        serveur.web IN  CNAME   srv-web
         ;
         srv-plex IN     A       192.168.0.245
-        serveur_plex IN CNAME   srv-plex
+        serveur.plex IN CNAME   srv-plex
         ;
         service-routeur IN A    192.168.0.1
         routeur2 IN     CNAME   service-routeur
