@@ -120,7 +120,6 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
             margin-bottom: 40px;
             margin-top: 30px;
-            /* Espace entre le bloc "Bienvenue chez BILLU" et la barre de recherche */
             display: flex;
             justify-content: center;
             /* Centre la recherche horizontalement */
@@ -180,12 +179,12 @@
         <p>Infra</p>
     </div>
 
-    <!-- Google Search juste en dessous du bloc "Bienvenue chez BILLU" -->
+    <!-- Google Search  -->
     <div class="google-search">
         <form method="GET" action="http://www.google.be/search">
             <div align="center">
                 <a href="http://www.google.fr/">
-                    <img src="./pictures/gif_google.gif" border="0" alt="Logo Google" align="absmiddle" width="80">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/First-google-logo.gif" border="0" alt="Logo Google" align="absmiddle" width="80">
                 </a>
                 <input type="text" name="q" size="31" maxlength="255" placeholder="Rechercher sur Google">
                 <input type="hidden" name="hl" value="fr">
@@ -195,7 +194,7 @@
     </div>
 
     <!-- Footer -->
-    <footer>&copy; 2025 BILLU | Tous droits réservés.</footer>
+    <footer>&copy; version 3 </footer>
 </body>
 
 </html>
