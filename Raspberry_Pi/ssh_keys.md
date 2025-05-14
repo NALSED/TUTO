@@ -33,7 +33,7 @@
     -rw-r--r-- 1 sednal sednal  565 May 13 12:47 id_rsa.pub
 
 ### Si probléme lors de la création
-    mkdir /home/sednal/.ssh/authorized_keys
+     nano /home/sednal/.ssh/authorized_keys
     
 ### copier le fichier C:\Users\sednal\.ssh\id_ecdsa dans /home/sednal/authorized_keys
 
