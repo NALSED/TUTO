@@ -2,7 +2,7 @@
 
 ---
 
-## `Ce document à pour but de présenter la solution Bareos.
+## `Ce document à pour but de présenter la solution Bareos.`
 
 ---
 
