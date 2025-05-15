@@ -7,8 +7,8 @@
 ---
 
 ## 1️⃣ `Raid1`
-## 2️⃣ ``
-## 3️⃣ ``
+## 2️⃣ `PostgreSQL`
+## 3️⃣ `Bareos`
 ## 4️⃣ ``
 ## 5️⃣ ``
 ## 6️⃣ ``
@@ -69,9 +69,6 @@
 ---
 ---
 
-
-
-
 ## II) Préparation des disques
 
 ### 2.1) Ici utilisation de gdisk pour faire du GPT (fdisk => MBR)
@@ -90,22 +87,6 @@
 * ### Pour le `code de la partition`, entrez `fd00` cela correspond à Linux RAID
 
 * ### Appuyez sur `w` pour enregistrer les changements et quitter gdisk (confirmer avec Y et Entrée)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## III) Création du RAID 1 (avec mdadm)
@@ -165,7 +146,97 @@
 ### MAJ initramfs
   update-initramfs -u -k all
 
->Un système de fichiers virtuel initial (initramfs) est un système de fichiers initial en mémoire ram basé sur tmpfs (un système de fichiers léger de taille flexible, en mémoire), qui n'utilise pas un périphérique de blocs séparé (ainsi aucun cache n'est nécessaire, ce qui élimine les surcoûts mentionnés précédemment)
+>Un système de fichiers virtuel initial (initramfs) est un système de fichiers initial en mémoire ram basé sur tmpfs (un système de fichiers léger de taille flexible, en mémoire), qui n'utilise pas un périphérique de blocs séparé.
+
+  
+</details>
+
+
+---
+
+
+
+<details>
+<summary>
+<h2>
+2️⃣ PostgreSQL
+</h2>
+</summary>
+
+[TUTO](https://shape.host/resources/comment-installer-postgresql-sur-debian-12)
+
+## I Instalation 
+## II Configuration
+
+---
+
+## I Instalation
+
+### PostgreSQL, aussi connu sous le nom de Postgres, est un système de gestion de base de données relationnelle et objet
+
+### 1.1) Installer `GNUP` (clés PGP)
+  apt install gnupg -y
+
+### 1.2) Importez la clé du dépôt PostgreSQL 
+   wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+### Sortie attendu:
+![image](https://github.com/user-attachments/assets/4c95412a-8415-4775-9abf-5dca855aac21)
+
+### 1.3) Ajoutez le dépôt PostgreSQL
+  echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+
+### 1.4) Installez PostgreSQL:
+  sudo apt install postgresql-13 -y
+
+### 1.5) Activer démarer status
+  systemctl enable postgresql
+  systemctl start postgresql
+  systemctl status postgresql
+
+![image](https://github.com/user-attachments/assets/1f9db2d0-d724-40f2-9a67-9627a37c4ca2)
+
+--
+## II Configuration
+
+### 2.1) Passer dans le terminal de PostgreSQL via l'utilisateur system postgres
+### Ici je suis en root donc
+ su - postgres # le prompt doit changer.
+
+### Et si en Utilisateur normal 
+   sudo -i -u postgres
+
+### Créez un utilisateur PostgreSQL (penser à noter les infos, dans description VM par exemple)
+  creatuser --interctive
+![image](https://github.com/user-attachments/assets/6f7e7c28-6c61-4b1a-b714-baf19b20cb01)
+
+### 2.2) Créez une base de données
+  createdb <USERNAME>
+
+### 2.3) accéder à la base de donnés:
+  psql
+![image](https://github.com/user-attachments/assets/60d90924-18fd-4a01-a41b-a3f9a1d788b4)
+
+</details>
+
+
+---
+
+<details>
+<summary>
+<h2>
+3️⃣ Bareos  
+</h2>
+</summary>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -185,36 +256,6 @@
 
 
   
-</details>
-
-
----
-
-## 2️⃣ ``
-
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-## 3️⃣ ``
-
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
 </details>
 
 
