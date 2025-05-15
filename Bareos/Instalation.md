@@ -127,9 +127,10 @@
 ### 4.1) récupérer les UUID
     blkid
 
-### 4.2) créer un dossier de point de montage
-    mkdir /media/sdb1
-    mkdir /media/sdc1
+### 4.2) Monter et créer un dossier de point de montage
+    mount /dev/md0 /mnt/backup
+    mkdir /mnt/backup
+    mkdir /mnt/backup
 
 ### 4.3) Création du point de montage dans fstab
     nano /etc/fstab
