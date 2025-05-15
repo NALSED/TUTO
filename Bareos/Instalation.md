@@ -196,6 +196,7 @@
     echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
 
 ### 1.4) Installez PostgreSQL:
+    sudo apt update
     sudo apt install postgresql-13 -y
 
 ### 1.5) Activer démarer status
