@@ -154,7 +154,10 @@
 
 >Un système de fichiers virtuel initial (initramfs) est un système de fichiers initial en mémoire ram basé sur tmpfs (un système de fichiers léger de taille flexible, en mémoire), qui n'utilise pas un périphérique de blocs séparé.
 
-  
+### Résultat 
+    cat /proc/mdstat
+  ![image](https://github.com/user-attachments/assets/861ec442-f0f9-4c3e-9223-f4592b322e04)
+
 </details>
 
 
