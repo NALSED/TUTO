@@ -146,7 +146,8 @@
 ### Redirige la sortie vers le ficher de conf 
     mdadm --detail --scan >> /etc/mdadm/mdadm.conf 
 
-![image](https://github.com/user-attachments/assets/6c2a84d1-2e05-4385-ae79-e546b81f8212)
+![image](https://github.com/user-attachments/assets/597dfa61-1af9-4050-95c4-c6c888b3defc)
+
 
 ### MAJ initramfs
     update-initramfs -u -k all
