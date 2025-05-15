@@ -217,7 +217,7 @@
      sudo -i -u postgres
 
 ### Créez un utilisateur PostgreSQL (penser à noter les infos, dans description VM par exemple)
-    creatuser --interctive
+    createuser --interactive
 
 ![image](https://github.com/user-attachments/assets/6f7e7c28-6c61-4b1a-b714-baf19b20cb01)
 
@@ -241,15 +241,33 @@
 </h2>
 </summary>
 
+[TUTO_lionel](https://github.com/osmc2017/Tutos-et-Scripts-Apprenti-Technicien-Systeme-et-Reseau/blob/main/TUTO/Tuto_Bareos/Bareos_server_debian.md) // [TUTO_officiel](https://docs.bareos.org/) // [TUTO_web](https://computingforgeeks.com/how-to-install-bareos-on-ubuntu/)
 
 
+## I) Ajout du Dépot et autorisation
+## II) Instalation
+## III)
 
+## I) Ajout du Dépot et autorisation
 
+### 1.1) Télécharger le script d’ajout des dépôts Bareos :
+        wget https://download.bareos.org/current/Debian_12/add_bareos_repositories.sh
 
+### 1.2) Droits d’exécution au script :
+        chmod +x add_bareos_repositories.sh
 
+### 1.3) Exécuter le script pour ajouter les dépôts Bareos :
+        sh ./add_bareos_repositories.sh
 
+### 1.4) Mettez à jour la liste des paquets :
+        apt update
 
+---
 
+## II) Instalation
+
+### 2.1) Instalation de Bareos
+    apt install bareos bareos-database-postgresql -y
 
 
 
