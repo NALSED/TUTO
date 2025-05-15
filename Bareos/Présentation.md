@@ -21,9 +21,6 @@
 ---
 ---
 
-## 1️⃣ `Services`
-
-
 <details>
 <summary>
 <h2>
