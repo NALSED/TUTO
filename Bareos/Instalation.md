@@ -130,12 +130,13 @@
 ### 4.2) Monter et créer un dossier de point de montage
     mount /dev/md0 /mnt/backup
     mkdir /mnt/backup
-    mkdir /mnt/backup
+    
 
 ### 4.3) Création du point de montage dans fstab
     nano /etc/fstab
+![image](https://github.com/user-attachments/assets/7805236e-8dbc-4d73-ac8e-421497a7fe8f)
 
-![image](https://github.com/user-attachments/assets/868f0659-319c-4b17-8e09-cce469ab06f7)
+
 
 ### 4.5) Sauvegarde de la configuration du RAID
 
