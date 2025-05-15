@@ -73,7 +73,7 @@
 ## II) Préparation des disques
 
 ### 2.1) Ici utilisation de gdisk pour faire du GPT (fdisk => MBR)
-    gdisk /dev/sdb
+    gdisk /dev/sdX
 
 ### 2.2) Dans gdisk en achainement des commandes 
 
