@@ -28,6 +28,9 @@
 ### Renseigner les infos demandées
 ![image](https://github.com/user-attachments/assets/11617c20-9e3b-442e-b272-2b3d402f6304)
 
+### erreur ici clientwin1 et password sednal
+
+
 ### Autoriser le port 9102 sur le client (ouvrir powershell en admin)
       New-NetFirewallRule -DisplayName "Bareos FD" -Direction Inbound -LocalPort 9102 -Protocol TCP -Action Allow
 ![image](https://github.com/user-attachments/assets/a37dd36e-9c6d-4587-9483-865ad6d68ae4)
