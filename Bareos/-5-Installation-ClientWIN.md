@@ -16,7 +16,7 @@
 <details>
 <summary>
 <h2>
-## 1️⃣ `Installation Bareos`
+1️⃣ `Installation Bareos`
 </h2>
 </summary>
 
