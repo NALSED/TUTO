@@ -13,7 +13,13 @@
 
 ## 1️⃣ `Ajout RAID`
 ## 2️⃣ `Test Ajout RAID`
-
+## 3️⃣ `Pool`
+## 4️⃣ `FileSet`
+## 5️⃣ `Job`
+## 6️⃣ ``
+## 7️⃣ ``
+## 8️⃣ ``
+## 9️⃣ ``
 
 
 
@@ -69,25 +75,71 @@
 <details>
 <summary>
 <h2>
-:arrow_forward: Les différents types de RAID.  
+3️⃣ Pool
 </h2>
 </summary>
-blabla
+
+[TUTO](https://docs.bareos.org/TasksAndConcepts/AutomatedDiskBackup.html#index-3)
+
+### 📝 Les Pools sont une organisation logique des sauvegardes.
+
+### Création d'un pool persolnalisé, c'est à dire la manière dont on veux faire la sauvegarde :
+
+* ### Full-Storage
+* ### Incremental-Storage
+* ### Differential-Storage
+
+
+
+### Editer le fichier /etc/bareos/bareos-dir.d/pool 
+    nano /etc/bareos/bareos-dir.d/pool/RAID1.conf
+![image](https://github.com/user-attachments/assets/3e898ae6-d977-4f28-b8f2-4b83980113f0)
+
+### tester la config  
+    bareos-dir -t
+
+###  Pas de message d'erreur
+
+
+
+
+  
 </details>
 
 
 ---
 
-## 4️⃣ ``
-
-
 <details>
 <summary>
 <h2>
-:arrow_forward: Les différents types de RAID.  
+4️⃣ FileSet
 </h2>
 </summary>
-blabla
+
+[TUTO](https://docs.bareos.org/Configuration/Director.html#index-298) [TUTOWIN](https://svennd.be/creating-a-windows-fileset-for-bareos/)
+
+### Un FileSet définit les fichiers et répertoires à sauvegarder (ou à exclure) dans une tâche de sauvegarde (Job).
+### C’est la liste de fichiers que Bareos va traiter.
+
+### Editer le fichier /etc/bareos/bareos-dir.d/fileset
+    nano /etc/bareos/bareos-dir.d/fileset/windowsbackup.conf
+![image](https://github.com/user-attachments/assets/7b937ef0-28bc-4d02-92ea-4056a5c63a18)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </details>
 
 
@@ -102,7 +154,17 @@ blabla
 :arrow_forward: Les différents types de RAID.  
 </h2>
 </summary>
-blabla
+
+[TUTO](https://docs.bareos.org/TasksAndConcepts/CatalogMaintenance.html#index-15) // [TUTO](https://docs.bareos.org/DeveloperGuide/catalog.html#job)
+
+### Le Job dans Bareos est une tâche qui définit le type d'opération à réaliser, comme une sauvegarde, une restauration, ou une verification des fichiers. Un Job est associé à un FileSet, un Schedule (planification), un Client, un Pool et un Storage.
+
+### Editer le fichier /etc/bareos/bareos-dir.d/job
+    nano /etc/bareos/bareos-dir.d/job/windowsbackup.conf
+
+
+    
+
 </details>
 
 
