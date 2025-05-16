@@ -40,7 +40,7 @@
 ---
 ---
 
-## I) `Vérification des disques(Inutile sur VM)`
+## `I) Vérification des disques(Inutile sur VM)`
 
 ### 1.1) Installer l'outil de vérif (smatmontools)
     sudo apt update && apt upgrade
@@ -62,7 +62,7 @@
 ---
 ---
 
-## II) Préparation des disques
+## `II) Préparation des disques`
 
 ### 2.1) Ici utilisation de gdisk pour faire du GPT (fdisk => MBR)
     gdisk /dev/sdX
@@ -82,7 +82,7 @@
 * ### Appuyez sur `w` pour enregistrer les changements et quitter gdisk (confirmer avec Y et Entrée)
 
 
-## III) Création du RAID 1 (avec mdadm)
+## `III) Création du RAID 1 (avec mdadm)`
 
 ### 1.1) Vérification des partitions créer 
     mdadm -E /dev/sd[b-c]
@@ -114,7 +114,7 @@
 
 
 
-## IV) Création du point de montage
+## `IV) Création du point de montage`
 
 ### 4.1) récupérer les UUID
     blkid
@@ -171,7 +171,7 @@
 
 ---
 
-## I Instalation
+## `I Instalation`
 
 ### PostgreSQL, aussi connu sous le nom de Postgres, est un système de gestion de base de données relationnelle et objet
 
@@ -199,7 +199,7 @@
 ![image](https://github.com/user-attachments/assets/1f9db2d0-d724-40f2-9a67-9627a37c4ca2)
 
 --
-## II Configuration
+## `II Configuration`
 
 ### 2.1) Passer dans le terminal de PostgreSQL via l'utilisateur system postgres
 ### Ici je suis en root donc
@@ -242,7 +242,7 @@
 
 ---
 
-## I) Ajout du Dépot et autorisation
+## `I) Ajout du Dépot et autorisation`
 
 ### 1.1) Télécharger le script d’ajout des dépôts Bareos :
         wget https://download.bareos.org/current/Debian_12/add_bareos_repositories.sh
@@ -258,7 +258,7 @@
 
 ---
 
-## II) Installation
+## `II) Installation`
 
 ### 2.1) Instalation de Bareos
     apt install bareos bareos-database-postgresql -y
@@ -290,7 +290,7 @@
 
 ---
 
-## III) Configuration
+## `III) Configuration`
 
 ### 📝 Les paramètre relative au serveur Bareos sont dispo dans => /etc/dbconfig-common/bareos-database-common.conf
 ### 📝 Les Deamon Bareos dispo dans /usr/sbin
