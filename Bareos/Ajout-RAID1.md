@@ -1,6 +1,9 @@
 
 # `Ajout du RAID 1/Pool/Job`
 
+[TUTO](https://docs.bareos.org/TasksAndConcepts/VolumeManagement.html)
+
+
 ---
 
 ### Ce tuto à pour but l'implementation et la configuration du RAID1 précedement créer à la solution Bareos.
@@ -8,46 +11,53 @@
 
 ---
 
-## 1️⃣ ``
-## 2️⃣ ``
-## 3️⃣ ``
-## 4️⃣ ``
-## 5️⃣ ``
-## 6️⃣ ``
-## 7️⃣ ``
-## 8️⃣ ``
-## 9️⃣ ``
+## 1️⃣ `Ajout RAID`
+## 2️⃣ `Test Ajout RAID`
+
 
 
 
 ---
 ---
 
-## 1️⃣ ``
+
 
 
 <details>
 <summary>
 <h2>
-:arrow_forward: Les différents types de RAID.  
+1️⃣ Ajout RAID 
 </h2>
 </summary>
-blabla
+
+### copier le contenu du ficher /etc/bareos/bareos-sd.d/device/FileStorage.conf dans le notre (ici RAID1.conf) et éditer comme ce qui suit:
+  
+![image](https://github.com/user-attachments/assets/0a191544-c124-4f33-b56b-7961e834a4d2)
+
+### Redémmarrer les services 
+      systemctl restart bareos-dir bareos-sd
+
+
 </details>
 
 
 ---
 
-## 2️⃣ ``
 
 
 <details>
 <summary>
 <h2>
-:arrow_forward: Les différents types de RAID.  
+2️⃣ Test
 </h2>
 </summary>
-blabla
+
+### Tester la configuration     
+    bareos-sd -t
+
+### Résultat attendu : Aucun message d'erreur.
+
+  
 </details>
 
 
