@@ -1,22 +1,14 @@
-# `Instalation de Bareos sur Debian 12`
+# `Instalation et configuration de Bareos sur Debian 12`
 
 ---
 
-### Ce tuto à pour but de présenter la mise en place d'un raid 1 ainsi que l'instalation de Bareos
+### Ce tuto à pour but de présenter la mise en place d'un `RAID 1`, la configuration de `PostgreSQL` et l'installation de `Bareos`.`
 
 ---
 
 ## 1️⃣ `Raid1`
 ## 2️⃣ `PostgreSQL`
 ## 3️⃣ `Bareos`
-## 4️⃣ ``
-## 5️⃣ ``
-## 6️⃣ ``
-## 7️⃣ ``
-## 8️⃣ ``
-## 9️⃣ ``
-
-
 
 ---
 ---
@@ -248,6 +240,8 @@
 ## II) Instalation
 ## III) Configuration
 
+---
+
 ## I) Ajout du Dépot et autorisation
 
 ### 1.1) Télécharger le script d’ajout des dépôts Bareos :
@@ -264,7 +258,7 @@
 
 ---
 
-## II) Instalation
+## II) Installation
 
 ### 2.1) Instalation de Bareos
     apt install bareos bareos-database-postgresql -y
@@ -316,7 +310,7 @@
 ### 3.3) Redémarrer le service
         systemctl restart postgresql
 
-### 3.4) Test 
+### 3.4) `Test` 
         su - postgres
          psql -U bareos -d bareos -c '\dt'        
 ![image](https://github.com/user-attachments/assets/365aa1bd-d5e3-452b-932c-1dd954d14ebe)
@@ -332,95 +326,22 @@
 
 * ### -W : Demande le mot de passe (prompte l’utilisateur)
 
+ ### test bconsole (qui permet de communiquer avec Bareos Director)
+        bconsole # Dans le shell du serveur
+        *status director
+
+### Sortie attendu
+![image](https://github.com/user-attachments/assets/9657115f-ec66-4fd1-9733-62baf0bb6462)
+
+* ### Connexion réussie à bareos-dir (le Director Bareos).
+
+* ### Version : 24.0.3 (build du 15 mai 2025).
+
+* ### Base de données utilisée : PostgreSQL — donc config de pg_hba.conf + psql est bien fonctionnelle.
+
+* ### Aucune erreur détectée.
 
   
 </details>
 
 
----
-
-## 4️⃣ ``
-
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-## 5️⃣ ``
-
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-## 6️⃣ ``
-
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-## 7️⃣ ``
-
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-## 8️⃣ ``
-
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-## 9️⃣ ``
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
-</details>
