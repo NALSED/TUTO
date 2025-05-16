@@ -246,7 +246,7 @@
 
 ## I) Ajout du Dépot et autorisation
 ## II) Instalation
-## III)
+## III) Configuration
 
 ## I) Ajout du Dépot et autorisation
 
@@ -269,21 +269,68 @@
 ### 2.1) Instalation de Bareos
     apt install bareos bareos-database-postgresql -y
 
+### PostgreSQL est configuré corectement donc j'utilise l'option configurer avec dbconfig-common
+
+### 2.3) ⚠️Vérification⚠️
+        su - postgres
+        psql
+        psql -U bareos -d bareos -h localhost
+![image](https://github.com/user-attachments/assets/fb634c4c-ac0c-45e0-9447-f4b1092ae552)
+
+### Ce prompt correspond à la base de donnée Bareos dans PostgreSQL.
+### 2.3.1) `Lister toutes les tables`
+        \dt
+
+![image](https://github.com/user-attachments/assets/8b3f7d1b-5924-4017-b3e8-6f9c97cb803f)
+
+### 2.3.2) `Lister le rôles`
+        \du
+
+![image](https://github.com/user-attachments/assets/f4cbc0f6-e520-410e-a013-7e39e06281b9)
+
+### 2.3.3) `Lister les priviléges`     
+        \dp
+
+![image](https://github.com/user-attachments/assets/898a5d77-d3d7-4b28-939e-175c016a3344)
+    
+
+---
+
+## III) Configuration
+
+### 📝 Les paramètre relative au serveur Bareos sont dispo dans => /etc/dbconfig-common/bareos-database-common.conf
+### 📝 Les Deamon Bareos dispo dans /usr/sbin
+
+### 3.1) Activer les deamon
+        systemctl enable --now bareos-director.service
+        systemctl enable --now bareos-storage.service
+        systemctl enable --now bareos-filedaemon.service
+
+### 3.2) Configurer l'authentification de Bareos vers la base de donné postgreSQL
+        nano /etc/postgresql/13/main/pg_hba.conf
+
+### Ajouter ces lignes au fichier de conf ⚠️PQostgreSQL lit de hautvers le bas!!
+![image](https://github.com/user-attachments/assets/c92eb437-1606-4a99-baaf-8bf8996fcd55)
 
 
+### 3.3) Redémarrer le service
+        systemctl restart postgresql
 
+### 3.4) Test 
+        su - postgres
+         psql -U bareos -d bareos -c '\dt'        
+![image](https://github.com/user-attachments/assets/365aa1bd-d5e3-452b-932c-1dd954d14ebe)
 
+        psql -U bareos bareos -w
+![image](https://github.com/user-attachments/assets/73a2013a-b4b5-4f9d-83bf-fc171e3c8837)
 
+* ### psql : Lance le client PostgreSQL
 
+* ### -U bareos : Connexion avec l’utilisateur bareos
 
+* ### -d bareos : Connexion à la base de données nommée bareos
 
-
-
-
-
-
-
-
+* ### -W : Demande le mot de passe (prompte l’utilisateur)
 
 
   
