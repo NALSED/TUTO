@@ -30,10 +30,6 @@ Ce tuto explique comment autoriser la connection Serveur/Client
 
 
 
-
-
-
-  
 </details>
 
 
@@ -45,6 +41,20 @@ Ce tuto explique comment autoriser la connection Serveur/Client
 2️⃣ Tets
 </h2>
 </summary>
-blabla
+
+### Redemarrer service bareos-dir
+      systemctl restart bareos-dir
+      systemctl status bareos-dir
+
+### résultat attendu
+![image](https://github.com/user-attachments/assets/63ba94b9-3f42-4d85-b492-38b3e371e3f8)
+
+### Test de connection client serveur
+            bconsole
+            status client=nom_du_client-fd
+
+### Résultat attendu
+![image](https://github.com/user-attachments/assets/3c35094b-e4e3-49af-b1f5-5afdae32a802)
+      
 </details>
 
