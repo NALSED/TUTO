@@ -1,4 +1,4 @@
-# `Instalation et configuration de Bareos sur Debian 12`
+# `Installation et configuration de Bareos sur Debian 12`
 
 ---
 
