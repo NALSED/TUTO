@@ -1,5 +1,5 @@
 
-# `Instalation Client Windows`
+# `Installation Client Windows`
 
 ---
 
