@@ -31,7 +31,8 @@
 ### 7️⃣ `Ajout` du `Client` sur le serveur `Bareos` => voir -6-Ajout-Client->Serveur.md 
 ### 8️⃣ Configuration `Pool` => voir
 ### 9️⃣ Configuration `FileSet` => voir
-### 🔟 Configuration `Job` => voir
+### 🔟 Configuration `Job ` => voir
+### 
 ### 🔚 `Test` => voir
 
 
