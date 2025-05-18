@@ -126,7 +126,7 @@
 </h2>
 </summary>
 
-### Pour le test je retire le fichier dossier testbareos de la machine cliente 
+### Pour le test je retire le  dossier `testbareos` de la machine cliente. 
 
 ### Lancer la restauration
 ### Accéder à la console
