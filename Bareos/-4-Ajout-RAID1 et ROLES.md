@@ -204,7 +204,7 @@
 </h2>
 </summary>
 
-  [TUTO](https://docs.bareos.org/DeveloperGuide/catalog.html#storage)
+  [TUTO](https://docs.bareos.org/Configuration/Director.html#storage-resource)
   
 ### Editer dans le dossier /etc/bareos/bareos-dir.d/storage/
       nano /etc/bareos/bareos-dir.d/storage/test.conf
