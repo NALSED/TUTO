@@ -14,8 +14,8 @@
 ## 1️⃣ `FileSet`
 ## 2️⃣ `Storage`
 ## 3️⃣ `Pool`
-## 4️⃣ ``
-## 5️⃣ ``
+## 4️⃣ `Job`
+## 5️⃣ `Lancer la restauration`
 ## 6️⃣ ``
 ## 7️⃣ ``
 ## 8️⃣ ``
@@ -54,7 +54,7 @@
 <details>
 <summary>
 <h2>
-
+2️⃣ Storage
 </h2>
 </summary>
 
@@ -78,7 +78,10 @@
 </h2>
 </summary>
  
-### Ici  
+### Ici le type d'action à réaliser.
+### Editer dans le dossier /etc/bareos/bareos-dir.d/pool
+         nano /etc/bareos/bareos-dir.d/pool/restop.conf
+![image](https://github.com/user-attachments/assets/0e27356f-68a5-4028-af7d-05d5c09293c8)
 
 
 
@@ -93,10 +96,20 @@
 <details>
 <summary>
 <h2>
-
+4️⃣ Job
 </h2>
 </summary>
-blabla
+
+### Dans ce fichier l'action à réaliser
+### Editer dans le dossier /etc/bareos/bareos-dir.d/job
+      nano /etc/bareos/bareos-dir.d/job/restorwin.conf
+![image](https://github.com/user-attachments/assets/5af5d17e-bfed-4572-87ae-93cafd63c3c3)
+
+### Tester la config
+      bareos-dir -t
+      systemctl restart bareos-dir
+
+
 </details>
 
 
@@ -108,10 +121,21 @@ blabla
 <details>
 <summary>
 <h2>
- 
+## 5️⃣ Lancer la restauration
 </h2>
 </summary>
-blabla
+
+### Lancer la restauration
+### Accéder à la console
+      bconsole
+### Lancer la restauration
+      restore
+### Ici 1 on liste les dernier Job
+      ![image](https://github.com/user-attachments/assets/08c04ce3-337d-42cd-9191-037a482f5e18)
+### On choisi le 8 c'est la dernière sauvegarde pour le client windows
+
+
+
 </details>
 
 
