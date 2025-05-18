@@ -2,7 +2,7 @@
 # `Restauration des fichier sauver`
 
 
-## Dans les 7 chhapitre précédent nous avon vu comment mettre en place et faire des backups avec la solution bareos.
+## Dans les 7 chapitre précédent nous avon vu comment mettre en place et faire des backups avec la solution bareos.
 ## Ici nous allons voir comment restorer ces données.
 
 ---
@@ -167,57 +167,3 @@
 
 
 ---
-
-
-
-<details>
-<summary>
-<h2>
-  
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-
-
-
-<details>
-<summary>
-<h2>
-
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-
-
-<details>
-<summary>
-<h2>
-
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-
-
-<details>
-<summary>
-<h2>
-  
-</h2>
-</summary>
-blabla
-</details>
