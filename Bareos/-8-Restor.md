@@ -37,9 +37,10 @@
 ### Ici le fichier sera créer pour récupérer les backups précédement fait
 ### Editer dans le dossier /etc/bareos/bareos-dir.d/fileset
    nano /etc/bareos/bareos-dir.d/fileset/restor1.conf
-![image](https://github.com/user-attachments/assets/251ccf82-170a-4b87-841b-77fbee9697a0)
 
-### La ligne  `File = /var/lib/bareos/storage/RAID1Vol-0002 # database dump` ,  correspond aux Backups.
+![image](https://github.com/user-attachments/assets/f47e18c1-881b-4e1b-9c50-587ace0f8cdd)
+
+### La ligne  `File = mnt/backup/RAID1Vol-0005 # database dump` ,  correspond aux Backups.
 
 
 
