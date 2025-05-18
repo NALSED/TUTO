@@ -121,20 +121,47 @@
 <details>
 <summary>
 <h2>
-## 5️⃣ Lancer la restauration
+5️⃣ Lancer la restauration
 </h2>
 </summary>
+
+### Pour le test je retire le fichier dossier testbareos de la machine cliente 
 
 ### Lancer la restauration
 ### Accéder à la console
       bconsole
 ### Lancer la restauration
       restore
-### Ici 1 on liste les dernier Job
-      ![image](https://github.com/user-attachments/assets/08c04ce3-337d-42cd-9191-037a482f5e18)
-### On choisi le 8 c'est la dernière sauvegarde pour le client windows
+### Ouvre le menu de restauration
+### Je tape `1` pour lister les jobid.
 
+![image](https://github.com/user-attachments/assets/47cf778f-b332-4303-acd5-92cc1695f765)
 
+### Et c'est le numéro 13 qui nous intéresse.
+### A ajuster en fonction des besoin, mais ici je souhaite restaurer les données les plus rescente de mon client
+### Donc je choisi `5`
+![image](https://github.com/user-attachments/assets/6bc1dc18-9d06-4d7f-aa11-6a4c3fe07317)
+
+### j'entre dans un nouveau shell
+![image](https://github.com/user-attachments/assets/8a7e1796-1467-48db-a175-3d1fae7cd5c5)
+
+### Ici il s'agit de choisir la quantité de données à restaurer
+### je choisi tout
+      mark *
+![image](https://github.com/user-attachments/assets/8738f6de-933b-4ebc-8910-4a6a94b38cb8)
+
+### Une fois fini 
+      done
+
+### Choisir le client souhaité
+![image](https://github.com/user-attachments/assets/7958311a-f20c-47ad-961f-d0a6753658fd)
+
+### Une fois la tache réalisée, vériffication
+      message
+![image](https://github.com/user-attachments/assets/60512752-cf93-413b-910d-ede5c724622e)
+
+### Retour du dossier chez le client
+![image](https://github.com/user-attachments/assets/41d86b0f-b512-427f-b147-dc3227fcbb08)
 
 </details>
 
