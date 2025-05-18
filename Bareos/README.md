@@ -31,7 +31,7 @@
 ### 7️⃣ Configuration `Pool` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 3
 ### 8️⃣ Configuration `FileSet` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 4
 ### 9️⃣ Configuration `Storage ` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 7
-### 🔟 Configuration `Schedule` et `Job ` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 5 et 6
+### 🔟 Configuration `Schedule` et `Job ` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 6 et 5 (bien faire job en dernier)
 ### 🔚 `Test` => voir -7-Test.md
 
 
