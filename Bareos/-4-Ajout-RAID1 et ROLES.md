@@ -151,7 +151,7 @@
 </h2>
 </summary>
 
-[TUTO](https://docs.bareos.org/TasksAndConcepts/CatalogMaintenance.html#index-15) // [TUTO](https://docs.bareos.org/DeveloperGuide/catalog.html#job)
+[TUTO](https://docs.bareos.org/TasksAndConcepts/CatalogMaintenance.html#index-15) 
 
 ### Le Job dans Bareos est une tâche qui définit le type d'opération à réaliser, comme une sauvegarde, une restauration, ou une verification des fichiers. Un Job est associé à un FileSet, un Schedule (planification), un Client, un Pool et un Storage.
 
