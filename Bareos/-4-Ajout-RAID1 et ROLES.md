@@ -16,7 +16,7 @@
 ## 3️⃣ `Pool`
 ## 4️⃣ `FileSet`
 ## 5️⃣ `Job`
-## 6️⃣ ``
+## 6️⃣ `Schedule`
 ## 7️⃣ ``
 ## 8️⃣ ``
 ## 9️⃣ ``
@@ -158,6 +158,7 @@
 
 ### Editer le fichier /etc/bareos/bareos-dir.d/job
     nano /etc/bareos/bareos-dir.d/job/windowsbackup.conf
+![image](https://github.com/user-attachments/assets/508bcdd7-e434-4250-9bc5-7210af47e9cf)
 
 
     
@@ -167,16 +168,27 @@
 
 ---
 
-## 6️⃣ ``
-
-
 <details>
 <summary>
 <h2>
-:arrow_forward: Les différents types de RAID.  
+6️⃣ Schedule 
 </h2>
 </summary>
-blabla
+
+
+[TUTO](https://docs.bareos.org/Configuration/Director.html#schedule-resource)
+
+
+## Le fichier Schedule est le planing pour gérer la sauvvegarde.
+### Editer le fichier : /etc/bareos/bareos-dir.d/schedule (créer son fichier de conf perso)
+      nano  /etc/bareos/bareos-dir.d/schedule/first.conf
+![image](https://github.com/user-attachments/assets/b3c1d43c-c584-4a59-a0ac-b2f38a158347)
+
+### Redemarrer les services
+    systemctl restart bareos-dir
+    systemctl restart bareos-fd
+    systemctl restart bareos-sd
+  
 </details>
 
 
