@@ -16,7 +16,7 @@
 <details>
 <summary>
 <h2>
-1️⃣ `Services`  
+1️⃣ Services
 </h2>
 </summary>
 
