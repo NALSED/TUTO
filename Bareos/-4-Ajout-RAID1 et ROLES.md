@@ -18,8 +18,7 @@
 ## 5️⃣ `Job`
 ## 6️⃣ `Schedule`
 ## 7️⃣ `Storage`
-## 8️⃣ ``
-## 9️⃣ ``
+
 
 
 
@@ -225,30 +224,3 @@
 </details>
 
 
----
-
-## 8️⃣ ``
-
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-## 9️⃣ ``
-
-<details>
-<summary>
-<h2>
-:arrow_forward: Les différents types de RAID.  
-</h2>
-</summary>
-blabla
-</details>
