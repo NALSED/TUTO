@@ -12,6 +12,16 @@
 
 
     message
+![image](https://github.com/user-attachments/assets/7c8ed369-0211-4870-81ec-a49ce38523ae)
 
-   ![image](https://github.com/user-attachments/assets/c64e0737-6fd0-498a-806b-10b109bae10a)
+### Voir leJobId ou la tache qui viens d'être réalisé
+        list jobid=13
 
+
+![image](https://github.com/user-attachments/assets/2bf821f6-267b-4bfd-894f-06d856c67f57)
+
+### Tout semble en ordre, on voit ici 28,294,462 jobytes et 1jobutes = 1 octets donc 274.88 Mo sauvé sur le serveur.
+
+
+
+        
