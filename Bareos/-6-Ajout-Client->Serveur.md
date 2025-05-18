@@ -9,7 +9,7 @@ Ce tuto explique comment autoriser la connection Serveur/Client
 ---
 
 ## 1️⃣ `Ajout`
-## 2️⃣ `Tets`
+## 2️⃣ `Tests`
 
 
 
