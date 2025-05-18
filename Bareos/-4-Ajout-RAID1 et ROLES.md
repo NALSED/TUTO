@@ -17,7 +17,7 @@
 ## 4️⃣ `FileSet`
 ## 5️⃣ `Job`
 ## 6️⃣ `Schedule`
-## 7️⃣ ``
+## 7️⃣ `Storage`
 ## 8️⃣ ``
 ## 9️⃣ ``
 
@@ -195,16 +195,31 @@
 
 ---
 
-## 7️⃣ ``
-
 
 <details>
 <summary>
 <h2>
-:arrow_forward: Les différents types de RAID.  
+7️⃣ Storage
 </h2>
 </summary>
-blabla
+
+  [TUTO](https://docs.bareos.org/DeveloperGuide/catalog.html#storage)
+  
+### Editer dans le dossier /etc/bareos/bareos-dir.d/storage/
+      nano /etc/bareos/bareos-dir.d/storage/test.conf
+  
+  ![image](https://github.com/user-attachments/assets/53fa9328-e21a-479d-ac79-3b890d5d713e)
+
+### Redemarrer les services
+    systemctl restart bareos-dir
+    systemctl restart bareos-fd
+    systemctl restart bareos-sd
+
+### TEST FINAL
+
+    bareos-dir -t
+
+
 </details>
 
 
