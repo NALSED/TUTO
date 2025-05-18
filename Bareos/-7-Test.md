@@ -2,11 +2,13 @@
 
 ### une fois le dernier fichier de conf éditer et tester 
     bconsole 
-    run => 4
-   ![image](https://github.com/user-attachments/assets/474aa1a7-f3c3-4017-8f8b-1d952c0a475a)
+    run => 5
+  ![image](https://github.com/user-attachments/assets/e79288b4-a0ef-4d55-9b54-bf7cbae94515)
+
 
     status director
-![image](https://github.com/user-attachments/assets/12ba63c8-de03-45ac-9fba-87204119ec45)
+![image](https://github.com/user-attachments/assets/9f96537e-cd4c-4b70-95a6-d2c1abd098e7)
+
 
 
     message
