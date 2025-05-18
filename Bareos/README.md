@@ -1,3 +1,9 @@
+
+![bareos](https://github.com/user-attachments/assets/2db98514-9d6e-427c-a31e-50b80714323b)
+
+
+
+
 # Ce document à pour But de récapituler les étapes d'`installation` ainsi que de `configuration`,et `orienter` vers les différents tutos.
 
 ---
