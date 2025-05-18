@@ -204,12 +204,15 @@
 </h2>
 </summary>
 
+## ce fichier indique quelle matérielle physique utiliser, précédement configuré dans `/etc/bareos/bareos-sd.d/device`
+
   [TUTO](https://docs.bareos.org/Configuration/Director.html#storage-resource)
   
 ### Editer dans le dossier /etc/bareos/bareos-dir.d/storage/
       nano /etc/bareos/bareos-dir.d/storage/test.conf
   
-  ![image](https://github.com/user-attachments/assets/53fa9328-e21a-479d-ac79-3b890d5d713e)
+  ![image](https://github.com/user-attachments/assets/e63935b0-1fed-48e5-a61b-0f705bfd25bd)
+
 
 ### Redemarrer les services
     systemctl restart bareos-dir
