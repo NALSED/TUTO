@@ -148,7 +148,7 @@
 <details>
 <summary>
 <h2>
-:arrow_forward: Les différents types de RAID.  
+5️⃣ Job
 </h2>
 </summary>
 
@@ -158,7 +158,8 @@
 
 ### Editer le fichier /etc/bareos/bareos-dir.d/job
     nano /etc/bareos/bareos-dir.d/job/windowsbackup.conf
-![image](https://github.com/user-attachments/assets/508bcdd7-e434-4250-9bc5-7210af47e9cf)
+![image](https://github.com/user-attachments/assets/567ca562-333d-43c0-b7aa-4c0334263c5d)
+
 
 
     
