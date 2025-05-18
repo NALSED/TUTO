@@ -30,8 +30,8 @@
 ### 6️⃣ `Ajout` du `Client` sur le serveur `Bareos` => voir -6-Ajout-Client->Serveur.md 
 ### 7️⃣ Configuration `Pool` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 3
 ### 8️⃣ Configuration `FileSet` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 4
-### 9️⃣ Configuration `Job ` et `Schedule` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 5 et 6
-### 🔟 Configuration `Storage ` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 7
+### 9️⃣ Configuration `Storage ` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 7
+### 🔟 Configuration `Schedule` et `Job ` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 5 et 6
 ### 🔚 `Test` => voir -7-Test.md
 
 
