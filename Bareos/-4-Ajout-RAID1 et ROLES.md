@@ -157,7 +157,8 @@
 
 ### Editer le fichier /etc/bareos/bareos-dir.d/job
     nano /etc/bareos/bareos-dir.d/job/windowsbackup.conf
-![image](https://github.com/user-attachments/assets/bb71a0f4-1ebe-4ec4-aabe-6936f1d837e5)
+![image](https://github.com/user-attachments/assets/b11e3e63-e001-46c9-a444-6f5f7a5f0239)
+
 
 
 
