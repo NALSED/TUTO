@@ -454,7 +454,8 @@
 
 ### Ce document met en évidence les points de vigilance concernant l’interdépendance entre les fichiers de configuration. En effet, même si la syntaxe est correcte, une sauvegarde ou une restauration peut échouer si les références croisées entre les fichiers ne sont pas respectées.
 
-![cartographie de parcours utilisateur](https://github.com/user-attachments/assets/a919c983-6856-4277-a543-66df10f84e02)
+![cartographie de parcours utilisateur](https://github.com/user-attachments/assets/da8b6c55-94bb-4cdb-9ee9-5c0d2f7299ce)
+
 
 
 
