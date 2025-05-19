@@ -233,7 +233,7 @@
 
 * ## 1.6) `job`
 ### ⚠️ Fichier `très important` qui créer une tache pour les sauvegarde ou restauration et qui `coordonne les différent fichier de configuration`.⚠️
-
+### Ce fichier peux contenir => fichier bootstrap (ou BST) est un fichier d’instructions utilisé pour guider une opération de restauration, en particulier lorsqu'on doit restaurer le Catalog ou dans des scénarios de récupération d'urgence.
       Job {
       Name = windowsbackup1
       Type = Backup
