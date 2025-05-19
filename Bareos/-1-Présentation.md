@@ -367,10 +367,11 @@
 
 * ## 1.13) `user`
 
+### User peut contenir des fichiers liés à la gestion des utilisateurs et de leurs permissions pour l'accès à bconsole
 
 
 
-[RESSOURCE]()
+[RESSOURCE](https://docs.bareos.org/Configuration/Director.html#user-resource)
 
 ---
 ---
