@@ -472,6 +472,8 @@
 </h2>
 </summary>
 
+### Cette partie à pour but de répertorier le commande de `bconsole` 
 
+[RESSOURCES](https://docs.bareos.org/TasksAndConcepts/BareosConsole.html#bareos-console)
 
 </details>
