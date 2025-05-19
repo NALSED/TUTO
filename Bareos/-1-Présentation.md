@@ -107,24 +107,25 @@
 ### Ces fichiers de configuration se trouver dans le dossier `/etc/bareos/bareos-dir.d` :
 
 * ## 1.1) `catalog`
-### Catalog sert à définir la base de données utilisée pour stocker toutes les métadonnées de sauvegarde.
+
+### Catalog sert à `définir` la `base de données` utilisée pour stocker toutes les `métadonnées de sauvegarde`.
 ### Il est édité lors de l'instalation de Bareos.
 
-  Exemple
-    Catalog {
-      Name = MyCatalog
-      dbname = "bareos"
-      dbuser = "bareos"
-      dbpassword = "<PASSWORD>"
-      dbaddress = localhost
-    }
+    Exemple
+      Catalog {
+        Name = MyCatalog
+        dbname = "bareos"
+        dbuser = "bareos"
+        dbpassword = "<PASSWORD>"
+        dbaddress = localhost
+      }
 
 [RESSOURCE](https://docs.bareos.org/Configuration/Director.html#directorresourcecatalog)
 
 ---
 
 * ## 1.2) `client`
-### Client sert à identifier le client sur lequel on veut réaliser la sauvegarde/restauration.
+### Client sert à `identifier le client` sur lequel on veut réaliser la sauvegarde/restauration.
     
     Client {
       Name = clientwin1-fd
@@ -139,7 +140,7 @@
 ---
 
 * ## 1.3) `console`
-### Console est installé et configuré lors de l''intallation de Bareos-WebUi
+### `Console` est installé et configuré lors de l'intallation de `Bareos-WebUi`
 
  
     #
@@ -163,7 +164,7 @@
 ---
 
 * ## 1.4) `director` 
-### Director contient les information pour l'execution de tache du daemon Bareos-dir, configuré lors de l'instalation de Bareos
+### Director contient les information pour `l'execution de tache du daemon Bareos-dir`, configuré lors de l'instalation de Bareos
 
     Director {                            # define myself
       Name = bareos-dir
@@ -192,7 +193,7 @@
 
 * ## 1.5) `fileset`
 
-### Fichier qui indique ce qui doit être sauvegardé et où, permet d'inclure et d'exclure des données/fichier etc...
+### Fichier qui `indique ce qui doit être sauvegardé` et où, permet d'inclure et d'exclure des données/fichier etc...
 ### Particulier pour les clients Windows voir ce [TUTO](https://svennd.be/creating-a-windows-fileset-for-bareos/)
 
     FileSet {
@@ -224,40 +225,145 @@
 [RESSOURCE](https://docs.bareos.org/Configuration/Director.html#fileset-resource)
 
 * ## 1.6) `job`
-### Fichier très important qui créer une tache pour les sauvegarde ou restauration et qui coordonne les différent fichier de configuration
+### ⚠️ Fichier `très important` qui créer une tache pour les sauvegarde ou restauration et qui `coordonne les différent fichier de configuration`.⚠️
 
+      Job {
+      Name = windowsbackup1
+      Type = Backup
+      level = Full
+      Client = clientwin1-fd
+      FileSet = windowsbackup
+      Schedule = first
+      Storage = test
+      Pool = RAID1
+      Messages = Standard
+      Priority = 10
+    }
 
 [RESSOURCE](https://docs.bareos.org/Configuration/Director.html#job-resource)
 
 * ## 1.7) `jobdefs`
+### `Template` pour le fichier `Job`, on peux rajounter un ligne Jobdefs, ainsi on évite les erreurs et l'on gagne du temps
 
+### Fichier de base : 
 
-[RESSOURCE]()
+      JobDefs {
+        Name = "DefaultJob"
+        Type = Backup
+        Level = Incremental
+        Client = bareos-fd
+        FileSet = "SelfTest"                     # selftest fileset
+        Schedule = "WeeklyCycle"
+        Storage = File
+        Messages = Standard
+        Pool = Incremental
+        Priority = 10
+        Write Bootstrap = "/var/lib/bareos/%c.bsr"
+        Full Backup Pool = Full                  # write Full Backups into "Full" Pool
+        Differential Backup Pool = Differential  # write Diff Backups into "Differential" Pool
+        Incremental Backup Pool = Incremental    # write Incr Backups into "Incremental" Pool
+    }
+
 
 * ## 1.8) `messages`
 
+### `Message` gére les `log`, où et comment. Deux type 
+* ### `Daemon` : Utilisé dans la configuration globale du `Director`, du `Storage Daemon` ou du `File Daemon`, ce bloc s'applique à des événements systéme.
+* ### `Standart` : `majoritérement` pour créer des log pour les `Jobs`.
 
-[RESSOURCE]()
+      Messages {
+        Name = Daemon
+        Description = "Message delivery for daemon messages (no job)."
+        mailcommand = "/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \<%r\>\" -s \"Bareos daemon message\" %r"
+        mail = root = all, !skipped, !audit
+        console = all, !skipped, !saved, !audit
+        append = "/var/log/bareos/bareos.log" = all, !skipped, !audit
+        append = "/var/log/bareos/bareos-audit.log" = audit
+      }
+
+---
+
+    Messages {
+        Name = Standard
+        Description = "Reasonable message delivery -- send most everything to email address and to the console."
+        operatorcommand = "/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \<%r\>\" -s \"Bareos: Intervention needed for %j\" %r"
+        mailcommand = "/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \<%r\>\" -s \"Bareos: %t %e of %c %l\" %r"
+        operator = root = mount
+        mail = root = all, !skipped, !saved, !audit
+        console = all, !skipped, !saved, !audit
+        append = "/var/log/bareos/bareos.log" = all, !skipped, !saved, !audit
+        catalog = all, !skipped, !saved, !audit
+      }
+
+
+[RESSOURCE](https://docs.bareos.org/Configuration/Messages.html#messages-configuration)
 
 * ## 1.9) `pool`
 
+### Pool est un regroupement logique de volumes de sauvegarde
 
-[RESSOURCE]()
+      Pool {
+        Name = RAID1
+        Pool Type = Backup
+        Recycle = yes
+        AutoPrune = yes
+        Volume Retention = 30 days
+        Maximum Volumes = 10
+        Label Format = "RAID1Vol-"
+      }
+      
+[RESSOURCE](https://docs.bareos.org/Configuration/Director.html#pool-resource)
 
 * ## 1.10) `profile`
 
+### Profile `définit les droits d'accès` pour un `admin` dans Bareos. Il sert à spécifier ce qu’un utilisateur peut faire ou voir via la console `bconsole` ou via `Bareos-WebUi`.
 
-[RESSOURCE]()
+      Profile {
+         Name = operator
+         Description = "Profile allowing normal Bareos operations."
+
+         Command ACL = !.bvfs_clear_cache, !.exit, !.sql
+         Command ACL = !configure, !create, !delete, !purge, !prune, !sqlquery, !umount, !unmount
+         Command ACL = *all*
+
+         Catalog ACL = *all*
+         Client ACL = *all*
+         FileSet ACL = *all*
+         Job ACL = *all*
+         Plugin Options ACL = *all*
+         Pool ACL = *all*
+         Schedule ACL = *all*
+         Storage ACL = *all*
+         Where ACL = *all*
+
+
+[RESSOURCE](https://docs.bareos.org/Configuration/Director.html#profile-resource)
 
 * ## 1.11) `schedule`
 
+### Schedule sert à créer un agenda de sauvegarde automatique
 
-[RESSOURCE]()
+      Schedule {
+        Name = "WeeklyCycle"
+        Run = Full 1st sat at 21:00
+        Run = Differential 2nd-5th sat at 21:00
+        Run = Incremental mon-fri at 21:00
+      }
+
+[RESSOURCE](https://docs.bareos.org/Configuration/Director.html#schedule-resource)
 
 * ## 1.12) `storage`
 
+### Storage gére les `volume physique` en liens avec `Bareo-SD`.
 
-[RESSOURCE]()
+      Storage {
+        Name = test
+        Address = 192.168.0.173  # Adresse du serveur ou lieux de stocage
+        Password = "<PASSWORD>"
+        Device = RAID1
+        Media Type = File
+      }
+[RESSOURCE](https://docs.bareos.org/Configuration/Director.html#storage-resource)
 
 * ## 1.13) `user`
 
