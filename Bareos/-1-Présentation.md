@@ -89,10 +89,10 @@
 
 ## 📝
 ## Ce chapitre a pour but de `présenter` les  `fichiers de configuration`, pour une première utilisation de `Bareos`, il faut approfondir le sujet pour pouvoir complexifier les sauvegardes, les supports ainsi que la fréquence ou le type de fichier sauvegardés.
-## Bareos-dir est le chef d'orchestre du logiciel, via le shell (ssh conseillé car beaucoup de fichier de conf) configuration des fichier pour déterminer toutes les otions de sauvegarde
-## ⚠️Bareos-dir est le dossier de configuration principal ou l'on passe le plus de temps.⚠️
+
 
 ---
+
 # I) `Bareos-DIR`
 # II) `Bareos-SD`
 # III) `Bareos -FD`
@@ -103,6 +103,13 @@
 
 
 # I) `Bareos-DIR`
+
+## Bareos-dir est le chef d'orchestre du logiciel, via le shell (ssh conseillé car beaucoup de fichier de conf) configuration des fichier pour déterminer toutes les otions de sauvegarde
+## ⚠️Bareos-dir est le dossier de configuration principal ou l'on passe le plus de temps.⚠️
+
+---
+
+### Ce [TUT0](https://docs.bareos.org/Configuration/Director.html#director-configuration) présente tous les fichiers de configuration de Bareos-dir
 
 ### Ces fichiers de configuration se trouver dans le dossier `/etc/bareos/bareos-dir.d` :
 
@@ -378,9 +385,64 @@
 
 # II) `Bareos-SD`
 
+### `Storage Daemon` (SD) est de gérer `l'accès aux périphériques de stockage` et de `gérer la sauvegarde` et la `récupération` des données sur ces supports. 
+### Ces fichiers de configuration se trouver dans le dossier `/etc/bareos/bareos-sd.d` :
 
+---
+
+## 2.1) `autochanger`
+
+### Autochanger est utilisé pour `automatiser` le processus de `sauvegarde` avec des périphériques de stockage tels que des `bibliothèques de bandes`. 
+
+
+
+## 2.2) `device`
+
+
+### Device gére le `support physique` sont emplacement, ses propriétés.
+
+            Device {
+            Name = RAID1
+            Media Type = File
+            Archive Device = /mnt/backup # Chemin vers le RAID 1 precedement creeer
+            Label Media = yes                  # lets Bareos label unlabeled media
+            Random Access = yes
+            Automatic Mount = yes              # when device opened, read it
+            Removable Media = no
+            Always Open = yes
+            Description = "File device. A connecting Director must have the same Name and MediaType."
+            }
+            
+
+[RESSOURCE](https://docs.bareos.org/DeveloperGuide/catalog.html#device)
+
+
+
+## 2.3) `director`
+ 
+### Director permet de faire le `liens` entre les différent sercices `SD / FD / DIR` 
+
+
+## 2.4) `message`
+
+### Message gére les logs
+
+            Messages {
+              Name = Standard
+              Director = bareos-dir = all
+              Description = "Send all messages to the Director."
+            }
+            
 
 # III) `Bareos -FD`
+
+###  Le File Daemon a pour rôle principal de collecter les données à sauvegarder, puis de les transmettre au Bareos Director pour qu'elles soient ensuite envoyées au Storage Daemon (SD), 
+### Les fichiers de configurations present dans /etc/bareos/bareos-fd.d on pour but  : 
+
+* ### client définir le nom de fd
+* ### director : dialoguer avec Bareos-dir
+* ### messages : gestion des logs
+
 
 ---
 
