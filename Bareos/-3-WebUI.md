@@ -30,9 +30,22 @@
 ### Activer `php-fpm` pour Apache2
     a2enmod proxy_fcgi setenvif
     a2enconf php8.1-fpm
-    systemctl reload apache2
-    service php8.2-fpm status
 
+### Si ce message apparait :
+![image](https://github.com/user-attachments/assets/2af52b1a-0932-43d2-86d6-c4038d7c14e8)
+    
+### Probléme d'installation, et impossible à installer avec:
+      sudo apt install php8.1 php8.1-fpm  
+ ![image](https://github.com/user-attachments/assets/64410a03-0f15-4701-9268-ca6a2497361d)
+   
+### installer manuellement:
+        sudo apt install -y gnupg ca-certificates lsb-release wget
+        wget -qO - https://packages.sury.org/php/apt.gpg | sudo tee /etc/apt/trusted.gpg.d/ondrej_php.gpg > /dev/null
+        echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/ondrej-php.list
+        sudo apt update
+        sudo apt install php8.1 php8.1-fpm
+        systemctl reload apache2
+        service php8.2-fpm status                                                                                                                                                                                                                     
 ### Sortie attendu:
 ![image](https://github.com/user-attachments/assets/7195711d-0894-44a5-b827-2ba414664030)
 
