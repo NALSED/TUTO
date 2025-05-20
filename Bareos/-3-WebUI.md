@@ -25,7 +25,7 @@
 </summary>
 
 ### Instalation des paquet WebUi Bareos
-    apt-get install bareos-webu -y
+    apt-get install bareos-webui -y
 
 ### Activer `php-fpm` pour Apache2
     a2enmod proxy_fcgi setenvif
