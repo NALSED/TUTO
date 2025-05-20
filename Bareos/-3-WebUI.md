@@ -81,7 +81,7 @@
     systemctl restart bareos-director
 
 
-### Accés à Bareos WebUi => Dans un navigateur <IP-SERVEUR>/bareos-webui
+### Accés à Bareos WebUi => Dans un navigateur IP-SERVEUR/bareos-webui
 ![image](https://github.com/user-attachments/assets/261dbe72-bc50-4bfa-8884-6035d1a27d60)
 
 ### Entrer login et password défini dans => /etc/bareos/bareos-dir.d/console/admin.conf
