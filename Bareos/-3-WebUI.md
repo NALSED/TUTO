@@ -45,7 +45,7 @@
         sudo apt update
         sudo apt install php8.1 php8.1-fpm
         systemctl reload apache2
-        service php8.2-fpm status                                                                                                                                                                                                                     
+        service php8.1-fpm status                                                                                                                                                                                                                     
 ### Sortie attendu:
 ![image](https://github.com/user-attachments/assets/7195711d-0894-44a5-b827-2ba414664030)
 
