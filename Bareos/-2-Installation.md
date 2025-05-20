@@ -318,7 +318,7 @@
          psql -U bareos -d bareos -c '\dt'        
 ![image](https://github.com/user-attachments/assets/365aa1bd-d5e3-452b-932c-1dd954d14ebe)
 
-        psql -U bareos bareos -w
+        psql -U bareos bareos -W
 ![image](https://github.com/user-attachments/assets/73a2013a-b4b5-4f9d-83bf-fc171e3c8837)
 
 * ### psql : Lance le client PostgreSQL
