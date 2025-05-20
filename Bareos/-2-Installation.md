@@ -267,8 +267,7 @@
 ### Donc yes puis reseigner passwoerd et confirmer
 
 ### 2.3) ⚠️Vérification⚠️
-        su - postgres
-        psql
+        su - postgre
         psql -U bareos -d bareos -h localhost
 ![image](https://github.com/user-attachments/assets/fb634c4c-ac0c-45e0-9447-f4b1092ae552)
 
