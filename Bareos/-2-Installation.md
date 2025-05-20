@@ -264,6 +264,7 @@
     apt install bareos bareos-database-postgresql -y
 
 ### PostgreSQL est configuré corectement donc j'utilise l'option configurer avec dbconfig-common
+### Donc yes puis reseigner passwoerd et confirmer
 
 ### 2.3) ⚠️Vérification⚠️
         su - postgres
