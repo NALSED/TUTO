@@ -124,7 +124,7 @@
     mkdir /mnt/backup
     
 
-### 4.3) Création du point de montage dans fstab
+### 4.3) Création du point de montage dans fstab (avec l'UUID du dispositif de bloc contenant le système de fichiers, le périphérique RAID /dev/md127, et non pas ceux des membres RAID (/dev/sda1, /dev/sdb1).)
     nano /etc/fstab
 ![image](https://github.com/user-attachments/assets/7805236e-8dbc-4d73-ac8e-421497a7fe8f)
 
