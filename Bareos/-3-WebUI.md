@@ -64,7 +64,7 @@
 </summary>
 
 ### Copier le fichier d'exemple de conf 
-    cp /etc/bareos/bareos-dir.d/console/admin.conf.example admin.conf
+    cp /etc/bareos/bareos-dir.d/console/admin.conf.example /etc/bareos/bareos-dir.d/console/admin.conf
     nano admin.conf
 
 ### De base on se connect avec "user = admin // password = admin"
