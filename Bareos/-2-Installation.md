@@ -303,7 +303,10 @@
 ### 3.2) Configurer l'authentification de Bareos vers la base de donné postgreSQL
         nano /etc/postgresql/13/main/pg_hba.conf
 
-### Ajouter ces lignes au fichier de conf ⚠️PQostgreSQL lit de hautvers le bas!!
+### Ajouter cette ligne au fichier de conf ⚠️PQostgreSQL lit de hautvers le bas!!
+        #Authentification Bareos
+        local   all             bareos                                  md5
+
 ![image](https://github.com/user-attachments/assets/c92eb437-1606-4a99-baaf-8bf8996fcd55)
 
 
