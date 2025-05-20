@@ -91,7 +91,7 @@
 ![image](https://github.com/user-attachments/assets/b5399c69-c9df-4ce5-a502-09edc9660b08)
 
 ### 1.2) Création de la grapper RAID :
-    mdadm –-create /dev/md0 –-level=1 -–raid-devices=2 /dev/sd[b-c]1
+    mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sd[b-c]1
 
 ### 📝 Explication
 
