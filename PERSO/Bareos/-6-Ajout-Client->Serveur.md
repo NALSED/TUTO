@@ -25,6 +25,7 @@ Ce tuto explique comment autoriser la connection Serveur/Client
 </summary>
 
 ### Editer un fichier de .conf personalisé (ici clientWIN1.conf) :
+### Le mot de passe à renseigner est celui créer pendant l'installation de bareos sur le client,  Password DIR => Client (le premier) 
       nano /etc/bareos/bareos-dir.d/client/clientwin1.conf
 ![image](https://github.com/user-attachments/assets/b3d6401c-b998-4439-8ea4-5198e520b530)
 
