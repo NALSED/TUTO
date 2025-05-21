@@ -138,18 +138,18 @@ Schedule {
 
 
 
-Job {
-        Name = jobwin
-        Type = Backup
-        Client = client-fd
-        FileSet = winbackup
-        Schedule = schwin
-        Storage = storwin
-        # Utilisation de la sauvegarde incremental par defaut car Bareos
-        Pool = poolwin
-        Messages = Standard
-        Priority = 10
-   }
+		Job {
+        		Name = jobwin
+        		Type = Backup
+        		Client = client-fd
+        		FileSet = winbackup
+        		Schedule = schwin
+        		Storage = storwin
+        		# Utilisation de la sauvegarde incremental par defaut car Bareos
+        		Pool = poolwin
+        		Messages = Standard
+        		Priority = 10
+   		}
 
 
 
