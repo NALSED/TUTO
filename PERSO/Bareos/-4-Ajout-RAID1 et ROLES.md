@@ -117,7 +117,7 @@
 
 ### Un FileSet définit les fichiers et répertoires à sauvegarder (ou à exclure) dans une tâche de sauvegarde (Job).
 ### C’est la liste de fichiers que Bareos va traiter.
-
+### ⚠️Ce qui n'est pas inclu dans ce fichier (Include) est exclu par defaut,, mais si des fichier ne doivent vvraiment pas être présent utiliser l'option (exclude)
 ### Editer le fichier /etc/bareos/bareos-dir.d/fileset
     nano /etc/bareos/bareos-dir.d/fileset/windowsbackup.conf
 ![image](https://github.com/user-attachments/assets/7b937ef0-28bc-4d02-92ea-4056a5c63a18)
