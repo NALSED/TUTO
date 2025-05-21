@@ -215,7 +215,7 @@
   
 ### Editer dans le dossier /etc/bareos/bareos-dir.d/storage/
       nano /etc/bareos/bareos-dir.d/storage/test.conf
-### Renseigner le mot de passe dans le fichier client (bareos-dir.d)  
+### Laisser le mot de passe par defaut,, si doute il se trouve dans => /etc/bareos/bareos-sd.d/director/bareos-dir.conf
   ![image](https://github.com/user-attachments/assets/e63935b0-1fed-48e5-a61b-0f705bfd25bd)
 
 
