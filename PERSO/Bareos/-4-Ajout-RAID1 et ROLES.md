@@ -85,7 +85,8 @@
 * ### Incremental-Storage
 * ### Differential-Storage
 
-
+### Mais aussi la durée pendant laquelle les données sont sauvegardé,, leurs taille ainsi que leurs nombre
+### Cela deffini les contour de la sauvegarde.
 
 ### Editer le fichier /etc/bareos/bareos-dir.d/pool 
     nano /etc/bareos/bareos-dir.d/pool/RAID1.conf
