@@ -55,56 +55,56 @@
 --- 
 ### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/winbackup.conf
 
-      FileSet {
- # Nom du FileSet
- Name = winbackup
+     		 FileSet {
+ 		# Nom du FileSet
+		 Name = winbackup
 
- # Specifique à windows, copie les fichier cachés
- Enable VSS = yes
+		 # Specifique à windows, copie les fichier cachés
+ 		Enable VSS = yes
 
-  # A inclure pour la sauvegarde
-        Include {
+  		# A inclure pour la sauvegarde
+       		 Include {
 
-		 Options {
+		 		Options {
 				
-			# Utilise MD5 pour vérifier les fichiers
-               		signature = MD5
+					# Utilise MD5 pour vérifier les fichiers
+               				signature = MD5
 
-               		# Ne met pas à jour l'horodatage des fichiers
-                	noatime = yes
+               				# Ne met pas à jour l'horodatage des fichiers
+                			noatime = yes
 
-                	# Ignore la case
-                	gnore case = yes
+                			# Ignore la case
+                			gnore case = yes
 
-			 }
+			 		}
 
-			File = "A:/app"
-       		  	File = "A:/tse"
-        	  	File = "A:/VM"
-        	  	File = "A:/WCS"
-        	  	File = "C:/Users/sednal"
-			}
+					File = "A:/app"
+       		  			File = "A:/tse"
+        	  			File = "A:/VM"
+        	  			File = "A:/WCS"
+        	  			File = "C:/Users/sednal"
+					}
 
 
-			# exclu de la sauvegarde
-                        Exclude {
+					# exclu de la sauvegarde
+                        		Exclude {
 
-                         File = "C:/Users/sednal/Desktop"
-                         File = "C:/Users/sednal/Downloads"
-                         File = "C:/Users/sednal/Movies"
-                         File = "C:/Users/sednal/api"
-                         File = "C:/Users/sednal/KeePass Password Safe 2"
-                         File = "C:/Users/sednal/ThirdParty"
-                         File = "C:/Users/sednal/dwhelper"
-                         File = "C:/Users/sednal/Music"
-                         File = "C:/Users/sednal/OneDrive"
-                         File = "*.tmp"
-                         File = "*.bak"
-                         File = "*.log"
-                         File = "C:/Users/sednal/AppData/Local/Temp"
-                                }
+                         		File = "C:/Users/sednal/Desktop"
+                         		File = "C:/Users/sednal/Downloads"
+                         		File = "C:/Users/sednal/Movies"
+                         		File = "C:/Users/sednal/api"
+                         		File = "C:/Users/sednal/KeePass Password Safe 2"
+                         		File = "C:/Users/sednal/ThirdParty"
+                         		File = "C:/Users/sednal/dwhelper"
+                         		File = "C:/Users/sednal/Music"
+                         		File = "C:/Users/sednal/OneDrive"
+                         		File = "*.tmp"
+                         		File = "*.bak"
+                         		File = "*.log"
+                        		 File = "C:/Users/sednal/AppData/Local/Temp"
+                                		}
 
-		}
+				}
 
 ---
 
