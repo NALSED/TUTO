@@ -26,7 +26,8 @@
 
 ### Automatiser et centraliser les sauvegardes et snapshots pour que Baréos les "Récolte".
 
-![cartographie de parcours utilisateur](https://github.com/user-attachments/assets/e0dcc348-a6d6-4daa-b817-55fb316e9ce1)
+![cartographie de parcours utilisateur (2)](https://github.com/user-attachments/assets/075fc795-b569-4ef6-b7c7-a65b446b7918)
+
 
 
 
