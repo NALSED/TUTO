@@ -25,8 +25,8 @@
 ### Choisir Minimal 
 ![image](https://github.com/user-attachments/assets/65dfa420-578a-40fe-a7a3-f21befa8404b)
 
-### Renseigner les infos demandées/etc/bareos/bareos-dir.d/client/<NOM-DU-FICHIER-DE-CONF.conf>
-### ⚠️Le champs `Password` sera demandé dans le fichier de configuration 
+### Renseigner les infos demandées:
+### ⚠️Le champs `Password` sera demandé dans le fichier de configuration => /etc/bareos/bareos-dir.d/client/<NOM-DU-FICHIER-DE-CONF.conf>
 ![image](https://github.com/user-attachments/assets/11617c20-9e3b-442e-b272-2b3d402f6304)
 
 
