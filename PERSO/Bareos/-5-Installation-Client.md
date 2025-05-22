@@ -62,7 +62,7 @@
           apt install -y gnupg  
 
 ### Télécharger le script et l'exécuter
-      wget https://download.bareos.org/current/Debian_12/add_bareos_repositories.sh
+      wget https://download.bareos.org/current/VERIFIER LA VERSION VOIR ⚠️PROLEME RENCONTE ⚠️
       chmod +x add_bareos_repositories.sh
       ./add_bareos_repositories.sh
       apt update
