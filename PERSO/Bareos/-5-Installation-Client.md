@@ -127,35 +127,23 @@
 
 ![image](https://github.com/user-attachments/assets/897030ca-017f-415e-b34b-22b557441cf4)
 
-            
-### Créer le client SUR le `serveur` dans /etc/bareos/bareos-dir.d/client/  
-                  cp client.conf dns1.conf      
-                  nano dns1.conf 
+### SUR le `serveur`:
+      bconsole
+      configure add client name=DNS1 address=192.168.0.241 password=sednal
+![image](https://github.com/user-attachments/assets/790e4937-c00e-4035-ad2d-d16757339343)
 
-### éditer cd fichier SUR le `serveur`:
-            Client {
-                    Name = dns1-fd
-                    Address = 192.168.0.241
-                    FDPort = 9102
-                    Catalog = MyCatalog
-                    Password = "<RENSEIGNER LE PASSWORD>"
-                    }
-            systemctl restart bareos-dir
+### copier la resource créer DEPUIS le `serveur`, SUR le `client` :  
+      scp /etc/bareos/bareos-dir-export/client/DNS1/bareos-fd.d/director/bareos-dir.conf root@192.168.0.241:/etc/bareos/bareos-fd.d/director/
+      systemctl start bareos-fd
 
-### Copier ce fichier SUR le `client` dans /etc/bareos/bareos-fd.d/director            
-            nano /etc/bareos/bareos-fd.d/director/dns1.conf
-            Client {
-                    Name = dns1-fd
-                    Address = 192.168.0.241
-                    FDPort = 9102
-                    Catalog = MyCatalog
-                    Password = "<RENSEIGNER LE PASSWORD>"
-                    }
             
 ### SUR le `client` vérifier que le port 9102 est ouvert
             ss -tulpn
 ![image](https://github.com/user-attachments/assets/f4c4a75a-0444-415d-a4e6-0bae17c298aa)
 
+![image](https://github.com/user-attachments/assets/de605070-9296-4a61-b8d3-cb974c4ca038)
+
+### Pas d'erreur
 
 
 ### Vérifier SUR le `serveur`:
@@ -163,7 +151,7 @@
       status client
 
 ### Sortie attendu 
-![image](https://github.com/user-attachments/assets/71ac1afc-c482-443e-917d-fb2d1afa491b)
+![image](https://github.com/user-attachments/assets/9ba42ef5-39a9-4f7b-9123-c2223ae19fcd)
 
 ### 
 
