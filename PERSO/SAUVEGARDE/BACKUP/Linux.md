@@ -1,4 +1,4 @@
-# Configuration Backup Windows
+# Configuration Backup Linux
 
 ---
 
