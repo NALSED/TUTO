@@ -287,12 +287,12 @@ Schedule {
                                 }
                 # Exclu de la sauvegarde
                 Exclude {
-                        File = /home/sednal/.wget_hsts
+                        File = /home/sednal/.wget-hsts
                         File = /home/sednal/.bash_history
                         File = /home/sednal/.profile
-                        File = /home/sednal/bashrc
+                        File = /home/sednal/.bashrc
                         File = /home/sednal/.bash_logout
-                        File = /home/sednal/.locale
+                        File = /home/sednal/.local
                         File = /home/sednal/.lesshst
 
                         }
@@ -300,6 +300,7 @@ Schedule {
 
 
         }
+
 
 ---
 
