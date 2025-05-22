@@ -48,7 +48,7 @@
         Maximum Volume Jobs = 1
 
     # Format du label des volumes
-        Label Format = Backup-
+        Label Format = BackupWin-
     }  
 
 
