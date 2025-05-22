@@ -147,6 +147,12 @@
                     Password = "<RENSEIGNER LE PASSWORD>"
                     }
             
+### SUR le `client` vérifier que le port 9102 est ouvert
+            ss -tulpn
+![image](https://github.com/user-attachments/assets/f4c4a75a-0444-415d-a4e6-0bae17c298aa)
+
+
+
 ### Vérifier SUR le `serveur`:
       bconsole      
       status client
@@ -154,7 +160,7 @@
 ### Sortie attendu 
 ![image](https://github.com/user-attachments/assets/71ac1afc-c482-443e-917d-fb2d1afa491b)
 
-
+### 
 
 
 </details>
