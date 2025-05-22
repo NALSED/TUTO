@@ -151,7 +151,7 @@
                     Catalog = MyCatalog
                     Password = "<RENSEIGNER LE PASSWORD>"
                     }
-            
+## ⚠️ le mot de passe sur le client ⬆️ doit etre identique à celui dans /etc/bareos/bareos-fd.d/director/bareos-dir.conf            
 ### SUR le `client` vérifier que le port 9102 est ouvert
             ss -tulpn
 ![image](https://github.com/user-attachments/assets/f4c4a75a-0444-415d-a4e6-0bae17c298aa)
