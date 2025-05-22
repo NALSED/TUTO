@@ -82,22 +82,21 @@
 </h2>
 </summary>
 
-### 1) Client /etc/bareos/bareos-dir.d/client/client.conf
+### 1) Client /etc/bareos/bareos-dir.d/client/bareos-fd.conf
 
-      Client {
-              Name = client-fd
-              Address = 192.168.0.111
-              FDPort = 9102
-              Catalog = MyCatalog
-              Password = "lz9moCPhP0fkvRz/s/N5Emm8vOiLS8xW+//uLVxQHDvg"
-              }
+	Client {
+  		Name = bareos-fd
+  	Description = "Client resource of the Director itself."
+  	Address = localhost
+  	Password = "ovLMok3+oAco4yStWjc7IDCdll89/ecfz3vhXEconEoB"          # password for FileDaemon
+		}
 
 ---
 
-### 2) Pool FULL un par mois /etc/bareos/bareos-dir.d/pool/poolwin.conf
+### 2) Pool FULL un par mois /etc/bareos/bareos-dir.d/pool/poolsave.conf
 
     Pool {
-        Name = poolwin
+        Name = poolsave
         Pool Type = Backup
         Recycle = yes
         AutoPrune = yes
@@ -115,81 +114,75 @@
         Maximum Volume Jobs = 1
 
     # Format du label des volumes
-        Label Format = BackupWin-
-    }  
+        Label Format = BackupSave-
+    }
 
 
 --- 
-### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/winbackup.conf
+### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/savebackup.conf
 
      		 FileSet {
- 		# Nom du FileSet
-		 Name = winbackup
-
-		 # Specifique à windows, copie les fichier cachés
- 		Enable VSS = yes
-
-  		# A inclure pour la sauvegarde
-       		 Include {
-
-		 		Options {
-				
-					# Utilise MD5 pour vérifier les fichiers
-               				signature = MD5
-
-               				# Ne met pas à jour l'horodatage des fichiers
-                			noatime = yes
-
-                			# Ignore la case
-                			ignore case = yes
-
-			 		}
-
-					  File = "A:/app"
-                        		  File = "A:/tse"
-			    		  File = "A:/VM"
-                         		  File = "A:/WCS"
-                        		  File = "C:/Users/sednal/Documents"
-                         	  	  File = "C:/Users/sednal/.ssh"
-                          		  File = "C:/Users/sednal/Tor Browser"
-					}
+                # Nom du FileSet
+                Name = savebackup
 
 
-					# exclu de la sauvegarde
-                        		Exclude {
+                # A inclure pour la sauvegarde
+                Include {
 
-                         		 File = "C:/Users/sednal/Default"
-                        		 File = "C:/$WINDOWS.~BT"
-                         		 File = "C:/$Windows.~WS"
-                         		 File = "C:/PerfLogs"
-                         		 File = "C:/ProgramData"
-                         		 File = "C:/Programmes"
-                        		 File = "C:/Programmes(x86)"
-                         		 File = "C:/Windows"
-                                		}
+                        Options {
 
-				}
+                                # Utilise MD5 pour vérifier les fichiers
+                                signature = MD5
 
----
-
-### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schwin.conf
+                                # Ne met pas à jour l'horodatage des fichiers
+                                noatime = yes
 
 
-Schedule {
-        Name = schwin
 
-        # Full chaque 1er dimanche du mois
-        Run = Full 1st sun at 13:00
+                                }
 
-        # Incrémental les autres dimanches
-        Run = Incremental 2nd-5th sun at 13:00
+                                File = "/home/sednal/bareos"
+                                File = "/etc/bareos"
+                                }
+
+
+                                # exclu de la sauvegarde
+                                Exclude {
+
+                                        File = "/etc/bareos/.rndpwd"
+                                        File = "/home/sednal/.bash_history"
+                                        File = "/home/sednal/.bash_logout"
+                                        File = "/home/sednal/.bashrc"
+                                        File = "/home/sednal/.local"
+                                        File = "/home/sednal/.profile"
+                                        File = "/home/sednal/.wget-hsts"
+
+                                        }
+
         }
 
 ---
-### 5) Storage /etc/bareos/bareos-dir.d/storage/storwin.conf
+
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schsave.conf
+
+
+		Schedule {
+                        Name = schsave
+
+                        # Full chaque 1er dimanche du mois
+                        Run = Full 1st sun at 10:00
+
+                        # Incrémental les autres dimanches
+                        Run = Incremental 2nd-5th sun at 10:00
+                        }
+
+
+
+---
+### 5) Storage /etc/bareos/bareos-dir.d/storage/storsave.conf
 
     Storage {
-      Name = storwin
+      Name = storsave
       Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
       Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
       Device = RAID
@@ -198,21 +191,22 @@ Schedule {
 
 ---
 
-### 6) Job /etc/bareos/bareos-dir.d/job/jobwin.conf
+### 6) Job /etc/bareos/bareos-dir.d/job/jobsave.conf
 
 
 
 		Job {
-        		Name = jobwin
-        		Type = Backup
-        		Client = client-fd
-        		FileSet = winbackup
-        		Schedule = schwin
-        		Storage = storwin
-        		Pool = poolwin
-        		Messages = Standard
-        		Priority = 10
-   		}
+                Name = jobsave
+                Type = Backup
+                Client = bareos-fd
+                FileSet = savebackup
+                Schedule = schsave
+                Storage = storsave
+                Pool = poolsave
+                Messages = Standard
+                Priority = 10
+                }
+
 </details>
 
 ---
