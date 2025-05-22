@@ -119,6 +119,8 @@
 ### C’est la liste de fichiers que Bareos va traiter.
 ### ⚠️Ce qui n'est pas inclu dans ce fichier (Include) est exclu par defaut,, mais si des fichier ne doivent vraiment pas être présent utiliser l'option (exclude)
 ### Les chemin doivent être en ANGLAIS!!
+### Et l'ordre est primordial, `include` en premier puis `exclude`
+> exemple: créer un régle pour exclure tout les fichier de C:\Users\Default, sauf Document vvoir => [exemple](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BACKUP/Win.md#3--fileset-etcbareosbareos-dirdfilesetwinbackupconf)
 
 ---
 
