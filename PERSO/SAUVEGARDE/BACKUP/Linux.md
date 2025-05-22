@@ -293,7 +293,7 @@ Schedule {
                         File = /home/sednal/bashrc
                         File = /home/sednal/.bash_logout
                         File = /home/sednal/.locale
-                        File = /home/sednal/;lesshst
+                        File = /home/sednal/.lesshst
 
                         }
 
