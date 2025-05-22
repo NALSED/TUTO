@@ -270,16 +270,36 @@ Schedule {
 ### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/dns1backup.conf
 
      	FileSet {
-  		Name = dns1backup
-  		Include {
-    		Options {
-        		noatime = yes
-        		signature = MD5
 
-    		}
-    		File = /home/sednal
-  		}
-	}
+        # Nom du FileSet
+        Name = dns1backup
+                # A inclure pour la sauvegarde
+                Include {
+
+                        Options {
+                        # Ne met pas à jour l'horodatage des fichiers
+                        noatime = yes
+                        # Utilise MD5 pour vérifier les fichiers
+                        signature = MD5
+
+                                }
+                                File = /home/sednal
+                                }
+                # Exclu de la sauvegarde
+                Exclude {
+                        File = /home/sednal/.wget_hsts
+                        File = /home/sednal/.bash_history
+                        File = /home/sednal/.profile
+                        File = /home/sednal/bashrc
+                        File = /home/sednal/.bash_logout
+                        File = /home/sednal/.locale
+                        File = /home/sednal/;lesshst
+
+                        }
+
+
+
+        }
 
 ---
 
