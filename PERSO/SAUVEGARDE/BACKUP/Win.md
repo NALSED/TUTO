@@ -142,7 +142,6 @@ Schedule {
         		FileSet = winbackup
         		Schedule = schwin
         		Storage = storwin
-        		# Utilisation de la sauvegarde incremental par defaut car Bareos
         		Pool = poolwin
         		Messages = Standard
         		Priority = 10
