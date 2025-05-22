@@ -31,6 +31,47 @@
 ![cartographie de parcours utilisateur (2)](https://github.com/user-attachments/assets/075fc795-b569-4ef6-b7c7-a65b446b7918)
 
 
+---
+
+# :clipboard: Récap Label infra
+
+
+## `PC Admin :` 
+  * ### Label Format : BackupWin-
+
+---
+
+* ## `DNS 1 :`
+    * ### Label Format :
+* ## `DNS2 :`
+    * ### Label Format :
+* ## `Serveur_Web :` 
+    * ### Label Format :
+  ## `Serveur Sauvegarde :`
+    * ### Label Format :
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
