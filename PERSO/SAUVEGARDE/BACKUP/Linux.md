@@ -224,22 +224,27 @@ Schedule {
 </h2>
 </summary>
 
-### 1) Client /etc/bareos/bareos-dir.d/client/client.conf
+### Ce Tuto mommence aprèes l'intalation du client sur le rasbery pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
 
-      Client {
-              Name = client-fd
-              Address = 192.168.0.111
-              FDPort = 9102
-              Catalog = MyCatalog
-              Password = "lz9moCPhP0fkvRz/s/N5Emm8vOiLS8xW+//uLVxQHDvg"
-              }
+
+
+### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
+
+      	Client {
+        	Name = dns1-fd
+       		Address = 192.168.0.241
+        	FDPort = 9102
+        	Catalog = MyCatalog
+        	Password = "sednal"
+        	}
+
 
 ---
 
-### 2) Pool FULL un par mois /etc/bareos/bareos-dir.d/pool/poolwin.conf
+### 2) Pool FULL un par mois /etc/bareos/bareos-dir.d/pool/pooldns1.conf
 
     Pool {
-        Name = poolwin
+        Name = pooldns1
         Pool Type = Backup
         Recycle = yes
         AutoPrune = yes
@@ -257,104 +262,69 @@ Schedule {
         Maximum Volume Jobs = 1
 
     # Format du label des volumes
-        Label Format = BackupWin-
+        Label Format = BackupDns1-
     }  
 
 
 --- 
-### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/winbackup.conf
+### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/dns1backup.conf
 
-     		 FileSet {
- 		# Nom du FileSet
-		 Name = winbackup
+     	FileSet {
+  		Name = dns1backup
+  		Include {
+    		Options {
+        		noatime = yes
+        		signature = MD5
 
-		 # Specifique à windows, copie les fichier cachés
- 		Enable VSS = yes
-
-  		# A inclure pour la sauvegarde
-       		 Include {
-
-		 		Options {
-				
-					# Utilise MD5 pour vérifier les fichiers
-               				signature = MD5
-
-               				# Ne met pas à jour l'horodatage des fichiers
-                			noatime = yes
-
-                			# Ignore la case
-                			ignore case = yes
-
-			 		}
-
-					  File = "A:/app"
-                        		  File = "A:/tse"
-			    		  File = "A:/VM"
-                         		  File = "A:/WCS"
-                        		  File = "C:/Users/sednal/Documents"
-                         	  	  File = "C:/Users/sednal/.ssh"
-                          		  File = "C:/Users/sednal/Tor Browser"
-					}
-
-
-					# exclu de la sauvegarde
-                        		Exclude {
-
-                         		 File = "C:/Users/sednal/Default"
-                        		 File = "C:/$WINDOWS.~BT"
-                         		 File = "C:/$Windows.~WS"
-                         		 File = "C:/PerfLogs"
-                         		 File = "C:/ProgramData"
-                         		 File = "C:/Programmes"
-                        		 File = "C:/Programmes(x86)"
-                         		 File = "C:/Windows"
-                                		}
-
-				}
+    		}
+    		File = /home/sednal
+  		}
+	}
 
 ---
 
-### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schwin.conf
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schdns1.conf
 
 
-Schedule {
-        Name = schwin
+		Schedule {
+        		Name = schdns1
 
-        # Full chaque 1er dimanche du mois
-        Run = Full 1st sun at 13:00
+        		# Full chaque 1er dimanche du mois
+        		Run = Full 1st sun at 12:00
 
-        # Incrémental les autres dimanches
-        Run = Incremental 2nd-5th sun at 13:00
-        }
-
+        		# Incrémental les autres dimanches
+        		Run = Incremental 2nd-5th sun at 12:00
+        		}
 ---
-### 5) Storage /etc/bareos/bareos-dir.d/storage/storwin.conf
+### 5) Storage /etc/bareos/bareos-dir.d/storage/stordns1.conf
 
     Storage {
-      Name = storwin
+      Name = stordns1
       Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
       Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
       Device = RAID
       Media Type = File
     }
 
+
 ---
 
-### 6) Job /etc/bareos/bareos-dir.d/job/jobwin.conf
+### 6) Job /etc/bareos/bareos-dir.d/job/jobdns1.conf
 
 
 
-		Job {
-        		Name = jobwin
-        		Type = Backup
-        		Client = client-fd
-        		FileSet = winbackup
-        		Schedule = schwin
-        		Storage = storwin
-        		Pool = poolwin
-        		Messages = Standard
-        		Priority = 10
-   		}
+	Job {
+                Name = jobdns1
+                Type = Backup
+                Client = dns1-fd
+                FileSet = dns1backup
+                Schedule = schdns1
+                Storage = stordns1
+                Pool = pooldns1
+                Messages = Standard
+                Priority = 10
+                }
+
 </details>
 
 ---
