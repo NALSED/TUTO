@@ -74,7 +74,7 @@
                 			noatime = yes
 
                 			# Ignore la case
-                			gnore case = yes
+                			ignore case = yes
 
 			 		}
 
