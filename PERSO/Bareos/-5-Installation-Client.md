@@ -3,7 +3,7 @@
 
 ---
 
-[TUTO](https://docs.bareos.org/TasksAndConcepts/TheWindowsVersionOfBareos.html#windows-installation)
+[TUTO](https://docs.bareos.org/TasksAndConcepts/TheWindowsVersionOfBareos.html#windows-installation) et surtout [TUTO svennd](https://svennd.be/adding-a-linux-client-to-bareos/)
 
 ---
 
