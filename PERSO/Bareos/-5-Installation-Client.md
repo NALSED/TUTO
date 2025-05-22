@@ -116,7 +116,43 @@
 
 </details>
 
+### Demarrer le service
+            systemctl start bareos-fd
+            systemctl status bareos-fd
 
+![image](https://github.com/user-attachments/assets/897030ca-017f-415e-b34b-22b557441cf4)
+
+            
+### Créer le client SUR le `serveur` dans /etc/bareos/bareos-dir.d/client/  
+                  cp client.conf dns1.conf      
+                  nano dns1.conf 
+
+### éditer le fichier(SUR le `serveur`):
+            Client {
+                    Name = dns1-fd
+                    Address = 192.168.0.241
+                    FDPort = 9102
+                    Catalog = MyCatalog
+                    Password = "<RENSEIGNER LE PASSWORD>"
+                    }
+            systemctl restart bareos-dir
+
+### Copier ce fichier SUR le `client` dans /etc/bareos/bareos-fd.d/director            
+            nano /etc/bareos/bareos-fd.d/director/dns1.conf
+            Client {
+                    Name = dns1-fd
+                    Address = 192.168.0.241
+                    FDPort = 9102
+                    Catalog = MyCatalog
+                    Password = "<RENSEIGNER LE PASSWORD>"
+                    }
+            
+### Vérifier SUR le `serveur`:
+      bconsole      
+      status client
+
+### Sortie attendu 
+![image](https://github.com/user-attachments/assets/71ac1afc-c482-443e-917d-fb2d1afa491b)
 
 
 
