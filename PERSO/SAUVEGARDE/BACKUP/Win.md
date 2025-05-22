@@ -131,7 +131,7 @@ Schedule {
 
 ---
 
-### 6) Job /etc/bareos/bareos-dir.d/job
+### 6) Job /etc/bareos/bareos-dir.d/job/jobwin.conf
 
 
 
