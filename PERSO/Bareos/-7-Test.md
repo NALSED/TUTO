@@ -1,3 +1,12 @@
+# Test avant sauvegarde :
+
+### Cette commande permet simuler une sauvegarde, sans la faire réelement, elle permet donc de tester la config en condition réel,, et estimer le temps de sauvegarde, par defaut sauvegarde Full
+### Voir [TUTO](https://docs.bareos.org/TasksAndConcepts/BareosConsole.html#bareos-console)
+        estimate job=<job-name> listing client=<client-name> accurate=<yes|no> fileset=<fileset-name> level=<level-name>
+### ⚠️Cette commande fera defiler tous les fichiers!
+
+---
+
 # Ici test des backup mis en place
 
 ### une fois le dernier fichier de conf éditer et tester 
