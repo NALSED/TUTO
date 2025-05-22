@@ -89,7 +89,7 @@
 
 ### Et aussi la version de `Openssl` ici OpenSSL 3.0.15 3 Sep 2024
 
-### DONC => cette [VERSION(https://download.bareos.org/current/ULC_deb_OpenSSL_3.0/)
+### DONC => cette [VERSION](https://download.bareos.org/current/ULC_deb_OpenSSL_3.0/)
 
 ### 4) Une fois l'execution du script, nouveau probléme..
 ![image](https://github.com/user-attachments/assets/3e9415f0-5c55-4a9b-8287-574bc62c594f)
