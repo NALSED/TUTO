@@ -75,7 +75,7 @@
 </summary>
 
 ### Impossible d'installer bareos-fd sur un rasberrypi sous debian
-### Chapitre Télécharger le script et l'exécuter ⬆️
+### Chapitre APRES Télécharger le script et l'exécuter ⬆️
 ### Message
 ![image](https://github.com/user-attachments/assets/ab149f41-33f0-43f3-b84e-46be7344a276)
 
