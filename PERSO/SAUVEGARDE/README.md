@@ -28,7 +28,18 @@
 ### => Pour la répartition entre Sauvegarde et Snapshot :
 * ### 🔴 Sauvegarde : se concentrera uniquement sur les document sensible et fichiers de configuration.
 * ### 🟢 Snapshoot : Uniquement points de restauration, tout les autres fichiers seront exclu, pour ne pas surcharger.
+## `Projet de Base`
+### Mais impossible car DNS2 et sevveur web sont en achitecture arm et non arm 64,, bareos non pris en charge..
 ![cartographie de parcours utilisateur (2)](https://github.com/user-attachments/assets/075fc795-b569-4ef6-b7c7-a65b446b7918)
+
+## `Nouvelle Solution`
+
+### On garde l'idée Snapshot et sauvegarde, mais dans la nouvelle solution, toute les données passeront par DNS1(qui à une architecture arm64).
+### Ces données est snapshot seront automatiser par des script et commande crontab.
+![cartographie de parcours utilisateur (3)](https://github.com/user-attachments/assets/061550e3-48ec-488b-a624-9c0a5d09ac10)
+
+
+
 
 
 ---
