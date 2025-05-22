@@ -231,7 +231,7 @@ Schedule {
 ### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
 
       	Client {
-        	Name = dns1-fd
+        	Name = DNS1-fd
        		Address = 192.168.0.241
         	FDPort = 9102
         	Catalog = MyCatalog
