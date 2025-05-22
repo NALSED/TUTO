@@ -476,4 +476,12 @@
 
 [RESSOURCES](https://docs.bareos.org/TasksAndConcepts/BareosConsole.html#bareos-console)
 
+### sur serveur
+status director
+status client
+estimate job=<any-job-name> listing client=<desired-client> fileset=Test
+exemple : estimate job=jobdns1 listing client=DNS1 fileset=dns1backup
+
+
+
 </details>
