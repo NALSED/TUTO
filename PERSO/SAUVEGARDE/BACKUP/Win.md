@@ -78,30 +78,27 @@
 
 			 		}
 
-					File = "A:/app"
-       		  			File = "A:/tse"
-        	  			File = "A:/VM"
-        	  			File = "A:/WCS"
-        	  			File = "C:/Users/sednal"
+					  File = "A:/app"
+                        		  File = "A:/tse"
+                       			  File = "A:/VM"
+                         		  File = "A:/WCS"
+                        		  File = "C:/Users/sednal/Documents"
+                         	  	  File = "C:/Users/sednal/.ssh"
+                          		  File = "C:/Users/sednal/Tor Browser"
 					}
 
 
 					# exclu de la sauvegarde
                         		Exclude {
 
-                         		File = "C:/Users/sednal/Desktop"
-                         		File = "C:/Users/sednal/Downloads"
-                         		File = "C:/Users/sednal/Movies"
-                         		File = "C:/Users/sednal/api"
-                         		File = "C:/Users/sednal/KeePass Password Safe 2"
-                         		File = "C:/Users/sednal/ThirdParty"
-                         		File = "C:/Users/sednal/dwhelper"
-                         		File = "C:/Users/sednal/Music"
-                         		File = "C:/Users/sednal/OneDrive"
-                         		File = "*.tmp"
-                         		File = "*.bak"
-                         		File = "*.log"
-                        		 File = "C:/Users/sednal/AppData/Local/Temp"
+                         		 File = "C:/Users/sednal/Default"
+                        		 File = "C:/$WINDOWS.~BT"
+                         		 File = "C:/$Windows.~WS"
+                         		 File = "C:/PerfLogs"
+                         		 File = "C:/ProgramData"
+                         		 File = "C:/Programmes"
+                        		 File = "C:/Programmes(x86)"
+                         		 File = "C:/Windows"
                                 		}
 
 				}
