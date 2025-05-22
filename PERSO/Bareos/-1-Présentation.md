@@ -477,11 +477,90 @@
 [RESSOURCES](https://docs.bareos.org/TasksAndConcepts/BareosConsole.html#bareos-console)
 
 ### sur serveur
-            status director
-            status client
+            # tester sauvegarde
             estimate job=<any-job-name> listing client=<desired-client> fileset=Test
             exemple : estimate job=jobdns1 listing client=DNS1 fileset=dns1backup
+            
+---
+            
+            # Voir le statut global du système Bareos
+            status
 
+            # Voir le statut du Director (planificateur de sauvegardes)
+            status director
+
+            # Voir le statut d’un client spécifique (File Daemon)
+            status client=
+            
+            # Voir le statut du Storage Daemon
+            status storage=
+            
+            # Voir le statut complet de tous les composants
+            status all
+
+---
+
+            # Lister tous les clients configurés
+            list clients
+
+            # Lister tous les jobs exécutés (terminés ou en cours)
+            list jobs
+
+            # Lister les définitions de jobs (JobDefs)
+            list jobdefs
+
+            # Lister les pools de volumes (groupes de volumes de sauvegarde)
+            list pools
+
+            # Lister les volumes disponibles/utilisés
+            list volumes
+
+            # Lister les fichiers sauvegardés dans un job spécifique
+            list files jobid=13   # Remplacer 13 par l'identifiant du job concerné
+
+---
+
+            # Afficher les informations de tous les clients connus du Director
+            show clients
+
+            # Afficher la configuration détaillée d’un client
+            show client=DNS1  
+
+            # Afficher la configuration d’un job
+            show job=
+
+            # Afficher la configuration d’un pool
+            show pool=D
+
+            # Afficher la configuration d’un Storage Daemon
+            show storage=
+
+---
+
+            # Lancer un job de sauvegarde de façon interactive
+            run
+
+            # Lancer un job de sauvegarde en mode automatique
+            run job=    client=    level=Full yes
+
+---
+
+            # Afficher les logs d’un job terminé
+            list joblog jobid=
+
+            # Annuler un job en cours
+            cancel jobid=
+
+---
+
+            # Afficher la version du logiciel Bareos
+            version
+
+            # Afficher l'aide de bconsole
+            .help
+
+            # Quitter proprement bconsole
+            .quit
 
 
 </details>
