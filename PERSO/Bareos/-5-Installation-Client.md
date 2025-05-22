@@ -84,7 +84,12 @@
 ![image](https://github.com/user-attachments/assets/a6a5e6c3-eb47-4204-87a8-facadd1052d9)
 
 ### 3) Je choisi donc d'utiliser `Universal Linux Client (ULC)` [voir](https://docs.bareos.org/IntroductionAndTutorial/InstallingBareosClient.html#installing-the-bareos-universal-linux-client)
-### Bien verifier l'architecture, ici arm64 donc => cette [VERSION](https://download.bareos.org/current/ULC_deb_OpenSSL_3.0/)
+
+### Bien verifier l'architecture,avec `hostnamectl` 
+
+### Et aussi la version de `Openssl` ici OpenSSL 3.0.15 3 Sep 2024
+
+### DONC => cette [VERSION(https://download.bareos.org/current/ULC_deb_OpenSSL_3.0/)
 
 ### 4) Une fois l'execution du script, nouveau probléme..
 ![image](https://github.com/user-attachments/assets/3e9415f0-5c55-4a9b-8287-574bc62c594f)
