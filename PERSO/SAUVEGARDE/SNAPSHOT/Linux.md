@@ -59,6 +59,58 @@
 
 ### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
 
+### 1.1) Instalation Logiciel
+    apt install timeshift  
+    apt install rsync 
+    apt install cron
+    
+
+---
+
+## 2) Configuration 
+
+
+### 2.1) Installer le script dans /root
+    nano /root/ScriptSnapshot.sh 
+
+### 2.2) Le script     
+         #!/bin/bash
+
+          SNAPSHOT_DIR="/timeshift/snapshots"
+
+          # Supprimer tous les anciens snapshots
+          sudo rm -rf "${SNAPSHOT_DIR}"/*
+
+          # Créer un nouveau snapshot
+          sudo timeshift --create --scripted
+
+### 2.3) Droit
+    chmod +x ScriptSnapshot.sh
+
+### 2.4) Executer le Script
+    ./ScriptSnapshot.sh
+
+### 2.5) Dans l'utilisateur sednal créer les dossier du tranfert
+      mkdir TotalDNS1
+      cd TotalDNS1
+      mkdir BackupDNS1
+      mkdir SnapshotDNS1
+
+### 2.6) Configurer Cron
+      crontab -e
+
+### 2.6.1) Choisir l'éditeur => 1
+### si erreur
+      select-editor # et changer
+
+### 2.6.2) Snapshot
+		00 11 * * 0 /root/ScriptSnapshot.sh
+
+### 2.6.3) Copie Snapshot
+		
+		40 11 * * 0 rsync -a /timeshift/snapshot/ /home/sednal/TotalDNS1/SnapshotDNS1/
+
+![Uploading image.png…]()
 
 
 
