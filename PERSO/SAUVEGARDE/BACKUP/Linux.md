@@ -396,8 +396,6 @@
 </h2>
 </summary>
 
-### 1) Installation de Crontab
-
 ### Installation
 	sudo apt install cron
 	crontab -e
@@ -407,18 +405,34 @@
 ### si erreur
   	select-editor # et changer
 
-### Création des dossier de sauvegarde et snapshot
-	mkdir TotalDns2
- 	mkdir BackupDns2 SnapshotDns2
-
 
 ---
 
 ### 2) Configuration Crontab
 
-### Copie de la configuration serveur web  
-	55 09 * 1-12 sun cp /var/www/html/index.html  next.html  /home/sednal/total/save
-	00 10 * 1-12 sun scp /home/sednal/total sednal@192.168.0.241:/home/sednal
+
+### 2.1) Copie des backup
+		45 9 * * 0 cp -r /etc/var/www/html/ /home/sednal/BackupWeb
+
+### 2.2) Ecraser le contenu de TotalDns2 sur la machine distante
+		
+		40 10 * * 0 ssh sednal@192.168.0.241 'rm -rf /home/sednal/TotalWeb'
+
+### 2.3) Copier sur DNS1
+		45 01 * * 0 rsync -a /home/sednal/TotalWeb/ sednal@192.168.0.241:/home/sednal/TotalWeb/
+
+
+### 2.4) 📝 FICHIER CRON COMPLET
+![image](https://github.com/user-attachments/assets/9cb44d55-be45-4edd-b6d7-b174aab1993c)
+
+
+### ⚠️ UN DOSSIER IDENTIQUE A CELUI DE DNS2 DOIT ETRE CREER SUR DNS1
+### Sur DNS1
+     chown -R sednal:sednal /home/sednal/TotalDNS2
+     chmod -R u+rwX /home/sednal/TotalDNS2
+
+### Sans ça les copies Rsync ne fontionnerons pas...
+
 
 
 
