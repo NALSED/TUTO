@@ -340,15 +340,14 @@
 
 ### 1) Installation de Crontab
  
+### Installation
+	sudo apt install cron
+	crontab -e
+![image](https://github.com/user-attachments/assets/3b481e6e-7362-43f9-b919-92d6e9f88d67)
 
-
-
-
-
-
-
-
-
+### Choisir l'éditeur => 1
+### si erreur
+  	select-editor # et changer
 
 
 ---
@@ -360,11 +359,23 @@
 ### 2) Configuration Crontab
 
 
+### Copie des backup
+		55 09 * 1-12 sun cp /etc/bind /home/sednal/BackupDns2
+
+
+
+### Snapshot
 
 
 
 
+### Copie Snapshot
 
+
+
+
+### Copier sur DNS1
+	00 11 * 1-12 sun scp /home/sednal/TotalDns2 sednal@192.168.0.241:/home/sednal
 
 
 
@@ -396,13 +407,18 @@
 ### si erreur
   	select-editor # et changer
 
+### Création des dossier de sauvegarde et snapshot
+	mkdir TotalDns2
+ 	mkdir BackupDns2 SnapshotDns2
+
+
 ---
 
 ### 2) Configuration Crontab
 
 ### Copie de la configuration serveur web  
 	55 09 * 1-12 sun cp /var/www/html/index.html  next.html  /home/sednal/total/save
-	00 10 * 1-12 sun scp /home/sednal/total sednal@192.1688.0.241:/home/sednal
+	00 10 * 1-12 sun scp /home/sednal/total sednal@192.168.0.241:/home/sednal
 
 
 
