@@ -183,7 +183,7 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ### Editer les services comme ceci
 
-                ;
+        ;
         ; BIND data file for 0.168.192.in-addr.arpa
         ;
         $TTL    604800
