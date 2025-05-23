@@ -110,7 +110,8 @@
 		
 		40 11 * * 0 rsync -a /timeshift/snapshot/ /home/sednal/TotalDNS1/SnapshotDNS1/
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/6682cab8-388f-4e79-aace-ada706e670a6)
+
 
 
 
