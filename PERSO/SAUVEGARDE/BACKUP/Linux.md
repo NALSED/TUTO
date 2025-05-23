@@ -359,28 +359,28 @@
 ### 2) Configuration Crontab
 
 
-### Copie des backup
-		55 09 * 1-12 sun cp /etc/bind /home/sednal/BackupDns2
+### 2.1) Copie des backup
+		55 9 * * 0 cp -r /etc/bind /home/sednal/BackupDns2
 
 
-
-### Snapshot
-		00 10 * 1-12 sun ./ScriptSnapshot.sh
-
-
-
-### Copie Snapshot
+### 2.2) Ecraser le contenu de TotalDns2 sur la machine distante
 		
-		10 10 * 1-12 sun
+		50 10 * * 0 ssh sednal@192.168.0.241 'rm -rf /home/sednal/TotalDns2'
+
+### 2.3) Copier sur DNS1
+		00 11 * * 0 rsync -a /home/sednal/TotalDns2/ sednal@192.168.0.241:/home/sednal/TotalDns2/
 
 
-### Copier sur DNS1
-		00 11 * 1-12 sun scp /home/sednal/TotalDns2 sednal@192.168.0.241:/home/sednal
+### 2.4) 📝 FICHIER CRON COMPLET
+![image](https://github.com/user-attachments/assets/9cb44d55-be45-4edd-b6d7-b174aab1993c)
 
 
+### ⚠️ UN DOSSIER IDENTIQUE A CELUI DE DNS2 DOIT ETRE CREER SUR DNS1
+### Sur DNS1
+     chown -R sednal:sednal /home/sednal/TotalDNS2
+     chmod -R u+rwX /home/sednal/TotalDNS2
 
-
-
+### Sans ça les copies Rsync ne fontionnerons pas...
 
 
  
