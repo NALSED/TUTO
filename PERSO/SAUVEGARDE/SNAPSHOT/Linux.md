@@ -158,13 +158,74 @@
 </h2>
 </summary>
 
-### 1) Installation de Timeshift
+## 1) Installation 
 
+### 1.1) Instalation Logiciel
+    apt install timeshift  
+    apt install rsync
+    apt install cron
+    
 
 ---
 
-### 2) Configuration Timeshift
 
+
+
+
+## 2) Configuration 
+
+
+### 2.1) Installer le script dans /root
+    nano /root/ScriptSnapshot.sh 
+
+### 2.2) Le script     
+         #!/bin/bash
+
+          SNAPSHOT_DIR="/timeshift/snapshots"
+
+          # Supprimer tous les anciens snapshots
+          sudo rm -rf "${SNAPSHOT_DIR}"/*
+
+          # Créer un nouveau snapshot
+          sudo timeshift --create --scripted
+
+### 2.3) Droit
+    chmod +x ScriptSnapshot.sh
+
+### 2.4) Executer le Script
+    ./ScriptSnapshot.sh
+
+### 2.5) Dans l'utilisateur sednal créer les dossier du tranfert
+      mkdir TotalWeb
+      cd TotalWeb
+      mkdir BackupWeb
+      mkdir SnapshotWeb
+
+### 2.6) Configurer Cron
+      crontab -e
+
+### 2.6.1) Choisir l'éditeur => 1
+### si erreur
+      select-editor # et changer
+
+### 2.6.2) Snapshot
+		50 09 * * 0 /root/ScriptSnapshot.sh
+
+### 2.6.3) Copie Snapshot
+		
+		30 10 * * 0 rsync -a /timeshift/snapshot/ /home/sednal/TotalDNS2/SnapshotWeb/
+
+### 📝 FICHIER CRON COMPLET
+![image](https://github.com/user-attachments/assets/a6f24d16-91c9-4039-b474-84b7a9287638)
+
+### La copie des dossier Snapshot et Backup sont réalisé [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BACKUP/Linux.md#copier-sur-dns1)
+
+### ⚠️ UN DOSSIER IDENTIQUE A CELUI DE WEB DOIT ETRE CREER SUR DNS1
+### Sur DNS1
+     chown -R sednal:sednal /home/sednal/TotalWeb
+     chmod -R u+rwX /home/sednal/TotalWeb
+
+### Sans ça les copies Rsync ne fontionnerons pas...
 
 
 
