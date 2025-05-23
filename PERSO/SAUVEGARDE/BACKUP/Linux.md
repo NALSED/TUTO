@@ -365,17 +365,17 @@
 
 
 ### Snapshot
-
+		00 10 * 1-12 sun ./ScriptSnapshot.sh
 
 
 
 ### Copie Snapshot
-
-
+		
+		10 10 * 1-12 sun
 
 
 ### Copier sur DNS1
-	00 11 * 1-12 sun scp /home/sednal/TotalDns2 sednal@192.168.0.241:/home/sednal
+		00 11 * 1-12 sun scp /home/sednal/TotalDns2 sednal@192.168.0.241:/home/sednal
 
 
 
