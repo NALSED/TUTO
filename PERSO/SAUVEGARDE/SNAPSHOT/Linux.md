@@ -90,10 +90,8 @@
 ### 2.4) Executer le Script
     ./ScriptSnapshot.sh
 
-### 2.5) Dans l'utilisateur sednal créer les dossier du tranfert
-      mkdir TotalDNS1
-      cd TotalDNS1
-      mkdir BackupDNS1
+### 2.5) Dans l'utilisateur sednal créer le dossier du tranfert vers Bareos
+
       mkdir SnapshotDNS1
 
 ### 2.6) Configurer Cron
@@ -108,7 +106,7 @@
 
 ### 2.6.3) Copie Snapshot
 		
-		40 11 * * 0 rsync -a /timeshift/snapshot/ /home/sednal/TotalDNS1/SnapshotDNS1/
+		40 11 * * 0 rsync -a /timeshift/snapshots /home/sednal/TotalDNS1/SnapshotDNS1/
 
 ![image](https://github.com/user-attachments/assets/6682cab8-388f-4e79-aace-ada706e670a6)
 
