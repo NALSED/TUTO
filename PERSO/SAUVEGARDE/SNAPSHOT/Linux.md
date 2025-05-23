@@ -16,18 +16,16 @@
 
 * ### 2️⃣ `DNS 1`
 
-  * ### 1) Installation de Timeshift
+  * ### 1) Installation de 
 
-  * ### 2) Configuration Timeshift
-
+   * ### 2) Configuration 
 ---
 
 * ### 3️⃣ `DNS 2`
 
-   * ### 1) Installation de Timeshift
+   * ### 1) Installation 
    
-   * ### 2) Configuration Timeshift
-   
+   * ### 2) Configuration 
 
 ---
 
