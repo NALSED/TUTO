@@ -40,7 +40,7 @@
 # 2) Atomatiser la création d'un point de restauration
 
 
-## Script C:\Users\sednal\Resto.ps1
+## "Script" C:\Users\sednal\Resto.ps1
      Checkpoint-Computer -Description "PointAuto" -RestorePointType "MODIFY_SETTINGS"
 
 
@@ -51,7 +51,7 @@
 
 ### 2.2.2) En haut à gauche => Action => Créer un tache ...
 ### 2.2.3) Donner un  nom à la tache, cocher Executer avec les autorisarions maximales 
-
+          RESTO_POINT
 ## 2.3) `Déclencheurs` 
 
 ### 2.3.1) Nouveau...
@@ -64,12 +64,16 @@
 ## 2.4 ) `Actions`
 
 ### 2.4.1) Nouveau...
+### Action : Démarrer un programme
+### Programme/script : powershell.exe
+### Arguments :
+          Checkpoint-Computer -Description "PointAuto" -RestorePointType "MODIFY_SETTINGS"
 
+![image](https://github.com/user-attachments/assets/e50b4e53-37bb-4e72-a298-b28de8368517)
 
-
-
-
-
+## 2.5 ) `Conditions`
+### Décocher "Démarrer la tâche uniquement si l’ordinateur est sur secteur"
+![image](https://github.com/user-attachments/assets/8280b19c-9119-4f2b-bf56-c96e5a8cef97)
 
 
 
