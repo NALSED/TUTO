@@ -97,7 +97,7 @@
 ### si erreur
       select-editor # et changer
 
-### 2.6.2) 
+### 2.6.2) Execution script => snapshot
 
 		10 2 1 2,6,10 * /root/ScriptSnapshot.sh
 
@@ -108,6 +108,10 @@
 
 ### 📝 FICHIER CRON COMPLET
 ![image](https://github.com/user-attachments/assets/151c708f-ea54-43ec-aaae-e8bf6d11568e)
+
+### Explication 40 2 1 2,6,10 * => À 02h40 le 1er en février, juin et octobre.
+
+
 
 ## 2.7) Changer le dossier de sauvegarde de timeshift:
 ### Actuelement timeshift utilise md0 (RAID1).
