@@ -58,7 +58,9 @@
 </summary>
 
 ### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
-
+## ⚠️Syncronisation des montres!!
+ 	timedatectl set-timezone Asia/Yerevan
+ 
 ### 1.1) Instalation Logiciel
     apt install timeshift  
     apt install rsync 
