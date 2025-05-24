@@ -70,21 +70,21 @@
 
 ## DISK:
 
-   NAME    MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
-   fd0       2:0    1     4K  0 disk
-   sda       8:0    0 111.8G  0 disk
-   ├─sda1    8:1    0 110.8G  0 part  /
-   ├─sda2    8:2    0     1K  0 part
-   └─sda5    8:5    0   975M  0 part  [SWAP]
-   sdb       8:16   0 931.5G  0 disk
-   └─sdb1    8:17   0 931.5G  0 part
-     └─md0   9:0    0 931.4G  0 raid1 /mnt/backup
-   sdc       8:32   0 931.5G  0 disk 
-   └─sdc1    8:33   0 931.5G  0 part
-     └─md0   9:0    0 931.4G  0 raid1 /mnt/backup
-   sdd       8:48   0 931.5G  0 disk
-   ├─sdd1    8:49   0   600G  0 part  /mnt/snapshot
-   └─sdd2    8:50   0   300G  0 part  /mnt/plex
+       NAME    MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+       fd0       2:0    1     4K  0 disk
+       sda       8:0    0 111.8G  0 disk
+       ├─sda1    8:1    0 110.8G  0 part  /
+       ├─sda2    8:2    0     1K  0 part
+       └─sda5    8:5    0   975M  0 part  [SWAP]
+       sdb       8:16   0 931.5G  0 disk
+      └─sdb1    8:17   0 931.5G  0 part
+        └─md0   9:0    0 931.4G  0 raid1 /mnt/backup
+       sdc       8:32   0 931.5G  0 disk 
+       └─sdc1    8:33   0 931.5G  0 part
+         └─md0   9:0    0 931.4G  0 raid1 /mnt/backup
+       sdd       8:48   0 931.5G  0 disk
+       ├─sdd1    8:49   0   600G  0 part  /mnt/snapshot
+       └─sdd2    8:50   0   300G  0 part  /mnt/plex
 
 
 
