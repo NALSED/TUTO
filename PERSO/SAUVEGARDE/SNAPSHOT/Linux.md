@@ -192,7 +192,8 @@
 		
 
 ### 📝 FICHIER CRON COMPLET
-![image](https://github.com/user-attachments/assets/072ffdf9-45b6-42f3-a745-160b16dbfc0d)
+![image](https://github.com/user-attachments/assets/afeeddac-854f-4d5f-a5bb-872bfdc43997)
+
 
 
 ### La copie des dossier Snapshot et Backup sont réalisé [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BACKUP/Linux.md#copier-sur-dns1)
