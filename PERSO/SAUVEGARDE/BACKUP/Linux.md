@@ -411,9 +411,6 @@
 ### 2.1) Copie des backup
 		45 9 * * 0 cp -r /etc/var/www/html/ /home/sednal/BackupWeb
 
-### 2.2) Ecraser le contenu de TotalDns2 sur la machine distante
-		
-		40 10 * * 0 ssh sednal@192.168.0.241 'rm -rf /home/sednal/TotalWeb'
 
 ### 2.3) Copier sur DNS1
 		45 01 * * 0 rsync -a /home/sednal/TotalWeb/ sednal@192.168.0.241:/home/sednal/TotalWeb/
