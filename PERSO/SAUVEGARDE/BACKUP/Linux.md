@@ -360,19 +360,19 @@
 
 
 ### 2.1) Copie des backup
-		55 9 * * 0 cp -r /etc/bind /home/sednal/BackupDns2
-
-
+		0 2 1 2,6,10 * cp -r /etc/bind /home/sednal/BackupDns2 >> /var/log/backupdns2.log 2>&1
+		
 ### 2.2) Ecraser le contenu de TotalDns2 sur la machine distante
 		
-		50 10 * * 0 ssh sednal@192.168.0.241 'rm -rf /home/sednal/TotalDns2'
+		50 2 1 2,6,10 *  ssh sednal@192.168.0.241 'rm -rf /home/sednal/TotalDns2' >> /var/log/suptotaldns2.log 2>&1
+
 
 ### 2.3) Copier sur DNS1
-		00 11 * * 0 rsync -a /home/sednal/TotalDns2/ sednal@192.168.0.241:/home/sednal/TotalDns2/
+		0 3 1 2,6,10 *  rsync -a /home/sednal/TotalDns2/ sednal@192.168.0.241:/home/sednal/TotalDns2/ >> /var/log/rsynctotaldns2.log 2>&1
 
 
 ### 2.4) 📝 FICHIER CRON COMPLET
-![image](https://github.com/user-attachments/assets/9cb44d55-be45-4edd-b6d7-b174aab1993c)
+![image](https://github.com/user-attachments/assets/217c8f08-f1cd-4244-9f58-ba07d66a4a79)
 
 
 ### ⚠️ UN DOSSIER IDENTIQUE A CELUI DE DNS2 DOIT ETRE CREER SUR DNS1
