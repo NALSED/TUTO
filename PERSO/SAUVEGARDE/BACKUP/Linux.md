@@ -42,9 +42,9 @@
 
 * ### 3️⃣ `DNS 2`
 
-   * ### 1) Installation de Crontab
+   * ### 1) Installation 
  
-   * ### 2) Configuration Crontab
+   * ### 2) Configuration 
    
 
 ---
