@@ -182,14 +182,18 @@
       select-editor # et changer
 
 ### 2.6.2) Snapshot
-		00 10 * * 0 /root/ScriptSnapshot.sh
+		10 2 1 2,6,10 * /root/ScriptSnapshot.sh >> /var/log/snapshotdns2.log 2>&1
+
+		
 
 ### 2.6.3) Copie Snapshot
 		
-		40 10 * * 0 rsync -a /timeshift/snapshot/ /home/sednal/TotalDNS2/SnapshotDNS2/
+		40 2 1 2,6,10 * rsync -a /timeshift/snapshot/ /home/sednal/TotalDNS2/SnapshotDNS2/ >> /var/log/rsyncsnapshotdns2.log 2>&1
+		
 
 ### 📝 FICHIER CRON COMPLET
-![image](https://github.com/user-attachments/assets/a6f24d16-91c9-4039-b474-84b7a9287638)
+![image](https://github.com/user-attachments/assets/072ffdf9-45b6-42f3-a745-160b16dbfc0d)
+
 
 ### La copie des dossier Snapshot et Backup sont réalisé [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BACKUP/Linux.md#copier-sur-dns1)
 
