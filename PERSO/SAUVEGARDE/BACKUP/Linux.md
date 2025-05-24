@@ -368,7 +368,8 @@
 
 
 ### 2.4) 📝 FICHIER CRON COMPLET
-![image](https://github.com/user-attachments/assets/4945761b-2c60-4033-85fb-a72dafda91c8)
+![image](https://github.com/user-attachments/assets/a94627fd-9767-4727-9c4e-12e1e8192269)
+
 
 
 
