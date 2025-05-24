@@ -417,7 +417,8 @@
 
 
 ### 2.4) 📝 FICHIER CRON COMPLET
-![image](https://github.com/user-attachments/assets/9cb44d55-be45-4edd-b6d7-b174aab1993c)
+![image](https://github.com/user-attachments/assets/cf679e0a-c58e-45b5-814f-5e79ed6d815a)
+
 
 
 ### ⚠️ UN DOSSIER IDENTIQUE A CELUI DE DNS2 DOIT ETRE CREER SUR DNS1
