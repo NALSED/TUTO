@@ -79,8 +79,9 @@
           # Créer un nouveau snapshot
           sudo timeshift --create --scripted
 
-### 2.3) Droit
+### 2.3) Droit + type de sauvegarde
     chmod +x ScriptSnapshot.sh
+    timeshift --rsync
 
 ### 2.4) Executer le Script
     ./ScriptSnapshot.sh
