@@ -2,6 +2,14 @@
 ## :disappointed_relieved: Windows ne permet pas officiellement de copier ou déplacer un point de restauration..
 ## Ce point de restauration restera donc sur le PC Admin.
 ---
+## 1) Créer un point de restauration
+
+## 2) Atomatiser la création d'un point de montage
+
+---
+---
+
+# 1) Créer un point de restauration
 
 ## Deux solution :
 
@@ -26,6 +34,55 @@
 
 ### Renseigner le champs
 ![image](https://github.com/user-attachments/assets/38005216-cf6d-43d6-aef6-975076c159ed)
+
+---
+
+# 2) Atomatiser la création d'un point de restauration
+
+
+## Script C:\Users\sednal\Resto.ps1
+     Checkpoint-Computer -Description "PointAuto" -RestorePointType "MODIFY_SETTINGS"
+
+
+## 2.2) `Général`
+
+### 2.2.1) Planificateur de tâches (win + R)
+          taskschd.msc
+
+### 2.2.2) En haut à gauche => Action => Créer un tache ...
+### 2.2.3) Donner un  nom à la tache, cocher Executer avec les autorisarions maximales 
+
+## 2.3) `Déclencheurs` 
+
+### 2.3.1) Nouveau...
+### Ici la taache sera réalisée :
+* ### Chaque mois
+* ### Le premier
+* ### Sera arrêtée si elle dure plus trente minutes
+![image](https://github.com/user-attachments/assets/e5bf9580-59c0-4098-8356-15ba4d51c02f)
+
+## 2.4 ) `Actions`
+
+### 2.4.1) Nouveau...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
