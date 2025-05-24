@@ -273,7 +273,8 @@
 		30 10 * * 0 rsync -a /timeshift/snapshot/ /home/sednal/TotalDNS2/SnapshotWeb/
 
 ### 📝 FICHIER CRON COMPLET
-![image](https://github.com/user-attachments/assets/a6f24d16-91c9-4039-b474-84b7a9287638)
+![image](https://github.com/user-attachments/assets/a3d043bf-d4e9-418e-a55f-6e84c6f3dba3)
+
 
 ### La copie des dossier Snapshot et Backup sont réalisé [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BACKUP/Linux.md#copier-sur-dns1)
 
