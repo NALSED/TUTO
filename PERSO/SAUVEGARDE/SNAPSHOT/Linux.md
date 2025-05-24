@@ -108,9 +108,24 @@
 ### 📝 FICHIER CRON COMPLET
 ![image](https://github.com/user-attachments/assets/151c708f-ea54-43ec-aaae-e8bf6d11568e)
 
+## 2.7) Changer le dossier de sauvegarde de timeshift:
+### Actuelement timeshift utilise md0 (RAID1).
+### Je veux que se soit Bareos qui orchestre les transferts sur différents support pour plus de cohérence et de clarté.
 
+### Créer le dossier de reception des snapshot
+	sudo mkdir -p /timeshift/snapshots
 
+### Spécifier à timeshift d'utiliser /dev/sdb1 pour stocker les snapshots
+	sudo timeshift --snapshot-device /dev/sdb1
 
+### Choisir type de sauvegarde rsync
+	sudo timeshift --rsync
+
+### Lancer un test
+	timeshift --create
+
+### C'est OK
+	
 
 </details>
 ---
