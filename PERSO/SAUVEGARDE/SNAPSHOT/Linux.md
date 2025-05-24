@@ -10,15 +10,18 @@
 
 * ### 1️⃣ `Serveur Sauvegarde`
 
+  * ### 1) Installation  
+
+  * ### 2) Configuration 
    
 
 ---
 
 * ### 2️⃣ `DNS 1`
 
-  * ### 1) Installation de 
+  * ### 1) Installation 
 
-   * ### 2) Configuration 
+  * ### 2) Configuration 
 ---
 
 * ### 3️⃣ `DNS 2`
@@ -31,9 +34,9 @@
 
 * ### 4️⃣ `Serveur Web`
 
-  * ### 1) Installation de Timeshift
+  * ### 1) Installation 
 
-  * ### 2) Configuration Timeshift
+  * ### 2) Configuration
    
 ---
 ---
@@ -96,7 +99,7 @@
 
       mkdir SnapshotDNS1
 
-### 2.6) Configurer Cron
+### 2.6) Configurer Cron DANS root
       crontab -e
 
 ### 2.6.1) Choisir l'éditeur => 1
@@ -104,13 +107,16 @@
       select-editor # et changer
 
 ### 2.6.2) Snapshot
-		00 11 * * 0 /root/ScriptSnapshot.sh
+		10 2 1 2,6,10 * /root/ScriptSnapshot.sh
 
 ### 2.6.3) Copie Snapshot
 		
-		40 11 * * 0 rsync -a /timeshift/snapshots /home/sednal/TotalDNS1/SnapshotDNS1/
+		40 2 1 2,6,10 * rsync -a /timeshift/snapshots /home/sednal/TotalDNS1/SnapshotDNS1/
 
-![image](https://github.com/user-attachments/assets/6682cab8-388f-4e79-aace-ada706e670a6)
+
+
+### 📝 FICHIER CRON COMPLET
+![image](https://github.com/user-attachments/assets/32fdbc2c-f8c0-4f14-8dc1-55b037b30b3f)
 
 
 
