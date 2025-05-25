@@ -131,7 +131,7 @@
                                 }
 
                                 File = "/home/sednal/bareos"
-                                File = "/etc/bareos"
+                                File = "/etc/bareo"
                                 }
 
 
@@ -159,10 +159,10 @@
                         Name = schsaveback
 
                         # Full chaque 1er dimanche du mois
-                        Run = Full 1st sun at 10:00
+                        Run = Full 1st sun at 12:30
 
                         # Incrémental les autres dimanches
-                        Run = Incremental 2nd-5th sun at 10:00
+                        Run = Incremental 2nd-5th sun at 12:
                         }
 
 
