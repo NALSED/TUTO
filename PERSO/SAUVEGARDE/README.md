@@ -75,7 +75,8 @@
 ---
 
 * ## `Serveur Sauvegarde :`
-    * ### Label Format :
+    * ### Label Format : BackupSave- // SnapSave-
+       
 
 ---
 ---
@@ -115,10 +116,11 @@
    
    * ### SnapShot
 
-
-
-
-
+     * ### pool : poolsavesnap.conf
+     * ### fileset : filesavesnap.conf
+     * ### schedule : schsavesnap.conf
+     * ### storage : storsavesnap.conf
+     * ### job : jobsavesnap.conf
 
 ---
 ---
