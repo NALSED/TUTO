@@ -52,7 +52,21 @@
 
 # IP `192.168.0.141`
 
+---
+
+## I) Programation et Réalisation du Snapshot
+## II Sauvegarde sur serveur Bareos
+
+
+---
+---
+
+## `I) Programation et Réalisation du Snapshot`
+
 ### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
+### Il traitera de l'installation des différents paquets nécéssaire à la programmation ainsi que la réaalisation de snapshot systeme du serveur de sauvegarde. 
+
+
 ## ⚠️Syncronisation des montres!!
  	timedatectl set-timezone Asia/Yerevan
  
@@ -133,7 +147,103 @@
 
 ### C'est OK
 ![image](https://github.com/user-attachments/assets/a1948098-9b81-4c83-bd76-fabb21e7b9dc)
-	
+
+ ---
+ ---
+
+ ## II `Sauvegarde sur serveur Bareos.`
+
+### 1) Client /etc/bareos/bareos-dir.d/client/bareos-fd.conf
+
+	Client {
+  		Name = bareos-fd
+  	Description = "Client resource of the Director itself."
+  	Address = localhost
+  	Password = "ovLMok3+oAco4yStWjc7IDCdll89/ecfz3vhXEconEoB"          # password for FileDaemon
+		}
+
+---
+
+### 2) Pool FULL un par mois /etc/bareos/bareos-dir.d/pool/poolsavesnap.conf
+
+		Pool {
+        		Name = poolsavesnap
+        		Pool Type = Backup
+       		 	Recycle = yes
+        		AutoPrune = yes
+
+    		# Garder les volumes (Full et Incrémentaux) pendant 60 jours
+    		Volume Retention = 60 days
+
+    		# Un volume peut être utilisé pendant 30 jours
+        		Volume Use Duration = 30 days
+
+    		# Maximum de 12 volumes
+        		Maximum Volumes = 12
+
+    		# 1 job par volume
+        		Maximum Volume Jobs = 1
+
+    		# Format du label des volumes
+        		Label Format = SnapSave-
+    		}
+
+---
+
+### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/filesavesnap.conf
+	FileSet {
+                # Nom du FileSet
+                Name = filesavesnap
+
+
+                # A inclure pour la sauvegarde
+                Include {
+
+                        Options {
+
+                                # Utilise MD5 pour vérifier les fichiers
+                                signature = MD5
+
+                                # Ne met pas à jour l'horodatage des fichiers
+                                noatime = yes
+
+				}
+
+                                File = "/home/sednal/SnapshotSave/"
+                                }
+		}
+
+---
+
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schsavesnap.conf
+
+ 	Schedule {
+                Name = schsavesnap
+
+                        # Full chaque 1er dimanche du mois
+                        Run = Full 1st sun at 12:00
+
+                        # Incrémental les autres dimanches
+                        Run = Incremental 2nd-5th sun at 12:00
+                }
+
+---
+
+### 5) Storage /etc/bareos/bareos-dir.d/storage/storsavebsnap.conf
+
+
+		 Storage {
+      Name = storsavesnap
+      Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
+      Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
+      Device = SNAP
+      Media Type = File
+    			}
+
+
+---
+
+### 6) Job /etc/bareos/bareos-dir.d/job/jobsavesnap.conf
 
 
 
