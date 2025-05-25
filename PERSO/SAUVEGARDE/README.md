@@ -33,9 +33,7 @@
 <details>
 <summary>
 <h2>
-
- `Projet de Base`
-
+Projet de Base
 </h2>
 </summary>
 
