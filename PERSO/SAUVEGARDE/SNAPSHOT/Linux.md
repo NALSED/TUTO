@@ -105,7 +105,7 @@
 
 ### 2.6.3) Copie Snapshot
 		
-		40 2 1 2,6,10 * rsync -a /timeshift/snapshots /home/sednal/TotalDNS/SnapshotSave/
+		40 2 1 2,6,10 * rsync -a /timeshift/snapshots /home/sednal/SnapshotSave/
 
 
 ### 📝 FICHIER CRON COMPLET
