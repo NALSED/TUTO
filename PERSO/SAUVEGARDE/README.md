@@ -88,10 +88,10 @@
 ||BackUp|SnapShot|
 |:-:|:-:|:-:|
 |Pool|pool NOM MACHINE back |pool NOM MACHINE snap|
-|FileSet |file NOM MACHINE back|file NOM MACHINE snap|
-|Schedule|sch NOM MACHINE back|file NOM MACHINE snap|
-|Storage|stor NOM MACHINE back|stor NOM MACHINE snap|
-|Job|job NOM MACHINE back|job NOM MACHINE snap|
+|FileSet |file NOM MACHINE back.conf|file NOM MACHINE snap.conf|
+|Schedule|sch NOM MACHINE back.conf|file NOM MACHINE snap.conf|
+|Storage|stor NOM MACHINE back.conf|stor NOM MACHINE snap.conf|
+|Job|job NOM MACHINE back.conf|job NOM MACHINE snap.conf|
 
 ### Nom Machine :
 * ### PC Adminitration : `admin`
@@ -106,10 +106,19 @@
 * ## `save` :
 
    * ### BackUp :
-   
-   
+
+     * ### pool : poolsaveback.conf
+     * ### fileset : filesaveback.conf
+     * ### schedule : schsaveback.conf
+     * ### storage : storsaveback.conf
+     * ### job : jobsaveback.conf
    
    * ### SnapShot
+
+
+
+
+
 
 ---
 ---
