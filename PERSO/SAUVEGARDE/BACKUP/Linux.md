@@ -82,10 +82,10 @@
 
 ---
 
-### 2) Pool FULL un par mois /etc/bareos/bareos-dir.d/pool/poolsave.conf
+### 2) Pool FULL un par mois /etc/bareos/bareos-dir.d/pool/poolsaveback.conf
 
     Pool {
-        Name = poolsave
+        Name = poolsaveback
         Pool Type = Backup
         Recycle = yes
         AutoPrune = yes
@@ -108,11 +108,11 @@
 
 
 --- 
-### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/savebackup.conf
+### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/filesaveback.conf
 
      		 FileSet {
                 # Nom du FileSet
-                Name = savebackup
+                Name = filesaveback
 
 
                 # A inclure pour la sauvegarde
@@ -152,11 +152,11 @@
 
 ---
 
-### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schsave.conf
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schsaveback.conf
 
 
 		Schedule {
-                        Name = schsave
+                        Name = schsaveback
 
                         # Full chaque 1er dimanche du mois
                         Run = Full 1st sun at 10:00
@@ -168,10 +168,10 @@
 
 
 ---
-### 5) Storage /etc/bareos/bareos-dir.d/storage/storsave.conf
+### 5) Storage /etc/bareos/bareos-dir.d/storage/storsaveback.conf
 
     Storage {
-      Name = storsave
+      Name = storsaveback
       Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
       Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
       Device = RAID
@@ -180,18 +180,18 @@
 
 ---
 
-### 6) Job /etc/bareos/bareos-dir.d/job/jobsave.conf
+### 6) Job /etc/bareos/bareos-dir.d/job/jobsaveback.conf
 
 
 
 		Job {
-                Name = jobsave
+                Name = jobsaveback
                 Type = Backup
                 Client = bareos-fd
-                FileSet = savebackup
-                Schedule = schsave
-                Storage = storsave
-                Pool = poolsave
+                FileSet = filesaveback
+                Schedule = schsaveback
+                Storage = storsaveback
+                Pool = poolsaveback
                 Messages = Standard
                 Priority = 10
                 }
