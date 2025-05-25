@@ -374,6 +374,7 @@
 
 
 ### 2.4) 📝 FICHIER CRON COMPLET
+![image](https://github.com/user-attachments/assets/9102dcd9-973c-49ab-889e-54989aab7a58)
 
 
 
