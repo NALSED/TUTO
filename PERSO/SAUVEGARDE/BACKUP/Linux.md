@@ -366,7 +366,7 @@
 
 
 ### 2.1) Copie des backup
-		0 2 1 2,6,10 * cp -r /etc/bind/www/html/ /home/sednal/TotalDNS2/BackupDns2 >> /var/log/backupdns2.log 2>&1
+		0 2 1 2,6,10 * cp -r /etc/bind/ /home/sednal/TotalDNS2/BackupDns2 >> /var/log/backupdns2.log 2>&1
 	
 
 ### 2.3) Copier sur DNS1
@@ -374,7 +374,8 @@
 
 
 ### 2.4) 📝 FICHIER CRON COMPLET
-![image](https://github.com/user-attachments/assets/9102dcd9-973c-49ab-889e-54989aab7a58)
+![image](https://github.com/user-attachments/assets/07e82874-bc73-4f26-9696-c01cf32c6e66)
+
 
 
 
