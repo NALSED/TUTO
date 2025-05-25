@@ -87,7 +87,7 @@
 
 ||BackUp|SnapShot|
 |:-:|:-:|:-:|
-|Pool|pool<NOM MACHINE>back |pool<NOM MACHINE>snap|
+|Pool|pool <NOM MACHINE> back |pool<NOM MACHINE>snap|
 |FileSet |file<NOM MACHINE>back|file<NOM MACHINE>snap|
 |Schedule|sch<NOM MACHINE>back|file<NOM MACHINE>snap|
 |Storage|stor<NOM MACHINE>back|stor<NOM MACHINE>snap|
