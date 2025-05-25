@@ -37,7 +37,7 @@ Projet de Base
 </h2>
 </summary>
 
-### Mais impossible car DNS2 et Seveur Web sont en achitecture arm et non arm 64,, bareos non pris en charge..
+
 ![cartographie de parcours utilisateur (2)](https://github.com/user-attachments/assets/075fc795-b569-4ef6-b7c7-a65b446b7918)
  
 </details>
