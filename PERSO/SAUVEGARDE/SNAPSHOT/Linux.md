@@ -245,6 +245,18 @@
 
 ### 6) Job /etc/bareos/bareos-dir.d/job/jobsavesnap.conf
 
+	Job {
+                Name = jobsavesnap
+                Type = Backup
+                Client = bareos-fd
+                FileSet = filesavesnap
+                Schedule = schsavesnap
+                Storage = storsavesnap
+                Pool = poolsavesnap
+                Messages = Standard
+                Priority = 10
+                }
+
 
 
 </details>
