@@ -291,7 +291,8 @@
 		
 
 ### 📝 FICHIER CRON COMPLET
-![image](https://github.com/user-attachments/assets/afeeddac-854f-4d5f-a5bb-872bfdc43997)
+![image](https://github.com/user-attachments/assets/e939f885-fafa-44d8-be5c-57de5a26dd30)
+
 
 
 
