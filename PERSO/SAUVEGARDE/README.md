@@ -94,11 +94,11 @@
 |Job|job NOM MACHINE back|job NOM MACHINE snap|
 
 ### Nom Machine :
-* ### PC Adminitration : admin
-* ### Serveur Sauvegarde : save
-* ### DNS PiHole : dns1
-* ### DNS Bind9 : dns2
-* ### Servveur Web : web
+* ### PC Adminitration : `admin`
+* ### Serveur Sauvegarde : `save`
+* ### DNS PiHole : `dns1`
+* ### DNS Bind9 : `dns2`
+* ### Servveur Web : `web`
 ---
 
 
