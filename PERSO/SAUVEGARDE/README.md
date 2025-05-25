@@ -29,7 +29,7 @@
 * ### 🔴 Sauvegarde : se concentrera uniquement sur les document sensible et fichiers de configuration.
 * ### 🟢 Snapshoot : Uniquement points de restauration, tout les autres fichiers seront exclu, pour ne pas surcharger.
 ## `Projet de Base`
-### Mais impossible car DNS2 et sevveur web sont en achitecture arm et non arm 64,, bareos non pris en charge..
+### Mais impossible car DNS2 et Seveur Web sont en achitecture arm et non arm 64,, bareos non pris en charge..
 ![cartographie de parcours utilisateur (2)](https://github.com/user-attachments/assets/075fc795-b569-4ef6-b7c7-a65b446b7918)
 
 ## `Nouvelle Solution`
@@ -100,6 +100,53 @@
 * ### DNS Bind9 : `dns2`
 * ### Servveur Web : `web`
 ---
+
+# 📝 Recap Label Bareos :
+
+* ## `save` :
+
+   * ### BackUp :
+   
+   
+   
+   * ### SnapShot
+
+---
+---
+
+* ## `admin` :
+
+   * ### BackUp :
+   
+   
+
+
+---
+---
+
+ * ## `dns1` :
+
+   * ### BackUp dns1 :
+   
+   
+   
+   * ### SnapShot dns1 :
+
+---
+
+   * ### BackUp dns2 :
+   
+   
+   
+   * ### SnapShot dns2 :
+  
+---
+
+   * ### BackUp web :
+   
+   
+   
+   * ### SnapShot web :
 
 
 ---
