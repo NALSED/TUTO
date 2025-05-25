@@ -162,7 +162,7 @@
                         Run = Full 1st sun at 12:30
 
                         # Incrémental les autres dimanches
-                        Run = Incremental 2nd-5th sun at 12:
+                        Run = Incremental 2nd-5th sun at 12:30
                         }
 
 
