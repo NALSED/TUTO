@@ -24,18 +24,29 @@
 
 ## :bulb: Objectif :
 
-### => Automatiser et centraliser les sauvegardes et snapshots pour que Baréos les "Récolte".
+### => Automatiser et centraliser les sauvegardes et snapshots pour que Baréos les "Récoltes".
 ### => Pour la répartition entre Sauvegarde et Snapshot :
 * ### 🔴 Sauvegarde : se concentrera uniquement sur les document sensible et fichiers de configuration.
 * ### 🟢 Snapshoot : Uniquement points de restauration, tout les autres fichiers seront exclu, pour ne pas surcharger.
-## `Projet de Base`
+* ### Avec deux moyende sauvegarde différent : 🔴 Sauvegarde => RAID1 et 🟢 Snapshoot un disque séparer voir [ici](https://github.com/NALSED/TUTO/tree/main/PERSO/SAUVEGARDE#disk)
+
+<details>
+<summary>
+<h2>
+`Projet de Base`
+</h2>
+</summary>
+
 ### Mais impossible car DNS2 et Seveur Web sont en achitecture arm et non arm 64,, bareos non pris en charge..
 ![cartographie de parcours utilisateur (2)](https://github.com/user-attachments/assets/075fc795-b569-4ef6-b7c7-a65b446b7918)
+ 
+</details>
+
 
 ## `Nouvelle Solution`
 
-### On garde l'idée Snapshot et sauvegarde, mais dans la nouvelle solution, toute les données passeront par DNS1(qui à une architecture arm64).
-### Ces données est snapshot seront automatiser par des script et commande crontab.
+### On garde l'idée Snapshot et sauvegarde, mais ici toute les données passeront par DNS1(qui à une architecture arm64).
+### Les snapshot et backup ainsi que leurs transfert vers DNS1 sera assuré par script, cron, rsync.
 ![cartographie de parcours utilisateur (3)](https://github.com/user-attachments/assets/061550e3-48ec-488b-a624-9c0a5d09ac10)
 
 
@@ -52,31 +63,43 @@
 ## LABEL SAUVEGARDE ET SNAPSHOT
 
 ## `PC Admin :` 
-  * ### Label Format : BackupWin-
+  * ### Label Format BackUp : BackupWin-
 
 ---
 
 * ## `DNS 1 :`
+    * ### Avant "recolte" par Bareos
     * ### `BackUp` : /home/sednal/TotalDNS1/BackupDNS1
     * ### `Snapshot` : /home/sednal/TotalDNS1/SnapshotDNS1
-
+      * ### Bareos
 ---
+
 
 * ## `DNS2 :`
+    * ### Sur DNS2 :
     * ### `BackUp` : /home/sednal/TotalDNS2/BackupDNS2
     * ### `Snapshot` : /home/sednal/TotalDNS2/SnapshotDNS2
+       * ### Sur DNS1 :
+       * ### `BackUp` : 
+       * ### `Snapshot`
 
 ---
+
 
 * ## `Serveur_Web :` 
+     * ### Sur Serveur Web :
      * ### `BackUp` : /home/sednal/TotalWEB/BackupWEB
      * ### `Snapshot` : /home/sednal/TotalWEB/SnapshotWEB
+        * ### Sur DNS1 :
+        * ### `BackUp` : 
+        * ### `Snapshot`
 
 ---
 
+
 * ## `Serveur Sauvegarde :`
-    * ### Label Format : BackupSave- // SnapSave-
-       
+    * ### Label Format BackUp : BackupSave- SnapSave-
+    * ### Label Format BackUp : SnapSave-   
 
 ---
 ---
