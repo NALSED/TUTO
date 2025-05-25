@@ -50,6 +50,8 @@
 </h2>
 </summary>
 
+# IP `192.168.0.141`
+
 ### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
 ## ⚠️Syncronisation des montres!!
  	timedatectl set-timezone Asia/Yerevan
@@ -146,6 +148,9 @@
 </h2>
 </summary>
 
+
+# IP `192.168.0.241`
+
 ### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
 ## ⚠️Syncronisation des montres!!
  	timedatectl set-timezone Asia/Yerevan
@@ -217,6 +222,8 @@
 2️⃣ DNS 2
 </h2>
 </summary>
+
+# IP `192.168.0.210`
 
 ## 1) Installation 
 
@@ -307,6 +314,9 @@
 4️⃣ Serveur Web
 </h2>
 </summary>
+
+
+# IP `192.168.0.122`
 
 ## 1) Installation 
 
