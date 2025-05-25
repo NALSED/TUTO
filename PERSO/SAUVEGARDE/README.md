@@ -11,14 +11,19 @@
 ## :books: `INFRA` : 
 
 ### :wolf: Windows
-### PC Admin / Données sensibles et précieuses
+### `PC Admin` / Données sensibles et précieuses
 
 
 ### :penguin: Linux
-* ### DNS 1 : Pihole 
-* ### DNS2 : Bind9, résolution de nom en locale
-* ### Serveur_Web : intranet, accés à GitHub et Services
-* ### Serveur Sauvegarde : Bareos avec RAID1 2 x 1 To + 1 To, Plex.
+* ## `DNS 1 :`
+   * ### Pihole 
+* ## `DNS2 :`
+   * ### Bind9, résolution de nom en locale
+* ## `Serveur_Web :`
+   * ### intranet, accés à GitHub et Services
+* ## `Serveur Sauvegarde :`
+   * ### Bareos : dipose d'un RAID1 => 2 x 1 To et un autre disque 1 To
+   * ### Plex.
 
 ---
 
