@@ -105,7 +105,7 @@ Projet de Base
 
 
 * ## `Serveur Sauvegarde :`
-    * ### Label Format BackUp : BackupSave- SnapSave-
+    * ### Label Format BackUp : BackupSave- 
     * ### Label Format BackUp : SnapSave-   
 
 ---
