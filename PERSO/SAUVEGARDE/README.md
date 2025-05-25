@@ -46,6 +46,10 @@
 
 # :clipboard: Récap Label infra
 
+---
+---
+
+## LABEL SAUVEGARDE ET SNAPSHOT
 
 ## `PC Admin :` 
   * ### Label Format : BackupWin-
@@ -56,17 +60,44 @@
     * ### `BackUp` : /home/sednal/TotalDNS1/BackupDNS1
     * ### `Snapshot` : /home/sednal/TotalDNS1/SnapshotDNS1
 
+---
+
 * ## `DNS2 :`
     * ### `BackUp` : /home/sednal/TotalDNS2/BackupDNS2
     * ### `Snapshot` : /home/sednal/TotalDNS2/SnapshotDNS2
+
+---
 
 * ## `Serveur_Web :` 
      * ### `BackUp` : /home/sednal/TotalWEB/BackupWEB
      * ### `Snapshot` : /home/sednal/TotalWEB/SnapshotWEB
 
+---
+
 * ## `Serveur Sauvegarde :`
     * ### Label Format :
 
+---
+---
+
+## LABEL FICHIER BAREOS
+
+### Fichier type :
+### Tout en minuscule
+
+||BackUp|SnapShot|
+|:-:|:-:|:-:|
+|Pool|pool<NOM MACHINE>back |pool<NOM MACHINE>snap|
+|FileSet |file<NOM MACHINE>back|file<NOM MACHINE>snap|
+|Schedule|sch<NOM MACHINE>back|file<NOM MACHINE>snap|
+|Storage|stor<NOM MACHINE>back|stor<NOM MACHINE>snap|
+|Job|job<NOM MACHINE>back|job<NOM MACHINE>snap|
+
+---
+
+
+---
+---
 
 ## DISK:
 
