@@ -3,7 +3,7 @@
 ---
 
 ### Ce Tuto à pour but de créer une solution de sauvegarde et snapshot, centralisées pour windows et linux.
-### Via les solution `Bareos`, `Timeshift`(Snapshot Linux) et `Protection System pour Windows`(Snatshoot windows).
+### Via les solution `Bareos`, `Timeshift`(Snapshot Linux), `Cron` (automatiosation des tache sur debian 12),`Rsync`(transfert de fichier) et `Protection System pour Windows`(Snatshoot windows).
 
 
 ---
