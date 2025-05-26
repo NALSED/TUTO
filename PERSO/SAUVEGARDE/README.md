@@ -79,7 +79,8 @@ Projet de Base
     * ### `BackUp` : /home/sednal/TotalDNS1/BackupDNS1
     * ### `Snapshot` : /home/sednal/TotalDNS1/SnapshotDNS1
       * ### Bareos
-
+      * ### `BackUp` : BackDns1-
+      * ### `Snapshot`: SnapDns1-
 
 
 ---
