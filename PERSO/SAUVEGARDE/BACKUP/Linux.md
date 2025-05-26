@@ -671,36 +671,272 @@ III) WEB
 
 ## `I) BackUp Web`
 
+### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
+
+      	Client {
+        	Name = DNS1-fd
+       		Address = 192.168.0.241
+        	FDPort = 9102
+        	Catalog = MyCatalog
+        	Password = "sednal"
+        	}
+
+---
+
+### 2) Pool FULL un par mois fev jun et oct  /etc/bareos/bareos-dir.d/pool/poolwebback.conf
+
+		Pool {
+       			 Name = poolwebback
+       			 Pool Type = Backup
+        		 Recycle = yes
+        		 AutoPrune = yes
+
+    			# Garder les volumes (Full et Incrémentaux) pendant 60 jours
+    			Volume Retention = 60 days
+
+    			# Un volume peut être utilisé pendant 30 jours
+       			 Volume Use Duration = 30 days
+
+    			# Maximum de 12 volumes
+        		 Maximum Volumes = 12
+    			# Le volume deviens recyclable après 1 jour, donc à la prochaine sauvegarde
+        		 Volume Retention = 1d
+    			# Recyclage des volumes
+        		 Recycle = yes
+    			# Format du label des volumes
+        		 Label Format = BackWeb-
+    			}
+
+---
+
+### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/filewebback.conf
+
+			FileSet {
+
+        			# Nom du FileSet
+        			Name = filewebback
+                		# A inclure pour la sauvegarde
+                		Include {
+
+                        	Options {
+                       		# Ne met pas à jour l'horodatage des fichiers
+                        	noatime = yes
+                        	# Utilise MD5 pour vérifier les fichiers
+                        	signature = MD5
+
+                                	}
+                                	File = /home/sednal/TotalWeb/BackupWeb
+                                	}
+                		# Exclu de la sauvegarde
+                		Exclude {
+                        	File = /home/sednal/.wget-hsts
+                        	File = /home/sednal/.bash_history
+                        	File = /home/sednal/.profile
+                        	File = /home/sednal/.bashrc
+                        	File = /home/sednal/.bash_logout
+                        	File = /home/sednal/.local
+                        	File = /home/sednal/.lesshst
+                        	File = /home/sednal/TotalDNS2
+                        	File = /home/sednal/TotalWeb/SnapshotWeb
+                        	File = /home/sednal/youTube_ads_4_pi-hole
+                        		}
 
 
 
+        				}
+
+
+        		}
+
+
+---
+
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schwebback.conf
+
+
+		Schedule {
+        		Name = schwebback
+
+        		# Full chaque 1er dimanche du mois de fevrier juin et octobre
+        		Run = Full 1st sun at 09:30 feb
+        		Run = Full 1st sun at 09:30 jun
+		        Run = Full 1st sun at 09:30 oct
+        		}
+
+
+---
+
+### 5) Storage /etc/bareos/bareos-dir.d/storage/stordns1snap.conf
+
+    Storage {
+      Name = storwebback
+      Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
+      Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
+      Device = RAID
+      Media Type = File
+    }
+
+---
+
+### 6) Job /etc/bareos/bareos-dir.d/job/jobdns1snap.conf
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	Job {
+                Name = jobdns1snap
+                Type = Backup
+                Client = DNS1
+                FileSet = filedns1snap
+                Schedule = schdns1snap
+                Storage = stordns1snap
+                Pool = pooldns1snap
+                Messages = Standard
+                Priority = 10
+                }
 
 
 ## `II) SnapShotWeb`
+
+### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
+
+      	Client {
+        	Name = DNS1-fd
+       		Address = 192.168.0.241
+        	FDPort = 9102
+        	Catalog = MyCatalog
+        	Password = "sednal"
+        	}
+
+---
+
+### 2) Pool FULL un par mois fev jun et oct  /etc/bareos/bareos-dir.d/pool/pooldns1snap.conf
+
+			Pool {
+        			Name = poolwebsnap
+        			Pool Type = Backup
+        			Recycle = yes
+        			AutoPrune = yes
+
+    			# Garder les volumes (Full et Incrémentaux) pendant 60 jours
+    			Volume Retention = 60 days
+
+    			# Un volume peut être utilisé pendant 30 jours
+        		Volume Use Duration = 30 days
+
+    			# Maximum de 12 volumes
+        		Maximum Volumes = 12
+    			# Le volume deviens recyclable après 1 jour, donc à la prochaine sauvegarde
+        		Volume Retention = 1d
+    			# Recyclage des volumes
+        		Recycle = yes
+    			# Format du label des volumes
+        		Label Format = SnapWeb-
+    			}
+
+---
+
+### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/filewebsnap.conf
+
+			FileSet {
+
+       			 # Nom du FileSet
+        		Name = filewebsnap
+               		# A inclure pour la sauvegarde
+               		 Include {
+
+                        Options {
+                        # Ne met pas à jour l'horodatage des fichiers
+                        noatime = yes
+                        # Utilise MD5 pour vérifier les fichiers
+                        signature = MD5
+
+                                }
+                                File = /home/sednal//TotalWeb/SnapshotWeb/
+                                }
+                # Exclu de la sauvegarde
+                Exclude {
+                        File = /home/sednal/.wget-hsts
+                        File = /home/sednal/.bash_history
+                        File = /home/sednal/.profile
+                        File = /home/sednal/.bashrc
+                        File = /home/sednal/.bash_logout
+                        File = /home/sednal/.local
+                        File = /home/sednal/.lesshst
+                        File = /home/sednal/TotalDNS2
+                        File = /home/sedna/SnapshotDNS1
+                        File = /home/sednal/youTube_ads_4_pi-hole
+                        File = /home/sednal/TotalWeb/BackupWeb
+                        }
+
+
+
+        }
+
+
+
+---
+
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schdns1snap.conf
+
+
+		Schedule {
+        		Name = schwebsnap
+
+       		 	# Full chaque 1er dimanche du mois de fevrier juin et octobre
+        		Run = Full 1st sun at 09:00 feb
+        		Run = Full 1st sun at 09:00 jun
+        		Run = Full 1st sun at 09:00 oct
+        }
+
+
+---
+
+### 5) Storage /etc/bareos/bareos-dir.d/storage/storwebsnap.conf
+
+    Storage {
+      Name = storwebsnap
+      Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
+      Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
+      Device = SNAP
+      Media Type = File
+    }
+---
+
+### 6) Job /etc/bareos/bareos-dir.d/job/jobdns1snap.conf
+
+
+
+	Job {
+                Name = jobwebsnap
+                Type = Backup
+                Client = DNS1
+                FileSet = filewebsnap
+                Schedule = schwebsnap
+                Storage = storwebsnap
+                Pool = poolwebsnap
+                Messages = Standard
+                Priority = 10
+                }
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
