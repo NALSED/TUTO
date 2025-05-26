@@ -273,6 +273,16 @@
 
 # IP `192.168.0.241`
 
+---
+
+## I) Programation et Réalisation du Snapshot
+## II Sauvegarde sur serveur Bareos
+
+---
+---
+
+## `I) Programation et Réalisation du Snapshot`
+
 ### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
 ## ⚠️Syncronisation des montres!!
  	timedatectl set-timezone Asia/Yerevan
@@ -331,6 +341,10 @@
 ### 📝 FICHIER CRON COMPLET
 ![image](https://github.com/user-attachments/assets/df06349d-0b8d-4b59-8fb5-74edfecba319)
 
+---
+---
+
+## `II Sauvegarde sur serveur Bareos`
 
 
 
