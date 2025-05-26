@@ -778,12 +778,12 @@ III) WEB
 
 ---
 
-### 6) Job /etc/bareos/bareos-dir.d/job/jobdns1snap.conf
+### 6) Job /etc/bareos/bareos-dir.d/job/jobwebback.conf
 
 
 
 	Job {
-                Name = jobdns1snap
+                Name = jobwebback
                 Type = Backup
                 Client = DNS1
                 FileSet = filedns1snap
@@ -902,7 +902,7 @@ III) WEB
     }
 ---
 
-### 6) Job /etc/bareos/bareos-dir.d/job/jobdns1snap.conf
+### 6) Job /etc/bareos/bareos-dir.d/job/jobwebsnap.conf
 
 
 
