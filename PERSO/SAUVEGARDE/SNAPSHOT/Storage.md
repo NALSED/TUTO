@@ -21,4 +21,6 @@
         Always Open = yes
         }
 
-      
+### DROITS      
+      chown bareos:bareos /etc/bareos/bareos-sd.d/device/RAID.conf /etc/bareos/bareos-sd.d/device/SNAP.conf
+      chmod 640 /etc/bareos/bareos-sd.d/device/RAID.conf /etc/bareos/bareos-sd.d/device/SNAP.conf
