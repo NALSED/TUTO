@@ -976,7 +976,7 @@ III) WEB
 
 
 ### 2.1) Copie des backup
-		00 2 1 2,6,10 * cp -r /etc/bind/ /home/sednal/TotalDNS2/BackupDns2 >> /var/log/backupdns2.log 2>&1
+		00 2 1 2,6,10 * cp -r /etc/bind/ /home/sednal/TotalDNS2/BackupDNS2 >> /var/log/backupdns2.log 2>&1
 	
 
 ### 2.3) Copier sur DNS1
