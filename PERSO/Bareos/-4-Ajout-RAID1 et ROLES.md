@@ -80,7 +80,7 @@
 ### 📝 Les Pools sont une organisation logique des sauvegardes.
 
 ### Création d'un pool persolnalisé, c'est à dire la manière dont on veux faire la sauvegarde :
-
+# ⚠️PENSER A DECLARER LES VOLUME( LOGIQUE)
 * ### Full-Storage
 * ### Incremental-Storage
 * ### Differential-Storage
