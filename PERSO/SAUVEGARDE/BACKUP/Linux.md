@@ -980,7 +980,7 @@ III) WEB
 	
 
 ### 2.3) Copier sur DNS1
-		0 3 1 2,6,10 *  rsync -a /home/sednal/TotalDns2/ sednal@192.168.0.241:/home/sednal/TotalDns2/ >> /var/log/rsynctotaldns2.log 2>&1
+		0 3 1 2,6,10 *  rsync -a /home/sednal/TotalDNS2/ sednal@192.168.0.241:/home/sednal/TotalDns2/ >> /var/log/rsynctotaldns2.log 2>&1
 
 
 ### 2.4) 📝 FICHIER CRON COMPLET
