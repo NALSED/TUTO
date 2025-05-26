@@ -346,10 +346,10 @@
 
 ## `II Sauvegarde sur serveur Bareos`
 
-### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
+### 1) Client /etc/bareos/bareos-dir.d/client/DNS1.conf
 
       	Client {
-        	Name = DNS1-fd
+        	Name = DNS1
        		Address = 192.168.0.241
         	FDPort = 9102
         	Catalog = MyCatalog
