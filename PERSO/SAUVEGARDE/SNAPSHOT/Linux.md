@@ -424,7 +424,7 @@
 
 ---
 
-### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schdns1back.conf
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schdns1snap.conf
 
 
 		Schedule {
