@@ -234,7 +234,7 @@
 <details>
 <summary>
 <h2>
-I DNS1
+I) DNS1
 </h2>
 </summary>
 
@@ -244,10 +244,10 @@ I DNS1
 
 
 
-### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
+### 1) Client /etc/bareos/bareos-dir.d/client/DNS1.conf
 
       	Client {
-        	Name = DNS1-fd
+        	Name = DNS1
        		Address = 192.168.0.241
         	FDPort = 9102
         	Catalog = MyCatalog
@@ -274,8 +274,11 @@ I DNS1
     # Maximum de 12 volumes
         Maximum Volumes = 12
 
-    # 1 job par volume
-        Maximum Volume Jobs = 1
+     # Le volume deviens recyclable après 1 jour, donc à la prochaine sauvegarde
+         Volume Retention = 1d
+
+     # Recyclage des volumes
+         Recycle = yes
 
     # Format du label des volumes
         Label Format = BackupDns1-
