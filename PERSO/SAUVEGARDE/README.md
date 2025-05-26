@@ -3,7 +3,7 @@
 ---
 
 ### Ce Tuto à pour but de créer une solution de sauvegarde et snapshot, centralisées pour windows et linux.
-### Via les solution `Bareos`, `Timeshift`(Snapshot Linux), `Cron` (automatiosation des tache sur debian 12),`Rsync`(transfert de fichier) et `Protection System pour Windows`(Snatshoot windows).
+### Via les solution `Bareos`, `Timeshift`(Snapshot Linux), `Cron` (automatisation des taches sur debian 12),`Rsync`(transfert de fichier) et `Protection System pour Windows`(Snatshoot windows).
 
 
 ---
@@ -31,10 +31,10 @@
 
 ## :bulb: Objectif :
 
-### => Automatiser et centraliser les sauvegardes et snapshots pour que Baréos les "Récoltes".
+### => Automatiser et centraliser les sauvegardes et snapshots pour que Bareos les "Récoltes".
 ### => Pour la répartition entre Sauvegarde et Snapshot :
-* ### 🔴 Sauvegarde : se concentrera uniquement sur les document sensible et fichiers de configuration.
-* ### 🟢 Snapshoot : Uniquement points de restauration, tout les autres fichiers seront exclu, pour ne pas surcharger.
+* ### 🔴 Sauvegarde : se concentrera uniquement sur les documents sensibles et fichiers de configuration.
+* ### 🟢 Snapshoot : Uniquement points de restauration, tout les autres fichiers seront exclus, pour ne pas surcharger.
 * ### Avec deux moyende sauvegarde différent : 🔴 Sauvegarde => RAID1 et 🟢 Snapshoot un disque séparer voir [ici](https://github.com/NALSED/TUTO/tree/main/PERSO/SAUVEGARDE#disk)
 
 <details>
@@ -52,8 +52,8 @@ Projet de Base
 
 ## `Nouvelle Solution`
 
-### On garde l'idée Snapshot et sauvegarde, mais ici toute les données passeront par DNS1(qui à une architecture arm64).
-### Les snapshot et backup ainsi que leurs transfert vers DNS1 sera assuré par script, cron, rsync.
+### On garde l'idée Snapshot et sauvegarde, mais ici toutes les données passeront par DNS1(qui à une architecture arm64).
+### Les snapshot et backup ainsi que leur transfert vers DNS1 sera assuré par script, cron, rsync.
 ![cartographie de parcours utilisateur (3)](https://github.com/user-attachments/assets/061550e3-48ec-488b-a624-9c0a5d09ac10)
 
 
