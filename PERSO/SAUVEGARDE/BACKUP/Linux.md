@@ -1030,12 +1030,11 @@ III) WEB
 
 
 ### 2.1) Copie des backup
-		45 9 * * 0 cp -r /etc/var/www/html/ /home/sednal/BackupWeb
+		0 2 1 2,6,10 * cp -r /var/www/html/ /home/sednal/BackupWeb >> /var/log/backupweb.log 2>&1
 
 
 ### 2.3) Copier sur DNS1
-		45 01 * * 0 rsync -a /home/sednal/TotalWeb/ sednal@192.168.0.241:/home/sednal/TotalWeb/
-
+		40 3 1 2,6,10 *  rsync -a /home/sednal/TotalWeb/ sednal@192.168.0.241:/home/sednal/TotalWeb/ >> /var/log/rsynctotalweb.log 2>&1
 
 ### 2.4) 📝 FICHIER CRON COMPLET
 ![image](https://github.com/user-attachments/assets/cf679e0a-c58e-45b5-814f-5e79ed6d815a)
