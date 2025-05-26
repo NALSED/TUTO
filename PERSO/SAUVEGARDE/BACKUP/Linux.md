@@ -110,8 +110,11 @@
     # Maximum de 12 volumes
         Maximum Volumes = 12
 
-    # 1 job par volume
-        Maximum Volume Jobs = 1
+    # Le volume deviens recyclable après 1 jour, donc à la prochaine sauvegarde
+        Volume Retention = 1d
+
+    # Recyclage des volumes
+        Recycle = yes
 
     # Format du label des volumes
         Label Format = BackupSave-
@@ -142,7 +145,7 @@
                                 }
 
                                 File = "/home/sednal/bareos"
-                                File = "/etc/bareo"
+                                File = "/etc/bareos"
                                 }
 
 
@@ -156,7 +159,7 @@
                                         File = "/home/sednal/.local"
                                         File = "/home/sednal/.profile"
                                         File = "/home/sednal/.wget-hsts"
-
+					File = "/home/sednal/SnapshotSave"
                                         }
 
         }
