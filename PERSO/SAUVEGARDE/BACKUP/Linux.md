@@ -207,6 +207,23 @@
 </h2>
 </summary>
 
+## Cette partie contient plusieurs sous-partie, du fait du transferts des Sauvegardes et Snapshot de DNS2 et WEB ers DNS1.
+## Ces sous partie seront organisées de la manières suivante :
+
+* ## `I DNS1` Backup Uniquement , snapshot dispo [ici]()
+
+* ## `II DNS2`=> BackUp et Snapshot Réalisé ici car les données sont à présente et "Récoltable" par Bareos sur DNS1
+
+* ## `III WEB`=> BackUp et Snapshot Réalisé ici car les données sont à présente et "Récoltable" par Bareos sur DNS1
+
+
+<details>
+<summary>
+<h2>
+I DNS1
+</h2>
+</summary>
+
 # IP `192.168.0.241`
 
 ### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
@@ -330,6 +347,41 @@
                 Messages = Standard
                 Priority = 10
                 }
+
+</details>
+
+---
+
+<details>
+<summary>
+<h2>
+II DNS2  
+</h2>
+</summary>
+blabla
+</details>
+
+---
+
+
+<details>
+<summary>
+<h2>
+III WEB 
+</h2>
+</summary>
+blabla
+</details>
+
+
+
+
+
+
+
+
+
+
 
 </details>
 
