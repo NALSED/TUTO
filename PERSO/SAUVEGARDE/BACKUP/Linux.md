@@ -8,7 +8,7 @@
 
 ## `SOMMAIRE` : 
 
-* ### 1️⃣ `Serveur Sauvegarde`
+* ## 1️⃣ `Serveur Sauvegarde`
 
    * ### 1) Client
 
@@ -24,23 +24,34 @@
 
 ---
 
-* ### 2️⃣ `DNS 1`
+* ## 2️⃣ `DNS 1`
 
-   * ### 1) Client
+   * ### `I DNS1`
+  
+      * ### 1) Client
 
-   * ### 2) Pool
+      * ### 2) Pool
 
-   * ### 3 ) FileSet
+      * ### 3 ) FileSet
 
-   * ### 4) Schedule
+      * ### 4) Schedule
 
-   * ### 5) Storage
+      * ### 5) Storage
 
-   * ### 6) Job
+      * ### 6) Job
+    
+    * ### `II DNS2 `
+       * ### BackUp
+       * ### Snapshot
+    
+    * ### `III WEB`
+       * ### BackUp
+       * ### Snapshot
+
 
 ---
 
-* ### 3️⃣ `DNS 2`
+* ## 3️⃣ `DNS 2`
 
    * ### 1) Installation 
  
@@ -49,7 +60,7 @@
 
 ---
 
-* ### 4️⃣ `Serveur Web`
+* ## 4️⃣ `Serveur Web`
 
     * ### 1) Installation de Crontab
  
