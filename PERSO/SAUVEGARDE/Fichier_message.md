@@ -8,8 +8,8 @@
         Messages {
         Name = Standard
         Description = "Reasonable message delivery -- send most everything to email address and to the console."
-        operatorcommand = "/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \<landes_martin@yahoo.fr>\" -s \"Bareos: Intervention needed for %j\" %r"
-        mailcommand = "/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \<landes_martin@yahoo.fr>\" -s \"Bareos: %t %e of %c %l\" %r"
+        operatorcommand = "/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \<MAIL>\" -s \"Bareos: Intervention needed for %j\" %r" # Remplacer MAIL par un adresse mail valide
+        mailcommand = "/usr/bin/bsmtp -h localhost -f \"\(Bareos\) \<MAIL>\" -s \"Bareos: %t %e of %c %l\" %r" # Remplacer MAIL par un adresse mail valide
         operator = root = mount
         mail = root = all, !skipped, !saved, !audit
         console = all, !skipped, !saved, !audit
