@@ -442,7 +442,7 @@
 ### 5) Storage /etc/bareos/bareos-dir.d/storage/stordns1snap.conf
 
     Storage {
-      Name = stordns1SNAP
+      Name = stordns1snap
       Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
       Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
       Device = SNAP
