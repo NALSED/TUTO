@@ -976,11 +976,11 @@ III) WEB
 
 
 ### 2.1) Copie des backup
-		0 2 1 2,6,10 * cp -r /etc/bind/ /home/sednal/TotalDNS2/BackupDns2 >> /var/log/backupdns2.log 2>&1
+		00 2 1 2,6,10 * cp -r /etc/bind/ /home/sednal/TotalDNS2/BackupDns2 >> /var/log/backupdns2.log 2>&1
 	
 
 ### 2.3) Copier sur DNS1
-		0 3 1 2,6,10 *  rsync -a /home/sednal/TotalDNS2/ sednal@192.168.0.241:/home/sednal/TotalDns2/ >> /var/log/rsynctotaldns2.log 2>&1
+		00 3 1 2,6,10 *  rsync -a /home/sednal/TotalDNS2/ sednal@192.168.0.241:/home/sednal/TotalDns2/ >> /var/log/rsynctotaldns2.log 2>&1
 
 
 ### 2.4) 📝 FICHIER CRON COMPLET
@@ -1030,7 +1030,7 @@ III) WEB
 
 
 ### 2.1) Copie des backup
-		0 2 1 2,6,10 * cp -r /var/www/html/ /home/sednal/BackupWeb >> /var/log/backupweb.log 2>&1
+		0 2 1 2,6,10 * cp -r /var/www/html/ /home/sednal/TotalWeb/BackupWeb >> /var/log/backupweb.log 2>&1
 
 
 ### 2.3) Copier sur DNS1
