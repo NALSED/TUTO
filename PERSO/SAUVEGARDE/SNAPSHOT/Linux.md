@@ -543,7 +543,7 @@
 
 ### 2.6.3) Copie Snapshot
 		
-		40 2 1 2,6,10 * rsync -a /timeshift/snapshot/ /home/sednal/TotalDNS2/SnapshotDNS2/ >> /var/log/rsyncsnapshotdns2.log 2>&1
+		40 2 1 2,6,10 * rsync -a /timeshift/snapshots/ /home/sednal/TotalDNS2/SnapshotDNS2/ >> /var/log/rsyncsnapshotdns2.log 2>&1
 		
 
 ### 📝 FICHIER CRON COMPLET
@@ -631,7 +631,7 @@
 
 ### 2.6.3) Copie Snapshot
 		
-		30 10 * * 0 rsync -a /timeshift/snapshot/ /home/sednal/TotalDNS2/SnapshotWeb/
+		30 10 * * 0 rsync -a /timeshift/snapshots/ /home/sednal/TotalWeb/SnapshotWeb/
 
 ### 📝 FICHIER CRON COMPLET
 ![image](https://github.com/user-attachments/assets/01ed377f-4060-4b3b-81c0-88889bd9eb43)
