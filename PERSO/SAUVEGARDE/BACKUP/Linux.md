@@ -390,7 +390,7 @@ II) DNS2
 ### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
 
       	Client {
-        	Name = DNS1-fd
+        	Name = DNS1
        		Address = 192.168.0.241
         	FDPort = 9102
         	Catalog = MyCatalog
@@ -516,7 +516,7 @@ II) DNS2
 ### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
 
       	Client {
-        	Name = DNS1-fd
+        	Name = DNS1
        		Address = 192.168.0.241
         	FDPort = 9102
         	Catalog = MyCatalog
@@ -680,7 +680,7 @@ III) WEB
 ### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
 
       	Client {
-        	Name = DNS1-fd
+        	Name = DNS1
        		Address = 192.168.0.241
         	FDPort = 9102
         	Catalog = MyCatalog
@@ -806,7 +806,7 @@ III) WEB
 ### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
 
       	Client {
-        	Name = DNS1-fd
+        	Name = DNS1
        		Address = 192.168.0.241
         	FDPort = 9102
         	Catalog = MyCatalog
