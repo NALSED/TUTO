@@ -441,7 +441,7 @@ II) DNS2
                         		signature = MD5
 
                                 	}
-                                	File = /home/sednal/TotalDNS2/BackupDNS2/
+                                	File = /home/sednal/TotalDNS2/BackupDNS2
                                 	}
                 		# Exclu de la sauvegarde
                 		Exclude {
@@ -455,7 +455,8 @@ II) DNS2
                         	File = /home/sednal/TotalWeb
                         	File = /home/sednal/TotalDNS2/SnapshotDNS2
                         	File = /home/sednal/youTube_ads_4_pi-hole
-                        	}
+                        	File = /home/sednal/SnapshotDNS1
+			 	}
 
 
 
@@ -636,28 +637,6 @@ II) DNS2
                 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </details>
 
 ---
@@ -745,7 +724,8 @@ III) WEB
                         	File = /home/sednal/TotalDNS2
                         	File = /home/sednal/TotalWeb/SnapshotWeb
                         	File = /home/sednal/youTube_ads_4_pi-hole
-                        		}
+                        	File = /home/sednal/SnapshotDNS1
+			  		}
 
 
 
@@ -772,7 +752,7 @@ III) WEB
 
 ---
 
-### 5) Storage /etc/bareos/bareos-dir.d/storage/stordns1snap.conf
+### 5) Storage /etc/bareos/bareos-dir.d/storage/storwebback.conf
 
     Storage {
       Name = storwebback
@@ -800,6 +780,8 @@ III) WEB
                 Priority = 10
                 }
 
+---
+---
 
 ## `II) SnapShotWeb`
 
@@ -815,7 +797,7 @@ III) WEB
 
 ---
 
-### 2) Pool FULL un par mois fev jun et oct  /etc/bareos/bareos-dir.d/pool/pooldns1snap.conf
+### 2) Pool FULL un par mois fev jun et oct  /etc/bareos/bareos-dir.d/pool/poolwebsnap.conf
 
 			Pool {
         			Name = poolwebsnap
@@ -857,7 +839,7 @@ III) WEB
                         signature = MD5
 
                                 }
-                                File = /home/sednal//TotalWeb/SnapshotWeb/
+                                File = /home/sednal/TotalWeb/SnapshotWeb/
                                 }
                 # Exclu de la sauvegarde
                 Exclude {
@@ -882,7 +864,7 @@ III) WEB
 
 ---
 
-### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schdns1snap.conf
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schwebsnap.conf
 
 
 		Schedule {
