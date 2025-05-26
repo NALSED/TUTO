@@ -221,11 +221,11 @@
 ## Cette partie contient plusieurs sous-partie, du fait du transferts des Sauvegardes et Snapshot de DNS2 et WEB ers DNS1.
 ## Ces sous partie seront organisées de la manières suivante :
 
-* ## `I DNS1` Backup Uniquement , snapshot dispo [ici]()
+* ## `I) DNS1` Backup Uniquement , snapshot dispo [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/SNAPSHOT/Linux.md#ii-sauvegarde-sur-serveur-bareos-3)
 
-* ## `II DNS2`=> BackUp et Snapshot Réalisé ici car les données sont à présente et "Récoltable" par Bareos sur DNS1
+* ## `II) DNS2`=> BackUp et Snapshot Réalisé ici car les données sont à présente et "Récoltable" par Bareos sur DNS1
 
-* ## `III WEB`=> BackUp et Snapshot Réalisé ici car les données sont à présente et "Récoltable" par Bareos sur DNS1
+* ## `III) WEB`=> BackUp et Snapshot Réalisé ici car les données sont à présente et "Récoltable" par Bareos sur DNS1
 
 
 <details>
@@ -254,10 +254,10 @@ I DNS1
 
 ---
 
-### 2) Pool FULL un par mois /etc/bareos/bareos-dir.d/pool/pooldns1.conf
+### 2) Pool FULL un par mois fev jun et oct  /etc/bareos/bareos-dir.d/pool/pooldns1back.conf
 
     Pool {
-        Name = pooldns1
+        Name = pooldns1back
         Pool Type = Backup
         Recycle = yes
         AutoPrune = yes
@@ -280,12 +280,12 @@ I DNS1
 
 
 --- 
-### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/dns1backup.conf
+### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/filedns1back.conf
 
      	FileSet {
 
         # Nom du FileSet
-        Name = dns1backup
+        Name = filedns1back
                 # A inclure pour la sauvegarde
                 Include {
 
@@ -307,8 +307,14 @@ I DNS1
                         File = /home/sednal/.bash_logout
                         File = /home/sednal/.local
                         File = /home/sednal/.lesshst
-
+                        File = /home/sednal/TotalDNS2
+                        File = /home/sednal/SnapshotDNS1
+                        File = /home/sednal/TotalWeb
                         }
+
+
+
+        }
 
 
 
@@ -317,23 +323,22 @@ I DNS1
 
 ---
 
-### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schdns1.conf
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schdns1back.conf
 
 
 		Schedule {
-        		Name = schdns1
+        		Name = schdns1back
 
-        		# Full chaque 1er dimanche du mois
-        		Run = Full 1st sun at 12:00
-
-        		# Incrémental les autres dimanches
-        		Run = Incremental 2nd-5th sun at 12:00
-        		}
+        		# Full chaque 1er dimanche du mois de fevrier juin et octobre
+       			 Run = Full 1st sun at 10:30 feb
+        		 Run = Full 1st sun at 10:30 jun
+        		 Run = Full 1st sun at 10:30 oct
+       			 }
 ---
-### 5) Storage /etc/bareos/bareos-dir.d/storage/stordns1.conf
+### 5) Storage /etc/bareos/bareos-dir.d/storage/stordns1back.conf
 
     Storage {
-      Name = stordns1
+      Name = stordns1back
       Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
       Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
       Device = RAID
@@ -343,18 +348,18 @@ I DNS1
 
 ---
 
-### 6) Job /etc/bareos/bareos-dir.d/job/jobdns1.conf
+### 6) Job /etc/bareos/bareos-dir.d/job/jobdns1back.conf
 
 
 
 	Job {
-                Name = jobdns1
+                Name = jobdns1back
                 Type = Backup
-                Client = dns1-fd
-                FileSet = dns1backup
-                Schedule = schdns1
-                Storage = stordns1
-                Pool = pooldns1
+                Client = DNS1
+                FileSet = filedns1back
+                Schedule = schdns1back
+                Storage = stordns1back
+                Pool = pooldns1back
                 Messages = Standard
                 Priority = 10
                 }
@@ -366,10 +371,287 @@ I DNS1
 <details>
 <summary>
 <h2>
-II DNS2  
+II) DNS2  
 </h2>
 </summary>
-blabla
+
+## I) BackUp DNS2
+## II) SnapShot DNS2
+---
+
+## `I) BackUp DNS2`
+
+### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
+
+      	Client {
+        	Name = DNS1-fd
+       		Address = 192.168.0.241
+        	FDPort = 9102
+        	Catalog = MyCatalog
+        	Password = "sednal"
+        	}
+
+---
+
+### 2) Pool FULL un par mois fev jun et oct  /etc/bareos/bareos-dir.d/pool/pooldns2back.conf
+
+		Pool {
+       			 Name = pooldns2back
+       			 Pool Type = Backup
+        		 Recycle = yes
+        		 AutoPrune = yes
+
+    			# Garder les volumes (Full et Incrémentaux) pendant 60 jours
+    			Volume Retention = 60 days
+
+    			# Un volume peut être utilisé pendant 30 jours
+       			 Volume Use Duration = 30 days
+
+    			# Maximum de 12 volumes
+        		 Maximum Volumes = 12
+    			# Le volume deviens recyclable après 1 jour, donc à la prochaine sauvegarde
+        		 Volume Retention = 1d
+    			# Recyclage des volumes
+        		 Recycle = yes
+    			# Format du label des volumes
+        		 Label Format =  BackDns2-
+    			}
+
+---
+
+### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/filedns2back.conf
+
+			FileSet {
+
+        			# Nom du FileSet
+        			Name = filedns2back
+                		# A inclure pour la sauvegarde
+                		Include {
+
+                       		 Options {
+                        		# Ne met pas à jour l'horodatage des fichiers
+                        		noatime = yes
+                        		# Utilise MD5 pour vérifier les fichiers
+                        		signature = MD5
+
+                                	}
+                                	File = /home/sednal/TotalDNS2/BackupDNS2/
+                                	}
+                		# Exclu de la sauvegarde
+                		Exclude {
+                        	File = /home/sednal/.wget-hsts
+                        	File = /home/sednal/.bash_history
+                        	File = /home/sednal/.profile
+                        	File = /home/sednal/.bashrc
+                        	File = /home/sednal/.bash_logout
+                        	File = /home/sednal/.local
+                        	File = /home/sednal/.lesshst
+                        	File = /home/sednal/TotalWeb
+                        	File = /home/sednal/TotalDNS2/SnapshotDNS2
+                        	File = /home/sednal/youTube_ads_4_pi-hole
+                        	}
+
+
+
+        	}
+
+
+---
+
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schdns2back.conf
+
+
+		Schedule {
+        		Name = schdns2back
+
+        		# Full chaque 1er dimanche du mois
+        		Run = Full 1st sun at 11:30 feb
+        		Run = Full 1st sun at 11:30 jun
+        		Run = Full 1st sun at 11:30 oct
+        		}
+
+
+---
+
+### 5) Storage /etc/bareos/bareos-dir.d/storage/stordns2back.conf
+
+    Storage {
+      Name = stordns2back
+      Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
+      Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
+      Device = RAID
+      Media Type = File
+    }
+
+---
+
+### 6) Job /etc/bareos/bareos-dir.d/job/jobdns2back.conf
+
+
+
+	Job {
+                Name = jobdns2back
+                Type = Backup
+                Client = DNS1
+                FileSet = filedns2back
+                Schedule = schdns2back
+                Storage = stordns2back
+                Pool = pooldns2back
+                Messages = Standard
+                Priority = 10
+                }
+
+
+---
+---
+
+## `II) SnapShot DNS2` 
+
+### 1) Client /etc/bareos/bareos-dir.d/client/dns1.conf
+
+      	Client {
+        	Name = DNS1-fd
+       		Address = 192.168.0.241
+        	FDPort = 9102
+        	Catalog = MyCatalog
+        	Password = "sednal"
+        	}
+
+---
+
+### 2) Pool FULL un par mois fev jun et oct  /etc/bareos/bareos-dir.d/pool/pooldns2snap.conf
+
+		Pool {
+        		Name = pooldns2snap
+        		Pool Type = Backup
+        		Recycle = yes
+        		AutoPrune = yes
+
+    		# Garder les volumes (Full et Incrémentaux) pendant 60 jours
+    		Volume Retention = 60 days
+
+    		# Un volume peut être utilisé pendant 30 jours
+        	Volume Use Duration = 30 days
+
+    		# Maximum de 12 volumes
+        	Maximum Volumes = 12
+    		# Le volume deviens recyclable après 1 jour, donc à la prochaine sauvegarde
+        	Volume Retention = 1d
+    		# Recyclage des volumes
+        	Recycle = yes
+    		# Format du label des volumes
+        	Label Format = SnapDns2-
+    		}
+
+---
+
+### 3 ) FileSet /etc/bareos/bareos-dir.d/fileset/filedns2snap.conf
+
+			FileSet {
+
+        			# Nom du FileSet
+        			Name = filedns2snap
+                		# A inclure pour la sauvegarde
+                		Include {
+
+                        		Options {
+                        		# Ne met pas à jour l'horodatage des fichiers
+                        		noatime = yes
+                        		# Utilise MD5 pour vérifier les fichiers
+                       		 signature = MD5
+
+                                		}
+                                	File = /home/sednal/TotalDNS2/SnapshotDNS2/
+                               			 }
+                		# Exclu de la sauvegarde
+               		 Exclude {
+                        File = /home/sednal/.wget-hsts
+                        File = /home/sednal/.bash_history
+                        File = /home/sednal/.profile
+                        File = /home/sednal/.bashrc
+                        File = /home/sednal/.bash_logout
+                        File = /home/sednal/.local
+                        File = /home/sednal/.lesshst
+                        File = /home/sednal/TotalDN2/BackupDNS2
+                        File = /home/sednal/TotalWeb
+                        File = /home/sednal/SnapshotDNS1
+                        File = /home/sednal/youTube_ads_4_pi-hole
+
+                        }
+
+
+
+       		 }
+
+
+---
+
+### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schdns2snap.conf
+
+
+		Schedule {
+        		Name = schdns2snap
+
+        		# Full chaque 1er dimanche du mois
+        		Run = Full 1st sun at 11:00 feb
+        		Run = Full 1st sun at 11:00 jun
+        		Run = Full 1st sun at 11:00 oct
+        		}
+
+
+---
+
+### 5) Storage /etc/bareos/bareos-dir.d/storage/stordns2snap.conf
+
+    Storage {
+      Name = stordns2snap
+      Address = 192.168.0.141                # N.B. Use a fully qualified name here (do not use "localhost" here).
+      Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
+      Device = SNAP
+      Media Type = File
+    }
+
+---
+
+### 6) Job /etc/bareos/bareos-dir.d/job/jobdns2snap.conf
+
+
+
+	 Job {
+                Name = jobdns2snap
+                Type = Backup
+                Client = DNS1
+                FileSet = filedns2snap
+                Schedule = schdns2snap
+                Storage = stordns2snap
+                Pool = pooldns2snap
+                Messages = Standard
+                Priority = 10
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </details>
 
 ---
@@ -378,10 +660,51 @@ blabla
 <details>
 <summary>
 <h2>
-III WEB 
+III) WEB 
 </h2>
 </summary>
-blabla
+
+## I) BackUp Web
+## II) SnapShot Web
+
+ ---
+
+## `I) BackUp Web`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## `II) SnapShotWeb`
+
+
+
+ 
 </details>
 
 
