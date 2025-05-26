@@ -239,12 +239,3 @@
 </details>
 
 
-# ⚠️ Ajout de volume via bconsole ( OUBLIE DANS POOL), 
-      bconsole
-      add  volume
-
-### Comme ceci
-![image](https://github.com/user-attachments/assets/79d8add6-d39b-405f-a7f1-0bf1e09da285)
-
-
-
