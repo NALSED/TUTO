@@ -90,8 +90,8 @@ Projet de Base
     * ### `BackUp` : /home/sednal/TotalDNS2/BackupDNS2
     * ### `Snapshot` : /home/sednal/TotalDNS2/SnapshotDNS2
        * ### Sur DNS1 :
-       * ### `BackUp` : 
-       * ### `Snapshot`
+       * ### `BackUp` : BackDns2-
+       * ### `Snapshot`: SnapDns2-
 
 ---
 
@@ -101,8 +101,8 @@ Projet de Base
      * ### `BackUp` : /home/sednal/TotalWEB/BackupWEB
      * ### `Snapshot` : /home/sednal/TotalWEB/SnapshotWEB
         * ### Sur DNS1 :
-        * ### `BackUp` : 
-        * ### `Snapshot`
+        * ### `BackUp` : BackWeb-
+        * ### `Snapshot`: SnapWeb-
 
 ---
 
@@ -114,7 +114,7 @@ Projet de Base
 ---
 ---
 
-## LABEL FICHIER BAREOS
+## LABEL FICHIER CONFIGURATION BAREOS
 
 ### Fichier type :
 ### Tout en minuscule
@@ -134,64 +134,6 @@ Projet de Base
 * ### DNS Bind9 : `dns2`
 * ### Servveur Web : `web`
 ---
-
-# 📝 Recap Label Bareos :
-
-* ## `save` :
-
-   * ### BackUp :
-
-     * ### pool : poolsaveback.conf
-     * ### fileset : filesaveback.conf
-     * ### schedule : schsaveback.conf
-     * ### storage : storsaveback.conf
-     * ### job : jobsaveback.conf
-   
-   * ### SnapShot
-
-     * ### pool : poolsavesnap.conf
-     * ### fileset : filesavesnap.conf
-     * ### schedule : schsavesnap.conf
-     * ### storage : storsavesnap.conf
-     * ### job : jobsavesnap.conf
-
----
----
-
-* ## `admin` :
-
-   * ### BackUp :
-   
-   
-
-
----
----
-
- * ## `dns1` :
-
-* ### BackUp dns1 :
-   
-   
-   
-* ### SnapShot dns1 :
-
----
-
-   * ### BackUp dns2 :
-   
-   
-   
-   * ### SnapShot dns2 :
-  
----
-
-   * ### BackUp web :
-   
-   
-   
-   * ### SnapShot web :
-
 
 ---
 ---
