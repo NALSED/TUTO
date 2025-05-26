@@ -55,8 +55,11 @@
     # Maximum de 12 volumes
         Maximum Volumes = 12
 
-    # 1 job par volume
-        Maximum Volume Jobs = 1
+    # Le volume deviens recyclable après 1 jour, donc à la prochaine sauvegarde
+    Volume Retention = 1d
+    
+    # Recyclage des volumes
+    Recycle = yes
 
     # Format du label des volumes
         Label Format = BackupWin-
@@ -138,7 +141,6 @@ Schedule {
       Password = "ZsjQIPmoToPcOM7NSAXu5R84VyRSsD68osZfCHCdu+D/"
       Device = RAID
       Media Type = File
-    }
 
 ---
 
