@@ -229,7 +229,7 @@
 
 ---
 
-### 5) Storage /etc/bareos/bareos-dir.d/storage/storsavebsnap.conf
+### 5) Storage /etc/bareos/bareos-dir.d/storage/storsavesnap.conf
 
 
 		 Storage {
