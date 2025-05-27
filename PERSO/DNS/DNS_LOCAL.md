@@ -80,9 +80,9 @@
 
 ### DECLARATION DE LA ZONE DNS
 
-        zone "sednal.local" {
+        zone "sednal.lan" {
             type master;
-            file "/etc/bind/db.sednal.local";
+            file "/etc/bind/db.sednal.lan";
             allow-update { none; };
         };
 ---
@@ -94,7 +94,7 @@
 ### Copier le fichier de base en cas d'erreurs
         cp /etc/bind/db.local /home/sednal/Documents/Bkp_DNS/
 
-### Copier le fichier de base dans le fichier déclaré plus haut (db.sednal.local)
+### Copier le fichier de base dans le fichier déclaré plus haut (db.sednal.lan)
         sudo cp /etc/bind/db.local /etc/bind/db.sednal.lan
 
 ## ⚠️Utilisation de .lan car .local peux provoquer des conflits, avec des appareils Apple ou Linux qui supportent mDNS.
