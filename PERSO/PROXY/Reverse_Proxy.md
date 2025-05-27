@@ -18,6 +18,8 @@
 ## 1️⃣ `Activation des modules`
       sudo a2enmod proxy
       sudo a2enmod proxy_http
+      sudo a2enmod proxy_wstunnel
+      sudo a2enmod headers
       sudo systemctl restart apache2
 
 ## 2️⃣ Fichier de configuration proxy-reverse
@@ -52,6 +54,10 @@
       </VirtualHost>
 
 
+### Redemarer
+
+            sudo a2ensite srv-debian.conf
+            sudo systemctl reload apache2
 
 
 
