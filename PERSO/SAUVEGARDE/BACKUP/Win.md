@@ -92,10 +92,7 @@
 
 			 		}
 
-					  File = "A:/app"
-                        		  File = "A:/tse"
-			    		  File = "A:/VM"
-                         		  File = "A:/WCS"
+					  File = "A:/save"
                         		  File = "C:/Users/sednal/Documents"
                          	  	  File = "C:/Users/sednal/.ssh"
                           		  File = "C:/Users/sednal/Tor Browser"
