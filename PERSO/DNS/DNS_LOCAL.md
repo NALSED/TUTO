@@ -100,36 +100,37 @@
 ## ⚠️Utilisation de .lan car .local peux provoquer des conflits, avec des appareils Apple ou Linux qui supportent mDNS.
 
 ### Editer le fichier : /etc/bind/db.sednal.lan
-        sudo nano /etc/bind/db.sednal.lan
-        ;
-        ; BIND data file for sednal.lan
-        ;
-        $TTL    604800
-        @       IN      SOA     dns-secondaire.sednal.lan. admin.sednal.lan. (
-                                      2         ; Serial
-                                 604800         ; Refresh
-                                  86400         ; Retry
-                                2419200         ; Expire
-                                 604800 )       ; Negative Cache TTL
-        ;
-        @       IN      NS      dns-secondaire.sednal.lan.
 
-        ;DNS Secondaire Bind9
-        dns-secondaire IN      A       192.168.0.210
-        dns     IN CNAME     dns-secondaire.sednal.lan.
-        ;Services Infra
-        ;
-        pihole IN   A        192.168.0.241 ;DSN Principale
-        ;
-        srv-web IN      A    192.168.0.122 ;Serveur apache
-        www     IN CNAME     srv-web.sednal.lan.
-        ;
-        plex IN     A        192.168.0.245
-        ;
-        bareos   IN A        192.168.0.141 ;Sauvegarde
-        ;
-        wifi IN A            192.168.0.100
-        ;
+            ; BIND data file for sednal.lan
+            ;
+            $TTL    604800
+            @       IN      SOA     dns-secondaire.sednal.lan. admin.sednal.lan. (
+                              2         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+            ;
+            @       IN      NS      dns-secondaire.sednal.lan.
+
+            ;DNS Secondaire Bind9
+            dns-secondaire IN      A       192.168.0.210
+            dns     IN CNAME     dns-secondaire.sednal.lan.
+            ;Services Infra
+            ;
+            pihole  IN      A        192.168.0.241 ;DSN Principale
+            ;
+            srv-web IN      A        192.168.0.122 ;Serveur apache
+            www     IN      CNAME    srv-web.sednal.lan.
+            ;
+            plex    IN      A        192.168.0.122
+            ;
+            bareos  IN      A        192.168.0.122 ;Sauvegarde
+            ;
+            cockpit IN      A        192.168.0.122 ;Administration serveur debian
+            ;
+            wifi    IN      A        192.168.0.100
+            ;
         
 <details>
 <summary>
