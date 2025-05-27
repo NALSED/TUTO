@@ -235,6 +235,7 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ### Test réalisé sur le PC admin
 
+![image](https://github.com/user-attachments/assets/826dac50-5a4c-425b-a4a0-a7997df235b0)
 
 
 ---
