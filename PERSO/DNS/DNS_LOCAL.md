@@ -19,7 +19,7 @@
 ## 2️⃣ `Configuration : named.conf.options`
 ## 3️⃣ `Configuration : named.conf.local`
 ## 4️⃣ `Configuration : db.local`
-## 5️⃣ `Configuration : named.conf.local `
+## 5️⃣ `Configuration : named.conf.lan `
 ## 6️⃣ `Test`
 ## 7️⃣ `Récap`
 ## 8️⃣ ``
@@ -87,7 +87,7 @@
         };
 ---
 
-## 4️⃣ `Configuration : db.local`
+## 4️⃣ `Configuration : db.lan`
 
 ### Déclaration de la zone
 
@@ -95,41 +95,42 @@
         cp /etc/bind/db.local /home/sednal/Documents/Bkp_DNS/
 
 ### Copier le fichier de base dans le fichier déclaré plus haut (db.sednal.local)
-        sudo cp /etc/bind/db.local /etc/bind/db.sednal.local
+        sudo cp /etc/bind/db.local /etc/bind/db.sednal.lan
 
+## ⚠️Utilisation de .lan car .local peux provoquer des conflits, avec des appareils Apple ou Linux qui supportent mDNS.
 
-### Editer le fichier : /etc/bind/db.sednal.local
-        sudo nano /etc/bind/db.sednal.local
-                ;
-        ; BIND data file for sednal.local
+### Editer le fichier : /etc/bind/db.sednal.lan
+        sudo nano /etc/bind/db.sednal.lan
+        ;
+        ; BIND data file for sednal.lan
         ;
         $TTL    604800
-        @       IN      SOA     srv-dns.sednal.local. admin.sednal.local. (
+        @       IN      SOA     dns-secondaire.sednal.lan. admin.sednal.lan. (
                                       2         ; Serial
                                  604800         ; Refresh
                                   86400         ; Retry
                                 2419200         ; Expire
                                  604800 )       ; Negative Cache TTL
         ;
-        @       IN      NS      srv-dns.sednal.local.
-        srv-dns IN      A       192.168.0.122
-        dns     IN      CNAME   srv-dns
+        @       IN      NS      dns-secondaire.sednal.lan.
+
+        ;DNS Secondaire Bind9
+        dns-secondaire IN      A       192.168.0.210
+        dns     IN CNAME     dns-secondaire.sednal.lan.
+        ;Services Infra
         ;
-        srv-pihole IN   A       192.168.0.241
-        pihole  IN      CNAME   srv-pihole
+        pihole IN   A        192.168.0.241 ;DSN Principale
         ;
-        srv-web IN      A       192.168.0.133
-        serveur.web IN  CNAME   srv-web
+        srv-web IN      A    192.168.0.122 ;Serveur apache
+        www     IN CNAME     srv-web.sednal.lan.
         ;
-        srv-plex IN     A       192.168.0.245
-        serveur.plex IN CNAME   srv-plex
+        plex IN     A        192.168.0.245
         ;
-        service-routeur IN A    192.168.0.1
-        routeur2 IN     CNAME   service-routeur
+        bareos   IN A        192.168.0.141 ;Sauvegarde
         ;
-        service-wifi IN A       192.168.0.100
-        wifi     IN     CNAME   service-wifi
-       
+        wifi IN A            192.168.0.100
+        ;
+        
 <details>
 <summary>
 <h2>
@@ -139,7 +140,7 @@
 
 * "$TTL 604800" correspond à la durée de vie des informations fournies en seconde
 
-* @ : désigne la racine de la zone, => sednal.local.
+* @ : désigne la racine de la zone, => sednal.lan.
 
 * "SOA"Start Of Authority, soit les paramètres principaux de la zone => serveur qui a autorité sur la zone, puis l’adresse e-mail du contact technique dont le caractère « @ » est remplacé par un «.». La valeur "srv-dns.sednal.local." sert à indiquer le serveur DNS primaire (même si c'est pihole en réalité)
 
@@ -158,7 +159,7 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 </details>
        
 ### Tester le config
-        named-checkzone sednal.local /etc/bind/db.sednal.local
+        named-checkzone sednal.local /etc/bind/db.sednal.lan
 
 ### Sortie attendu
 ![image](https://github.com/user-attachments/assets/ea3ed0d0-c04a-4fe9-a471-76407f43ead7)
@@ -174,12 +175,12 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
         zone "0.168.192.in-addr.arpa" {
             type master;
-            file "/etc/bind/db.reverse.sednal.local";
+            file "/etc/bind/db.reverse.sednal.lan";
             allow-update { none; };
 
-### Edition du fichier db.reverse.sednal.local depuis db.sednal.local
-        sudo cp /etc/bind/db.sednal.local /etc/bind/db.reverse.sednal.local
-        sudo nano /etc/bind/db.reverse.sednal.local
+### Edition du fichier db.reverse.sednal.lan depuis db.sednal.lan
+        sudo cp /etc/bind/db.sednal.lan /etc/bind/db.reverse.sednal.lan
+        sudo nano /etc/bind/db.reverse.sednal.lan
 
 ### Editer les services comme ceci
 
@@ -187,29 +188,23 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
         ; BIND data file for 0.168.192.in-addr.arpa
         ;
         $TTL    604800
-        @       IN      SOA     srv-dns.sednal.local. admin.sednal.local. (
+        @       IN      SOA     dns-secondaire.sednal.lan. admin.sednal.lan. (
                                       2         ; Serial
                                  604800         ; Refresh
                                   86400         ; Retry
                                 2419200         ; Expire
                                  604800 )       ; Negative Cache TTL
         ;
-        @       IN      NS      srv-dns.sednal.local.
-        122     IN      PTR     srv-dns.sednal.local.
-        ;
-        241     IN      PTR     srv-pihole.sednal.local.
-        ;
-        244     IN      PTR     srv-web.sednal.local.
-        ;
-        245     IN      PTR     srv-plex.sednal.local.
-        ;
-        1       IN      PTR     service-routeur.sednal.local.
-        ;
-        100     IN      PTR     service-wifi.sednal.local.
+        @       IN      NS      dns-secondaire.sednal.lan.
+        210     IN      PTR     dns-secondaire.sednal.lan.
+        241     IN      PTR     pihole.sednal.lan.
+        122     IN      PTR     srv-web.sednal.lan.
+        141     IN      PTR     plex.sednal.lan.
+        100     IN      PTR     wifi.sednal.lan.
 
 ### Tester le fichier
 
-        named-checkzone 0.168.192.in-addr.arpa /etc/bind/db.reverse.sednal.local
+        named-checkzone 0.168.192.in-addr.arpa /etc/bind/db.reverse.sednal.lan
 
 ### Résultat attendu
 
@@ -223,8 +218,8 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ### Dans resolv.conf 
 
-    search sednal.local
-    domain sednal.local
+    search sednal.lan
+    domain sednal.lan
 
 
 
@@ -240,7 +235,7 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ### Test réalisé sur le PC admin
 
-![image](https://github.com/user-attachments/assets/282f6885-c296-4d22-a954-ac06855e28c6)
+
 
 ---
 
