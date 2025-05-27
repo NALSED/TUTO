@@ -97,7 +97,7 @@ no_subtree_check : désactiver la vérification des sous-dossiers, recommandé p
 ## ⚠️ Partage NFS Bibliothéque PLEX sur WEBUI et SMB doivent être le même dossier!
 ### ICI /mnt/plex/plexmedia
 
-### Utilistaion du Script
+### 3.1) Utilistaion du Script
           #!/bin/bash
 
           # Variable en fontion des besoins
@@ -125,7 +125,9 @@ no_subtree_check : désactiver la vérification des sous-dossiers, recommandé p
           # Autorise cet utilisateur à utiliser Samba
           sudo smbpasswd -e $UTILISATEUR 
 
-        
+ ### 3.2) Connection     
+ ### Entrer IP serveur dans la barre de recherche Windows:           
+![image](https://github.com/user-attachments/assets/787e01be-08ae-4de5-9a14-423e81544337)
 
 
 
