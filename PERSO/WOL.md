@@ -44,7 +44,7 @@
 ### Se rendre dans /etc/systemd/system 
       nano /etc/systemd/system/wol.service
 
-### Renseigner 
+### 1.4) Renseigner 
       [Unit]
       Description=Activer Wake-on-LAN pour enp4s0
       After=network.target # Indique que ce service doit être lancé après que le réseau ait été initialisé. Cela garantit que l’interface réseau enp4s0 existe et est prête.
@@ -57,25 +57,27 @@
       [Install]
       WantedBy=multi-user.taget # Ce service sera lancé automatiquement au démarrage quand le système atteint le mode "multi-utilisateur"
 
-### Activer le service au démarrage
+### 1.5) Activer le service au démarrage
       systemctl daemon-reexec
       systemctl daemon-reload
       systemctl enable wol.service
       systemctl start wol.service
       
-### Status 
+### 1.6) Status 
       systemctl status wol.service
 ![image](https://github.com/user-attachments/assets/605dd12d-bb24-46f2-867c-98bf171d5738)
 
 ### et le tatus de la `commande ethtool` enp4s0 est passé de `d` => `g` 
 
+### 1.7) Test Réaliser avant implémentation HTML avec [WakeMeOnLine](https://www.nirsoft.net/utils/wake_on_lan.html)
+### Test OK
+
 ---
 
 ## SUR `Serveur Web 192.168.0.122`
 
-### Insatller le module php-sockets (pour envoyer des paquets réseau bas niveau.)
+### 1.8) Installer le module php-sockets (pour envoyer des paquets réseau bas niveau.)
       apt install php php-sockets
-
 
 
 
@@ -85,12 +87,40 @@
 
 ## 2️⃣ `Implémentation HTML`
 
+## SUR `Serveur Web 192.168.0.122`
 
+### 2.1) Créer un fichier php, qui envérra le paquet magique au serveur
+             nano /var/www/html/wol.php
 
+### Fichier
 
+                  <?php
+                  function wake_on_lan($mac) {
+                      $mac_bytes = explode(':', $mac);
+                      $hw_addr = '';
 
+                      foreach ($mac_bytes as $byte) {
+                          $hw_addr .= chr(hexdec($byte));
+                      }
 
+                      $packet = str_repeat(chr(0xFF), 6) . str_repeat($hw_addr, 16);
 
+                      $sock = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
+                      socket_set_option($sock, SOL_SOCKET, SO_BROADCAST, true);
+
+                      // Adresse de broadcast
+                      $broadcast = '192.168.0.255';
+                      $port = 9;
+
+                      socket_sendto($sock, $packet, strlen($packet), 0, $broadcast, $port);
+                      socket_close($sock);
+                  }
+
+                  $mac_address = '00:11:22:33:44:55'; // Adresse MAC du serveur
+                  wake_on_lan($mac_address);
+
+                  echo "Machine réveillée (paquet envoyé à $mac_address)";
+                  ?>
 
 
 
