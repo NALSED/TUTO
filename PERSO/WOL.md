@@ -122,7 +122,7 @@
                   echo "Machine réveillée (paquet envoyé à $mac_address)";
                   ?>
 
-
+### ⚠️ D'autres modifications on été apportées voir section [SERVEUR_WEB](https://github.com/NALSED/TUTO/tree/main/PERSO/SERVEUR_WEB/AJOUT_WOL)
 
 
 
