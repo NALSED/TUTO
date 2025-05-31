@@ -41,7 +41,8 @@
 ### Attendre 
 ![image](https://github.com/user-attachments/assets/298e41aa-62aa-40e0-8861-4aba4c07d08e)
 
-### 1.5) Ouvvrir le fichier télécharger le elastic agentet lancer le script 
+### 1.5) Ouvrir le fichier télécharger le elastic agentet lancer le script 
+### ⚠️ Si 
       cd C:\Users\sednal\Desktop\elastic-agent-8.17.3-windows-x86_64
       .\elastic-agent.exe install --url=https://192.168.0.103:8220 --enrollment-token=NUVydkpwY0JRZzkxV1hNYWJqVmc6ZWJlSmhfMTFSaWlxdFc2dkY3alE5UQ==
 
