@@ -1,1 +1,252 @@
-d
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEDNAL - Accueil</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            text-align: center;
+        }
+
+        .header {
+            background: #222;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header h1 {
+            margin: 0;
+            color: white;
+            font-size: 36px;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 30px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        nav ul li a:hover {
+            color: #00aaff;
+        }
+
+        .icon-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding-bottom: 80px;
+        }
+
+        .icon-wrapper {
+            background: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px;
+            text-align: center;
+            position: relative;
+            width: 150px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .icon-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+
+        .status-dot.up {
+            background-color: green;
+        }
+
+        .status-dot.down {
+            background-color: red;
+        }
+
+        .service-name {
+            font-size: 1rem;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .status-text {
+            font-size: 0.9rem;
+            color: #fff;
+        }
+
+        .status-text.up {
+            color: #28a745;
+        }
+
+        .status-text.down {
+            color: #dc3545;
+        }
+
+        .footer {
+            background: #222;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            color: #ccc;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .header {
+            animation: fadeIn 1s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Entête -->
+    <header class="header">
+        <div>
+            <h1>GESTION</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="https://github.com/NALSED">GitHub</a></li>
+                    <li><a href="http://cockpit.sednal.lan:9090/">Cockpit</a></li>
+                    <li><a href="#" onclick="wakeServer()">O/I</a></li> <!-- Bouton pour réveiller le serveur -->
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contenu des services -->
+    <div class="icon-container" id="services-container">
+        <!-- Dynamique -->
+    </div>
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <p>&copy; version 3</p>
+    </footer>
+
+    <!-- JavaScript principal -->
+    <script>
+        const services = [
+            { name: 'PiHole', url: 'http://pihole.sednal.lan/admin', img: 'https://upload.wikimedia.org/wikipedia/en/1/15/Pi-hole_vector_logo.svg' },
+            { name: 'Bareos', url: 'http://bareos.sednal.lan/bareos-webui/', img: 'https://cdn-web.sysbee.net/wp-content/uploads/2022/02/Bareos-Logo.jpg?x95424' },
+            { name: 'Plex', url: 'http://plex.sednal.lan:32400/', img: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Plex_logo_2022.svg' }
+        ];
+
+        function createServiceCard(service) {
+            return `
+                <div class="icon-wrapper" data-service="${service.url}">
+                    <a href="${service.url}" target="_blank">
+                        <img class="icon" src="${service.img}" alt="${service.name}">
+                    </a>
+                    <div class="service-name">${service.name}</div>
+                    <div class="status-dot" id="status-${service.name}"></div>
+                    <div id="status-text-${service.name}" class="status-text">Vérification en cours...</div>
+                </div>
+            `;
+        }
+
+        async function checkServiceStatus(url) {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
+
+            try {
+                const response = await fetch(url, {
+                    method: 'HEAD',
+                    mode: 'no-cors',
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                return response.ok || response.type === 'opaque';
+            } catch (error) {
+                clearTimeout(timeoutId);
+                return false;
+            }
+        }
+
+        async function updateDashboard() {
+            const container = document.getElementById('services-container');
+            container.innerHTML = '';
+            services.forEach(service => {
+                container.innerHTML += createServiceCard(service);
+            });
+
+            for (const service of services) {
+                const status = await checkServiceStatus(service.url);
+                const statusDot = document.getElementById(`status-${service.name}`);
+                const statusText = document.getElementById(`status-text-${service.name}`);
+
+                if (status) {
+                    statusDot.className = 'status-dot up';
+                    statusText.className = 'status-text up';
+                    statusText.textContent = `En ligne - ${new Date().toLocaleTimeString()}`;
+                } else {
+                    statusDot.className = 'status-dot down';
+                    statusText.className = 'status-text down';
+                    statusText.textContent = `Hors ligne - ${new Date().toLocaleTimeString()}`;
+                }
+            }
+        }
+
+        setInterval(updateDashboard, 5000);
+        updateDashboard();
+
+        function wakeServer() {
+            if (confirm("Allumer le serveur de sauvegarde ?")) {
+                fetch('wake.php', {
+                    method: 'POST'
+                })
+                .then(response => response.text())
+                .then(msg => alert(msg))
+                .catch(error => alert("Erreur lors de l’envoi : " + error));
+            }
+        }
+    </script>
+</body>
+
+</html>
+
