@@ -79,7 +79,7 @@
 ## 3️⃣ `Install` 
 
 ### 3.1) MAJ apt :
-    Sudo apt update
+    sudo apt update
 
 ### Sortie attendu :
 ![image](https://github.com/user-attachments/assets/8801b558-777c-4862-8fae-b7408b2adf47)
