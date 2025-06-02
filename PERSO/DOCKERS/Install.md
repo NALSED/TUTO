@@ -25,9 +25,9 @@
 ### 1.2) Créer un répertoir keyrings  dans /etc/apt afin de  stocker  les clés : 
     sudo install -m 0755 -d /etc/apt/keyrings
 
-* ### `install ` créer le répertoire.
-* ### `-m 0755` édition des droits.
-* ### `-d` créé le répertoire si il  n'est pas présent dans apt
+* #### `install ` créer le répertoire.
+* #### `-m 0755` édition des droits.
+* #### `-d` créé le répertoire si il  n'est pas présent dans apt
 
 ##### (sudo install -m 0755 -d /etc/apt/keyrings = sudo mkdir -p /etc/apt/keyrings && sudo chmod 0755 /etc/apt/keyrings )
 
@@ -35,12 +35,12 @@
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
 
-* ### f => n'affiche pas les erreurs
-* ### s => si le téléchargement échoue, affichage erreur
-* ### S => Montre les erreurs de redirection
-* ### L => gére les redirections
-* ### --dearmor retir l'envelope ASCII => -----BEGIN PGP PUBLIC KEY BLOCK----- et -----END PGP PUBLIC KEY BLOCK-----
-* ### -o outpout => donc la sortie vers
+* #### f => n'affiche pas les erreurs
+* #### s => si le téléchargement échoue, affichage erreur
+* #### S => Montre les erreurs de redirection
+* #### L => gére les redirections
+* #### --dearmor retir l'envelope ASCII => -----BEGIN PGP PUBLIC KEY BLOCK----- et -----END PGP PUBLIC KEY BLOCK-----
+* #### -o outpout => donc la sortie vers
 
 ### 1.4) changer permitions en lecture
           sudo chmod a+r /etc/apt/keyrings/docker.gpg
@@ -87,11 +87,11 @@
 ### 3.2) Installation de Docker
     sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
-* ### docker-ce => le logiciel
-* ### docker-ce-cli => client
-* ### containerd.io  => daemond execution conteneur
-* ### docker-buildx-plugin => ajoute du support de création  de conteneur
-* ### docker-compose-plugin => Décrire l'architecture en .yaml 
+* #### docker-ce => le logiciel
+* #### docker-ce-cli => client
+* #### containerd.io  => daemond execution conteneur
+* #### docker-buildx-plugin => ajoute du support de création  de conteneur
+* #### docker-compose-plugin => Décrire l'architecture en .yaml 
 
 ### 3.3) Test
 ![image](https://github.com/user-attachments/assets/9f71e017-5c7c-47fa-87f0-aa5a44bdf568)
