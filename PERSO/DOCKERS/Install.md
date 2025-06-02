@@ -20,7 +20,7 @@
 
 ##  1️⃣ `Prérequis`
 ### 1.1) Plusieurs paquets sont nécessaires avant l'instalation de Docker, pour la créationnde certificats clés gpg.  
-     sudo apt install ca-certificates curl  gnupg
+     sudo apt install -y ca-certificates curl  gnupg
 
 ### 1.2) Créer un répertoir keyrings  dans /etc/apt afin de  stocker  les clés : 
     sudo install -m 0755 -d /etc/apt/keyrings
@@ -52,9 +52,9 @@
 ### 2.1) Création d''un fichier docker.list, pour  installation et mise à jour des paquets.
 ### 2.2) Ce rendre dans  le répertoire `/sources.list.d` et créer le  fichier
       cd /etc/apt/sources.list.d
-      sudo nano docker.list
+      sudo nano docker.source
 ### 2.3) y placer un commentaire (peux importe)
-      # Docker.list
+      # Docker.source
 
 ### Rechercher la version de l'OS et l'architecture:
       cat  /etc/os-release
@@ -66,6 +66,8 @@
 
 ### Création de la liste
     sudo nano /etc/apt/sources.list.d/docker.sources
+
+### Editer   
     Types: deb
     URIs: https://download.docker.com/linux/ubuntu
     Suites: noble
