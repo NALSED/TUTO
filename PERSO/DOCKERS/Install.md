@@ -98,8 +98,8 @@
 ### 3.3) Test
 ![image](https://github.com/user-attachments/assets/9f71e017-5c7c-47fa-87f0-aa5a44bdf568)
 
-
-
-
+### 3.4) ajouter l'utilisateur au  groupe docker (pour ne plus taper sudo)
+    sudo usermod -aG docker $USER
+    newgrp docker
 
     
