@@ -92,10 +92,13 @@
 
 			 		}
 
-					  File = "A:/save"
-                        		  File = "C:/Users/sednal/Documents"
-                         	  	  File = "C:/Users/sednal/.ssh"
-                          		  File = "C:/Users/sednal/Tor Browser"
+					 File = "A:/save"
+                       			 File = "C:/Users/sednal/Documents"
+                      			 File = "C:/Users/sednal/.ssh"
+                      			 File = "C:/Users/sednal/Tor Browser"
+                       			 File = "S:/"
+                      			 File = "D:/"
+
 					}
 
 
