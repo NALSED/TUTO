@@ -29,7 +29,7 @@
 * ### `-m 0755` édition des droits.
 * ### `-d` créé le répertoire si il  n'est pas présent dans apt
 
-### (sudo install -m 0755 -d /etc/apt/keyrings = sudo mkdir -p /etc/apt/keyrings && sudo chmod 0755 /etc/apt/keyrings )
+##### (sudo install -m 0755 -d /etc/apt/keyrings = sudo mkdir -p /etc/apt/keyrings && sudo chmod 0755 /etc/apt/keyrings )
 
 ### 1.3) Récupérer la clé gpg de docker :
       curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
