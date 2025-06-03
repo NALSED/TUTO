@@ -2,8 +2,8 @@
 
 ---
 
-## Ce Tuto à pour but de montrer la mise en place, d'une administration de docker, sur PC `Windows 11 192.168.0.111`.
-## Pour un logiciel installé sur VM `Ubuntu_Serveur 192.1680.103`.
+## Ce Tuto à pour but de montrer la mise en place, d'une administration de docker, sur PC `Windows 11 => 192.168.0.111`.
+## Pour un logiciel installé sur VM `Ubuntu_Serveur => 192.168.0.103`.
 ## Ainsi que la connection avec `VSC`, pour l'édition des `Docker File` et `Docker Compose` 
 
 ### `Labo`
