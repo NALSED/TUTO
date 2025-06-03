@@ -239,7 +239,7 @@
 
 ### Mais  à chaque redémarage elle seront effacées
 
-###  4.3) Inscription définitive  des des variables d'environement: 
+###  4.3) Inscription définitive  des variables d'environement: 
 ### Powershell en Admin  
             [System.Environment]::SetEnvironmentVariable("DOCKER_HOST", "tcp://192.168.0.101:2376", "User")
             [System.Environment]::SetEnvironmentVariable("DOCKER_TLS_VERIFY", "1", "User")
