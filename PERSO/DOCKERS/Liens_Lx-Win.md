@@ -17,7 +17,7 @@
 ## 1️⃣ Connection Serveur / VSC.
 ## 2️⃣ Connection Docker Desktop sur Windows / Docker Engine sur Ubuntu SANS TLS
 ## 3️⃣ Connection Docker Desktop sur Windows / Docker Engine sur Ubuntu AVEC TLS
-
+## 4️⃣ Session permanante Win11/Ubuntu-serveur
 
 ---
 ---
@@ -218,4 +218,53 @@
 
 ---
 
+<details>
+<summary>
+<h2>
+4️⃣ Session permanente Win11/Ubuntu-serveur
+</h2>
+</summary>
 
+###  L'objectif de cette dernière partie  est de créer un session permanant et sécurisée entre  Pc admin etle serveur Ubuntu.
+### 4.1) Pour ce  passer de ces lignes à chaques commandes
+             --tlsverify `
+             --tlscacert="C:\cert-docker\ca.pem" `
+             --tlscert="C:\cert-docker\cert.pem" `
+             --tlskey="C:\cert-docker\key.pem" `
+
+### 4.2) On  pourrait définir des variables d'environement
+            $env:DOCKER_HOST = "tcp://192.168.0.101:2376"
+            $env:DOCKER_TLS_VERIFY = "1"
+            $env:DOCKER_CERT_PATH = "C:\cert-docker"
+
+### Mais  à chaque redémarage elle seront effacées
+
+###  4.3) Inscription définitive  des des variables d'environement: 
+### Powershell en Admin  
+            [System.Environment]::SetEnvironmentVariable("DOCKER_HOST", "tcp://192.168.0.101:2376", "User")
+            [System.Environment]::SetEnvironmentVariable("DOCKER_TLS_VERIFY", "1", "User")
+            [System.Environment]::SetEnvironmentVariable("DOCKER_CERT_PATH", "C:\cert-docker", "User")
+![image](https://github.com/user-attachments/assets/096c63c6-5dda-4e65-8570-8577dec15936)
+
+### 4.5) Maintenant on  peux exécuter des commandes Docker sécurisées via  Windows 11 vers le serveur Ubuntu distant 
+![image](https://github.com/user-attachments/assets/1d4e0adc-5296-483e-be77-60273f9555f8)
+
+![image](https://github.com/user-attachments/assets/0866f573-fa6e-4d38-970c-44d1457fbfe1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
