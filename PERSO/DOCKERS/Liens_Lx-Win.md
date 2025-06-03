@@ -17,7 +17,7 @@
 ## 1️⃣ Connection Serveur / VSC.
 ## 2️⃣ Connection Docker Desktop sur Windows / Docker Engine sur Ubuntu SANS TLS
 ## 3️⃣ Connection Docker Desktop sur Windows / Docker Engine sur Ubuntu AVEC TLS
-## 4️⃣ Session permanante Win11/Ubuntu-serveur
+## 4️⃣ Session permanente Win11/Ubuntu-serveur
 
 ---
 ---
