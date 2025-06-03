@@ -1,5 +1,5 @@
 # `Centralisation Des Sauvegardes`
-
+# ⚠️MAJ DNS2 à été supprimé de l'infra, fichier de conf nétoyé de bareos, il reste dans la doc à titre d'exemple.
 ---
 
 ### Ce Tuto à pour but de créer une solution de sauvegarde et snapshot, centralisées pour windows et linux.
