@@ -59,15 +59,47 @@
 ## 2️⃣ `Configuration : named.conf.options`
 
 ### La syntaxe est dispo ici [It-Connect](https://www.it-connect.fr/dns-avec-bind-9/)
-### Conf dans l'ordre : 
+### Pour  que DNS2 pointe vers DNS1 :  DNS2 -> 192.168.0.210 (Bind9) -> DNS1 192.168.0.241 (Pi-hole) -> Internet/routeur
 
-### Avant le bloc Option
-![Screenshot from 2025-05-12 10-45-28](https://github.com/user-attachments/assets/d4bd27d1-da68-495b-b9bb-69e94b24a8e8)
+        options {
+        directory "/var/cache/bind";
 
-### Bloc option:
-![Screenshot from 2025-05-11 19-05-20](https://github.com/user-attachments/assets/5b4c59ad-370d-4646-8753-9929443e8ed5)
+        // If there is a firewall between you and nameservers you want
+        // to talk to, you may need to fix the firewall to allow multiple
+        // ports to talk.  See http://www.kb.cert.org/vuls/id/800113
 
-![Screenshot from 2025-05-11 19-19-54](https://github.com/user-attachments/assets/392587b9-6b34-4bdd-b1d4-a66ffe4a09e2)
+        // If your ISP provided one or more IP addresses for stable
+        // nameservers, you probably want to use them as forwarders.
+        // Uncomment the following block, and insert the addresses replacing
+        // the all-0's placeholder.
+
+         forwarders {
+                192.168.0.241;
+         };
+
+        forward only;
+
+
+        auth-nxdomain no;    # conform to RFC1035
+
+        listen-on { any; };
+
+        //mode récursif pour résoudre les noms externes
+        recursion yes;
+
+
+
+        //========================================================================
+        // If BIND logs error messages about the root key being expired,
+        // you will need to update your keys.  See https://www.isc.org/bind-keys
+        //========================================================================
+        dnssec-validation auto;
+
+        listen-on-v6 { any; };
+        };
+
+
+
 
     sudo named-checkconf
 
