@@ -196,7 +196,7 @@
 ### Renomer les fichier copier  en => ca.pem / cert.pem / key.pem
 
 ### Créer un dossier ici: 
-      C:\Users\sednal\Documents\cert-docker
+
 ### Copier les fichiers de certification
 
 ### Et pour finir lancer cette commande dans powershell (en une seul fois)
