@@ -225,6 +225,8 @@
 </h2>
 </summary>
 
+##  `Ubuntu-serveur/Win11`
+
 ###  L'objectif de cette dernière partie  est de créer un session permanant et sécurisée entre  Pc admin etle serveur Ubuntu.
 ### 4.1) Pour ce  passer de ces lignes à chaques commandes
              --tlsverify `
@@ -250,6 +252,66 @@
 ![image](https://github.com/user-attachments/assets/1d4e0adc-5296-483e-be77-60273f9555f8)
 
 ![image](https://github.com/user-attachments/assets/0866f573-fa6e-4d38-970c-44d1457fbfe1)
+
+
+---
+---
+
+## `Ubuntu-serveur/Debian`
+
+### 1.1) Copier les certificats depuis le Serveur => Client
+       su -
+       scp -r /etc/docker/certs/ sednal@192.168.0.104:/home/sednal/
+
+### 1.2) Déplacer les certificats à leur emplacement définitif
+      mv /home/sednal/certs /etc/docker/
+      chown -R root:root /etc/docker/certs
+      chmod 600 /etc/docker/certs/*.pem
+
+### 1.3) Renomer les certificats 
+      mv /etc/docker/certs/server-cert.pem /etc/docker/certs/cert.pem
+      mv /etc/docker/certs/server-key.pem /etc/docker/certs/key.pem
+      
+### 1.4) Editer le fichier docker.service
+      nano /lib/systemd/system/docker.service
+
+### 1.5) Editer
+            ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 \
+            --containerd=/run/containerd/containerd.sock \
+            --tlsverify \
+            --tlscacert=/etc/docker/certs/ca.pem \
+            --tlscert=/etc/docker/certs/cert.pem \
+            --tlskey=/etc/docker/certs/key.pem
+            ExecReload=/bin/kill -s HUP $MAINPID
+            TimeoutStartSec=0
+            RestartSec=2
+            Restart=always
+
+### Ce qui est rajouté  en 🟢
+![image](https://github.com/user-attachments/assets/92246ecb-e59c-49ba-86e1-f24fae4dcd49)
+
+### Redemarrer Daemon et service
+       systemctl daemon-reexec
+       systemctl daemon-reload
+       systemctl restart docker
+
+### Vérif 
+# 🔴 Après un systemctl status docker` 
+![image](https://github.com/user-attachments/assets/639afd77-79a1-42e6-9f97-4b78d5f74643)
+
+# 🟢 Après un `systemctl status docker` 
+![image](https://github.com/user-attachments/assets/6086a240-7d2a-476f-8199-fa77e865fbe2)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
