@@ -67,7 +67,7 @@
 ### Création de la liste
     sudo nano /etc/apt/sources.list.d/docker.sources
 
-### Editer   
+### Editer (Ubuntu server)  
     Types: deb
     URIs: https://download.docker.com/linux/ubuntu
     Suites: noble
@@ -75,6 +75,10 @@
     Architectures: amd64
     Signed-By: /etc/apt/keyrings/docker.gpg
 
+### Editer (Debian 12) 
+
+    sudo nano /etc/apt/sources.list.d/docker.list
+    deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian/ bookworm stable
 
 ---
 
