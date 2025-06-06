@@ -221,7 +221,7 @@
 <details>
 <summary>
 <h2>
-4️⃣ Session permanente Win11/Ubuntu-serveur
+4️⃣ Session permanente
 </h2>
 </summary>
 
