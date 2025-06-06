@@ -17,7 +17,7 @@
 ## 1️⃣ Connection Serveur / VSC.
 ## 2️⃣ Connection Docker Desktop sur Windows / Docker Engine sur Ubuntu SANS TLS
 ## 3️⃣ Connection Docker Desktop sur Windows / Docker Engine sur Ubuntu AVEC TLS
-## 4️⃣ Session permanente Win11/Ubuntu-serveur
+## 4️⃣ Changer le client distant
 
 ---
 ---
@@ -195,7 +195,8 @@
 
 ### Renomer les fichier copier  en => ca.pem / cert.pem / key.pem
 
-### Créer un dossier ici: 
+### Créer un dossier ici
+      C:\cert-docker\
 
 ### Copier les fichiers de certification
 
@@ -221,11 +222,20 @@
 <details>
 <summary>
 <h2>
-4️⃣ Session permanente
+4️⃣ Changer le client distant
 </h2>
 </summary>
 
-##  `Ubuntu-serveur/Win11`
+## I) Linux/Win11
+## II) Plusieurs Clients
+
+
+
+## I) `Linux/Win11`
+
+## ⚠️ technique valable pour un seul client,car  la variable `DOCKER_HOST` prend le dessus sur les autres clients
+
+---
 
 ###  L'objectif de cette dernière partie  est de créer un session permanant et sécurisée entre  Pc admin etle serveur Ubuntu.
 ### 4.1) Pour ce  passer de ces lignes à chaques commandes
@@ -257,49 +267,23 @@
 ---
 ---
 
-## `Ubuntu-serveur/Debian`
 
-### 1.1) Editer les certificats 
-[VOIR](https://github.com/NALSED/TUTO/blob/main/PERSO/DOCKERS/Liens_Lx-Win.md#g%C3%A9n%C3%A8rer-la-ca-)
-      
-### 1.2) Editer le fichier docker.service
-      nano /lib/systemd/system/docker.service
+## II) Plusieurs Clients
 
-### 1.3) Editer
-            ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 \
-            --containerd=/run/containerd/containerd.sock \
-            --tlsverify \
-            --tlscacert=/etc/docker/certs/ca.pem \
-            --tlscert=/etc/docker/certs/cert.pem \
-            --tlskey=/etc/docker/certs/key.pem
-            ExecReload=/bin/kill -s HUP $MAINPID
-            TimeoutStartSec=0
-            RestartSec=2
-            Restart=always
+### Ici utilisation de docker context pour changer de client, ici les variables d'environements doivent être supprimées.   
 
-### Ce qui est rajouté  en 🟢
-![image](https://github.com/user-attachments/assets/92246ecb-e59c-49ba-86e1-f24fae4dcd49)
+### 2.1) Création du docker context
+     docker context create remote101-tls --docker host=tcp://192.168.0.101:2376,ca=C:\cert-docker\ca.pem,cert=C:\cert-docker\cert.pem,key=C:\cert-docker\key.pem
 
-### Redemarrer Daemon et service
-       systemctl daemon-reexec
-       systemctl daemon-reload
-       systemctl restart docker
+### ET
+      docker context create remote104-tls --docker host=tcp://192.168.0.104:2376,ca=C:\cert-docker\ca.pem,cert=C:\cert-docker\cert.pem,key=C:\cert-docker\key.pem
 
-### Vérif 
-# 🔴 Après un systemctl status docker` 
-![image](https://github.com/user-attachments/assets/639afd77-79a1-42e6-9f97-4b78d5f74643)
+### Pour choisir 
+      docker context ls
+      docker context use remote104-tls
 
-# 🟢 Après un `systemctl status docker` 
-![image](https://github.com/user-attachments/assets/6086a240-7d2a-476f-8199-fa77e865fbe2)
-
-
-
-
-
-
-
-
-
+###  Resultat
+![image](https://github.com/user-attachments/assets/0ed276ae-639f-4524-ae89-19a86b7f0610)
 
 
 
