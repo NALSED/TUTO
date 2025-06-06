@@ -259,23 +259,13 @@
 
 ## `Ubuntu-serveur/Debian`
 
-### 1.1) Copier les certificats depuis le Serveur => Client
-       su -
-       scp -r /etc/docker/certs/ sednal@192.168.0.104:/home/sednal/
-
-### 1.2) Déplacer les certificats à leur emplacement définitif
-      mv /home/sednal/certs /etc/docker/
-      chown -R root:root /etc/docker/certs
-      chmod 600 /etc/docker/certs/*.pem
-
-### 1.3) Renomer les certificats 
-      mv /etc/docker/certs/server-cert.pem /etc/docker/certs/cert.pem
-      mv /etc/docker/certs/server-key.pem /etc/docker/certs/key.pem
+### 1.1) Editer les certificats 
+     [VOIR]()
       
-### 1.4) Editer le fichier docker.service
+### 1.2) Editer le fichier docker.service
       nano /lib/systemd/system/docker.service
 
-### 1.5) Editer
+### 1.3) Editer
             ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 \
             --containerd=/run/containerd/containerd.sock \
             --tlsverify \
