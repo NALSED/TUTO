@@ -6,24 +6,24 @@
 
 #### Voici la sortie  de  la commnde lsblk -f
 
-NAME    FSTYPE            FSVER LABEL     UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
-fd0
-sda
-└─sda1  linux_raid_member 1.2   serveur:0 b11075b3-8674-0fd0-aeba-0c478258b28d
-  └─md0 ext4              1.0             28d9de52-91a6-457b-8a16-2129113f1978  513.6G    39% /mnt/backup
-sdb
-├─sdb1  ext4              1.0             1f033d5c-e253-4ec7-a723-1ac2feedd7d4  541.8G     3% /mnt/snapshot
-└─sdb2  ext4              1.0             2d7fdc1a-c5fb-44e0-b84f-52446db96e4b  236.9G    14% /mnt/Plex
-sdc
-├─sdc1  ext4              1.0             3cd5a805-dc7e-4953-bf1e-de84cd63566e   94.9G     7% /
-├─sdc2
-└─sdc5  swap              1               99c91db1-f15d-465e-92ce-a4a06f700779                [SWAP]
-sdd
-└─sdd1  linux_raid_member 1.2   serveur:0 b11075b3-8674-0fd0-aeba-0c478258b28d
-  └─md0 ext4              1.0             28d9de52-91a6-457b-8a16-2129113f1978  513.6G    39% /mnt/backup
-sde
-├─sde1
-└─sde2
+      NAME    FSTYPE            FSVER LABEL     UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
+      fd0
+      sda
+      └─sda1  linux_raid_member 1.2   serveur:0 b11075b3-8674-0fd0-aeba-0c478258b28d
+      └─md0 ext4              1.0             28d9de52-91a6-457b-8a16-2129113f1978  513.6G    39% /mnt/backup
+      sdb
+      ├─sdb1  ext4              1.0             1f033d5c-e253-4ec7-a723-1ac2feedd7d4  541.8G     3% /mnt/snapshot
+      └─sdb2  ext4              1.0             2d7fdc1a-c5fb-44e0-b84f-52446db96e4b  236.9G    14% /mnt/Plex
+      sdc
+      ├─sdc1  ext4              1.0             3cd5a805-dc7e-4953-bf1e-de84cd63566e   94.9G     7% /
+      ├─sdc2
+      └─sdc5  swap              1               99c91db1-f15d-465e-92ce-a4a06f700779                [SWAP]
+      sdd
+      └─sdd1  linux_raid_member 1.2   serveur:0 b11075b3-8674-0fd0-aeba-0c478258b28d
+        └─md0 ext4              1.0             28d9de52-91a6-457b-8a16-2129113f1978  513.6G    39% /mnt/backup
+      sde
+      ├─sde1
+      └─sde2
 
 ---
 ### ⚠️ Le  disque externe doit être partitionné en GPT
