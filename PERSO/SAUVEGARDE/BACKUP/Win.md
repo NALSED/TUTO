@@ -122,7 +122,7 @@
 ### 4) Schedule /etc/bareos/bareos-dir.d/schedule/schwin.conf
 
 
-Schedule {
+		Schedule {
         Name = schwin
 
         # Full chaque 1er dimanche du mois
