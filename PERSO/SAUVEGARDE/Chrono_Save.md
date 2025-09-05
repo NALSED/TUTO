@@ -27,8 +27,7 @@
 * ## 3️⃣ `DNS1`
   * ### Snapshot : 2:10
   * ## Récupération des dossier par Baréos de `WEB`  =>  `Snapshot` 9:00 // `BackUp` 9:30
-  * ## Récupération des dossier par Baréos de `DNS1` =>  `Snapshot`  10:00 // `BackUp` 10::00
-  * ## Récupération des dossier par Baréos de `DNS2` => `Snapshot` 11:00 // `BackUp` 11:30
+  * ## Récupération des dossier par Baréos de `DNS1` =>  `Snapshot`  12:30 // `BackUp` 12:30
 
 
 
