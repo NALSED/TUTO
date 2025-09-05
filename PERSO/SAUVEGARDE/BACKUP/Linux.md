@@ -336,9 +336,9 @@ I) DNS1
         		Name = schdns1back
 
         		# Full chaque 1er dimanche du mois de fevrier juin et octobre
-       			 Run = Full 1st sun at 10:30 feb
-        		 Run = Full 1st sun at 10:30 jun
-        		 Run = Full 1st sun at 10:30 oct
+       			 Run = Full 1st sun at 12:30 feb
+        		 Run = Full 1st sun at 12:30 jun
+        		 Run = Full 1st sun at 12:30 oct
        			 }
 ---
 ### 5) Storage /etc/bareos/bareos-dir.d/storage/stordns1back.conf
@@ -744,9 +744,9 @@ III) WEB
         		Name = schwebback
 
         		# Full chaque 1er dimanche du mois de fevrier juin et octobre
-        		Run = Full 1st sun at 09:30 feb
-        		Run = Full 1st sun at 09:30 jun
-		        Run = Full 1st sun at 09:30 oct
+        		Run = Full 1st sun at 12:40 feb
+        		Run = Full 1st sun at 12:40 jun
+		        Run = Full 1st sun at 12:40 oct
         		}
 
 
@@ -871,9 +871,9 @@ III) WEB
         		Name = schwebsnap
 
        		 	# Full chaque 1er dimanche du mois de fevrier juin et octobre
-        		Run = Full 1st sun at 09:00 feb
-        		Run = Full 1st sun at 09:00 jun
-        		Run = Full 1st sun at 09:00 oct
+        		Run = Full 1st sun at 12:40 feb
+        		Run = Full 1st sun at 12:40 jun
+        		Run = Full 1st sun at 12:40 oct
         }
 
 
