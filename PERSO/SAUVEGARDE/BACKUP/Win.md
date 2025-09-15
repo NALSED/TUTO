@@ -41,29 +41,28 @@
 ### 2) Pool FULL un par mois /etc/bareos/bareos-dir.d/pool/poolwin.conf
 
     Pool {
-        Name = poolwin
-        Pool Type = Backup
-        Recycle = yes
-        AutoPrune = yes
-
-    # Garder les volumes (Full et Incrémentaux) pendant 60 jours
-    Volume Retention = 60 days
-
-    # Un volume peut être utilisé pendant 30 jours
-        Volume Use Duration = 30 days
-
-    # Maximum de 12 volumes
-        Maximum Volumes = 12
-
-    # Le volume deviens recyclable après 1 jour, donc à la prochaine sauvegarde
-    Volume Retention = 1d
-    
-    # Recyclage des volumes
+    Name = poolwin
+    Pool Type = Backup
     Recycle = yes
+    AutoPrune = yes
 
-    # Format du label des volumes
-        Label Format = BackupWin-
-    }  
+		# Garder les volumes (Full et Incrémentaux) pendant 60 jours
+		Volume Retention = 2 days
+
+		# Un volume peut être utilisé pendant 30 jours
+    		Volume Use Duration = 30 days
+
+		# Maximum de 12 volumes
+    		Maximum Volumes = 2
+
+		# forcer rotation
+    		Maximum Volume Jobs = 1
+
+		# Format du label des volumes
+    		Label Format = BackupWin-
+		}
+
+  
 
 
 --- 
