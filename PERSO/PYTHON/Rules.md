@@ -145,7 +145,12 @@
 ---
 ---
 
-### `List`
+# `Données intégrés`
+
+---
+
+## :one `List`
+
 
 #### Déclarer une liste
        ip_list = ["192.168.0.122", "192.168.23.152"]
@@ -161,9 +166,10 @@
 
 ---
 
-Supprime tous les éléments de la liste
-clear()
-
+#### `Supprime` tous les éléments de la liste ===> clear()
+      >>> ip_list.clear()
+      >>> print(ip_list)
+      []
 ---
 
 #### Renvoie une copie de la liste ===> copy()
@@ -260,8 +266,51 @@ clear()
 
  
 ---
-### ``
- 
+---
+
+
+## 2️⃣ `Tuples`
+
+##### `Les tuples sont utilisés pour stocker plusieurs éléments dans une seule variable.`  Un tuple est une collection ordonnée et immuable, `de façon permanante`
+
+      >>> ip_info = ("192.168.0.152", "255.255.255.0")
+      >>> print ip_info
+      ('192.168.0.152', '255.255.255.0')
+      
+#### Récupérer les données
+      >>> print(ip_info)
+      ('192.168.0.152', '255.255.255.0')
+      >>> ip, mask = ip_info
+      >>> print(ip)
+      '192.168.0.152
+      >>> print(mask)
+      '255.255.255.0'
+
+#### Combiner
+      ip_test= (("192.168.0.1","255.255.255.0"), ("192.168.0.2","255.255.255.0"))
+      print(ip_test)
+      (('192.168.0.1', '255.255.255.0'), ('192.168.0.2', '255.255.255.0'))
+
+#### lier
+     
+      >>> print(ip_test)
+      (('192.168.0.1', '255.255.255.0'), ('192.168.0.2', '255.255.255.0'))
+      >>> ip_test1 = ("192.168.0.1","255.255.255.0")
+      >>> ip_test2 = ("192.168.0.2","255.255.255.0")
+      >>> ip_test = ip_test1 + ip_test2
+      >>> print(ip_test)
+      ('192.168.0.1', '255.255.255.0', '192.168.0.2', '255.255.255.0')
+
+
+
+---
+--- 
+
+## 3️⃣ `Range`
+
+
+
+
 ---
 
 
