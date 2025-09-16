@@ -26,9 +26,18 @@
 #### 1️⃣ Snake case : my_variable_name
 #### 2️⃣ Ne pas utiliser le mots clés de python (else, if, for, while, return, True, False) 
 #### 3️⃣ [NOM VARIABLE] [OPERATEUR D'AFFECTATION] [VALEUR]
+#### Portée Global🔴
+#### Portée Local🟢
 
 
+            device_name = "router 1" #🔴
 
+            def  test():
+                test_value = "test OK" #🟢
+                print(test_value)
+                print(device_name)
+
+test()
 
 
  
