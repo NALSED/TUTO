@@ -1,5 +1,5 @@
 # Régles et Astuces Python.
-
+[PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)
 ---
 ---
 
@@ -21,7 +21,16 @@
 ---
 
 
-### ``
+### `Variables`
+
+#### 1️⃣ Snake case : my_variable_name
+#### 2️⃣ Ne pas utiliser le mots clés de python (else, if, for, while, return, True, False) 
+#### 3️⃣ [NOM VARIABLE] [OPERATEUR D'AFFECTATION] [VALEUR]
+
+
+
+
+
  
 ---
 ### ``
