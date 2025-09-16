@@ -37,15 +37,49 @@
                 print(test_value)
                 print(device_name)
 
-test()
+            test()
 
-
- 
 ---
-### ``
- 
 ---
+### `Opérateur`
 
+#### STR ⬇️
+[STRING](https://www.w3schools.com/python/python_strings.asp)
+#### `Concaténation`
+      salutation = "Bonjour"
+      nom = "Jen Patate"
+      print(salutation+" "+nom)
+#### Sortie
+      (.venv) PS A:\save\Python> py .\chaine_caractere.py
+      Bonjour Jen Patate
+
+--- 
+
+#### Multiplication
+      print(nom*6)
+
+#### Sortie
+      Jen PatateJen PatateJen PatateJen PatateJen PatateJen Patate
+
+---
+#### Slicing
+
+      >>> nom = "Jean"
+      >>> nom [0]
+      'J'
+      >>> nom [0:3]
+      'Jea'
+      >>> nom [0:1]
+      'J'
+      >>> nom [0:2]
+      'Je'
+      >>> nom [0:4]
+      'Jean'
+
+
+
+---
+---
 
 ### ``
  
