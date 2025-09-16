@@ -6,7 +6,7 @@
 
 [source](https://docs.python.org/fr/3.8/library/venv.html)
         
-                python -m venv .venv
+        python -m venv .venv
 
 
 
