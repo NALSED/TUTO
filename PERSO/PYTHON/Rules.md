@@ -397,6 +397,23 @@
       dict_values(['192.168.0.165', '255.255.255.0', '195.168.0.1', ['8.8.8.8', '192.168.0.241']])
       
 
+#### Afficher clés et valeurs
+      config_net = {"ip" : "192.168.0.165",
+              "mask" : "255.255.255.0",
+              "gateway" : "195.168.0.1",
+              "dns" : ["8.8.8.8","192.168.0.241"]
+      }
+
+            for a, b in config_net.items():
+                      print(f"{a}: {b}")
+
+            #Sortie
+            
+            ip: 192.168.0.165
+            mask: 255.255.255.0
+            gateway: 195.168.0.1
+            dns: ['8.8.8.8', '192.168.0.241']
+
 #### Test présence/absence
       
       >>> "ib" in config_net.keys()
