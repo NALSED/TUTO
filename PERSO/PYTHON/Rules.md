@@ -435,12 +435,35 @@
 
 
 
-      
----
-### ``
- 
+---      
 ---
 
+### `Bit/Bytes/Opérations`
+
+
+#### Opérateur bit
+      AND     (&)
+      OR      (|) 
+      XOR     (^)
+      NOT     (~)
+      << décalage à  gauche
+      >> décalage à droite
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+---
+---
 
 ### ``
  
