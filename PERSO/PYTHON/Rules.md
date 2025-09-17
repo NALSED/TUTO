@@ -149,7 +149,7 @@
 
 ---
 
-## :one `List`
+## 1️⃣ `List`
 
 
 #### Déclarer une liste
@@ -308,14 +308,117 @@
 
 ## 3️⃣ `Range`
 
+#### Utile pourgénérer des suite de nombre.En générale avec boucle for
+#### range(stop) : Génère une séquence d'entiers de 0 à stop - 1.range
+#### (start, stop): Génère une séquence d'entiers de start à stop - 1.range
+#### (start, stop, step): Génère une séquence d'entiers de start à stop - 1, en avançant de step à chaque itération.
+      
+      ip_range  = range(1,255)
+      for ip in ip_range:
+          print(ip)
+      # edite  les  chiffres  de 1 à 254
+      
+      print(f"192.168.1.{ip}") ip_range  = range(1,255)
+     #Génére des adressess ip de 192.168.1.1  =>  192.168.1.254
 
 
 
 ---
 
 
-### ``
- 
+## `Dictionnaire`📖
+
+#### `Structure Dictionaire` 
+
+      """
+      d = {
+              clé: valeur,
+              clé: valeur,
+              clé: valeur,
+              ...
+              clé: valeur
+            }
+      """
+
+#### Ici 
+
+            # Dictionnaire  clé: valeur,
+            config_net = {"ip" : "192.168.0.165",
+                    "mask" : "255.255.255.0",
+                    "gateway" : "195.168.0.1",
+                    "dns" : ["8.8.8.8","192.168.0.241"]
+            }
+            print(config_net)
+
+#### Sortie Dico
+            (.venv) PS A:\save\Python> python .\dico.py
+            {'ip': '192.168.0.165', 'mask': '255.255.255.0', 'gateway': '195.168.0.1', 'dns': ['8.8.8.8', '192.168.0.241']}
+
+#### On peux `rechercher` des éléments avec leurs clés
+
+             # Dictionnaire
+            config_net = {"ip" : "192.168.0.165",
+                    "mask" : "255.255.255.0",
+                    "gateway" : "195.168.0.1",
+                    "dns" : ["8.8.8.8","192.168.0.241"]
+            }
+            # Extraction de l'adressse ip
+            address_ip = config_net["ip"]
+            # Extraction du mask
+            netmask = config_net["mask"]
+            # Affichage IP + Mask
+            print(address_ip+" "+netmask)
+
+---
+
+#### Ajouter/modifier une clé + valeur
+
+      # network => clé et Reseau_entreprise_=> valeur 
+      config_net["network"] = "Reseau_entreprise_"
+
+---
+
+#### Supprimer élément
+     
+      del config_net["dns"]
+      >>> print(config_net) 
+      {'ip': '192.168.0.165', 'mask': '255.255.255.0', 'gateway': '195.168.0.1'}
+      
+
+####  Liste clé
+      
+      config_net.key()
+      >>> config_net.keys()  
+      dict_keys(['ip', 'mask', 'gateway', 'dns'])
+
+
+#### Liste valeur
+      >>> config_net.values() 
+      dict_values(['192.168.0.165', '255.255.255.0', '195.168.0.1', ['8.8.8.8', '192.168.0.241']])
+      
+
+#### Test présence/absence
+      
+      >>> "ib" in config_net.keys()
+      False
+      >>> "ip" in config_net.keys() 
+      True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
 ---
 ### ``
  
