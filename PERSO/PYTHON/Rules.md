@@ -422,19 +422,11 @@
       True
 
 
+#### Range dans un dico
+      ip_gen = range(1, 255,15)
+      dico = {"ip": [f"192.168.0.{i}" for i in ip_gen]}
 
-
-
-
-
-
-
-
-
-
-
-
-
+      print(dico)
 ---      
 ---
 
@@ -442,21 +434,101 @@
 
 
 #### Opérateur bit
-      AND     (&)
-      OR      (|) 
-      XOR     (^)
-      NOT     (~)
-      << décalage à  gauche
-      >> décalage à droite
+      
+#### AND      (&) ===> 1 SI a = 1 ET b = 1 
+           
+#### OR       (|) ===> 1  SI a OU b = 1
+      
+#### XOR      (^) ===>  1 SI a = 1 ET b = 0
+     
+#### NOT      (~) ===> ~n = -n - 1
+      
+#### << décalage à gauche
+      
+#### >> décalage à droite
 
 
+### `EXEMPLE`
+#### convertion ip en binaire
+
+      ip ="192.168.0.1"
+      octets = ip.split(".")
+      binary=[]
+      binary.append(format(int(octets[0]), '08b'))
+      binary.append(format(int(octets[1]), '08b'))
+      binary.append(format(int(octets[2]), '08b'))
+      binary.append(format(int(octets[3]), '08b'))
+      print("".join(binary))
+
+     (.venv) PS A:\save\Python> python .\bytes2.py
+      11000000101010000000000000000001
 
 
+#### Et  binaire en IP
+
+      octet = "11000000101010000000000000000001"  
+      octet_list = []
+
+      octet_list.append(str(int(octet[0:8], 2)))
+      octet_list.append(str(int(octet[8:16], 2)))
+      octet_list.append(str(int(octet[16:24], 2)))
+      octet_list.append(str(int(octet[24:32], 2)))
+
+      print(".".join(octet_list))
+
+### `EXERCICES`
+
+### `EXO 1`
+#### masque sous réseau => masque  inversé
+
+      #Defini le  maque daans une variable
+      sub_net = 0b11111111111111111111111100000000
+
+      #Inversion des bit
+      wc = ~sub_net
+      #convertie en binaire et limite à 32 bit,et ajoute des  0 àgauche  pour avoir un format  32  bits
+      wc = (bin(wc & 0xFFFFFFFF))[2:].zfill(32)
+      print(wc)
+
+---
+
+### `EXO 2`
+#### Déterminer le réseau
+
+      ip =  0b11000000101010000000000100001101
+      sub = 0b11111111111111111111111100000000
+
+      network_bin = bin(ip & sub)[2:]
+      network = []
+      network.append(str(int(network_bin[0:8], 2)))
+      network.append(str(int(network_bin[8:16], 2)))
+      network.append(str(int(network_bin[16:24], 2)))
+      network.append(str(int(network_bin[24:32], 2)))
+      print(network_bin)
+       print(".".join(network))
 
 
+### `EXO 3`
+
+#### Adresse de broadcast
+
+      ip =  0b11000000101010000000000100001101
+      sub = 0b11111111111111111111111100000000
+
+      # inversion 0=>1
+      broadcast_mask = ~sub
+      #Conversion binaire en32 bit
+      broadcast_add = (ip | broadcast_mask) & 0xFFFFFFFF
+      broadcast_add = bin(broadcast_add)[2:].zfill(32)
+
+      broadcast_mask_int  =  []
+      broadcast_mask_int.append(str(int(broadcast_add[0:8], 2)))
+      broadcast_mask_int.append(str(int(broadcast_add[8:16], 2)))
+      broadcast_mask_int.append(str(int(broadcast_add[16:24], 2)))
+      broadcast_mask_int.append(str(int(broadcast_add[24:32], 2)))
 
 
-
+      print(".".join(broadcast_mask_int))
 
 
 
