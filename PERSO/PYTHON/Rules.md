@@ -502,10 +502,12 @@
 
       #Inversion des bit
       wc = ~sub_net
+      
       #convertie en binaire et limite à 32 bit,et ajoute des  0 àgauche  pour avoir un format  32  bits
       wc = (bin(wc & 0xFFFFFFFF))[2:].zfill(32)
+      
       print(wc)
-
+      00000000000000000000000011111111
 ---
 
 ### `EXO 2`
@@ -531,6 +533,8 @@
 
       #Résultat décimal pointée
       print(".".join(network))
+      11000000101010000000000100000000
+      192.168.1.0
 
 
 ### `EXO 3`
@@ -558,7 +562,7 @@
 
       #résultat
       print(".".join(broadcast_mask_int))
-
+      192.168.1.255
 
 
 
