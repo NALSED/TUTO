@@ -43,10 +43,10 @@
     lvcreate --type raid10 -L700G -i 2 -m 1 -n Bareos Serveur
     lvcreate --type raid0 -L150G -i 2 -n Plex Serveur
 
-   lvs
-   LV     VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-   Bareos Serveur rwi-a-r--- 700.00g                                    100
-   Plex   Serveur rwi-a-r--- 150.00g
+    lvs
+    LV     VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+    Bareos Serveur rwi-a-r--- 700.00g                                    100
+    Plex   Serveur rwi-a-r--- 150.00g
 
 #### Donc 1.4To pour Bareos + 150Go Pour Plex = 2.13To libre.
 
