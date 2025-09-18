@@ -1,9 +1,11 @@
 ### Utilisation de LVM pour patitionner une grapper RAID, entre un LV pour les Backups Bareos en RAID 10 et un LV pour PLex en RAID 0.
 
 ---
+
+[CHEAT SHEAT](http://www.datadisk.co.uk/html_docs/redhat/rh_lvm.htm)
 [SOURCE](https://wiki.gentoo.org/wiki/LVM#LVM_RAID10)
 
-[cheat sheet](http://www.datadisk.co.uk/html_docs/redhat/rh_lvm.htm)
+
 ---
 
 
