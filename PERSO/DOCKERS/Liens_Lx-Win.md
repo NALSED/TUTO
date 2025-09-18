@@ -125,10 +125,10 @@
 
 ### 3.2) Créer les certificats pour le serveur Docker
       openssl genrsa -out server-key.pem 4096
-      openssl req -subj "/CN=192.168.0.103" -new -key server-key.pem -out server.csr
+      openssl req -subj "/CN=IPCLIENT" -new -key server-key.pem -out server.csr
 
 ### Crée un fichier d’extensions :  
-      echo "subjectAltName = IP:192.168.0.103" > extfile.cnf
+      echo "subjectAltName = IP:IPCLIENT" > extfile.cnf
 ### Puis  signer
       openssl x509 -req -days 365 -sha256 -in server.csr -CA ca.pem -CAkey ca-key.pem -CAcreateserial -out server-cert.pem -extfile extfile.cnf
 
