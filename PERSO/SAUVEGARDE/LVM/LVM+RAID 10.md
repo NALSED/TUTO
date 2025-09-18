@@ -2,6 +2,7 @@
 
 ---
 [SOURCE](https://wiki.gentoo.org/wiki/LVM#LVM_RAID10)
+
 [cheat sheet](http://www.datadisk.co.uk/html_docs/redhat/rh_lvm.htm)
 ---
 
