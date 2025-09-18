@@ -451,13 +451,22 @@
 ### `EXEMPLE`
 #### convertion ip en binaire
 
+      # IP à convertir
       ip ="192.168.0.1"
+
+      # Découpage de  l'IP en 4 Octets
       octets = ip.split(".")
+
+      #Création d'une Liste pour "acceuillir" les octets
       binary=[]
+
+      #Les Octets sont placés le un à le suite des autres sous le format 4 paquet  de 8 bits 
       binary.append(format(int(octets[0]), '08b'))
       binary.append(format(int(octets[1]), '08b'))
       binary.append(format(int(octets[2]), '08b'))
       binary.append(format(int(octets[3]), '08b'))
+
+      Résultat avec comme séparateur rien
       print("".join(binary))
 
      (.venv) PS A:\save\Python> python .\bytes2.py
@@ -466,16 +475,23 @@
 
 #### Et  binaire en IP
 
+      Adresse binaire à  convertir
       octet = "11000000101010000000000000000001"  
+      
+      # Liste
       octet_list = []
 
+      #Les 4 Octets sont converties en base 2
       octet_list.append(str(int(octet[0:8], 2)))
       octet_list.append(str(int(octet[8:16], 2)))
       octet_list.append(str(int(octet[16:24], 2)))
       octet_list.append(str(int(octet[24:32], 2)))
 
+      #Résultat avec "." en séparateur
       print(".".join(octet_list))
+      192.168.0.1
 
+      
 ### `EXERCICES`
 
 ### `EXO 1`
@@ -498,14 +514,23 @@
       ip =  0b11000000101010000000000100001101
       sub = 0b11111111111111111111111100000000
 
+      # ET (&) logique en excluant  le "0b"
       network_bin = bin(ip & sub)[2:]
+
+      #Liste
       network = []
+
+      #Converti les octets binaires en base 2
       network.append(str(int(network_bin[0:8], 2)))
       network.append(str(int(network_bin[8:16], 2)))
       network.append(str(int(network_bin[16:24], 2)))
       network.append(str(int(network_bin[24:32], 2)))
+
+      #Résultat binaire
       print(network_bin)
-       print(".".join(network))
+
+      #Résultat décimal pointée
+      print(".".join(network))
 
 
 ### `EXO 3`
@@ -517,17 +542,21 @@
 
       # inversion 0=>1
       broadcast_mask = ~sub
+      
       #Conversion binaire en32 bit
       broadcast_add = (ip | broadcast_mask) & 0xFFFFFFFF
       broadcast_add = bin(broadcast_add)[2:].zfill(32)
 
+      #Liste
       broadcast_mask_int  =  []
+      
+      #Converti les octets binaires en base 2
       broadcast_mask_int.append(str(int(broadcast_add[0:8], 2)))
       broadcast_mask_int.append(str(int(broadcast_add[8:16], 2)))
       broadcast_mask_int.append(str(int(broadcast_add[16:24], 2)))
       broadcast_mask_int.append(str(int(broadcast_add[24:32], 2)))
 
-
+      #résultat
       print(".".join(broadcast_mask_int))
 
 
