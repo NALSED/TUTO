@@ -43,12 +43,42 @@
     lvcreate --type raid10 -L700G -i 2 -m 1 -n Bareos Serveur
     lvcreate --type raid0 -L150G -i 2 -n Plex Serveur
 
+   lvs
+   LV     VG      Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+   Bareos Serveur rwi-a-r--- 700.00g                                    100
+   Plex   Serveur rwi-a-r--- 150.00g
 
 #### Donc 1.4To pour Bareos + 150Go Pour Plex = 2.13To libre.
 
-
-
-
+      lsblk
+      
+      NAME                      MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+      sda                         8:0    0 111.8G  0 disk
+      ├─sda1                      8:1    0 110.8G  0 part /
+      ├─sda2                      8:2    0     1K  0 part
+      └─sda5                      8:5    0   975M  0 part [SWAP]
+      sdb                         8:16   0 931.5G  0 disk
+      ├─Serveur-Bareos_rmeta_0  253:0    0     4M  0 lvm
+      │ └─Serveur-Bareos        253:8    0   700G  0 lvm
+      ├─Serveur-Bareos_rimage_0 253:1    0   350G  0 lvm
+      │ └─Serveur-Bareos        253:8    0   700G  0 lvm
+      └─Serveur-Plex_rimage_0   253:9    0    75G  0 lvm
+        └─Serveur-Plex          253:11   0   150G  0 lvm
+      sdc                         8:32   0 931.5G  0 disk
+      ├─Serveur-Bareos_rmeta_1  253:2    0     4M  0 lvm
+      │ └─Serveur-Bareos        253:8    0   700G  0 lvm
+      ├─Serveur-Bareos_rimage_1 253:3    0   350G  0 lvm
+      │ └─Serveur-Bareos        253:8    0   700G  0 lvm
+      └─Serveur-Plex_rimage_1   253:10   0    75G  0 lvm
+        └─Serveur-Plex          253:11   0   150G  0 lvm
+      sdd                         8:48   0 931.5G  0 disk
+      ├─Serveur-Bareos_rmeta_2  253:4    0     4M  0 lvm
+      │ └─Serveur-Bareos        253:8    0   700G  0 lvm
+      └─Serveur-Bareos_rimage_2 253:5    0   350G  0 lvm
+        └─Serveur-Bareos        253:8    0   700G  0 lvm
+      sde                         8:64   0 931.5G  0 disk
+      ├─Serveur-Bareos_rmeta_3  253:6    0     4M  0 lvm
+      │ └─Serveur-Bareos        253:8    0   700G  0 lvm
 
 
 
