@@ -15,10 +15,49 @@
 
 ### `Exécuter`
 
-      #Télécharger et exécuter un conteneur
+      #`Télécharger/exécuter` un conteneur
       docker run [options] image [commande]
-      #télécharger  éxécuter un  contener  en background => -d (detached mode)
+      #télécharger/éxécuter un  contener  en `background` => -d (detached mode)
       docker run -d nginx:latest
+      #télécharger/éxécuter un contener et `changer de nom`
+      docker run -d  --name c1 nginx:latest => --name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       
 <details>
 <summary>
