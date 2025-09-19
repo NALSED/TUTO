@@ -1,9 +1,9 @@
-#  Liste des actions et commandes pour docker.
+#  `Liste des actions et commandes pour docker.`
 
 
-###  Echapper sudo
+### `Echapper sudo`
 
-      #Entrer l'utilisateur dans le groupe sudo
+* #### Entrer l'utilisateur dans le groupe sudo
       sudo usermod -aG docker $USER
 
 ### `Lister`
