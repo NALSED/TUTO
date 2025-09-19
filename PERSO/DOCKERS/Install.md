@@ -52,11 +52,11 @@
 
 ## 2️⃣ `Source.list`
 ### 2.1) Création d''un fichier docker.list, pour  installation et mise à jour des paquets.
-### 2.2) Ce rendre dans  le répertoire `/sources.list.d` et créer le  fichier
+### 2.2) Ce rendre dans  le répertoire `/sources.list.d` et créer le  fichier (pour ubuntu)
       cd /etc/apt/sources.list.d
       sudo nano docker.source
-### 2.3) y placer un commentaire (peux importe)
-      # Docker.source
+### 2.3) y placer un commentaire (pour ubuntu)
+      # Docker.source (peu importe)  
 
 ### Rechercher la version de l'OS et l'architecture:
       cat  /etc/os-release
@@ -66,7 +66,7 @@
        dpkg --print-architecture
 ### Ici => amd64
 
-### Création de la liste
+### Création de la liste (pour ubuntu)
     sudo nano /etc/apt/sources.list.d/docker.sources
 
 ### Editer (Ubuntu server)  
