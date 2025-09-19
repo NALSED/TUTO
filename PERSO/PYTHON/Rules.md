@@ -570,9 +570,9 @@
 ---
 ---
 
-### `Structures Conditionelles`
+## `Structures Conditionelles :`
 
-#### Opérateur de comparaion:
+### Opérateur de comparaion:
 * #### `==` égale
 * #### `!=` différent
 * #### `>` sup
@@ -580,7 +580,7 @@
 * #### `>=` sup/égale
 * #### `<=` inf/égale
 
-#### Opérateur logique:
+### Opérateur logique:
 * #### `and` TRUE si toutes les conditions TRUE
 * #### `or` TRUE si une des conditions TRUE
 * #### `not` inverser valeur condition
@@ -588,7 +588,7 @@
 * ####
 * ####
 
-#### `IF/ELIF/ELSE`
+### `IF/ELIF/ELSE :`
 
             if condition_1
                   #code executé si condition_1 TRUE
@@ -605,7 +605,7 @@
             * Nombre (0 FALSE, reste TRUE )
             * Strings ("" FALSE,  reste TRUE)
 
-#### `EXEMPLE`
+#### `EXEMPLE :`
 
             user= input("entré un username,svp : ")
             pwd= input("entré un mpd,,svp : ")
@@ -621,6 +621,53 @@
             #Boucle condition_1 et condition_2 FALSE
             else:
                 print("accés refusé")
+
+---
+
+### `Ternaires :`
+
+#### Permet des assignations rapide de conditions dans des variables.
+
+#### `EXEMPLE :`
+
+            username = "admin"
+            access_status = "Accéss Ok. " if username == "admin"  else "Accés  NOK"
+            print(access_status)
+
+
+
+---
+
+### `in`
+
+#### Tester la présence ou non d'un élément dans une  liste une ensemble.
+
+#### `EXEMPLE :`
+
+            # Utilisation de ternaire pour la premiere boucle
+            username = "admin"
+            access_status = "Accéss Ok. " if username == "admin"  else "Accés  NOK"
+            print(access_status)
+
+            # Utilisation de in pour tester  la présence
+            allowed_users = ["admin", "guest", "user"]
+            if username in allowed_users:
+                print("User OK")
+            else: 
+                print("User NOK")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
