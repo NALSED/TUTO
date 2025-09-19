@@ -124,3 +124,162 @@
 
 
 </details>
+
+
+
+<details>
+<summary>
+<h2>
+:arrow_forward: run --help
+</h2>
+</summary>
+
+# Options courantes pour la commande `docker run`
+
+| Option                         | Description                                                                                       |
+| ------------------------------| -------------------------------------------------------------------------------------------------|
+| `--add-host list`              | Ajouter une entrée personnalisée host:IP dans le fichier hosts du conteneur                      |
+| `--annotation map`             | Ajouter une annotation au conteneur (transmise au runtime OCI) (par défaut map[])                |
+| `-a, --attach list`            | Attacher STDIN, STDOUT ou STDERR                                                                 |
+| `--blkio-weight uint16`        | Poids relatif du bloc IO (entre 10 et 1000, ou 0 pour désactiver) (par défaut 0)                 |
+| `--blkio-weight-device list`   | Poids relatif IO pour un périphérique spécifique (par défaut [])                                 |
+| `--cap-add list`               | Ajouter des capacités Linux au conteneur                                                        |
+| `--cap-drop list`              | Retirer des capacités Linux du conteneur                                                        |
+| `--cgroup-parent string`       | Cgroup parent optionnel pour le conteneur                                                       |
+| `--cgroupns string`            | Namespace cgroup à utiliser : <br> - `host` : namespace du host <br> - `private` : namespace privé <br> - `""` : valeur par défaut du démon |
+| `--cidfile string`             | Écrire l'ID du conteneur dans un fichier                                                        |
+| `--cpu-period int`             | Limiter la période CPU CFS (scheduler)                                                          |
+| `--cpu-quota int`              | Limiter le quota CPU CFS                                                                         |
+| `--cpu-rt-period int`          | Limiter la période CPU temps réel (microsecondes)                                               |
+| `--cpu-rt-runtime int`         | Limiter le temps CPU temps réel (microsecondes)                                                 |
+| `-c, --cpu-shares int`         | Parts CPU relatives (poids)                                                                      |
+| `--cpus decimal`               | Nombre de CPU à utiliser                                                                         |
+| `--cpuset-cpus string`         | CPU autorisés (ex : `0-3`, `0,1`)                                                              |
+| `--cpuset-mems string`         | MEMs autorisés (ex : `0-3`, `0,1`)                                                             |
+| `-d, --detach`                 | Détacher le conteneur (lancer en arrière-plan)                                                 |
+| `--detach-keys string`         | Remplacer la séquence de touches pour détacher                                                  |
+| `--device list`                | Ajouter un périphérique du host au conteneur                                                    |
+| `--device-cgroup-rule list`   | Ajouter une règle aux périphériques autorisés dans cgroup                                       |
+| `--device-read-bps list`       | Limiter le débit de lecture (bytes/sec) d’un périphérique                                       |
+| `--device-read-iops list`      | Limiter le nombre d’IOs de lecture par seconde                                                  |
+| `--device-write-bps list`      | Limiter le débit d’écriture (bytes/sec)                                                        |
+| `--device-write-iops list`     | Limiter le nombre d’IOs d’écriture par seconde                                                 |
+| `--disable-content-trust`      | Désactiver la vérification des images (par défaut true)                                        |
+| `--dns list`                   | Définir des serveurs DNS personnalisés                                                         |
+| `--dns-option list`            | Options DNS                                                                                     |
+| `--dns-search list`            | Domaines de recherche DNS personnalisés                                                        |
+| `--domainname string`          | Nom de domaine NIS du conteneur                                                                |
+| `--entrypoint string`          | Remplacer le ENTRYPOINT par défaut de l’image                                                  |
+| `-e, --env list`               | Définir des variables d’environnement                                                          |
+| `--env-file list`              | Lire des variables d’environnement depuis un fichier                                          |
+| `--expose list`                | Exposer un ou plusieurs ports                                                                   |
+| `--gpus gpu-request`           | Ajouter des GPU au conteneur (`all` pour tous les GPUs)                                        |
+| `--group-add list`             | Ajouter des groupes supplémentaires                                                           |
+| `--health-cmd string`          | Commande pour vérifier la santé du conteneur                                                  |
+| `--health-interval duration`   | Intervalle entre chaque check (ms|s|m|h) (par défaut 0s)                                       |
+| `--health-retries int`         | Nombre d’échecs consécutifs avant d’indiquer un état non sain                                 |
+| `--health-start-interval duration` | Intervalle entre chaque check pendant la période de démarrage (par défaut 0s)            |
+| `--health-start-period duration` | Période de démarrage avant de commencer le comptage des échecs (par défaut 0s)             |
+| `--health-timeout duration`    | Durée maximale autorisée pour un check (par défaut 0s)                                        |
+| `--help`                      | Afficher l’aide                                                                                |
+| `-h, --hostname string`        | Nom d’hôte du conteneur                                                                         |
+| `--init`                      | Lancer un init dans le conteneur pour gérer les signaux et processus zombies                  |
+| `-i, --interactive`            | Garde STDIN ouvert même si non attaché                                                        |
+| `--ip string`                 | Adresse IPv4 personnalisée (ex: 172.30.100.104)                                               |
+| `--ip6 string`                | Adresse IPv6 personnalisée (ex: 2001:db8::33)                                                 |
+| `--ipc string`                | Mode IPC à utiliser                                                                            |
+| `--isolation string`          | Technologie d’isolation du conteneur                                                          |
+| `--kernel-memory bytes`       | Limite mémoire noyau                                                                           |
+| `-l, --label list`            | Ajouter des métadonnées (labels)                                                               |
+| `--label-file list`           | Lire les labels depuis un fichier                                                             |
+| `--link list`                 | Ajouter un lien vers un autre conteneur                                                       |
+| `--link-local-ip list`        | Adresses link-local IPv4/IPv6 pour le conteneur                                               |
+| `--log-driver string`         | Pilote de log à utiliser                                                                      |
+| `--log-opt list`              | Options pour le pilote de log                                                                 |
+| `--mac-address string`        | Adresse MAC du conteneur (ex: 92:d0:c6:0a:29:33)                                            |
+| `-m, --memory bytes`          | Limite mémoire                                                                               |
+| `--memory-reservation bytes`  | Limite douce de mémoire                                                                       |
+| `--memory-swap bytes`         | Limite swap (mémoire + swap) : `-1` pour illimité                                           |
+| `--memory-swappiness int`     | Ajuster le swappiness mémoire (0-100), défaut -1                                            |
+| `--mount mount`               | Monter un système de fichiers                                                                |
+| `--name string`               | Nommer le conteneur                                                                           |
+| `--network network`           | Connecter le conteneur à un réseau                                                           |
+| `--network-alias list`        | Ajouter un alias réseau                                                                       |
+| `--no-healthcheck`            | Désactiver les vérifications HEALTHCHECK                                                     |
+| `--oom-kill-disable`          | Désactiver l’OOM Killer                                                                      |
+| `--oom-score-adj int`         | Ajuster la préférence OOM du host (-1000 à 1000)                                            |
+| `--pid string`                | Namespace PID à utiliser                                                                     |
+| `--pids-limit int`            | Limite du nombre de processus (-1 = illimité)                                               |
+| `--platform string`           | Spécifier la plateforme si le serveur est multi-plateforme                                  |
+| `--privileged`                | Donner des privilèges étendus au conteneur                                                  |
+| `-p, --publish list`          | Publier un ou plusieurs ports du conteneur sur l’hôte                                      |
+| `-P, --publish-all`           | Publier tous les ports exposés sur des ports aléatoires                                   |
+| `--pull string`               | Tirer l’image avant de lancer (`always`, `missing`, `never`) (par défaut `missing`)         |
+| `-q, --quiet`                 | Supprimer la sortie du pull                                                                  |
+| `--read-only`                 | Monter le système de fichiers racine en lecture seule                                      |
+| `--restart string`            | Politique de redémarrage à appliquer (par défaut `no`)                                     |
+| `--rm`                       | Supprimer automatiquement le conteneur et ses volumes anonymes à l’arrêt                   |
+| `--runtime string`            | Runtime à utiliser pour ce conteneur                                                       |
+| `--security-opt list`         | Options de sécurité                                                                        |
+| `--shm-size bytes`            | Taille de /dev/shm                                                                         |
+| `--sig-proxy`                 | Proxy des signaux reçus vers le processus (par défaut true)                                |
+| `--stop-signal string`        | Signal pour arrêter le conteneur                                                          |
+| `--stop-timeout int`          | Timeout en secondes pour arrêter un conteneur                                            |
+| `--storage-opt list`          | Options du driver de stockage                                                             |
+| `--sysctl map`                | Options sysctl (par défaut map[])                                                         |
+| `--tmpfs list`                | Monter un répertoire tmpfs                                                                |
+| `-t, --tty`                   | Allouer un pseudo-TTY                                                                     |
+| `--ulimit ulimit`             | Options ulimit (par défaut [])                                                            |
+| `--use-api-socket`            | Monter la socket API Docker avec authentification requise                                |
+| `-u, --user string`           | Utilisateur ou UID (format : `<nom|uid>[:<groupe|gid>]`)                                  |
+| `--userns string`             | Namespace utilisateur à utiliser                                                         |
+| `--uts string`                | Namespace UTS à utiliser                                                                  |
+| `-v, --volume list`           | Monter un volume                                                                         |
+| `--volume-driver string`      | Driver de volume optionnel                                                               |
+| `--volumes-from list`         | Monter les volumes d’un ou plusieurs conteneurs                                          |
+| `-w, --workdir string`        | Répertoire de travail dans le conteneur                                                 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
