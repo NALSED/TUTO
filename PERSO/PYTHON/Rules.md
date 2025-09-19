@@ -572,6 +572,22 @@
 
 ### `Structures Conditionelles`
 
+#### Opérateur de comparaion:
+* #### `==` égale
+* #### `!=` différent
+* #### `>` sup
+* #### `<` inf
+* #### `>=` sup/égale
+* #### `<=` inf/égale
+
+#### Opérateur logique:
+* #### `and` TRUE si toutes les conditions TRUE
+* #### `or` TRUE si une des conditions TRUE
+* #### `not` inverser valeur condition
+* ####
+* ####
+* ####
+
 #### `IF/ELIF/ELSE`
 
             if condition_1
@@ -584,10 +600,27 @@
                   #code exécuté si condition_1 et condition_2 FALSE
 
 
+            #Type accépté  
+            * Bolean TRUE FALSE
+            * Nombre (0 FALSE, reste TRUE )
+            * Strings ("" FALSE,  reste TRUE)
 
+#### `EXEMPLE`
 
+            user= input("entré un username,svp : ")
+            pwd= input("entré un mpd,,svp : ")
 
-
+            #Boucle les deux ont TRUE
+            if user  == "admin" and pwd  == "admin123":
+                print("accés OK")
+            
+            #Boucle condition_1 TRUE condition_2 FALSE
+            elif user == "admin":
+                print("MDP faux")
+            
+            #Boucle condition_1 et condition_2 FALSE
+            else:
+                print("accés refusé")
 
 
 
