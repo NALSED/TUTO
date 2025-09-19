@@ -28,7 +28,7 @@
 </summary>
 
 
-# Docker - Un environnement autonome pour les conteneurs
+# Docker 
 
 ## Commandes courantes
 
@@ -122,8 +122,5 @@
 
 ---
 
-Pour plus d'informations sur une commande spécifique, exécute :
-```bash
-docker COMMAND --help
 
 </details>
