@@ -663,6 +663,9 @@
 
 #### Créer un fonction, qui  sera utilisée temporairement. 
 
+
+#### `EXEMPLE :`
+            
             #lambda renvoi TRUE si username et password correspond dan lambda et les variable  qui suivent
             user_access =  lambda username, password  : username == "admin" and password == "admin123"
            #variable
@@ -675,11 +678,35 @@
             else: 
                 print("NOK")
 
+---
+
+### `all` et `any`
+
+* #### `all` TRUE si tout les element  de l'iterable sont vrai.
+* #### `any` TRUE si un des element de l'iterable est vrai.
 
 
 
+#### `EXEMPLE :`
 
+            # Variable utilisateur 
+            user = "admin"
+            password = "admin123"
+            # condition pour TRUE TRUE don all renvoie ok car TRUE TRUE
+            condition = [user == "admin", password ==  "admin123" ]
+            
+            if all(condition):
+                print("ok")
+            
+            # Variable accés
+            failed_attemps  = 2
+            suspicious_activity_detected = False
 
+             # condition pour FALSE FALSE donc any renvoie rien car FALSE FALSE
+             # Si FALSE TRUE lorss  sortie !!! access denied !!!
+            alert_condition = [failed_attemps > 3, suspicious_activity_detected]
+            if any(alert_condition):
+                print("!!! access denied !!!")
 
 
 
