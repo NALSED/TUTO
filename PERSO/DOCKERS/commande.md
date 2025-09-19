@@ -1,19 +1,19 @@
- :whale: `Liste des actions et commandes pour docker.` :whale:
+# :whale: `Liste des actions et commandes pour docker.` :whale:
 
 
-### `Echapper sudo`
+## `Echapper sudo`
 
 * #### Entrer l'utilisateur dans le groupe sudo
       sudo usermod -aG docker $USER
 
-### `Lister`
+## `Lister`
 
 * #### Liste  les container actifs
       docker ps
 * #### Liste tous les container
       docker ps -a
 
-### `Exécuter`
+## `Exécuter`
 
 * #### `Télécharger/exécuter` un container
       docker run [options] image [commande]
@@ -24,22 +24,24 @@
 * #### `Stopper/Démmarrer`
       docker stop [NAME]//[ID]
       docker start [NAME]//[ID]
-* #### `Supprimer`
+ * #### changer le `hostname` du contnaire => --hostname
+      docker run --name c2 --hostname test debian:latest
 
-      #Stop le container et le supprime  =>rm
+## `Supprimer`
+
+  #### Stop le container et le `supprime`  => rm
       docker rm -f
-      #Supprime le container à l'arret de celui ci => --rm
+  #### `Supprime` le container `à l'arret de celui ci` => --rm
       docker run -ti --rm --name c2 debian:latest
 
       
-###  `interaction container`
+##  `interaction container`
 * #### `lancer un terminal` dans le container. => -ti 
       docker run -ti --name c2 debian:latest
       # terminal machine  physique
       sednal@origin:/$
       #terminal container
       root@c645cb50b1ee:/#  
-
 
 
 
