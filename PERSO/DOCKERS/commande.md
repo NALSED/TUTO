@@ -8,18 +8,18 @@
 
 ### `Lister`
 
-      # Liste  les conteners actifs
+* #### Liste  les conteners actifs
       docker ps
-      # Liste tous les conteners
+* #### Liste tous les conteners
       docker ps -a
 
 ### `Exécuter`
 
-      #`Télécharger/exécuter` un conteneur
+* #### `Télécharger/exécuter` un conteneur
       docker run [options] image [commande]
-      #télécharger/éxécuter un  contener  en `background` => -d (detached mode)
+* #### télécharger/éxécuter un  contener  en `background` => -d (detached mode)
       docker run -d nginx:latest
-      #télécharger/éxécuter un contener et `changer de nom`
+* #### télécharger/éxécuter un contener et `changer de nom`
       docker run -d  --name c1 nginx:latest => --name
 
 
