@@ -657,10 +657,23 @@
                 print("User NOK")
 
 
+---  
 
+### `Lambda`
 
+#### Créer un fonction, qui  sera utilisée temporairement. 
 
-
+            #lambda renvoi TRUE si username et password correspond dan lambda et les variable  qui suivent
+            user_access =  lambda username, password  : username == "admin" and password == "admin123"
+           #variable
+            username = "admin"
+            password = "admin123"
+            # Si lambda TRUE => ok
+            if user_access(username, password):
+                print("ok")
+            #Sinon NOK
+            else: 
+                print("NOK")
 
 
 
