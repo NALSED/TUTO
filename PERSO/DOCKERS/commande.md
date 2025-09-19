@@ -1,6 +1,25 @@
 #  Liste des actions et commandes pour docker.
 
 
+###  Echapper sudo
+
+      #Entrer l'utilisateur dans le groupe sudo
+      sudo usermod -aG docker $USER
+
+### `Lister`
+
+      # Liste  les conteners actifs
+      docker ps
+      # Liste tous les conteners
+      docker ps -a
+
+### `Exécuter`
+
+      #Télécharger et exécuter un conteneur
+      docker run [options] image [commande]
+      #télécharger  éxécuter un  contener  en background => -d (detached mode)
+      docker run -d nginx:latest
+      
 <details>
 <summary>
 <h2>
@@ -108,27 +127,3 @@ Pour plus d'informations sur une commande spécifique, exécute :
 docker COMMAND --help
 
 </details>
-
-
-
-
-
-###  Echapper sudo
-
-      #Entrer l'utilisateur dans le groupe sudo
-      sudo usermod -aG docker $USER
-
-### `Lister`
-
-      # Liste  les conteners actifs
-      docker ps
-      # Liste tous les conteners
-      docker ps -a
-
-### `Exécuter`
-
-      #Télécharger et exécuter un conteneur
-      docker run [options] image [commande]
-      #télécharger  éxécuter un  contener  en background => -d (detached mode)
-      docker run -d nginx:latest
-      
