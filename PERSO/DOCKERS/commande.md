@@ -1,4 +1,4 @@
-# :whale: `Liste des actions et commandes pour docker.` :whale:
+ :whale: `Liste des actions et commandes pour docker.` :whale:
 
 
 ### `Echapper sudo`
@@ -8,31 +8,37 @@
 
 ### `Lister`
 
-* #### Liste  les conteners actifs
+* #### Liste  les container actifs
       docker ps
-* #### Liste tous les conteners
+* #### Liste tous les container
       docker ps -a
 
 ### `Exécuter`
 
-* #### `Télécharger/exécuter` un conteneur
+* #### `Télécharger/exécuter` un container
       docker run [options] image [commande]
-* #### télécharger/éxécuter un  contener  en `background` => -d (detached mode)
+* #### télécharger/éxécuter un  container  en `background` => -d (detached mode)
       docker run -d nginx:latest
-* #### télécharger/éxécuter un contener et `changer de nom`
+* #### télécharger/éxécuter un container et `changer de nom`
       docker run -d  --name c1 nginx:latest => --name
+* #### `Stopper/Démmarrer`
+      docker stop [NAME]//[ID]
+      docker start [NAME]//[ID]
+* #### `Supprimer`
 
+      #Stop le container et le supprime  =>rm
+      docker rm -f
+      #Supprime le container à l'arret de celui ci => --rm
+      docker run -ti --rm --name c2 debian:latest
 
-
-
-
-
-
-
-
-
-
-
+      
+###  `interaction container`
+* #### `lancer un terminal` dans le container. => -ti 
+      docker run -ti --name c2 debian:latest
+      # terminal machine  physique
+      sednal@origin:/$
+      #terminal container
+      root@c645cb50b1ee:/#  
 
 
 
