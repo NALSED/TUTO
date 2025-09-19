@@ -708,6 +708,73 @@
             if any(alert_condition):
                 print("!!! access denied !!!")
 
+---
+
+### `is et isintance()`
+
+####  `is`
+     
+     # vérifie simplement si la variable user est exactement None
+      user = None 
+      if user is None:
+          print("no")
+
+#### `isintance()`
+
+      # Vérifie si l'objet obj est une instance de la classe class
+      user = "None" #None (obj) est de la classe str
+      if isinstance(user, str)
+          print("OUI")
+
+---
+
+### `match`
+
+#### Correspondance motif ou paterne
+
+      #entrer un des rôle demander match va comparer avec les case
+      user_role = input("veuillez entrer  votre rôle : (guest, admin, user)")
+
+      #en fontion de  l'input une sortie  prévu à chaque  fois
+      match user_role:
+          case "admin":
+              print("MDP admin")
+          case "guest":
+              print("hello")
+          case "user":
+              print("nice")
+      
+       #Le reste   
+          case _:
+              print("role non reconnue ")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
