@@ -1,3 +1,20 @@
+# Energize Global Services (EGS) - Company Summary
+
+Energize Global Services, or EGS, is an international IT company founded in 2007.
+
+EGS mainly works in the **banking and FinTech sector**, building secure, high-performance software systems for banks, payment platforms, and financial services.
+
+The company offers services like **software development**, **IT infrastructure**, **cloud migration**, **cybersecurity**, and **automation**.
+
+EGS works with well-known partners such as **Mastercard, Oracle, Atos, and Worldline**, and follows strong security and quality standards like **ISO 27001**, **PCI-DSS**, and **GDPR compliance**.
+
+The company has teams in several countries — including **Armenia**, which is one of its main development hubs.
+
+EGS is known for working on complex systems and giving **career opportunities to junior engineers** through real projects and technical coaching.
+
+
+
+
 # Interview Pitch - Junior Infrastructure Engineer
 
 Hello,
@@ -37,22 +54,11 @@ This is my first job interview in IT, but I’m highly motivated, a fast learner
 - Recently started learning Python for automation
 # My Strengths and Experience
 
-## Training Projects
+# Questions to Ask at the End of the Interview
 
-- Built and managed a test infrastructure including:
-  - Active Directory, Group Policy Objects (GPO), and Organizational Units (OU)
-  - DHCP, DNS, and ADDS with redundancy (core servers)
-  - WSUS for Windows update management
-  - VPN site-to-site using pfSense
-  - FreePBX with AD integration
-  - GLPI ticketing system
-  - Scripting to automate shared folder creation
-  - Event Viewer log management
+1. Will I have a mentor or onboarding support as a junior at EGS?
 
-## Personal Infrastructure Lab
+2. What kind of environments does the infrastructure team work with — Linux, Windows, or mixed? Is there a cloud component?
 
-- Dedicated admin PC for managing infrastructure
-- Raspberry Pi 4 running Pi-hole (DNS filtering)
-- Backup server with Bareos, using RAID 1 and RAID 10, partitioned with LVM
-- Docker containers with SSL/TLS certificates
-- Recently started learning Python for automation
+3. Do you use tools like Ansible, Terraform, or Docker in production? Or are these still being implemented?
+
