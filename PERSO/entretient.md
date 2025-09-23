@@ -1,6 +1,6 @@
 # Energize Global Services (EGS) - Company Summary
 
-Energize Global Services, or EGS, is an international IT company founded in 2007.
+Energize Global Services, or EGS, is an international IT company founded in 2007 (two thousand seven).
 
 EGS mainly works in the **banking and FinTech sector**, building secure, high-performance software systems for banks, payment platforms, and financial services.
 
@@ -19,15 +19,21 @@ EGS is known for working on complex systems and giving **career opportunities to
 
 Hello,
 
-I’m originally from France and I moved to Armenia with my family about a year ago.
+I’m originally from France and moved to Armenia with my family about a year ago.
+My wife works at the French high school in Yerevan, and our two children go to school there.
 
-Before, I worked as a carpenter, but after a serious knee injury, I decided to change careers and follow something I’ve always been interested in — IT and system administration.
+Before, I worked as a carpenter, but after a serious accident where I broke both of my knees, I decided to change careers and pursue a field I have always been passionate about — IT and system administration.
 
-I completed a training program where I built a full test infrastructure, including Active Directory, GPO, DNS and DHCP redundancy, WSUS, VPN setup with pfSense, FreePBX connected to AD, and ticketing with GLPI.
+This is my first job interview in IT, but I am highly motivated, a fast learner, and eager to grow in this field. I see this position at EGS as a great opportunity to start my professional career.
 
-At home, I also manage my own small lab: I use a Raspberry Pi with Pi-hole, a backup server with RAID and LVM, Docker with SSL certificates, and I recently started learning Python to improve automation skills.
+I understand that the banking sector demands very high standards in security, data protection, and service availability. I am eager to learn more about the specific regulations and challenges in the financial industry to ensure reliable and secure IT services.
 
-This is my first job interview in IT, but I’m highly motivated, a fast learner, and I really want to grow in this field. I see this position at EGS as a great opportunity to start my career in a real professional environment.
+I completed a training program where I built a full test infrastructure, including Active Directory, GPO, DNS and DHCP redundancy, WSUS, VPN setup with pfSense, FreePBX integrated with AD, and ticketing with GLPI.
+
+At home, I manage a small personal lab as well: I use a Raspberry Pi running Pi-hole, a backup server with RAID and LVM, Docker containers secured with SSL certificates, and I recently started learning Python to improve my automation skills.
+
+
+
 
 
 
