@@ -748,48 +748,80 @@
           case _:
               print("role non reconnue ")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ---
 ---
-### ``
+## `For et While`
+
+### `for`
+
+#### Exemple:
+
+      ips = ["192.168.0.1", "192.168.0.2","192.168.0.3"]
+      for ip in ips:
+            print("Analyse ip adresse : ", ip )
+      #SORTIE
+      Analyse ip adresse :  192.168.0.1
+      Analyse ip adresse :  192.168.0.2
+      Analyse ip adresse :  192.168.0.3
+
+#### Exemple avec index et enumerate
+#### Permet la création d'un index à chque tour
+      ips = ["192.168.0.1", "192.168.0.2","192.168.0.3"]
+      for index, ip in enumerate(ips):
+          print(index+1, "=>Analyse ip adresse : ", ip )
+      #SORTIE      
+      1 =>Analyse ip adresse :  192.168.0.1
+      2 =>Analyse ip adresse :  192.168.0.2
+      3 =>Analyse ip adresse :  192.168.0.3
+
+
+### For + if pour recherche  daans liste
+      
+      # Création d'une liste
+      ips = ["192.168.0.1", "192.168.0.2","192.168.0.3"]
+      # Création d'un index pour chaque élément de la liste
+      for index, ip in enumerate(ips):
+          print(index+1, "=>Analyse ip adresse : ", ip )
+      
+      # Recherche d'une ip suspect
+      suspicious_ip = []
+      
+      for ip in ips:
+          if "192.168.0.2" in ip:
+              suspicious_ip.append(ip)
+      
+      # Sortie
+      print("IP suspectes détectées :", suspicious_ip)
+
+      ## code plus court ## 
+      ips = ["192.168.0.1", "192.168.0.102", "192.168.0.3", "192.168.0.1024"]
+      #pour chaque ip dans la liste ips filtrer : ne garder que les IPs qui contiennent                  "192.168.0.102"
+      suspicious_ips = [ip for ip in ips if "192.168.0.102" in ip]
+
+      print(suspicious_ips)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 ---
-
+---
 
 ### ``
  
