@@ -795,7 +795,7 @@
 
       ## code plus court ## 
       ips = ["192.168.0.1", "192.168.0.102", "192.168.0.3", "192.168.0.1024"]
-      #pour chaque ip dans la liste ips filtrer : ne garder que les IPs qui contiennent                  "192.168.0.102"
+      #pour chaque ip dans la liste ips filtrer : ne garder que les IPs qui contiennent "192.168.0.102"
       suspicious_ips = [ip for ip in ips if "192.168.0.102" in ip]
 
       print(suspicious_ips)
