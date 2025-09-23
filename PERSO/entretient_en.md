@@ -37,28 +37,59 @@ At home, I manage a small personal lab as well: I use a Raspberry Pi running Pi-
 
 
 
-# My Strengths and Experience
+# 💼 Infrastructure Engineer – Interview Notes
 
-## Training Projects
+---
 
-- Built and managed a test infrastructure including:
-  - Active Directory, Group Policy Objects (GPO), and Organizational Units (OU)
-  - DHCP, DNS, and ADDS with redundancy (core servers)
-  - WSUS for Windows update management
-  - VPN site-to-site using pfSense
-  - FreePBX with AD integration
-  - GLPI ticketing system
-  - Scripting to automate shared folder creation
-  - Event Viewer log management
+## 🔧 Networking Skills – Summary
 
-## Personal Infrastructure Lab
+1. **Switch Security**  
+   - Port security, disabling unused ports, securing console and SSH access.
 
-- Dedicated admin PC for managing infrastructure
-- Raspberry Pi 4 running Pi-hole (DNS filtering)
-- Backup server with Bareos, using RAID 1 and RAID 10, partitioned with LVM
-- Docker containers with SSL/TLS certificates
-- Recently started learning Python for automation
-# My Strengths and Experience
+2. **VLAN & IP Configuration**  
+   - Creating VLANs, assigning IP addresses, and enabling inter-VLAN routing.
+
+3. **SSH & Network Security**  
+   - Secure remote access via SSH, user authentication, basic network hardening.
+
+4. **Infrastructure VLANs**  
+   - VLANs for management, voice, and data segregation.
+
+5. **Trunking & VLAN Failover**  
+   - 802.1Q trunking, Spanning Tree Protocol (STP) for redundancy.
+
+6. **Routing via Debian Machine**  
+   - Static routing, firewall configuration (`iptables`), basic NAT.
+
+7. **Cisco CLI Practice (Packet Tracer)**  
+   - VLANs, routing protocols, ACLs, interface configuration via Cisco CLI.
+
+---
+
+## 💪 My Strengths and Experience
+
+### 🛠️ Training Projects and Practical Experience
+
+- Active Directory (AD) with Group Policy Objects (GPOs) and Organizational Units (OU)
+- DHCP, DNS, and ADDS with redundancy (core servers)
+- WSUS for centralized Windows update management
+- Site-to-site VPN setup using **pfSense**
+- FreePBX VoIP server integrated with Active Directory
+- GLPI ticketing system for IT service management
+- Scripts to automate shared folder creation (PowerShell/Bash)
+- Log analysis and monitoring using Event Viewer
+
+### 🧪 Personal Infrastructure Lab
+
+- Dedicated admin PC for managing the entire infrastructure
+- **Raspberry Pi 4** running **Pi-hole** for DNS filtering and ad blocking
+- Backup server with **Bareos**, configured in **RAID 1** and **RAID 10**, using **LVM**
+- **Docker** containers hosting various services with SSL/TLS certificates
+- Currently learning **Python** for scripting and automation
+
+---
+
+
 
 # Questions to Ask at the End of the Interview
 
