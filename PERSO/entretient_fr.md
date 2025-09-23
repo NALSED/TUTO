@@ -29,27 +29,58 @@ Je comprends que le secteur bancaire exige des normes très strictes en matière
 
 ---
 
-# Mes points forts et expériences
+# 💼 Ingénieur Infrastructure – Notes pour l'entretien
 
-## Projets de formation
+---
 
-- Construction et gestion d’une infrastructure de test comprenant :
-  - Active Directory, GPO (Group Policy Objects) et unités organisationnelles (OU)
-  - DHCP, DNS et ADDS avec redondance (serveurs core)
-  - WSUS pour la gestion des mises à jour Windows
-  - VPN site-à-site avec pfSense
-  - FreePBX intégré à Active Directory
-  - Système de ticketing GLPI
-  - Scripts pour automatiser la création de dossiers partagés
-  - Gestion des logs avec Event Viewer
+## 🔧 Compétences Réseau – Résumé
 
-## Infrastructure personnelle
+1. **Sécurisation du Switch**  
+   - Sécurité des ports, désactivation des ports inutilisés, sécurisation des accès console et SSH.
 
-- PC dédié à l’administration de l’infrastructure
-- Raspberry Pi 4 exécutant Pi-hole (filtrage DNS)
-- Serveur de sauvegarde avec Bareos, utilisant RAID 1 et RAID 10, partitionné avec LVM
-- Conteneurs Docker sécurisés avec certificats SSL/TLS
-- Apprentissage récent de Python pour l’automatisation
+2. **Administration des VLAN et Adressage IP**  
+   - Création de VLAN, attribution d'adresses IP, routage inter-VLAN.
+
+3. **Accès SSH et Sécurité Réseau**  
+   - Accès distant sécurisé via SSH, authentification des utilisateurs, durcissement de la sécurité.
+
+4. **Création des VLAN d’infrastructure**  
+   - VLAN pour la gestion, la voix et les données, segmentation du réseau.
+
+5. **Trunk et Basculement VLAN**  
+   - Configuration de trunks 802.1Q, redondance via STP (Spanning Tree Protocol).
+
+6. **Routage via une machine Debian**  
+   - Routage statique, pare-feu avec `iptables`, configuration NAT de base.
+
+7. **Pratique CLI Cisco (Packet Tracer)**  
+   - Configuration de VLAN, routage, ACL, interfaces via la ligne de commande Cisco.
+
+---
+
+## 💪 Mes Forces et Mon Expérience
+
+### 🛠️ Projets de Formation et Expérience Pratique
+
+- **Active Directory (AD)** avec GPO et Unités d’Organisation (OU)
+- **DHCP, DNS, ADDS** avec redondance (serveurs principaux)
+- **WSUS** pour la gestion centralisée des mises à jour Windows
+- VPN **site-à-site** avec **pfSense**
+- Serveur **FreePBX** intégré à l’Active Directory
+- Système de ticketing **GLPI**
+- Scripts d’automatisation pour la création de dossiers partagés
+- Suivi et gestion des journaux avec **Event Viewer**
+
+### 🧪 Lab Personnel d’Infrastructure
+
+- PC administrateur dédié à la gestion de l'infrastructure
+- **Raspberry Pi 4** avec **Pi-hole** (filtrage DNS, blocage publicités)
+- Serveur de sauvegarde avec **Bareos**, en **RAID 1** et **RAID 10**, partitionnement avec **LVM**
+- Conteneurs **Docker** sécurisés avec certificats **SSL/TLS**
+- Apprentissage en cours de **Python** pour l'automatisation
+
+---
+
 
 ---
 
