@@ -35,27 +35,54 @@
       docker run -ti --rm --name c2 debian:latest
 
       
-##  `interaction container`
+##  `Interaction container`
 * #### `lancer un terminal` dans le container. => -ti 
       docker run -ti --name c2 debian:latest
       # terminal machine  physique
       sednal@origin:/$
       #terminal container
       root@c645cb50b1ee:/#  
+  
+#### `lancer une commande` dans  container `en cours d’exécution.`
+      #Ici on ouvre le terminal de c3
+      docker exec -ti c3 bash
+      
 
 
 
 
+---
+
+##  `Volumes`
+#### En nommant un volume  existant volume à la création d'un autre contener il est  possible  d'utiliser un volume pour plusieurs contener.
+#### ⚠️ En local `/var/lib/docker/volumes/mynginx/` ⚠️
+
+* #### `Lister`
+      docker volume ls
+* #### `Créer` 
+      docker volume create [NOM VOLUME]
+
+* #### `Monter` un volume => -v [NOM VOLUME]:[CHEMIN]
+      docker run -d --name c1 -v mynginx:/usr/share/nginx/html/ nginx:latest
+
+* #### `inspecter`
+      docker volume inspect mynginx
+
+            [
+             {
+                    "CreatedAt": "2025-09-24T19:08:11+01:00",
+                    "Driver": "local",
+                    "Labels": null,
+                    "Mountpoint": "/var/lib/docker/volumes/mynginx/_data",#chemin dans le  host qui corespond à /usr/share/nginx/html/ dans le contener docker
+                    "Name": "mynginx",
+                    "Options": null,
+                    "Scope": "local"
+                }
+            ]
 
 
-
-
-
-
-
-
-
-
+*  ####  `Suprimmer`
+      docker volume rm
 
 
 
