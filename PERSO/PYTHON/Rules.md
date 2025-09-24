@@ -6,7 +6,7 @@
 ---
 ---
 
-### `Commentaires`
+# `Commentaires`
 
 #### Option 1️⃣ 
       
@@ -21,10 +21,31 @@
     
      """
 
+
+---
+# `RAPPEL () [] {}`
+
+| Symbole | Nom                | Utilisation principale                         | Exemple Python                    |
+|---------|--------------------|--------------------------------------------------|-----------------------------------|
+| ()      | Parenthèses        | - Appel de fonction                              | `print("Hello")`                 |
+|         |                    | - Définir un **tuple**                           | `mon_tuple = (1, 2, 3)`          |
+|         |                    | - Priorité dans les opérations                   | `result = (2 + 3) * 4`           |
+| []      | Crochets           | - Définir une **liste**                          | `ma_liste = [1, 2, 3]`           |
+|         |                    | - Indexation / slicing                           | `ma_liste[0]`, `texte[1:4]`      |
+| {}      | Accolades          | - Définir un **dictionnaire**                    | `mon_dict = {"a": 1, "b": 2}`    |
+|         |                    | - Définir un **set (ensemble)**                 | `mon_set = {1, 2, 3}`            |
+|         |                    | - Utilisé avec des **comprehensions**           | `{x: x**2 for x in range(3)}`    |
+| () + [] | Tuple de listes     | - Contenir plusieurs listes dans un tuple       | `(([1, 2], [3, 4]))`             |
+| [] + () | Liste de tuples     | - Liste contenant des tuples                    | `[(1, 'a'), (2, 'b')]`           |
+| {} + [] | Dictionnaire de listes | - Associer des clés à des listes          | `{"clé1": [1, 2], "clé2": [3]}`  |
+| {} + () | Dictionnaire de tuples | - Clés associées à des tuples              | `{"clé": (1, 2)}`                |
+
+
+
 ---
 
 
-### `Variables`
+# `Variables`
 
 #### 1️⃣ Snake case : my_variable_name
 #### 2️⃣ Ne pas utiliser le mots clés de python (else, if, for, while, return, True, False) 
@@ -593,7 +614,7 @@
             if condition_1
                   #code executé si condition_1 TRUE
             
-            elif condotion_2
+            elif condition_2
                   #code executé si condition_2 TRUE et condition_1 FALSE
             
             else:
@@ -774,6 +795,7 @@
       2 =>Analyse ip adresse :  192.168.0.2
       3 =>Analyse ip adresse :  192.168.0.3
 
+---
 
 ### For + if pour recherche  daans liste
       
@@ -794,22 +816,102 @@
       print("IP suspectes détectées :", suspicious_ip)
 
       ## code plus court ## 
-      ips = ["192.168.0.1", "192.168.0.102", "192.168.0.3", "192.168.0.1024"]
+      ips = ["192.168.0.1", "192.168.0.102", "192.168.0.3", "192.168.0.104"]
       #pour chaque ip dans la liste ips filtrer : ne garder que les IPs qui contiennent "192.168.0.102"
       suspicious_ips = [ip for ip in ips if "192.168.0.102" in ip]
 
       print(suspicious_ips)
 
+### Recherche d'IP suspecte commençant par...
+      
+      
+      ips = ["192.168.0.1", "192.168.0.102", "192.168.0.3", "192.168.0.104", "192.168.1.1", "192.168.2.33","192.168.5.56"]
+            #pour chaque ip dans la liste ips filtrer : ne garder que les IPs qui contiennent "192.168.0.102"
+      suspicious_ips = [ip for ip in ips if ip.startswith("192.168.0.") ]
+      
+      print(suspicious_ips)
+      #['192.168.0.1', '192.168.0.102', '192.168.0.3', '192.168.0.104']
+
+---
+
+      # Liste des noms d'utilisateur
+      usernames = ["admin", "guest", "user"]
+      
+      # Liste des mots de passe correspondants
+      passwords = ["admin123", "guest123", "user123"]
+      
+      # Associe chaque nom d'utilisateur avec son mot de passe respectif
+      for username, password in zip(usernames, passwords):
+            print(f"vérif {username} avec mdp {password}")
+
+---
+
+#### Association de tuple dans une liste
+      coordinates = [(1,2),(3,4),(5,6)]
+      for x,y in coordinates:
+          print(f"coordonées : x = {x} et y = {y}")
+      #coordonées : x = 1 et y = 2
+      coordonées : x = 3 et y = 4
+      coordonées : x = 5 et y = 6
+
 
 ---
 ---
----
 
+## `while`
 
+### La boucle while est idéale pour les variables dynamiques ou les situations où on ne connaît pas à l'avance combien de fois répéter le code, car elle s'exécute tant qu'une condition reste vraie.
+      
+      while condition:
+          # instructions
+#### Exemples :
+      count = 0
 
+      while count < 3:
+          print("Valeur de count :", count)
+          # idem count = count + 1
+          count += 1
 
+#### "Détection" d'un nombre de tentative de connection
+      attempts  = 0
+      max_attemps = 3
+      while attempts < max_attemps:
+          print(f"Tentative {attempts  + 1} Analyse  en cours...")
+          attempts += 1
+#### "Détection" d'un nombre de tentative de connection avec entrée dynamique
+      attempts = 0
+      max_attempts = 3
+      
+      while attempts < max_attempts:
+          print(f"Tentative {attempts + 1} : Analyse en cours...")
+          password = input("Entrez un MDP : ")
+      
+          if password == "admin123":
+              print("Accès autorisé.")
+              break
+          else:
+              print("Mot de passe incorrect.\n")
+          
+          attempts += 1
+      
+      if attempts == max_attempts:
+          print("Accès refusé. Trop de tentatives.")
 
+#### while + continue
 
+      while  True:
+          
+          ip = input("Veuillez entrer une IP :\nPour sortir tapez 'exit'\n> ")
+      
+          if ip == exit:
+              print("Sortie")
+              break
+          elif ip == "192.168.0.1":
+              print("Accés refusé")
+              continue
+      
+          print("Welcome")
+          break
 
 
 
