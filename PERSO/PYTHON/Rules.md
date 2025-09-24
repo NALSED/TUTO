@@ -1,4 +1,4 @@
-# Régles et Astuces Python.
+# 📜  Régles et Astuces Python. 📜
 [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)
 [PYTHON TUTO](https://www.w3schools.com/python/default.asp)
 [CHEAT SHEET](https://www.pythoncheatsheet.org/cheatsheet/built-in-functions)
@@ -6,7 +6,13 @@
 ---
 ---
 
-# `Commentaires`
+<details>
+<summary>
+<h2>
+✏️ `Commentaires`  ✏️
+</h2>
+</summary>
+
 
 #### Option 1️⃣ 
       
@@ -20,10 +26,30 @@
       Commentaires
     
      """
-
+      
+</details>
 
 ---
-# `RAPPEL () [] {}`
+<details>
+<summary>
+<h2>
+
+</h2>
+</summary>
+
+
+
+
+</details>
+
+
+<details>
+<summary>
+<h2>
+🔔  `RAPPEL () [] {}` : 🔔
+</h2>
+</summary>
+
 
 | Symbole | Nom                | Utilisation principale                         | Exemple Python                    |
 |---------|--------------------|--------------------------------------------------|-----------------------------------|
@@ -40,12 +66,15 @@
 | {} + [] | Dictionnaire de listes | - Associer des clés à des listes          | `{"clé1": [1, 2], "clé2": [3]}`  |
 | {} + () | Dictionnaire de tuples | - Clés associées à des tuples              | `{"clé": (1, 2)}`                |
 
-
+</details>
 
 ---
-
-
-# `Variables`
+<details>
+<summary>
+<h2>
+# 📊  `Variables` 📊
+</h2>
+</summary>
 
 #### 1️⃣ Snake case : my_variable_name
 #### 2️⃣ Ne pas utiliser le mots clés de python (else, if, for, while, return, True, False) 
@@ -64,8 +93,8 @@
             test()
 
 ---
----
-### `Opérateur`
+
+#  ⚙️ `Opérateur` ⚙️
 
 #### STR ⬇️
 [STRING](https://www.w3schools.com/python/python_strings.asp)
@@ -166,12 +195,14 @@
 ---
 ---
 
-# `Données intégrés`
+# 💾 `Données intégrés` 💾
 
 ---
+---
 
-## 1️⃣ `List`
+# 1️⃣  📑 `List` 📑
 
+### Une liste est modifiable et dynamique.
 
 #### Déclarer une liste
        ip_list = ["192.168.0.122", "192.168.23.152"]
@@ -279,18 +310,11 @@
       ['192.168.0.1', '192.168.0.123', '192.168.0.145', '192.168.0.145', '192.168.0.145', '192.168.0.145', '192.168.0.145', '192.168.0.192', '192.168.3.12']
 
 
-
-
-
-
-
-
- 
 ---
 ---
 
 
-## 2️⃣ `Tuples`
+# 2️⃣ 🔒  `Tuples` 🔒
 
 ##### `Les tuples sont utilisés pour stocker plusieurs éléments dans une seule variable.`  Un tuple est une collection ordonnée et immuable, `de façon permanante`
 
@@ -325,9 +349,9 @@
 
 
 ---
---- 
+---
 
-## 3️⃣ `Range`
+## 3️⃣  📈  `Range` 📈
 
 #### Utile pourgénérer des suite de nombre.En générale avec boucle for
 #### range(stop) : Génère une séquence d'entiers de 0 à stop - 1.range
@@ -343,11 +367,15 @@
      #Génére des adressess ip de 192.168.1.1  =>  192.168.1.254
 
 
+</details>
 
----
 
-
-## `Dictionnaire`📖
+<details>
+<summary>
+<h2>
+# 📖 `Dictionnaire`📖
+</h2>
+</summary>
 
 #### `Structure Dictionaire` 
 
@@ -406,19 +434,19 @@
       {'ip': '192.168.0.165', 'mask': '255.255.255.0', 'gateway': '195.168.0.1'}
       
 
-####  Liste clé
+####  Liste clé ===> .key()
       
       config_net.key()
       >>> config_net.keys()  
       dict_keys(['ip', 'mask', 'gateway', 'dns'])
 
 
-#### Liste valeur
+#### Liste valeur ===> .values()
       >>> config_net.values() 
       dict_values(['192.168.0.165', '255.255.255.0', '195.168.0.1', ['8.8.8.8', '192.168.0.241']])
       
 
-#### Afficher clés et valeurs
+#### Afficher clés et valeurs ===> .items()
       config_net = {"ip" : "192.168.0.165",
               "mask" : "255.255.255.0",
               "gateway" : "195.168.0.1",
@@ -435,7 +463,7 @@
             gateway: 195.168.0.1
             dns: ['8.8.8.8', '192.168.0.241']
 
-#### Test présence/absence
+#### Test présence/absence  ===> .keys()
       
       >>> "ib" in config_net.keys()
       False
@@ -443,16 +471,27 @@
       True
 
 
-#### Range dans un dico
+#### Range dans un dico ===> range()
       ip_gen = range(1, 255,15)
       dico = {"ip": [f"192.168.0.{i}" for i in ip_gen]}
 
       print(dico)
----      
+
+</details>
+
+
+
 ---
 
-### `Bit/Bytes/Opérations`
+---      
+ 
 
+<details>
+<summary>
+<h2>
+# 🔢 `Bit/Bytes/Opérations` 🔢
+</h2>
+</summary>
 
 #### Opérateur bit
       
@@ -468,8 +507,9 @@
       
 #### >> décalage à droite
 
+---
 
-### `EXEMPLE`
+## `EXEMPLE`
 #### convertion ip en binaire
 
       # IP à convertir
@@ -513,7 +553,7 @@
       192.168.0.1
 
       
-### `EXERCICES`
+## `EXERCICES`
 
 ### `EXO 1`
 #### masque sous réseau => masque  inversé
@@ -585,13 +625,20 @@
       print(".".join(broadcast_mask_int))
       192.168.1.255
 
+</details>
 
 
- 
+
+
+# 🔢 `Bit/Bytes/Opérations` 🔢
+
 ---
----
-
-## `Structures Conditionelles :`
+<details>
+<summary>
+<h2>
+# 🔀 `Structures Conditionelles :` 🔀
+</h2>
+</summary>
 
 ### Opérateur de comparaion:
 * #### `==` égale
@@ -605,11 +652,10 @@
 * #### `and` TRUE si toutes les conditions TRUE
 * #### `or` TRUE si une des conditions TRUE
 * #### `not` inverser valeur condition
-* ####
-* ####
-* ####
+--
+--
 
-### `IF/ELIF/ELSE :`
+# `IF/ELIF/ELSE :`
 
             if condition_1
                   #code executé si condition_1 TRUE
@@ -659,7 +705,7 @@
 
 ---
 
-### `in`
+# `in`
 
 #### Tester la présence ou non d'un élément dans une  liste une ensemble.
 
@@ -680,7 +726,7 @@
 
 ---  
 
-### `Lambda`
+# `Lambda`
 
 #### Créer un fonction, qui  sera utilisée temporairement. 
 
@@ -701,7 +747,7 @@
 
 ---
 
-### `all` et `any`
+# `all` et `any`
 
 * #### `all` TRUE si tout les element  de l'iterable sont vrai.
 * #### `any` TRUE si un des element de l'iterable est vrai.
@@ -731,7 +777,7 @@
 
 ---
 
-### `is et isintance()`
+# `is et isintance()`
 
 ####  `is`
      
@@ -749,7 +795,7 @@
 
 ---
 
-### `match`
+# `match`
 
 #### Correspondance motif ou paterne
 
@@ -770,10 +816,10 @@
               print("role non reconnue ")
 
 ---
----
-## `For et While`
 
-### `for`
+# `FOR` et `WHILE`
+
+### `FOR`
 
 #### Exemple:
 
@@ -797,7 +843,7 @@
 
 ---
 
-### For + if pour recherche  dans liste
+### `FOR` + if pour recherche  dans liste
       
       # Création d'une liste
       ips = ["192.168.0.1", "192.168.0.2","192.168.0.3"]
@@ -881,28 +927,9 @@
       #coordonées : x = 1 et y = 2
       coordonées : x = 3 et y = 4
       coordonées : x = 5 et y = 6
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
 ---
 
-## `while`
+# `WHILE`
 
 ### La boucle while est idéale pour les variables dynamiques ou les situations où on ne connaît pas à l'avance combien de fois répéter le code, car elle s'exécute tant qu'une condition reste vraie.
       
@@ -1009,6 +1036,13 @@
       
           else:
               print(f"connection OK : {log['ip']}")
+
+</details>
+
+
+
+
+
 
 ---
 ---
