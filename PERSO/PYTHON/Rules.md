@@ -1023,14 +1023,3 @@
               print(f"connection OK : {log['ip']}")
 
 </details>
-
-
-
-
-
-
----
----
-# ``
-#### ``
----
