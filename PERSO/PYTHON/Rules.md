@@ -797,7 +797,7 @@
 
 ---
 
-### For + if pour recherche  daans liste
+### For + if pour recherche  dans liste
       
       # Création d'une liste
       ips = ["192.168.0.1", "192.168.0.2","192.168.0.3"]
@@ -845,7 +845,35 @@
             print(f"vérif {username} avec mdp {password}")
 
 ---
+#### Crétion d'Alerte echec ou  réussite de connection
 
+            security_logs =[ 
+                            {"ip": "192.168.1.10", "status": "failed"},
+                            {"ip": "192.168.1.15", "status": "success"},
+                            {"ip": "192.168.1.20", "status": "failed"},
+                            {"ip": "192.168.1.10", "status": "failed"}
+            
+            ]
+            
+            failed_attempts = {}
+            
+            for log  in security_logs:
+                if log["status"] == "failed":
+                    #Récupération de l'ip via la clé ip
+                    ip= log["ip"]
+                    
+                    #Incrémente de 1 le nombre d’échecs pour l’IP, en mettant 0 par défaut si l’IP n’existe pas encore dans le dictionnaire
+                    failed_attempts[ip] = failed_attempts.get(ip,0) +1
+                    #Si erreur de connection sup 2 print
+                    if failed_attempts[ip] > 2 :
+                        print(f"Alerte : IP {ip} à  échoué")
+                        break
+                else:
+                    print(f"connexion reussi  de  l'IP {log['ip']}")    
+
+
+
+---
 #### Association de tuple dans une liste
       coordinates = [(1,2),(3,4),(5,6)]
       for x,y in coordinates:
@@ -853,6 +881,22 @@
       #coordonées : x = 1 et y = 2
       coordonées : x = 3 et y = 4
       coordonées : x = 5 et y = 6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ---
@@ -872,12 +916,16 @@
           # idem count = count + 1
           count += 1
 
+---
+
 #### "Détection" d'un nombre de tentative de connection
       attempts  = 0
       max_attemps = 3
       while attempts < max_attemps:
           print(f"Tentative {attempts  + 1} Analyse  en cours...")
           attempts += 1
+---
+
 #### "Détection" d'un nombre de tentative de connection avec entrée dynamique
       attempts = 0
       max_attempts = 3
@@ -897,6 +945,8 @@
       if attempts == max_attempts:
           print("Accès refusé. Trop de tentatives.")
 
+---
+
 #### while + continue
 
       while  True:
@@ -913,7 +963,55 @@
           print("Welcome")
           break
 
+#### while parcours dico
+      
+      # Liste avec dictionnaire avec IP et liste d'adresse IP
+      logs = [
+              {"ip": "192.168.0.1", "status":"success"},
+              {"ip": ["192.168.0.2", "192.168.0.3", "192.168.0.4"], "status":"failed"},
+      ]
+      
+      # index = 0 sert à  parcourir logs avvec while
+      index = 0
+      
+      # La boucle continue tant que index est inférieur à la longueur de la liste logs
+      # Dans ce cas, len(logs) vaut 2, donc la boucle tournera deux fois (index = 0 puis index = 1)
+      while index < len(logs):
+          
+      #extrais le log courant depuis la liste logs, en fonction de l'index.
+      
+      # log devient un dictionnaire, par exemple :
+      # À index = 0, log = {"ip": "192.168.0.1", "status": "success"}
+      # À index = 1, log = {"ip": ["192.168.0.2", "192.168.0.3", "192.168.0.4"], "status": "failed"}    
+          log = logs[index]
+      
+      # Si la ligne  contient "failed"    
+          if log["status"] == "failed":
+              
+      # Ecrire dans le dico log la ligne définie par la clé ip         
+              print(f"Echec de la connection : {log['ip']}")
+      
+          else:
+              print(f"connection OK : {log['ip']}")
+      # Permet  de passer au tour suivant 
+          index +=1
 
+
+
+      connection OK : 192.168.0.1
+      Echec de la connection : ['192.168.0.2', '192.168.0.3', '192.168.0.4']
+
+####  ⚠️  A titre de comparaison même résultat aavvec  for
+      for log in logs:
+          if log["status"] == "failed":
+              
+              print(f"Echec de la connection : {log['ip']}")
+      
+          else:
+              print(f"connection OK : {log['ip']}")
+
+---
+---
 
 
 #### ``
