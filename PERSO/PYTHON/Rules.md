@@ -72,7 +72,7 @@
 <details>
 <summary>
 <h2>
-# 📊  `Variables` 📊
+📊  `Variables` 📊
 </h2>
 </summary>
 
@@ -373,7 +373,7 @@
 <details>
 <summary>
 <h2>
-# 📖 `Dictionnaire`📖
+📖 `Dictionnaire`📖
 </h2>
 </summary>
 
@@ -489,7 +489,7 @@
 <details>
 <summary>
 <h2>
-# 🔢 `Bit/Bytes/Opérations` 🔢
+🔢 `Bit/Bytes/Opérations` 🔢
 </h2>
 </summary>
 
@@ -636,7 +636,7 @@
 <details>
 <summary>
 <h2>
-# 🔀 `Structures Conditionelles :` 🔀
+🔀 `Structures Conditionelles :` 🔀
 </h2>
 </summary>
 
