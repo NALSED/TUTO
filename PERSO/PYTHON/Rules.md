@@ -823,21 +823,7 @@
 ---
 ---
 
-# `FONCTION`
 
-
-## Ce classement regroupe les fonctions Python selon le type d’objet (liste, chaîne, dictionnaire, etc.) sur lequel elles agissent principalement.  
-
-## `LISTE`
-#### `enumerate()`
-
-
-
-
-```
-def bonjour():
-    print("Salut !")
-```
 
 
 
