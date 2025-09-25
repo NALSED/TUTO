@@ -65,10 +65,12 @@
 | Paramètres nommés uniquement (`*`)      | Indique que les paramètres après `*` sont uniquement nommés    | `def f(*, a, b):`              |
 
 
-
+### `*`  => Tuple
+### `**` => Dico
+---
 ### `EXEMPLE`
 
-#### *args   
+#### `*args`  
       def addition(*args):
           total = 0
           for nombre in args:
@@ -79,7 +81,7 @@
       print(addition(5, 10))    # Sortie : 15
 
 
-####  **kwargs
+####  `**kwargs`
 
       def afficher_infos(**kwargs):
           for cle, valeur in kwargs.items():
@@ -89,6 +91,47 @@
       # Sortie :
       # nom : Alice
       # age : 30
+
+#### Combinée : 
+
+      def config_app(*arg, **kwargs):
+          print("Argument positionelss : ", arg)
+          print("Argument nommés", kwargs)
+      
+      config_app("192.168.0.160", "192.168.0.123", status="ok", firewall="nok" )
+      
+      # Argument positionelss :  ('192.168.0.160', '192.168.0.123')
+      # Argument nommés {'status': 'ok', 'firewall': 'nok'}
+
+#### Autre
+      def alerte(*, ip, niveau):
+          print(f"Envoi à  l'adresse {ip}  avec niveau {niveau}")
+      alerte(ip="192.168.0.1", niveau="critical")
+
+      # Envoi à  l'adresse 192.168.0.1  avec niveau critical
+      
+---
+
+
+#### `/`
+
+      def f(a, b, /, c, d):
+          print(a, b, c, d)
+      
+      f(1, 2, 3, 4)      # OK, tous en position
+      f(1, 2, c=3, d=4)  # OK, c et d nommés
+      f(a=1, b=2, c=3, d=4)  # ERREUR, a et b sont positionnels uniquement
+
+#### `*`
+
+      def f(a, b, *, c, d):
+          print(a, b, c, d)
+      
+      f(1, 2, c=3, d=4)  # OK
+      f(1, 2, 3, 4)      # ERREUR, c et d doivent être nommés
+
+
+
 
 
 
