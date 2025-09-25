@@ -18,10 +18,10 @@
 
 | ✅ Solution 1 : à privilégier si...                        | ✅ Solution 2 : à privilégier si...                                         |
 |-----------------------------------------------------------|----------------------------------------------------------------------------|
-| Tu fais un petit script rapide.                          | Tu veux réutiliser cette vérification plusieurs fois.                      |
-| Tu n’as pas besoin de réutiliser le code.                | Tu veux écrire un code propre, clair et modulaire.                        |
-| C’est un test simple ou temporaire.                      | Tu veux tester ou modifier facilement la logique d’accès.                |
-|                                                           | Tu veux séparer la logique et l'affichage (bonne pratique en programmation). |
+| on fais un petit script rapide.                          | on veux réutiliser cette vérification plusieurs fois.                      |
+| on n’as pas besoin de réutiliser le code.                | on veux écrire un code propre, clair et modulaire.                        |
+| C’est un test simple ou temporaire.                      | on veux tester ou modifier facilement la logique d’accès.                |
+|                                                           | on veux séparer la logique et l'affichage (bonne pratique en programmation). |
 
 ### 📝 `EXEMPLE`
 
@@ -34,15 +34,80 @@
                 print("accées refusé")
             
             #solution 2    
-            
-            def verif(username, pwd)
-                if username == "admin" and pwd == "admin123"
+
+            # Définition de  la fontion
+            def verif(username, pwd):
+                if username == "admin" and pwd == "admin123":
                     return  "accés  ok"
                 return "accés refusé"
-            
+            # Appeler la fonction
             print(verif("admin", "admin123"))
 
 ---
+
+
+
+
+
+<details>
+<summary>
+<h2>
+ 🧰 Fonctions intégrées  🧰
+</h2>
+</summary>
+
+
+
+</details>
+
+---
+
+<details>
+<summary>
+<h2>
+ ✍️ Fonction définie par l’utilisateur ✍️
+</h2>
+</summary>
+
+
+
+</details>
+
+
+---
+
+<details>
+<summary>
+<h2>
+ 🕵️‍♂️ Fonction anonyme 🕵️‍♂️
+</h2>
+</summary>
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+<details>
+<summary>
+<h2>
+ ⚡Fontion par Type  d'objet⚡
+</h2>
+</summary>
 
 ## Ce classement regroupe les fonctions Python selon le type d’objet (liste, chaîne, dictionnaire, etc.) sur lequel elles agissent principalement.              
 ---
@@ -96,3 +161,11 @@
             x = zip(a, b)
       print(tuple(x))
       # (('John', 'Jenny'), ('Charles', 'Christy'), ('Mike', 'Monica'))
+
+
+</details>
+
+
+
+
+
