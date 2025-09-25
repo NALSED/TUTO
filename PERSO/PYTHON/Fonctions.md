@@ -131,6 +131,69 @@
       f(1, 2, 3, 4)      # ERREUR, c et d doivent être nommés
 
 
+---
+
+####  Surveillance Logs
+      
+      #Fonction génératrice qui lit un fichier log ligne par ligne
+      def surveiller_log(fichier_log):
+         
+      # Ouvre le fichier en mode lecture ('r') et garantit sa fermeture automatique
+      with open(fichier_log, "r") as fichier:
+            # Boucle tant qu'il y a des lignes à lire
+            while ligne := fichier.readline():
+                  # Renvoie la ligne lue, en enlevant les espaces et retours à la ligne
+                  yield ligne.strip()
+      
+      # Utilisation de la fonction génératrice pour parcourir le fichier log
+      for log in surveiller_log("log_securite.txt"):
+            # Affiche chaque ligne lue avec un message clair
+            print(f"Log détecté : {log}")
+
+
+###  `Fonction décorée`
+
+####  Ce type de fonction — un décorateur — permet de modifier dynamiquement le comportement d’une fonction sans toucher à son code source.
+
+### `EXEMPLE`
+
+      # Décorateur verrif_acces()
+      # fonction prend  display_logs
+      # def verrif_acces(fonction): == def verrif_acces(display_logs):
+      def verrif_acces(fonction):
+              # Wrapper(!convention!) permet de modifier display_logs via verif_acces, en acceptant des arguments nommés ou positionnels.    
+          def  wrapper(*args,  **kwargs):
+              # Vérifie si l'argument nommé 'user' vaut 'admin'
+              if kwargs.get("user") == "admin":
+                  # Si oui, appelle la fonction originale avec tous ses arguments
+                  return fonction(*args, **kwargs)
+              else:
+                  print("accés nok")
+          #appel la fonction wrapper
+          return wrapper
+      #@verrif_acces appel verrif_acces donc wrapper donc display_logs modifié
+      @verrif_acces
+      #Fonction  qui  attend  un argument nommé obligatoirement user
+      def  display_logs(*,user):
+          #Affiche la valeur de user
+          print(user)
+      # Appel de la fonction décorée avec user="admin"
+      display_logs(user="admin")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
