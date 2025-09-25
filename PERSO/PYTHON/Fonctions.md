@@ -45,43 +45,54 @@
 
 ---
 
-
-
-
-
 <details>
 <summary>
 <h2>
- 🧰 Fonctions intégrées  🧰
+⚙️ Paramétres Fonction ⚙️ 
 </h2>
 </summary>
 
+# 🎯 Types de paramètres des fonctions en Python
+
+| Type                        | Description                                             | Exemple                                  |
+|-----------------------------|---------------------------------------------------------|------------------------------------------|
+| Paramètres positionnels      | Arguments passés dans l’ordre, obligatoires             | `def f(a, b):` → `f(1, 2)`               |
+| Paramètres par défaut        | Paramètres avec une valeur par défaut                    | `def f(a=10):` → `f()` ou `f(5)`         |
+| Paramètres nommés           | Arguments passés en précisant le nom du paramètre       | `f(a=1, b=2)`                            |
+| Paramètres variables (`*args`)   | Reçoit un nombre variable d’arguments positionnels       | `def f(*args):` → `f(1, 2, 3)`           |
+| Paramètres variables nommés (`**kwargs`) | Reçoit un nombre variable d’arguments nommés               | `def f(**kwargs):` → `f(a=1, b=2)`       |
+| Paramètres positionnels uniquement (`/`) | Indique que les paramètres avant `/` sont uniquement positionnels | `def f(a, b, /):`              |
+| Paramètres nommés uniquement (`*`)      | Indique que les paramètres après `*` sont uniquement nommés    | `def f(*, a, b):`              |
 
 
-</details>
 
----
+### `EXEMPLE`
 
-<details>
-<summary>
-<h2>
- ✍️ Fonction définie par l’utilisateur ✍️
-</h2>
-</summary>
-
-
-
-</details>
+#### *args   
+      def addition(*args):
+          total = 0
+          for nombre in args:
+              total += nombre
+          return total
+      
+      print(addition(1, 2, 3))  # Sortie : 6
+      print(addition(5, 10))    # Sortie : 15
 
 
----
+####  **kwargs
 
-<details>
-<summary>
-<h2>
- 🕵️‍♂️ Fonction anonyme 🕵️‍♂️
-</h2>
-</summary>
+      def afficher_infos(**kwargs):
+          for cle, valeur in kwargs.items():
+              print(f"{cle} : {valeur}")
+      
+      afficher_infos(nom="Alice", age=30)
+      # Sortie :
+      # nom : Alice
+      # age : 30
+
+
+
+
 
 
 
