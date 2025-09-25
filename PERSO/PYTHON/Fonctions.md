@@ -6,7 +6,7 @@
 
 #### 📝 Une fonction en Python est un bloc de code réutilisable qui réalise une tâche précise. Elle peut prendre des paramètres en entrée, effectuer des opérations, et retourner un résultat.
 
-#### Syntaxe de base pour définir une fonction:
+* ### 1️⃣ `Syntaxe` de base pour définir une fonction:
       def nom_de_la_fonction(parametre1, parametre2, ...):
           # bloc de code
              return valeur_de_retour  # optionnel
@@ -42,6 +42,19 @@
                 return "accés refusé"
             # Appeler la fonction
             print(verif("admin", "admin123"))
+---
+
+* ### 2️⃣  `Bonne pratique`
+    
+    * #####  `Anotation de type`
+      #### Elle permettent d’indiquer quels types de données une fonction attend en entrée (paramètres) et ce qu’elle retourne en sortie.
+      #### Bien qu'elles n'empêchent pas les erreurs à l'exécution, les annotations facilitent leur détection en amont via des outils adaptés.
+                  def  fonction (param1: int,  param2: str)-> bool
+    return param1 > 0  and len(param2) > 0
+                  print(fonction(5, "test"))     #  True
+                  print(fonction(0, "test"))     #  False
+                  print(fonction(5, ""))         #  False
+                  print(fonction(-3, "abc"))     #  False
 
 ---
 
