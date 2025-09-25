@@ -20,10 +20,98 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 - **Attribut** : Ce sont les variables ou les données associées à un objet, qui lui donnent des caractéristiques spécifiques.
 - **Méthode** : Ce sont les fonctions ou actions que l'objet peut exécuter.
 
-## Conclusion
+---
+<details>
+<summary>
+<h2>
+ 👉 `Pour plus de détails`
+</h2>
+</summary>
 
-La POO permet de créer des programmes organisés autour des objets, facilitant la réutilisation du code et la gestion des comportements complexes.
+# 🔑 `Attributs` 🔑
 
+## Résumé sur les Attributs de Classe et Attributs d'Instance en Python
+
+### 1. Attributs d'instance
+- **Définition** : Ce sont des variables associées à une **instance spécifique** d'une classe.
+- **Propriétés** :
+  - Chaque objet (instance) a sa propre copie de ces attributs.
+  - Ils sont généralement définis dans la méthode `__init__` (le constructeur) en utilisant le mot-clé `self`.
+  - Ils peuvent avoir des valeurs différentes pour chaque instance.
+
+### 2. Attributs de classe
+- **Définition** : Ce sont des variables partagées par **toutes les instances** de la classe.
+- **Propriétés** :
+  - Il n'y a qu'une seule copie de ces attributs, peu importe le nombre d'objets créés.
+  - Ils sont définis directement dans le corps de la classe, en dehors de toute méthode.
+  - Toutes les instances de la classe partagent la même valeur pour ces attributs.
+
+### 3. Différences clés
+- **Attributs d'instance** :
+  - Uniques à chaque objet.
+  - Définis dans `__init__(self, ...)`.
+  - Peuvent être modifiés individuellement pour chaque instance.
+
+- **Attributs de classe** :
+  - Partagés par tous les objets de la classe.
+  - Définis directement dans la classe, en dehors de `__init__`.
+  - Toute modification de cet attribut affecte toutes les instances.
+
+---
+
+# 🔧 `Les méthodes` 🔧
+
+
+## Résumé sur les Types de Méthodes en Python
+
+### 1. Méthodes d'instance
+- **Définition** : Ce sont des méthodes associées à une **instance spécifique** de la classe.
+- **Propriétés** :
+  - Elles prennent **`self`** comme premier argument, ce qui permet d'accéder aux attributs et aux autres méthodes de l'instance.
+  - Elles sont appelées sur une **instance** (objet) de la classe.
+  - Elles peuvent accéder et modifier les **attributs d'instance**.
+
+### 2. Méthodes de classe
+- **Définition** : Ce sont des méthodes qui sont liées à la **classe elle-même**, et non à une instance spécifique.
+- **Propriétés** :
+  - Elles prennent **`cls`** comme premier argument, ce qui permet d'accéder aux **attributs de classe**.
+  - Elles sont définies avec le décorateur **`@classmethod`**.
+  - Elles sont généralement appelées sur la **classe** elle-même, mais peuvent également être appelées sur des instances.
+
+### 3. Méthodes statiques
+- **Définition** : Ce sont des méthodes qui **ne dépendent ni de l'instance ni de la classe**.
+- **Propriétés** :
+  - Elles ne prennent ni **`self`** ni **`cls`** comme premier argument.
+  - Elles sont définies avec le décorateur **`@staticmethod`**.
+  - Elles ne peuvent accéder à ni aux **attributs d'instance** ni aux **attributs de classe**.
+  - Elles sont appelées sur la **classe** ou sur une **instance**, mais ne modifient ni l'une ni l'autre.
+
+
+### Différences clés
+- **Méthodes d'instance** :
+  - Sont liées à **une instance spécifique**.
+  - Prennent **`self`** comme premier argument.
+  - Accèdent et modifient les **attributs d'instance**.
+
+- **Méthodes de classe** :
+  - Sont liées à la **classe** elle-même.
+  - Prennent **`cls`** comme premier argument.
+  - Accèdent et modifient les **attributs de classe**.
+
+- **Méthodes statiques** :
+  - Ne dépendent ni de l'instance ni de la classe.
+  - Ne prennent ni **`self`** ni **`cls`** comme premier argument.
+  - Ne peuvent pas accéder aux **attributs d'instance** ou **de classe**.
+
+
+
+
+
+
+
+
+
+</details>
 
 ---
 
@@ -31,44 +119,59 @@ La POO permet de créer des programmes organisés autour des objets, facilitant 
 
 * ####  Exemple => gestion de donnes Utilisateur
 
-      #  créer la class
-      class Utilisateur:
-          # fonction 1 format nom, ip status(self c'est l'objet lui  même)
-          def __init__(self, nom: str, ip: str, statut_connexion: bool):
-              self.nom = nom
-              self.ip = ip
-              self.statut_connexion =statut_connexion
-      
-          # fonction 2 action
-          def afficher_details(self):
-              print(f"Utilisateur : {self.nom}, IP : {self.ip}, Status : {self.statut_connexion}")
-      
-      # variables données utilisateurs
-      alice =  Utilisateur("Alice", "192.168.0.102", True)        
-      bob = Utilisateur ("bob", "19.168.0.103", False)
-      
-      # Afficher les résulats
-      alice.afficher_details()
-      bob.afficher_details()
+            #  créer la class
+            class Utilisateur:
+            
+                # Attribut de classe
+                nombre_utilisateur = 0
+            
+                # Fonction 1 format nom, ip status 
+                def __init__(self, nom: str, ip: str, statut_connexion: bool):
+                    # Attributs  d'instance
+                    self.nom = nom
+                    self.ip = ip
+                    self.statut_connexion =statut_connexion
+                    # Incrémentation
+                    Utilisateur.nombre_utilisateur +=1
+            
+                # fonction 2 action
+                #  Methode d'instance
+                def afficher_details(self):
+                    print(f"Utilisateur : {self.nom}, IP : {self.ip}, Status : {self.statut_connexion}")
+            
+                #  Methode  de class
+                @classmethod
+                def afficher_nombre_user(cls):
+            
+                    print(f"Nombre Utilisateur : {cls.nombre_utilisateur}")
+            
+                @staticmethod
+                def afficher_bienvenue():
+                    print("\nBienvenue dans le systeme de gestion des utilisateurs.\n")
+            
+            # variables données utilisateurs (instance)
+            alice =  Utilisateur("Alice", "192.168.0.102", True)        
+            bob = Utilisateur ("bob", "19.168.0.103", False)
+            
+            # Afficher les résulats
+            
+            Utilisateur.afficher_bienvenue()
+            alice.afficher_details()
+            bob.afficher_details()
+            Utilisateur.afficher_nombre_user()
 
+            ##SORTIE##
+            Bienvenue dans le systeme de gestion des utilisateurs.
 
-
-
-
-
-
+            Utilisateur : Alice, IP : 192.168.0.102, Status : True
+            Utilisateur : bob, IP : 19.168.0.103, Status : False
+            Nombre Utilisateur : 2
 
 
 
 
 
 --- 
-
-
-
-
-
-
 
 
 
