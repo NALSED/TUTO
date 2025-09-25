@@ -11,6 +11,37 @@
           # bloc de code
              return valeur_de_retour  # optionnel
 
+#### Avantage fonction avec `def`
+#### Dans les deux exemples suivant le résultat est le même,,  c'est l'utilisation  qui va changer.
+
+### 🎯 Pourquoi privilégier l’une ou l’autre ?
+
+| ✅ Solution 1 : à privilégier si...                        | ✅ Solution 2 : à privilégier si...                                         |
+|-----------------------------------------------------------|----------------------------------------------------------------------------|
+| Tu fais un petit script rapide.                          | Tu veux réutiliser cette vérification plusieurs fois.                      |
+| Tu n’as pas besoin de réutiliser le code.                | Tu veux écrire un code propre, clair et modulaire.                        |
+| C’est un test simple ou temporaire.                      | Tu veux tester ou modifier facilement la logique d’accès.                |
+|                                                           | Tu veux séparer la logique et l'affichage (bonne pratique en programmation). |
+
+### 📝 `EXEMPLE`
+
+            #solution 1  
+            username = "admin"
+            pwd =  "admin123"
+            if username  == "admin" and pwd  == "admin123":
+                print("accés ok")
+            else:
+                print("accées refusé")
+            
+            #solution 2    
+            
+            def verif(username, pwd)
+                if username == "admin" and pwd == "admin123"
+                    return  "accés  ok"
+                return "accés refusé"
+            
+            print(verif("admin", "admin123"))
+
 ---
 
 ## Ce classement regroupe les fonctions Python selon le type d’objet (liste, chaîne, dictionnaire, etc.) sur lequel elles agissent principalement.              
