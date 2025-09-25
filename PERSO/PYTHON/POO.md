@@ -4,7 +4,7 @@
 
 La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code en **objets**. Chaque objet est une instance d'une **classe**(Plan ou modèle), qui définit ses **attributs** (propriétés) et ses **méthodes** (actions).
 
-# Concepts de Base de la Programmation Orientée Objet (POO)
+## Concepts de Base de la Programmation Orientée Objet (POO)
 
 | **Concept**             | **Définition**                                                                | **Incidence / Effet sur le code**                                            |
 |-------------------------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------|
@@ -25,11 +25,42 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 La POO permet de créer des programmes organisés autour des objets, facilitant la réutilisation du code et la gestion des comportements complexes.
 
 
-
-
 ---
 
 ### 1️⃣ `Intro`
+
+* ####  Exemple => gestion de donnes Utilisateur
+
+      #  créer la class
+      class Utilisateur:
+          # fonction 1 format nom, ip status(self c'est l'objet lui  même)
+          def __init__(self, nom: str, ip: str, statut_connexion: bool):
+              self.nom = nom
+              self.ip = ip
+              self.statut_connexion =statut_connexion
+      
+          # fonction 2 action
+          def afficher_details(self):
+              print(f"Utilisateur : {self.nom}, IP : {self.ip}, Status : {self.statut_connexion}")
+      
+      # variables données utilisateurs
+      alice =  Utilisateur("Alice", "192.168.0.102", True)        
+      bob = Utilisateur ("bob", "19.168.0.103", False)
+      
+      # Afficher les résulats
+      alice.afficher_details()
+      bob.afficher_details()
+
+
+
+
+
+
+
+
+
+
+
 
 --- 
 
