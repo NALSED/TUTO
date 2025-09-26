@@ -20,3 +20,13 @@
 
 * #### 1) `CUDA`
 #### [Télécharger](https://developer.nvidia.com/cuda-downloads) et installer CUDA.
+#### On peux utiliser ces commande pour voir la carte et la version CUDA installée.
+      nvidia-smi
+      nvcc --version
+
+* #### 2) `Ollama`
+[SOURCE](https://www.youtube.com/@AdrienLinuxtricks/search?query=Ollama)
+#### [Télécharger]() et installer Ollama.
+#### Si besoin changer le chemin d'installation des models
+   * #### 1) Ouvrir  Ollama cliquer en haut à gauche
+<img width="795" height="629" alt="image" src="https://github.com/user-attachments/assets/3aa0c26f-c36e-4404-b63e-0d6f77dec341" />
