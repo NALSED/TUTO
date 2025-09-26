@@ -27,6 +27,13 @@
 * #### 2) `Ollama`
 [SOURCE](https://www.youtube.com/@AdrienLinuxtricks/search?query=Ollama)
 #### [Télécharger]() et installer Ollama.
-#### Si besoin changer le chemin d'installation des models
-   * #### 1) Ouvrir  Ollama cliquer en haut à gauche
-<img width="795" height="629" alt="image" src="https://github.com/user-attachments/assets/3aa0c26f-c36e-4404-b63e-0d6f77dec341" />
+#### Si besoin changer le chemin d'installation des models =>  Ouvrir  Ollama cliquer sur Settings et changer le chemin
+
+* #### 3) `DeepSeek Coder 6.7B`
+[Instaler](https://ollama.com/library/deepseek-coder:6.7b) DeepSeek Coder 6.7B via la commande suivante dans le terminal
+      ollama run deepseek-coder:6.7b
+
+* #### 4) `OpenWebUI`
+#### Aller ssur le [site](https://docs.openwebui.com/) et faire l'installation via docker
+         docker run -d -p 3000:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
+#### Se connecter via http://127.0.0.1:3000/
