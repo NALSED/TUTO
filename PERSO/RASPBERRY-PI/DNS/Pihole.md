@@ -75,10 +75,6 @@
 <img width="527" height="493" alt="image" src="https://github.com/user-attachments/assets/737bed77-6842-4b3e-923b-fc53cd2a48bd" />
 
 
-
-
----
-
 ### `Listes`
 #### ⚠️  Plus le blocage est agressif, plus les sites web/services (légitimes) risquent de tomber en panne. Un blocage agressif peut également augmenter la fréquence des faux positifs.
 #### Donc si vous envisagez d'exécuter une configuration de blocage agressive, vous ne devez pas avoir peur de mettre certains domaines sur liste blanche.
@@ -91,22 +87,38 @@
 
 * #### Script pour bloquer pub Youtube => [GitHub](https://github.com/kboghdady/youTube_ads_4_pi-hole)
 
+### `Unbound`
+#### Cette partie commence  après [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/RASPBERRY-PI/DNS/unbound.md#installation--et-configuration-de-unbound)
 
+#### Se rendre dans Settings => DNS et Décocher le DNS choisi  pour l'installation
+#### Entrer un Custom DNS
 
+<img width="669" height="244" alt="image" src="https://github.com/user-attachments/assets/eb85f2a3-781d-4cad-9d4e-cfc6b3c24fa9" />
 
+#### Changer le fichier /etc/dhcpcd.conf => static domain_name_servers=127.0.0.1
 
+### ⚠️Pour solutions instalées sur `Debian  Bullseyes` ⬇️ 
 
+#### À partir de Debian Bullseye, un paquet appelé openresolv est automatiquement installé avec une configuration qui cause des problèmes inattendus pour Pi-hole et Unbound. En effet, le service unbound-resolvconf.service demande à resolvconf d’écrire dans le fichier /etc/resolv.conf une ligne indiquant le serveur DNS 127.0.0.1 (Unbound local), mais sans préciser le port 5335 utilisé par Unbound.
 
+#### Or, ce fichier /etc/resolv.conf est utilisé par les services locaux pour connaître les serveurs DNS configurés. Cette absence de port provoque des dysfonctionnements.
 
+#### Pour contourner ce problème, il faut modifier la configuration et désactiver ce service.
 
+#### Désactiver le service unbound-resolvconf.service
+      sudo systemctl disable --now unbound-resolvconf.service
 
+#### Éditer /etc/resolvconf.conf pour désactiver l’option Unbound
+      sudo sed -Ei 's/^unbound_conf=/#unbound_conf=/' /etc/resolvconf.conf
 
+####  Supprimer le fichier généré /etc/unbound/unbound.conf.d/resolvconf_resolvers.conf
+      sudo rm /etc/unbound/unbound.conf.d/resolvconf_resolvers.conf
 
+#### Redémarrer Unbound
+      sudo service unbound restart
 
-
-
-
-
+#### Status Unbound
+      sudo service unbound status
 
 
 
