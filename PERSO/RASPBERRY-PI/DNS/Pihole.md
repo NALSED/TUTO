@@ -62,7 +62,7 @@
       sudo pihole setpassword
 
 ## 2️⃣ `Configuration`
-### `Certificats`
+## `Certificats`
       win+R
       certmgr.msc
 
@@ -75,7 +75,7 @@
 <img width="527" height="493" alt="image" src="https://github.com/user-attachments/assets/737bed77-6842-4b3e-923b-fc53cd2a48bd" />
 
 
-### `Listes`
+## `Listes`
 #### ⚠️  Plus le blocage est agressif, plus les sites web/services (légitimes) risquent de tomber en panne. Un blocage agressif peut également augmenter la fréquence des faux positifs.
 #### Donc si vous envisagez d'exécuter une configuration de blocage agressive, vous ne devez pas avoir peur de mettre certains domaines sur liste blanche.
 
@@ -86,8 +86,11 @@
     * #### Propose des listes en foction de ce que l'on veux  bloquer [SITE](https://firebog.net/)
 
 * #### Script pour bloquer pub Youtube => [GitHub](https://github.com/kboghdady/youTube_ads_4_pi-hole)
+---
+---
 
-### `Unbound`
+## `Unbound`
+
 #### Cette partie commence  après [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/RASPBERRY-PI/DNS/unbound.md#installation--et-configuration-de-unbound)
 
 #### Se rendre dans Settings => DNS et Décocher le DNS choisi  pour l'installation
