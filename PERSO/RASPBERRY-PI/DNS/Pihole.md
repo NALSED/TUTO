@@ -62,6 +62,22 @@
       sudo pihole setpassword
 
 ## 2️⃣ `Configuration`
+### `Certificats`
+      win+R
+      certmgr.msc
+
+<img width="619" height="438" alt="image" src="https://github.com/user-attachments/assets/6bbc4bde-f9fb-4ff4-97ed-4925e7aa294b" />
+
+#### Clique droit dans la partie droite => Toutes les tâches => Importer
+#### Suivant
+#### Importer le fichier tls_ca.crt
+
+<img width="527" height="493" alt="image" src="https://github.com/user-attachments/assets/737bed77-6842-4b3e-923b-fc53cd2a48bd" />
+
+
+
+
+---
 
 ### `Listes`
 #### ⚠️  Plus le blocage est agressif, plus les sites web/services (légitimes) risquent de tomber en panne. Un blocage agressif peut également augmenter la fréquence des faux positifs.
