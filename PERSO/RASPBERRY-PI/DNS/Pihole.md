@@ -41,8 +41,7 @@
 * #### 1) Tapper la commande suivante, éditer le fichier texte.
       sudo nano -w /etc/dhcpcd.conf
   
-<img width="332" height="95" alt="image" src="https://github.com/user-attachments/assets/d3c3b0b4-9b98-431b-b47e-5f3b5ac8a11e" />
-
+<img width="326" height="157" alt="image" src="https://github.com/user-attachments/assets/3933ac7a-9fb5-40d4-9c8e-f5c4dadbac24" />
 
 
 #### 2) Redemmarer service
