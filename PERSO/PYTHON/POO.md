@@ -179,9 +179,9 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 * #### 1) Attributs publiques
 #### `EXEMPLE:`
-                    self.nom = nom
-                    self.ip = ip
-                    self.statut_connexion =statut_connexion
+    self.nom = nom
+    self.ip = ip
+    self.statut_connexion =statut_connexion
 
 
 
