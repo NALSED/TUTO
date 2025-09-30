@@ -173,5 +173,49 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 --- 
 
+### 2️⃣ `Encapsulation`
+ 
+#### L'encapsulation est un principe fondamental en  POO. Elle protège les classes des modifications/suppressions accidentelles et favorise la réutilisation et la maintenabilité du code
+
+* #### 1) Attributs publiques
+#### `EXEMPLE:`
+                    self.nom = nom
+                    self.ip = ip
+                    self.statut_connexion =statut_connexion
+
+
+
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
