@@ -54,6 +54,8 @@
 # `PIHOLE`
 
 ## 1️⃣ `Installation`
+      apt update && sudo apt upgrade -y
+      curl -sSL https://install.pi-hole.net | bash
 #### OK - Ok -CONTINUE
 #### Choisir eth0
 #### Choisir le DNS  déclaré dans /etc/dhcpcd.conf => ICI Cloudflare
