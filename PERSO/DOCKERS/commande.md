@@ -10,14 +10,14 @@
 
 * #### Liste  les container actifs
       docker ps
-* #### Liste tous les container
+* #### Liste tous les container `-a`
       docker ps -a
 
 ## `Exécuter`
 
 * #### `Télécharger/exécuter` un container
       docker run [options] image [commande]
-* #### télécharger/éxécuter un  container  en `background` => -d (detached mode)
+* #### télécharger/éxécuter un  container  en `background` => `-d` (detached mode)
       docker run -d nginx:latest
 * #### télécharger/éxécuter un container et `changer de nom`
       docker run -d  --name c1 nginx:latest => --name
@@ -29,14 +29,14 @@
 
 ## `Supprimer`
 
-  #### Stop le container et le `supprime`  => rm
+  #### Stop le container et le `supprime`  => `rm`
       docker rm -f
-  #### `Supprime` le container `à l'arret de celui ci` => --rm
+  #### `Supprime` le container `à l'arret de celui ci` => `--rm`
       docker run -ti --rm --name c2 debian:latest
 
       
 ##  `Interaction container`
-* #### `lancer un terminal` dans le container. => -ti 
+* #### `lancer un terminal` dans le container. => `-ti` 
       docker run -ti --name c2 debian:latest
       # terminal machine  physique
       sednal@origin:/$
@@ -57,11 +57,11 @@
 
 ### 📦  Différents types de volumes 📦
 
-| Type          | Emoji | Localisation      | Persistant | Performances | Isolation | Cas d’usage typique                        | Commande exemple |
-|---------------|-------|-------------------|------------|--------------|-----------|--------------------------------------------|------------------|
-| Volume        | 📦    | Géré par Docker (`/var/lib/docker/volumes/`) | ✅ Oui      | ⚡️ Bonne        | ✅ Forte    | Stockage persistant, partagé entre conteneurs | `docker run -v mon_volume:/app/data` |
-| Bind Mount    | 🖇️    | Dossier/fichier local (ex: `/home/user/data`) | ✅ Oui      | ⚡️⚡️ Excellente (dépend du FS) | ❌ Faible   | Dev local, montages précis, synchronisation    | `docker run -v /host/path:/app/data` |
-| Tmpfs Mount   | 🧠    | En mémoire (RAM)  | ❌ Non      | ⚡️⚡️⚡️ Très rapide | ✅ Forte    | Données sensibles, temporaires, cache       | `docker run --tmpfs /app/cache`       |
+| Type          | Localisation      | Persistant | Performances | Isolation | Cas d’usage typique                        | Commande exemple |
+|---------------|-------------------|------------|--------------|-----------|--------------------------------------------|------------------|
+| Volume        | Géré par Docker (`/var/lib/docker/volumes/`) | ✅ Oui      | ⚡️ Bonne        | ✅ Forte    | Stockage persistant, partagé entre conteneurs | `docker run -v mon_volume:/app/data` |
+| Bind Mount    | Dossier/fichier local (ex: `/home/user/data`) | ✅ Oui      | ⚡️⚡️ Excellente (dépend du FS) | ❌ Faible   | Dev local, montages précis, synchronisation    | `docker run -v /host/path:/app/data` |
+| Tmpfs Mount   | En mémoire (RAM)  | ❌ Non      | ⚡️⚡️⚡️ Très rapide | ✅ Forte    | Données sensibles, temporaires, cache       | `docker run --tmpfs /app/cache`       |
 
 
 
@@ -91,19 +91,28 @@
                 }
             ]
 
+* #### inspecter `--format` Permet de cibler dans inspect une sortie voulu
+      docker inspect --format  "{{.Mounts}}" c1
+      [{bind  /data /usr/share/ngnix/html   true rprivate}] 
+
 
 *  ####  `Suprimmer`
       docker volume rm
 
 
+* #### Choisir/utiliser le type de volume => /bind/volume/tmpfs
+#### Syntaxe :      
+#### 1) `Bind`      
+      docker run -d  --name c1 --mount type=bind,source=[CHEMIN SOURCE],target=[CHEMIN CONTENER] nginx:latest 
+      docker run -d  --name c1 --mount type=bind,source=/data/,destination=/usr/share/ngnix/html nginx:latest
 
+#### 2) `Volume`
+      docker run -d  --name c1 --mount type=volume,source=[NOM VOLUME],target=[CHEMIN] nginx:latest
+      docker run -d  --name c2 --mount type=volume,source=mynginx,target=/usr/share/nginx/html nginx:latest      
 
-
-
-
-
-
-
+#### 3) `TMPFS`
+       docker run -d  --name c1 --mount type=tmpfs,destination=[CHEMIN] nginx:latest
+       docker run -d  --name c1 --mount type=tmpfs,destination=/usr/share/nginx/html nginx:lates
       
 <details>
 <summary>
