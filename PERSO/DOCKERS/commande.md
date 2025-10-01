@@ -54,6 +54,17 @@
 ---
 
 ##  `Volumes`
+
+### 📦  Différents types de volumes 📦
+
+| Type          | Emoji | Localisation      | Persistant | Performances | Isolation | Cas d’usage typique                        | Commande exemple |
+|---------------|-------|-------------------|------------|--------------|-----------|--------------------------------------------|------------------|
+| Volume        | 📦    | Géré par Docker (`/var/lib/docker/volumes/`) | ✅ Oui      | ⚡️ Bonne        | ✅ Forte    | Stockage persistant, partagé entre conteneurs | `docker run -v mon_volume:/app/data` |
+| Bind Mount    | 🖇️    | Dossier/fichier local (ex: `/home/user/data`) | ✅ Oui      | ⚡️⚡️ Excellente (dépend du FS) | ❌ Faible   | Dev local, montages précis, synchronisation    | `docker run -v /host/path:/app/data` |
+| Tmpfs Mount   | 🧠    | En mémoire (RAM)  | ❌ Non      | ⚡️⚡️⚡️ Très rapide | ✅ Forte    | Données sensibles, temporaires, cache       | `docker run --tmpfs /app/cache`       |
+
+
+
 #### En nommant un volume  existant volume à la création d'un autre contener il est  possible  d'utiliser un volume pour plusieurs contener.
 #### ⚠️ En local `/var/lib/docker/volumes/mynginx/` ⚠️
 
