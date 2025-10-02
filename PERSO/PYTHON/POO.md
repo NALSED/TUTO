@@ -452,29 +452,61 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 # 📘 Méthodes magiques (dunder methods) en Python
 
-| Méthode magique     | But / Utilisation                         | Déclencheur (automatique)          | Exemple de code minimal                                               |
-|---------------------|-------------------------------------------|-------------------------------------|------------------------------------------------------------------------|
-| `__init__`          | Constructeur d’objet                      | Lors de l’instanciation             | `def __init__(self, val): self.val = val`                             |
-| `__str__`           | Représentation lisible (print)            | `print(obj)`                        | `def __str__(self): return "Objet sympa"`                             |
-| `__repr__`          | Représentation officielle (debug)         | `repr(obj)` ou en console           | `def __repr__(self): return f"MaClasse({self.val})"`                  |
-| `__len__`           | Longueur d’un objet                       | `len(obj)`                          | `def __len__(self): return len(self.liste)`                           |
-| `__getitem__`       | Accès par index ou clé                    | `obj[0]` ou `obj['clé']`            | `def __getitem__(self, key): return self.donnees[key]`               |
-| `__setitem__`       | Affectation par index                     | `obj[0] = val`                      | `def __setitem__(self, key, value): self.donnees[key] = value`       |
-| `__delitem__`       | Suppression d’un élément                  | `del obj[0]`                        | `def __delitem__(self, key): del self.donnees[key]`                  |
-| `__eq__`            | Comparaison `==`                          | `obj1 == obj2`                      | `def __eq__(self, other): return self.val == other.val`              |
-| `__ne__`            | Comparaison `!=`                          | `obj1 != obj2`                      | `def __ne__(self, other): return self.val != other.val`              |
-| `__lt__`            | Comparaison `<`                           | `obj1 < obj2`                       | `def __lt__(self, other): return self.val < other.val`               |
-| `__le__`            | Comparaison `<=`                          | `obj1 <= obj2`                      | `def __le__(self, other): return self.val <= other.val`              |
-| `__gt__`            | Comparaison `>`                           | `obj1 > obj2`                       | `def __gt__(self, other): return self.val > other.val`               |
-| `__ge__`            | Comparaison `>=`                          | `obj1 >= obj2`                      | `def __ge__(self, other): return self.val >= other.val`              |
-| `__add__`           | Addition `+`                              | `obj1 + obj2`                       | `def __add__(self, other): return self.val + other.val`              |
-| `__sub__`           | Soustraction `-`                          | `obj1 - obj2`                       | `def __sub__(self, other): return self.val - other.val`              |
-| `__mul__`           | Multiplication `*`                        | `obj1 * obj2`                       | `def __mul__(self, other): return self.val * other.val`              |
-| `__call__`          | Appel d’objet comme une fonction          | `obj()`                             | `def __call__(self): print("Appelé !")`                              |
-| `__contains__`      | Appartenance `in`                         | `"x" in obj`                        | `def __contains__(self, item): return item in self.liste`            |
-| `__del__`           | Destructeur (à éviter si possible)        | `del obj` ou à la fin du programme  | `def __del__(self): print("Supprimé")`                               |
+# Méthodes magiques courantes
 
-> **💡 Astuce :** Tu peux tester le comportement en surchargeant ces méthodes dans une classe simple.
+| Méthode magique | Description courte                                        |
+|-----------------|----------------------------------------------------------|
+| `__init__`      | Constructeur appelé lors de la création d'une instance   |
+| `__new__`       | Crée une nouvelle instance (avant `__init__`)            |
+| `__del__`       | Destructeur appelé à la suppression de l'objet           |
+| `__str__`       | Représentation lisible (utilisée par `print()`)           |
+| `__repr__`      | Représentation officielle (pour debug, console)           |
+| `__len__`       | Retourne la longueur (utilisé par `len()`)                 |
+| `__getitem__`   | Accès par index ou clé (`obj[key]`)                       |
+| `__setitem__`   | Affectation par index ou clé (`obj[key] = value`)          |
+| `__delitem__`   | Suppression par index ou clé (`del obj[key]`)              |
+| `__iter__`      | Retourne un itérateur (pour boucles `for`)                |
+| `__next__`      | Retourne l’élément suivant dans un itérateur              |
+| `__contains__`  | Vérifie la présence (`in`)                                |
+| `__call__`      | Permet d'appeler l'objet comme une fonction                |
+| `__eq__`        | Comparaison d’égalité (`==`)                               |
+| `__ne__`        | Comparaison d’inégalité (`!=`)                             |
+| `__lt__`        | Comparaison inférieure (`<`)                               |
+| `__le__`        | Comparaison inférieure ou égale (`<=`)                     |
+| `__gt__`        | Comparaison supérieure (`>`)                               |
+| `__ge__`        | Comparaison supérieure ou égale (`>=`)                     |
+| `__add__`       | Addition (`+`)                                            |
+| `__sub__`       | Soustraction (`-`)                                        |
+| `__mul__`       | Multiplication (`*`)                                      |
+| `__truediv__`   | Division vraie (`/`)                                      |
+| `__floordiv__`  | Division entière (`//`)                                   |
+| `__mod__`       | Modulo (`%`)                                             |
+| `__pow__`       | Puissance (`**`)                                         |
+| `__bool__`      | Conversion en booléen (`bool(obj)`)                      |
+| `__hash__`      | Valeur de hachage (pour dictionnaires et sets)           |
+| `__enter__`     | Début d’un contexte (`with`)                             |
+| `__exit__`      | Fin d’un contexte (`with`)                               |
+
+---
+
+# Méthodes magiques moins courantes
+
+| Méthode magique     | Description courte                                     |
+|---------------------|-------------------------------------------------------|
+| `__and__`           | ET bit à bit (`&`)                                    |
+| `__or__`            | OU bit à bit (`|`)                                    |
+| `__xor__`           | OU exclusif bit à bit (`^`)                           |
+| `__invert__`        | Complément bit à bit (`~`)                            |
+| `__lshift__`        | Décalage binaire à gauche (`<<`)                      |
+| `__rshift__`        | Décalage binaire à droite (`>>`)                      |
+| `__neg__`           | Négation/unary minus (`-obj`)                         |
+| `__pos__`           | Unary plus (`+obj`)                                   |
+| `__abs__`           | Valeur absolue (`abs(obj)`)                           |
+| `__format__`        | Formatage personnalisé (`format(obj, spec)`)          |
+| `__copy__`          | Copie superficielle (`copy.copy()`)                   |
+| `__deepcopy__`      | Copie profonde (`copy.deepcopy()`)                    |
+| `__instancecheck__` | Support pour `isinstance()`                           |
+| `__subclasscheck__` | Support pour `issubclass()`                           |
 
 
 
