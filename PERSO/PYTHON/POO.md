@@ -107,7 +107,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 ---
 
-### 1️⃣ `Intro`
+## 1️⃣ `Intro`
 
 * ####  Exemple => gestion de donnes Utilisateur
 
@@ -182,7 +182,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 --- 
 
-### 2️⃣ `Encapsulation`
+## 2️⃣ `Encapsulation`
  
 #### L'encapsulation est un principe fondamental en  POO. Elle protège les classes des modifications/suppressions accidentelles et favorise la réutilisation et la maintenabilité du code
 
@@ -196,7 +196,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 ---
                 
-### 3️⃣ `La composition` 
+## 3️⃣ `La composition` 
 
 #### La composition est un principe de conception en programmation orientée objet (POO) dans lequel une classe est constituée d'autres classes.
 
@@ -224,7 +224,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 ---
 
 
-### 4️⃣ Geters et Seters
+## 4️⃣ Geters et Seters
 #### Les getters et setters sont des méthodes utilisées pour lire et modifier les attributs d’un objet en toute sécurité.
 
 #### EXEMPLE geter
@@ -261,9 +261,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
      bob.afficher_details()    
 
 
-
-
-
+---
 
 #### EXEMPLE seters
 
@@ -298,9 +296,190 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
      alice.afficher_details()
      bob.afficher_details()
 
+---
+
+## 5️⃣ `Héritage et Polymorphisme`
+
+* ### 1) `Héritage` 
+#### L’héritage permet de `créer une classe enfant` qui `hérite` des attributs et méthodes d'une `classe parent`.
+
+#### EXEMPLE:
+
+     # Classe parent
+     class Dispositif_reseaux:
+         def __init__(self,nom : str, ip : str):
+             self.nom = nom
+             self.ip = ip
+     
+         def afficher_details(self):
+             print(f"Nom : {self.nom}, Ip :{self.ip}")
+
+     # Classse enfant
+     class Routeur(Dispositif_reseaux):  
+         def __init__(self, nom, ip, version_os):
+             # Permet d'hériter des attributs de la classe parent(avec le constructeur parent _init_)
+             super().__init__(nom,ip)
+             self.version_os = version_os
+
+         # Redéfinit la méthode pour ajouter l'affichage de l'OS    
+         def afficher_details(self)
+             super().afficher_details()
+             print(f"Version OS : {self.version_os}")
+     
+     router = Routeur("Router 1","192.168.0.123","IOS 15.1")      
+     router.afficher_details()
+
+* ### 2) `Redéfinition de méthode`, pour héritage enfant
+#### La classe enfant redéfinit la méthode de la classe parent
+
+#### EXEMPLE : 
+
+
+     # Classe parent
+     class AnalyserPaquet:
+         # Méthode générique d'analyse
+         def analyser(self, paquet: str):
+             print(f"Analyse générale du paquet  : {paquet}")
+     
+     # Classe enfant
+     class AnalysePaquetHTTP(AnalyserPaquet):
+         
+         # Redéfinit la méthode analyser pour les paquets HTTP
+         def analyser(self, paquet: str):
+            if "HTTP" in paquet:
+                 print(f"Analyse spécifique paquet HTTP : {paquet}")
+             else:
+                 
+                 # Appelle la méthode générique du parent
+                 super().analyser(paquet)
+     
+     
+     # Appel de la classe enfant
+     analyseur = AnalysePaquetHTTP()    
+     # entrée 1
+     analyseur.analyser("HTTP GET /index.html")
+     # entrée 2
+     analyseur.analyser("ICMP Echo Request")
+
+     # SORTIE
+     Analyse spécifique paquet HTTP : HTTP GET /index.html
+     Analyse générale du paquet  : ICMP Echo Request
+
+---
+
+## 3) `Polymorphisme`
+#### Une même méthode agit différemment selon la classe de l’objet
+
+#### EXEMPLE
+
+     # Classe parent : analyse générale
+     class AnalyserPaquet:
+         def analyser(self, paquet: str):
+             print(f"Analyse générale du paquet : {paquet}")
+     
+     # Classe enfant : Analyse HTTP
+     class AnalysePaquetHTTP(AnalyserPaquet):
+     
+         # Affiche un titre spécifique
+         def whoami(self):
+             print("\n=== HTTP Request ===")
+     
+         # Analyse spécifique
+         def analyser(self, paquet: str):
+             if "HTTP" in paquet:
+                 print(f"Analyse spécifique paquet HTTP : {paquet}")
+             else:
+                 super().analyser(paquet)
+     
+     # Classe enfant : Analyse DNS
+     class AnalysePaquetDNS(AnalyserPaquet):
+     
+         # Affiche un titre spécifique
+         def whoami(self):
+             print("\n=== DNS Request ===")
+     
+         # Analyse spécifique
+         def analyser(self, paquet: str):
+             if "DNS" in paquet:
+                 print(f"Analyse spécifique paquet DNS : {paquet}")
+             else:
+                 super().analyser(paquet)
+     
+     # Liste d'objets analyzers (polymorphisme)
+     analyseurs = [AnalysePaquetHTTP(), AnalysePaquetDNS()]
+     
+     # Paquets à analyser
+     paquets = ["HTTP GET /index.html", "ICMP Echo Request", "DNS Query for exemple.com"]
+     
+     # Traitement des paquets avec polymorphisme
+     for analyseur in analyseurs:
+         analyseur.whoami()
+         for paquet in paquets:
+             analyseur.analyser(paquet)
+
+
+     # SORTIE 
+
+     === HTTP Request ===
+     Analyse spécifique paquet HTTP : HTTP GET /index.html
+     Analyse générale du paquet : ICMP Echo Request
+     Analyse générale du paquet : DNS Query for exemple.com
+     
+     === DNS Request ===
+     Analyse générale du paquet : HTTP GET /index.html
+     Analyse générale du paquet : ICMP Echo Request
+     Analyse spécifique paquet DNS : DNS Query for exemple.com
 
 
 
+---
+
+### 6️⃣ `Méthodes magique et surcharge d'opérateurs`
+
+#### La `Méthodes magique` Ce sont des méthodes spéciales entourées de double underscores
+#### La `surcharge` d’un opérateur consiste à redéfinir son comportement pour des objets personnalisés.
+
+
+
+* #### 1) `Méthodes magique`
+
+<details>
+<summary>
+<h2>
+ EXEMPLES PRATIQUES
+</h2>
+</summary>
+
+# 📘 Méthodes magiques (dunder methods) en Python
+
+| Méthode magique     | But / Utilisation                         | Déclencheur (automatique)          | Exemple de code minimal                                               |
+|---------------------|-------------------------------------------|-------------------------------------|------------------------------------------------------------------------|
+| `__init__`          | Constructeur d’objet                      | Lors de l’instanciation             | `def __init__(self, val): self.val = val`                             |
+| `__str__`           | Représentation lisible (print)            | `print(obj)`                        | `def __str__(self): return "Objet sympa"`                             |
+| `__repr__`          | Représentation officielle (debug)         | `repr(obj)` ou en console           | `def __repr__(self): return f"MaClasse({self.val})"`                  |
+| `__len__`           | Longueur d’un objet                       | `len(obj)`                          | `def __len__(self): return len(self.liste)`                           |
+| `__getitem__`       | Accès par index ou clé                    | `obj[0]` ou `obj['clé']`            | `def __getitem__(self, key): return self.donnees[key]`               |
+| `__setitem__`       | Affectation par index                     | `obj[0] = val`                      | `def __setitem__(self, key, value): self.donnees[key] = value`       |
+| `__delitem__`       | Suppression d’un élément                  | `del obj[0]`                        | `def __delitem__(self, key): del self.donnees[key]`                  |
+| `__eq__`            | Comparaison `==`                          | `obj1 == obj2`                      | `def __eq__(self, other): return self.val == other.val`              |
+| `__ne__`            | Comparaison `!=`                          | `obj1 != obj2`                      | `def __ne__(self, other): return self.val != other.val`              |
+| `__lt__`            | Comparaison `<`                           | `obj1 < obj2`                       | `def __lt__(self, other): return self.val < other.val`               |
+| `__le__`            | Comparaison `<=`                          | `obj1 <= obj2`                      | `def __le__(self, other): return self.val <= other.val`              |
+| `__gt__`            | Comparaison `>`                           | `obj1 > obj2`                       | `def __gt__(self, other): return self.val > other.val`               |
+| `__ge__`            | Comparaison `>=`                          | `obj1 >= obj2`                      | `def __ge__(self, other): return self.val >= other.val`              |
+| `__add__`           | Addition `+`                              | `obj1 + obj2`                       | `def __add__(self, other): return self.val + other.val`              |
+| `__sub__`           | Soustraction `-`                          | `obj1 - obj2`                       | `def __sub__(self, other): return self.val - other.val`              |
+| `__mul__`           | Multiplication `*`                        | `obj1 * obj2`                       | `def __mul__(self, other): return self.val * other.val`              |
+| `__call__`          | Appel d’objet comme une fonction          | `obj()`                             | `def __call__(self): print("Appelé !")`                              |
+| `__contains__`      | Appartenance `in`                         | `"x" in obj`                        | `def __contains__(self, item): return item in self.liste`            |
+| `__del__`           | Destructeur (à éviter si possible)        | `del obj` ou à la fin du programme  | `def __del__(self): print("Supprimé")`                               |
+
+> **💡 Astuce :** Tu peux tester le comportement en surchargeant ces méthodes dans une classe simple.
+
+
+
+
+</details>
 
 
 
