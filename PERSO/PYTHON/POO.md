@@ -168,6 +168,23 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
             Nombre Utilisateur : 2
 
 
+---
+### `Grands Principes`
+
+* #### `Le constructeur` => __init__
+#### Automatiquement appelée lors de la création d’une instance de la classe
+     class MaClasse:
+         def __init__(self, param1, param2):
+             self.param1 = param1
+             self.param2 = param2    
+
+
+
+
+
+
+
+
 
 
 
@@ -177,19 +194,39 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
  
 #### L'encapsulation est un principe fondamental en  POO. Elle protège les classes des modifications/suppressions accidentelles et favorise la réutilisation et la maintenabilité du code
 
-* #### 1) Attributs publiques
-#### `EXEMPLE:`
-    self.nom = nom
-    self.ip = ip
-    self.statut_connexion =statut_connexion
+| Syntaxe de l'attribut | Visibilité       | Accès depuis l'extérieur | Comportement / Usage                                      |
+|------------------------|------------------|---------------------------|-----------------------------------------------------------|
+| `nom`                  | Publique         | ✅ Oui                    | Attribut standard, accessible et modifiable librement.   |
+| `_nom`                | Protégée         | ⚠️ Oui (convention)       | Convention : usage interne, mais reste accessible.        |
+| `__nom`               | Privée (pseudo)  | 🚫 Non direct (via _Classe__nom) | Name mangling : empêche l'accès direct par erreur.     |
 
 
 
+---
                 
+### 3️⃣ `La composition` 
 
+#### La composition est un principe de conception en programmation orientée objet (POO) dans lequel une classe est constituée d'autres classes.
 
+#### EXEMPLE :
 
-
+     class AddressIP:
+         def __init__(self,ip):
+             self.ip = ip
+         def to_binary(self):        
+             pass
+     
+     
+     #  créer la class
+     class Utilisateur:
+         # Attribut de classe
+         nombre_utilisateur = 0
+     
+         # Fonction 1 format nom, ip status 
+         def __init__(self, nom: str, ip: str, statut_connexion: bool,):
+             # Attributs public d'instance
+             self.nom = nom
+             self.ip = AddressIP(ip)
 
 
 
