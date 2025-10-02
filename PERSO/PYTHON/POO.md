@@ -436,12 +436,30 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 ### 6️⃣ `Méthodes magique et surcharge d'opérateurs`
 
-#### La `Méthodes magique` Ce sont des méthodes spéciales entourées de double underscores
+#### Les `Méthodes magique` permettent aux objets de se comporter comme des types natifs Python (int, str, list, etc.) pas besoin d’écrire des méthodes personnalisées pour tout faire.
 #### La `surcharge` d’un opérateur consiste à redéfinir son comportement pour des objets personnalisés.
 
 
 
 * #### 1) `Méthodes magique`
+
+#### EXEMPLE
+
+     class AdresseIP:
+         def __init__(self, ip):
+             self.ip = ip
+     
+         def __str__(self):
+             return f"Adresse IP : {self.ip}"
+     
+     # Création d'un objet
+     ip1 = AdresseIP("192.168.0.1")
+     
+     # Affichage automatique via __str__
+     print(ip1)  #Python appelle ip1.__str__()
+     
+
+
 
 <details>
 <summary>
