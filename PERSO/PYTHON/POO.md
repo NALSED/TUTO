@@ -103,14 +103,6 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
   - Ne prennent ni **`self`** ni **`cls`** comme premier argument.
   - Ne peuvent pas accéder aux **attributs d'instance** ou **de classe**.
 
-
-
-
-
-
-
-
-
 </details>
 
 ---
@@ -229,14 +221,82 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
              self.nom = nom
              self.ip = AddressIP(ip) <======= ICI On appelle le constructeur de la classe AddressIP pour créer un nouvel objet.
 
+---
+
+
+### 4️⃣ Geters et Seters
+#### Les getters et setters sont des méthodes utilisées pour lire et modifier les attributs d’un objet en toute sécurité.
+
+#### EXEMPLE geter
+     
+     class Utilisateur:
+     
+         def __init__(self, nom: str, ip: str,):
+             self.nom =nom
+             self.ip =ip
+             self.__password = "test"
+     
+         def afficher_details(self):
+             print(f"Utilisateur : {self.nom}, IP : {self.ip}, MDP : {self.password}")
+     
+         # Permet d'accéder au mot de passe comme un attribut, pas comme une méthode
+         # @property transforme une méthode en attribut
+         @property 
+         def password(self):
+             return "********"
+         
+         @password.setter
+         def password(self, new_password: str):    
+             if len(new_password) >= 8:
+                 self.__password =  new_password
+                 print("mot  de passe mis à jour.")
+             else:
+                 print("MDP trop court ! ")
+     
+     alice = Utilisateur("Alice","192.168.0.123")
+     bob = Utilisateur("Bob", "192.168.0.124")
+     alice.password= "12345678"  
+     bob.password= "1234567"     
+     alice.afficher_details()
+     bob.afficher_details()    
 
 
 
 
 
 
+#### EXEMPLE seters
 
+     class Utilisateur:
+         
+         def __init__(self, nom: str, ip: str,):
+             self.nom = nom 
+             self.ip = ip 
+             self.__password = "test"
+     
+         def afficher_details(self):
+             print(f"Utilisateur : {self.nom}, IP : {self.ip}, MDP : {self.__password}")
+     
+     
+         def get_password(self):
+             return "********"
 
+         # Permet de changer le MPD pourtant protégé
+         def  set_password(self, new_password: str):
+             if len(new_password) >= 8:
+                 self.__password =  new_password
+                 print("mot  de passe mis à jour.")
+             else:
+                 print("MDP trop court ! ")
+     
+     alice = Utilisateur("Alice", "192.168.0.102") 
+     bob = Utilisateur ("bob", "19.168.0.103")
+     
+     
+     alice.set_password("1234567")
+     bob.set_password("12345678")
+     alice.afficher_details()
+     bob.afficher_details()
 
 
 
