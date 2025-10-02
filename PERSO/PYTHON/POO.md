@@ -215,7 +215,8 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
              self.ip = ip
          def to_binary(self):        
              pass
-     
+         def __str__(self):
+             return self.ip <===== Pour  retourner l'IP est pas self.ip en tant qu'objet de la classe AddressIP
      
      #  créer la class
      class Utilisateur:
@@ -226,7 +227,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
          def __init__(self, nom: str, ip: str, statut_connexion: bool,):
              # Attributs public d'instance
              self.nom = nom
-             self.ip = AddressIP(ip)
+             self.ip = AddressIP(ip) <======= ICI On appelle le constructeur de la classe AddressIP pour créer un nouvel objet.
 
 
 
