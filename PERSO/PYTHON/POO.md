@@ -170,21 +170,11 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
              self.param1 = param1
              self.param2 = param2    
 
-
-
-
-
-
-
-
-
-
-
 --- 
 
 ## 2️⃣ `Encapsulation`
  
-#### L'encapsulation est un principe fondamental en  POO. Elle protège les classes des modifications/suppressions accidentelles et favorise la réutilisation et la maintenabilité du code
+#### **L'encapsulation** est un principe fondamental en  POO. Elle **protège** les classes des modifications/suppressions accidentelles et favorise la réutilisation et la maintenabilité du code
 
 | Syntaxe de l'attribut | Visibilité       | Accès depuis l'extérieur | Comportement / Usage                                      |
 |------------------------|------------------|---------------------------|-----------------------------------------------------------|
@@ -198,7 +188,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
                 
 ## 3️⃣ `La composition` 
 
-#### La composition est un principe de conception en programmation orientée objet (POO) dans lequel une classe est constituée d'autres classes.
+#### La **composition** est un principe de conception en programmation orientée objet (POO) dans lequel **une classe est constituée d'autres classes**.
 
 #### EXEMPLE :
 
@@ -225,7 +215,8 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 
 ## 4️⃣ Geters et Seters
-#### Les getters et setters sont des méthodes utilisées pour lire et modifier les attributs d’un objet en toute sécurité.
+#### Les **getters** et **setters** sont des **méthodes** utilisées pour **accéder** (get) ou **modifier** (set) les **attributs privés** d’un objet, tout en **contrôlant** leur usage (validation, transformation, etc.).
+
 
 #### EXEMPLE geter
      
@@ -301,7 +292,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 ## 5️⃣ `Héritage et Polymorphisme`
 
 * ### 1) `Héritage` 
-#### L’héritage permet de `créer une classe enfant` qui `hérite` des attributs et méthodes d'une `classe parent`.
+L’**héritage** est un mécanisme de la programmation orientée objet qui permet à une **classe enfant (ou sous-classe)** de **hériter des attributs et des méthodes** d’une **classe parent (ou super-classe)**.
 
 #### EXEMPLE:
 
@@ -330,6 +321,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
      router.afficher_details()
 
 * ### 2) `Redéfinition de méthode`, pour héritage enfant
+
 #### La classe enfant redéfinit la méthode de la classe parent
 
 #### EXEMPLE : 
@@ -368,7 +360,8 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 ---
 
 ## 3) `Polymorphisme`
-#### Une même méthode agit différemment selon la classe de l’objet
+#### Le **polymorphisme** est un principe de la programmation orientée objet qui permet d’utiliser **différents objets** de **types différents** de manière **interchangeable**, à travers une **même interface** (méthode ou fonction).
+
 
 #### EXEMPLE
 
@@ -434,16 +427,15 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 ---
 
-### 6️⃣ `Méthodes magique et surcharge d'opérateurs`
+## 6️⃣ `Méthodes magique et surcharge d'opérateurs`
 
-#### Les `Méthodes magique` permettent aux objets de se comporter comme des types natifs Python (int, str, list, etc.) pas besoin d’écrire des méthodes personnalisées pour tout faire.
-#### La `surcharge` d’un opérateur consiste à redéfinir son comportement pour des objets personnalisés.
-
+#### Les `Méthodes magique` **permettent aux objets** de se comporter comme des **types natifs** Python (int, str, list, etc.) pas besoin d’écrire des méthodes personnalisées pour tout faire.
 
 
-* #### 1) `Méthodes magique`
 
-#### EXEMPLE
+* ### 1) `Méthodes magique`
+
+#### EXEMPLE 1
 
      class AdresseIP:
          def __init__(self, ip):
@@ -459,12 +451,48 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
      print(ip1)  #Python appelle ip1.__str__()
      
 
+#### EXEMPLE 2
+
+     class AddressIp:
+         
+         def __init__(self, ip):
+             self.ip = ip
+     
+         # Crée une sortie lisible pour l'utilisateur (ex : print)
+         def __str__(self) -> str:
+             return f"Adresse IP {self.ip}"
+         
+         # Aide au débogage : représentation technique de l'objet
+         def __repr__(self) -> str:
+             return f"AddressIp('{self.ip}')"
+     
+         # Compare deux objets pour vérifier s'ils ont la même adresse IP
+         def __eq__(self, other_ip: object) -> bool:
+             return self.ip == other_ip
+     
+     ip1 = AddressIp("192.168.0.1")
+     ip2 = AddressIp("192.168.0.2")
+     ip3 = AddressIp("192.168.0.2")
+     
+     print(ip1)
+     print(repr(ip2))
+     print(ip2 ==  ip3)
+     
+     # SORTIE
+     Adresse IP 192.168.0.1
+     AddressIP('192.168.0.2')
+     True
+
+---
+
+* ### 2) `Surcharge d'opérateurs`
+#### La **surcharge d’opérateurs** est un mécanisme qui permet à une **classe de définir** ou de redéfinir le **comportement des opérateurs standards** (+, -, *, /, ==, [], etc.) lorsqu’ils sont **appliqués à ses instances**.
 
 
 <details>
 <summary>
 <h2>
- EXEMPLES PRATIQUES
+ LISTE METHODES MAGIQUES
 </h2>
 </summary>
 
@@ -530,6 +558,52 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 
 </details>
+
+---
+
+## 7️⃣ `Classes Abstraites et interfaces`
+
+
+### 1) `Classes Abstraites`  
+
+#### Une **classe abstraite** est une classe qui **ne peut pas être instanciée directement**.  
+#### Elle sert de **modèle** pour les autres classes en définissant une ou plusieurs **méthodes abstraites** (sans implémentation), que les **sous-classes doivent obligatoirement redéfinir**.
+
+#### Elle est généralement utilisée pour :
+- #### **Imposer un contrat** aux sous-classes
+- #### **Organiser le code** selon une hiérarchie claire
+-  #### Faciliter le **polymorphisme**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
