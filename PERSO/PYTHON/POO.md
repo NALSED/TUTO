@@ -561,7 +561,7 @@ L’**héritage** est un mécanisme de la programmation orientée objet qui perm
 
 ---
 
-## 7️⃣ `Classes Abstraites et interfaces`
+## 7️⃣ `Classes Abstraites`
 
 
 ### 1) `Classes Abstraites`  
@@ -570,22 +570,84 @@ L’**héritage** est un mécanisme de la programmation orientée objet qui perm
 #### Elle sert de **modèle** pour les autres classes en définissant une ou plusieurs **méthodes abstraites** (sans implémentation), que les **sous-classes doivent obligatoirement redéfinir**.
 
 #### Elle est généralement utilisée pour :
-- #### **Imposer un contrat** aux sous-classes
-- #### **Organiser le code** selon une hiérarchie claire
--  #### Faciliter le **polymorphisme**
+* #### **Imposer un contrat** aux sous-classes
+* #### **Organiser le code** selon une hiérarchie claire
+*  #### Faciliter le **polymorphisme**
+
+#### `Syntaxe de base `
+#### Avec abc => module standard
+#### Et ABS => class
 
 
+     from abc import ABC, abstractmethod
+     
+     # Définition d'une classe abstraite
+     class MaClasseAbstraite(ABC):
+     
+         @abstractmethod
+         def ma_methode_abstraite(self):
+             pass  
 
 
+#### EXEMPLE 
+
+    # Import du module abc pour utiliser les classes abstraites
+    from abc import ABC, abstractmethod  
+    
+    # Classe abstraite de base représentant un dispositif de sécurité
+    class Dispositif_secu(ABC):  # Hérite de ABC pour devenir une classe abstraite
+        
+        def __init__(self, nom):
+            self.nom = nom  # Attribut commun : nom du dispositif
+
+        # Méthode abstraite : doit être implémentée dans les classes filles
+        @abstractmethod
+        def activer(self):
+            pass  
+
+        # Méthode abstraite : doit être implémentée dans les classes filles
+        @abstractmethod
+        def desactiver(self):
+            pass  
+    
+        def afficher_nom(self):
+            # Méthode concrète partagée par toutes les sous-classes
+            print(f"Disposotif de Sécurité : {self.nom}")
+    
+    # Classe concrète qui hérite de Dispositif_secu
+    class Parefeu(Dispositif_secu):
+    
+        def activer(self):
+            # Implémentation spécifique pour le pare-feu
+            print(f"Le parfeu {self.nom} est activé")
+    
+        def desactiver(self):
+            # Implémentation spécifique pour le pare-feu
+            print(f"Le parfeu {self.nom} est désactivé")
+    
+    # Autre classe concrète qui hérite de Dispositif_secu
+    class IDS(Dispositif_secu):
+    
+        def activer(self):
+            # Implémentation spécifique pour l'IDS
+            print(f"Le IDS {self.nom} est activé")
+    
+        def desactiver(self):
+            # Implémentation spécifique pour l'IDS
+            print(f"Le IDS {self.nom} est désactivé")
+    
+    # Instanciation d’un pare-feu et d’un IDS avec leur nom respectif
+    parefeu = Parefeu("Fotinet  01")
+    ids = IDS("IDS  01")
+    
+    # Activation des dispositifs
+    parefeu.activer()
+    ids.activer()
 
 
+--- 
 
-
-
-
-
-
-
+### 8️⃣ `Décorateurs et méthode de classe`
 
 
 
