@@ -650,13 +650,54 @@ L’**héritage** est un mécanisme de la programmation orientée objet qui perm
 ### 8️⃣ `Décorateurs et méthode de classe`
 
 
+* ####  1) Décorateurs
+
+#### Un **décorateur** est une **fonction spéciale** qui permet de **modifier ou enrichir le comportement d’une autre fonction**, **sans modifier son code**.
 
 
+#### EXEMPLE :
+
+     # Décorateur  qui rend imposible les arguments négatifs
+     def valider_entrees(fonction):
+     
+         def nouvelle_fonction(self, *args):
+             
+             # Vérifie si au moins un argument est négatif
+             if any(arg < 0 for arg in args):
+                 print("Les argument  ne peuvent être négatifs") 
+                 return
+             
+             # Si tout est OK, appelle la vraie fonction
+             return fonction(self,*args,)
+         return nouvelle_fonction    
+     
+     class Calcule:
+     
+         # Décorateur + méthode d'additioner
+         @valider_entrees
+         def additionner(self,a,b):
+             return a+b    
+         
+         # Décorateur + méthode de soustraire
+         @valider_entrees
+         def soustraire(self,a,b):
+             return a - b     
+         
+     # Test
+     machine = Calcule()
+     
+     print(machine.additionner(10,56))
+     print(machine.soustraire(96,56))    
 
 
+*  #### 2) Méthode de classe
 
+#### Méthode liée à la classe, pas à l’objet.
 
-
+#### `Syntaxe`
+     @classmethod
+     def ma_methode(cls, args):
+         # code
 
 
 
