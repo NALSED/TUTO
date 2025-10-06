@@ -28,26 +28,26 @@
 # Bonnes Pratiques
 
 ---
-my_project/
-│
-├── my_package/           # Répertoire principal du paquet
-│   ├── __init__.py       # Fichier spécial pour faire de ce répertoire un paquet Python
-│   ├── module1.py        # Module Python 1 : contient du code (fonctions, classes, etc.)
-│   ├── module2.py        # Module Python 2 : autre partie du code
-│   └── utils.py          # Module utilitaire : fonctions d’aide réutilisables
-│
-├── tests/                # Répertoire dédié aux tests unitaires
-│   ├── __init__.py       # Permet de traiter ce dossier comme un package (facultatif)
-│   ├── test_module1.py   # Tests pour module1.py
-│   ├── test_module2.py   # Tests pour module2.py
-│   └── test_utils.py     # Tests pour utils.py
-│
-├── venv/                 # Environnement virtuel isolé pour ce projet
-│                         # (à ne pas versionner dans Git)
-│
-├── requirements.txt      # Fichier listant toutes les dépendances Python du projet
-│
-└── README.md             # Documentation du projet (description, installation, usage)
+        my_project/
+        │
+        ├── my_package/           # Répertoire principal du paquet
+        │   ├── __init__.py       # Fichier spécial pour faire de ce répertoire un paquet Python
+        │   ├── module1.py        # Module Python 1 : contient du code (fonctions, classes, etc.)
+        │   ├── module2.py        # Module Python 2 : autre partie du code
+        │   └── utils.py          # Module utilitaire : fonctions d’aide réutilisables
+        │
+        ├── tests/                # Répertoire dédié aux tests unitaires
+        │   ├── __init__.py       # Permet de traiter ce dossier comme un package (facultatif)
+        │   ├── test_module1.py   # Tests pour module1.py
+        │   ├── test_module2.py   # Tests pour module2.py
+        │   └── test_utils.py     # Tests pour utils.py
+        │
+        ├── venv/                 # Environnement virtuel isolé pour ce projet
+        │                         # (à ne pas versionner dans Git)
+        │
+        ├── requirements.txt      # Fichier listant toutes les dépendances Python du projet
+        │
+        └── README.md             # Documentation du projet (description, installation, usage)
 
 
 --- 
