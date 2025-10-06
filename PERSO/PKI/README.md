@@ -1,7 +1,7 @@
-# Projet : Gestionnaire local de certificats TLS sur Raspberry Pi 2
+# Projet : Gestionnaire local de certificats TLS sur Raspberry Pi5
 
 ## Objectif  
-Développer une application Python dédiée à la gestion centralisée des certificats TLS, installée sur un Raspberry Pi 2, avec une architecture reposant sur un reverse proxy Nginx pour la terminaison TLS en local.
+Développer une application Python dédiée à la gestion centralisée des certificats TLS, installée sur un Raspberry Pi 5, avec une architecture reposant sur un reverse proxy Nginx pour la terminaison TLS en local.
 
 ---
 
