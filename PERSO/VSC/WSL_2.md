@@ -17,3 +17,6 @@
 #### Redémarrer
 
 #### établir la connection WSL2  depuis VSC
+#### ⚠️ DEBIAN ⚠️
+* ####  installer python
+          sudo apt install python3 python3-pip
