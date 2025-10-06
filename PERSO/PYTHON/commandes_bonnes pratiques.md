@@ -84,8 +84,8 @@
 créer le fichier  :
 
 installer les  dépendances
-                   
-                   pip freeze > requirements.txt
+
+                pip freeze > requirements.txt
               
 ## 5. README.md
 
