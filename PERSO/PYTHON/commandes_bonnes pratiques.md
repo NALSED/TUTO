@@ -81,7 +81,8 @@
 
   ```bash
   pip install -r requirements.txt
-*  créer le fichier  :
+créer le fichier  :
+
 installer les  dépendances
                    pip freeze > requirements.txt
               
