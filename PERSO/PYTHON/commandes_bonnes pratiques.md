@@ -82,7 +82,7 @@
   ```bash
   pip install -r requirements.txt
 *  créer le fichier  :
-  * installer les  dépendances
+installer les  dépendances
                    pip freeze > requirements.txt
               
 ## 5. README.md
