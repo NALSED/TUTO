@@ -17,10 +17,12 @@
 
 ### `Activer environement`
 #### Une fois activé les instalations et modifs se feront dans  l'environement  virtuel
-         
+
+         # Win
          .\.venv\Scripts\activate
 
-
+        # Linux
+        source venv/bin/activate
 ---
 
 ### `Executer fichier`
