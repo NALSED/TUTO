@@ -5,10 +5,12 @@
 ### `Créer environement virtuel`
 
 [source](https://docs.python.org/fr/3.8/library/venv.html)
-        
-        python -m venv .venv
-
----
+                # win
+                python -m venv .venv
+                #linux
+                sudo apt update && sudo apt -y install python3-venv
+                python3 -m venv [NOM PROJET]
+        ---
 
 ### `Activer environement`
 #### Une fois activé les instalations et modifs se feront dans  l'environement  virtuel
