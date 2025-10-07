@@ -29,6 +29,15 @@
 #### Sauver le  code et dans le terminal
         python .\[NOM DU FICHIER] # Autocomplétion avec TAb
 
+---
+
+### Installer dépendence Python  => Linux
+#### Utiliser => path/to/venv/bin/python and path/to/venv/bin/pip
+          ICI
+          /home/sednal/CODE/venv/bin/python3 /home/sednal/CODE/venv/bin/pip install pyOpenSSL
+          
+
+
 
 ---
 ---
