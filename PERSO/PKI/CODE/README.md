@@ -11,7 +11,7 @@
         127.0.1.1    origin
 
 #### 2) 
-        chmod  +x g.cert.sh
-        ./g.cert.sh
+        chmod  +x g_cert.sh
+        ./g_cert.sh
 
 ###  3) lancer le logiciel via gcert  dans le terminal
