@@ -13,4 +13,5 @@
         chmod  +x g_cert.sh
         ./g_cert.sh
 
-###  3) lancer le logiciel via gcert  dans le terminal
+###  3) Installer  rsync sur les deux machine
+                 rsync -av -e ssh /home/sednal/CODE sednal@192.168.0.247:/home/sednal
