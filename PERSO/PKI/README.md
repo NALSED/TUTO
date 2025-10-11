@@ -26,7 +26,7 @@ Développer une application Python dédiée à la gestion centralisée des certi
 
 ## Infrastructure proposée
 
-- **Raspberry Pi 2 dédié** servant de coffre-fort sécurisé pour le stockage des certificats et clés privées.  
+- **Raspberry Pi 5 dédié** servant de coffre-fort sécurisé pour le stockage des certificats et clés privées.  
 - **Nginx reverse proxy** assurant la terminaison TLS et la distribution des certificats aux différents services du réseau local.  
 - Interface utilisateur simple, intuitive, organisée en trois volets pour la gestion WAN, LAN et le monitoring.
 ---
