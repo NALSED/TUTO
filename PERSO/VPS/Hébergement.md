@@ -65,7 +65,9 @@
       sudo apt install nginx -y
 
 #### éditer le fichier `reverse-local`
-          server {
+
+        sudo nano /etc/nginx/sites-available/reverse-local
+        server {
             listen 80;
             server_name nalsed.fr www.nalsed.fr;
         
@@ -82,9 +84,108 @@
           nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
           nginx: configuration file /etc/nginx/nginx.conf test is successful
 
-#### ICI changement du port de pihole conflit avec ngnix sur raspberry pi
-          sudo nano /etc/pihole/pihole.toml
+---
+---
 
+#### ICI changement du port du site => conflit avec pihole sur raspberry 
+#### ON passe du  port 80  => 3000
+
+                        server {
+                            listen 3000 default_server;
+                            listen [::]:3000 default_server;
+                            
+                            root /var/www/html;
+                            index index.html index.htm index.nginx-debian.html;
+                        
+                            server_name _;
+                        
+                            location / {
+                                try_files $uri $uri/ =404;
+                            }
+                        }
+#### Donc changement  pour autossh et VPS ngnix 
+
+### ngnix `VPS`
+
+                server {
+                    listen 3000;
+                    server_name nalsed.fr www.nalsed.fr;
+                
+                    location / {
+                        proxy_pass http://127.0.0.1:8080;
+                        proxy_set_header Host $host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                    }
+                }
+
+
+### `AutoSSH`
+                utossh -M 0 -f -N -R 8080:localhost:3000 debian@176.31.163.227
+
+
+#### TEST FINAL 
+
+## `SUR SERVEUR LOCAL`
+                curl http://localhost:3000
+### SORTIE
+                <!DOCTYPE html>
+                <html lang="fr">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Site Test</title>
+                </head>
+                <body>
+                    <h1>Bonjour depuis le VPS !</h1>
+                    <p>Cette page remplace la page par défaut de Nginx.</p>
+                </body>
+                </html>      
+
+## `SUR VPS`
+                curl http://localhost:3000
+### SORTIE
+                <!DOCTYPE html>
+                <html lang="fr">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Site Test</title>
+                </head>
+                <body>
+                    <h1>Bonjour depuis le VPS !</h1>
+                    <p>Cette page remplace la page par défaut de Nginx.</p>
+                </body>
+                </html>                 
+
+##  `SUR PC`
+                        PS C:\Users\sednal> curl http://176.31.163.227:3000
+
+
+                        StatusCode        : 200
+                        StatusDescription : OK
+                        Content           : <!DOCTYPE html>
+                                            <html lang="fr">
+                                            <head>
+                                                <meta charset="UTF-8">
+                                                <title>Site Test</title>
+                                            </head>
+                                            <body>
+                                                <h1>Bonjour depuis le VPS !</h1>
+                                                <p>Cette page remplace la page par dÃ©faut de Ng...
+                        RawContent        : HTTP/1.1 200 OK
+                                            Connection: keep-alive
+                                            Accept-Ranges: bytes
+                                            Content-Length: 225
+                                            Content-Type: text/html
+                                            Date: Sun, 12 Oct 2025 19:07:17 GMT
+                                            ETag: "68ebf869-e1"
+                                            Last-Modified: Sun, 12 Oct 2025 1...
+                        Forms             : {}
+                        Headers           : {[Connection, keep-alive], [Accept-Ranges, bytes], [Content-Length, 225],
+                                            [Content-Type, text/html]...}
+                        Images            : {}
+                        InputFields       : {}
+                        Links             : {}
+                        ParsedHtml        : mshtml.HTMLDocumentClass
+                        RawContentLength  : 225
 
 
 
