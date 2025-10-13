@@ -7,7 +7,7 @@
 ---
 ## 1️⃣ ⏳ Préalables: ⏳
 *  #### Avoir un nom de domaine, enregistré, valide et actif
-*  #### Faire un enregistrement A du nom de demaine pointanters l'IP du VPS => www.nalsed.fr.  0	A	176.31.163.227
+*  #### Faire un enregistrement A du nom de demaine pointant vers l'IP du VPS => www.nalsed.fr.  0	A	176.31.163.227
 * #### Créer une page html (ou autre) en local
 * #### Installer sur serveur `LAN`
      * #### autossh
@@ -66,7 +66,7 @@
 #### 2.2) Installer `AutoSSH` => un outil qui maintient automatiquement un tunnel SSH ouvert et le relance si la connexion tombe.
         sudo apt install autossh
 
-#### 2.3) Créer un connection sans MDP et Initier la connectio via autossh
+#### 2.3) Créer un connection sans MDP et Initier la connexion via autossh
           ssh-copy-id -i /home/sednal/.ssh/id_ecdsa.pub debian@176.31.163.227
           nohup autossh -M 0 -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" \ -R 0.0.0.0:8080:localhost:3000 debian@176.31.163.227 > ~/autossh.log 2>&1 &
 
@@ -195,6 +195,7 @@
 #### 3.4) ⚠️ Modifier le fichier de configuration SSH ⚠️
         sudo nano /etc/ssh/sshd_config
         GatewayPorts yes # Ajouter  ou décommenter cet  ligne
+        sudo systemctl restart ssh
 
 ---
 ---
@@ -202,5 +203,35 @@
 #### 🎉 Tester le site 🎉
 <img width="477" height="227" alt="image" src="https://github.com/user-attachments/assets/7a0b3e07-6321-4e09-bba5-9408dc157f3d" />
 
+---
+
+### SCHEMA
+
+            ┌─────────────┐
+            │   Internet  │
+            └──────┬──────┘
+                   │
+                   ▼
+        ┌────────────────────┐
+        │      VPS           │
+        │ 176.31.163.227     │
+        │                    │
+        │  ┌──────────────┐  │
+        │  │  Nginx       │  │
+        │  │  listen 80   │  │
+        │  └─────┬────────┘  │
+        │        │ proxy_pass │
+        │        ▼            │
+        │  localhost:8080     │
+        │  (tunnel SSH)       │
+        └────────┬───────────┘
+                 │
+                 ▼
+        ┌────────────────────┐
+        │ Serveur Local      │
+        │ 192.168.0.241      │
+        │ port 3000          │
+        │ Site Web local     │
+        └────────────────────┘
 
 
