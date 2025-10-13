@@ -1,5 +1,5 @@
 # 🏠 Hébergement site Web en Local 🏠
-[AIDE](https://coder.com/docs/tutorials/reverse-proxy-nginx)
+[AIDE 1](https://coder.com/docs/tutorials/reverse-proxy-nginx) // [AIDE 2](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
 ---
 
 ### Je vais contourner l’absence d’accès à mon routeur FAI en mettant en place un reverse proxy sur mon VPS, afin de pouvoir héberger mon site en local.
