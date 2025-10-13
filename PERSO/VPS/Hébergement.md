@@ -37,7 +37,7 @@
 
 #### 2.3) Créer un connection sans MDP et Initier la connection.
           ssh-copy-id -i /home/sednal/.ssh/id_ecdsa.pub debian@IP
-          autossh -M 0 -f -N -R 8080:localhost:80 debian@176.31.163.227
+          autossh  -R 8080:localhost:80 debian@176.31.163.227
           
 - #### `-M 0` : désactive le port de monitoring automatique.  
 - #### `-f` : met le tunnel en arrière-plan.  
@@ -121,7 +121,7 @@
 
 
 ### `AutoSSH`
-                utossh -M 0 -f -N -R 8080:localhost:3000 debian@176.31.163.227
+                utossh -R 8080:localhost:3000 debian@176.31.163.227
 
 
 #### TEST FINAL 
