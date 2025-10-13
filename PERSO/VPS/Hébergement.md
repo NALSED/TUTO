@@ -120,7 +120,7 @@
 #### Solution plus pérenne :
 #### Utiliser systemd =>Elle permet de démarrer automatiquement le tunnel au boot, et il sera indépendant du terminal.
 #### Editer
-        /etc/systemd/system/tunnel-nalsed.service
+       sudo  nano /etc/systemd/system/tunnel-nalsed.service
 
 #### Remplir le fichier
         [Unit]
