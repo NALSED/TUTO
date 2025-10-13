@@ -89,7 +89,8 @@
 
 #### ICI changement du port du site => conflit avec pihole sur raspberry 
 #### ON passe du  port 80  => 3000
-
+## `SUR SERVEUR LOCAL`
+                        nano /etc/nginx/sites-enabled/default
                         server {
                             listen 3000 default_server;
                             listen [::]:3000 default_server;
@@ -106,7 +107,7 @@
 #### Donc changement  pour autossh et VPS ngnix 
 
 ### ngnix `VPS`
-
+                sudo nano /etc/nginx/sites-available/reverse-local
                 server {
                     listen 3000;
                     server_name nalsed.fr www.nalsed.fr;
