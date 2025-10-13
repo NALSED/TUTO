@@ -114,6 +114,8 @@
 
 ## 9 `&`
 - Met le processus en **arrière-plan**, pour libérer le terminal.
+-  
+</details>
 
 #### Solution plus pérenne :
 #### Utiliser systemd =>Elle permet de démarrer automatiquement le tunnel au boot, et il sera indépendant du terminal.
@@ -149,9 +151,6 @@
   * #### Tunnel persistant même après reboot
   * #### Redémarrage automatique si la connexion SSH tombe
   * #### Indépendant du terminal
-  
-</details>
-
            
 #### `Stopper la connection`
         pkill autossh # TOUT KILL
