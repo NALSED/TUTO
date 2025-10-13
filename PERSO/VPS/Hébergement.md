@@ -121,7 +121,7 @@
 
 
 ### `AutoSSH`
-                utossh -R 8080:localhost:3000 debian@176.31.163.227
+                autossh -R 8080:localhost:3000 debian@176.31.163.227
 
 
 #### TEST FINAL 
