@@ -68,8 +68,7 @@
 
 #### 2.3) Créer un connection sans MDP et Initier la connectio via autossh
           ssh-copy-id -i /home/sednal/.ssh/id_ecdsa.pub debian@176.31.163.227
-          nohup autossh -M 0 -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" \
--R 0.0.0.0:8080:localhost:3000 debian@176.31.163.227 > ~/autossh.log 2>&1 &
+          nohup autossh -M 0 -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" \ -R 0.0.0.0:8080:localhost:3000 debian@176.31.163.227 > ~/autossh.log 2>&1 &
 
 <details>
 <summary>
@@ -116,8 +115,41 @@
 ## 9 `&`
 - Met le processus en **arrière-plan**, pour libérer le terminal.
 
+#### Solution plus pérenne :
+#### Utiliser systemd =>Elle permet de démarrer automatiquement le tunnel au boot, et il sera indépendant du terminal.
+#### Editer
+        /etc/systemd/system/tunnel-nalsed.service
 
+#### Remplir le fichier
+        [Unit]
+        Description=Tunnel SSH persistant vers VPS
+        After=network.target
+        
+        [Service]
+        User=sednal
+        ExecStart=/usr/bin/autossh -M 0 -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -R 0.0.0.0:8080:localhost:3000 debian@176.31.163.227
+        Restart=always
+        RestartSec=10
+        
+        [Install]
+        WantedBy=multi-user.target
 
+#### Activer et démarrer
+        sudo systemctl daemon-reload
+        sudo systemctl enable tunnel-nalsed
+        sudo systemctl start tunnel-nalsed
+
+#### Vérifier son état :
+        systemctl status tunnel-nalsed
+
+<img width="1423" height="306" alt="image" src="https://github.com/user-attachments/assets/518c6689-5b9d-4f3c-89b1-c3a778b727fa" />
+
+####  ✅ Avantages :
+
+  * #### Tunnel persistant même après reboot
+  * #### Redémarrage automatique si la connexion SSH tombe
+  * #### Indépendant du terminal
+  
 </details>
 
            
