@@ -66,10 +66,10 @@
             │   │   └── index.html           # Page d’accueil
             │   ├── static/                  # CSS, JS, images
             │   │   └── style.css            # Exemple de CSS
-            │   └── templates/              # Alias de `views/` si tu préfères nom classique Flask
+            │   └── templates/              # Alias de `views/` 
             │       └── index.html
             │
-            └── run_web.py                   # 🔥 Point d’entrée pour lancer Flask (comme `main.py` pour le CLI)
+            └── run_web.py                   # Point d’entrée pour lancer Flask
 
 
 ### Exemple de fichiers associés
