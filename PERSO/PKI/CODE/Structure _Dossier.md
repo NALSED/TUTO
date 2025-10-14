@@ -2,74 +2,74 @@
 
 ## 1️⃣ Shell
 
-   /CODE
-  │
-  ├── g_cert.sh => Lancement install
-  ├── main.py => Gestion, via gcert dans le shell
-  ├── requirements.txt
-  ├── .gitignore
-  ├── README.md.txt
-  ├── venv/
-  ├── libs/ => Dossier créer pour isoler les dépendences  python et éviter  un venv en  prod
-  ├──__pycache__/
-  ├── my_package/
-  │   ├──__init__.py
-  │   ├── certif.py
-  │   ├── gestion.py
-  │   ├── lan.py
-  │   ├── logs.py
-  │   ├── test.py
-  │   ├── wan.py
-  │   └──__pycache__/
-  └── script/
-      ├── doc.md
-      └── load.sh
-
----
+               /CODE
+              │
+              ├── g_cert.sh => Lancement install
+              ├── main.py => Gestion, via gcert dans le shell
+              ├── requirements.txt
+              ├── .gitignore
+              ├── README.md.txt
+              ├── venv/
+              ├── libs/ => Dossier créer pour isoler les dépendences  python et éviter  un venv en  prod
+              ├──__pycache__/
+              ├── my_package/
+              │   ├──__init__.py
+              │   ├── certif.py
+              │   ├── gestion.py
+              │   ├── lan.py
+              │   ├── logs.py
+              │   ├── test.py
+              │   ├── wan.py
+              │   └──__pycache__/
+              └── script/
+                  ├── doc.md
+                  └── load.sh
+            
+            ---
 
 ## 2️⃣ WebUi
 
-CODE/
-│
-├── g_cert.sh                    # Script d'installation ou de lancement
-├── main.py                      # Point d'entrée CLI principal
-├── requirements.txt             # Dépendances Python
-├── .gitignore                   # Fichiers ignorés par Git
-├── README.md.txt                # Documentation principale
-│
-├── venv/                        # Environnement virtuel Python
-│   └── ...                      # (bin/, lib/, etc.)
-│
-├── __pycache__/                 # Cache Python global
-│
-├── libs/                        # Librairies personnalisées
-│   └── ...                      # Modules spécifiques
-│
-├── my_package/                  # Package principal de l'app
-│   ├── __init__.py
-│   ├── certif.py
-│   ├── gestion.py
-│   ├── lan.py
-│   ├── logs.py
-│   ├── test.py
-│   ├── wan.py
-│   └── __pycache__/
-│
-├── script/                      # Scripts annexes
-│   ├── doc.md
-│   └── load.sh
-│
-├── webapp/                      # 💻 Interface Flask
-│   ├── __init__.py              # Initialise l'app Flask (factory pattern possible)
-│   ├── routes.py                # Routes Flask (logique Web)
-│   ├── views/                   # Rendu HTML
-│   │   └── index.html           # Page d’accueil
-│   ├── static/                  # CSS, JS, images
-│   │   └── style.css            # Exemple de CSS
-│   └── templates/              # Alias de `views/` si tu préfères nom classique Flask
-│       └── index.html
-│
-└── run_web.py                   # 🔥 Point d’entrée pour lancer Flask (comme `main.py` pour le CLI)
+            CODE/
+            │
+            ├── g_cert.sh                    # Script d'installation ou de lancement
+            ├── main.py                      # Point d'entrée CLI principal
+            ├── requirements.txt             # Dépendances Python
+            ├── .gitignore                   # Fichiers ignorés par Git
+            ├── README.md.txt                # Documentation principale
+            │
+            ├── venv/                        # Environnement virtuel Python
+            │   └── ...                      # (bin/, lib/, etc.)
+            │
+            ├── __pycache__/                 # Cache Python global
+            │
+            ├── libs/                        # Librairies personnalisées
+            │   └── ...                      # Modules spécifiques
+            │
+            ├── my_package/                  # Package principal de l'app
+            │   ├── __init__.py
+            │   ├── certif.py
+            │   ├── gestion.py
+            │   ├── lan.py
+            │   ├── logs.py
+            │   ├── test.py
+            │   ├── wan.py
+            │   └── __pycache__/
+            │
+            ├── script/                      # Scripts annexes
+            │   ├── doc.md
+            │   └── load.sh
+            │
+            ├── webapp/                      # 💻 Interface Flask
+            │   ├── __init__.py              # Initialise l'app Flask (factory pattern possible)
+            │   ├── routes.py                # Routes Flask (logique Web)
+            │   ├── views/                   # Rendu HTML
+            │   │   └── index.html           # Page d’accueil
+            │   ├── static/                  # CSS, JS, images
+            │   │   └── style.css            # Exemple de CSS
+            │   └── templates/              # Alias de `views/` si tu préfères nom classique Flask
+            │       └── index.html
+            │
+            └── run_web.py                   # 🔥 Point d’entrée pour lancer Flask (comme `main.py` pour le CLI)
 
 
 ### Exemple de fichiers associés
