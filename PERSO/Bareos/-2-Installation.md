@@ -172,31 +172,29 @@
 ---
 
 ## `I Instalation`
-
+[SOURCE](https://www.postgresql.org/download/linux/debian/)
 ### PostgreSQL, aussi connu sous le nom de Postgres, est un système de gestion de base de données relationnelle et objet
 
-### 1.1) Installer `GNUP` (clés PGP)
-    apt install gnupg -y
+### 1.1) Installer `curl`
+    sudo apt install curl ca-certificates
 
-### 1.2) Importez la clé du dépôt PostgreSQL 
-     wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+### 1.2) Crée le répertoire /usr/share/postgresql-common/pgdg avec les droits administrateur
+    sudo install -d /usr/share/postgresql-common/pgdg
 
-### Sortie attendu:
-![image](https://github.com/user-attachments/assets/4c95412a-8415-4775-9abf-5dca855aac21)
+### 1.3) Télécharger la clé GPG officielle de PostgreSQL depuis le site officiel,
+    sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
 
-### 1.3) Ajoutez le dépôt PostgreSQL
-    echo "deb http://apt.postgresql.org/pub/repos/apt/ $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
 
-### 1.4) Installez PostgreSQL:
-    sudo apt update
-    sudo apt install postgresql-13 -y
+### 1.4) Charger dans le shell les variables d’identification de la distribution Linux (nom, version, code, etc.) depuis le fichier système /etc/os-release
+    . /etc/os-release
 
-### 1.5) Activer démarer status
-    systemctl enable postgresql
-    systemctl start postgresql
-    systemctl status postgresql
 
-![image](https://github.com/user-attachments/assets/1f9db2d0-d724-40f2-9a67-9627a37c4ca2)
+### 1.5) Créer un fichier de dépôt APT pour PostgreSQL, en ajoutant la source officielle PGDG correspondant à la version de la distribution.
+    sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $VERSION_CODENAME-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
+
+### 1.6) Installation
+       sudo apt update
+       sudo apt -y install  postgresql-18
 
 --
 ## `II Configuration`
