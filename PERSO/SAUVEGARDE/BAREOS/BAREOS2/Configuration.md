@@ -12,7 +12,75 @@
 ### Configuring bareos-database-common password  => classic
 
 --- 
-## 2️⃣  BACKUP
+## 2️⃣ BACKUP :
+
+### `Plan Synoptique`
+                                      +-----------------------+
+                                      |       PC Admin        |
+                                      +-----------------------+
+                                      |      192.168.0.111    |
+                                      | Interface Bareos/SSH  |
+                                      +-----------+-----------+
+                                                  |
+                                                  v
+                                      +-------------------------+
+                                      |     Bareos Director     |
+                                      |     192.168.0.240       |
+                                      +-----------+-------------+
+                                                  |
+                                                  | 
+                                                  v
+                                      +-------------------------+
+                                      | PostgreSQL Catalog      |
+                                      | 192.168.0.240           |
+                                      | Dump automatique        |
+                                      | via cron/script         |
+                                      +-----------+-------------+
+                                                  |
+                                                  v
+                                         +----------------+
+                                         | Storage Local  |
+                                         | (bareos-sd)    |
+                                         | Local Backup   |
+                                         +----------------+
+                                                  |
+                           -----------------------/--------------------------
+                           |                      ^   Tunel autoSSH +cron   |
+                           v                      |                         v
+                  +----------------+              |               +-------------------+
+                  | Local Backup   |              |               |   Remote Backup   |
+                  +----------------+              |               +-------------------+
+                  |  192.168.0.240 |              |               | WAN 176.31.163.227|
+                  | Redondance     |              |               | Stockage distant  |
+                  +----------------+              |               +-------------------+
+                           ^                      |                          ^
+                           |                      |                          |
+                           |                      ----------------------------
+          +----------------+----------------+         Tunel autoSSH + cron   |                           
+          |      Clients à sauvegarder      |                                |                   
+          +---------------------------------+                                |
+          | 192.168.0.111 PC Admin          |                        +----------------+
+          | 192.168.0.241 Raspberry Pi 1    |                        | Client distant |
+          | - Unbound + Pi-hole +           |                        +----------------+
+          | gestioninfra                    |                        | 176.31.163.227 |
+          | (Future) 2ème Raspberry Pi      |                        |    système     |
+          | - Gcert + Site Web              |                        +----------------+
+          +---------------------------------+                        
+                                                                      
+                           
+          
+  
+  
+
+
+
+
+
+
+
+
+
+
 
 == Sauvegarde logique (méthode la plus simple)
 backup  postgresql
