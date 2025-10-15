@@ -243,7 +243,7 @@
 ## `I) Ajout du Dépot et autorisation`
 
 ### 1.1) Télécharger le script d’ajout des dépôts Bareos :
-        wget https://download.bareos.org/current/Debian_12/add_bareos_repositories.sh
+        wget https://download.bareos.org/current/Debian_13/add_bareos_repositories.sh
 
 ### 1.2) Droits d’exécution au script :
         chmod +x add_bareos_repositories.sh
@@ -262,10 +262,10 @@
     apt install bareos bareos-database-postgresql -y
 
 ### PostgreSQL est configuré corectement donc j'utilise l'option configurer avec dbconfig-common
-### Donc yes puis reseigner passwoerd et confirmer
+### Donc yes puis reseigner password et confirmer
 
 ### 2.3) ⚠️Vérification⚠️
-        su - postgre
+        su - postgres
         psql -U bareos -d bareos -h localhost
 ![image](https://github.com/user-attachments/assets/fb634c4c-ac0c-45e0-9447-f4b1092ae552)
 
