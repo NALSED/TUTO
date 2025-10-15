@@ -14,7 +14,7 @@
 --- 
 ## 2️⃣ BACKUP :
 
-### `Plan Synoptique`
+### I) `Plan Synoptique`
                                       +-----------------------+
                                       |       PC Admin        |
                                       +-----------------------+
@@ -67,10 +67,44 @@
           | - Gcert + Site Web              |                        +----------------+
           +---------------------------------+                        
                                                                       
-                           
-          
-  
-  
+### II) `WebUi Bareos`                        
+#### Install + Activer php-fpm pour Apache2       
+#### Activer PHP-FPM pour Apache2 sert à améliorer la gestion et les performances de PHP sur le serveur web.  
+        # install
+        apt-get install bareos-webui -y
+        # Activer php-fpm
+        a2enmod proxy_fcgi setenvif
+        a2enconf php8.1-fpm
+        systemctl reload apache2
+        service php8.4-fpm status 
+
+<img width="1494" height="364" alt="image" src="https://github.com/user-attachments/assets/c4b6f46b-7634-4e88-9fd5-18ce3f542754" />
+
+#### Config WebUi 
+      cp /etc/bareos/bareos-dir.d/console/admin.conf.example /etc/bareos/bareos-dir.d/console/admin.conf
+      nano /etc/bareos/bareos-dir.d/console/admin.conf
+
+<img width="436" height="364" alt="image" src="https://github.com/user-attachments/assets/38082443-ea43-4d5f-8f1b-0a1f41b6953a" />
+
+#### Vérifier que le fichier /etc/bareos/bareos-dir.d/profile/webui-admin.conf est présent et correct
+
+<img width="1188" height="306" alt="image" src="https://github.com/user-attachments/assets/89e0ca19-e655-45c7-9676-b011786241a1" />
+
+#### Redemarrer les services 
+    systemctl restart apache2 && systemctl restart php8.4-fpm && systemctl restart bareos-director
+    
+#### Accés => `http://192.168.0.240/bareos-webui/`
+
+
+
+
+
+
+
+
+
+
+
 
 
 
