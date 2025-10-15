@@ -75,7 +75,7 @@
 ### vérifier que le fichier /etc/bareos/bareos-dir.d/profile/webui-admin.conf est présent et correct
 ![image](https://github.com/user-attachments/assets/bf265e7c-4ea1-4599-ae3f-129f9ea1849e)
 
-### Redemmarer les services 
+### Redemarrer les services 
     systemctl restart apache2
     systemctl restart php8.2-fpm
     systemctl restart bareos-director
