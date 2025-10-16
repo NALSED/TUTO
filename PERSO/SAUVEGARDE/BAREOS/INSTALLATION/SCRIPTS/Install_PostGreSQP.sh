@@ -43,13 +43,20 @@ BLA::stop_loading_animation() {
 #  VERIFIER LA  VERSION ACTUEL DE POSTGRESQL SINON LE  SCRIPT VA PLANTER.
 
 # ====================================== INSTALL CONFIG POSTGRESQL ======================================
+clear
+echo -e "\n${YELLOW}#############################################"
+echo -e "${YELLOW}###   Script d'installation PostgreSQL    ###${NC}"
+echo -e "${YELLOW}###---------------------------------------###${NC}"
+echo -e "${YELLOW}###        Date    : 16/10/2025           ###${NC}"
+echo -e "${YELLOW}#############################################${NC}\n"
+
 
 BLA::start_loading_animation "${BLA_bubble[@]}"
 BLA::stop_loading_animation
 
 
 
-clear
+
 
 if dpkg -l | grep -q "^ii.*postgresql"; then
     echo -e "${GREEN}postgresql déjà installé ${NC}\n"
@@ -59,9 +66,9 @@ if dpkg -l | grep -q "^ii.*postgresql"; then
 else            
 
             # Installation de expect
-                BLA::start_loading_animation "${BLA_bubble[@]}"
+                
                 sudo apt -y -qq install expect > /dev/null 2>&1
-                BLA::stop_loading_animation
+              
 
                 if dpkg -l | grep -q "^ii.*expect"; then
                     echo -e "${GREEN}expect installé avec succès${NC}\n"
@@ -74,9 +81,8 @@ else
                 if dpkg -l | grep -q "^ii.*curl"; then
                             echo -e "${GREEN}curl est déjà installé ${NC}\n"
                         else
-                            BLA::start_loading_animation "${BLA_bubble[@]}"
+                          
                             sudo apt -y -qq install curl ca-certificates > /dev/null 2>&1
-                            BLA::stop_loading_animation
                             
                             if dpkg -l | grep -q "^ii.*curl"; then
                                 echo -e "${GREEN}curl installé avec succés${NC}\n"
@@ -86,6 +92,23 @@ else
                             fi
                 fi
 
+            # Installation Gnupg
+            
+                if dpkg -l | grep -q "^ii.*gnupg"; then
+                    echo -e "${GREEN}gnupg est déjà installé ${NC}\n"
+                else
+                
+                sudo apt -y -qq install gnupg > /dev/null 2>&1
+                
+                                                
+                    if dpkg -l | grep -q "^ii.*gnupg"; then
+                        echo -e "${GREEN}gnupg installé avec succés${NC}\n"
+                    else 
+                        echo -e "${RED}Probléme lors de l'installation de gnupg...${NC}"    
+                        exit 1
+                    fi
+                fi
+                            
             # Création  du répertoire /usr/share/postgresql-common/pgdg avec droit administrateur
                 
                 sudo install -d /usr/share/postgresql-common/pgdg
@@ -98,9 +121,10 @@ else
                 fi
 
             # Télécharger la clé GPG officielle de PostgreSQL depuis le site officiel,
-                BLA::start_loading_animation "${BLA_bubble[@]}"
+                
+                
                 sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc > /dev/null 2>&1
-                BLA::stop_loading_animation
+               
                 if [ $? -eq 0 ]; then
                     echo -e "${GREEN}Clé GPG télécharger avec succés${NC}\n"
                 else  
@@ -133,9 +157,10 @@ else
                     echo -e "${YELLOW}Création d’un utilisateur PostgreSQL...${NC}\n\n"
                     
                     read -p "Veuillez indiquer un nom utilistateur pour PostgreSQL : " name
-            while true; do
-    read -p "Voulez-vous que votre utilisateur ait le rôle super-utilisateur pour PostgreSQL (y/n) : " choix
+                    read -p "Voulez-vous que votre utilisateur ait le rôle super-utilisateur pour PostgreSQL (y/n) : " choix
 
+            while true; do
+    
     if [[ "$choix" == "y" || "$choix" == "n" ]]; then
 
         # Création de l'utilisateur PostgreSQL avec expect
@@ -157,7 +182,7 @@ EOF
         fi
 
         echo -e "\n${GREEN}Installation et configuration PostgreSQL terminées avec succès !${NC}"
-        sleep 3
+        
         break  # Sort de la boucle si le choix était valide
 
     else
@@ -167,3 +192,5 @@ done
 
 
 fi
+# ====================================== INSTALL BAREOS ======================================
+
