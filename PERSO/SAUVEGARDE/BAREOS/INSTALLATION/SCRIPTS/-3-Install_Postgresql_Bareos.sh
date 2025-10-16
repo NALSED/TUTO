@@ -294,9 +294,7 @@ if [ "$choix_sudo" == "y" ] || [ "$choix_sudo" == "Y" ]; then
                 ;;
         esac
 
-        echo -e "\nAppuyez sur Entrée pour continuer..."
-        read
-        clear
+    
     done
 
     # Test la présence du dépôt
@@ -312,7 +310,7 @@ if [ "$choix_sudo" == "y" ] || [ "$choix_sudo" == "Y" ]; then
 
     # Install BAREOS
     BLA::start_loading_animation "${BLA_bubble[@]}"
-    sudo apt -y -qq install bareos bareos-database-postgresql > /dev/null 2>&1
+    sudo apt -y install bareos bareos-database-postgresql 
     BLA::stop_loading_animation
     status=$?
     if [ $status -eq 0 ]; then
