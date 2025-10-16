@@ -6,10 +6,51 @@ RED='\033[0;31m'
 YELLOW='\033[0;33m'
 NC='\033[0m'
 
+# ====================================== CHARGEMENT ======================================
+# Source: https://github.com/Silejonu/bash_loading_animations
+BLA_bubble=( 0.2 · o O O o · )
+
+declare -a BLA_active_loading_animation
+
+BLA::play_loading_animation_loop() {
+  while true ; do
+    for frame in "${BLA_active_loading_animation[@]}" ; do
+      printf "\r%s" "${frame}"
+      sleep "${BLA_loading_animation_frame_interval}"
+    done
+  done
+}
+
+BLA::start_loading_animation() {
+  BLA_active_loading_animation=( "${@}" )
+  # Extract the delay between each frame from array BLA_active_loading_animation
+  BLA_loading_animation_frame_interval="${BLA_active_loading_animation[0]}"
+  unset "BLA_active_loading_animation[0]"
+  tput civis # Hide the terminal cursor
+  BLA::play_loading_animation_loop &
+  BLA_loading_animation_pid="${!}"
+}
+
+BLA::stop_loading_animation() {
+  kill "${BLA_loading_animation_pid}" &> /dev/null
+  printf "\n"
+  tput cnorm # Restore the terminal cursor
+}
+
+# ====================================== CHARGEMENT ======================================
+
+
 #  VERIFIER LA  VERSION ACTUEL DE POSTGRESQL SINON LE  SCRIPT VA PLANTER.
 
 # ====================================== INSTALL CONFIG POSTGRESQL ======================================
+
+BLA::start_loading_animation "${BLA_bubble[@]}"
+BLA::stop_loading_animation
+
+
+
 clear
+
 if dpkg -l | grep -q "^ii.*postgresql"; then
     echo -e "${GREEN}postgresql déjà installé ${NC}\n"
     echo -e "Veuillez vérifier la version ,ainsi que les utilisteurs pour éviter tout conflit..."
@@ -18,7 +59,9 @@ if dpkg -l | grep -q "^ii.*postgresql"; then
 else            
 
             # Installation de expect
+                BLA::start_loading_animation "${BLA_bubble[@]}"
                 sudo apt -y -qq install expect > /dev/null 2>&1
+                BLA::stop_loading_animation
 
                 if dpkg -l | grep -q "^ii.*expect"; then
                     echo -e "${GREEN}expect installé avec succès${NC}\n"
@@ -31,7 +74,9 @@ else
                 if dpkg -l | grep -q "^ii.*curl"; then
                             echo -e "${GREEN}curl est déjà installé ${NC}\n"
                         else
+                            BLA::start_loading_animation "${BLA_bubble[@]}"
                             sudo apt -y -qq install curl ca-certificates > /dev/null 2>&1
+                            BLA::stop_loading_animation
                             
                             if dpkg -l | grep -q "^ii.*curl"; then
                                 echo -e "${GREEN}curl installé avec succés${NC}\n"
@@ -53,9 +98,9 @@ else
                 fi
 
             # Télécharger la clé GPG officielle de PostgreSQL depuis le site officiel,
-                
+                BLA::start_loading_animation "${BLA_bubble[@]}"
                 sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc > /dev/null 2>&1
-
+                BLA::stop_loading_animation
                 if [ $? -eq 0 ]; then
                     echo -e "${GREEN}Clé GPG télécharger avec succés${NC}\n"
                 else  
@@ -68,13 +113,14 @@ else
                 . /etc/os-release
 
         # Créer un fichier de dépôt APT pour PostgreSQL,
-
-                sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $VERSION_CODENAME-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
-
-        # Installation de PostgreSQL
                 
+                sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $VERSION_CODENAME-pgdg main' > /etc/apt/sources.list.d/pgdg.list"
+                
+        # Installation de PostgreSQL
+                BLA::start_loading_animation "${BLA_bubble[@]}"
                 sudo apt update  > /dev/null 2>&1
                 sudo apt -y -qq install  postgresql-18  > /dev/null 2>&1
+                BLA::stop_loading_animation    
                     if dpkg -l | grep -q "^ii.*postgresql-18"; then
                         echo -e "${GREEN}postgresql-18 installé avec succès${NC}\n"
                     else
