@@ -263,6 +263,7 @@ fi
      
 
         # ====================================== INSTALL BAREOS ======================================
+        clear
         titre_bareos
 
         echo -e "${YELLOW}Voici votre OS :${NC} $(grep PRETTY_NAME /etc/os-release | cut -d= -f2 | tr -d '"')\n"
@@ -337,6 +338,11 @@ fi
             echo -e "path_psql=/etc/postgresql/$version_psql/main/pg_hba.conf"
             exit 0
         fi
+        
+        sudo systemctl enable --now bareos-director.service
+        sudo systemctl enable --now bareos-storage.service
+        sudo systemctl enable --now bareos-filedaemon.service
+
         clear
         titre_bareos
 
