@@ -353,6 +353,9 @@ fi
         sudo systemctl status bareos-filedaemon.service --no-pager -n 5
         sudo systemctl status postgresql --no-pager -n 5
 
+        #Pour entrer dans bconsole sans  sudo
+        sudo usermod -aG bareos $USER
+
         echo -e "\nAppuyez sur Entrée pour quitter..."
         read
         BLA::start_loading_animation "${BLA_bubble[@]}"
