@@ -83,8 +83,29 @@
         └─Serveur-Bareos        253:8    0   700G  0 lvm
 
 
+### ⚠️ Pour utiliser ce raid 10, il  faut créer un point de montage:
 
+# Différence entre /dev et /var pour le RAID 10
 
+## 1️⃣ /dev/Serveur-Bareos (périphérique brut)
+- Volume logique LVM lui-même.
+- Brut : pas de système de fichiers, juste le bloc de stockage.
+- Accessible par des programmes qui gèrent les disques bruts.
+- Risque : utiliser directement avec Bareos nécessite de gérer le filesystem soi-même ; une erreur peut effacer tout le RAID.
+- Rarement utilisé pour du "File Storage" classique.
 
+## 2️⃣ /var/lib/bareos/storage (répertoire monté)
+- Point de montage : le LV RAID 10 est formaté (ex. ext4) et monté ici.
+- Bareos écrit des fichiers de sauvegarde dans ce répertoire.
+- Sécurité : le filesystem gère permissions, hiérarchie et droits.
+- Recommandé pour File Storage avec Bareos.
 
+#### Formatage mkfs.ext4
+      sudo mkfs.ext4 /dev/CHEMIN STOCKAGE
       
+#### Montage
+      # ICI pour Bareos mais le principe sudo mount SOURCE => DESTiNATION
+      sudo mount /dev/Serveur/Bareos /var/lib/bareos/storage
+
+#### Inscription à /etc/fstab
+
