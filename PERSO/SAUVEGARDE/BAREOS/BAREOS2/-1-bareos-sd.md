@@ -7,7 +7,7 @@
 ### 📝 Définition de `Storage` et `Device` dans Bareos:
 
 ## 📦 Storage
-Le **Storage** est la **configuration logique** du démon de stockage (`bareos-sd`).  
+Le **Storage** est la **configuration logique** de `bareos-sd`.  
 C’est **l’interface réseau** par laquelle le **Director** communique avec le **Storage Daemon**.
 
 ### Il définit :
