@@ -41,24 +41,24 @@ Le **Device** définit le **périphérique physique ou logique** utilisé par le
                           ▼                                ▼
                       Tunnel SSH
               ┌──────────────────────────┐      ┌──────────────────────────┐
-              │   Storage Daemon (SD1)   │      │   Storage Daemon (SD2)   │
+              │      Storage_Remote      │      │      Storage_Local       │
               │      176.31.163.227      │      │      192.168.0.240       │
               ├──────────────────────────┤      ├──────────────────────────┤
-              │  Nom : Storage-SiteA     │      │  Nom : Storage-SiteB     │
+              │  Nom : Remote_Sd         │      │  Nom : Local_Sd          │
               │  Port : 9103             │      │  Port : 9103             │
-              │  Device = Device-SiteA   │      │  Device = Device-SiteB   │
+              │  Device = Remote_Device  │      │  Device = Local_Device   │
               └────────────┬─────────────┘      └────────────┬─────────────┘
-                           │                                │
-                     Référence externe                Référence interne
-                           │                                │
-                           ▼                                ▼
+                           │                                 │
+                     Référence externe                 Référence interne
+                           │                                 │
+                           ▼                                 ▼
               ┌──────────────────────────┐      ┌──────────────────────────┐
               │         DEVICE           │      │         DEVICE           │
-              │   Name = Device-SiteA    │      │   Name = Device-SiteB    │
+              │   Name = Remote_Device   │      │   Name = Local_Device    │
               │   Media = File           │      │   Media = File           │
               │   Stockage :             │      │   Stockage :             │
-              │   Disque sda – 200 Go    │      │   RAID10 – LVM local     │
-              │   (VPS distant)          │      │   (Serveur local)        │
+              │   Disque sda – 200 Go    │      │   RAID10 – LVM RAID 10   │
+              │      (VPS distant)       │      │     (Serveur local)      │
               └──────────────────────────┘      └──────────────────────────┘
 
 ---
@@ -71,10 +71,11 @@ I) Régles à respecter
 
 * #### 1.1) `Un seul Director` : Le Director possède un nom unique (bareos-dir) et un mot de passe unique, utilisé par tous les SD.
 * #### 1.2) SD local et SD distant : Storage côté SD ne contient pas Device ni Media Type.
-        Storage {
-            Name = storage_local
-            SDPort = 9103
-        }
+
+      Storage {
+                Name = storage_local
+                SDPort = 9103
+            }
 
 * #### 1.3) Chaque SD définit ses Devices
 * #### 1.4) Il faut que le nomdre de storage créé corespondent au  nom de storage déclaré dans le bareos-dir dans /etc/bareos/bareos-dir.d/storage. Sinon conflit!
