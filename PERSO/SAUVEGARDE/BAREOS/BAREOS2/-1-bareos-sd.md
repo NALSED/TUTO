@@ -171,9 +171,9 @@ I) Régles à respecter
 ---
 ##### ICI Utilisation du mot de passe unique présent dans  /etc/bareos/bareos-sd.d/director/bareos-dir.conf => 192.168.0.240
 
-### 1️⃣ `Fichier Device + Storage + Director LAN et WAN`
+# 1️⃣ `Fichier Device + Storage + Director LAN et WAN`
 
-#### I) Device en Locale 192.168.0.240
+## I) Device en Locale 192.168.0.240
 
 <details>
 <summary>
@@ -222,7 +222,7 @@ I) Régles à respecter
     
 </details>
 
-#### 1.1) /etc/bareos/bareos-sd.d/device/`Local_Device.conf`
+### 1.1) /etc/bareos/bareos-sd.d/device/`Local_Device.conf`
       
       Device {
         Name = Local_Device
@@ -237,14 +237,14 @@ I) Régles à respecter
       }
 
 
-#### 1.2) /etc/bareos/bareos-sd.d/storage/`Local_Sd.conf`
+### 1.2) /etc/bareos/bareos-sd.d/storage/`Local_Sd.conf`
 
       Storage {
           Name = Local-Sd
           SDPort = 9103
       }
 
-#### 1.3 /etc/bareos/bareos-sd.d/director/`bareos-dir.conf`
+### 1.3 /etc/bareos/bareos-sd.d/director/`bareos-dir.conf`
 
       Director {
         Name = bareos-dir
@@ -254,7 +254,7 @@ I) Régles à respecter
 
 
 
-### II) Device  Distant 176.31.163.227
+## II) Device  Distant 176.31.163.227
 
 <details>
 <summary>
@@ -282,7 +282,7 @@ I) Régles à respecter
 </details>
 
 
-#### 2.1) /etc/bareos/bareos-sd.d/device/`Remote_Device.conf`
+### 2.1) /etc/bareos/bareos-sd.d/device/`Remote_Device.conf`
       Device {
               Name = Remote_Device
               Media Type = File
@@ -296,13 +296,13 @@ I) Régles à respecter
             }
 
 
-#### 1.2) /etc/bareos/bareos-sd.d/storage/`Remote_Sd.conf`
+### 1.2) /etc/bareos/bareos-sd.d/storage/`Remote_Sd.conf`
       Storage {
               Name =  Remote_Sd
               SDPort = 9103
           }
 
-#### 1.3 /etc/bareos/bareos-sd.d/director/
+### 1.3 /etc/bareos/bareos-sd.d/director/
       Director {
         Name = bareos-dir
         Password = "[PASSWORD]"
@@ -310,9 +310,9 @@ I) Régles à respecter
       }
 
 
-### 2️⃣ `Director`
+##
 
-#### 2.1) /etc/bareos/bareos-dir.d/storage/`Storage_Local.conf`
+### 2.1) /etc/bareos/bareos-dir.d/storage/`Storage_Local.conf`
 
       Storage {
               Name = Storage_Local
@@ -323,7 +323,7 @@ I) Régles à respecter
               Media Type = File
               }
 
-#### 2.2) /etc/bareos/bareos-dir.d/storage/`Storage_Remote.conf`
+### 2.2) /etc/bareos/bareos-dir.d/storage/`Storage_Remote.conf`
 
       Storage {
               Name = Storage_Remote
@@ -336,7 +336,7 @@ I) Régles à respecter
 
 
 
-#### Redemmarage service + Test
+### Redemmarage service + Test
       
       sudo -u bareos /usr/sbin/bareos-sd -t
       sudo -u bareos /usr/sbin/bareos-dir -t
@@ -345,9 +345,9 @@ I) Régles à respecter
       sudo systemctl status bareos-sd --no-pager
       sudo systemctl status bareos-dir --no-pager
 
-#### Resultat attendu
+### Resultat attendu
 
-#### Tout  les service en vert et actif et bconsole ⬇️
+### Tout  les service en vert et actif et bconsole ⬇️
 
 #### `Local`
 
