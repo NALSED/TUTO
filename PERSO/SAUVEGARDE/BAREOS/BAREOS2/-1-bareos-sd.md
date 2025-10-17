@@ -173,7 +173,7 @@ I) Régles à respecter
 
 # 1️⃣ `Fichier Device + Storage + Director LAN et WAN`
 
-## I) Device en Locale 192.168.0.240
+## I) **Locale 192.168.0.240**
 
 <details>
 <summary>
@@ -254,7 +254,7 @@ I) Régles à respecter
 
 
 
-## II) Device  Distant 176.31.163.227
+## II) **Distant 176.31.163.227**
 
 <details>
 <summary>
