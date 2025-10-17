@@ -24,9 +24,9 @@ Le **Device** définit le **périphérique physique ou logique** utilisé par le
 - Le **type de média** (`File`, `Tape`, etc.)  
 - Les **options d’accès** (montage automatique, lecture/écriture aléatoire, etc.)
 
-#### En résumé
+
                   
-### 🧭 Plan synoptique Bareos
+### 🧭 Plan Synoptique Bareos LAN/WAN
 
                              ┌──────────────────────────┐
                              │        Director          │
