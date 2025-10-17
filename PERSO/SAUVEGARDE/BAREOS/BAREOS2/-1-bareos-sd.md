@@ -337,6 +337,7 @@ I) Régles à respecter
               Media Type = File
               }
 
+---
 
 
 ### Redemmarage service + Test
@@ -350,7 +351,7 @@ I) Régles à respecter
 
 ### Resultat attendu
 
-### Tout  les service en vert et actif et bconsole ⬇️
+### Tout les services en vert et actifs et bconsole ⬇️
 
 #### `Local`
 
