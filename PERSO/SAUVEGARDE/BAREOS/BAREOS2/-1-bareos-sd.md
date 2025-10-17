@@ -62,8 +62,13 @@ Le **Device** définit le **périphérique physique ou logique** utilisé par le
               └──────────────────────────┘      └──────────────────────────┘
 
 ---
+<details>
+<summary>
+<h2>
+I) Régles à respecter
+</h2>
+</summary>
 
-## I) Régles à respecter
 * #### 1.1) `Un seul Director` : Le Director possède un nom unique (bareos-dir) et un mot de passe unique, utilisé par tous les SD.
 * #### 1.2) SD local et SD distant : Storage côté SD ne contient pas Device ni Media Type.
         Storage {
@@ -156,6 +161,11 @@ Le **Device** définit le **périphérique physique ou logique** utilisé par le
           ## Director (192.168.0.240)
           - `/etc/bareos/bareos-dir.d/storage/local_sto.conf`
           - `/etc/bareos/bareos-dir.d/storage/remote_sto.conf`
+
+
+</details>
+
+
 
 ---
 ##### ICI Utilisation du mot de passe unique présent dans  /etc/bareos/bareos-sd.d/director/bareos-dir.conf => 192.168.0.240
