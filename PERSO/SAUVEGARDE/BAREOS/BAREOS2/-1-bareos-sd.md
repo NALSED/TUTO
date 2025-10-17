@@ -239,31 +239,74 @@ I) Régles à respecter
 #### 1.2) /etc/bareos/bareos-sd.d/storage/`Local_Sd.conf`
 
       Storage {
-          Name = storage_local
+          Name = Local-Sd
           SDPort = 9103
+      }
+
+#### 1.3 /etc/bareos/bareos-sd.d/director/`bareos-dir.conf`
+
+      Director {
+        Name = bareos-dir
+        Password = "[PASSWORD]"
+        Description = "Director, who is permitted to contact this storage daemon."
       }
 
 
 
+### II) Device  Distant
+
+<details>
+<summary>
+<h2>
+ Rappel config WAN Storage
+</h2>
+</summary>
 
 
+      NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+      sda       8:0    0   75G  0 disk
+      ├─sda1    8:1    0 74.9G  0 part /
+      ├─sda14   8:14   0    3M  0 part
+      └─sda15   8:15   0  124M  0 part /boot/efi
+      sdb       8:16   0  200G  0 disk
+      └─sdb1    8:17   0  200G  0 part /var/lib/bareos/storage
+
+#### Droit sur /var/lib/bareos/storage
+      total 16
+      drwxr-x--- 2 bareos bareos 16384 Oct 17 11:30 lost+found
+
+#### /etc/fstab
+      UUID=709584d8-4d56-440a-9a81-76c59a6ef34e /var/lib/bareos/storage  ext4  defaults  0  2
+
+</details>
 
 
+#### 2.1) /etc/bareos/bareos-sd.d/device/`Remote_Device.conf`
+      Device {
+              Name = Remote_Device
+              Media Type = File
+              Archive Device = /var/lib/bareos/storage
+              Label Media = yes
+              Random Access = yes
+              Automatic Mount = yes
+              Removable Media = no
+              Always Open = no
+              Description = "File Device Remote utilisant dans le VPS => sdb1 /var/lib/bareos/storage."
+            }
 
 
+#### 1.2) /etc/bareos/bareos-sd.d/storage/`Remote_Sd.conf`
+      Storage {
+              Name =  Remote_Sd
+              SDPort = 9103
+          }
 
-
-
-
-
-
-
-
-
-
-
-
-
+#### 1.3 /etc/bareos/bareos-sd.d/director/
+      Director {
+        Name = bareos-dir
+        Password = "[PASSWORD]"
+        Description = "Director, who is permitted to contact this storage daemon."
+      }
 
 
 
