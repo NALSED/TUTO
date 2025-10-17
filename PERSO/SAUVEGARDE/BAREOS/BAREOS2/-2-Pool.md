@@ -1,6 +1,6 @@
 # Configuration du fichier Pool pour le WAN et le LAN
 
-[POOL-BAREOS]
+[POOL-BAREOS](https://docs.bareos.org/Configuration/Director.html#pool-resource)
 
 ---
 ## 1️⃣ LAN
