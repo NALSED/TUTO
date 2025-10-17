@@ -1,5 +1,7 @@
 # Configuration de Bareos-sd en WAN et LAN 
 
+[DEVICE-BAREOS](https://docs.bareos.org/Configuration/StorageDaemon.html#device-resource)
+
 ---
 
 ### 📝 Définition de `Storage` et `Device` dans Bareos:
@@ -155,10 +157,107 @@ Le **Device** définit le **périphérique physique ou logique** utilisé par le
           - `/etc/bareos/bareos-dir.d/storage/local_sto.conf`
           - `/etc/bareos/bareos-dir.d/storage/remote_sto.conf`
 
+---
+##### ICI Utilisation du mot de passe unique présent dans  /etc/bareos/bareos-sd.d/director/bareos-dir.conf => 192.168.0.240
+
 ### 1️⃣ `Device`
+
+#### I) Device en Locale 192.168.0.240
+
+<details>
+<summary>
+<h2>
+ Rappel config LAN Storage
+</h2>
+</summary>
+
+        NAME                      MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+        sda                         8:0    0 111.8G  0 disk
+        ├─sda1                      8:1    0 110.8G  0 part /
+        ├─sda2                      8:2    0     1K  0 part
+        └─sda5                      8:5    0   975M  0 part [SWAP]
+        sdb                         8:16   0 931.5G  0 disk
+        ├─Serveur-Bareos_rmeta_0  254:0    0     4M  0 lvm
+        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
+        ├─Serveur-Bareos_rimage_0 254:1    0   350G  0 lvm
+        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
+        └─Serveur-Plex_rimage_0   254:9    0    75G  0 lvm
+          └─Serveur-Plex          254:11   0   150G  0 lvm
+        sdc                         8:32   0 931.5G  0 disk
+        ├─Serveur-Bareos_rmeta_1  254:2    0     4M  0 lvm
+        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
+        ├─Serveur-Bareos_rimage_1 254:3    0   350G  0 lvm
+        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
+        └─Serveur-Plex_rimage_1   254:10   0    75G  0 lvm
+          └─Serveur-Plex          254:11   0   150G  0 lvm
+        sdd                         8:48   0 931.5G  0 disk
+        ├─Serveur-Bareos_rmeta_2  254:4    0     4M  0 lvm
+        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
+        └─Serveur-Bareos_rimage_2 254:5    0   350G  0 lvm
+          └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
+        sde                         8:64   0 931.5G  0 disk
+        ├─Serveur-Bareos_rmeta_3  254:6    0     4M  0 lvm
+        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
+        └─Serveur-Bareos_rimage_3 254:7    0   350G  0 lvm
+          └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
+
+#### Droit sur /var/lib/bareos/storage
+      total 16
+      drwxr-x--- 2 bareos bareos 16384 Oct 17 10:54 lost+found
+
+#### /etc/fstab
+    #Point de montage Bareos
+    UUID=ef12d012-9b37-44e4-9058-5a1995567243  /var/lib/bareos/storage  ext4  defaults  0  2
+    
+</details>
+
+#### 1.1) /etc/bareos/bareos-sd.d/device/`Local_Device.conf`
+      
+      Device {
+        Name = Local_Device
+        Media Type = File
+        Archive Device = /var/lib/bareos/storage
+        Label Media = yes
+        Random Access = yes
+        Automatic Mount = yes
+        Removable Media = no
+        Always Open = no
+        Description = "File Device local utilisant le RAID10 LVM /var/lib/bareos/storage."
+      }
+
+
+#### 1.2) /etc/bareos/bareos-sd.d/storage/`Local_Sd.conf`
+
+      Storage {
+          Name = storage_local
+          SDPort = 9103
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### 2️⃣ `Storage`
 
 
-
+### 3️⃣ `Director`
