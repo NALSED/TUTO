@@ -2,6 +2,8 @@
 
 [DEVICE-BAREOS](https://docs.bareos.org/Configuration/StorageDaemon.html#device-resource)
 
+[STORAGE-BAREOS](https://docs.bareos.org/Configuration/Director.html#storage-resource)
+
 ---
 
 ### 📝 Définition de `Storage` et `Device` dans Bareos:
