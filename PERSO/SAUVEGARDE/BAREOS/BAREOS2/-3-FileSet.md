@@ -42,7 +42,7 @@
 
 
 
-### 1.2) Archive WIN => /etc/bareos/bareos-dir.d/fileset/`Win_Archive_FileSet`
+### 1.2) Archive WIN => /etc/bareos/bareos-dir.d/fileset/`Win_Archive_FileSet.conf`
     FileSet {
       Name = Win_Archive_FileSet
       Enable VSS = yes
@@ -54,6 +54,36 @@
                         }
                 File = "A:/clonage"
                 }
+
+
+### 1.3) BacUp Linux => /etc/bareos/bareos-dir.d/fileset/`Lin_BackUp_FileSet.conf`
+
+        FileSet {
+                Name =  Lin_BackUp_FileSet
+                Include {
+        
+                         Options {
+                                signature = MD5
+                                noatime = yes
+                                }
+        
+                        File = "/home/sednal/Youtube"
+                        File = "/etc/ca-certificates"
+                        File = "/etc/ca-certificates.conf"
+                        File = "/etc/nftables.conf"
+                        File = "/etc/nginx"
+                        File = "/etc/pihole"
+                        }
+                Exclude {
+                        File = "/home/sednal/.bash_history"
+                        File = "/home/sednal/.bash_logout"
+                        File = "/home/sednal/.bashrc"
+                        File = "/home/sednal/.local"
+                        File = "/home/sednal/.profile"
+                        }
+        
+                }
+
 ---
 
 ## 2️⃣ WAN
