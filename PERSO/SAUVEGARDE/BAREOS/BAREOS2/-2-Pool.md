@@ -33,7 +33,7 @@
         Label Format = "Local_Archive_Vol-"
       }
 
-#### 1.3) BackUp Lin /etc/bareos/bareos-dir.d/pool/``
+#### 1.3) BackUp Lin /etc/bareos/bareos-dir.d/pool/`Lin_BackUp_Pool_LAN`
                   Pool {
                         Name = Lin_BackUp_Pool_LAN
                         Label Format = "Lin_Local_BackUp_Vol-"
@@ -63,6 +63,24 @@
         Maximum Volumes = 2
       
       }
+
+
+#### 2.3) BackUp Lin /etc/bareos/bareos-dir.d/pool/`Lin_BackUp_Pool_WAN`
+
+                  
+            Pool {
+                  Name = Lin_BackUp_Pool_Wan
+                  Label Format = "Lin_Remote_BackUp_Vol-"
+                  Pool Type = Backup
+                  Storage = Storage_Local
+                  Recycle = yes
+                  AutoPrune = yes
+                  Purge Oldest Volume = yes
+                  Volume Retention = 6 days
+                  Maximum Volumes = 2
+                  }                  
+
+
 
 
 
