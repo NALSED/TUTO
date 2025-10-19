@@ -20,3 +20,17 @@
 #### Edition Powershell en admin
 
                   New-NetFirewallRule -DisplayName "Bareos FD" -Direction Inbound -LocalPort 9102 -Protocol TCP -Action Allow
+
+---
+
+### Linux
+
+        Client {
+        Name = lin
+        Address =  192.168.0.240
+        Password = "g+zMZtRMq3ez+8afC2nUUkmAk1ChXq4dBazhjsUl6rCu"
+
+        }
+
+
+
