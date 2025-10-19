@@ -1,4 +1,4 @@
-# Configuration du  Fichhier FileSet
+# Configuration du  Fichier FileSet
 
 ---
 
@@ -8,9 +8,10 @@
 
 ## 1️⃣ LAN
 
-### 1.1) BackUp WIN =>/etc/bareos/bareos-dir.d/fileset/`Win_BackUp_FileSet.conf`
+### 1.1) BackUp WIN =>/etc/bareos/bareos-dir.d/fileset/`Win_BackUp_FileSet_LAN.conf`
+    
     FileSet {
-      Name = Win_BackUp_FileSet
+      Name = Win_BackUp_FileSet_LAN
       Enable VSS = yes
         Include {
                 Options{
@@ -42,9 +43,9 @@
 
 
 
-### 1.2) Archive WIN => /etc/bareos/bareos-dir.d/fileset/`Win_Archive_FileSet.conf`
+### 1.2) Archive WIN => /etc/bareos/bareos-dir.d/fileset/`Win_Archive_FileSet_LAN.conf`
     FileSet {
-      Name = Win_Archive_FileSet
+      Name = Win_Archive_FileSet_LAN
       Enable VSS = yes
         Include {
                 Options{
@@ -56,7 +57,7 @@
                 }
 
 
-### 1.3) BacUp Linux => /etc/bareos/bareos-dir.d/fileset/`Lin_BackUp_FileSet.conf`
+### 1.3) BackUp Linux => /etc/bareos/bareos-dir.d/fileset/`Lin_BackUp_FileSet.conf`
 
         FileSet {
                 Name =  Lin_BackUp_FileSet
@@ -88,4 +89,41 @@
 
 ## 2️⃣ WAN
 
-### 2.1) BackUp => /etc/bareos/bareos-dir.d/fileset/``
+### 2.1) BackUp => /etc/bareos/bareos-dir.d/fileset/`Win_BackUp_FileSet_WAN.conf`
+             FileSet {
+                  Name = Win_BackUp_FileSet_WAN
+                  Enable VSS = yes
+                    Include {
+                            Options{
+                                    noatime = yes
+                                    ignore case = yes
+                                    signature = MD5
+                                    }
+                            File = "A:/save/backup  config"
+                            File = "A:/save/Bash"
+                            File = "A:/save/PKI"
+                             File = "A:/save/Python"
+                             File = "A:/save/WCS"
+                            File = "C:/Users/sednal/.ssh"
+                            File = "C:/Users/sednal/.vscode"
+                            File = "C:/Users/sednal/.docker"
+                            File = "C:/Users/sednal/.VirtualBox"
+                            File = "C:/Users/sednal/Cisco Packet Tracer 8.2.2"
+                            File = "C:/Users/sednal/PY313"
+                           }
+            
+                      Exclude {
+                               File = "C:/Users/sednal/Default"
+                               File = "C:/$WINDOWS.~BT"
+                               File = "C:/$Windows.~WS"
+                               File = "C:/PerfLogs"
+                               File = "C:/ProgramData"
+                               File = "C:/Programmes"
+                               File = "C:/Programmes(x86)"
+                               File = "C:/Windows"
+                               File = "A:/save/WCS/challengeTSSR"
+                               File = "A:/save/WCS/WSC/ISO + logiciel"
+            
+                            }
+            
+                        }
