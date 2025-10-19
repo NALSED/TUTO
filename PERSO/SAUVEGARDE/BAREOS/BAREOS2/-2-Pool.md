@@ -69,7 +69,7 @@
 
                   
             Pool {
-                  Name = Lin_BackUp_Pool_Wan
+                  Name = Lin_BackUp_Pool_WAN
                   Label Format = "Lin_Remote_BackUp_Vol-"
                   Pool Type = Backup
                   Storage = Storage_Local
