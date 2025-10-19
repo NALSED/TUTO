@@ -57,10 +57,9 @@
                 }
 
 ### 1.3) Archive LIN => /etc/bareos/bareos-dir.d/fileset/`Lin_Archive_FileSet_LAN.conf`
-        # Nom du FileSet
-Name = filesaveback
+    
 
-# A inclure pour la sauvegarde
+
             Include {
                 Options {
                     # Utilise SHA256 pour vérifier les fichiers
