@@ -66,7 +66,7 @@
             Job {
               Name = Lin_BackUp_Job_WAN
               Type = BackUp
-              Client = Lin
+              Client = lin
               FileSet = Lin_BackUp_FileSet_LAN
               Storage = Storage_Remote
               Pool = Lin_BackUp_Pool_WAN
