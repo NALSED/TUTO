@@ -60,6 +60,11 @@
     
 
 
+            FileSet {
+            
+            Name =  Lin_BackUp_FileSet_LAN
+            
+            
             Include {
                 Options {
                     # Utilise SHA256 pour vérifier les fichiers
@@ -90,8 +95,6 @@
                 File = "/home/sednal/.sudo_as_admin_successful"
                 File = "/home/sednal/.wget-hsts"
             }
-
-
 
 
 ---
