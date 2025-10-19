@@ -55,7 +55,7 @@
                         }
                 File = "A:/clonage"
                 }
-
+        }
 ### 1.3) Archive LIN => /etc/bareos/bareos-dir.d/fileset/`Lin_Archive_FileSet_LAN.conf`
     
 
