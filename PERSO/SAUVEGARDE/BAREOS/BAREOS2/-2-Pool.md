@@ -5,11 +5,11 @@
 ---
 ## 1️⃣ LAN
 
-### 1.1) BackUp => /etc/bareos/bareos-dir.d/pool/`Local_BackUp_Pool.conf`
+### 1.1) BackUp => /etc/bareos/bareos-dir.d/pool/`BackUp_Pool_LAN`
       
       
       Pool {
-      Name = Local_BackUp_Pool             
+      Name = BackUp_Pool_LAN             
       Label Format = "Local_BackUp_Vol-"   
       Pool Type = Backup
       Storage = Storage_Local
@@ -22,10 +22,10 @@
       }
 
 
-### 1.2) Archive => /etc/bareos/bareos-dir.d/pool/`Local_Archive_Pool.conf`
+### 1.2) Archive => /etc/bareos/bareos-dir.d/pool/`Archive_Pool_LAN.conf`
 
       Pool {
-        Name = Local_Archive_Pool
+        Name = Archive_Pool_LAN.conf
         Pool Type = Archive
         Recycle = no
         AutoPrune = no
@@ -35,10 +35,10 @@
 
 ## 2️⃣ WAN
 
-### 2.1) BackUp => /etc/bareos/bareos-dir.d/pool/`VPS_Backup_Pool.conf`
+### 2.1) BackUp => /etc/bareos/bareos-dir.d/pool/`Backup_Pool_WAN`
 
       Pool {
-        Name = VPS_Backup_Pool
+        Name = Backup_Pool_WAN
         Label Format = "VPS_Backup_Vol-"
         Pool Type = Backup
         Storage = Storage_Remote
