@@ -56,6 +56,43 @@
                 File = "A:/clonage"
                 }
 
+### 1.3) Archive LIN => /etc/bareos/bareos-dir.d/fileset/`Lin_Archive_FileSet_LAN.conf`
+        # Nom du FileSet
+Name = filesaveback
+
+# A inclure pour la sauvegarde
+            Include {
+                Options {
+                    # Utilise SHA256 pour vérifier les fichiers
+                    signature = SHA256
+            
+                    # Ne met pas à jour l'horodatage des fichiers
+                    noatime = yes
+                }
+            
+                File = "/home/sednal/BackUp_SQL_Bareos"
+                File = "/home/sednal/BackUp_Conf_Bareos"
+                File = "/etc/bareos"
+                File = "/home/sednal/.ssh"
+                File = "/home/sednal/.psql_history"
+            }
+            
+            # Exclu de la sauvegarde
+            Exclude {
+                File = "/etc/bareos/.bash_logout"
+                File = "/home/sednal/.bconsole_history"
+                File = "/home/sednal/.lesshst"
+                File = "/home/sednal/.profile"
+                File = "/home/sednal/.vscode-server"
+                File = "/home/sednal/.bash_history"
+                File = "/home/sednal/.bashrc"
+                File = "/home/sednal/.cache"
+                File = "/home/sednal/.cache.dotnet"
+                File = "/home/sednal/.sudo_as_admin_successful"
+                File = "/home/sednal/.wget-hsts"
+            }
+
+
 
 
 ---
