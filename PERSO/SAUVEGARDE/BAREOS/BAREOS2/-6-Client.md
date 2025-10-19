@@ -2,7 +2,7 @@
 
 ---
 
-### 1️⃣ Windows
+###  Windows
 
 #### 1.1) Installation du client windows avec la  [resource](https://docs.bareos.org/TasksAndConcepts/TheWindowsVersionOfBareos.html#windows-configuration-files) Bareos [télécharger](https://download.bareos.org/current/windows/).
 #### Suivre les instructions :
@@ -16,3 +16,7 @@
           Address = 192.168.0.111
           Password = "f5YTRea7kMJN+vHuA6Biyfs0EKf+9HqGAH2z8fbkMoyw"
           }
+
+#### Edition Powershell en admin
+
+                  New-NetFirewallRule -DisplayName "Bareos FD" -Direction Inbound -LocalPort 9102 -Protocol TCP -Action Allow
