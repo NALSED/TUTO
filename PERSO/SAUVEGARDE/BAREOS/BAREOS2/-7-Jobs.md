@@ -22,7 +22,7 @@
 
         Job {
               Name = Win_Archive_Job_LAN
-              Type = Archive
+              Type = Backup
               Client = win
               FileSet = Win_Archive_FileSet_LAN
               Storage = Storage_Local
