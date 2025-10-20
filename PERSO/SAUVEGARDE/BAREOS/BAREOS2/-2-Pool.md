@@ -25,8 +25,10 @@
 ### 1.2) Archive Win => /etc/bareos/bareos-dir.d/pool/`Win_Archive_Pool_LAN.conf`
 
       Pool {
-        Name = Win_Archive_Pool_LAN.conf
+        Name = Win_Archive_Pool_LAN
+        Label Format = "Local_Archive_Vol-"
         Pool Type = Backup
+        Storage = Storage_Local
         Recycle = no
         AutoPrune = no
         Volume Retention = 9999 days
