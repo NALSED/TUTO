@@ -26,7 +26,7 @@
 
       Pool {
         Name = Win_Archive_Pool_LAN.conf
-        Pool Type = Archive
+        Pool Type = Backup
         Recycle = no
         AutoPrune = no
         Volume Retention = 9999 days
