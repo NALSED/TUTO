@@ -32,7 +32,6 @@
         Recycle = no
         AutoPrune = no
         Volume Retention = 9999 days
-        Label Format = "Local_Archive_Vol-"
       }
 
 #### 1.3) BackUp Lin /etc/bareos/bareos-dir.d/pool/`Lin_BackUp_Pool_LAN`
