@@ -53,7 +53,7 @@
                         ignore case = yes
                         signature = SHA256
                         }
-                File = "A:/clonage"
+                File = "A:/clonage/"
                 }
         }
 ### 1.3) Archive LIN => /etc/bareos/bareos-dir.d/fileset/`Lin_Archive_FileSet_LAN.conf`
