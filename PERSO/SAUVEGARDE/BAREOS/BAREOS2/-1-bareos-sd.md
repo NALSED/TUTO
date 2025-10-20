@@ -324,7 +324,7 @@ I) Régles à respecter
               Address = 192.168.0.240
               SDPort = 9103
               Password = "fCQqLZbkIZ+IBMpXOWtCZWOjrnxuJWt9ApbKT6PW8U8n"
-              Device = FileStorage
+              Device =  Local_Device
               Media Type = File
               }
 
@@ -335,7 +335,7 @@ I) Régles à respecter
               Address = 176.31.163.227
               SDPort = 9103
               Password = "fCQqLZbkIZ+IBMpXOWtCZWOjrnxuJWt9ApbKT6PW8U8n"
-              Device = FileStorage
+              Device = Remote_Device
               Media Type = File
               }
 
