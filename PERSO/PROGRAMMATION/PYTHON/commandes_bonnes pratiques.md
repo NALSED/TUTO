@@ -23,6 +23,13 @@
 
         # Linux
         source venv/bin/activate
+### Si un projet prend un autre direction, faire une copie et créer un nouvel venv .
+
+### Pour tester 
+      which python
+      which pip
+
+### LE RETOUR doit donner le chemin du dossier du nouveau projet.
 ---
 
 ### `Executer fichier`
