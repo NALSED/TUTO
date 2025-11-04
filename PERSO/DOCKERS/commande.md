@@ -25,7 +25,7 @@
       docker stop [NAME]//[ID]
       docker start [NAME]//[ID]
  * #### changer le `hostname` du contnaire => --hostname
-      docker run --name c2 --hostname test debian:latest
+       docker run --name c2 --hostname test debian:latest
 
 ## `Supprimer`
 
