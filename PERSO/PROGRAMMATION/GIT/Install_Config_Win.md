@@ -92,15 +92,27 @@ Sur un projet de groupe, avec des contributeurs pouvant avoir des OS différents
 ## 3.7) Envoyer le projet
       git push -u origin main
 
+---
+
+## MODIF:
+#### 1) vérifier les dépôts distants associés à ton projet.
+      git remote -v
+### SORTIE
+      origin  https://github.com/NALSED/gcert.git (fetch)
+      origin  https://github.com/NALSED/gcert.git (push)
+
+#### 2) Récupérer les modifications distantes et mettre à jour ton local
+      git pull --rebase origin main
+
+#### 3) ajouter les fichiers
+      git add .
 
 
+#### 4) Si besoin 
+      git rebase --continue
 
-
-
-
-
-
-
+#### 5) pousser le modifs
+      git push -u origin main
 
 
 
