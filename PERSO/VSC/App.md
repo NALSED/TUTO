@@ -21,12 +21,12 @@
 
 ## REMOTE => WSL
 
->
-autoDocsting Python Docstrings Generator
-Git Pull Requests
-Pylance
-Python
-PythonDebugger
-Python Environements
-Bash Debug
-Bash IDE
+
+      autoDocsting Python Docstrings Generator
+      Git Pull Requests
+      Pylance
+      Python
+      PythonDebugger
+      Python Environements
+      Bash Debug
+      Bash IDE
