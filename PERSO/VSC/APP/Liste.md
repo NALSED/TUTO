@@ -30,3 +30,4 @@
       Python Environements
       Bash Debug
       Bash IDE
+      Code Spelle Checker
