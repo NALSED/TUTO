@@ -1,7 +1,9 @@
 ## LOCAL
 
 Dev Containers
+
 Remote SSH
+
 Remote SSH Editing configuration files
 Remote Explorer
 WSL
