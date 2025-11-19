@@ -1,4 +1,5 @@
 ## LOCAL
+
 Dev Containers
 Remote SSH
 Remote SSH Editing configuration files
@@ -18,6 +19,7 @@ Python Environements
 
 
 ## REMOTE => WSL
+
 autoDocsting Python Docstrings Generator
 Git Pull Requests
 Pylance
