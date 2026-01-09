@@ -28,7 +28,7 @@
              docker compose up -d
 
 ### WebUi Upsnap     
-      192.68.0.240:8090
+      192.168.0.241:8090
 
 ---
 
