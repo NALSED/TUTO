@@ -31,6 +31,7 @@
 
 * ## 3) `DeepSeek Coder 6.7B`
 [Instaler](https://ollama.com/library/deepseek-coder:6.7b) DeepSeek Coder 6.7B via la commande suivante dans le terminal
+         
          ollama run deepseek-coder:6.7b
 
 <img width="859" height="218" alt="image" src="https://github.com/user-attachments/assets/e6bff45f-bb58-413d-bf8d-7a948b580a67" />
