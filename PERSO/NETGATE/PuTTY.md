@@ -1,6 +1,6 @@
 # 📝 Utilisation de PuTTY pour réinitialiser le boitier Netgate 1100.
 
-[DOC](https://docs.netgate.com/manuals/pfsense/en/latest/sg-1100-security-gateway-manual.pdf) ==> Page 334
+[DOC](https://docs.netgate.com/manuals/pfsense/en/latest/sg-1100-security-gateway-manual.pdf) ==> Page 34
 
 ### 1️⃣ Driver 
 [télécharger](https://prolificusa.com/product/pl2303gl-8-pin-usb-uart-bridge-controller/) le driver correspondant.
