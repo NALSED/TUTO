@@ -13,7 +13,7 @@
         
         Client {
           Name = win
-          Address = 192.168.0.111
+          Address = 192.168.0.235
           Password = "f5YTRea7kMJN+vHuA6Biyfs0EKf+9HqGAH2z8fbkMoyw"
           }
 
