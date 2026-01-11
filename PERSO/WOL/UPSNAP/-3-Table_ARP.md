@@ -15,7 +15,7 @@
       # /usr/local/bin/arp-wol.sh
       # ARP statiques permanents pour Wake-on-LAN
       
-      DEV=enp2s0
+      DEV=eth0
       
       ip link set dev $DEV up
       
