@@ -66,10 +66,13 @@
 
 #### Sortie
 
-<img width="897" height="232" alt="image" src="https://github.com/user-attachments/assets/85399965-44c0-47c7-bca4-8fd0c64705ad" />
+<img width="840" height="191" alt="image" src="https://github.com/user-attachments/assets/6f88a88b-d612-459d-9187-260b5026f765" />
 
+#### 5.1) Table ARP
+          
+          ip neigh show
 
-
+<img width="877" height="140" alt="image" src="https://github.com/user-attachments/assets/0584026b-b9c2-4622-bd35-0574b9a49e44" />
 
 
 
