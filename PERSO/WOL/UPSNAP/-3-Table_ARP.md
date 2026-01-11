@@ -22,7 +22,7 @@
       # Remplacer ou ajouter les entrées ARP permanentes
       ip neigh replace 192.168.0.235 lladdr 04:7c:16:cb:89:1d nud permanent dev $DEV
       ip neigh replace 192.168.0.240 lladdr 30:b5:c2:01:63:1e nud permanent dev $DEV
-
+      ip neigh replace 192.168.0.242 lladdr 34:5a:60:e0:1c:72 nud permanent dev $DEV  
 ---
 
 ### 2) Rendre le script exécutable
