@@ -77,7 +77,7 @@
       RemainAfterExit=yes # Indique à systemd que même si le service se termine rapidement, il doit être considéré comme "actif" pour les dépendances
       
       [Install]
-      WantedBy=multi-user.target # Ce service sera lancé automatiquement au démarrage quand le système atteint le mode "multi-utilisateur"
+      WantedBy=basic.target # Ce service sera lancé automatiquement au démarrage quand le système atteint le mode basic utilisateur"
 
 #### 4) Recharge systemd :
       sudo systemctl daemon-reload
@@ -92,34 +92,6 @@
 
 <img width="922" height="287" alt="image" src="https://github.com/user-attachments/assets/3feefee5-50e1-4f02-982a-579a200f8c69" />
 
-
-
-### CONFIG UPSNAP
- 
- ## 1️⃣ Up 
- 
-### Cron + wakeonlan
-    wakeonlan 30:b5:c2:01:63:1e
-    55 11 * * 0 
-
-### Tout les dimanche à 11:55
-
----
-
- ## 2️⃣ Down
-
-### Cron + wakeonlan
-    wakeonlan 30:b5:c2:01:63:1e
-    0 16 * * 0
-
-### Tout les dimanche à 16:00
-
-
----
-
-# 3️⃣ 192.168.0.111
-
-#### Gestionnaire de périphériques
 
 
 
