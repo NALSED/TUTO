@@ -107,6 +107,7 @@ ON EXÉCUTE LE TERMINAL ET POWERSHELL EN ADMIN SUR LES MACHINES RESPECTIVES
   `C:\ProgramData\ssh\sshd_config` (*Élément masqué dans affichage classique*)  
   `On commente la ligne MATCH group administrator` (*On sauvegarde et on redémarre le service :*)  
   ⚠️Si droits insuffisants:
+
           (Get-Content "C:\ProgramData\ssh\sshd_config") -replace '^Match Group administrators', '#Match Group administrators' | Set-Content "C:\ProgramData\ssh\sshd_config"
 Restart-Service sshd
 
