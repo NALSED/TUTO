@@ -20,24 +20,23 @@
 </h2>
 </summary>
 
-### Télécharger le .exe [ici](https://download.bareos.org/current/windows/)
+### 1.1) Télécharger le .exe [ici](https://download.bareos.org/current/windows/)
 ### Executer le programme
-### Choisir Minimal 
+### 1.2) Choisir Minimal 
 ![image](https://github.com/user-attachments/assets/65dfa420-578a-40fe-a7a3-f21befa8404b)
 
 ### Renseigner les infos demandées:
-### ⚠️Le champs `Password` sera demandé dans le fichier de configuration => /etc/bareos/bareos-dir.d/client/<NOM-DU-FICHIER-DE-CONF.conf>
+### 1.3)⚠️Le champs `Password` sera demandé dans le fichier de configuration => /etc/bareos/bareos-dir.d/client/<NOM-DU-FICHIER-DE-CONF.conf>
 ### 📝 le champs Client Monitor Password sert à utiliser Bareos Monitor(Webui), et est stoquer sur le client
 ![image](https://github.com/user-attachments/assets/11617c20-9e3b-442e-b272-2b3d402f6304)
 
+### 1.4) page suivante le Password doit etre identique à celui de la section `Parameters for Director...`
 
-### erreur ici clientwin1 et password sednal
 
 
-### Autoriser le port 9102 sur le client (ouvrir powershell en admin)
+### 1.5) Autoriser le port 9102 sur le client (ouvrir powershell en admin)
       New-NetFirewallRule -DisplayName "Bareos FD" -Direction Inbound -LocalPort 9102 -Protocol TCP -Action Allow
 ![image](https://github.com/user-attachments/assets/a37dd36e-9c6d-4587-9483-865ad6d68ae4)
-
 
 
 
