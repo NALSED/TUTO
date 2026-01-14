@@ -27,6 +27,7 @@
 
 ### Renseigner les infos demandées:
 ### ⚠️Le champs `Password` sera demandé dans le fichier de configuration => /etc/bareos/bareos-dir.d/client/<NOM-DU-FICHIER-DE-CONF.conf>
+### 📝 le champs Client Monitor Password sert à utiliser Bareos Monitor(Webui), et est stoquer sur le client
 ![image](https://github.com/user-attachments/assets/11617c20-9e3b-442e-b272-2b3d402f6304)
 
 
