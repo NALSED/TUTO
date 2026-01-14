@@ -18,7 +18,7 @@
       crontab -e => 1
 
 #### Editer Wol pour linux Et wol et shutdown pour Win 11
-      
+#### Pour que la commande `shutdown /s /t 0 /f`, puisse fonctionner créer une connection ssh sans mot de pas de linux => win 11 [voir](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---windows)       
       # ADMIN
       50 11 * * * /usr/bin/wakeonlan 04:7c:16:cb:89:1d
       52 11 * * * ssh sednal@192.168.0.235 "shutdown /s /t 0 /f"
