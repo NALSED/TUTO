@@ -19,15 +19,15 @@
 
 #### Editer Wol pour linux Et wol et shutdown pour Win 11
 #### Pour que la commande `shutdown /s /t 0 /f`, puisse fonctionner créer une connection ssh sans mot de pas de linux => win 11 [voir](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---windows)       
-      # ADMIN
-      50 11 * * * /usr/bin/wakeonlan 04:7c:16:cb:89:1d
-      52 11 * * * ssh sednal@192.168.0.235 "shutdown /s /t 0 /f"
+     # ADMIN
+      0 12 * * 0 /usr/bin/wakeonlan 04:7c:16:cb:89:1d
+      0 16 * * 0 ssh sednal@192.168.0.235 "shutdown /s /t 0 /f"
       
       #Bareos
-      50 11 * * * /usr/bin/wakeonlan 30:b5:c2:01:63:1e
+      0 12 * * 0 /usr/bin/wakeonlan 30:b5:c2:01:63:1e
       
       #Proxmox
-      50 11 * * * /usr/bin/wakeonlan 34:5a:60:e0:1c:72
+      #0 12 * * 0 /usr/bin/wakeonlan 34:5a:60:e0:1c:72
 
 
 ### 2️⃣ Poweroff
@@ -39,7 +39,7 @@
 #### Editer serveur Bareos `192.168.0.240`
 
       # Extinction
-      10 12 * * * /sbin/poweroff
+      05 16 * * * /sbin/powerofff
 
 
 
