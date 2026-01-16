@@ -1,6 +1,6 @@
 
 # `DNS LOCAL VIA BIND`
-# ⚠️  Bind9 a été supprimé de l'infra au profit d"un référencement A, via Pihole.
+
 ---
 ![image](https://github.com/user-attachments/assets/7934ad91-7f2b-482f-a3a7-3523cf6df6cc)
 
