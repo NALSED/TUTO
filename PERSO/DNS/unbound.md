@@ -2,6 +2,13 @@
 
 ---
 
+## I) Configuartion avec Pihole, pour DNS Resolveur WAN.
+## II) Ajout au fichier de configuration pour résolution de nom de domain en Local.
+
+---
+
+## `I) Configuartion avec Pihole, pour DNS Resolveur WAN.`
+
 ### 1️⃣ Installation
       sudo apt install unbound -y
 
@@ -96,12 +103,35 @@
 <img width="700" height="438" alt="image" src="https://github.com/user-attachments/assets/39d2559c-96ef-4165-84e0-cab7227cf6b0" />
 
 
+---
+---
 
+## `II) Ajout au fichier de configuration pour résolution de nom de domain en Local.`
 
+#### Au fichier de configuration précédent ajouter les ligne suivante:
+##### ⚠️ unbound ne prend en charge qu'un seul ficgier de configuration. ⚠️
+#### (Penser à adapter la configuration pour implémenter de la sécurité d'accés)
 
+            # ouverture à tout le monde
+            access-control: 0.0.0.0/0 allow
+            
+            # chroot désactivé : Unbound s’exécute dans le système de fichiers normal
+            chroot: ""
+            
+            # Déclare sednal.lan comme domaine privé
+            private-domain: "sednal.lan"
+            domain-insecure: "sednal.lan"
 
+            ### Attention respecter l'indentation, au même niveau que server: en début de fichier.. ###
+            # Forward les requêtes sednal.lan vers pfSense
+            forward-zone:
+                name: "sednal.lan"
+                forward-addr: 192.168.0.1
+                
 
+#### Sur Pfsense dans Services => DNS Resolver => Host Overrides
 
+<img width="1162" height="271" alt="image" src="https://github.com/user-attachments/assets/156bea5a-cd78-41aa-84cf-ff87db423d6c" />
 
 
 
