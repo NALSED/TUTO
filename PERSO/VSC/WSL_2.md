@@ -7,7 +7,7 @@
 
 ## `Utilistation`
 
-#### Via le store Microsoft téllécharger le systeme souhaité.
+#### Via le store Microsoft télécharger le systeme souhaité.
 #### ICI Debian 12
 #### dans VSC téllécharger le module `WSL` => Remote development in WSL  
 
