@@ -48,6 +48,9 @@
       # DNS statiques
       static domain_name_servers=192.168.0.241
 
+       # Désactiver les DNS IPv6 via RA
+        noipv6rs
+        noipv6
 
 ### Ajouter 
 
