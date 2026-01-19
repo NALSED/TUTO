@@ -1,5 +1,5 @@
 ## Lorsque /etc/resolv.conf est géré par dhcpd, il est impossible de configurer un DNS, car il est réinitialisé à chaque démarrage du service networking.
-## Editer le fichier /etc/dhcpd.conf comme ceci 
+## Editer le fichier /etc/dhcpcd.conf comme ceci 
 
       # A sample configuration for dhcpcd.
       # See dhcpcd.conf(5) for details.
