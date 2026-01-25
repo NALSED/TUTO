@@ -39,7 +39,7 @@
 #### Editer serveur Bareos `192.168.0.240`
 
       # Extinction
-      05 16 * * * /sbin/powerofff
+      05 16 * * 0 /sbin/powerofff
 
 
 
