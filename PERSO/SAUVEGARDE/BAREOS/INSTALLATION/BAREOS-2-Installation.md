@@ -219,6 +219,52 @@
 
 ![image](https://github.com/user-attachments/assets/60d90924-18fd-4a01-a41b-a3f9a1d788b4)
 
+### 2.4) Port d'écoute Postgresql
+
+#### Il doit être configuré pour communication avec les différents client
+
+        sudo nano /etc/postgresql/[version]/main/postgresql.conf
+
+#### EDITER `/etc/postgresql/[version]/main/postgresql.conf`
+
+        Chercher la ligne `listen_addresses` (utilisez Ctrl+W pour rechercher) et modifier :
+        ```
+        listen_addresses = '*'
+
+---
+
+### EDITER `sudo nano /etc/postgresql/[version]/main/pg_hba.conf`
+#### En ajoutant la derniére ligne : 
+
+        # Authentification Bareos
+        local   all             bareos                                  md5
+        
+        # Database administrative login by Unix domain socket
+        local   all             postgres                                peer
+        
+        # TYPE  DATABASE        USER            ADDRESS                 METHOD
+        
+        # "local" is for Unix domain socket connections only
+        local   all             all                                     peer
+        # IPv4 local connections:
+        host    all             all             127.0.0.1/32            scram-sha-256
+        # IPv6 local connections:
+        host    all             all             ::1/128                 scram-sha-256
+        # Allow replication connections from localhost, by a user with the
+        # replication privilege.
+        local   replication     all                                     peer
+        host    replication     all             127.0.0.1/32            scram-sha-256
+        host    replication     all             ::1/128                 scram-sha-256
+        ===> host    all             all             192.168.0.0/24          md5 <===
+
+### redemarrer service 
+
+        sudo systemctl restart postgresql
+
+        
+
+
+
 </details>
 
 
