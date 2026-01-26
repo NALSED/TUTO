@@ -35,10 +35,6 @@
 
 ##### Impossible de faire un backup ou archive en local.
 
----
----
-
-### `=== RESOLUTION ===`
 
 [DOC dépannage](https://docs.bareos.org/Appendix/Troubleshooting.html#troubleshooting) et [DOC débug](https://docs.bareos.org/Appendix/Debugging.html)
 
@@ -73,7 +69,7 @@ EXPLICATION :
 
             ps fax | grep bareos-dir
 
-Sortie :
+**Sortie :**
             2186 pts/2    S+     0:00                      \_ grep bareos-dir
             1098 ?        Ssl    0:02 /usr/sbin/bareos-dir -f
       
@@ -85,7 +81,7 @@ Donc on à maintenant le PID du processus : 1098
 3) on peux à présent utiliser `btraceback `,  un utilitaire de Bareos qui génère une trace de pile (backtrace) pour diagnostiquer les crashes.
       btraceback /usr/sbin/bareos-dir 2186
 
-Sortie :
+**Sortie :**
       bsmtp: tools/bsmtp.cc:129-0 Fatal malformed reply from localhost: 501 <root>: sender address must contain a domain 
 
 On à donc le probléme => Déclaration DNS non conforme pour le `Bareos-sd`,étant donné que c'est lui qui pose problème. 
@@ -112,11 +108,13 @@ EXPLICATION :
           gdb --args /usr/sbin/bareos-sd -f -s -d 200
           (gdb) run
 
-Sortie:
+**Sortie:**
+          
           Local-Sd (10): lib/bnet_server_tcp.cc:246-0 ERROR: Cannot bind address 192.168.0.240 port 9103: ERR=Address already in use.
 
+### `=== RESOLUTION ===`
 
-5) Déclarer le nom de domain référencer sur pfsense dans bareos et rectifier l'erreur vu avec `gdb`
+1) Déclarer le nom de domain référencer sur pfsense dans bareos et rectifier l'erreur vu avec `gdb`
 
 * Ajouter la ligne suivante dans  /etc/bareos/bareos-sd.d/storage/Local-Sd.conf
            Address = bareos.sednal.lan
@@ -133,13 +131,13 @@ Suppression de => `Address = 192.168.0.240`
                 Media Type = File
                 }
 
-6) Et pour finir, revenir à la configuration de `/proc/sys/kernel/yama/ptrace_scope` initiale
+2) Et pour finir, revenir à la configuration de `/proc/sys/kernel/yama/ptrace_scope` initiale
             test -e /proc/sys/kernel/yama/ptrace_scope && echo 1 > /proc/sys/kernel/yama/ptrace_scope
 
 
+---
 
-
-RESULTAT
+**RESULTAT**
 
       Connecting to Storage daemon Storage_Local at bareos.sednal.lan:9103
        Encryption: TLS_CHACHA20_POLY1305_SHA256 TLSv1.3
