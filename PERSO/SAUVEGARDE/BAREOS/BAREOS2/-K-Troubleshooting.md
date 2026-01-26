@@ -112,6 +112,9 @@ EXPLICATION :
           
           Local-Sd (10): lib/bnet_server_tcp.cc:246-0 ERROR: Cannot bind address 192.168.0.240 port 9103: ERR=Address already in use.
 
+---
+---
+
 ### `=== RESOLUTION ===`
 
 1) Déclarer le nom de domain référencer sur pfsense dans bareos et rectifier l'erreur vu avec `gdb`
