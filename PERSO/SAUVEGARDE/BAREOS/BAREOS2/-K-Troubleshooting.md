@@ -11,11 +11,12 @@
 
 ### `=== DATE 26/01/2026 ===`
 
-
+---
+---
 
 ### `=== PROBLEME ===`
 
-##### - Impossible pour bareos-dir et bareos-sd de se connecter ensemble.
+#### - Impossible pour bareos-dir et bareos-sd de se connecter ensemble.
 
 `message erreur:`
 
@@ -23,7 +24,7 @@
       Failed to connect to Storage daemon File.
 
 
-##### - Echec de connection TLS 
+#### - Echec de connection TLS 
 
 
 `message erreur:`
@@ -33,6 +34,9 @@
         Jan 25 15:36:15 bareos bareos-sd[2925]: lib/bnet.cc:125 TLS Negotiation failed.
 
 ##### Impossible de faire un backup ou archive en local.
+
+---
+---
 
 ### `=== RESOLUTION ===`
 
