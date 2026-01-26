@@ -14,7 +14,7 @@
       ===> Address = bareos.sednal.lan
       
       -----------------------------------------
-      === AJOUT ===
+      === AJOUT === >SD Address = bareos.sednal.lan
       
       /etc/bareos/bareos-dir.d/storage/Storage_Local.conf
       ===> SD Address = bareos.sednal.lan 
@@ -32,7 +32,7 @@
               }
       
       
-      === RETRAIT ===
+      === RETRAIT === => Address = 192.168.0.240 
       
       Storage {
               Name = Storage_Local
@@ -44,6 +44,7 @@
               }
       
       === SUPPRESSION ===
+      Seppression des deux fichiers suivant :
       
       /etc/bareos/bareos-dir.d/backup
       File.conf  File.conf.example
