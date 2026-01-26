@@ -41,7 +41,7 @@ Ce tuto explique comment autoriser la connection Serveur/Client
 <details>
 <summary>
 <h2>
-2️⃣ Tets
+2️⃣ Tests
 </h2>
 </summary>
 
