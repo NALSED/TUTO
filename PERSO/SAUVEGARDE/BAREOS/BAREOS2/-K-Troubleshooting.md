@@ -50,7 +50,7 @@ la doc de débug va plus loins dans l'analyse notamment avec des outils comme `g
 1) Utilisation du [traceback](https://docs.bareos.org/Appendix/Debugging.html#traceback) :
 Utilisation de la commande suivante pour Désactive les restrictions de sécurité => permettant ainsi à n'importe quel processus de déboguer/tracer n'importe quel autre processus sur le système.
 
-- EXPLICATION :
+EXPLICATION :
 * Valeurs possibles :
 
    * 0 : Aucune restriction - n'importe quel processus peut tracer n'importe quel autre
@@ -65,7 +65,7 @@ Utilisation de la commande suivante pour Désactive les restrictions de sécurit
 
 2) Utilisation de la commande `ps fax` :
 
-- EXPLICATION :
+EXPLICATION :
 * ps : Affiche les processus
 * f : Format arborescence (forest) 
 * a : Tous les utilisateurs
@@ -100,13 +100,14 @@ Cette commande bascule vers l'utilisateur bareos avec un shell bash
 
 Cette commande lance gdb (débogueur GNU) pour déboguer le daemon bareos-sd
 
-- EXPLICATION :
-/usr/sbin/bareos-sd : Le daemon de stockage Bareos
-Options de bareos-sd :
+EXPLICATION :
 
--f : Foreground - ne se daemonise pas (reste au premier plan)
--s : No signals - désactive la gestion des signaux (facilite le débogage)
--d 200 : Debug level 200 - active un niveau de verbosité très élevé    
+* /usr/sbin/bareos-sd : Le daemon de stockage Bareos
+* Options de bareos-sd :
+
+   * -f : Foreground - ne se daemonise pas (reste au premier plan)
+   * -s : No signals - désactive la gestion des signaux (facilite le débogage)
+   * -d 200 : Debug level 200 - active un niveau de verbosité très élevé    
     
           gdb --args /usr/sbin/bareos-sd -f -s -d 200
           (gdb) run
