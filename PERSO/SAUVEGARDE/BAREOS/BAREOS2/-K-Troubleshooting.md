@@ -53,9 +53,9 @@ Utilisation de la commande suivante pour Désactive les restrictions de sécurit
 - EXPLICATION :
 * Valeurs possibles :
 
-      * 0 : Aucune restriction - n'importe quel processus peut tracer n'importe quel autre
-      * 1 : Restriction modérée - seuls les processus parents peuvent tracer leurs enfants
-      * 2+ : Restrictions plus strictes
+   * 0 : Aucune restriction - n'importe quel processus peut tracer n'importe quel autre
+   * 1 : Restriction modérée - seuls les processus parents peuvent tracer leurs enfants
+   * 2+ : Restrictions plus strictes
 
     Ici on va lui mettre 0 comme valeur :
  
