@@ -47,11 +47,11 @@ la doc de débug va plus loins dans l'analyse notamment avec des outils comme `g
 Utilisation de la commande suivante pour Désactive les restrictions de sécurité => permettant ainsi à n'importe quel processus de déboguer/tracer n'importe quel autre processus sur le système.
 
 - EXPLICATION :
-Valeurs possibles :
+* Valeurs possibles :
 
-0 : Aucune restriction - n'importe quel processus peut tracer n'importe quel autre
-1 : Restriction modérée - seuls les processus parents peuvent tracer leurs enfants
-2+ : Restrictions plus strictes
+      * 0 : Aucune restriction - n'importe quel processus peut tracer n'importe quel autre
+      * 1 : Restriction modérée - seuls les processus parents peuvent tracer leurs enfants
+      * 2+ : Restrictions plus strictes
 
     Ici on va lui mettre 0 comme valeur :
  
@@ -62,10 +62,10 @@ Valeurs possibles :
 2) Utilisation de la commande `ps fax` :
 
 - EXPLICATION :
-ps : Affiche les processus
-f : Format arborescence (forest) 
-a : Tous les utilisateurs
-x : Inclut les processus sans terminal (daemons)
+* ps : Affiche les processus
+* f : Format arborescence (forest) 
+* a : Tous les utilisateurs
+* x : Inclut les processus sans terminal (daemons)
 
             ps fax | grep bareos-dir
 
