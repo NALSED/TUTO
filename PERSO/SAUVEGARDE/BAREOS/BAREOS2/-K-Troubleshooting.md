@@ -27,9 +27,10 @@
 
 
 `message erreur:`
-            Jan 25 14:18:47 bareos systemd[1]: Started bareos-storage.service - Bareos Storage Daemon service.
-            Jan 25 15:36:15 bareos bareos-sd[2925]: lib/tls_openssl_private.cc:421 Connect failure: ERR=error:0A0000FD:SSL routines::binder does not verify
-            Jan 25 15:36:15 bareos bareos-sd[2925]: lib/bnet.cc:125 TLS Negotiation failed.
+
+        Jan 25 14:18:47 bareos systemd[1]: Started bareos-storage.service - Bareos Storage Daemon service.
+        Jan 25 15:36:15 bareos bareos-sd[2925]: lib/tls_openssl_private.cc:421 Connect failure: ERR=error:0A0000FD:SSL routines::binder does not verify
+        Jan 25 15:36:15 bareos bareos-sd[2925]: lib/bnet.cc:125 TLS Negotiation failed.
 
 ##### Impossible de faire un backup ou archive en local.
 
