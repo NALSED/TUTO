@@ -54,7 +54,7 @@ Valeurs possibles :
 
     Ici on va lui mettre 0 comme valeur :
  
-    test -e /proc/sys/kernel/yama/ptrace_scope && echo 0 > /proc/sys/kernel/yama/ptrace_scope
+          test -e /proc/sys/kernel/yama/ptrace_scope && echo 0 > /proc/sys/kernel/yama/ptrace_scope
 
 ---
 
@@ -66,11 +66,11 @@ f : Format arborescence (forest)
 a : Tous les utilisateurs
 x : Inclut les processus sans terminal (daemons)
 
-      ps fax | grep bareos-dir
+            ps fax | grep bareos-dir
 
 Sortie :
-      2186 pts/2    S+     0:00                      \_ grep bareos-dir
-      1098 ?        Ssl    0:02 /usr/sbin/bareos-dir -f
+            2186 pts/2    S+     0:00                      \_ grep bareos-dir
+            1098 ?        Ssl    0:02 /usr/sbin/bareos-dir -f
       
 
 Donc on à maintenant le PID du processus : 1098
@@ -91,7 +91,7 @@ Lors du `status` dans `bconsole` il est le seul à présenter des problémes.
 4) confirmation avec `gdb` et le shell Bareos
 
 Cette commande bascule vers l'utilisateur bareos avec un shell bash
-    su - bareos -s /bin/bash
+          su - bareos -s /bin/bash
 
 Cette commande lance gdb (débogueur GNU) pour déboguer le daemon bareos-sd
 
@@ -103,32 +103,32 @@ Options de bareos-sd :
 -s : No signals - désactive la gestion des signaux (facilite le débogage)
 -d 200 : Debug level 200 - active un niveau de verbosité très élevé    
     
-    gdb --args /usr/sbin/bareos-sd -f -s -d 200
-    (gdb) run
+          gdb --args /usr/sbin/bareos-sd -f -s -d 200
+          (gdb) run
 
 Sortie:
-    Local-Sd (10): lib/bnet_server_tcp.cc:246-0 ERROR: Cannot bind address 192.168.0.240 port 9103: ERR=Address already in use.
+          Local-Sd (10): lib/bnet_server_tcp.cc:246-0 ERROR: Cannot bind address 192.168.0.240 port 9103: ERR=Address already in use.
 
 
 5) Déclarer le nom de domain référencer sur pfsense dans bareos et rectifier l'erreur vu avec `gdb`
 
 * Ajouter la ligne suivante dans  /etc/bareos/bareos-sd.d/storage/Local-Sd.conf
-     Address = bareos.sednal.lan
+           Address = bareos.sednal.lan
 
 * Rééditer le fichier de configuration comme ci dessous
 Suppression de => `Address = 192.168.0.240`
    
-    Storage {
-          Name = Storage_Local
-          SDPort = 9103
-          SD Address = bareos.sednal.lan <= AJOUT
-          Password = "fCQqLZbkIZ+IBMpXOWtCZWOjrnxuJWt9ApbKT6PW8U8n"
-          Device = Local_Device
-          Media Type = File
-          }
+          Storage {
+                Name = Storage_Local
+                SDPort = 9103
+                SD Address = bareos.sednal.lan <= AJOUT
+                Password = "fCQqLZbkIZ+IBMpXOWtCZWOjrnxuJWt9ApbKT6PW8U8n"
+                Device = Local_Device
+                Media Type = File
+                }
 
 6) Et pour finir, revenir à la configuration de `/proc/sys/kernel/yama/ptrace_scope` initiale
-      test -e /proc/sys/kernel/yama/ptrace_scope && echo 1 > /proc/sys/kernel/yama/ptrace_scope
+            test -e /proc/sys/kernel/yama/ptrace_scope && echo 1 > /proc/sys/kernel/yama/ptrace_scope
 
 
 
