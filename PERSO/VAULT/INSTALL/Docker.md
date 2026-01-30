@@ -115,6 +115,7 @@ Génération de la clé privé
 #### 3.3) création certificat auto-signé + vérification
       openssl req -x509 -new -nodes -key /home/sednal/vault.key -out /home/sednal/vault.crt -days 365 -config /home/sednal/vault_ssl.cnf
       openssl x509 -in /home/sednal/vault.crt -text -noout
+
 Sortie :
                   Certificate:
                 Data:
