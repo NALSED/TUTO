@@ -116,32 +116,32 @@ Génération de la clé privé
       openssl req -x509 -new -nodes -key /home/sednal/vault.key -out /home/sednal/vault.crt -days 365 -config /home/sednal/vault_ssl.cnf
       openssl x509 -in /home/sednal/vault.crt -text -noout
 Sortie :
-      Certificate:
-    Data:
-        Version: 3 (0x2)
-        Serial Number:
-            2c:76:68:8f:3c:ed:5d:0b:ce:6f:21:6a:36:d6:8b:96:91:e3:3a:11
-        Signature Algorithm: sha256WithRSAEncryption
-        Issuer: CN = vault.sednal.lan
-        Validity
-            Not Before: Jan 30 16:35:12 2026 GMT
-            Not After : Jan 30 16:35:12 2027 GMT
-        Subject: CN = vault.sednal.lan
-        Subject Public Key Info:
-            Public Key Algorithm: rsaEncryption
-            [...]
-        Exponent: 65537 (0x10001)
-        X509v3 extensions:
-            X509v3 Subject Alternative Name:
-                DNS:vault.sednal.lan, DNS:localhost
-            X509v3 Key Usage: critical
-                Digital Signature, Key Encipherment
-            X509v3 Extended Key Usage:
-                TLS Web Server Authentication
-            X509v3 Basic Constraints: critical
-                CA:FALSE
-    Signature Algorithm: sha256WithRSAEncryptio
-          [...]
+                  Certificate:
+                Data:
+                    Version: 3 (0x2)
+                    Serial Number:
+                        2c:76:68:8f:3c:ed:5d:0b:ce:6f:21:6a:36:d6:8b:96:91:e3:3a:11
+                    Signature Algorithm: sha256WithRSAEncryption
+                    Issuer: CN = vault.sednal.lan
+                    Validity
+                        Not Before: Jan 30 16:35:12 2026 GMT
+                        Not After : Jan 30 16:35:12 2027 GMT
+                    Subject: CN = vault.sednal.lan
+                    Subject Public Key Info:
+                        Public Key Algorithm: rsaEncryption
+                        [...]
+                    Exponent: 65537 (0x10001)
+                    X509v3 extensions:
+                        X509v3 Subject Alternative Name:
+                            DNS:vault.sednal.lan, DNS:localhost
+                        X509v3 Key Usage: critical
+                            Digital Signature, Key Encipherment
+                        X509v3 Extended Key Usage:
+                            TLS Web Server Authentication
+                        X509v3 Basic Constraints: critical
+                            CA:FALSE
+                Signature Algorithm: sha256WithRSAEncryptio
+                      [...]
 
 #### Droits des fichiers :
 Dans l'idéal si tout se passé sur linux il faudrait réaliser le changement des droit et propriétaire
