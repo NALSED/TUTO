@@ -7,22 +7,22 @@
 #### 1.3) DNS Resolver, Ici Pfsense.
 #### 1.4) optionelle : VSC pour créer les Docker compose et autre fichier de documentation.
 
-=== PATH 192.168.0.235===
-C:\Users\sednal\vault\
-├── docker-compose.yml  
-├── certs\
-|   ├── vault.crt
-│   └── vault.key
-└── config\
-    └── vault.hcl
+            === PATH 192.168.0.235===
+            C:\Users\sednal\vault\
+            ├── docker-compose.yml  
+            ├── certs\
+            |   ├── vault.crt
+            │   └── vault.key
+            └── config\
+                └── vault.hcl
 
-=== PATH 192.168.0.241 ===
-/home/sednal/cert_vault
-  |   ├── vault_ssl.cnf
-  |   ├── vault.crt
-  │   └── vault.key
-  └── script
-      └── renew_vault_ssl.sh
+            === PATH 192.168.0.241 ===
+            /home/sednal/cert_vault
+              |   ├── vault_ssl.cnf
+              |   ├── vault.crt
+              │   └── vault.key
+              └── script
+                  └── renew_vault_ssl.sh
 
 ---
 ---
