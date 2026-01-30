@@ -169,6 +169,7 @@ mais ici avec transfert sur windows inutil.
       scp  /home/sednal/cert_vault/vault.key sednal@192.168.0.235:DOCKER/Vault/cert
 
 `EXECUTION`     
+      
       sudo chmod +x /home/sednal/cert_vault/script/renew_vault_ssl.sh
       
 #### Systemd :
