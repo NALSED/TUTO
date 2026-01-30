@@ -230,17 +230,6 @@ mais ici avec transfert sur windows inutil.
 
 
 
-C:\Users\sednal\vault\
-├── docker-compose.yml  
-├── certs\
-|   ├── vault.crt
-│   └── vault.key
-└── config\
-    └── vault.hcl
-
-
-
-
 
 
 
