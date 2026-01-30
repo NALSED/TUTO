@@ -117,6 +117,7 @@ Génération de la clé privé
       openssl x509 -in /home/sednal/vault.crt -text -noout
 
 Sortie :
+                  
                   Certificate:
                 Data:
                     Version: 3 (0x2)
