@@ -158,9 +158,11 @@ mais ici avec transfert sur windows inutil.
 #### Script qui créé une clé et un certificat puis les copie dans le bon dossier sur Win 11
 
 `EDITION`
+      
       sudo nano /home/sednal/cert_vault/script/renew_vault_ssl.sh
 
 `SCRIPT`      
+      
       #!/bin/bash
       openssl req -new -x509 -days 365 -key /home/sednal/cert_vault/vault.key -out /home/sednal/cert_vault/vault.crt -config /home/sednal/cert_vault/vault_ssl.cnf
       scp  /home/sednal/cert_vault/vault.crt sednal@192.168.0.235:DOCKER/Vault/cert
@@ -172,9 +174,11 @@ mais ici avec transfert sur windows inutil.
 #### Systemd :
 
 `EDITION`
+      
       sudo nano /etc/systemd/system/renew_vault_ssl.service 
 
 `SERVICE`
+      
       [Unit]
       Description=Renouvellement cerficats SSL Vault
       After=network.target
@@ -191,9 +195,11 @@ mais ici avec transfert sur windows inutil.
 ---
 
 `EDITION`
+     
      sudo nano /etc/systemd/system/renew_vault_ssl.timer 
 
 `TIMER` 
+      
       [Unit]
       Description=Renouvellement du certificat tous les 330 jours
       Requires=renew_vault_ssl.service
