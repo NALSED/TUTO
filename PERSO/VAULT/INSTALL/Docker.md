@@ -159,7 +159,7 @@ mais ici avec transfert sur windows inutil.
 
 `EDITION`
       
-      sudo nano /home/sednal/cert_vault/script/renew_vault_ssl.sh
+       sudo nano /home/sednal/cert_vault/script/renew_vault_ssl.sh
 
 `SCRIPT`      
       
