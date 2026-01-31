@@ -9,20 +9,33 @@
 
             === PATH 192.168.0.235===
             C:\Users\sednal\vault\
-            ├── docker-compose.yml  
+            | 
             ├── certs\
             |   ├── vault.crt
             │   └── vault.key
             └── config\
-                └── vault.hcl
+                ├── vault.hcl
+                └── docker-compose.yml 
 
             === PATH 192.168.0.241 ===
             /home/sednal/cert_vault
+              |   | 
               |   ├── vault_ssl.cnf
               |   ├── vault.crt
               │   └── vault.key
               └── script
                   └── renew_vault_ssl.sh
+
+            === WSL ===
+            /mnt/c/Users/sednal/DOCKER/Vault
+            | 
+            ├── certs\
+            |   ├── vault.crt
+            │   └── vault.key
+            └── config\
+                ├── vault.hcl
+                └── docker-compose.yml
+
 
 ---
 ---
@@ -227,6 +240,113 @@ mais ici avec transfert sur windows inutil.
 
 
 <img width="1019" height="383" alt="image" src="https://github.com/user-attachments/assets/f731f65c-0495-48e4-90ad-d64d71e95290" />
+
+---
+
+## 4️⃣ Docker-compose et fichier de configuration vault
+
+#### 4.1) Docker-compose.yml
+
+[DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab) // [GITHUB-OFFICIEL](https://github.com/hashicorp/vault-action/blob/main/docker-compose.yml)
+
+Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\config\docker-compose.yml
+
+            version: "3.8"
+            services:
+                vault-tls:
+                    image: hashicorp/vault:latest
+                    cap_add:
+                      - IPC_LOCK 
+                    hostname: vault
+                    container_name: vault_container
+                    environment:
+                      VAULT_ADDR: "https://vault.sednal.lan:8200"
+                      VAULT_API_ADDR: "https://vault.sednal.lan:8200"
+                      VAULT_CACERT: "/vault/cert/vault.crt"
+                    ports:
+                      - 8200:8200
+                    restart: always  
+                    volumes:
+                      - C:\Users\sednal\DOCKER\Vault\cert:/vault/cert:ro
+                      - C:\Users\sednal\DOCKER\Vault\config:/vault/config:ro
+                      - C:\Users\sednal\DOCKER\Vault\data:/vault/data:rw
+                    command: server
+
+
+ ---
+ 
+Cette ligne est primordial :
+
+            VAULT_CACERT: "/vault/cert/vault.crt""
+
+Car certificat autosigné, et Vault ne le validera pas sinon.
+
+
+#### 4.2) Fichier de configuration Vault
+
+[DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab
+
+Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\config\vault.hcl
+            ui = true
+
+
+            storage "file" {
+              path    = "/vault/data"
+            }
+            
+            listener "tcp" {
+              address = "0.0.0.0:8200"
+              tls_disable = "false"
+              tls_cert_file = "/vault/cert/vault.crt"
+              tls_key_file  = "/vault/cert/vault.key"
+              tls_client_ca_file = "/vault/cert/vault.crt"
+            }
+            
+            api_addr     = "https://vault.sednal.lan:8200"
+            cluster_addr = "https://vault.sednal.lan:8201"
+
+---
+
+Cette ligne est primordial :
+
+            tls_client_ca_file = "/vault/cert/vault.crt"
+
+Car certificat autosigné, et Vault ne le validera pas sinon.
+
+#### 4.3) Création du conteneur Vault
+            docker compose up -d
+
+<img width="344" height="100" alt="image" src="https://github.com/user-attachments/assets/9e3af279-9042-41a6-a6e2-7d91cc0866fe" />
+
+
+## 5️⃣ Configuration de Vault en CLI
+
+#### 5.1) Editer dans le conteneur
+            docker exec -it vault_container /bin/sh
+            vault operator init
+
+⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
+Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
