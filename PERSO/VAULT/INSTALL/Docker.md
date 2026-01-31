@@ -321,18 +321,42 @@ Car certificat autosigné, et Vault ne le validera pas sinon.
 
 ## 5️⃣ Configuration de Vault en CLI
 
-#### 5.1) Editer dans le conteneur
+#### 5.1) Editer dans le conteneur pour initialiser Vault
             docker exec -it vault_container /bin/sh
             vault operator init
 
 ⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
 Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 
+            / # vault operator init
+            Unseal Key 1: [...]
+            Unseal Key 2: [...]
+            Unseal Key 3: [...]
+            Unseal Key 4: [...]
+            Unseal Key 5: [...]
+            
+            Initial Root Token:  [...]
+            
+            Vault initialized with 5 key shares and a key threshold of 3. Please securely
+            distribute the key shares printed above. When the Vault is re-sealed,
+            restarted, or stopped, you must supply at least 3 of these keys to unseal it
+            before it can start servicing requests.
+            
+            Vault does not store the generated root key. Without at least 3 keys to
+            reconstruct the root key, Vault will remain permanently sealed!
+            
+            It is possible to generate new unseal keys, provided you have a quorum of
+            existing unseal keys shares. See "vault operator rekey" for more information.
 
 
+#### 5.2) Unseal Vault
 
+Entrer les commande suivante 3 fois
+            vault operator unseal
 
+Jusqu'à obtenir :
 
+<img width="483" height="284" alt="image" src="https://github.com/user-attachments/assets/092b2f83-ac6c-40ad-9147-1d3e72f7de1c" />
 
 
 
