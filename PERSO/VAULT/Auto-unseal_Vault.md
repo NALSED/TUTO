@@ -46,11 +46,12 @@
 
 ## 1️⃣ Prérequis
 #### 1.1) openssl ici => raspbery-pi 192.168.0.241
-#### 1.2) kleopatra (chiffrement GPG)
-#### 1.3) DNS Resolver, Ici Pfsense.
-#### 1.4) optionelle : VSC pour créer les Docker compose et autre fichier de documentation.
+#### 1.2) Pouvoir faire tourner Vault A 24h/24h ici => raspbery-pi 192.168.0.241
+#### 1.3) kleopatra (chiffrement GPG)
+#### 1.4) DNS Resolver, Ici Pfsense.
+#### 1.5) optionelle : VSC pour créer les Docker compose et autre fichier de documentation.
 
-             === PATH 192.168.0.235:8100===
+             === PATH 192.168.0.241:8100===
             C:\Users\sednal\vault\vault
             | 
             ├── certs\
@@ -70,15 +71,6 @@
                 ├── vault.hcl
                 └── docker-compose.yml 
 
-            === PATH 192.168.0.241 ===
-            /home/sednal/cert_vault
-              |   | 
-              |   ├── vault_ssl.cnf
-              |   ├── vault.crt
-              │   └── vault.key
-              └── script
-                  └── renew_vault_ssl.sh
-
             === WSL ===
             /mnt/c/Users/sednal/DOCKER/Vault
             | 
@@ -96,45 +88,38 @@
 ## 2️⃣ Déclarer FQDN dans Pfsense
 ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
-<img width="1156" height="46" alt="image" src="https://github.com/user-attachments/assets/d7de9cd3-8beb-4521-b15f-35d4e2d01145" />
+<img width="717" height="35" alt="image" src="https://github.com/user-attachments/assets/782a76c4-ad66-4109-be62-0619086d6711" />
 
 ---
 ---
 
 ## 3️⃣ Création du certificat SSL de Vault + Renouvellement
 
-### 3.1) Fichier de configuration certificat
+### 3.1) Les fichiers de configuration certificat
 
-# Editer dans /home/sednal/cert_vault/vault_root et /home/sednal/cert_vault/vault_auto_unseal
-      
+=== Vault_root === 
+
       nano /home/sednal/cert_vault/vault_root/vault_root.cnf
-      nano /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.cnf
 
-      [ req ]
-      default_bits       = 4096
-      prompt             = no
-      default_md         = sha256
-      req_extensions     = req_ext
-      distinguished_name = dn
-      x509_extensions    = v3_ext 
-      
-      [ dn ]
-      CN = vault.sednal.lan
-      
-      [ req_ext ]
-      subjectAltName = @alt_names
-      keyUsage = critical, digitalSignature, keyEncipherment
-      extendedKeyUsage = serverAuth
-      
-      [ v3_ext ]
-      subjectAltName = @alt_names
-      keyUsage = critical, digitalSignature, keyEncipherment
-      extendedKeyUsage = serverAuth
-      basicConstraints = critical, CA:FALSE
-      
-      [ alt_names ]
-      DNS.1 = vault.sednal.lan
-      DNS.2 = localhost         
+        [ req ]
+        default_bits       = 4096
+        prompt             = no
+        default_md         = sha256
+        req_extensions     = req_ext
+        distinguished_name = dn
+        
+        [ dn ]
+        CN = vault.sednal.lan
+        
+        [ req_ext ]
+        subjectAltName = @alt_names
+        keyUsage = critical, digitalSignature, keyEncipherment
+        extendedKeyUsage = serverAuth
+        basicConstraints = critical, CA:FALSE
+        
+        [ alt_names ]
+        DNS.1 = vault.sednal.lan
+        DNS.2 = localhost        
 
 Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évite les probléme si l'IP change.
 
@@ -151,16 +136,12 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 - **default_md = sha256** → Algorithme de hachage (SHA-256)
 - **req_extensions = req_ext** → Extensions pour la demande CSR
 - **distinguished_name = dn** → Référence vers les infos d'identité
-- **x509_extensions = v3_ext** → Extensions pour le certificat final
 
 ## Section [dn]
 - **CN = vault.sednal.lan** → Common Name (nom du serveur)
 
 ## Section [req_ext]
 - **subjectAltName = @alt_names** → Noms alternatifs pour le certificat
-
-## Section [v3_ext]
-- **subjectAltName = @alt_names** → Noms alternatifs (DNS + IP autorisés)
 - **keyUsage = critical, digitalSignature, keyEncipherment**
   - `critical` → Extension obligatoire
   - `digitalSignature` → Peut signer (authentification TLS)
@@ -170,6 +151,49 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 
 </details>
+
+
+=== Vault_auto_unseal ===
+
+nano /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.cnf
+
+        [ req ]
+        default_bits       = 4096
+        prompt             = no
+        default_md         = sha256
+        req_extensions     = req_ext
+        distinguished_name = dn
+        
+        [ dn ]
+        CN = vault_2.sednal.lan
+        
+        [ req_ext ]
+        subjectAltName = @alt_names
+        keyUsage = critical, digitalSignature, keyEncipherment
+        extendedKeyUsage = serverAuth
+        basicConstraints = critical, CA:FALSE
+        
+        [ alt_names ]
+        DNS.1 = vault_2.sednal.lan
+        DNS.2 = localhost 
+
+
+=== CA ===
+
+        [ req ]
+        default_bits       = 4096
+        prompt             = no
+        default_md         = sha256
+        distinguished_name = dn
+        x509_extensions    = v3_ca
+        
+        [ dn ]
+        CN = Sednal-CA
+        
+        [ v3_ca ]
+        basicConstraints = critical, CA:TRUE
+        keyUsage = critical, keyCertSign, cRLSign
+        subjectKeyIdentifier = hash
 
 ---
 
