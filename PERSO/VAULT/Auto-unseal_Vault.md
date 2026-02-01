@@ -6,6 +6,43 @@
 ---
 
 ---
+## === SCHEMA ===
+
+# Vault Auto-Unseal — Architecture
+
+```
+┌─────────────────────────────┐                    ┌─────────────────────────────┐
+│          VAULT A            │                    │          VAULT B            │
+│      Vault_auto_unseal      │                    │        Vault_root           │
+│                             │                    │                             │
+│  🔑 Key Provider            │                    │  🔐 Auto-Unseal             │
+│                             │                    │                             │
+│  Port   : 8100              │   ① encrypt ───>   │  Port   : 8200              │
+│  Storage: raft              │   ② decrypt <───   │  Storage: raft              │
+│  Transit: activé            │                    │  Seal   : transit → Vault A │
+│  Unseal : manuel            │                    │  Token  : env var           │
+│                             │                    │  Unseal : automatique       │
+└─────────────────────────────┘                    └─────────────────────────────┘
+        ↑                                                      ↑
+        │                                                      │
+  Unsealed en premier                              Se unseal automatiquement
+  (vault operator init/unseal)                     via Vault A à chaque redémarrage
+```
+
+## Ordre de déploiement
+
+```
+① Démarrer Vault A          → docker compose up -d
+② Init + Unseal Vault A     → vault operator init / unseal
+③ Activer Transit sur A     → vault secrets enable transit
+④ Créer la clé              → vault write transit/keys/autounseal
+⑤ Créer policy + token      → pour autoriser Vault B
+⑥ Démarrer Vault B          → docker compose up -d (avec le token)
+```
+
+
+---
+---
 
 ## 1️⃣ Prérequis
 #### 1.1) openssl ici => raspbery-pi 192.168.0.241
@@ -318,7 +355,9 @@ Dans l'idéal, si tout se passait sur Linux, il faudrait réaliser le changement
 
 [DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab) // [GITHUB-OFFICIEL](https://github.com/hashicorp/vault-action/blob/main/docker-compose.yml)
 
-Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\config\docker-compose.yml
+`=== Vault_Root ===`
+
+Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_root\config\docker-compose.yml
 
             version: "3.8"
             services:
@@ -342,7 +381,7 @@ Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\config\docker-compose.yml
                     command: server
 
 
- ---
+ 
  
 Cette ligne est primordial :
 
@@ -350,31 +389,80 @@ Cette ligne est primordial :
 
 Car certificat autosigné, et Vault ne le validera pas sinon.
 
+---
 
-### 4.2) Fichier de configuration Vault
+`=== Vault_Auto_Unseal ===`
+
+Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_auto_unseal\config\docker-compose.yml
+
+      version: "3.8"
+      services:
+          vault-tls:
+              image: hashicorp/vault:latest
+              cap_add:
+                - IPC_LOCK 
+              hostname: vault
+              container_name: vault_auto
+              environment:
+                VAULT_ADDR: "https://vault.sednal.lan:8100"
+                VAULT_API_ADDR: "https://vault.sednal.lan:8100"
+                VAULT_CACERT: "/vault/cert/vault_ssl_au.crt"
+              ports:
+                - 8100:8100
+              restart: always  
+              volumes:
+                - C:\Users\sednal\DOCKER\Vault\Vault_auto_unseal\cert:/vault/cert:ro
+                - C:\Users\sednal\DOCKER\Vault\Vault_auto_unseal\config:/vault/config:ro
+                - C:\Users\sednal\DOCKER\Vault\Vault_auto_unseal\data:/vault/data:rw
+              command: server
+
+ 
+Cette ligne est primordial :
+
+            VAULT_CACERT: "/vault/cert/vault_ssl_au.crt""
+
+Car certificat autosigné, et Vault ne le validera pas sinon.
+
+
+### 4.2) Fichier de configuration 
 
 [DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab)
 
-Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\config\vault.hcl
-            ui = true
+`=== Vault_Root ===`
+
+Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_root\config\vault.hcl
 
 
-            storage "file" {
-              path    = "/vault/data"
-            }
-            
-            listener "tcp" {
-              address = "0.0.0.0:8200"
-              tls_disable = "false"
-              tls_cert_file = "/vault/cert/vault.crt"
-              tls_key_file  = "/vault/cert/vault.key"
-              tls_client_ca_file = "/vault/cert/vault.crt"
-            }
-            
-            api_addr     = "https://vault.sednal.lan:8200"
-            cluster_addr = "https://vault.sednal.lan:8201"
+
+
+
+
 
 ---
+
+`=== Vault_Auto_Unseal ===`
+
+Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_auto_unseal\config\vault.hcl    
+
+      disable_mlock = true
+      ui = true
+      
+      
+      storage "raft" {
+        path    = "/vault/data"
+        node_id = "vault_auto_unseal"
+      }
+      
+      listener "tcp" {
+        address = "0.0.0.0:8100"
+        tls_disable = "false"
+        tls_cert_file = "/vault/cert/vault_ssl_au.crt"
+        tls_key_file  = "/vault/cert/vault_ssl_au.key"
+        tls_client_ca_file = "/vault/cert/vault_ssl_au.crt"
+      }
+      
+      api_addr     = "https://vault.sednal.lan:8100"
+      cluster_addr = "https://vault.sednal.lan:8101"
 
 Cette ligne est primordial :
 
@@ -382,10 +470,13 @@ Cette ligne est primordial :
 
 Car certificat autosigné, et Vault ne le validera pas sinon.
 
-### 4.3) Création du conteneur Vault
+
+### 4.3) Création du 1er conteneur Vault et récupération Token pour Vault_root
+
+Créer en 1er le Vault_auto_unseal            
             docker compose up -d
 
-<img width="344" height="100" alt="image" src="https://github.com/user-attachments/assets/9e3af279-9042-41a6-a6e2-7d91cc0866fe" />
+<img width="299" height="48" alt="image" src="https://github.com/user-attachments/assets/df6e6d9a-f4cc-4e34-b78d-2211fbed8bd6" />
 
 
 ## 5️⃣ Configuration de Vault en CLI
