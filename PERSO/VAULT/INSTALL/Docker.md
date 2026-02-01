@@ -50,7 +50,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
 ## 3️⃣ Création du certificat SSL de Vault + Renouvellement
 
-#### 3.1) Fichier de configuration certificat
+### 3.1) Fichier de configuration certificat
 
 
       [ req ]
@@ -116,7 +116,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 ---
 
-#### 3.2) Création de la clé privée
+### 3.2) Création de la clé privée
 
 Génération de la clé privé
       openssl genrsa -out C:\Users\sednal\DOCKER\Vault\vault.key
@@ -125,7 +125,7 @@ Génération de la clé privé
 
 ---
 
-#### 3.3) création certificat auto-signé + vérification
+### 3.3) création certificat auto-signé + vérification
       openssl req -x509 -new -nodes -key /home/sednal/vault.key -out /home/sednal/vault.crt -days 365 -config /home/sednal/vault_ssl.cnf
       openssl x509 -in /home/sednal/vault.crt -text -noout
 
@@ -166,7 +166,7 @@ mais ici avec transfert sur windows inutil.
 - vault.key => 600 et vault : vault (Clé privée = vault seul)
 - vault.crt => 644 et vault : vault (Certificat public = tous lisent)
           
-#### 3.4) Création d'un renouvelement automatique via script + systemd
+### 3.4) Création d'un renouvelement automatique via script + systemd
 
 #### Script qui créé une clé et un certificat puis les copie dans le bon dossier sur Win 11
 
@@ -245,7 +245,7 @@ mais ici avec transfert sur windows inutil.
 
 ## 4️⃣ Docker-compose et fichier de configuration vault
 
-#### 4.1) Docker-compose.yml
+### 4.1) Docker-compose.yml
 
 [DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab) // [GITHUB-OFFICIEL](https://github.com/hashicorp/vault-action/blob/main/docker-compose.yml)
 
@@ -282,7 +282,7 @@ Cette ligne est primordial :
 Car certificat autosigné, et Vault ne le validera pas sinon.
 
 
-#### 4.2) Fichier de configuration Vault
+### 4.2) Fichier de configuration Vault
 
 [DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab)
 
@@ -313,7 +313,7 @@ Cette ligne est primordial :
 
 Car certificat autosigné, et Vault ne le validera pas sinon.
 
-#### 4.3) Création du conteneur Vault
+### 4.3) Création du conteneur Vault
             docker compose up -d
 
 <img width="344" height="100" alt="image" src="https://github.com/user-attachments/assets/9e3af279-9042-41a6-a6e2-7d91cc0866fe" />
@@ -321,7 +321,7 @@ Car certificat autosigné, et Vault ne le validera pas sinon.
 
 ## 5️⃣ Configuration de Vault en CLI
 
-#### 5.1) Editer dans le conteneur pour initialiser Vault
+### 5.1) Editer dans le conteneur pour initialiser Vault
             docker exec -it vault_container /bin/sh
             vault operator init
 
@@ -349,7 +349,7 @@ Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
             existing unseal keys shares. See "vault operator rekey" for more information.
 
 
-#### 5.2) Unseal Vault
+### 5.2) Unseal Vault
 
 Entrer les commande suivante 3 fois
             vault operator unseal
