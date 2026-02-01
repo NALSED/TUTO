@@ -153,12 +153,15 @@ Génération des clées privées
 ### 3.3) création certificat auto-signé + vérification
 
 `root`     
+     
       openssl req -x509 -new -nodes -key /home/sednal/cert_vault/vault_root/vault_root.key -out /home/sednal/cert_vault/vault_root/vault_root.crt -days 365 -config /home/sednal/cert_vault/vault_root/vault_root.cnf
 
 `auto-seal` 
+      
       openssl req -x509 -new -nodes -key /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.key -out /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.crt -days 365 -config /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.cnf
             
 `test`            
+      
       openssl x509 -in /home/sednal/vault.crt -text -noout
 
 
@@ -209,9 +212,43 @@ Dans l'idéal, si tout se passait sur Linux, il faudrait réaliser le changement
 `SCRIPT`      
       
       #!/bin/bash
-      openssl req -new -x509 -days 365 -key /home/sednal/cert_vault/vault.key -out /home/sednal/cert_vault/vault.crt -config /home/sednal/cert_vault/vault_ssl.cnf
-      scp  /home/sednal/cert_vault/vault.crt sednal@192.168.0.235:DOCKER/Vault/cert
-      scp  /home/sednal/cert_vault/vault.key sednal@192.168.0.235:DOCKER/Vault/cert
+
+      # Root
+      rm  /home/sednal/cert_vault/vault_root/*.crt 
+      rm  /home/sednal/cert_vault/vault_root/*.key
+      
+      # Auto-unseal
+      rm  /home/sednal/cert_vault/vault_auto_unseal/*.crt 
+      rm  /home/sednal/cert_vault/vault_auto_unseal/*.key
+      
+      #Génération clées
+      # Root
+      openssl genrsa -out /home/sednal/cert_vault/vault_root/vault_root.key
+      # Auto-unseal
+      openssl genrsa -out /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.key
+      
+      #Génération certificacts
+      # Root
+      openssl req -x509 -new -nodes -key /home/sednal/cert_vault/vault_root/vault_root.key -out /home/sednal/cert_vault/vault_root/vault_root.crt -days 365 -config /home/sednal/cert_vault/vault_root/vault_root.cnf
+      # Auto-unseal
+      openssl req -x509 -new -nodes -key /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.key -out /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.crt -days 365 -config /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.cnf
+      
+      # Supprime les fichiers sur Win 11
+      # Root
+      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_root\cert\vault_root.crt"
+      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_root\cert\vault_root.key"
+      # Auto-unseal 
+      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_auto_unseal\cert\vault_ssl_au.crt"
+      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_auto_unseal\cert\vault_ssl_au.key"
+      
+      # Après suppression, copie des fichiers
+      # Root
+      scp  /home/sednal/cert_vault/vault_root/vault_root.crt sednal@192.168.0.235:DOCKER/Vault/Vault_root/cert
+      scp  /home/sednal/cert_vault/vault_root/vault_root.key sednal@192.168.0.235:DOCKER/Vault/Vault_root/cert
+      # Auto-unseal 
+      scp  /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.crt sednal@192.168.0.235:DOCKER/Vault/Vault_auto_unseal/cert
+      scp  /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.key sednal@192.168.0.235:DOCKER/Vault/Vault_auto_unseal/cert
+
 
 `EXECUTION`     
       
