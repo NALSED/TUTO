@@ -351,6 +351,7 @@ Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 ### 5.2) Unseal Vault
 
 Entrer les commande suivante 3 fois
+            
             vault operator unseal
 
 Jusqu'à obtenir :
