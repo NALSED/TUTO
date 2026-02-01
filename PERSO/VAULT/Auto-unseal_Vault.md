@@ -572,12 +572,19 @@ Sortie attendue
 
 Sortie attendue
 
+<img width="1062" height="293" alt="image" src="https://github.com/user-attachments/assets/63650e5c-ef03-4233-b6c9-04e3012b137e" />
 
 
+### 4.5) Configuration du deuxième noeud Vault :
 
+- copier le token dans le docker compose su vault_root
+        VAULT_TOKEN_TRANSIT: "[TOKEN VAULT_AUTO_UNSEAL]"
 
+### 4.6) Démarrer le conteneur Vault_root
 
+        docker compose up -d
 
+<img width="364" height="65" alt="image" src="https://github.com/user-attachments/assets/8af8a920-c320-42fb-915c-77997be336a8" />
 
 
 
