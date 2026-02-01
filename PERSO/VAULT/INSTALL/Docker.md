@@ -159,8 +159,7 @@ Sortie :
                       [...]
 
 #### Droits des fichiers :
-Dans l'idéal si tout se passé sur linux il faudrait réaliser le changement des droit et propriétaire
-mais ici avec transfert sur windows inutil.
+Dans l'idéal, si tout se passait sur Linux, il faudrait réaliser le changement des droits et des propriétaires, mais ici, avec un transfert sur Windows, c'est inutile.
 
 - vault_ssl.cnf => 640 et root : vault (Root modifie, vault lit, config protégée)
 - vault.key => 600 et vault : vault (Clé privée = vault seul)
