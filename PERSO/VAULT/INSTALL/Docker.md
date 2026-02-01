@@ -1,5 +1,7 @@
 # Installation compléte et configuration démarrage de Vault 
-
+---
+Ici Vault sera unseal et login manuellement, pour un dévérouillage via auto-unseal, voir => [AUTO-UNSEAL]()
+---
 
 ## 1️⃣ Prérequis
 #### 1.1) openssl ici => raspbery-pi 192.168.0.241
