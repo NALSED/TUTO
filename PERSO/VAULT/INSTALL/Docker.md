@@ -178,7 +178,12 @@ Dans l'idéal, si tout se passait sur Linux, il faudrait réaliser le changement
 `SCRIPT`      
       
       #!/bin/bash
+      rm /home/sednal/cert_vault/*.crt
+      rm /home/sednal/cert_vault/*.key
+      openssl genrsa -out /home/sednal/cert_vault/vault.key
       openssl req -new -x509 -days 365 -key /home/sednal/cert_vault/vault.key -out /home/sednal/cert_vault/vault.crt -config /home/sednal/cert_vault/vault_ssl.cnf
+      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\cert\vault.crt"
+      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\cert\vault.key"
       scp  /home/sednal/cert_vault/vault.crt sednal@192.168.0.235:DOCKER/Vault/cert
       scp  /home/sednal/cert_vault/vault.key sednal@192.168.0.235:DOCKER/Vault/cert
 
