@@ -12,4 +12,4 @@
 
 <img width="619" height="437" alt="image" src="https://github.com/user-attachments/assets/d98a290b-87ec-4f19-a444-295552c37143" />
 
-3) Suive l'assistant et sélectionnez le fichier .crt
+3) Suivre l'assistant et sélectionnez le fichier .crt
