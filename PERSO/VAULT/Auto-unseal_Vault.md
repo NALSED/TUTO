@@ -17,8 +17,8 @@
 │                             │                    │                             │
 │  🔑 Key Provider            │                    │  🔐 Auto-Unseal             │
 │                             │                    │                             │
-│  Port   : 8100              │   ① encrypt ───>   │  Port   : 8200              │
-│  Storage: raft              │   ② decrypt <───   │  Storage: raft              │
+│  Port   : 8100              │   1 encrypt ───>   │  Port   : 8200              │
+│  Storage: raft              │   2 decrypt <───   │  Storage: raft              │
 │  Transit: activé            │                    │  Seal   : transit → Vault A │
 │  Unseal : manuel            │                    │  Token  : env var           │
 │                             │                    │  Unseal : automatique       │
@@ -32,12 +32,12 @@
 ## Ordre de déploiement
 
 ```
-① Démarrer Vault A          → docker compose up -d
-② Init + Unseal Vault A     → vault operator init / unseal
-③ Activer Transit sur A     → vault secrets enable transit
-④ Créer la clé              → vault write transit/keys/autounseal
-⑤ Créer policy + token      → pour autoriser Vault B
-⑥ Démarrer Vault B          → docker compose up -d (avec le token)
+1) Démarrer Vault A          → docker compose up -d
+2) Init + Unseal Vault A     → vault operator init / unseal
+3) Activer Transit sur A     → vault secrets enable transit
+4) Créer la clé              → vault write transit/keys/autounseal
+5) Créer policy + token      → pour autoriser Vault B
+6) Démarrer Vault B          → docker compose up -d (avec le token)
 ```
 
 
@@ -471,19 +471,28 @@ Cette ligne est primordial :
 Car certificat autosigné, et Vault ne le validera pas sinon.
 
 
-### 4.3) Création du 1er conteneur Vault et récupération Token pour Vault_root
+### 4.3) Création du 1er conteneur Vault 
+- Créer en premier le Vault_auto_unseal           
+          docker compose up -d
 
-Créer en 1er le Vault_auto_unseal            
-            docker compose up -d
-
-<img width="299" height="48" alt="image" src="https://github.com/user-attachments/assets/df6e6d9a-f4cc-4e34-b78d-2211fbed8bd6" />
+<img width="325" height="60" alt="image" src="https://github.com/user-attachments/assets/3c2adf55-ce24-4b59-a4d5-587c871ff157" />
 
 
-## 5️⃣ Configuration de Vault en CLI
+- Vérification Réussite :
 
-### 5.1) Editer dans le conteneur pour initialiser Vault
-            docker exec -it vault_container /bin/sh
-            vault operator init
+        docker logs vault_auto
+
+Sortie attendue
+
+<img width="1164" height="541" alt="image" src="https://github.com/user-attachments/assets/69790a7a-21fe-4970-9a7e-286716057fcd" />
+
+
+
+- Initialisation Vault
+
+        docker exec -it vault_auto /bin/sh
+        vault operator init
+
 
 ⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
 Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
@@ -509,21 +518,59 @@ Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
             existing unseal keys shares. See "vault operator rekey" for more information.
 
 
-### 5.2) Unseal Vault
-
-Entrer les commande suivante 3 fois
+- Entrer les commande suivante 3 fois
             
             vault operator unseal
 
-Jusqu'à obtenir :
+- Jusqu'à obtenir :
 
-<img width="483" height="284" alt="image" src="https://github.com/user-attachments/assets/092b2f83-ac6c-40ad-9147-1d3e72f7de1c" />
-
-
+<img width="555" height="367" alt="image" src="https://github.com/user-attachments/assets/3556cbfb-5537-46e5-ba38-40ed35069cf5" />
 
 
+### 4.4) Récupération Token pour Vault_root
+
+-Activer Transit
+      
+        vault secrets enable transit
+
+Sortie attendue
+
+<img width="519" height="38" alt="image" src="https://github.com/user-attachments/assets/b5e2b308-99fa-49e8-af61-8527be2e17bd" />
 
 
+-Créer la clé
+        
+        vault write -force transit/keys/autounseal 
+
+Sortie attendue
+
+<img width="486" height="382" alt="image" src="https://github.com/user-attachments/assets/5b6927b2-b223-44ae-9ffd-0bc6e7647d32" />
+
+
+-Créer la policy
+       
+        vault policy write autounseal -<<EOF
+        path "transit/encrypt/autounseal" {
+           capabilities = [ "update" ]
+        }
+        
+        path "transit/decrypt/autounseal" {
+           capabilities = [ "update" ]
+        }
+        EOF
+
+
+Sortie attendue
+
+<img width="381" height="193" alt="image" src="https://github.com/user-attachments/assets/440a58e0-a491-424f-8144-65a17a5aae64" />
+
+
+-Créer le token limité
+        
+        vault token create -policy=vault-b-policy -no-parent
+
+
+Sortie attendue
 
 
 
