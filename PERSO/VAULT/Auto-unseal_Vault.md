@@ -153,7 +153,8 @@ Script Dossier
 ## 2️⃣ Déclarer FQDN dans Pfsense
 ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
-<img width="717" height="35" alt="image" src="https://github.com/user-attachments/assets/782a76c4-ad66-4109-be62-0619086d6711" />
+<img width="1149" height="72" alt="image" src="https://github.com/user-attachments/assets/90c43b89-ce69-486f-a474-e0444ddc6ec8" />
+
 
 ---
 ---
