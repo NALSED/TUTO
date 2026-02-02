@@ -57,22 +57,23 @@
              |
              ├── CA_Vault/
              |   ├── Cert/
-             |   ├── public/
-             |   |   └── Vault_Auto.crt
-             |   |
-             |   ├── private/
-             │   |   └── Vault_Auto.key    
+             |   |   ├── public/
+             |   |   |       └── CA.crt
+             |   |   |
+             |   |   └── private/
+             │   |       └── CA.key   
              |   | 
              |   └── Config/
              |       └── CA_Vault.cnf
              | 
              ├── Vault_Root/       
-             ├── Cert/
-             |   ├── public/
-             |   |   └── Vault_Auto.crt
-             |   |
-             |   ├── private/
-             │   |   └── Vault_Auto.key    
+             |   ├── Cert/
+             |   |   ├── public/
+             |   |   |   ├── CA.crt
+             |   |   |   └── Vault_Root.crt
+             |   |   |
+             |   |   └── private/
+             │   |       └── Vault_Root.key    
              |   | 
              |   └── Config/
              |       └── Vault_Root.cnf         
@@ -84,6 +85,7 @@
                  | 
                  ├── Cert/
                  |   ├── public/
+                 |   |   ├── CA.crt                
                  |   |   └── Vault_Auto.crt
                  |   |
                  |   └── private/
@@ -92,6 +94,31 @@
                  └── Config/
                          ├── Vault_Auto.hcl   
                          └── Vault_Auto.cnf
+
+<details>
+<summary>
+<h2>
+Script Dossier 
+</h2>
+</summary>
+
+#!/bin/bash
+
+# CA
+mkdir -p /home/sednal/Vault/CA_Vault/Cert public private
+mkdir /home/sednal/Vault/CA_Vault/Config
+
+#Vault_Root
+mkdir -p /home/sednal/Vault/Vault_Root/Cert public private
+mkdir /home/sednal/Vault/Vault_Root/Config
+
+#Vault_Auto
+mkdir -p /home/sednal/Vault/Vaukt_Auto/Cert public private
+mkdir /home/sednal/Vault/Vault_Root/Config
+
+</details>
+
+
 ---
 
             === PATH 192.168.0.235:8200===
@@ -100,10 +127,12 @@
             ├──docker-compose.yml
             | 
             ├── certs\
-            |   ├── vault.crt
-            │   └── vault.key
+            |   ├── CA.crt
+            |   ├── Vault_Root.crt
+            │   └── Vault_Root.key
+            |
             └── config\
-                └── vault.hcl
+                └── Vault.hcl
                  
 
             === WSL ===
@@ -111,10 +140,12 @@
             | 
             ├── docker-compose.yml
             ├── certs\
-            |   ├── vault.crt
-            │   └── vault.key
+            |   ├── CA.crt
+            |   ├── Vault_Root.crt
+            │   └── Vault_Root.key
+            |
             └── config\
-                └── vault.hcl
+                └── Vault.hcl
 
 ---
 ---
