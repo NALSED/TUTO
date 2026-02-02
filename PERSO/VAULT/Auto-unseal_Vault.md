@@ -14,15 +14,15 @@
      === 192.168.0.241 ===                              === 192.168.0.235 ===
 ┌─────────────────────────────┐                    ┌─────────────────────────────┐
 │          VAULT A            │                    │          VAULT B            │
-│      Vault_Auto             │                    │        Vault_root           │
+│         Vault_Auto          │                    │      Vault_root             │
 │                             │                    │                             │
-│     🔑 Key Provider        |                      |         🔐 Auto-Unseal       │
+│       Key Provider          │                    |        Auto-Unseal          │ 
 │                             │                    │                             │
 │  Port   : 8100              │   1 encrypt ───>   │  Port   : 8200              │
 │  Storage: raft              │   2 decrypt <───   │  Storage: raft              │
 │  Transit: activé            │                    │  Seal   : transit → Vault A │
 │  Unseal : manuel            │                    │  Token  : env var           │
-│                             │                    │  Unseal : automatique       │
+│  Dispo : 24/24              │                    │  Unseal : automatique       │
 └─────────────────────────────┘                    └─────────────────────────────┘
         ↑                                                      ↑
         │                                                      │
@@ -164,8 +164,8 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
 === Vault_Root === 
 
-      nano /home/sednal/Vault/Vault_Root/Cert/vault_root.cnf
-
+      nano /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf
+      
         [ req ]
         default_bits       = 4096
         prompt             = no
@@ -218,9 +218,9 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 </details>
 
 
-=== Vault_auto_unseal ===
+=== Vault_Auto ===
 
-nano /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.cnf
+        nano /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf
 
         [ req ]
         default_bits       = 4096
@@ -245,6 +245,8 @@ nano /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.cnf
 
 === CA ===
 
+        nano /home/sednal/Vault/CA_Vault/Config/CA_Vault.cnf
+ 
         [ req ]
         default_bits       = 4096
         prompt             = no
@@ -262,123 +264,124 @@ nano /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.cnf
 
 ---
 
-### 3.2) Création de la clé privée
+### 3.2) Création CA
 
-Génération des clées privées
+- Dans /home/sednal/Vault => Pour plus de claretée et copier le certificat après
+          openssl req -x509 -newkey rsa:4096 -keyout CA.key -out CA.crt -days 3650 -nodes -config /home/sednal/Vault/CA_Vault/Config/CA_Vault.cnf
 
-`root`
-      openssl genrsa -out /home/sednal/cert_vault/vault_root/vault_root.key
+<img width="450" height="41" alt="image" src="https://github.com/user-attachments/assets/1f1b545a-6378-4ee5-919a-408e367cb539" />
 
-`auto-seal`
-      openssl genrsa -out /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.key
+- Copier les certificat dans les dossiers :
 
-**Remarque** pas de fichier csr, car certificat auto-signé.
+      cp CA.crt /home/sednal/Vault/Vault_Root/Cert/public/
+      cp CA.crt /home/sednal/Vault/Vault_Auto/Cert/public/
+      mv CA.crt /home/sednal/Vault/CA_Vault/Cert/public/
+      mv CA.key /home/sednal/Vault/CA_Vault/Cert/private
 
 ---
 
-### 3.3) création certificat auto-signé + vérification
+### 3.3) Création CSR + Certificats + cles => Vault_Root et Vault_Auto
 
-`root`     
-     
-      openssl req -x509 -new -nodes -key /home/sednal/cert_vault/vault_root/vault_root.key -out /home/sednal/cert_vault/vault_root/vault_root.crt -days 365 -config /home/sednal/cert_vault/vault_root/vault_root.cnf
+`=== Vault_Root ===`
 
-`auto-seal` 
-      
-      openssl req -x509 -new -nodes -key /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.key -out /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.crt -days 365 -config /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.cnf
-            
-`test`            
-      
-      openssl x509 -in /home/sednal/vault.crt -text -noout
+- Clé + CSR
+    
+     openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key -out /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -nodes -config /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf
 
 
-Sortie :
-                  
-                  Certificate:
-                Data:
-                    Version: 3 (0x2)
-                    Serial Number:
-                        2c:76:68:8f:3c:ed:5d:0b:ce:6f:21:6a:36:d6:8b:96:91:e3:3a:11
-                    Signature Algorithm: sha256WithRSAEncryption
-                    Issuer: CN = vault.sednal.lan
-                    Validity
-                        Not Before: Jan 30 16:35:12 2026 GMT
-                        Not After : Jan 30 16:35:12 2027 GMT
-                    Subject: CN = vault.sednal.lan
-                    Subject Public Key Info:
-                        Public Key Algorithm: rsaEncryption
-                        [...]
-                    Exponent: 65537 (0x10001)
-                    X509v3 extensions:
-                        X509v3 Subject Alternative Name:
-                            DNS:vault.sednal.lan, DNS:localhost
-                        X509v3 Key Usage: critical
-                            Digital Signature, Key Encipherment
-                        X509v3 Extended Key Usage:
-                            TLS Web Server Authentication
-                        X509v3 Basic Constraints: critical
-                            CA:FALSE
-                Signature Algorithm: sha256WithRSAEncryptio
-                      [...]
+- Certificat signé par CA
 
-#### Droits des fichiers :
-Dans l'idéal, si tout se passait sur Linux, il faudrait réaliser le changement des droits et des propriétaires, mais ici, avec un transfert sur Windows, c'est inutile.
+     openssl x509 -req -in /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -CA /home/sednal/Vault/Vault_Root/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
 
-- vault_ssl.cnf => 640 et root : vault (Root modifie, vault lit, config protégée)
-- vault.key => 600 et vault : vault (Clé privée = vault seul)
-- vault.crt => 644 et vault : vault (Certificat public = tous lisent)
-          
+
+<details>
+<summary>
+<h2>
+=== Commandes ===
+</h2>
+</summary>
+
+openssl req -newkey rsa:4096 -keyout [KEY .key] -out vault_a.csr -nodes -config [CONFIGURATION-SERVICE .cnf]
+openssl x509 -req -in [CSR-SERVICE] -CA [CERTIF CA .crt] -CAkey   [KEY CA .key] -CAcreateserial -out  [CERTIF-SIGNE-SERVICE] -days 3650 -extfile [CONFIGURATION-SERVICE .cnf] -extensions req_ext
+
+
+</details>
+
+
+`=== Vault_Auto ===`
+
+- Clé + CSR
+
+     openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -nodes -passout pass: -config /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf
+
+
+- Certificat signé par CA
+
+
+     openssl x509 -req -in /home/sednal/Vault/Vault_Auto/Cert/private/Vaul_Auto.csr -CA /home/sednal/Vault/Vault_Auto/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
+
+
+
 ### 3.4) Création d'un renouvelement automatique via script + systemd
 
 #### Script qui créé une clé et un certificat puis les copie dans le bon dossier sur Win 11
 
 `EDITION`
       
-       sudo nano /home/sednal/cert_vault/script/renew_vault_ssl.sh
+       sudo nano /home/sednal/Vault/Script/renew_vault_ssl.sh
 
 `SCRIPT`      
       
       #!/bin/bash
+      set -e   # Arrête le script immédiatement si une commande échoue
 
-      # Root
-      rm  /home/sednal/cert_vault/vault_root/*.crt 
-      rm  /home/sednal/cert_vault/vault_root/*.key
+      # === Vault_Root ===
+      rm -f /home/sednal/Vault/Vault_Root/Cert/public/*.crt 
+      rm -f /home/sednal/Vault/Vault_Root/Cert/private/Cert*.key
       
-      # Auto-unseal
-      rm  /home/sednal/cert_vault/vault_auto_unseal/*.crt 
-      rm  /home/sednal/cert_vault/vault_auto_unseal/*.key
+      # === Vault_Auto ===
+      rm -f /home/sednal/Vault/Vault_Auto/Cert/public/*.crt 
+      rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Cert*.key
       
-      #Génération clées
-      # Root
-      openssl genrsa -out /home/sednal/cert_vault/vault_root/vault_root.key
-      # Auto-unseal
-      openssl genrsa -out /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.key
-      
-      #Génération certificacts
-      # Root
-      openssl req -x509 -new -nodes -key /home/sednal/cert_vault/vault_root/vault_root.key -out /home/sednal/cert_vault/vault_root/vault_root.crt -days 365 -config /home/sednal/cert_vault/vault_root/vault_root.cnf
-      # Auto-unseal
-      openssl req -x509 -new -nodes -key /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.key -out /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.crt -days 365 -config /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.cnf
+      # Génération certificat
+
+      # === Vault_Root ===
+      # - Clé + CSR
+    
+     openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key -out /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -nodes -config /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf
+
+     # === Vault_Root ===
+     # - Certificat signé par CA
+     openssl x509 -req -in /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -CA /home/sednal/Vault/Vault_Root/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
+
+     # === Vault_Auto ===
+     # - Clé + CSR
+
+     openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -nodes -passout pass: -config /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf
+
+    # === Vault_Auto ===
+    # - Certificat signé par CA
+
+     openssl x509 -req -in /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -CA /home/sednal/Vault/Vault_Auto/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
+
+
       
       # Supprime les fichiers sur Win 11
-      # Root
-      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_root\cert\vault_root.crt"
-      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_root\cert\vault_root.key"
-      # Auto-unseal 
-      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_auto_unseal\cert\vault_ssl_au.crt"
-      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_auto_unseal\cert\vault_ssl_au.key"
+      # === Vault_Root ===
+      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_Root\Cert\Vault_Root.crt"
+      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_Root\Cert\Vault_Root.key"
+
       
       # Après suppression, copie des fichiers
-      # Root
-      scp  /home/sednal/cert_vault/vault_root/vault_root.crt sednal@192.168.0.235:DOCKER/Vault/Vault_root/cert
-      scp  /home/sednal/cert_vault/vault_root/vault_root.key sednal@192.168.0.235:DOCKER/Vault/Vault_root/cert
-      # Auto-unseal 
-      scp  /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.crt sednal@192.168.0.235:DOCKER/Vault/Vault_auto_unseal/cert
-      scp  /home/sednal/cert_vault/vault_auto_unseal/vault_ssl_au.key sednal@192.168.0.235:DOCKER/Vault/Vault_auto_unseal/cert
+      # === Vault_Root ===
+      scp /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
+      scp /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
+
 
 
 `EXECUTION`     
       
-      sudo chmod +x /home/sednal/cert_vault/script/renew_vault_ssl.sh
+      sudo chmod +x /home/sednal/Vault/Script/renew_vault_ssl.sh
       
 #### Systemd :
 
