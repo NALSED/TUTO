@@ -538,17 +538,11 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 ### 4.2)  configuration de Vault
 
+- 1. `Ajouter les variables d'environement`
 
-
-
-
-
-
-
-
-
-- Initialisation Vault
-        vault operator init
+          export VAULT_ADDR='https://vault_2.sednal.lan:8100'
+          export VAULT_CACERT='/home/sednal/Vault/Vault_Auto/Cert/public/CA.crt'
+          vault operator init
 
 
 ⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
@@ -578,15 +572,20 @@ Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 - Entrer les commande suivante 3 fois
             
             vault operator unseal
-
+          
 - Jusqu'à obtenir :
 
-<img width="555" height="367" alt="image" src="https://github.com/user-attachments/assets/3556cbfb-5537-46e5-ba38-40ed35069cf5" />
+<img width="543" height="365" alt="image" src="https://github.com/user-attachments/assets/3fec3205-c37f-4982-af14-496cda4010d4" />
 
+- Se loger 
+
+          vault login 
+
+- Entrer le root Token => Token (will be hidden):
 
 ### 4.4) Récupération Token pour Vault_root
 
--Activer Transit
+- Activer Transit
       
         vault secrets enable transit
 
@@ -624,7 +623,7 @@ Sortie attendue
 
 -Créer le token limité
         
-        vault token create -policy=vault-b-policy -no-parent
+        vault token create -policy=vault-b-policy -orphan
 
 
 
