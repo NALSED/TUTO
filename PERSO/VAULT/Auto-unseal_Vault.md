@@ -11,6 +11,7 @@
 # Vault Auto-Unseal — Architecture
 
 ```
+     === 192.168.0.241 ===                              === 192.168.0.235 ===
 ┌─────────────────────────────┐                    ┌─────────────────────────────┐
 │          VAULT A            │                    │          VAULT B            │
 │      Vault_auto_unseal      │                    │        Vault_root           │
@@ -52,35 +53,68 @@
 #### 1.5) optionelle : VSC pour créer les Docker compose et autre fichier de documentation.
 
              === PATH 192.168.0.241:8100===
-            C:\Users\sednal\vault\vault
-            | 
-            ├── certs\
-            |   ├── vault.crt
-            │   └── vault.key
-            └── config\
-                ├── vault.hcl
-                └── docker-compose.yml 
+            /home/sednal/Vault/
+             |
+             ├── CA_Vault/
+             |   ├── Cert/
+             |   ├── public/
+             |   |   └── Vault_Auto.crt
+             |   |
+             |   ├── private/
+             │   |   └── Vault_Auto.key    
+             |   | 
+             |   └── Config/
+             |       └── CA_Vault.cnf
+             | 
+             ├── Vault_Root/       
+             ├── Cert/
+             |   ├── public/
+             |   |   └── Vault_Auto.crt
+             |   |
+             |   ├── private/
+             │   |   └── Vault_Auto.key    
+             |   | 
+             |   └── Config/
+             |       └── Vault_Root.cnf         
+             |
+             └── Vault_Auto/   
+                 ├── docker-compose.yml
+                 ├── data/ 
+                 ├── logs/
+                 | 
+                 ├── Cert/
+                 |   ├── public/
+                 |   |   └── Vault_Auto.crt
+                 |   |
+                 |   └── private/
+                 │       └── Vault_Auto.key
+                 |
+                 └── Config/
+                         ├── Vault_Auto.hcl   
+                         └── Vault_Auto.cnf
+---
 
             === PATH 192.168.0.235:8200===
             C:\Users\sednal\vault\
+            |
+            ├──docker-compose.yml
             | 
             ├── certs\
             |   ├── vault.crt
             │   └── vault.key
             └── config\
-                ├── vault.hcl
-                └── docker-compose.yml 
+                └── vault.hcl
+                 
 
             === WSL ===
             /mnt/c/Users/sednal/DOCKER/Vault
             | 
+            ├── docker-compose.yml
             ├── certs\
             |   ├── vault.crt
             │   └── vault.key
             └── config\
-                ├── vault.hcl
-                └── docker-compose.yml
-
+                └── vault.hcl
 
 ---
 ---
@@ -97,9 +131,9 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
 ### 3.1) Les fichiers de configuration certificat
 
-=== Vault_root === 
+=== Vault_Root === 
 
-      nano /home/sednal/cert_vault/vault_root/vault_root.cnf
+      nano /home/sednal/Vault/Vault_Root/Cert/vault_root.cnf
 
         [ req ]
         default_bits       = 4096
