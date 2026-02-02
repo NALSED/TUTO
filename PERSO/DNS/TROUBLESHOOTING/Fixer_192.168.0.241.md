@@ -1,3 +1,9 @@
+=== probleme ===
+
+ping vault.sednal.lan n'est pas résolu, alors que déclaré dans pfsense
+
+=== solution ===
+    
     sudo nano /etc/hosts
 
 ajouter 
