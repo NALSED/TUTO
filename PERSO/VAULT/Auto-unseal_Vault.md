@@ -102,19 +102,19 @@ Script Dossier
 </h2>
 </summary>
 
-#!/bin/bash
-
-# CA
-mkdir -p /home/sednal/Vault/CA_Vault/Cert public private
-mkdir /home/sednal/Vault/CA_Vault/Config
-
-#Vault_Root
-mkdir -p /home/sednal/Vault/Vault_Root/Cert public private
-mkdir /home/sednal/Vault/Vault_Root/Config
-
-#Vault_Auto
-mkdir -p /home/sednal/Vault/Vaukt_Auto/Cert public private
-mkdir /home/sednal/Vault/Vault_Root/Config
+          #!/bin/bash
+          
+          # CA
+          mkdir -p /home/sednal/Vault/CA_Vault/Cert public private
+          mkdir /home/sednal/Vault/CA_Vault/Config
+          
+          #Vault_Root
+          mkdir -p /home/sednal/Vault/Vault_Root/Cert public private
+          mkdir /home/sednal/Vault/Vault_Root/Config
+          
+          #Vault_Auto
+          mkdir -p /home/sednal/Vault/Vaukt_Auto/Cert public private
+          mkdir /home/sednal/Vault/Vault_Root/Config
 
 </details>
 
