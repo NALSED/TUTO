@@ -14,7 +14,7 @@
      === 192.168.0.241 ===                              === 192.168.0.235 ===
 ┌─────────────────────────────┐                    ┌─────────────────────────────┐
 │          VAULT A            │                    │          VAULT B            │
-│         Vault_Auto          │                    │      Vault_root             │
+│         Vault_Auto          │                    │         Vault_root          │
 │                             │                    │                             │
 │       Key Provider          │                    |        Auto-Unseal          │ 
 │                             │                    │                             │
@@ -320,7 +320,10 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
           openssl x509 -req -in /home/sednal/Vault/Vault_Auto/Cert/private/Vaul_Auto.csr -CA /home/sednal/Vault/Vault_Auto/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
 
+### === Sécuriser ===
 
+          rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr
+          rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
 
 ### 3.4) Création d'un renouvelement automatique via script + systemd
 
@@ -336,12 +339,12 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
       set -e   # Arrête le script immédiatement si une commande échoue
 
       # === Vault_Root ===
-      rm -f /home/sednal/Vault/Vault_Root/Cert/public/*.crt 
-      rm -f /home/sednal/Vault/Vault_Root/Cert/private/Cert*.key
+      rm -f /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt 
+      rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key
       
       # === Vault_Auto ===
-      rm -f /home/sednal/Vault/Vault_Auto/Cert/public/*.crt 
-      rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Cert*.key
+      rm -f /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
+      rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key
       
       # Génération certificat
 
@@ -364,8 +367,8 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
      openssl x509 -req -in /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -CA /home/sednal/Vault/Vault_Auto/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
 
-
-      
+       rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr
+       rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
       # Supprime les fichiers sur Win 11
       # === Vault_Root ===
       ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_Root\Cert\Vault_Root.crt"
@@ -437,7 +440,8 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
        sudo systemctl start renew_vault_ssl.timer
 
 
-<img width="1019" height="383" alt="image" src="https://github.com/user-attachments/assets/f731f65c-0495-48e4-90ad-d64d71e95290" />
+<img width="1263" height="561" alt="image" src="https://github.com/user-attachments/assets/d952d25a-bf5f-440d-81d0-2718adcc5266" />
+
 
 ---
 
