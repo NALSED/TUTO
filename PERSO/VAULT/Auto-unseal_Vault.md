@@ -169,7 +169,25 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 ## 3️⃣ Création du certificat SSL de Vault + Renouvellement
 
 ### 3.1) Les fichiers de configuration certificat
+=== CA ===
 
+        nano /home/sednal/Vault/CA_Vault/Config/CA_Vault.cnf
+ 
+        [ req ]
+        default_bits       = 4096
+        prompt             = no
+        default_md         = sha256
+        distinguished_name = dn
+        x509_extensions    = v3_ca
+        
+        [ dn ]
+        CN = Sednal-CA
+        
+        [ v3_ca ]
+        basicConstraints = critical, CA:TRUE
+        keyUsage = critical, keyCertSign, cRLSign
+        subjectKeyIdentifier = hash
+        
 === Vault_Root === 
 
       nano /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf
@@ -194,7 +212,30 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
         DNS.1 = vault.sednal.lan
         DNS.2 = localhost        
 
-Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évite les probléme si l'IP change.
+=== Vault_Auto ===
+
+        nano /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf
+
+        [ req ]
+        default_bits       = 4096
+        prompt             = no
+        default_md         = sha256
+        req_extensions     = req_ext
+        distinguished_name = dn
+        
+        [ dn ]
+        CN = vault_2.sednal.lan
+        
+        [ req_ext ]
+        subjectAltName = @alt_names
+        keyUsage = critical, digitalSignature, keyEncipherment
+        extendedKeyUsage = serverAuth
+        basicConstraints = critical, CA:FALSE
+        
+        [ alt_names ]
+        DNS.1 = vault_2.sednal.lan
+        DNS.2 = localhost 
+
 
 <details>
 <summary>
@@ -226,49 +267,6 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 </details>
 
 
-=== Vault_Auto ===
-
-        nano /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf
-
-        [ req ]
-        default_bits       = 4096
-        prompt             = no
-        default_md         = sha256
-        req_extensions     = req_ext
-        distinguished_name = dn
-        
-        [ dn ]
-        CN = vault_2.sednal.lan
-        
-        [ req_ext ]
-        subjectAltName = @alt_names
-        keyUsage = critical, digitalSignature, keyEncipherment
-        extendedKeyUsage = serverAuth
-        basicConstraints = critical, CA:FALSE
-        
-        [ alt_names ]
-        DNS.1 = vault_2.sednal.lan
-        DNS.2 = localhost 
-
-
-=== CA ===
-
-        nano /home/sednal/Vault/CA_Vault/Config/CA_Vault.cnf
- 
-        [ req ]
-        default_bits       = 4096
-        prompt             = no
-        default_md         = sha256
-        distinguished_name = dn
-        x509_extensions    = v3_ca
-        
-        [ dn ]
-        CN = Sednal-CA
-        
-        [ v3_ca ]
-        basicConstraints = critical, CA:TRUE
-        keyUsage = critical, keyCertSign, cRLSign
-        subjectKeyIdentifier = hash
 
 ---
 
