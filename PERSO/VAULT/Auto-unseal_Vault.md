@@ -3,15 +3,26 @@
 ---
 
 ## Installation compléte et configuration démarrage de Vault via Auto-unseal
+
 ---
 
 ---
-## === SCHEMA ===
+
 
 # Vault Auto-Unseal — Architecture
 
+### 🥼 LAB 🥼
+
+| IP               | Machine        | Détails RAM / CPU                | OS        |
+|-----------------|----------------|---------------------------------|-----------|
+| 192.168.0.241   | Raspberry Pi 4 | RAM: 1 GB<br>Processeur: ARM Cortex-A72 | Debian 13 |
+| 192.168.0.242   | VM (VirtualBox)| RAM: 4 GB<br>Processeur: 2 cœurs     | Debian 13 |
+
+---
+
+## === SCHEMA ===
 ```
-     === 192.168.0.241 ===                              === 192.168.0.235 ===
+     === 192.168.0.241 ===                              === 192.168.0.242 ===
 ┌─────────────────────────────┐                    ┌─────────────────────────────┐
 │          VAULT A            │                    │          VAULT B            │
 │         Vault_Auto          │                    │         Vault_root          │
@@ -33,12 +44,12 @@
 ## Ordre de déploiement
 
 ```
-1) Démarrer Vault A          → docker compose up -d
+1) Démarrer Vault A         
 2) Init + Unseal Vault A     → vault operator init / unseal
 3) Activer Transit sur A     → vault secrets enable transit
 4) Créer la clé              → vault write transit/keys/autounseal
 5) Créer policy + token      → pour autoriser Vault B
-6) Démarrer Vault B          → docker compose up -d (avec le token)
+6) Démarrer Vault B          
 ```
 
 
@@ -53,6 +64,7 @@
 #### 1.5) optionelle : VSC pour créer les Docker compose et autre fichier de documentation.
 
              === PATH 192.168.0.241:8100===
+            
             /home/sednal/Vault/
              |
              ├── CA_Vault/
@@ -81,8 +93,6 @@
              |       └── Vault_Root.cnf         
              |
              └── Vault_Auto/   
-                 | 
-                 ├── data/
                  |
                  ├── Cert/
                  |   ├── public/
@@ -100,22 +110,22 @@
 <details>
 <summary>
 <h2>
-Script Dossier 
+Script Dossiers sur 192.168.0.241
 </h2>
 </summary>
 
           #!/bin/bash
           
           # CA
-          mkdir -p /home/sednal/Vault/CA_Vault/Cert public private
+          mkdir -p /home/sednal/Vault/Vault_Root/Cert/{public,private}
           mkdir /home/sednal/Vault/CA_Vault/Config
           
           #Vault_Root
-          mkdir -p /home/sednal/Vault/Vault_Root/Cert public private
+          mkdir -p /home/sednal/Vault/Vault_Root/Cert/{public,private}
           mkdir /home/sednal/Vault/Vault_Root/Config
           
           #Vault_Auto
-          mkdir -p /home/sednal/Vault/Vaukt_Auto/Cert public private
+          mkdir -p /home/sednal/Vault/Vault_Root/Cert/{public,private}
           mkdir /home/sednal/Vault/Vault_Root/Config
 
 </details>
@@ -123,31 +133,23 @@ Script Dossier
 
 ---
 
-            === PATH 192.168.0.235:8200===
-            C:\Users\sednal\vault\
-            |
-            ├──docker-compose.yml
-            | 
-            ├── certs\
-            |   ├── CA.crt
-            |   ├── Vault_Root.crt
-            │   └── Vault_Root.key
-            |
-            └── config\
-                └── Vault.hcl
+            === PATH 192.168.0.242:8200===
+          
+           /home/sednal/Vault/
+             |
+             └── Vault_Root/       
+                 |              
+                 ├── Cert/
+                 |   ├── public/
+                 |   |   ├── CA.crt
+                 |   |   └── Vault_Root.crt
+                 |   |
+                 |   └── private/
+                 |       └── Vault_Root.key    
+                 | 
+                 └── Config/
+                     └── Vault_Root.cnf
                  
-
-            === WSL ===
-            /mnt/c/Users/sednal/DOCKER/Vault
-            | 
-            ├── docker-compose.yml
-            ├── certs\
-            |   ├── CA.crt
-            |   ├── Vault_Root.crt
-            │   └── Vault_Root.key
-            |
-            └── config\
-                └── Vault.hcl
 
 ---
 ---
@@ -155,7 +157,8 @@ Script Dossier
 ## 2️⃣ Déclarer FQDN dans Pfsense
 ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
-<img width="1149" height="72" alt="image" src="https://github.com/user-attachments/assets/90c43b89-ce69-486f-a474-e0444ddc6ec8" />
+<img width="1140" height="77" alt="image" src="https://github.com/user-attachments/assets/b03319b7-4ddd-4a0a-bb7b-a85857dd18b8" />
+
 
 
 ---
@@ -331,57 +334,63 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 ### 3.4) Création d'un renouvelement automatique via script + systemd
 
 #### Script qui créé une clé et un certificat puis les copie dans le bon dossier sur Win 11
-
+⚠️ Des commandes ssh sont présente dans le script, penser à créer des connections sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
 `EDITION`
       
        sudo nano /home/sednal/Vault/Script/renew_vault_ssl.sh
 
 `SCRIPT`      
       
-      #!/bin/bash
-      set -e   # Arrête le script immédiatement si une commande échoue
-
-      # === Vault_Root ===
-      rm -f /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt 
-      rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key
-      
-      # === Vault_Auto ===
-      rm -f /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
-      rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key
-      
-      # Génération certificat
-
-      # === Vault_Root ===
-      # - Clé + CSR
-    
+     #!/bin/bash
+     set -e   # Arrête le script immédiatement si une commande échoue
+     
+     # === 192.168.0.241 ===
+     
+     # === Vault_Root ===
+     rm -f /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt 
+     rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key
+     
+     # === Vault_Auto ===
+     rm -f /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
+     rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key
+     
+     # Génération certificat
+     
+     # === Vault_Root ===
+     # - Clé + CSR
+     
      openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key -out /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -nodes -config /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf
-
+     
      # === Vault_Root ===
      # - Certificat signé par CA
      openssl x509 -req -in /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -CA /home/sednal/Vault/Vault_Root/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
-
+     
      # === Vault_Auto ===
      # - Clé + CSR
-
+     
      openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -nodes -passout pass: -config /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf
-
-    # === Vault_Auto ===
-    # - Certificat signé par CA
-
+     
+     # === Vault_Auto ===
+     # - Certificat signé par CA
+     
      openssl x509 -req -in /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -CA /home/sednal/Vault/Vault_Auto/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
+     # - Suppression CSR
+     rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr
+     rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
+     
+     # === 192.168.0.243 ===
+     
+     # Supprime les fichiers sur 192.168.0.243
+     # === Vault_Root ===
+     ssh sednal@192.168.0.243 "rm /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt"
+     ssh sednal@192.168.0.243 "rm /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key"
+     
+     
+     # Après suppression, copie des fichiers
+     # === Vault_Root ===
+     scp /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt sednal@192.168.0.243:/home/sednal/Vault/Vault_Root/Cert/public
+     scp /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key sednal@192.168.0.243:/home/sednal/Vault/Vault_Root/Cert/private
 
-       rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr
-       rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
-      # Supprime les fichiers sur Win 11
-      # === Vault_Root ===
-      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_Root\Cert\Vault_Root.crt"
-      ssh sednal@192.168.0.235 "del C:\Users\Sednal\DOCKER\Vault\Vault_Root\Cert\Vault_Root.key"
-
-      
-      # Après suppression, copie des fichiers
-      # === Vault_Root ===
-      scp /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
-      scp /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
      
 
 
@@ -452,12 +461,12 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 
 - 192.168.0.241 => Installation Vault ARM64
-- 192.168.0.235 => Docker-compose.yml
+- 192.168.0.235 => Installation Vault AMD64
 
 ---
 ## `=== Vault_Auto ===`
 
-### 4.1) Installation Vault ARM6
+### 4.1) Installation Vault ARM64
 
 - 1. `Installation`
           wget https://releases.hashicorp.com/vault/1.15.5/vault_1.15.5_linux_arm64.zip
@@ -516,8 +525,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
           
           [Service]
           User=vault
-          ExecStart=/usr/local/bin/vault server -config=/etc/vault/vault_auto.hcl
-          ExecReload=/bin/kill --signal HUP $MAINPID
+          ExecStart=/usr/local/bin/vault server -config=/home/sednal/Vault/Vault_Auto/Config/Vault_Auto.hcl
           KillMode=process
           Restart=on-failure
           LimitNOFILE=65536
@@ -633,91 +641,143 @@ Sortie attendue
 
 [DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab)
 
-### 4.4) Fichier de configuration 
+### 4.4) Installation Vault ARM64
 
-- Copier les certificat clé et CA
+- 1. `Installation`
+          wget https://releases.hashicorp.com/vault/1.15.5/vault_1.15.5_linux_amd64.zip
+          unzip vault_1.15.5_linux_amd64.zip
+          sudo mv vault /usr/local/bin/
+          vault --version
 
-          scp /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
-          scp /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
-          scp /home/sednal/Vault/Vault_Root/Cert/public/CA.crt sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
+<img width="773" height="40" alt="image" src="https://github.com/user-attachments/assets/365638d0-1e46-4f63-a7c2-c0adf317a724" />
 
-- ⚠️ Importer le Certificat CA.crt ⚠️
-- Win + R
-            certmgr.msc
+- 2. `Créer l'utilisateur vault`
 
-<img width="1198" height="464" alt="image" src="https://github.com/user-attachments/assets/73474986-c559-4e86-b2cb-8f5ffcef322e" />
+          sudo useradd --system --home /etc/vault --shell /bin/false vault
 
-- Importer => C:\Users\sednal\DOCKER\Vault\Vault_Root\Cert\CA.crt
+-3. Editer le fichier de configuation `/home/sednal/Vault_Root/Config/Vault_Root.hcl`
 
----
+          nano /home/sednal/Vault_Root/Config/Vault_Root.hcl
 
-### 1. `Docker-compose.yml`
+- Editer
 
--  Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_root\config\vault.hcl
-
-[DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab) // [GITHUB-OFFICIEL](https://github.com/hashicorp/vault-action/blob/main/docker-compose.yml)
-
-Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_Root\Config\docker-compose.yml
-
-            version: "3.8"
-            services:
-                vault-tls:
-                    image: hashicorp/vault:latest
-                    cap_add:
-                      - IPC_LOCK 
-                    hostname: vault
-                    container_name: vault_root
-                    environment:
-                      VAULT_ADDR: "https://vault.sednal.lan:8200"
-                      VAULT_API_ADDR: "https://vault.sednal.lan:8200"
-                      VAULT_TOKEN_TRANSIT: "[TOKEN TRANSIT]"
-                    ports:
-                      - 8200:8200
-                    restart: always  
-                    volumes:
-                      - C:\Users\sednal\DOCKER\Vault\Vault_Root\Cert:/vault/cert:ro
-                      - C:\Users\sednal\DOCKER\Vault\Vault_Root\Config:/vault/config:ro
-                      - C:\Users\sednal\DOCKER\Vault\Vault_Root\data:/vault/data:rw
-                    command: server
+          disable_mlock = true
+          ui = true
+          
+          storage "raft" {
+            path    = "/opt/vault/data"
+            node_id = "vault_root"
+          }
+          
+          listener "tcp" {
+            address            = "0.0.0.0:8200"
+            tls_disable        = false
+            tls_cert_file      = "/home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt"
+            tls_key_file       = "/home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key"
+            tls_client_ca_file = "/home/sednal/Vault/Vault_Root/Cert/public/CA.crt"
+          }
+          
+          seal "transit" {
+            address         = "https://vault_2.sednal.lan:8100"
+            key_name        = "autounseal"
+            mount_path      = "transit/"
+            disable_renewal = "false"
+            tls_ca_cert     = "/home/sednal/Vault/Vault_Root/Cert/public/CA.crt"
+          }
 
 
+          api_addr     = "https://vault.sednal.lan:8200"
+          cluster_addr = "https://vault.sednal.lan:8201"
 
-### 2. `Fichier de configuration .hcl`
+- 4. `Créer les répertoires et permissions`
 
-               disable_mlock = true
-               ui = true
-               
-               
-               storage "raft" {
-                 path    = "/vault/data"
-                 node_id = "vault_root"
-               }
-               
-               listener "tcp" {
-                 address = "0.0.0.0:8200"
-                 tls_disable = "false"
-                 tls_cert_file = "/vault/cert/Vault_Root.crt"
-                 tls_key_file  = "/vault/cert/Vault_Root.key"
-                 tls_client_ca_file = "/vault/cert/CA.crt"
-               }
-               
-               seal "transit" {
-                 address         = "https://vault_2.sednal.lan:8100"
-                 token           = "$VAULT_TOKEN_TRANSIT"
-                 key_name        = "autounseal"
-                 mount_path      = "transit/"
-                 disable_renewal = "false"
-                 tls_ca_cert     = "/vault/cert/CA.crt"
-               }
-               
-               api_addr     = "https://vault.sednal.lan:8200"
-               cluster_addr = "https://vault.sednal.lan:8201"
-               
+          sudo mkdir -p /opt/vault/data
+          sudo chown -R vault:vault /opt/vault
+          sudo chown -R vault:vault /home/sednal/Vault/Vault_Root/Cert
+          sudo chown -R vault:vault /home/sednal/Vault/Vault_Root/Config
+          sudo chown -R vault:vault /home/sednal/Vault/Vault_Root/data
+
+- 5. `Service`
+
+          sudo nano /etc/systemd/system/vault.service
+
+- Editer
+
+          [Unit]
+          Description=HashiCorp Vault - Vault Auto
+          After=network-online.target
+          
+          [Service]
+          User=vault
+          ExecStart=/usr/local/bin/vault server -config=/home/sednal/Vault/Vault_Root/Config/Vault_Auto.hcl
+          ExecReload=/bin/kill --signal HUP $MAINPID
+          KillMode=process
+          Restart=on-failure
+          LimitNOFILE=65536
+          
+          [Install]
+          WantedBy=multi-user.target
+
+- Autoriser et demarrer le service
+
+          sudo systemctl daemon-reload
+          sudo systemctl enable vault
+          sudo systemctl start vault
+          sudo systemctl status vault
 
 
----
+<img width="1168" height="380" alt="image" src="https://github.com/user-attachments/assets/53fb6064-b6d3-42f7-a319-4fac4ccd3000" />
+
+### 4.5)  configuration de `=== Vault_Auto ===`
+
+- 1. `Ajouter les variables d'environement`
+
+          export VAULT_ADDR='https://vault.sednal.lan:8200'
+          export VAULT_CACERT='/home/sednal/Vault/Vault_Root/Cert/public/CA.crt'
+          export VAULT_TOKEN="[TOKEN Vault_Auto]
+          vault operator init
 
 
+⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
+Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
+
+            / # vault operator init
+            Unseal Key 1: [...]
+            Unseal Key 2: [...]
+            Unseal Key 3: [...]
+            Unseal Key 4: [...]
+            Unseal Key 5: [...]
+            
+            Initial Root Token:  [...]
+            
+            Vault initialized with 5 key shares and a key threshold of 3. Please securely
+            distribute the key shares printed above. When the Vault is re-sealed,
+            restarted, or stopped, you must supply at least 3 of these keys to unseal it
+            before it can start servicing requests.
+            
+            Vault does not store the generated root key. Without at least 3 keys to
+            reconstruct the root key, Vault will remain permanently sealed!
+            
+            It is possible to generate new unseal keys, provided you have a quorum of
+            existing unseal keys shares. See "vault operator rekey" for more information.
+
+
+- Entrer les commande suivante 3 fois
+            
+            vault operator unseal
+          
+- Jusqu'à obtenir :
+
+<img width="543" height="365" alt="image" src="https://github.com/user-attachments/assets/3fec3205-c37f-4982-af14-496cda4010d4" />
+
+- Exporter le root token
+             export VAULT_TOKEN="[ROOT TOKEN]"         
+
+- Se loger 
+
+          vault login 
+
+- Entrer le root Token => Token (will be hidden):
 
 
 
