@@ -61,7 +61,7 @@
 #### 1.2) Pouvoir faire tourner Vault A 24h/24h ici => raspbery-pi 192.168.0.241
 #### 1.3) kleopatra (chiffrement GPG)
 #### 1.4) DNS Resolver, Ici Pfsense.
-#### 1.5) optionelle : VSC pour créer les Docker compose et autre fichier de documentation.
+#### 1.5) optionelle : VSC comme éditeur de texte.
 
              === PATH 192.168.0.241:8100===
             
