@@ -6,14 +6,14 @@ probléme d'adresse ou nom de domaine
 
 
 === Solution ==
-
+      
       export VAULT_ADDR="https://vault_2.sednal.lan:8100"
 
 ---
 
 probléme de CA
 
-Error authenticating: error looking up token: Get "https://vault_2.sednal.lan:8100/v1/auth/token/lookup-self": tls: failed to verify certificate: x509: certificate signed by unknown authority
+`Error authenticating: error looking up token: Get "https://vault_2.sednal.lan:8100/v1/auth/token/lookup-self": tls: failed to verify certificate: x509: certificate signed by unknown authority`
 
 === Solution ==
 
