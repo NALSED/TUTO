@@ -336,7 +336,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
 ### 3.4) Création d'un renouvelement automatique via script + systemd
 
-#### Script qui créé une clé et un certificat puis les copie dans le bon dossier sur Win 11
+#### Le script génère une clé et un certificat, supprime les anciens sur 192.168.0.243, puis copie les nouveaux dans les dossiers appropriés sur cette machine.
 
 ⚠️ Des commandes ssh sont présente dans le script, penser à créer des connections sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
 
