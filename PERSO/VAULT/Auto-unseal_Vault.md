@@ -532,7 +532,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
           sudo chown -R vault:vault /opt/vault
           sudo chown -R vault:vault /home/sednal/Vault/Vault_Auto/Cert
           sudo chown -R vault:vault /home/sednal/Vault/Vault_Auto/Config
-          sudo chown -R vault:vault /home/sednal/Vault/Vault_Auto/data
+
 
 -5. `Service`
 
@@ -717,7 +717,7 @@ Sortie attendue
           sudo chown -R vault:vault /opt/vault
           sudo chown -R vault:vault /home/sednal/Vault/Vault_Root/Cert
           sudo chown -R vault:vault /home/sednal/Vault/Vault_Root/Config
-          sudo chown -R vault:vault /home/sednal/Vault/Vault_Root/data
+
 
 -5. `Service`
 
