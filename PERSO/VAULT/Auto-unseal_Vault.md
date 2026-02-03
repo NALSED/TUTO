@@ -382,7 +382,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
       # === Vault_Root ===
       scp /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
       scp /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
-
+     
 
 
 `EXECUTION`     
@@ -455,10 +455,9 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 - 192.168.0.235 => Docker-compose.yml
 
 ---
+## `=== Vault_Auto ===`
 
 ### 4.1) Installation Vault ARM6
-
-`=== Vault_Auto ===`
 
 - 1. `Installation`
           wget https://releases.hashicorp.com/vault/1.15.5/vault_1.15.5_linux_arm64.zip
@@ -536,7 +535,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 <img width="1168" height="380" alt="image" src="https://github.com/user-attachments/assets/53fb6064-b6d3-42f7-a319-4fac4ccd3000" />
 
-### 4.2)  configuration de Vault
+### 4.2)  configuration de `=== Vault_Auto ===`
 
 - 1. `Ajouter les variables d'environement`
 
@@ -577,13 +576,16 @@ Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 
 <img width="543" height="365" alt="image" src="https://github.com/user-attachments/assets/3fec3205-c37f-4982-af14-496cda4010d4" />
 
+- Exporter le root token
+             export VAULT_TOKEN="[ROOT TOKEN]"         
+
 - Se loger 
 
           vault login 
 
 - Entrer le root Token => Token (will be hidden):
 
-### 4.4) Récupération Token pour Vault_root
+### 4.3) Récupération du Token sur `Vault_Auto` pour Auto-unseal => `Vault_root`
 
 - Activer Transit
       
@@ -625,37 +627,35 @@ Sortie attendue
         
         vault token create -policy=vault-b-policy -orphan
 
+---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### 4.3) Fichier de configuration 
+## `=== Vault_Root ===`
 
 [DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab)
 
-`=== Vault_Root ===`
+### 4.4) Fichier de configuration 
 
-Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_root\config\vault.hcl
-### Docker-compose.yml
+- Copier les certificat clé et CA
+
+          scp /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
+          scp /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
+          scp /home/sednal/Vault/Vault_Root/Cert/public/CA.crt sednal@192.168.0.235:DOCKER/Vault/Vault_Root/Cert
+
+- ⚠️ Importer le Certificat CA.crt ⚠️
+- Win + R
+            certmgr.msc
+
+<img width="1198" height="464" alt="image" src="https://github.com/user-attachments/assets/73474986-c559-4e86-b2cb-8f5ffcef322e" />
+
+- Importer => C:\Users\sednal\DOCKER\Vault\Vault_Root\Cert\CA.crt
+
+---
+
+### 1. `Docker-compose.yml`
+
+-  Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_root\config\vault.hcl
 
 [DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab) // [GITHUB-OFFICIEL](https://github.com/hashicorp/vault-action/blob/main/docker-compose.yml)
-
-`=== Vault_Root ===`
 
 Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_Root\Config\docker-compose.yml
 
@@ -670,7 +670,7 @@ Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_Root\Config\docker-co
                     environment:
                       VAULT_ADDR: "https://vault.sednal.lan:8200"
                       VAULT_API_ADDR: "https://vault.sednal.lan:8200"
-                      VAULT_TOKEN_TRANSIT: ""
+                      VAULT_TOKEN_TRANSIT: "[TOKEN TRANSIT]"
                     ports:
                       - 8200:8200
                     restart: always  
@@ -682,150 +682,40 @@ Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_Root\Config\docker-co
 
 
 
+### 2. `Fichier de configuration .hcl`
 
-
-
+               disable_mlock = true
+               ui = true
+               
+               
+               storage "raft" {
+                 path    = "/vault/data"
+                 node_id = "vault_root"
+               }
+               
+               listener "tcp" {
+                 address = "0.0.0.0:8200"
+                 tls_disable = "false"
+                 tls_cert_file = "/vault/cert/Vault_Root.crt"
+                 tls_key_file  = "/vault/cert/Vault_Root.key"
+                 tls_client_ca_file = "/vault/cert/CA.crt"
+               }
+               
+               seal "transit" {
+                 address         = "https://vault_2.sednal.lan:8100"
+                 token           = "$VAULT_TOKEN_TRANSIT"
+                 key_name        = "autounseal"
+                 mount_path      = "transit/"
+                 disable_renewal = "false"
+                 tls_ca_cert     = "/vault/cert/CA.crt"
+               }
+               
+               api_addr     = "https://vault.sednal.lan:8200"
+               cluster_addr = "https://vault.sednal.lan:8201"
+               
 
 
 ---
-
-`=== Vault_Auto_Unseal ===`
-
-Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\Vault_auto_unseal\config\vault.hcl    
-
-      disable_mlock = true
-      ui = true
-      
-      
-      storage "raft" {
-        path    = "/vault/data"
-        node_id = "vault_auto_unseal"
-      }
-      
-      listener "tcp" {
-        address = "0.0.0.0:8100"
-        tls_disable = "false"
-        tls_cert_file = "/vault/cert/vault_ssl_au.crt"
-        tls_key_file  = "/vault/cert/vault_ssl_au.key"
-        tls_client_ca_file = "/vault/cert/vault_ssl_au.crt"
-      }
-      
-      api_addr     = "https://vault.sednal.lan:8100"
-      cluster_addr = "https://vault.sednal.lan:8101"
-
-Cette ligne est primordial :
-
-            tls_client_ca_file = "/vault/cert/vault.crt"
-
-Car certificat autosigné, et Vault ne le validera pas sinon.
-
-
-### 4.3) Création du 1er conteneur Vault 
-- Créer en premier le Vault_auto_unseal           
-          docker compose up -d
-
-<img width="325" height="60" alt="image" src="https://github.com/user-attachments/assets/3c2adf55-ce24-4b59-a4d5-587c871ff157" />
-
-
-- Vérification Réussite :
-
-        docker logs vault_auto
-
-Sortie attendue
-
-<img width="1164" height="541" alt="image" src="https://github.com/user-attachments/assets/69790a7a-21fe-4970-9a7e-286716057fcd" />
-
-
-
-- Initialisation Vault
-
-        docker exec -it vault_auto /bin/sh
-        vault operator init
-
-
-⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
-Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
-
-            / # vault operator init
-            Unseal Key 1: [...]
-            Unseal Key 2: [...]
-            Unseal Key 3: [...]
-            Unseal Key 4: [...]
-            Unseal Key 5: [...]
-            
-            Initial Root Token:  [...]
-            
-            Vault initialized with 5 key shares and a key threshold of 3. Please securely
-            distribute the key shares printed above. When the Vault is re-sealed,
-            restarted, or stopped, you must supply at least 3 of these keys to unseal it
-            before it can start servicing requests.
-            
-            Vault does not store the generated root key. Without at least 3 keys to
-            reconstruct the root key, Vault will remain permanently sealed!
-            
-            It is possible to generate new unseal keys, provided you have a quorum of
-            existing unseal keys shares. See "vault operator rekey" for more information.
-
-
-- Entrer les commande suivante 3 fois
-            
-            vault operator unseal
-
-- Jusqu'à obtenir :
-
-<img width="555" height="367" alt="image" src="https://github.com/user-attachments/assets/3556cbfb-5537-46e5-ba38-40ed35069cf5" />
-
-
-### 4.4) Récupération Token pour Vault_root
-
--Activer Transit
-      
-        vault secrets enable transit
-
-Sortie attendue
-
-<img width="519" height="38" alt="image" src="https://github.com/user-attachments/assets/b5e2b308-99fa-49e8-af61-8527be2e17bd" />
-
-
--Créer la clé
-        
-        vault write -force transit/keys/autounseal 
-
-Sortie attendue
-
-<img width="486" height="382" alt="image" src="https://github.com/user-attachments/assets/5b6927b2-b223-44ae-9ffd-0bc6e7647d32" />
-
-
--Créer la policy
-       
-        vault policy write autounseal -<<EOF
-        path "transit/encrypt/autounseal" {
-           capabilities = [ "update" ]
-        }
-        
-        path "transit/decrypt/autounseal" {
-           capabilities = [ "update" ]
-        }
-        EOF
-
-
-Sortie attendue
-
-<img width="381" height="193" alt="image" src="https://github.com/user-attachments/assets/440a58e0-a491-424f-8144-65a17a5aae64" />
-
-
--Créer le token limité
-        
-        vault token create -policy=vault-b-policy -no-parent
-
-
-Sortie attendue
-
-<img width="1062" height="293" alt="image" src="https://github.com/user-attachments/assets/63650e5c-ef03-4233-b6c9-04e3012b137e" />
-
-
-
-
 
 
 
