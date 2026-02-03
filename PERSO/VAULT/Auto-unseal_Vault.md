@@ -543,7 +543,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 <img width="1168" height="380" alt="image" src="https://github.com/user-attachments/assets/53fb6064-b6d3-42f7-a319-4fac4ccd3000" />
 
-### 4.2)  configuration de `=== Vault_Auto ===`
+### 4.2)  configuration de `Vault_Auto`
 
 - 1. `Ajouter les variables d'environement`
 
