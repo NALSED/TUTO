@@ -90,7 +90,7 @@
              │   |       └── Vault_Root.key    
              |   | 
              |   └── Config/
-             |       ├── Vault_Auto.hcl 
+             |       ├── Vault_Root.hcl 
              |       └── Vault_Root.cnf         
              |
              └── Vault_Auto/   
@@ -149,7 +149,7 @@ Script Dossiers sur 192.168.0.241
                  |       └── Vault_Root.key    
                  | 
                  └── Config/
-                     ├── Vault_Auto.hcl
+                     ├── Vault_Root.hcl
                      └── Vault_Root.cnf
                  
 
