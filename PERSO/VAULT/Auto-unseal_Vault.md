@@ -272,7 +272,8 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
 ### 3.2) Création CA
 
--1. Génération  /home/sednal/Vault/CA.key et CA.crt  => Pour plus de claretée et copier le certificat après.
+-1. Génération de /home/sednal/Vault/CA.key et /home/sednal/Vault/CA.crt, puis copie des certificats dans les dossiers appropriés pour plus de clarté.
+         
           openssl req -x509 -newkey rsa:4096 -keyout CA.key -out CA.crt -days 3650 -nodes -config /home/sednal/Vault/CA_Vault/Config/CA_Vault.cnf
 
 <img width="450" height="41" alt="image" src="https://github.com/user-attachments/assets/1f1b545a-6378-4ee5-919a-408e367cb539" />
