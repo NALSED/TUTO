@@ -664,6 +664,7 @@ Sortie attendue
 ### 4.4) Installation Vault ARM64
 
 -1. `Installation`
+        
           wget https://releases.hashicorp.com/vault/1.15.5/vault_1.15.5_linux_amd64.zip
           unzip vault_1.15.5_linux_amd64.zip
           sudo mv vault /usr/local/bin/
