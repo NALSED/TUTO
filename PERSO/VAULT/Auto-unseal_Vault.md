@@ -503,7 +503,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
 -3. Editer le fichier de configuation `/home/sednal/Vault/Vault_Auto/Config/Vault_Auto.hcl`
 
-          nano /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.hcl
+          nano /etc/vault/Vault_Auto.hcl
 
 - Editer
 
@@ -546,7 +546,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
           
           [Service]
           User=vault
-          ExecStart=/usr/local/bin/vault server -config=/home/sednal/Vault/Vault_Auto/Config/Vault_Auto.hcl
+          ExecStart=/usr/local/bin/vault server -config=/etc/vault/Vault_Auto.hcl
           KillMode=process
           Restart=on-failure
           LimitNOFILE=65536
@@ -679,7 +679,7 @@ Sortie attendue
 
 -3. Editer le fichier de configuation `/home/sednal/Vault/Vault_Root/Config/Vault_Root.hcl`
 
-          nano /home/sednal/Vault/Vault_Root/Config/Vault_Root.hcl
+          nano /etc/vault/Vault_Root.hcl
 
 - Editer
 
@@ -731,7 +731,7 @@ Sortie attendue
           
           [Service]
           User=vault
-          ExecStart=/usr/local/bin/vault server -config=/home/sednal/Vault/Vault_Root/Config/Vault_Root.hcl
+          ExecStart=/usr/local/bin/vault server -config=/etc/vault/Vault_Root.hcl
           ExecReload=/bin/kill --signal HUP $MAINPID
           KillMode=process
           Restart=on-failure
