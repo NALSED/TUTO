@@ -731,7 +731,7 @@ Sortie attendue
           
           [Service]
           User=vault
-          ExecStart=/usr/local/bin/vault server -config=/home/sednal/Vault/Vault_Root/Config/Vault_Auto.hcl
+          ExecStart=/usr/local/bin/vault server -config=/home/sednal/Vault/Vault_Root/Config/Vault_Root.hcl
           ExecReload=/bin/kill --signal HUP $MAINPID
           KillMode=process
           Restart=on-failure
