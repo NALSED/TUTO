@@ -1,5 +1,8 @@
 ### Liste de message qui empéche la conection à vault_auto et leurs résolution
 
+---
+---
+
 probléme d'adresse ou nom de domaine
 
 `Error authenticating: error looking up token: Get "https://127.0.0.1:8200/v1/auth/token/lookup-self": dial tcp 127.0.0.1:8200: connect: connection refused`
