@@ -272,7 +272,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 ### 3.2) Création CA
 
-- Dans Génération  /home/sednal/Vault/CA.key et CA.crt  => Pour plus de claretée et copier le certificat après.
+-1. Génération  /home/sednal/Vault/CA.key et CA.crt  => Pour plus de claretée et copier le certificat après.
           openssl req -x509 -newkey rsa:4096 -keyout CA.key -out CA.crt -days 3650 -nodes -config /home/sednal/Vault/CA_Vault/Config/CA_Vault.cnf
 
 <img width="450" height="41" alt="image" src="https://github.com/user-attachments/assets/1f1b545a-6378-4ee5-919a-408e367cb539" />
@@ -290,12 +290,12 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 `=== Vault_Root ===`
 
-- Clé + CSR
+-1. Clé + CSR
     
           openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key -out /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -nodes -config /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf
 
 
-- Certificat signé par CA
+-2. Certificat signé par CA
 
           openssl x509 -req -in /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -CA /home/sednal/Vault/Vault_Root/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
 
@@ -316,17 +316,18 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 `=== Vault_Auto ===`
 
-- Clé + CSR
+-1. Clé + CSR
 
           openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -nodes -passout pass: -config /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf
 
 
-- Certificat signé par CA
+-2. Certificat signé par CA
 
 
           openssl x509 -req -in /home/sednal/Vault/Vault_Auto/Cert/private/Vaul_Auto.csr -CA /home/sednal/Vault/Vault_Auto/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
 
 ### === Sécuriser ===
+-3. suppression fichier .csr
 
           rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr
           rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
@@ -334,77 +335,95 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 ### 3.4) Création d'un renouvelement automatique via script + systemd
 
 #### Script qui créé une clé et un certificat puis les copie dans le bon dossier sur Win 11
+
 ⚠️ Des commandes ssh sont présente dans le script, penser à créer des connections sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
-`EDITION`
+
+-1. `Edition Script`
       
        sudo nano /home/sednal/Vault/Script/renew_vault_ssl.sh
 
-`SCRIPT`      
+
+
+<details>
+<summary>
+<h2>
+===  SCRIPT ===
+</h2>
+</summary>
+
+               #!/bin/bash
+               set -e   # Arrête le script immédiatement si une commande échoue
+               
+               # === 192.168.0.241 ===
+               
+               # === Vault_Root ===
+               rm -f /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt 
+               rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key
+               
+               # === Vault_Auto ===
+               rm -f /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
+               rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key
+               
+               # Génération certificat
+               
+               # === Vault_Root ===
+               # - Clé + CSR
+               
+               openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key -out /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -nodes -config /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf
+               
+               # === Vault_Root ===
+               # - Certificat signé par CA
+               openssl x509 -req -in /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -CA /home/sednal/Vault/Vault_Root/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
+               
+               # === Vault_Auto ===
+               # - Clé + CSR
+               
+               openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -nodes -passout pass: -config /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf
+               
+               # === Vault_Auto ===
+               # - Certificat signé par CA
+               
+               openssl x509 -req -in /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -CA /home/sednal/Vault/Vault_Auto/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
+               # - Suppression CSR
+               rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr
+               rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
+               
+               # === 192.168.0.243 ===
+               
+               # Supprime les fichiers sur 192.168.0.243
+               # === Vault_Root ===
+               ssh sednal@192.168.0.243 "rm /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt"
+               ssh sednal@192.168.0.243 "rm /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key"
+               
+               
+               # Après suppression, copie des fichiers
+               # === Vault_Root ===
+               scp /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt sednal@192.168.0.243:/home/sednal/Vault/Vault_Root/Cert/public
+               scp /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key sednal@192.168.0.243:/home/sednal/Vault/Vault_Root/Cert/private
+
+     
+       
+
+</details>
+
+  
       
-     #!/bin/bash
-     set -e   # Arrête le script immédiatement si une commande échoue
-     
-     # === 192.168.0.241 ===
-     
-     # === Vault_Root ===
-     rm -f /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt 
-     rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key
-     
-     # === Vault_Auto ===
-     rm -f /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
-     rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key
-     
-     # Génération certificat
-     
-     # === Vault_Root ===
-     # - Clé + CSR
-     
-     openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key -out /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -nodes -config /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf
-     
-     # === Vault_Root ===
-     # - Certificat signé par CA
-     openssl x509 -req -in /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -CA /home/sednal/Vault/Vault_Root/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
-     
-     # === Vault_Auto ===
-     # - Clé + CSR
-     
-     openssl req -newkey rsa:4096 -keyout /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -nodes -passout pass: -config /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf
-     
-     # === Vault_Auto ===
-     # - Certificat signé par CA
-     
-     openssl x509 -req -in /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -CA /home/sednal/Vault/Vault_Auto/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
-     # - Suppression CSR
-     rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr
-     rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
-     
-     # === 192.168.0.243 ===
-     
-     # Supprime les fichiers sur 192.168.0.243
-     # === Vault_Root ===
-     ssh sednal@192.168.0.243 "rm /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt"
-     ssh sednal@192.168.0.243 "rm /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key"
-     
-     
-     # Après suppression, copie des fichiers
-     # === Vault_Root ===
-     scp /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt sednal@192.168.0.243:/home/sednal/Vault/Vault_Root/Cert/public
-     scp /home/sednal/Vault/Vault_Root/Cert/private/Vault_Root.key sednal@192.168.0.243:/home/sednal/Vault/Vault_Root/Cert/private
-
      
 
-
-`EXECUTION`     
+-2. Le rendre exécutable     
       
       sudo chmod +x /home/sednal/Vault/Script/renew_vault_ssl.sh
+
       
-#### Systemd :
+#### Inscription exécution du Script => Systemd :
+
+-1. === SERVICE ===
 
 `EDITION`
       
       sudo nano /etc/systemd/system/renew_vault_ssl.service 
 
-`SERVICE`
+
       
       [Unit]
       Description=Renouvellement cerficats SSL Vault
@@ -420,12 +439,11 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
       WantedBy=multi-user.target
 
 ---
-
-`EDITION`
+-2. === TIMER === 
      
      sudo nano /etc/systemd/system/renew_vault_ssl.timer 
 
-`TIMER` 
+
       
       [Unit]
       Description=Renouvellement du certificat tous les 330 jours
@@ -468,7 +486,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 ### 4.1) Installation Vault ARM64
 
-- 1. `Installation`
+-1. `Installation`
           wget https://releases.hashicorp.com/vault/1.15.5/vault_1.15.5_linux_arm64.zip
           unzip vault_1.15.5_linux_arm64.zip
           sudo mv vault /usr/local/bin/
@@ -476,7 +494,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 <img width="773" height="40" alt="image" src="https://github.com/user-attachments/assets/365638d0-1e46-4f63-a7c2-c0adf317a724" />
 
-- 2. `Créer l'utilisateur vault`
+-2. `Créer l'utilisateur vault`
 
           sudo useradd --system --home /etc/vault --shell /bin/false vault
 
@@ -505,7 +523,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
           api_addr     = "https://vault.sednal.lan:8100"
           cluster_addr = "https://vault.sednal.lan:8101"
 
-- 4. `Créer les répertoires et permissions`
+-4. `Créer les répertoires et permissions`
 
           sudo mkdir -p /opt/vault/data
           sudo chown -R vault:vault /opt/vault
@@ -513,7 +531,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
           sudo chown -R vault:vault /home/sednal/Vault/Vault_Auto/Config
           sudo chown -R vault:vault /home/sednal/Vault/Vault_Auto/data
 
-- 5. `Service`
+-5. `Service`
 
           sudo nano /etc/systemd/system/vault.service
 
@@ -545,7 +563,7 @@ Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évit
 
 ### 4.2)  configuration de `Vault_Auto`
 
-- 1. `Ajouter les variables d'environement`
+-1. `Ajouter les variables d'environement`
 
           export VAULT_ADDR='https://vault_2.sednal.lan:8100'
           export VAULT_CACERT='/home/sednal/Vault/Vault_Auto/Cert/public/CA.crt'
@@ -643,7 +661,7 @@ Sortie attendue
 
 ### 4.4) Installation Vault ARM64
 
-- 1. `Installation`
+-1. `Installation`
           wget https://releases.hashicorp.com/vault/1.15.5/vault_1.15.5_linux_amd64.zip
           unzip vault_1.15.5_linux_amd64.zip
           sudo mv vault /usr/local/bin/
@@ -651,7 +669,7 @@ Sortie attendue
 
 <img width="773" height="40" alt="image" src="https://github.com/user-attachments/assets/365638d0-1e46-4f63-a7c2-c0adf317a724" />
 
-- 2. `Créer l'utilisateur vault`
+-2. `Créer l'utilisateur vault`
 
           sudo useradd --system --home /etc/vault --shell /bin/false vault
 
@@ -689,7 +707,7 @@ Sortie attendue
           api_addr     = "https://vault.sednal.lan:8200"
           cluster_addr = "https://vault.sednal.lan:8201"
 
-- 4. `Créer les répertoires et permissions`
+-4. `Créer les répertoires et permissions`
 
           sudo mkdir -p /opt/vault/data
           sudo chown -R vault:vault /opt/vault
@@ -697,7 +715,7 @@ Sortie attendue
           sudo chown -R vault:vault /home/sednal/Vault/Vault_Root/Config
           sudo chown -R vault:vault /home/sednal/Vault/Vault_Root/data
 
-- 5. `Service`
+-5. `Service`
 
           sudo nano /etc/systemd/system/vault.service
 
@@ -730,7 +748,7 @@ Sortie attendue
 
 ### 4.5)  configuration de `=== Vault_Auto ===`
 
-- 1. `Ajouter les variables d'environement`
+-1. `Ajouter les variables d'environement`
 
           export VAULT_ADDR='https://vault.sednal.lan:8200'
           export VAULT_CACERT='/home/sednal/Vault/Vault_Root/Cert/public/CA.crt'
