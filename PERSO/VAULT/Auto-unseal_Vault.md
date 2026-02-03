@@ -503,7 +503,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
 -3. Editer le fichier de configuation `/home/sednal/Vault/Vault_Auto/Config/Vault_Auto.hcl`
 
-          nano /home/sednal/Vault_Auto/Config/Vault_Auto.hcl
+          nano /home/sednal/Vault/Vault_Auto/Config/Vault_Auto.hcl
 
 - Editer
 
@@ -679,7 +679,7 @@ Sortie attendue
 
 -3. Editer le fichier de configuation `/home/sednal/Vault/Vault_Root/Config/Vault_Root.hcl`
 
-          nano /home/sednal/Vault_Root/Config/Vault_Root.hcl
+          nano /home/sednal/Vault/Vault_Root/Config/Vault_Root.hcl
 
 - Editer
 
