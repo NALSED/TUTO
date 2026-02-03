@@ -300,21 +300,6 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
           openssl x509 -req -in /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr -CA /home/sednal/Vault/Vault_Root/Cert/public/CA.crt -CAkey /home/sednal/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /home/sednal/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /home/sednal/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
 
-
-<details>
-<summary>
-<h2>
-=== Détails Commandes ===
-</h2>
-</summary>
-
-          openssl req -newkey rsa:4096 -keyout [KEY .key] -out vault_a.csr -nodes -config [CONFIGURATION-SERVICE .cnf]
-          openssl x509 -req -in [CSR-SERVICE] -CA [CERTIF CA .crt] -CAkey   [KEY CA .key] -CAcreateserial -out  [CERTIF-SIGNE-SERVICE] -days 3650 -extfile [CONFIGURATION-SERVICE .cnf] -extensions req_ext
-
-
-</details>
-
-
 `=== Vault_Auto ===`
 
 -1. Clé + CSR
@@ -332,6 +317,22 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
           rm -f /home/sednal/Vault/Vault_Root/Cert/private/Vault.csr
           rm -f /home/sednal/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
+
+<details>
+<summary>
+<h2>
+=== Détails Commandes ===
+</h2>
+</summary>
+
+          openssl req -newkey rsa:4096 -keyout [KEY .key] -out vault_a.csr -nodes -config [CONFIGURATION-SERVICE .cnf]
+          openssl x509 -req -in [CSR-SERVICE] -CA [CERTIF CA .crt] -CAkey   [KEY CA .key] -CAcreateserial -out  [CERTIF-SIGNE-SERVICE] -days 3650 -extfile [CONFIGURATION-SERVICE .cnf] -extensions req_ext
+
+
+</details>
+
+---
+
 
 ### 3.4) Création d'un renouvelement automatique via script + systemd
 
