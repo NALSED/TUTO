@@ -90,6 +90,7 @@
              │   |       └── Vault_Root.key    
              |   | 
              |   └── Config/
+             |       ├── Vault_Auto.hcl 
              |       └── Vault_Root.cnf         
              |
              └── Vault_Auto/   
