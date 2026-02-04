@@ -10,29 +10,29 @@ Le bloquage de publicité ainsi que la résolution WAN fonctionait parfaitement 
 Les problémes sont arrivés lorsque j'ai voulu implémenter des nom de domaine pour mes services, via pfsense.  
 
 === Architecture réseau [1] ===
-┌─────────┐
-      │ Client  │
-      └────┬────┘
-           │
-           ▼
-┌──────────────────────┐
-│   Pi-hole (53)       │
-│   (192.168.0.241)    │            
-└──────────┬───────────┘
-           │
-           │
-           ▼
-┌──────────────────────┐
-│   Unbound (5335)     │
-│                      │
-└──────────┬───────────┘
-           │
-           ▼
-      pfSense (192.168.0.1)
-           │
-           ├──► sednal.lan (réseau local)
-           │
-           └──► Internet (WAN)
+                  ┌─────────┐
+                  │ Client  │
+                  └────┬────┘
+                       │
+                       ▼
+            ┌──────────────────────┐
+            │   Pi-hole (53)       │
+            │   (192.168.0.241)    │            
+            └──────────┬───────────┘
+                       │
+                       │
+                       ▼
+            ┌──────────────────────┐
+            │   Unbound (5335)     │
+            │                      │
+            └──────────┬───────────┘
+                       │
+                       ▼
+                  pfSense (192.168.0.1)
+                       │
+                       ├──► sednal.lan (réseau local)
+                       │
+                       └──► Internet (WAN)
 
 
 === Flux de résolution DNS ===
