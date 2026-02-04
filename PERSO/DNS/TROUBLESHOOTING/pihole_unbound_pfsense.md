@@ -74,7 +74,8 @@ On voit ici que 192.168.0.241 ne peut pas pinguer le nom de domaine suivant (alo
 
 - Flush ARP Pihole
 
-<img width="475" height="285" alt="image" src="https://github.com/user-attachments/assets/d634b41c-1a2b-440e-a3a3-95cf5d8537b9" />
+<img width="514" height="141" alt="image" src="https://github.com/user-attachments/assets/00e7abab-2df9-465d-b716-abf02c9134dc" />
+
 
 ---
 
