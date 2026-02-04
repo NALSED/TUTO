@@ -15,6 +15,9 @@
 ### 2️⃣ Configuration  avce PiHole      
 #### Fichié trouvé [ICI](https://docs.pi-hole.net/guides/dns/unbound/)
 
+        nano /etc/unbound/unbound.conf.d/pi-hole.conf
+Editer
+
         server:
             # If no logfile is specified, syslog is used
             # logfile: "/var/log/unbound/unbound.log"
