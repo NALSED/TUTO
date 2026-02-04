@@ -56,11 +56,9 @@ Impossible de résoudre ou d’effectuer des ping vers les domaines inscrits dan
 
 - === Ping ===
 
-On voit ici que 192.168.0.241 ne peut pas pinguer les noms de domaine suivants (alors qu’ils sont bien en service), sauf s’ils sont inscrits dans le fichier `/etc/hosts`.
+On voit ici que 192.168.0.241 ne peut pas pinguer le nom de domaine suivant (alors qu’ils sont bien en service), sauf s’ils sont inscrits dans le fichier `/etc/hosts`.
  
       - vault.sednal.lan
-      - vault_2.sednal.lan
-      - pihole.sednal.lan
 
 - Démonstration :
 
