@@ -112,14 +112,14 @@ Confirmation ports utilisés
 La connection ne se fait pas entre `Pihole` et `Unbound`, loption forward vers pfsense, à la fin du finchier de configuration + des incohérence su celui de pihole doivent bloquer la connestion.
 
 
-
+---
 
 
 <details>
 <summary>
 <h2>
 
- liste causes probable PiHole 
+liste causes probable PiHole 
  
 </h2>
 </summary>
@@ -311,20 +311,6 @@ La connection ne se fait pas entre `Pihole` et `Unbound`, loption forward vers p
           # Possible values are:
           #     <valid domain>
           domain = "pihole.sednal.lan" ### CHANGED, default = "pi.hole"
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </details>
 
