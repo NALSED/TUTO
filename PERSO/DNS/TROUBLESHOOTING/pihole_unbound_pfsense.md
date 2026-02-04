@@ -194,7 +194,7 @@ liste causes probable PiHole
           #     "<enabled>,<ip-address>[/<prefix-len>],<server>[#<port>][,<domain>]", e.g.,
           #     "true,192.168.0.0/24,192.168.0.1,fritz.box"
           revServers = [
-            "true,192.168.0.0,192.168.0.1#53,sednal.lan"
+            "true,192.168.0.0,192.168.0.1,sednal.lan"
           ] ### CHANGED, default = []
         
         
@@ -314,32 +314,69 @@ liste causes probable PiHole
 
 </details>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### === SOLUTIONS ===
 
+dans le ficher /etc/pihole/pihole.toml => [DNS] => Reverse server 
+
+par defaut
+
+      revServers = [
+                  "true,192.168.0.241/24,192.168.0.1,pihole.lan"
+                ] ### CHANGED, default = []
+
+changement
+
+      revServers = [
+                  "true,192.168.0.0/24,192.168.0.1,sednal.lan"
+                ] ### CHANGED, default = []
 
 
 
+Résultat
+
+<img width="721" height="565" alt="image" src="https://github.com/user-attachments/assets/11f7e807-b242-43fb-8c82-ea150b92af3d" />
 
 
+=== Nouveau Flux ==
 
-
-
-
+┌─────────┐
+│ Client  │ 
+└────┬────┘
+     │
+     │ 
+     │
+     ▼
+┌──────────────────────────────────┐
+│         Pi-hole (53)             │ (192.168.0.241)
+│                                  │
+│ 1. Reçoit la requête             │
+│ 2. Vérifie blocklist (ads)       │
+│ 3. Routage intelligent:          │
+│    - sednal.lan ? → pfSense      │ 
+│    - Autre ? → Unbound           │ 
+└──────┬───────────────────────────┘
+       │
+       │
+       ├─────────────────────────────────────────┐
+       │                                         │
+       │ Requête sednal.lan                      │ Requête google.com
+       │                                         │
+       ▼                                         ▼
+┌──────────────────┐                    ┌──────────────────┐
+│  pfSense (.1)    │                    │  Unbound (5335)  │
+│                  │                    │                  │
+│ DNS autoritaire  │                    │     Résolveur    │
+│ pour sednal.lan  │                    │     récursif     │
+└──────────────────┘                    │                  │
+                                        └────────┬─────────┘                             
+                                                 │
+                                                 ▼
+                                          ┌─────────────┐
+                                          │  Internet   │
+                                          │             │
+                                          │ Root servers│
+                                          │ TLD servers │
+                                          │ etc.        │
+                                          └─────────────┘
 
       
