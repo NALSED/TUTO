@@ -9,6 +9,7 @@ Dans cette infrastructure, Pi-hole est utilisé pour bloquer les publicités, et
 .
 
 Les problèmes sont apparus lorsque j’ai voulu implémenter des noms de domaine pour mes services via pfSense.
+
 === Architecture réseau [1] ===
                  
                   ┌─────────┐
