@@ -339,44 +339,44 @@ Résultat
 
 === Nouveau Flux ==
 
-┌─────────┐
-│ Client  │ 
-└────┬────┘
-     │
-     │ 
-     │
-     ▼
-┌──────────────────────────────────┐
-│         Pi-hole (53)             │ (192.168.0.241)
-│                                  │
-│ 1. Reçoit la requête             │
-│ 2. Vérifie blocklist (ads)       │
-│ 3. Routage intelligent:          │
-│    - sednal.lan ? → pfSense      │ 
-│    - Autre ? → Unbound           │ 
-└──────┬───────────────────────────┘
-       │
-       │
-       ├─────────────────────────────────────────┐
-       │                                         │
-       │ Requête sednal.lan                      │ Requête google.com
-       │                                         │
-       ▼                                         ▼
-┌──────────────────┐                    ┌──────────────────┐
-│  pfSense (.1)    │                    │  Unbound (5335)  │
-│                  │                    │                  │
-│ DNS autoritaire  │                    │     Résolveur    │
-│ pour sednal.lan  │                    │     récursif     │
-└──────────────────┘                    │                  │
-                                        └────────┬─────────┘                             
-                                                 │
-                                                 ▼
-                                          ┌─────────────┐
-                                          │  Internet   │
-                                          │             │
-                                          │ Root servers│
-                                          │ TLD servers │
-                                          │ etc.        │
-                                          └─────────────┘
+      ┌─────────┐
+      │ Client  │ 
+      └────┬────┘
+           │
+           │ 
+           │
+           ▼
+      ┌──────────────────────────────────┐
+      │         Pi-hole (53)             │ (192.168.0.241)
+      │                                  │
+      │ 1. Reçoit la requête             │
+      │ 2. Vérifie blocklist (ads)       │
+      │ 3. Routage intelligent:          │
+      │    - sednal.lan ? → pfSense      │ 
+      │    - Autre ? → Unbound           │ 
+      └──────┬───────────────────────────┘
+             │
+             │
+             ├─────────────────────────────────────────┐
+             │                                         │
+             │ Requête sednal.lan                      │ Requête google.com
+             │                                         │
+             ▼                                         ▼
+      ┌──────────────────┐                    ┌──────────────────┐
+      │  pfSense (.1)    │                    │  Unbound (5335)  │
+      │                  │                    │                  │
+      │ DNS autoritaire  │                    │     Résolveur    │
+      │ pour sednal.lan  │                    │     récursif     │
+      └──────────────────┘                    │                  │
+                                              └────────┬─────────┘                             
+                                                       │
+                                                       ▼
+                                                ┌─────────────┐
+                                                │  Internet   │
+                                                │             │
+                                                │ Root servers│
+                                                │ TLD servers │
+                                                │ etc.        │
+                                                └─────────────┘
 
       
