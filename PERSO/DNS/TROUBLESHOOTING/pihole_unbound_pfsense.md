@@ -112,6 +112,9 @@ Confirmation ports utilisés
 La connection ne se fait pas entre `Pihole` et `Unbound`, loption forward vers pfsense, à la fin du finchier de configuration + des incohérence su celui de pihole doivent bloquer la connestion.
 
 
+
+
+
 <details>
 <summary>
 <h2>
