@@ -10,6 +10,7 @@ Le bloquage de publicité ainsi que la résolution WAN fonctionait parfaitement 
 Les problémes sont arrivés lorsque j'ai voulu implémenter des nom de domaine pour mes services, via pfsense.  
 
 === Architecture réseau [1] ===
+                 
                   ┌─────────┐
                   │ Client  │
                   └────┬────┘
