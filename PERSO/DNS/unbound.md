@@ -108,11 +108,17 @@ Editer
 
 ---
 ---
-# ⚠️
+# ⚠️ AVERTISSEMENT ⚠️
 
       +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
             +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                         +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+cette solution fonctionne, mais pose plusieurs probléme détaillé [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/TROUBLESHOOTING/pihole_unbound_pfsense.md)
+
+donc priviligier la solution disponible dans le liens ci dessus.
+
+
 ## `II) Ajout au fichier de configuration pour résolution de nom de domain en Local.`
 
 #### Au fichier de configuration précédent ajouter les ligne suivante:
@@ -140,7 +146,9 @@ Editer
 
 <img width="1162" height="271" alt="image" src="https://github.com/user-attachments/assets/156bea5a-cd78-41aa-84cf-ff87db423d6c" />
 
-
+      +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                        +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
