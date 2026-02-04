@@ -10,7 +10,7 @@ Dans cette infrastructure, Pi-hole est utilisé pour bloquer les publicités, et
 
 Les problèmes sont apparus lorsque j’ai voulu implémenter des noms de domaine pour mes services via pfSense.
 
-=== Architecture réseau [1] ===
+**=== Architecture réseau [1] ===**
                  
                   ┌─────────┐
                   │ Client  │
@@ -37,7 +37,7 @@ Les problèmes sont apparus lorsque j’ai voulu implémenter des noms de domain
                    └──► Internet (WAN)
 
 
-=== Flux de résolution DNS ===
+**=== Flux de résolution DNS ===**
 
 -1. Le client envoie une requête DNS
 -2. Pi-hole reçoit et transmet à Unbound
@@ -84,7 +84,7 @@ On voit ici que 192.168.0.241 ne peut pas pinguer le nom de domaine suivant (alo
 
 -1. Test Ports
 
-[ 53 ] => Pihole
+**[ 53 ] => Pihole**
 
       dig vault.sednal.lan @192.168.0.241 -p 53
 
@@ -92,7 +92,7 @@ Resultat => `NXDOMAIN` et `QUERY: 1, ANSWER: 0`
 
 <img width="640" height="329" alt="image" src="https://github.com/user-attachments/assets/a5da0c51-ea7a-4820-a048-8688367cb10f" />
 
-[ 5335 ] => Unbound
+**[ 5335 ] => Unbound**
 
       dig vault.sednal.lan @192.168.0.241 -p 5335
 
@@ -334,7 +334,7 @@ Résultat
 <img width="721" height="565" alt="image" src="https://github.com/user-attachments/assets/11f7e807-b242-43fb-8c82-ea150b92af3d" />
 
 
-=== Nouveau Flux ==
+**=== Nouveau Flux ===**
 
       ┌─────────┐
       │ Client  │ 
