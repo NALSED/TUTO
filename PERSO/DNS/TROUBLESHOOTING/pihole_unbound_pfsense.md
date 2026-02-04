@@ -107,7 +107,8 @@ Confirmation ports utilisés
 
 <img width="941" height="229" alt="image" src="https://github.com/user-attachments/assets/7c313cc2-eac2-47e1-bac1-58ae87ab0999" />
 
-La connection ne se fait pas entre `Pihole` et `Unbound`, loption forward vers pfsense, à la fin du finchier de configuration + des incohérence su celui de pihole doivent bloquer la connestion.
+La connexion entre `Pi-hole` et `Unbound` ne s’établit pas.  
+L’option de forwarding vers pfSense, placée à la fin du fichier de configuration, ainsi que certaines incohérences dans celui de `Pi-hole`, semblent empêcher la connexion.
 
 
 ---
