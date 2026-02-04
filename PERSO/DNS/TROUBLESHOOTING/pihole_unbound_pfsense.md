@@ -7,7 +7,7 @@ Le probléme est survenu longtemps après la mise ne place de pihole et unbound.
 
 En effet dans cette infra, pihole est utilisé pour bloquer les publicitées, et Unbound comme DNS récursif primaire.
 
-Le bloquage de publicité ainsi que la résolution WAN fonctionait parfaitement pour la configuration voir [ICI : Pihole] et (https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/Pihole.md) [ICI]:unbound(https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/unbound.md) .
+Le bloquage de publicité ainsi que la résolution WAN fonctionait parfaitement pour la configuration voir [ICI : Pihole](https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/Pihole.md) et [ICI: unbound](https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/unbound.md) .
 
 Les problémes sont arrivés lorsque j'ai voulu implémenter des nom de domaine pour mes services, via pfsense.  
 
