@@ -3,14 +3,12 @@
 ---
 ### === Contexte ===
 
-Le probléme est survenu longtemps après la mise ne place de pihole et unbound.
+Le problème est survenu longtemps après la mise en place de Pi-hole et Unbound.
 
-En effet dans cette infra, pihole est utilisé pour bloquer les publicitées, et Unbound comme DNS récursif primaire.
+Dans cette infrastructure, Pi-hole est utilisé pour bloquer les publicités, et Unbound comme serveur DNS récursif primaire. Le blocage des publicités ainsi que la résolution vers Internet fonctionnaient parfaitement avec cette configuration, comme décrit[ICI : Pihole](https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/Pihole.md) et [ICI: unbound](https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/unbound.md) .
+.
 
-Le bloquage de publicité ainsi que la résolution WAN fonctionait parfaitement pour la configuration voir [ICI : Pihole](https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/Pihole.md) et [ICI: unbound](https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/unbound.md) .
-
-Les problémes sont arrivés lorsque j'ai voulu implémenter des nom de domaine pour mes services, via pfsense.  
-
+Les problèmes sont apparus lorsque j’ai voulu implémenter des noms de domaine pour mes services via pfSense.
 === Architecture réseau [1] ===
                  
                   ┌─────────┐
