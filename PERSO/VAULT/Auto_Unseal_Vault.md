@@ -360,7 +360,7 @@ et sur 192.168.0.238
        sudo chmod 640 /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
        sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
 
-[Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-3-securisation_Vault_auto_CA.sh)
+[Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-3-securisation_Vault_Auto_CA.sh)
 
 ---
 
