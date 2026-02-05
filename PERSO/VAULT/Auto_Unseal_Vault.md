@@ -481,24 +481,24 @@ Le service sera déclenché par le timer.
 
 - Editer
 
-    disable_mlock = true
-    ui = true
-          
-    storage "raft" {
-    path    = "/opt/vault/data"
-    node_id = "vault_auto"
-    }
-          
-    listener "tcp" {
-    address            = "0.0.0.0:8100"
-    tls_disable        = false
-    tls_cert_file      = "/etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt"
-    tls_key_file       = "/etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key"
-    tls_client_ca_file = "/etc/Vault/Vault_Auto/Cert/public/CA.crt"
-    }
-        
-    api_addr     = "https://vault_2.sednal.lan:8100"
-    cluster_addr = "https://vault_2.sednal.lan:8101"
+         disable_mlock = true
+         ui = true
+               
+         storage "raft" {
+         path    = "/opt/vault/data"
+         node_id = "vault_auto"
+         }
+               
+         listener "tcp" {
+         address            = "0.0.0.0:8100"
+         tls_disable        = false
+         tls_cert_file      = "/etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt"
+         tls_key_file       = "/etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key"
+         tls_client_ca_file = "/etc/Vault/Vault_Auto/Cert/public/CA.crt"
+         }
+             
+         api_addr     = "https://vault_2.sednal.lan:8100"
+         cluster_addr = "https://vault_2.sednal.lan:8101"
 
 
 -2. Choisir installation via
