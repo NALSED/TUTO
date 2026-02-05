@@ -416,7 +416,8 @@ et sur 192.168.0.238
     [Unit]
     Description=Renouvellement cerficats SSL Vault
     After=network.target
-      
+    RefuseManualStart=yes
+    
     [Service]
     Type=oneshot
     ExecStart=/etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
@@ -441,7 +442,6 @@ et sur 192.168.0.238
     Requires=renew_vault_ssl.service
       
     [Timer]
-    OnBootSec=5min
     OnUnitActiveSec=330d
     Persistent=true
       
@@ -457,13 +457,8 @@ et sur 192.168.0.238
 
 ---
 
-       sudo systemctl enable renew_vault_ssl.service 
-       sudo systemctl start renew_vault_ssl.service 
-
----
-
        sudo systemctl enable renew_vault_ssl.timer 
-       sudo systemctl start renew_vault_ssl.time
+       sudo systemctl start renew_vault_ssl.timer
 
 ---
 
