@@ -201,7 +201,7 @@ et sur 192.168.0.238
 
 `=== Vault_Auto ===`
 
-        nano /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
+        sudo nano /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
 
 -Editer
 
@@ -237,7 +237,7 @@ et sur 192.168.0.238
 
 - Suppression CSR (Pour renouvelement)
 
-    rm -f /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
+   sudo rm -f /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
    
 ---
         
@@ -247,7 +247,7 @@ et sur 192.168.0.238
 
 - `Fichier de configuration .cnf`
 
-    nano /etc/Vault/Vault_Root/Config/Vault_Root.cnf
+   sudo nano /etc/Vault/Vault_Root/Config/Vault_Root.cnf
 
 -Editer
 
@@ -283,7 +283,7 @@ et sur 192.168.0.238
 
 - Suppression CSR (Pour renouvelement)
 
-    rm -f /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
+    sudo rm -f /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
           
 ---
 
@@ -323,9 +323,6 @@ et sur 192.168.0.238
 
 - ### `192.168.0.241`
 
-- ⚠️ Placer $USER dans le groupe vault ⚠️
-  
-    sudo usermod -aG vault sednal
 
   `=== CA ==`
 
