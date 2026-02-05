@@ -325,8 +325,8 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - CA.key
 
-    sudo chmod 600 /etc/Vault/CA_Vault/Cert/private/CA.key
-    sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
+      sudo chmod 600 /etc/Vault/CA_Vault/Cert/private/CA.key
+      sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
 
 - CA.crt
 
