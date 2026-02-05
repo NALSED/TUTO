@@ -422,7 +422,7 @@ et sur 192.168.0.238
     ExecStart=/etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
     User=sednal
     Group=vault
-    ExecStartPost=/usr/bin/systemctl restart vault.service
+    ExecStartPost=-/usr/bin/systemctl restart vault.service
   
     [Install]
     WantedBy=multi-user.target
