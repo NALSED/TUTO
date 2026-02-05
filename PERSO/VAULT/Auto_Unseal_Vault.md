@@ -186,6 +186,8 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
        openssl req -x509 -newkey rsa:4096 -keyout  /etc/Vault/CA_Vault/Cert/private/CA.key -out /etc/Vault/CA_Vault/Cert/public/CA.crt -days 3650 -nodes -config /etc/Vault/CA_Vault/Config/CA_Vault.cnf
 
+---
+
 - Copier les certificat dans les dossiers :
 
 sur 192.168.0.241
@@ -198,6 +200,8 @@ et sur 192.168.0.238
 ---
 
 `=== Vault_Auto ===`
+
+=> Fichier de configuration [1]
 
         sudo nano /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
 
@@ -227,11 +231,43 @@ et sur 192.168.0.238
 
 `-1. Clé + CSR`
 
-    openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -nodes -passout pass: -config /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
+          openssl req -newkey rsa:4096 \
+            -keyout /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key \
+            -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr \
+            -nodes -passout pass: \
+            -config /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
+
+=> Fichier de configuration [2]
+
+       nano /etc/Vault/Vault_Auto/Config/Vault_Auto_ext.cnf
+
+-Editer
+
+          [v3_req]
+          subjectAltName     = @alt_names
+          basicConstraints   = critical, CA:FALSE
+          keyUsage           = critical, digitalSignature, keyEncipherment
+          extendedKeyUsage   = serverAuth
+          
+          [ alt_names ]
+          DNS.1 = vault_2.sednal.lan
+          DNS.2 = localhost
+          IP.1  = 192.168.0.241
+          IP.2  = 127.0.0.1
+
 
 `-2. Certificat signé par CA`
 
-    openssl x509 -req -in /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
+              openssl x509 -req \
+            -in /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr \
+            -CA /etc/Vault/CA_Vault/Cert/public/CA.crt \
+            -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key \
+            -CAcreateserial \
+            -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt \
+            -days 365 \
+            -sha256 \
+            -extfile /etc/Vault/Vault_Auto/Config/Vault_Auto_ext.cnf \
+            -extensions v3_req
 
 - Suppression CSR (Pour renouvelement)
 
@@ -243,7 +279,7 @@ et sur 192.168.0.238
 
 `=== Vault_Root ===`
 
-- `Fichier de configuration .cnf`
+=> Fichier de configuration [1]
 
    sudo nano /etc/Vault/Vault_Root/Config/Vault_Root.cnf
 
@@ -273,11 +309,43 @@ et sur 192.168.0.238
 
 `-1. Clé + CSR`
 
-    openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Root/Cert/private/Vault_Root.key -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -nodes -config /etc/Vault/Vault_Root/Config/Vault_Root.cnf
+          openssl req -newkey rsa:4096 \
+            -keyout /etc/Vault/Vault_Root/Cert/private/Vault_Root.key \
+            -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr \
+            -nodes \
+            -config /etc/Vault/Vault_Root/Config/Vault_Root.cnf
+
+=> Fichier de configuration [2]
+
+       nano /etc/Vault/Vault_Root/Config/Vault_Root_ext.cnf
+
+-Editer
+
+    [v3_req]
+          subjectAltName     = @alt_names
+          basicConstraints   = critical, CA:FALSE
+          keyUsage           = critical, digitalSignature, keyEncipherment
+          extendedKeyUsage   = serverAuth
+          
+          [ alt_names ]
+          DNS.1 = vault.sednal.lan
+          DNS.2 = localhost
+          IP.1  = 192.168.0.238
+          IP.2  = 127.0.0.1
 
 `-2. Certificat signé par CA`
 
-    openssl x509 -req -in /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key  -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /etc/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
+              openssl x509 -req \
+            -in /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr \
+            -CA /etc/Vault/CA_Vault/Cert/public/CA.crt \
+            -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key \
+            -CAcreateserial \
+            -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt \
+            -days 365 \
+            -sha256 \
+            -extfile /etc/Vault/Vault_Root/Config/Vault_Root_ext.cnf \
+            -extensions v3_req
+
 
 - Suppression CSR (Pour renouvelement)
 
