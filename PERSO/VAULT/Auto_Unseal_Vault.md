@@ -334,13 +334,6 @@ et sur 192.168.0.238
        sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.crt
        sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.crt
 
-- CA.srl 
-
-       sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.srl
-       sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.srl
-
-
-
 `=== Vault_Auto ===`
 
 - Vault_Auto.crt
