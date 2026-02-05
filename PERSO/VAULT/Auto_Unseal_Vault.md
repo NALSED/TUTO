@@ -157,7 +157,7 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 ---
 
-**-1. Création CA et certificat sur `192.168.0.241:8100`** 
+**-1. Création CA et certificats sur `192.168.0.241:8100`** 
 
 - Fichier de configuration .cnf
 
@@ -239,7 +239,7 @@ et sur 192.168.0.238
    
 ---
         
-**-2. Création CA et certificat sur `192.168.0.238:8200`** 
+**-2. Certificat sur `192.168.0.238:8200`** 
 
 `=== Vault_Root ===`
 
