@@ -350,7 +350,9 @@ et sur 192.168.0.238
 - Suppression CSR (Pour renouvelement)
 
     sudo rm -f /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
-          
+
+<img width="731" height="134" alt="image" src="https://github.com/user-attachments/assets/712870ad-f2f3-41eb-bc89-81bcc93f9566" />
+
 ---
 
 <details>
@@ -419,13 +421,13 @@ et sur 192.168.0.238
        sudo chmod 640 /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
        sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
 
+
+
 [Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-3-securisation_Vault_Auto_CA.sh)
 
 ---
 
 - ### `192.168.0.238`
-
-- ⚠️ Placer $USER dans le groupe vault
 
        sudo usermod -aG vault sednal
 
@@ -447,8 +449,8 @@ et sur 192.168.0.238
 
        sudo chmod 640 /etc/Vault/Vault_Root/Cert/private/Vault_Root.key
        sudo chown vault:vault /etc/Vault/Vault_Root/Cert/private/Vault_Root.key
- 
-[Script]()
+
+[Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-4-securisation_Vault_Root.sh)
 
 
 ---
@@ -609,7 +611,136 @@ Le service sera déclenché par le timer.
 
 ## 5️⃣ `Configuration` 
 
+**Pour 192.168.0.241 et 192.168.0.238**
+
+-1. Redemarrer et tester vault 
+
+     sudo systemctl restart vault.service
+     sudo systemctl status vault.service
+
+<img width="800" height="206" alt="image" src="https://github.com/user-attachments/assets/82a854db-1e70-4745-954d-a6a892573d83" />
+
+
+-2. Pour éviter d'entrer les variables  `export VAULT_CACERT='/etc/Vault/CA_Vault/Cert/public/CA.crt'` et `export VAULT_ADDR='https://vault_2.sednal.lan:8100'` à chaque connection.
+
+`=== VAULT_CACERT ===`
+
+- Copier le certificat dans l'emplacement standard et recommandé
+
+          sudo cp /etc/Vault/CA_Vault/Cert/public/CA.crt /usr/local/share/ca-certificates/Sednal-CA.crt
+
+- Rafraîchir
+
+          sudo update-ca-certificates --fresh
+
+`=== VAULT_ADDR ===`
+
+- Ouvrir le fichier de configuration bash
+
+     nano ~/.bashrc
+
+- A la fin ajouter
+     
+      # === Variables Vault ===
+      export VAULT_ADDR='https://vault_2.sednal.lan:8100'
+
+- Rafraîchir
+
+      source ~/.bashrc
+
+
+---
+
 **=== 192.168.0.241 ===**
+
+-1. Initialiser Vault
+
+      vault operator init
+
+⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
+Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
+
+-2. Entrer les commande suivante 3 fois
+            
+            vault operator unseal
+
+- Jusqu'à obtenir :
+
+<img width="552" height="399" alt="image" src="https://github.com/user-attachments/assets/a966c5ea-7b28-4396-b365-8af6027926c9" />
+
+
+-3. Se loger
+
+     vault login
+
+- Entrer le root token
+
+-Sortie      
+
+<img width="687" height="252" alt="image" src="https://github.com/user-attachments/assets/bcd8e46c-5739-4881-8632-4b472f1390e6" />
+
+
+
+- Activer Transit
+      
+        vault secrets enable transit
+
+Sortie attendue
+
+<img width="519" height="38" alt="image" src="https://github.com/user-attachments/assets/b5e2b308-99fa-49e8-af61-8527be2e17bd" />
+
+
+-Créer la clé
+        
+        vault write -force transit/keys/autounseal 
+
+Sortie attendue
+
+<img width="486" height="382" alt="image" src="https://github.com/user-attachments/assets/5b6927b2-b223-44ae-9ffd-0bc6e7647d32" />
+
+
+-Créer la policy
+       
+        vault policy write autounseal -<<EOF
+        path "transit/encrypt/autounseal" {
+           capabilities = [ "update" ]
+        }
+        
+        path "transit/decrypt/autounseal" {
+           capabilities = [ "update" ]
+        }
+        EOF
+
+
+Sortie attendue
+
+<img width="381" height="193" alt="image" src="https://github.com/user-attachments/assets/440a58e0-a491-424f-8144-65a17a5aae64" />
+
+
+-Créer le token limité
+        
+        vault token create -policy=vault-b-policy -orphan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
