@@ -168,19 +168,19 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 -Editer
  
      [ req ]
-     default_bits       = 4096
-     prompt             = no
-     default_md         = sha256
-     distinguished_name = dn
-     x509_extensions    = v3_ca
+      default_bits       = 4096
+      prompt             = no
+      default_md         = sha256
+      distinguished_name = dn
+      x509_extensions    = v3_ca
      
-     [ dn ]
-     CN = Sednal-CA
+      [ dn ]
+      CN = Sednal-CA
      
-     [ v3_ca ]
-     basicConstraints = critical, CA:TRUE
-     keyUsage = critical, keyCertSign, cRLSign
-     subjectKeyIdentifier = hash
+      [ v3_ca ]
+      basicConstraints = critical, CA:TRUE
+      keyUsage = critical, keyCertSign, cRLSign
+      subjectKeyIdentifier = hash
 
 - Génération du CA
 
