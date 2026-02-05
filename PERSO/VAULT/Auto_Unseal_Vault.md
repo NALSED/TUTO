@@ -190,8 +190,6 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 sur 192.168.0.241
 
-       cp /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/Vault/Vault_Auto/Cert/public/
-
        scp /etc/Vault/CA_Vault/Cert/public/CA.crt sednal@192.168.0.238:~/
 
 et sur 192.168.0.238
