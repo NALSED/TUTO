@@ -476,10 +476,7 @@ Le service sera déclenché par le timer.
 
 -1. fichier de configuration .hcl
 
-
-         sudo nano /etc/Vault_Auto/Config/Vault_Auto.hcl 
-
-- Editer
+- Pour information, à implémenter durant l'installation
 
          disable_mlock = true
          ui = true
@@ -511,9 +508,9 @@ Le service sera déclenché par le timer.
 
 -1. fichier de configuration .hcl
 
-    sudo nano /etc/Vault_Root/Config/Vault_Root.hcl 
+    
 
-- Editer
+- Pour information, à implémenter durant l'installation
 
           disable_mlock = true
           ui = true
