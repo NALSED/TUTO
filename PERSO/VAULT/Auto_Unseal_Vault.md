@@ -106,25 +106,28 @@ Ce tutotriel à pour objectif :
                     └── Vault_Auto.cnf
 
 
+#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/Vault_auto_CA.sh)
+
+
 === PATH 192.168.0.242:8200===
 
       /etc/Vault
         | 
-        ├── Vault_Root/       
-        |   |              
-        |   ├── Cert/
-        |   |   ├── public/
-        |   |   |   ├── CA.crt
-        |   |   |   └── Vault_Root.crt
-        |   |   |
-        |   |   └── private/
-        │   |       └── Vault_Root.key    
-        |   | 
-        |   └── Config/
-        |       ├── Vault_Root.hcl 
-        |       └── Vault_Root.cnf  
+        └── Vault_Root/       
+           |              
+           ├── Cert/
+           |   ├── public/
+           |   |   ├── CA.crt
+           |   |   └── Vault_Root.crt
+           |   |
+           |   └── private/
+           |       └── Vault_Root.key    
+           | 
+           └── Config/
+               ├── Vault_Root.hcl 
+               └── Vault_Root.cnf  
 
-
+#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/Vault_Root.sh)
 
 
 
