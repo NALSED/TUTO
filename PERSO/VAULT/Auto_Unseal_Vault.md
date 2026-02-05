@@ -29,13 +29,13 @@ Ce tutotriel à pour objectif :
 | IP               | Machine        | Détails RAM / CPU                | OS        |
 |-----------------|----------------|---------------------------------|-----------|
 | 192.168.0.241   | Raspberry Pi 4 | RAM: 1 GB<br>Processeur: ARM Cortex-A72 | Debian 13 |
-| 192.168.0.242   | VM (VirtualBox)| RAM: 4 GB<br>Processeur: 2 cœurs     | Debian 13 |
+| 192.168.0.238   | VM (VirtualBox)| RAM: 4 GB<br>Processeur: 2 cœurs     | Debian 13 |
 
 ---
 
 ### === SCHEMA ===
 ```
-     === 192.168.0.241 ===                              === 192.168.0.242 ===
+     === 192.168.0.241 ===                              === 192.168.0.238 ===
 ┌─────────────────────────────┐                    ┌─────────────────────────────┐
 │          VAULT A            │                    │          VAULT B            │
 │         Vault_Auto          │                    │         Vault_root          │
@@ -109,7 +109,7 @@ Ce tutotriel à pour objectif :
 #### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-1-creation_dossier_Vault_Auto_CA.sh)
 
 
-=== PATH 192.168.0.242:8200===
+=== PATH 192.168.0.238:8200===
 
       /etc/Vault
         | 
