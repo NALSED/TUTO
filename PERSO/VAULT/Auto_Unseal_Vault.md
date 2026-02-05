@@ -462,6 +462,14 @@ et sur 192.168.0.238
 
 ---
 
+[NOTE] Ici, le service n'est pas actif, car s'il était activé, le script serait exécuté et les certificats seraient renouvelés, ce qui entraînerait des différences entre les deux machines.  
+Le service sera déclenché par le timer.
+
+`TEST`
+
+<img width="1002" height="190" alt="image" src="https://github.com/user-attachments/assets/a118d420-3519-4115-aba3-ae3e33a5e4a0" />
+
+
 ## 4️⃣ `Installation` 
 
 **- 192.168.0.241 => Installation Vault ARM64**
