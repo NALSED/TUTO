@@ -410,6 +410,8 @@ et sur 192.168.0.238
       sudo nano /etc/systemd/system/renew_vault_ssl.service 
 
 
+---
+
       
      [Unit]
      Description=Renouvellement cerficats SSL Vault
@@ -431,6 +433,8 @@ et sur 192.168.0.238
 -2. `=== TIMER ===` 
      
      sudo nano /etc/systemd/system/renew_vault_ssl.timer 
+
+---
 
     [Unit]
     Description=Renouvellement du certificat tous les 330 jours
