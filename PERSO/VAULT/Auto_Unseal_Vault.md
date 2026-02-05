@@ -136,37 +136,168 @@ Ce tutotriel à pour objectif :
 
 `[NOTE]` ici `vault.sednal.lan` = Vault_Root, et `vault.sednal.lan` = Vault_Auto.
 
+⚠️ Des commandes ssh sont présente,pour créer des connections ssh sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
+
 
 ---
 
 ## 2️⃣ `Certificats`
 
--1. Création CA et certificat sur `192.168.0.241` 
+**-1. Création CA et certificat sur 192.168.0.241**
 
--2. Création CA et certificat sur `192.168.0.238` 
+**-2. Création CA et certificat sur 192.168.0.238** 
 
--3. Déploiment Certificat + renouvelement auto via systemd
+**-3. Déploiement des certificat avec renouvellement automatique via systemd**
 
 
 Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root` (192.168.0.238) en second pour respecter l'odre de mise en place de `l'Auto-Unseal`.
 
 
+-1. Création CA et certificat sur `192.168.0.241:8100` 
+
+- `Fichier de configuration .cnf`
+
+**=== CA ===**
+
+        nano /etc/Vault/CA_Vault/Config/CA_Vault.cnf
+
+-Editer
+ 
+        [ req ]
+        default_bits       = 4096
+        prompt             = no
+        default_md         = sha256
+        distinguished_name = dn
+        x509_extensions    = v3_ca
+        
+        [ dn ]
+        CN = Sednal-CA
+        
+        [ v3_ca ]
+        basicConstraints = critical, CA:TRUE
+        keyUsage = critical, keyCertSign, cRLSign
+        subjectKeyIdentifier = hash
+
+- Génération du CA
+
+       openssl req -x509 -newkey rsa:4096 -keyout  /etc/Vault/CA_Vault/Cert/private/CA.key -out /etc/Vault/CA_Vault/Cert/public/CA.crt -days 3650 -nodes -config /etc/Vault/CA_Vault/Config/CA_Vault.cnf
+
+- Copier les certificat dans les dossiers :
+
+       scp sednal@192.168.0.238 /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/vault/Vault/Vault_Root/Cert/public/
+       cp /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/Vault/Vault_Auto/Cert/public/
+
+---
+
+**=== Vault_Auto ===**
+
+        nano /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
+
+-Editer
+
+        [ req ]
+        default_bits       = 4096
+        prompt             = no
+        default_md         = sha256
+        req_extensions     = req_ext
+        distinguished_name = dn
+        
+        [ dn ]
+        CN = vault_2.sednal.lan
+        
+        [ req_ext ]
+        subjectAltName = @alt_names
+        keyUsage = critical, digitalSignature, keyEncipherment
+        extendedKeyUsage = serverAuth
+        basicConstraints = critical, CA:FALSE
+        
+        [ alt_names ]
+        DNS.1 = vault_2.sednal.lan
+        DNS.2 = localhost
+        IP.1 = 192.168.0.241
+        IP.2 = 127.0.0.1
+   
+---
+
+-
 
 
 
--1. Création CA et certificat sur `192.168.0.241` 
+        
+-2. Création CA et certificat sur `192.168.0.238:8200` 
+
+**=== Vault_Root ===**
+
+- `Fichier de configuration .cnf`
+
+       nano /etc/Vault/Vault_Root/Config/Vault_Auto.cnf
+
+-Editer
+
+        [ req ]
+        default_bits       = 4096
+        prompt             = no
+        default_md         = sha256
+        req_extensions     = req_ext
+        distinguished_name = dn
+        
+        [ dn ]
+        CN = vault_2.sednal.lan
+        
+        [ req_ext ]
+        subjectAltName = @alt_names
+        keyUsage = critical, digitalSignature, keyEncipherment
+        extendedKeyUsage = serverAuth
+        basicConstraints = critical, CA:FALSE
+        
+        [ alt_names ]
+        DNS.1 = vault.sednal.lan
+        DNS.2 = localhost
+        IP.1 = 192.168.0.238
+        IP.2 = 127.0.0.1
+
+<details>
+<summary>
+<h2>
+ EXPLICATION FICHIER DE CONFIGURATION 
+</h2>
+</summary>
+
+## Section [req]
+- **default_bits = 4096** → Taille de la clé RSA (sécurité renforcée)
+- **prompt = no** → Pas de questions interactives (mode automatique)
+- **default_md = sha256** → Algorithme de hachage (SHA-256)
+- **req_extensions = req_ext** → Extensions pour la demande CSR
+- **distinguished_name = dn** → Référence vers les infos d'identité
+
+## Section [dn]
+- **CN = vault.sednal.lan** → Common Name (nom du serveur)
+
+## Section [req_ext]
+- **subjectAltName = @alt_names** → Noms alternatifs pour le certificat
+- **keyUsage = critical, digitalSignature, keyEncipherment**
+  - `critical` → Extension obligatoire
+  - `digitalSignature` → Peut signer (authentification TLS)
+  - `keyEncipherment` → Peut chiffrer des clés (sessions HTTPS)
+- **extendedKeyUsage = serverAuth** → Usage : serveur web/API uniquement
+- **basicConstraints = critical, CA:FALSE** → N'est PAS une autorité de certification
+
+
+</details>
+
+   
+-3. Déploiement de certificat avec renouvellement automatique via systemd
 
 
 
 
 
--2. Création CA et certificat sur `192.168.0.238` 
 
 
 
 
 
--3. Déploiment Certificat + renouvelement auto via systemd
+
 
 
 
