@@ -1,4 +1,14 @@
 #!/bin/bash
+# ===== Création utilisateur et groupe vault
+
+# Créer le groupe
+sudo groupadd vault
+
+# Créer l'utilisateur système
+sudo useradd -r -g vault -d /etc/Vault -s /bin/false vault
+
+# Ajouter sednal au groupe
+sudo usermod -aG vault sednal
 
 # === Vault_Root ===
 
