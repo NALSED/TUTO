@@ -546,26 +546,28 @@ Le service sera déclenché par le timer.
 
 ## 4️⃣ `Installation` 
 
--1. Choisir installation via
+#### 1. Déploiement via [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1) 
 
-# Avantages et Inconvénients
+`Avantages`
+- **Installation facile** : Utilise les commandes classiques de `apt` pour installer Vault rapidement.
+- **Dépendances gérées** : `apt` gère les dépendances pour vous, ce qui facilite le processus d'installation.
+- **Mises à jour automatiques** : Avec `apt`, Vault peut recevoir des mises à jour de sécurité et des améliorations automatiquement.
 
-### [wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
-- **Avantages** :
-  - Télécharge des fichiers depuis Internet (HTTP, HTTPS, FTP).
-  - Peut reprendre les téléchargements interrompus.
-- **Inconvénients** :
-  - Ne gère pas les paquets ou les dépendances.
-  - Pas conçu pour installer des logiciels.
+`Inconvénients`
+- **Version plus ancienne** : Les dépôts officiels peuvent ne pas proposer la dernière version de Vault.
+- **Pas de contrôle sur la version** : Vous pouvez être limité à la version stable disponible dans les dépôts, même si une version plus récente est disponible ailleurs.
+  
+#### 2. Déploiement via [wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
 
- ### [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1)
-- **Avantages** :
-  - Installe et gère les logiciels et leurs dépendances.
-  - Pratique pour maintenir son système à jour.
-- **Inconvénients** :
-  - Nécessite une connexion aux dépôts officiels.
-  - Pas conçu pour télécharger des fichiers autres que des paquets logiciels.
-  - 
+`Avantages`
+- **Dernière version** : Vous pouvez télécharger directement la dernière version de Vault depuis le site officiel de HashiCorp, garantissant ainsi que vous avez la version la plus récente.
+- **Plus de contrôle** : Vous avez un contrôle total sur la version et la source du binaire.
+
+`Inconvénients`
+- **Mises à jour manuelles** : Les mises à jour de Vault doivent être effectuées manuellement (téléchargement et remplacement des binaires).
+- **Dépendances manuelles** : Vous devrez peut-être gérer vous-même certaines dépendances (par exemple, l'installation de `unzip` si vous téléchargez un fichier ZIP).
+- **Installation plus complexe** : Nécessite de suivre plusieurs étapes pour décompresser le binaire et le déplacer dans un répertoire accessible.
+
 
 **- 192.168.0.241 => Installation Vault ARM64**
 
