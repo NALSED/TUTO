@@ -67,7 +67,7 @@ Ce tutotriel à pour objectif :
 
 - Prérequis
    -Pouvoir faire tourner Vault A 24h/24h ici => raspbery-pi 192.168.0.241
-   - openssl
+   - openssl /gnupg / sudo 
    - kleopatra (chiffrement GPG des clé vault)
    - DNS Resolver, Ici Pfsense.
    - Optionelle : VSC comme éditeur de texte.
@@ -157,11 +157,11 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 ---
 
--1. Création CA et certificat sur `192.168.0.241:8100` 
+**-1. Création CA et certificat sur `192.168.0.241:8100`** 
 
-- `Fichier de configuration .cnf`
+- Fichier de configuration .cnf
 
-**=== CA ===**
+`=== CA ===`
 
        sudo nano /etc/Vault/CA_Vault/Config/CA_Vault.cnf
 
@@ -193,7 +193,7 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 ---
 
-**=== Vault_Auto ===**
+`=== Vault_Auto ===`
 
         nano /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
 
@@ -221,19 +221,23 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
         IP.1 = 192.168.0.241
         IP.2 = 127.0.0.1
 
-**-1. Clé + CSR**
+`-1. Clé + CSR`
 
           openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -nodes -passout pass: -config /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
 
-**-2. Certificat signé par CA**
+`-2. Certificat signé par CA`
 
           openssl x509 -req -in /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
+
+- Suppression CSR (Pour renouvelement)
+
+       rm -f /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
    
 ---
         
--2. Création CA et certificat sur `192.168.0.238:8200` 
+**-2. Création CA et certificat sur `192.168.0.238:8200`** 
 
-**=== Vault_Root ===**
+`=== Vault_Root ===`
 
 - `Fichier de configuration .cnf`
 
@@ -263,13 +267,17 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
         IP.1 = 192.168.0.238
         IP.2 = 127.0.0.1
 
-**-1. Clé + CSR**
+`-1. Clé + CSR`
 
           openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Root/Cert/private/Vault_Root.key -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -nodes -config /etc/Vault/Vault_Root/Config/Vault_Root.cnf
 
-**-2. Certificat signé par CA**
+`-2. Certificat signé par CA`
 
           openssl x509 -req -in /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /etc/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
+
+- Suppression CSR (Pour renouvelement)
+
+       rm -f /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
           
 ---
 
@@ -307,13 +315,13 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 
 
-- `192.168.0.241`
+- ### `192.168.0.241`
 
-- ⚠️ Placer $USER dans le groupe vault
+- ⚠️ Placer $USER dans le groupe vault ⚠️
   
        sudo usermod -aG vault sednal
 
-  **=== CA ==**
+  `=== CA ==`
 
 - CA.key
 
@@ -332,7 +340,7 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 
 
-**=== Vault_Auto ===**
+`=== Vault_Auto ===`
 
 - Vault_Auto.crt
   
@@ -353,13 +361,13 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 ---
 
-- `192.168.0.238`
+- ### `192.168.0.238`
 
 - ⚠️ Placer $USER dans le groupe vault
 
        sudo usermod -aG vault sednal
 
-**=== Vault_Root ===**
+`=== Vault_Root ===`
 
 - Vault_Root.crt
 
@@ -383,66 +391,138 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 ---
 
--3. Déploiement de certificat avec renouvellement automatique via systemd
+**-4. Déploiement des certificat avec renouvellement automatique via systemd**
+
+       sudo nano /etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
+
+-Editer
+
+ [Script de renouvelement automatique 192.168.0.241](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-5-renouvelement_Vault_Auto.sh)
+
+[Script de renouvelement automatique 192.168.0.238](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-6-renouvelement_Vault_root.sh)
 
 
+- Le rendre exécutable     
+      
+      sudo chmod +x /etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
 
 
+      
+**Inscription exécution du Script => Systemd :**
 
 
+-1. `=== SERVICE ===`
 
+      sudo nano /etc/systemd/system/renew_vault_ssl.service 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<details>
-<summary>
-<h2>
-
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-
-
-<details>
-<summary>
-<h2>
-
-</h2>
-</summary>
-blabla
-</details>
+- Editer
+      
+      [Unit]
+      Description=Renouvellement cerficats SSL Vault
+      After=network.target
+      
+      [Service]
+      Type=oneshot
+      ExecStart=/etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
+      User=sednal
+      Group=vault
+      ExecStartPost=/usr/bin/systemctl restart vault.service
+  
+      [Install]
+      WantedBy=multi-user.target
 
 
 ---
 
+-2. `=== TIMER ===` 
+     
+     sudo nano /etc/systemd/system/renew_vault_ssl.timer 
+
+      [Unit]
+      Description=Renouvellement du certificat tous les 330 jours
+      Requires=renew_vault_ssl.service
+      
+      [Timer]
+      OnBootSec=5min
+      OnUnitActiveSec=330d
+      Persistent=true
+      
+      [Install]
+      WantedBy=timers.target
+
+---
+
+-3. Démarrage 
+
+     `TEST`  
+      
+       sudo systemctl daemon-reload 
+
+       # .service
+       sudo systemctl enable renew_vault_ssl.service 
+       sudo systemctl start renew_vault_ssl.service 
+
+       # .timer
+       sudo systemctl enable renew_vault_ssl.timer 
+       sudo systemctl start renew_vault_ssl.time
+
+---
+
+## 4️⃣ `Installation` 
+
+**- 192.168.0.241 => Installation Vault ARM64**
+
+- Choisir installation via
+
+[wget]()
+[apt]()
+
+-fichier de configuration .hcl
 
 
 
-<details>
-<summary>
-<h2>
 
-</h2>
-</summary>
-blabla
-</details>
+**- 192.168.0.238 => Installation Vault AMD64**
+
+[wget]()
+[apt]()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+## 5️⃣ `Configuration` [Accés rapide]()
+
 
 
 ---
@@ -463,55 +543,3 @@ blabla
 ---
 
 
-
-<details>
-<summary>
-<h2>
-  
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-
-
-
-<details>
-<summary>
-<h2>
-
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-
-
-<details>
-<summary>
-<h2>
-
-</h2>
-</summary>
-blabla
-</details>
-
-
----
-
-
-
-<details>
-<summary>
-<h2>
-  
-</h2>
-</summary>
-blabla
-</details>
