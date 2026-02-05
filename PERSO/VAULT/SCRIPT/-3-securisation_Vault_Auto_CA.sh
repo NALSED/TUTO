@@ -19,6 +19,3 @@ sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
 sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.crt
 sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.crt
 
-#- CA.srl 
-sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.srl
-sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.srl
