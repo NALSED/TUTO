@@ -18,7 +18,7 @@ chown vault:vault /etc/Vault
 chown vault:vault /etc/Vault/Vault_Root
 chown vault:vault /etc/Vault/Vault_Root/Cert
 chown vault:vault /etc/Vault/Vault_Root/Cert/public
-chown vault:vault /etc/Vau
+chown vault:vault /etc/Vault/Vault_Root/Cert/private
 
 # Héritage
 chmod g+s /etc/Vault/Vault_Root/Cert/public
