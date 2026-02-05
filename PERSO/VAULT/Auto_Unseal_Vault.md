@@ -140,6 +140,7 @@ Ce tutotriel à pour objectif :
 
 
 ---
+---
 
 ## 2️⃣ `Certificats`
 
@@ -152,6 +153,7 @@ Ce tutotriel à pour objectif :
 
 Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root` (192.168.0.238) en second pour respecter l'odre de mise en place de `l'Auto-Unseal`.
 
+---
 
 -1. Création CA et certificat sur `192.168.0.241:8100` 
 
