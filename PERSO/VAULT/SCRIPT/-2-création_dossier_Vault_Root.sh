@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # === Vault_Root ===
 
 sudo mkdir -p /etc/Vault/Vault_Root/Cert/{public,private}
