@@ -1,17 +1,30 @@
-# Mise en place de l'Auto-unseal pour Vault.
+# `Installation standard et Mise en place de l'Auto-unseal.`
 
 ---
 
-## Installation compléte et configuration démarrage de Vault via Auto-unseal
+Ce tutotriel à pour objectif : 
+
+-1. La mise en place de certificat ssl pour que les serveur Vault soit en https,
+-2. Le renouvelement automatique de ces certificats via systemd
+-3. L'installation standard de vault en version ARM64 et AMD64.
+-4. La configuration et la mise en place de l'aut-unseal via transit secret a
+
+---
+## 1️⃣ `Infra` [Accés rapide]()
+## 2️⃣ `Certificats` [Accés rapide]() 
+## 3️⃣ `Renouvelement` [Accés rapide]()
+## 4️⃣ `Installation` [Accés rapide]()
+## 5️⃣ `Configuration` [Accés rapide]()
+## 6️⃣ `` [Accés rapide]()
+
+
 
 ---
 
----
+## 1️⃣ `Infra`
 
 
-# Vault Auto-Unseal — Architecture
-
-### 🥼 LAB 🥼
+#### 🥼 LAB 🥼
 
 | IP               | Machine        | Détails RAM / CPU                | OS        |
 |-----------------|----------------|---------------------------------|-----------|
@@ -20,7 +33,7 @@
 
 ---
 
-## === SCHEMA ===
+### === SCHEMA ===
 ```
      === 192.168.0.241 ===                              === 192.168.0.242 ===
 ┌─────────────────────────────┐                    ┌─────────────────────────────┐
@@ -41,7 +54,7 @@
   (vault operator init/unseal)                     via Vault A à chaque redémarrage
 ```
 
-## Ordre de déploiement
+### Ordre de déploiement
 
 ```
 1) Démarrer Vault A         
@@ -52,26 +65,64 @@
 6) Démarrer Vault B          
 ```
 
+- Prérequis
+   -Pouvoir faire tourner Vault A 24h/24h ici => raspbery-pi 192.168.0.241
+   - openssl
+   - kleopatra (chiffrement GPG des clé vault)
+   - DNS Resolver, Ici Pfsense.
+   - Optionelle : VSC comme éditeur de texte.
+
 
 ---
----
-
-## 1️⃣ Prérequis
-#### 1.1) openssl ici => raspbery-pi 192.168.0.241
-#### 1.2) Pouvoir faire tourner Vault A 24h/24h ici => raspbery-pi 192.168.0.241
-#### 1.3) kleopatra (chiffrement GPG)
-#### 1.4) DNS Resolver, Ici Pfsense.
-#### 1.5) optionelle : VSC comme éditeur de texte.
-
-
 
 === PATH 192.168.0.241:8100===
 
-
+     /etc/Vault
+        |
+        ├── CA_Vault/
+        |   |
+        |   ├── Cert/
+        |   |   ├── public/
+        |   |   |       └── CA.crt
+        |   |   |
+        |   |   └── private/
+        │   |       └── CA.key   
+        |   | 
+        |   └── Config/
+        |       └── CA_Vault.cnf
+        |
+        └── Vault_Auto/   
+            |
+            ├── Cert/
+            |   ├── public/
+            |   |   ├── CA.crt                
+            |   |   └── Vault_Auto.crt
+            |   |
+            |   └── private/
+            │       └── Vault_Auto.key
+            |
+            └── Config/
+                    ├── Vault_Auto.hcl   
+                    └── Vault_Auto.cnf
 
 
 === PATH 192.168.0.242:8200===
 
+      /etc/Vault
+        | 
+        ├── Vault_Root/       
+        |   |              
+        |   ├── Cert/
+        |   |   ├── public/
+        |   |   |   ├── CA.crt
+        |   |   |   └── Vault_Root.crt
+        |   |   |
+        |   |   └── private/
+        │   |       └── Vault_Root.key    
+        |   | 
+        |   └── Config/
+        |       ├── Vault_Root.hcl 
+        |       └── Vault_Root.cnf  
 
 
 
@@ -89,17 +140,117 @@
 
 
 
+---
 
 
 
 
+<details>
+<summary>
+<h2>
+
+</h2>
+</summary>
+blabla
+</details>
+
+
+---
+
+
+
+<details>
+<summary>
+<h2>
+
+</h2>
+</summary>
+blabla
+</details>
+
+
+---
 
 
 
 
+<details>
+<summary>
+<h2>
+
+</h2>
+</summary>
+blabla
+</details>
+
+
+---
 
 
 
 
+<details>
+<summary>
+<h2>
+ 
+</h2>
+</summary>
+blabla
+</details>
 
 
+---
+
+
+
+<details>
+<summary>
+<h2>
+  
+</h2>
+</summary>
+blabla
+</details>
+
+
+---
+
+
+
+
+<details>
+<summary>
+<h2>
+
+</h2>
+</summary>
+blabla
+</details>
+
+
+---
+
+
+
+<details>
+<summary>
+<h2>
+
+</h2>
+</summary>
+blabla
+</details>
+
+
+---
+
+
+
+<details>
+<summary>
+<h2>
+  
+</h2>
+</summary>
+blabla
+</details>
