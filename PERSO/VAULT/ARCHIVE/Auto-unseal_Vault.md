@@ -16,9 +16,9 @@
 ---
 
 
-# Vault Auto-Unseal — Architecture
+#### Vault Auto-Unseal — Architecture
 
-### 🥼 LAB 🥼
+#### 🥼 LAB 🥼
 
 | IP               | Machine        | Détails RAM / CPU                | OS        |
 |-----------------|----------------|---------------------------------|-----------|
