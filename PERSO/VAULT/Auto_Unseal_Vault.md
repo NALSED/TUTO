@@ -66,12 +66,15 @@ Ce tutotriel à pour objectif :
 ```
 
 - Prérequis
+
    -Pouvoir faire tourner Vault A 24h/24h ici => raspbery-pi 192.168.0.241
    - openssl /gnupg / sudo 
    - kleopatra (chiffrement GPG des clé vault)
    - DNS Resolver, Ici Pfsense.
-   - Optionelle : VSC comme éditeur de texte.
 
+- Optionelle :
+   - VSC comme éditeur de texte.
+   - ⚠️ Des commandes ssh sont présente,pour créer des connections ssh sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
 
 ---
 
@@ -106,7 +109,9 @@ Ce tutotriel à pour objectif :
                     └── Vault_Auto.cnf
 
 
-#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-1-creation_dossier_Vault_Auto_CA.sh)
+-1. Créer les dossiers via les scripts.
+
+#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-1-creation_dossier_Vault_Auto_CA.sh) ⬆️
 
 
 === PATH 192.168.0.238:8200===
@@ -127,17 +132,16 @@ Ce tutotriel à pour objectif :
                ├── Vault_Root.hcl 
                └── Vault_Root.cnf  
 
-#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-2-creation_dossier_Vault_Root.sh)
+-1. Créer les dossiers via les scripts.
 
--1. Créer le dossier via les scripts.
--2. Déclarer FQDN dans Pfsense
+#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-2-creation_dossier_Vault_Root.sh) ⬆️
+
+
+-2. Déclarer `FQDN` dans Pfsense
 
 <img width="1144" height="81" alt="image" src="https://github.com/user-attachments/assets/3124aa98-3ae9-4bec-b408-064408dff0d3" />
 
 `[NOTE]` ici `vault.sednal.lan` = Vault_Root, et `vault.sednal.lan` = Vault_Auto.
-
-⚠️ Des commandes ssh sont présente,pour créer des connections ssh sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
-
 
 ---
 ---
@@ -153,7 +157,7 @@ Ce tutotriel à pour objectif :
 **-4. Déploiement des certificat avec renouvellement automatique via systemd**
 
 
-Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root` (192.168.0.238) en second pour respecter l'odre de mise en place de `l'Auto-Unseal`.
+ `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root` (192.168.0.238) en second pour respecter l'ordre de mise en place de `l'Auto-Unseal`.
 
 ---
 
