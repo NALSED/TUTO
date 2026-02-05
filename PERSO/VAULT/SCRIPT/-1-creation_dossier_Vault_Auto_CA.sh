@@ -47,3 +47,21 @@ chown vault:vault /etc/Vault/Vault_Auto/Cert/private
 # Héritage
 chmod g+s /etc/Vault/Vault_Auto/Cert/public
 chmod g+s /etc/Vault/Vault_Auto/Cert/private
+
+# === Script Renouvelement ===
+
+# Création du répertoire
+sudo mkdir -p /etc/Vault_Script/Script_Renouvelement
+
+# Permissions
+sudo chmod 750 /etc/Vault_Script
+sudo chmod 750 /etc/Vault_Script/Script_Renouvelement
+
+# Propriétaire 
+sudo chown sednal:vault /etc/Vault_Script
+sudo chown sednal:vault /etc/Vault_Script/Script_Renouvelement
+
+
+
+
+
