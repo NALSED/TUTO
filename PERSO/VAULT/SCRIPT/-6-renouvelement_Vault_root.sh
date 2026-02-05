@@ -14,7 +14,6 @@ generation(){
         -in /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr \
         -CA /etc/Vault/CA_Vault/Cert/public/CA.crt \
         -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key \
-        -CAserial /etc/Vault/CA_Vault/Cert/public/CA.srl \
         -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt \
         -days 365 \
         -sha256 \
