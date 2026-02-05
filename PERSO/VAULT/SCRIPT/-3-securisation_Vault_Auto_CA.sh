@@ -12,7 +12,7 @@ sudo chmod 640 /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
 sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
 
 #- CA.key
-sudo chmod 600 /etc/Vault/CA_Vault/Cert/private/CA.key
+sudo chmod 640 /etc/Vault/CA_Vault/Cert/private/CA.key
 sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
 
 #- CA.crt
