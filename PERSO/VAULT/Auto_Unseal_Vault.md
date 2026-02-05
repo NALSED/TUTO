@@ -448,11 +448,10 @@ et sur 192.168.0.238
     [Install]
     WantedBy=timers.target
 
----
 
 -3. Démarrage 
 
-     `TEST`  
+  
       
        sudo systemctl daemon-reload 
 
