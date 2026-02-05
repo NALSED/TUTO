@@ -391,7 +391,7 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 ---
 
-**-4. Déploiement des certificat avec renouvellement automatique via systemd**
+## 3️⃣ `Renouvelement` 
 
        sudo nano /etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
 
