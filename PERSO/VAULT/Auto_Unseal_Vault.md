@@ -188,9 +188,15 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - Copier les certificat dans les dossiers :
 
-       scp sednal@192.168.0.238 /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/vault/Vault/Vault_Root/Cert/public/
+sur 192.168.0.241
+
        cp /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/Vault/Vault_Auto/Cert/public/
 
+       scp /etc/Vault/CA_Vault/Cert/public/CA.crt sednal@192.168.0.238:~/
+
+et sur 192.168.0.238
+
+      sudo mv ~/CA.crt /etc/Vault/Vault_Root/Cert/public/
 ---
 
 `=== Vault_Auto ===`
