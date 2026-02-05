@@ -106,7 +106,7 @@ Ce tutotriel à pour objectif :
                     └── Vault_Auto.cnf
 
 
-#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/Vault_auto_CA.sh)
+#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-1-creation_dossier_Vault_auto_CA.sh)
 
 
 === PATH 192.168.0.242:8200===
@@ -127,7 +127,7 @@ Ce tutotriel à pour objectif :
                ├── Vault_Root.hcl 
                └── Vault_Root.cnf  
 
-#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/Vault_Root.sh)
+#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-2-creation_dossier_Vault_Root.sh)
 
 -1. Créer le dossier via les scripts.
 -2. Déclarer FQDN dans Pfsense
@@ -223,11 +223,11 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 **-1. Clé + CSR**
 
-          openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -nodes -passout pass: -config /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
+          openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -nodes -passout pass: -config /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
 
 **-2. Certificat signé par CA**
 
-          openssl x509 -req -in /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
+          openssl x509 -req -in /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
    
 ---
         
@@ -265,11 +265,11 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 **-1. Clé + CSR**
 
-          openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Root/Cert/private/Vault_Root.key -out /etc/Vault/Vault_Root/Cert/private/Vault_Root.csr -nodes -config /etc/Vault/Vault_Root/Config/Vault_Root.cnf
+          openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Root/Cert/private/Vault_Root.key -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -nodes -config /etc/Vault/Vault_Root/Config/Vault_Root.cnf
 
 **-2. Certificat signé par CA**
 
-          openssl x509 -req -in /etc/Vault/Vault_Root/Cert/private/Vault_Root.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /etc/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
+          openssl x509 -req -in /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /etc/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
           
 ---
 
@@ -305,19 +305,55 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 **-3. Sécuriser**
 
-- Proriété, droits et suppression fichier .csr 
+Propriété, droits sur les fichiers créés
 
 - `192.168.0.241`
-  
-          rm -f /etc/Vault/Vault_Root/Cert/private/Vault.csr
 
-[Script nettoyage]()
+  **=== CA ==**
+
+- CA.key
+
+     sudo chmod 600 /etc/Vault/CA_Vault/Cert/private/CA.key
+     sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
+
+- CA.crt
+
+     sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.crt
+     sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.crt
+
+- CA.srl 
+
+     sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.srl
+     sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.srl
+
+
+
+**=== Vault_Auto ===**
+
+- Vault_Auto.crt
+  
+     sudo chmod 644 /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
+     sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
+
+- Vault_Auto.csr
+  
+     sudo chmod 644 /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
+     sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
+
+- Vault_Auto.key - Corriger (déjà dans private/)
+  
+     sudo chmod 640 /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
+     sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
+
+[Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-3-securisation_Vault_auto_CA.sh)
+
+---
 
 - `192.168.0.238`
 
-          rm -f /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
+**=== Vault_Root ===**
 
-[Script nettoyage]()
+[Script]()
 
 
 ---
