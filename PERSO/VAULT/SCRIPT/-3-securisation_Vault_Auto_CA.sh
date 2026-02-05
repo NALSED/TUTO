@@ -2,10 +2,6 @@
 
 # === Vault_Auto + CA ===
 
-#-Vault_Auto.csr
-
- sudo chmod 644 /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
- sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
 
 #- Vault_Auto.crt
 sudo chmod 644 /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
