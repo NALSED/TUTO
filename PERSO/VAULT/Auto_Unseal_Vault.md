@@ -546,9 +546,30 @@ Le service sera déclenché par le timer.
 
 ## 4️⃣ `Installation` 
 
+-1. Choisir installation via
+
+# Avantages et Inconvénients
+
+### [wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
+- **Avantages** :
+  - Télécharge des fichiers depuis Internet (HTTP, HTTPS, FTP).
+  - Peut reprendre les téléchargements interrompus.
+- **Inconvénients** :
+  - Ne gère pas les paquets ou les dépendances.
+  - Pas conçu pour installer des logiciels.
+
+ ### [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1)
+- **Avantages** :
+  - Installe et gère les logiciels et leurs dépendances.
+  - Pratique pour maintenir son système à jour.
+- **Inconvénients** :
+  - Nécessite une connexion aux dépôts officiels.
+  - Pas conçu pour télécharger des fichiers autres que des paquets logiciels.
+  - 
+
 **- 192.168.0.241 => Installation Vault ARM64**
 
--1. fichier de configuration .hcl
+-2. fichier de configuration .hcl
 
 - Pour information, à implémenter durant l'installation
 
@@ -571,18 +592,10 @@ Le service sera déclenché par le timer.
          api_addr     = "https://vault_2.sednal.lan:8100"
          cluster_addr = "https://vault_2.sednal.lan:8101"
 
-
--2. Choisir installation via
-
-[wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1) ou
-[apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1)
-
-
 **- 192.168.0.238 => Installation Vault AMD64**
 
--1. fichier de configuration .hcl
+-2. fichier de configuration .hcl
 
-    
 
 - Pour information, à implémenter durant l'installation
 
@@ -604,13 +617,7 @@ Le service sera déclenché par le timer.
           
           api_addr     = "https://vault.sednal.lan:8200"
           cluster_addr = "https://vault.sednal.lan:8201"
-
-
--2. Choisir installation via
-
-[wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1) ou
-[apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1)
-
+  
 ---
 
 ## 5️⃣ `Configuration` 
