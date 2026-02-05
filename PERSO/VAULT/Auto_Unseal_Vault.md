@@ -353,7 +353,7 @@ et sur 192.168.0.238
        sudo chmod 644 /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
        sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
 
-- Vault_Auto.key - Corriger (déjà dans private/)
+- Vault_Auto.key 
   
        sudo chmod 640 /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
        sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
