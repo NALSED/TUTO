@@ -303,28 +303,32 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 </details>
 
 
-**-3. Sécuriser**
+**-3. Sécuriser => propriété, droits sur les fichiers créés**
 
-Propriété, droits sur les fichiers créés
+
 
 - `192.168.0.241`
+
+- ⚠️ Placer $USER dans le groupe vault
+  
+       sudo usermod -aG vault sednal
 
   **=== CA ==**
 
 - CA.key
 
-     sudo chmod 600 /etc/Vault/CA_Vault/Cert/private/CA.key
-     sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
+       sudo chmod 600 /etc/Vault/CA_Vault/Cert/private/CA.key
+       sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
 
 - CA.crt
 
-     sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.crt
-     sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.crt
+       sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.crt
+       sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.crt
 
 - CA.srl 
 
-     sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.srl
-     sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.srl
+       sudo chmod 644 /etc/Vault/CA_Vault/Cert/public/CA.srl
+       sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.srl
 
 
 
@@ -332,18 +336,18 @@ Propriété, droits sur les fichiers créés
 
 - Vault_Auto.crt
   
-     sudo chmod 644 /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
-     sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
+       sudo chmod 644 /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
+       sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt
 
 - Vault_Auto.csr
   
-     sudo chmod 644 /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
-     sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
+       sudo chmod 644 /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
+       sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
 
 - Vault_Auto.key - Corriger (déjà dans private/)
   
-     sudo chmod 640 /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
-     sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
+       sudo chmod 640 /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
+       sudo chown vault:vault /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key
 
 [Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-3-securisation_Vault_auto_CA.sh)
 
@@ -351,8 +355,29 @@ Propriété, droits sur les fichiers créés
 
 - `192.168.0.238`
 
+- ⚠️ Placer $USER dans le groupe vault
+
+       sudo usermod -aG vault sednal
+
 **=== Vault_Root ===**
 
+- Vault_Root.crt
+
+       sudo chmod 644 /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt
+       sudo chown vault:vault /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt
+
+
+- Vault_Root.csr
+
+       sudo chmod 644 /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
+       sudo chown vault:vault /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
+
+
+- Vault_Root.key 
+
+       sudo chmod 640 /etc/Vault/Vault_Root/Cert/private/Vault_Root.key
+       sudo chown vault:vault /etc/Vault/Vault_Root/Cert/private/Vault_Root.key
+ 
 [Script]()
 
 
