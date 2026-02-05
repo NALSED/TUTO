@@ -60,14 +60,3 @@ sudo chmod 750 /etc/Vault_Script/Script_Renouvelement
 # Propriétaire 
 sudo chown -R sednal:vault /etc/Vault_Script
 
-# ===== Initialisation fichiers CA =====
-# Créer CA.srl pour le suivi des numéros de série
-sudo touch /etc/Vault/CA_Vault/Cert/public/CA.srl
-echo "01" | sudo tee /etc/Vault/CA_Vault/Cert/public/CA.srl > /dev/null
-sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/CA.srl
-sudo chmod 664 /etc/Vault/CA_Vault/Cert/public/CA.srl
-
-# Créer index.txt pour la base de données CA (optionnel mais recommandé)
-sudo touch /etc/Vault/CA_Vault/Cert/public/index.txt
-sudo chown vault:vault /etc/Vault/CA_Vault/Cert/public/index.txt
-sudo chmod 664 /etc/Vault/CA_Vault/Cert/public/index.txt
