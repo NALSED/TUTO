@@ -474,8 +474,8 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - Choisir installation via
 
-[wget]()
-[apt]()
+[wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
+[apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1)
 
 -fichier de configuration .hcl
 
@@ -484,8 +484,8 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 **- 192.168.0.238 => Installation Vault AMD64**
 
-[wget]()
-[apt]()
+[wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
+[apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1)
 
 
 
