@@ -148,7 +148,9 @@ Ce tutotriel à pour objectif :
 
 **-2. Création CA et certificat sur 192.168.0.238** 
 
-**-3. Déploiement des certificat avec renouvellement automatique via systemd**
+**-3. Sécurisation fichier**
+
+**-4. Déploiement des certificat avec renouvellement automatique via systemd**
 
 
 Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root` (192.168.0.238) en second pour respecter l'odre de mise en place de `l'Auto-Unseal`.
@@ -161,7 +163,7 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 **=== CA ===**
 
-        nano /etc/Vault/CA_Vault/Config/CA_Vault.cnf
+       sudo nano /etc/Vault/CA_Vault/Config/CA_Vault.cnf
 
 -Editer
  
@@ -218,13 +220,16 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
         DNS.2 = localhost
         IP.1 = 192.168.0.241
         IP.2 = 127.0.0.1
+
+**-1. Clé + CSR**
+
+          openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -nodes -passout pass: -config /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
+
+**-2. Certificat signé par CA**
+
+          openssl x509 -req -in /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
    
 ---
-
--
-
-
-
         
 -2. Création CA et certificat sur `192.168.0.238:8200` 
 
@@ -232,7 +237,7 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - `Fichier de configuration .cnf`
 
-       nano /etc/Vault/Vault_Root/Config/Vault_Auto.cnf
+       nano /etc/Vault/Vault_Root/Config/Vault_Root.cnf
 
 -Editer
 
@@ -257,6 +262,16 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
         DNS.2 = localhost
         IP.1 = 192.168.0.238
         IP.2 = 127.0.0.1
+
+**-1. Clé + CSR**
+
+          openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Root/Cert/private/Vault_Root.key -out /etc/Vault/Vault_Root/Cert/private/Vault_Root.csr -nodes -config /etc/Vault/Vault_Root/Config/Vault_Root.cnf
+
+**-2. Certificat signé par CA**
+
+          openssl x509 -req -in /etc/Vault/Vault_Root/Cert/private/Vault_Root.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /etc/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
+          
+---
 
 <details>
 <summary>
@@ -287,7 +302,26 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 </details>
 
-   
+
+**-3. Sécuriser**
+
+- Proriété, droits et suppression fichier .csr 
+
+- `192.168.0.241`
+  
+          rm -f /etc/Vault/Vault_Root/Cert/private/Vault.csr
+
+[Script nettoyage]()
+
+- `192.168.0.238`
+
+          rm -f /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.csr
+
+[Script nettoyage]()
+
+
+---
+
 -3. Déploiement de certificat avec renouvellement automatique via systemd
 
 
