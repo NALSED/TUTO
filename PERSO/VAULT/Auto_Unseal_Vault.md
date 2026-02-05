@@ -681,6 +681,10 @@ Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 
 
 
+
+
+
+
 - Activer Transit
       
         vault secrets enable transit
@@ -719,7 +723,7 @@ Sortie attendue
 
 -Créer le token limité
         
-        vault token create -policy=vault-b-policy -orphan
+        vault token create -policy=autounseal 
 
 
 
