@@ -184,12 +184,12 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - Génération du CA
 
-     openssl req -x509 -newkey rsa:4096 -keyout  /etc/Vault/CA_Vault/Cert/private/CA.key -out /etc/Vault/CA_Vault/Cert/public/CA.crt -days 3650 -nodes -config /etc/Vault/CA_Vault/Config/CA_Vault.cnf
+      openssl req -x509 -newkey rsa:4096 -keyout  /etc/Vault/CA_Vault/Cert/private/CA.key -out /etc/Vault/CA_Vault/Cert/public/CA.crt -days 3650 -nodes -config /etc/Vault/CA_Vault/Config/CA_Vault.cnf
 
 - Copier les certificat dans les dossiers :
 
-     scp sednal@192.168.0.238 /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/vault/Vault/Vault_Root/Cert/public/
-     cp /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/Vault/Vault_Auto/Cert/public/
+      scp sednal@192.168.0.238 /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/vault/Vault/Vault_Root/Cert/public/
+      cp /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/Vault/Vault_Auto/Cert/public/
 
 ---
 
