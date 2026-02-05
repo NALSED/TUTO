@@ -129,21 +129,51 @@ Ce tutotriel à pour objectif :
 
 #### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/Vault_Root.sh)
 
+-1. Créer le dossier via les scripts.
+-2. Déclarer FQDN dans Pfsense
 
+<img width="1144" height="81" alt="image" src="https://github.com/user-attachments/assets/3124aa98-3ae9-4bec-b408-064408dff0d3" />
 
-
-
-
-
-
-
-
-
-
-
+`[NOTE]` ici `vault.sednal.lan` = Vault_Root, et `vault.sednal.lan` = Vault_Auto.
 
 
 ---
+
+## 2️⃣ `Certificats`
+
+-1. Création CA et certificat sur `192.168.0.241` 
+
+-2. Création CA et certificat sur `192.168.0.238` 
+
+-3. Déploiment Certificat + renouvelement auto via systemd
+
+
+Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root` (192.168.0.238) en second pour respecter l'odre de mise en place de `l'Auto-Unseal`.
+
+
+
+
+
+-1. Création CA et certificat sur `192.168.0.241` 
+
+
+
+
+
+-2. Création CA et certificat sur `192.168.0.238` 
+
+
+
+
+
+-3. Déploiment Certificat + renouvelement auto via systemd
+
+
+
+
+
+
+
 
 
 
