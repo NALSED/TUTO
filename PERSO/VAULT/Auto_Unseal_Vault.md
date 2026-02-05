@@ -472,56 +472,105 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 **- 192.168.0.241 => Installation Vault ARM64**
 
-- Choisir installation via
+-1. fichier de configuration .hcl
 
-[wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
+
+         sudo nano /etc/Vault_Auto/Config/Vault_Auto.hcl 
+
+- Editer
+
+          disable_mlock = true
+          ui = true
+          
+          storage "raft" {
+            path    = "/opt/vault/data"
+            node_id = "vault_auto"
+          }
+          
+          listener "tcp" {
+            address            = "0.0.0.0:8100"
+            tls_disable        = false
+            tls_cert_file      = "/etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt"
+            tls_key_file       = "/etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key"
+            tls_client_ca_file = "/etc/Vault/Vault_Auto/Cert/public/CA.crt"
+          }
+          
+          api_addr     = "https://vault_2.sednal.lan:8100"
+          cluster_addr = "https://vault_2.sednal.lan:8101"
+
+
+-2. Choisir installation via
+
+[wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1) ou
 [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1)
 
--fichier de configuration .hcl
+
+
+
 
 
 
 
 **- 192.168.0.238 => Installation Vault AMD64**
 
-[wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
+-1. fichier de configuration .hcl
+
+         sudo nano /etc/Vault_Root/Config/Vault_Root.hcl 
+
+- Editer
+
+          disable_mlock = true
+          ui = true
+          
+          storage "raft" {
+            path    = "/opt/vault/data"
+            node_id = "vault_auto"
+          }
+          
+          listener "tcp" {
+            address            = "0.0.0.0:8200"
+            tls_disable        = false
+            tls_cert_file      = "/etc/Vault/Vault_Root/Cert/public/Root_Auto.crt"
+            tls_key_file       = "/etc/Vault/Vault_Root/Cert/private/Root_Auto.key"
+            tls_client_ca_file = "/etc/Vault/Vault_Root/Cert/public/CA.crt"
+          }
+          
+          api_addr     = "https://vault.sednal.lan:8200"
+          cluster_addr = "https://vault.sednal.lan:8201"
+
+
+-2. Choisir installation via
+
+[wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1) ou
 [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ---
 
-## 5️⃣ `Configuration` [Accés rapide]()
+## 5️⃣ `Configuration` 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
