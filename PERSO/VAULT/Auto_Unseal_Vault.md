@@ -166,7 +166,7 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
        sudo nano /etc/Vault/CA_Vault/Config/CA_Vault.cnf
 
 -Editer
- 
+          
     [ req ]
     default_bits       = 4096
     prompt             = no
@@ -184,12 +184,12 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - Génération du CA
 
-       openssl req -x509 -newkey rsa:4096 -keyout  /etc/Vault/CA_Vault/Cert/private/CA.key -out /etc/Vault/CA_Vault/Cert/public/CA.crt -days 3650 -nodes -config /etc/Vault/CA_Vault/Config/CA_Vault.cnf
+    openssl req -x509 -newkey rsa:4096 -keyout  /etc/Vault/CA_Vault/Cert/private/CA.key -out /etc/Vault/CA_Vault/Cert/public/CA.crt -days 3650 -nodes -config /etc/Vault/CA_Vault/Config/CA_Vault.cnf
 
 - Copier les certificat dans les dossiers :
 
-       scp sednal@192.168.0.238 /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/vault/Vault/Vault_Root/Cert/public/
-       cp /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/Vault/Vault_Auto/Cert/public/
+    scp sednal@192.168.0.238 /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/vault/Vault/Vault_Root/Cert/public/
+    cp /etc/Vault/CA_Vault/Cert/public/CA.crt /etc/Vault/Vault_Auto/Cert/public/
 
 ---
 
@@ -199,39 +199,39 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 -Editer
 
-        [ req ]
-        default_bits       = 4096
-        prompt             = no
-        default_md         = sha256
-        req_extensions     = req_ext
-        distinguished_name = dn
+    [ req ]
+    default_bits       = 4096
+    prompt             = no
+    default_md         = sha256
+    req_extensions     = req_ext
+    distinguished_name = dn
         
-        [ dn ]
-        CN = vault_2.sednal.lan
+    [ dn ]
+    CN = vault_2.sednal.lan
         
-        [ req_ext ]
-        subjectAltName = @alt_names
-        keyUsage = critical, digitalSignature, keyEncipherment
-        extendedKeyUsage = serverAuth
-        basicConstraints = critical, CA:FALSE
+    [ req_ext ]
+    subjectAltName = @alt_names
+    keyUsage = critical, digitalSignature, keyEncipherment
+    extendedKeyUsage = serverAuth
+    basicConstraints = critical, CA:FALSE
         
-        [ alt_names ]
-        DNS.1 = vault_2.sednal.lan
-        DNS.2 = localhost
-        IP.1 = 192.168.0.241
-        IP.2 = 127.0.0.1
+    [ alt_names ]
+    DNS.1 = vault_2.sednal.lan
+    DNS.2 = localhost
+    IP.1 = 192.168.0.241
+    IP.2 = 127.0.0.1
 
 `-1. Clé + CSR`
 
-          openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -nodes -passout pass: -config /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
+    openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -nodes -passout pass: -config /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
 
 `-2. Certificat signé par CA`
 
-          openssl x509 -req -in /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
+    openssl x509 -req -in /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt -days 365 -extfile /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf -extensions req_ext
 
 - Suppression CSR (Pour renouvelement)
 
-       rm -f /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
+    rm -f /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
    
 ---
         
@@ -241,43 +241,43 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - `Fichier de configuration .cnf`
 
-       nano /etc/Vault/Vault_Root/Config/Vault_Root.cnf
+    nano /etc/Vault/Vault_Root/Config/Vault_Root.cnf
 
 -Editer
 
-        [ req ]
-        default_bits       = 4096
-        prompt             = no
-        default_md         = sha256
-        req_extensions     = req_ext
-        distinguished_name = dn
+    [ req ]
+    default_bits       = 4096
+    prompt             = no
+    default_md         = sha256
+    req_extensions     = req_ext
+    distinguished_name = dn
         
-        [ dn ]
-        CN = vault_2.sednal.lan
+    [ dn ]
+    CN = vault_2.sednal.lan
         
-        [ req_ext ]
-        subjectAltName = @alt_names
-        keyUsage = critical, digitalSignature, keyEncipherment
-        extendedKeyUsage = serverAuth
-        basicConstraints = critical, CA:FALSE
+    [ req_ext ]
+    subjectAltName = @alt_names
+    keyUsage = critical, digitalSignature, keyEncipherment
+    extendedKeyUsage = serverAuth
+    basicConstraints = critical, CA:FALSE
         
-        [ alt_names ]
-        DNS.1 = vault.sednal.lan
-        DNS.2 = localhost
-        IP.1 = 192.168.0.238
-        IP.2 = 127.0.0.1
+    [ alt_names ]
+    DNS.1 = vault.sednal.lan
+    DNS.2 = localhost
+    IP.1 = 192.168.0.238
+    IP.2 = 127.0.0.1
 
 `-1. Clé + CSR`
 
-          openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Root/Cert/private/Vault_Root.key -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -nodes -config /etc/Vault/Vault_Root/Config/Vault_Root.cnf
+    openssl req -newkey rsa:4096 -keyout /etc/Vault/Vault_Root/Cert/private/Vault_Root.key -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -nodes -config /etc/Vault/Vault_Root/Config/Vault_Root.cnf
 
 `-2. Certificat signé par CA`
 
-          openssl x509 -req -in /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /etc/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
+    openssl x509 -req -in /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr -CA /etc/Vault/CA_Vault/Cert/public/CA.crt -CAkey /etc/Vault/CA_Vault/Cert/private/CA.key -CAcreateserial -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt -days 365 -extfile /etc/Vault/Vault_Root/Config/Vault_Root.cnf -extensions req_ext
 
 - Suppression CSR (Pour renouvelement)
 
-       rm -f /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
+    rm -f /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
           
 ---
 
@@ -319,14 +319,14 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - ⚠️ Placer $USER dans le groupe vault ⚠️
   
-       sudo usermod -aG vault sednal
+    sudo usermod -aG vault sednal
 
   `=== CA ==`
 
 - CA.key
 
-       sudo chmod 600 /etc/Vault/CA_Vault/Cert/private/CA.key
-       sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
+    sudo chmod 600 /etc/Vault/CA_Vault/Cert/private/CA.key
+    sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
 
 - CA.crt
 
@@ -417,19 +417,19 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - Editer
       
-      [Unit]
-      Description=Renouvellement cerficats SSL Vault
-      After=network.target
+    [Unit]
+    Description=Renouvellement cerficats SSL Vault
+    After=network.target
       
-      [Service]
-      Type=oneshot
-      ExecStart=/etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
-      User=sednal
-      Group=vault
-      ExecStartPost=/usr/bin/systemctl restart vault.service
+    [Service]
+    Type=oneshot
+    ExecStart=/etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
+    User=sednal
+    Group=vault
+    ExecStartPost=/usr/bin/systemctl restart vault.service
   
-      [Install]
-      WantedBy=multi-user.target
+    [Install]
+    WantedBy=multi-user.target
 
 
 ---
@@ -438,17 +438,17 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
      
      sudo nano /etc/systemd/system/renew_vault_ssl.timer 
 
-      [Unit]
-      Description=Renouvellement du certificat tous les 330 jours
-      Requires=renew_vault_ssl.service
+    [Unit]
+    Description=Renouvellement du certificat tous les 330 jours
+    Requires=renew_vault_ssl.service
       
-      [Timer]
-      OnBootSec=5min
-      OnUnitActiveSec=330d
-      Persistent=true
+    [Timer]
+    OnBootSec=5min
+    OnUnitActiveSec=330d
+    Persistent=true
       
-      [Install]
-      WantedBy=timers.target
+    [Install]
+    WantedBy=timers.target
 
 ---
 
@@ -479,24 +479,24 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 
 - Editer
 
-          disable_mlock = true
-          ui = true
+    disable_mlock = true
+    ui = true
           
-          storage "raft" {
-            path    = "/opt/vault/data"
-            node_id = "vault_auto"
-          }
+    storage "raft" {
+    path    = "/opt/vault/data"
+    node_id = "vault_auto"
+    }
           
-          listener "tcp" {
-            address            = "0.0.0.0:8100"
-            tls_disable        = false
-            tls_cert_file      = "/etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt"
-            tls_key_file       = "/etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key"
-            tls_client_ca_file = "/etc/Vault/Vault_Auto/Cert/public/CA.crt"
-          }
-          
-          api_addr     = "https://vault_2.sednal.lan:8100"
-          cluster_addr = "https://vault_2.sednal.lan:8101"
+    listener "tcp" {
+    address            = "0.0.0.0:8100"
+    tls_disable        = false
+    tls_cert_file      = "/etc/Vault/Vault_Auto/Cert/public/Vault_Auto.crt"
+    tls_key_file       = "/etc/Vault/Vault_Auto/Cert/private/Vault_Auto.key"
+    tls_client_ca_file = "/etc/Vault/Vault_Auto/Cert/public/CA.crt"
+    }
+        
+    api_addr     = "https://vault_2.sednal.lan:8100"
+    cluster_addr = "https://vault_2.sednal.lan:8101"
 
 
 -2. Choisir installation via
@@ -505,17 +505,11 @@ Ici `Vault_Auto` (192.168.0.241) sera toujours traiter en premier et `Vault_Root
 [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1)
 
 
-
-
-
-
-
-
 **- 192.168.0.238 => Installation Vault AMD64**
 
 -1. fichier de configuration .hcl
 
-         sudo nano /etc/Vault_Root/Config/Vault_Root.hcl 
+    sudo nano /etc/Vault_Root/Config/Vault_Root.hcl 
 
 - Editer
 
