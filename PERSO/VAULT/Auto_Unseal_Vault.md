@@ -326,7 +326,7 @@ et sur 192.168.0.238
 
 - CA.key
 
-      sudo chmod 600 /etc/Vault/CA_Vault/Cert/private/CA.key
+      sudo chmod 640 /etc/Vault/CA_Vault/Cert/private/CA.key
       sudo chown vault:vault /etc/Vault/CA_Vault/Cert/private/CA.key
 
 - CA.crt
