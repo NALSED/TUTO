@@ -456,11 +456,13 @@ et sur 192.168.0.238
       
        sudo systemctl daemon-reload 
 
-       # .service
+---
+
        sudo systemctl enable renew_vault_ssl.service 
        sudo systemctl start renew_vault_ssl.service 
 
-       # .timer
+---
+
        sudo systemctl enable renew_vault_ssl.timer 
        sudo systemctl start renew_vault_ssl.time
 
