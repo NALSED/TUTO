@@ -41,4 +41,4 @@ sudo chmod 750 /etc/Vault_Script/Script_Renouvelement
 sudo chown -R sednal:vault /etc/Vault_Script
 
 echo " Structure Vault_Root créée avec succès !"
-echo "  IMPORTANT: Déconnectez-vous et reconnectez-vous pour que sednal soit dans le groupe vault"
+echo "  IMPORTANT: Déconnectez-vous et reconnectez-vous pour que "$USER" soit dans le groupe vault"
