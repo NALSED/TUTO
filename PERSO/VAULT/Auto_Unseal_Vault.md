@@ -598,6 +598,29 @@ Le service sera déclenché par le timer.
          cluster_addr = "https://vault_2.sednal.lan:8101"
 
 **- 192.168.0.238 => Installation Vault AMD64**
+-1. Choix d'installation
+
+ **1. Déploiement via** [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1) 
+
+`Avantages`
+- **Installation facile** : Utilise les commandes classiques de `apt` pour installer Vault rapidement.
+- **Dépendances gérées** : `apt` gère les dépendances pour vous, ce qui facilite le processus d'installation.
+- **Mises à jour automatiques** : Avec `apt`, Vault peut recevoir des mises à jour de sécurité et des améliorations automatiquement.
+
+`Inconvénients`
+- **Version plus ancienne** : Les dépôts officiels peuvent ne pas proposer la dernière version de Vault.
+- **Pas de contrôle sur la version** : Vous pouvez être limité à la version stable disponible dans les dépôts, même si une version plus récente est disponible ailleurs.
+  
+ **2. Déploiement via** [wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
+
+`Avantages`
+- **Dernière version** : Vous pouvez télécharger directement la dernière version de Vault depuis le site officiel de HashiCorp, garantissant ainsi que vous avez la version la plus récente.
+- **Plus de contrôle** : Vous avez un contrôle total sur la version et la source du binaire.
+
+`Inconvénients`
+- **Mises à jour manuelles** : Les mises à jour de Vault doivent être effectuées manuellement (téléchargement et remplacement des binaires).
+- **Dépendances manuelles** : Vous devrez peut-être gérer vous-même certaines dépendances (par exemple, l'installation de `unzip` si vous téléchargez un fichier ZIP).
+- **Installation plus complexe** : Nécessite de suivre plusieurs étapes pour décompresser le binaire et le déplacer dans un répertoire accessible.
 
 -2. fichier de configuration .hcl
 
@@ -609,7 +632,7 @@ Le service sera déclenché par le timer.
           
           storage "raft" {
             path    = "/opt/vault/data"
-            node_id = "vault_auto"
+            node_id = "vault_root"
           }
           
           listener "tcp" {
@@ -619,7 +642,16 @@ Le service sera déclenché par le timer.
             tls_key_file       = "/etc/Vault/Vault_Root/Cert/private/Vault_Root.key"
             tls_client_ca_file = "/etc/Vault/Vault_Root/Cert/public/CA.crt"
           }
-          
+
+          seal "transit" {
+            address         = "https://vault_2.sednal.lan:8100"
+            token           = "[TOKEN]"
+            key_name        = "autounseal"
+            mount_path      = "transit/"
+            disable_renewal = "false"
+            tls_ca_cert     = "/etc/Vault/Vault_Root/Cert/public/CA.crt"
+          }
+
           api_addr     = "https://vault.sednal.lan:8200"
           cluster_addr = "https://vault.sednal.lan:8201"
   
@@ -627,7 +659,23 @@ Le service sera déclenché par le timer.
 
 ## 5️⃣ `Configuration` 
 
-**Pour 192.168.0.241 et 192.168.0.238**
+⚠️ ATTENTION bien respecter l'ordre de déploiement ⚠️
+
+**=== 192.168.0.241 ===**
+
+-1. Suite à l'intallation le fichier /etc/vault.d/vault.hcl à été édité pour la configuration de 192.168.0.241.
+-2. redemmarage dun service vault, pour prise en compte des changement, inscription des variables d'environement dans  /usr/local/share/ca-certificates/ et ~/.bashrc
+-3. Autorisation du transit + création de la politique auto-unseal et token sur 192.168.0.241.
+
+**=== 192.168.0.238 ===**
+
+-1. Suite à l'intallation le fichier /etc/vault.d/vault.hcl à été édité pour la configuration de 192.168.0.238.
+-2. Inscription des variables d'environement dans  /usr/local/share/ca-certificates/ et ~/.bashrc
+-3. Utiliser
+
+---
+
+**=== 192.168.0.241 ===**
 
 -1. Redemarrer et tester vault 
 
@@ -667,16 +715,14 @@ Le service sera déclenché par le timer.
 
 ---
 
-**=== 192.168.0.241 ===**
-
--1. Initialiser Vault
+-3. Initialiser Vault
 
       vault operator init
 
 ⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
 Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 
--2. Entrer les commande suivante 3 fois
+-4. Entrer les commande suivante 3 fois
             
             vault operator unseal
 
@@ -685,7 +731,7 @@ Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 <img width="552" height="399" alt="image" src="https://github.com/user-attachments/assets/a966c5ea-7b28-4396-b365-8af6027926c9" />
 
 
--3. Se loger
+-5. Se loger
 
      vault login
 
@@ -695,11 +741,7 @@ Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 
 <img width="687" height="252" alt="image" src="https://github.com/user-attachments/assets/bcd8e46c-5739-4881-8632-4b472f1390e6" />
 
-
-
-
-
-
+- 6 Configuration Auto-Unseal
 
 - Activer Transit
       
@@ -739,30 +781,7 @@ Sortie attendue
 
 -Créer le token limité
         
-        vault token create -policy=autounseal 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        vault token create -policy=autounseal
 
 ---
 
@@ -770,38 +789,59 @@ Sortie attendue
 **=== 192.168.0.238 ===**
 
 
+-1. Editer le fichier de configuration ci dessus ⬆️
+
+-2. -2. Pour éviter d'entrer les variables  `export VAULT_CACERT='/etc/Vault/Vault_Root/Cert/public/CA.crt'` et `export VAULT_ADDR='https://vault.sednal.lan:8200'` à chaque connection.
+
+`=== VAULT_CACERT ===`
+
+- Copier le certificat dans l'emplacement standard et recommandé
+
+          sudo cp /etc/Vault/Vault_Root/Cert/public/CA.crt /usr/local/share/ca-certificates/Sednal-CA.crt
+
+- Rafraîchir
+
+          sudo update-ca-certificates --fresh
+
+
+`=== VAULT_ADDR ===`
+
+- Ouvrir le fichier de configuration bash
+
+     nano ~/.bashrc
+
+- A la fin ajouter
+     
+      # === Variables Vault ===
+      export VAULT_ADDR='https://vault.sednal.lan:8200'
+
+- Rafraîchir
+
+      source ~/.bashrc
+
+
+-3. initialiser Vault
+
+       vault operator init
+
+⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
+
+- Juste après initialisation
+
+<img width="569" height="404" alt="image" src="https://github.com/user-attachments/assets/687a75f7-552b-4d69-8cbc-2d7653201d49" />
+
+
+-4. Login
+      
+       vault login
+
+
+<img width="696" height="330" alt="image" src="https://github.com/user-attachments/assets/2eb05ce2-3276-4ea9-ae39-520d45eaa9fc" />
 
 
 
+:sparkler: 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-
-
-
-<details>
-<summary>
-<h2>
- 
-</h2>
-</summary>
-blabla
-</details>
-
-
----
 
 
