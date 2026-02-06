@@ -863,7 +863,17 @@ Sortie attendue
 
 **Pour allez plus loins**
 
-- Dans notre cas de figure, Vault_Root est Auto-Unseal
+Dans notre cas de figure, le token d’auto-unseal est stocké en clair dans le fichier de configuration .hcl. Cela entraîne une perte de contrôle sur l’accès à Vault et réduit le niveau de sécurité.
+
+Voici quelques pistes pour aller plus loin dans la gestion des tokens :
+
+-[custom token helper](https://developer.hashicorp.com/vault/docs/commands/token-helper)
+
+-[Token](https://developer.hashicorp.com/vault/docs/concepts/tokens)
+
+-[Forum](https://github.com/sigstore/cosign/issues/2861)
+
+---
 
 [installation du Role PKI]()
 
