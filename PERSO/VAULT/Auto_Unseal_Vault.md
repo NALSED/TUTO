@@ -321,21 +321,21 @@ et sur 192.168.0.238
 
 => Fichier de configuration [2]
 
-       nano /etc/Vault/Vault_Root/Config/Vault_Root_ext.cnf
+       sudo nano /etc/Vault/Vault_Root/Config/Vault_Root_ext.cnf
 
 -Editer
 
     [v3_req]
-          subjectAltName     = @alt_names
-          basicConstraints   = critical, CA:FALSE
-          keyUsage           = critical, digitalSignature, keyEncipherment
-          extendedKeyUsage   = serverAuth
+    subjectAltName     = @alt_names
+    basicConstraints   = critical, CA:FALSE
+    keyUsage           = critical, digitalSignature, keyEncipherment
+    extendedKeyUsage   = serverAuth
           
-          [ alt_names ]
-          DNS.1 = vault.sednal.lan
-          DNS.2 = localhost
-          IP.1  = 192.168.0.238
-          IP.2  = 127.0.0.1
+    [ alt_names ]
+    DNS.1 = vault.sednal.lan
+    DNS.2 = localhost
+    IP.1  = 192.168.0.238
+    IP.2  = 127.0.0.1
 
 `-2. Certificat signé par CA`
 
