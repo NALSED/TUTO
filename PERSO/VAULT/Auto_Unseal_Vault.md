@@ -650,7 +650,7 @@ Le service sera déclenché par le timer.
 
           seal "transit" {
             address         = "https://vault_2.sednal.lan:8100"
-            token           = "[TOKEN]"
+            token           = "[TOKEN CREE PAR VAULT_AUTO]" 
             key_name        = "autounseal"
             mount_path      = "transit/"
             disable_renewal = "false"
@@ -843,9 +843,32 @@ Sortie attendue
 
 <img width="696" height="330" alt="image" src="https://github.com/user-attachments/assets/2eb05ce2-3276-4ea9-ae39-520d45eaa9fc" />
 
+-5. On voit dans les logs la réussite de l'opération :
+
+-Auto-unseal a fonctionné
+      
+       core: vault is unsealed
+       core: unsealed with stored key
+
+- vault.sednal.lan est devenu LEADER du cluster via élection
+
+       entering candidate state: node="Node at vault.sednal.lan:8201 [Candidate]" term=6
+       election won: term=6 tally=1
+       entering leader state: leader="Node at vault.sednal.lan:8201 [Leader]" 🏆
+
+<img width="1173" height="199" alt="image" src="https://github.com/user-attachments/assets/4cd4bfe2-81ed-4964-abf9-df9686f6672f" />
 
 
-:sparkler: 
+---
+
+**Pour allez plus loins**
+
+- Dans notre cas de figure, Vault_Root est Auto-Unseal
+
+[installation du Role PKI]()
+
+
+
 
 
 
