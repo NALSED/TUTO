@@ -53,7 +53,7 @@ Ce tutotriel à pour objectif :
 └─────────────────────────────┘                    └─────────────────────────────┘
         ↑                                                      ↑
         │                                                      │
-  Unsealed en premier                              Se unseal automatiquement
+  Unsealed en premier et le reste                     Se unseal automatiquement
   (vault operator init/unseal)                     via Vault A à chaque redémarrage
 ```
 
