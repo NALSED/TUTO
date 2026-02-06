@@ -615,8 +615,8 @@ Le service sera déclenché par le timer.
           listener "tcp" {
             address            = "0.0.0.0:8200"
             tls_disable        = false
-            tls_cert_file      = "/etc/Vault/Vault_Root/Cert/public/Root_Auto.crt"
-            tls_key_file       = "/etc/Vault/Vault_Root/Cert/private/Root_Auto.key"
+            tls_cert_file      = "/etc/Vault/Vault_Root/Cert/public/Vault_Root.crt"
+            tls_key_file       = "/etc/Vault/Vault_Root/Cert/private/Vault_Root.key"
             tls_client_ca_file = "/etc/Vault/Vault_Root/Cert/public/CA.crt"
           }
           
