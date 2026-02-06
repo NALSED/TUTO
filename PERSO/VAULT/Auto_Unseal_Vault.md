@@ -341,7 +341,7 @@ et sur 192.168.0.238
 
               openssl x509 -req \
             -in /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr \
-            -CA /etc/Vault/CA_Vault/Cert/public/CA.crt \
+            -CA /etc/Vault/Vault_Root/Cert/public/CA.crt \
             -CAkey /etc/Vault/Vault_Root/Cert/private/CA.key \
             -CAcreateserial \
             -out /etc/Vault/Vault_Root/Cert/public/Vault_Root.crt \
