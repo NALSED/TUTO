@@ -60,3 +60,5 @@ sudo chmod 750 /etc/Vault_Script/Script_Renouvelement
 # Propriétaire 
 sudo chown -R sednal:vault /etc/Vault_Script
 
+echo " Structure Vault_Auto créée avec succès !"
+echo "  IMPORTANT: Déconnectez-vous et reconnectez-vous pour que "$USER" soit dans le groupe vault"
