@@ -472,6 +472,9 @@ et sur 192.168.0.238
       
       sudo chmod +x /etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
 
+- Appliquer les permission
+
+       sudo chown sednal:vault /etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh 
 
       
 **Inscription exécution du Script => Systemd :**
