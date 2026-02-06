@@ -549,6 +549,8 @@ Le service sera déclenché par le timer.
 
 -1. Choix d'installation
 
+**- 192.168.0.241 => Installation Vault ARM64**
+
  **1. Déploiement via** [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1) 
 
 `Avantages`
@@ -571,8 +573,6 @@ Le service sera déclenché par le timer.
 - **Dépendances manuelles** : Vous devrez peut-être gérer vous-même certaines dépendances (par exemple, l'installation de `unzip` si vous téléchargez un fichier ZIP).
 - **Installation plus complexe** : Nécessite de suivre plusieurs étapes pour décompresser le binaire et le déplacer dans un répertoire accessible.
 
-
-**- 192.168.0.241 => Installation Vault ARM64**
 
 -2. fichier de configuration .hcl
 
@@ -597,7 +597,12 @@ Le service sera déclenché par le timer.
          api_addr     = "https://vault_2.sednal.lan:8100"
          cluster_addr = "https://vault_2.sednal.lan:8101"
 
+---
+
+
 **- 192.168.0.238 => Installation Vault AMD64**
+
+
 -1. Choix d'installation
 
  **1. Déploiement via** [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1) 
@@ -671,7 +676,7 @@ Le service sera déclenché par le timer.
 
 -1. Suite à l'intallation le fichier /etc/vault.d/vault.hcl à été édité pour la configuration de 192.168.0.238.
 -2. Inscription des variables d'environement dans  /usr/local/share/ca-certificates/ et ~/.bashrc
--3. Utiliser
+-3. Utiliser les commandes vault pour initialiser le serveur
 
 ---
 
