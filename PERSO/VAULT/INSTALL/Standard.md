@@ -128,6 +128,10 @@
 
      cp vault.hcl vault_backup.hcl
 
+-`Suppression du fichier.hcl`
+
+     sudo rm vault.hcl 
+
 - `Edition fichier .hcl`
          
      sudo nano /etc/vault.d/vault.hcl
