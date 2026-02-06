@@ -355,8 +355,6 @@ et sur 192.168.0.238
 
     sudo rm -f /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
 
-<img width="731" height="134" alt="image" src="https://github.com/user-attachments/assets/712870ad-f2f3-41eb-bc89-81bcc93f9566" />
-
 ---
 
 <details>
