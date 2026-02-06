@@ -5,9 +5,12 @@
 Ce tutotriel à pour objectif : 
 
 -1. La mise en place de certificat ssl pour que les serveur Vault soit en https,
+
 -2. Le renouvelement automatique de ces certificats via systemd
+
 -3. L'installation standard de vault en version ARM64 et AMD64.
--4. La configuration et la mise en place de l'aut-unseal via transit secret a
+
+-4. La configuration et la mise en place de l'aute-unseal via transit secret 
 
 ---
 ### 1️⃣ `Infra` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/Auto_Unseal_Vault.md#1%EF%B8%8F%E2%83%A3-infra)
