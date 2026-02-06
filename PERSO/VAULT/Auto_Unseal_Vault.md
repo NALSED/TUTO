@@ -548,7 +548,7 @@ Le service sera déclenché par le timer.
 
 -1. Choix d'installation
 
- 1. Déploiement via [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1) 
+ **1. Déploiement via** [apt](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#2%EF%B8%8F%E2%83%A3-apt-1) 
 
 `Avantages`
 - **Installation facile** : Utilise les commandes classiques de `apt` pour installer Vault rapidement.
@@ -559,7 +559,7 @@ Le service sera déclenché par le timer.
 - **Version plus ancienne** : Les dépôts officiels peuvent ne pas proposer la dernière version de Vault.
 - **Pas de contrôle sur la version** : Vous pouvez être limité à la version stable disponible dans les dépôts, même si une version plus récente est disponible ailleurs.
   
- 2. Déploiement via [wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
+ **2. Déploiement via** [wget](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/INSTALL/Standard.md#1%EF%B8%8F%E2%83%A3-wget-1)
 
 `Avantages`
 - **Dernière version** : Vous pouvez télécharger directement la dernière version de Vault depuis le site officiel de HashiCorp, garantissant ainsi que vous avez la version la plus récente.
