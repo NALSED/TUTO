@@ -64,8 +64,7 @@ HashiCorp représente Vault sous la forme d’un **triangle** :
 Cette architecture garantit une séparation claire entre l’accès, la gestion des secrets et les règles de sécurité.
 
 
-![Architecture Vault](<img width="768" height="455" alt="image" src="https://github.com/user-attachments/assets/53a76268-a8a4-4af1-9cde-abcb5dfbb7b9" />
-)
+![Architecture Vault](https://blog.stephane-robert.info/docs/securiser/secrets/hashicorp-vault/)
 
 ---
 
