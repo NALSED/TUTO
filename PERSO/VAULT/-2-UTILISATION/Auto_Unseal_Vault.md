@@ -114,7 +114,7 @@ Ce tutotriel à pour objectif :
 
 -1. Créer les dossiers via les scripts.
 
-#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-1-creation_dossier_Vault_Auto_CA.sh) ⬆️
+#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-1-creation_dossier_Vault_Auto_CA.sh) ⬆️
 
 
 === PATH 192.168.0.238:8200===
@@ -137,7 +137,7 @@ Ce tutotriel à pour objectif :
 
 -1. Créer les dossiers via les scripts.
 
-#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-2-creation_dossier_Vault_Root.sh) ⬆️
+#### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-2-creation_dossier_Vault_Root.sh) ⬆️
 
 
 -2. Déclarer `FQDN` dans Pfsense
@@ -428,7 +428,7 @@ et sur 192.168.0.238
 
 
 
-[Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-3-securisation_Vault_Auto_CA.sh)
+[Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-3-securisation_Vault_Auto_CA.sh)
 
 ---
 
@@ -455,7 +455,7 @@ et sur 192.168.0.238
        sudo chmod 640 /etc/Vault/Vault_Root/Cert/private/Vault_Root.key
        sudo chown vault:vault /etc/Vault/Vault_Root/Cert/private/Vault_Root.key
 
-[Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-4-securisation_Vault_Root.sh)
+[Script](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-4-securisation_Vault_Root.sh)
 
 
 ---
@@ -466,9 +466,9 @@ et sur 192.168.0.238
 
 -Editer
 
- [Script de renouvelement automatique 192.168.0.241](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-5-renouvelement_Vault_Auto.sh)
+ [Script de renouvelement automatique 192.168.0.241](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-5-renouvelement_Vault_Auto.sh)
 
-[Script de renouvelement automatique 192.168.0.238](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/-6-renouvelement_Vault_root.sh)
+[Script de renouvelement automatique 192.168.0.238](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-6-renouvelement_Vault_root.sh)
 
 
 - Le rendre exécutable     
