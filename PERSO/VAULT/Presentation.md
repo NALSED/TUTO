@@ -7,6 +7,7 @@
 ### 3️⃣ Bonnes pratiques
 
 ---
+---
 
 ## 1️⃣ **Présentation**
 
@@ -67,23 +68,36 @@ Cette architecture garantit une séparation claire entre l’accès, la gestion 
 ![Architecture Vault](https://blog.stephane-robert.info/_astro/vault-triangle.BS4k8qEm_Z1bWz81.webp)
 
 ---
+---
 
 ## 2️⃣ **Fonctionnement**
 
+### === SOMMAIRE ===
 
+- I) `Architecture Générale`
+
+- II) `Flux d'une Requête` 
+
+- III)
+
+- IV)
+
+- V)
+
+---
 
 ### 📋 `Vue d'ensemble`
 
 HashiCorp Vault est un **gestionnaire de secrets centralisé** qui fonctionne comme un serveur web exposant une **API REST HTTP/HTTPS**. Toutes les interactions avec Vault se font via des requêtes HTTP standard vers différents endpoints, bien que l’utilisation de HTTPS en production soit vivement conseillée.
 
-### 🏗️ `Architecture Générale`
+### I) 🏗️ `Architecture Générale` 🏗️
 ```
 ┌──────────────────────────────────────────────────────────┐
 │                      CLIENTS                             │
 │  (Applications, CLI, Scripts, Humains via UI)            │
 └───────────────────────┬──────────────────────────────────┘
                         │ Requêtes HTTP/HTTPS
-                        ↓
+                        v
 ┌──────────────────────────────────────────────────────────┐
 │                   VAULT SERVER                           │
 │                   (Port 8200)                            │
@@ -94,7 +108,8 @@ HashiCorp Vault est un **gestionnaire de secrets centralisé** qui fonctionne co
 │  │  - Autorisation (Policies)                         │  │
 │  │  - Routage vers les moteurs                        │  │
 │  └────────────────────────────────────────────────────┘  │
-│                          ↓                               │
+│                         |                                │
+|                         v                                |  
 │  ┌────────────────────────────────────────────────────┐  │
 │  │            MOTEURS DE SECRETS                      │  │
 │  │                                                    │  │
@@ -106,12 +121,14 @@ HashiCorp Vault est un **gestionnaire de secrets centralisé** qui fonctionne co
 │  │  database/  → Credentials dynamiques DB            │  │
 │  │  aws/       → Credentials AWS temporaires          │  │
 │  └────────────────────────────────────────────────────┘  │
-│                          ↓                               │
+│                          |                               │
+|                          v                               │
 │  ┌────────────────────────────────────────────────────┐  │
 │  │          CLÉ DE CHIFFREMENT                        │  │
 │  │  Toutes les données sont chiffrées (AES-256-GCM)   │  │
 │  └────────────────────────────────────────────────────┘  │
-│                          ↓                               │
+│                          |                               │
+|                          v                               │
 │  ┌────────────────────────────────────────────────────┐  │
 │  │         BACKEND DE STOCKAGE                        │  │
 │  │  - Raft (Integrated Storage) - Recommandé          │  │
@@ -121,41 +138,32 @@ HashiCorp Vault est un **gestionnaire de secrets centralisé** qui fonctionne co
 │  │  - AWS S3 / Azure / GCS                            │  │
 │  └────────────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────────┘
-                          ↓
+                          | 
+                          v
                   ┌───────────────┐
                   │  Disque/Cloud │
                   │  (chiffré)    │
                   └───────────────┘
 ```
 
-### 🔗 `Anatomie d'une URL Vault`
+### 🔗 `Anatomie d'une URL Vault` 🔗
 
 Vault expose son API via des URLs structurées :
 ```
 https://vault.example.com:8200/v1/secret/data/myapp/db
   |        |              |    |  |      |    |
-  |        |              |    |  |      |    └─ Chemin du secret
-  |        |              |    |  |      └────── Type de moteur (KV v2)
-  |        |              |    |  └───────────── Moteur monté
-  |        |              |    └──────────────── Version de l'API
-  |        |              └───────────────────── Port (8200 par défaut)
-  |        └──────────────────────────────────── Domaine/Hostname
-  └───────────────────────────────────────────── Protocole (HTTPS obligatoire en prod)
+  |        |              |    |  |      |    └─ Chemin du secret => Connexion sécurisée (TLS/SSL). HTTP possible en dev uniquement
+  |        |              |    |  |      └────── Type de moteur (KV v2) => Pour KV v2 : /data (lecture/écriture) ou /metadata (métadonnées)
+  |        |              |    |  └───────────── Moteur monté => Point de montage du moteur de secrets 
+  |        |              |    └──────────────── Version de l'API => Version de l'API (actuellement v1 pour toutes les opérations)
+  |        |              └───────────────────── Port (8200 par défaut) => Port par défaut de Vault (configurable)
+  |        └──────────────────────────────────── Domaine/Hostname => Adresse du serveur Vault
+  └───────────────────────────────────────────── Protocole (HTTPS obligatoire en prod) =>  Connexion sécurisée (TLS/SSL). HTTP possible en dev uniquement 
 ```
 
-### `Décomposition`
+---
 
-| Composant | Valeur | Description |
-|-----------|--------|-------------|
-| **Protocole** | `https://` | Connexion sécurisée (TLS/SSL). HTTP possible en dev uniquement |
-| **Domaine** | `vault.example.com` | Adresse du serveur Vault |
-| **Port** | `8200` | Port par défaut de Vault (configurable) |
-| **Version API** | `/v1` | Version de l'API (actuellement v1 pour toutes les opérations) |
-| **Moteur** | `/secret` | Point de montage du moteur de secrets |
-| **Type** | `/data` | Pour KV v2 : `/data` (lecture/écriture) ou `/metadata` (métadonnées) |
-| **Chemin** | `/myapp/db` | Chemin hiérarchique du secret dans le moteur |
-
-### 🔄 `Flux d'une Requête`
+### II) 🔄 `Flux d'une Requête` 🔄
 
 **-1. Le Client Envoie une Requête**
 
@@ -177,51 +185,51 @@ Content-Type: application/json
 ```
 ┌─────────────────────────────────────────────┐
 │ 1. RÉCEPTION                                │
-│    → Serveur HTTP écoute sur port 8200     │
+│    → Serveur HTTP écoute sur port 8200      │
 └─────────────────┬───────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────────┐
 │ 2. AUTHENTIFICATION                         │
-│    → Validation du token X-Vault-Token     │
-│    → Identification de l'entité            │
+│    → Validation du token X-Vault-Token      │
+│    → Identification de l'entité             │
 └─────────────────┬───────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────────┐
 │ 3. AUTORISATION                             │
-│    → Vérification des policies ACL         │
-│    → Peut-il écrire dans secret/myapp/db ? │
+│    → Vérification des policies ACL          │
+│    → Peut-il écrire dans secret/myapp/db ?  │
 └─────────────────┬───────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────────┐
 │ 4. ROUTAGE                                  │
-│    → Identification du moteur (secret/)    │
-│    → Délégation au Secret Engine KV v2     │
+│    → Identification du moteur (secret/)     │
+│    → Délégation au Secret Engine KV v2      │
 └─────────────────┬───────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────────┐
 │ 5. TRAITEMENT                               │
-│    → Validation des données JSON           │
-│    → Versioning (KV v2)                    │
-│    → Métadonnées (created_time, version)   │
+│    → Validation des données JSON            │
+│    → Versioning (KV v2)                     │
+│    → Métadonnées (created_time, version)    │
 └─────────────────┬───────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────────┐
 │ 6. CHIFFREMENT                              │
-│    → Sérialisation des données             │
-│    → Chiffrement AES-256-GCM               │
-│    → Clé de chiffrement (Encryption Key)   │
+│    → Sérialisation des données              │
+│    → Chiffrement AES-256-GCM                │
+│    → Clé de chiffrement (Encryption Key)    │
 └─────────────────┬───────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────────┐
 │ 7. STOCKAGE                                 │
-│    → Écriture dans le backend (Raft/Consul)│
-│    → Données persistées sur disque         │
+│    → Écriture dans le backend (Raft/Consul) │
+│    → Données persistées sur disque          │
 └─────────────────┬───────────────────────────┘
                   ↓
 ┌─────────────────────────────────────────────┐
 │ 8. RÉPONSE                                  │
-│    → Construction de la réponse HTTP       │
-│    → Retour au client                      │
+│    → Construction de la réponse HTTP        │
+│    → Retour au client                       │
 └─────────────────────────────────────────────┘
 ```
 
@@ -247,54 +255,20 @@ Cache-Control: no-store
 }
 ```
 
-### 🔐 `Cycle de Vie du Chiffrement`
+---
 
--État Scellé (Sealed) au Démarrage
-```
-┌─────────────────────────────────────────────┐
-│         VAULT DÉMARRÉ (SEALED)              │
-│                                             │
-│  ┌─────────────────────────────────────┐   │
-│  │  Master Key (Racine)                │   │
-│  │  └─ Fragmentée en Unseal Keys       │   │
-│  │     (Shamir Secret Sharing)         │   │
-│  │     Exemple: 5 clés, 3 nécessaires │   │
-│  └─────────────────────────────────────┘   │
-│              ↓ (chiffrée par)               │
-│  ┌─────────────────────────────────────┐   │
-│  │  Encryption Key                     │   │
-│  │  └─ Chiffre toutes les données      │   │
-│  └─────────────────────────────────────┘   │
-│              ↓                              │
-│  ┌─────────────────────────────────────┐   │
-│  │  Données dans le Backend            │   │
-│  │  (chiffrées, inaccessibles)         │   │
-│  └─────────────────────────────────────┘   │
-│                                             │
-│  ⚠️  API indisponible - Vault est scellé   │
-└─────────────────────────────────────────────┘
-```
+### III) 🛣️ `Principaux Chemins (Endpoints)`
 
--Processus d'Unsealing
-```
-Opérateur 1 → vault operator unseal <clé_1>
-Opérateur 2 → vault operator unseal <clé_2>
-Opérateur 3 → vault operator unseal <clé_3>
-              ↓
-         Master Key reconstituée
-              ↓
-     Déchiffrement de l'Encryption Key
-              ↓
-┌─────────────────────────────────────────────┐
-│      VAULT DÉSCELLÉ (UNSEALED)              │
-│                                             │
-│  ✅ Encryption Key en mémoire               │
-│  ✅ API disponible                          │
-│  ✅ Données accessibles                     │
-└─────────────────────────────────────────────┘
-```
+[RAPPEL] === Méthodes HTTP et Actions ===
 
-### 🛣️ `Principaux Chemins (Endpoints)`
+| Méthode HTTP | Action Vault | Exemple |
+|--------------|--------------|---------|
+| **GET** | Lire des données | Récupérer un secret |
+| **POST** | Créer ou effectuer une action | Créer un secret, login |
+| **PUT** | Créer ou mettre à jour | Définir une policy |
+| **DELETE** | Supprimer | Supprimer un secret |
+| **LIST** | Lister (spécifique Vault) | Lister les secrets d'un chemin |
+
 
 - **Chemins Système (`sys/`)**
 
@@ -308,7 +282,7 @@ Opérateur 3 → vault operator unseal <clé_3>
 | `/v1/sys/policies/acl` | GET/PUT | Gérer les policies |
 | `/v1/sys/audit` | GET/PUT | Gérer l'audit |
 
-- **Secrets Statiques (`secret/` - KV v2)**
+- **Secrets Statiques (`secret/` - KV v1)**
 
 | Endpoint | Méthode | Description |
 |----------|---------|-------------|
@@ -344,63 +318,27 @@ Opérateur 3 → vault operator unseal <clé_3>
 | `/v1/auth/ldap/login/:username` | POST | Login via LDAP |
 | `/v1/auth/userpass/login/:username` | POST | Login user/pass |
 
-### 📊 **Méthodes HTTP et Actions**
-
-| Méthode HTTP | Action Vault | Exemple |
-|--------------|--------------|---------|
-| **GET** | Lire des données | Récupérer un secret |
-| **POST** | Créer ou effectuer une action | Créer un secret, login |
-| **PUT** | Créer ou mettre à jour | Définir une policy |
-| **DELETE** | Supprimer | Supprimer un secret |
-| **LIST** | Lister (spécifique Vault) | Lister les secrets d'un chemin |
-
-### 🔑 **Authentification et Autorisation**
-
-- **1. Authentification (Qui êtes-vous ?)**
-```http
-POST /v1/auth/userpass/login/john
-Content-Type: application/json
-
-{
-  "password": "mypassword"
-}
 ```
 
-**Réponse :**
-```json
-{
-  "auth": {
-    "client_token": "hvs.CAESIE8fG7qw...",
-    "policies": ["default", "developer"],
-    "metadata": {
-      "username": "john"
-    }
-  }
-}
-```
-- **2. Utilisation du Token**
-```http
-GET /v1/secret/data/myapp
-X-Vault-Token: hvs.CAESIE8fG7qw...
-```
+## 🎯 Résumé
 
-**-3. Autorisation (Que pouvez-vous faire ?)**
+| Composant | Description |
+|-----------|-------------|
+| **Interface** | API REST HTTP/HTTPS sur port 8200 |
+| **Communication** | Requêtes/Réponses JSON |
+| **Authentification** | Token dans header `X-Vault-Token` |
+| **Autorisation** | Policies ACL (capabilities sur des paths) |
+| **Moteurs** | Modules montés sur des chemins (`secret/`, `transit/`, etc.) |
+| **Chiffrement** | AES-256-GCM pour toutes les données |
+| **Stockage** | Backend configurable (Raft, Consul, etc.) |
+| **Sécurité** | Seal/Unseal avec Shamir Secret Sharing |
 
-Vault vérifie les **policies** associées au token :
-```hcl
-# Policy "developer"
-path "secret/data/myapp/*" {
-  capabilities = ["create", "read", "update", "delete", "list"]
-}
+---
+---
 
-path "secret/data/production/*" {
-  capabilities = ["deny"]
-}
-```
+## 3️⃣ **Bonnes pratiques**
 
 ### 💾 `Stockage Physique`
-
-### Backends Disponibles
 
 | Backend | Usage | Haute Dispo | Performance |
 |---------|-------|-------------|-------------|
@@ -421,54 +359,3 @@ path "secret/data/production/*" {
     └── wal/              # Write-Ahead Log
         ├── 00000001.log
         └── 00000002.log
-```
-
-## 🎯 Résumé
-
-| Composant | Description |
-|-----------|-------------|
-| **Interface** | API REST HTTP/HTTPS sur port 8200 |
-| **Communication** | Requêtes/Réponses JSON |
-| **Authentification** | Token dans header `X-Vault-Token` |
-| **Autorisation** | Policies ACL (capabilities sur des paths) |
-| **Moteurs** | Modules montés sur des chemins (`secret/`, `transit/`, etc.) |
-| **Chiffrement** | AES-256-GCM pour toutes les données |
-| **Stockage** | Backend configurable (Raft, Consul, etc.) |
-| **Sécurité** | Seal/Unseal avec Shamir Secret Sharing |
-
----
-
-HashiCorp Vault = **Serveur HTTP** + **Moteurs de Secrets** + **Chiffrement** + **Stockage Sécurisé**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
-## 3️⃣ **Bonnes pratiques**
