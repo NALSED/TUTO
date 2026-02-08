@@ -672,13 +672,17 @@ Le service sera déclenché par le timer.
 **=== 192.168.0.241 ===**
 
 -1. Suite à l'intallation le fichier /etc/vault.d/vault.hcl à été édité pour la configuration de 192.168.0.241.
+
 -2. redemmarage dun service vault, pour prise en compte des changement, inscription des variables d'environement dans  /usr/local/share/ca-certificates/ et ~/.bashrc
+
 -3. Autorisation du transit + création de la politique auto-unseal et token sur 192.168.0.241.
 
 **=== 192.168.0.238 ===**
 
 -1. Suite à l'intallation le fichier /etc/vault.d/vault.hcl à été édité pour la configuration de 192.168.0.238.
+
 -2. Inscription des variables d'environement dans  /usr/local/share/ca-certificates/ et ~/.bashrc
+
 -3. Utiliser les commandes vault pour initialiser le serveur
 
 ---
