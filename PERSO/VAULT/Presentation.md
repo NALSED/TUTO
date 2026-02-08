@@ -70,6 +70,37 @@ Cette architecture garantit une séparation claire entre l’accès, la gestion 
 
 ## 2️⃣ **Fonctionnement**
 
+Vault
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ---
 
 ## 3️⃣ **Bonnes pratiques**
