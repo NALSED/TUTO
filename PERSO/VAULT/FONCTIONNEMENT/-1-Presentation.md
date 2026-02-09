@@ -313,7 +313,7 @@ Cache-Control: no-store
 | `/v1/auth/approle/login` | POST | Login via AppRole |
 | `/v1/auth/ldap/login/:username` | POST | Login via LDAP |
 | `/v1/auth/userpass/login/:username` | POST | Login user/pass |
-```
+
 
 ## 🎯 Résumé
 
@@ -341,3 +341,4 @@ Cache-Control: no-store
 | **PostgreSQL/MySQL** | Production | ⚠️ Avec setup | 🐢 Moyenne |
 | **Fichier local** | Dev/Test | ❌ Non | ⚡ Bonne |
 | **AWS S3** | Production | ⚠️ Avec DynamoDB | 🐢 Moyenne |
+```
