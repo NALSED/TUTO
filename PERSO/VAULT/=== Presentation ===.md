@@ -355,3 +355,4 @@ Cache-Control: no-store
     └── wal/              # Write-Ahead Log
         ├── 00000001.log
         └── 00000002.log
+```
