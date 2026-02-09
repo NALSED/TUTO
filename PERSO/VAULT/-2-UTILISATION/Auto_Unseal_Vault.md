@@ -711,6 +711,8 @@ Le service sera déclenché par le timer.
 
 `=== VAULT_ADDR ===`
 
+⚠️(Uniquement dans le cadre de la découverte de Vault, jamais en prod)
+
 - Ouvrir le fichier de configuration bash
 
      nano ~/.bashrc
@@ -817,6 +819,8 @@ Sortie attendue
 
 
 `=== VAULT_ADDR ===`
+
+⚠️(Uniquement dans le cadre de la découverte de Vault, jamais en prod)
 
 - Ouvrir le fichier de configuration bash
 
