@@ -16,8 +16,8 @@ Les Unseal Keys sont attribuées à la premiére initialisation de Vault, leurs 
 Après l'installation de Vault, suite à la commande `vault operator init` ce message apparait :
 
 
-> / # vault operator init
->        Unseal Key 1: [...]
+ / # vault operator init
+     Unseal Key 1: [...]
         Unseal Key 2: [...]
         Unseal Key 3: [...]
         Unseal Key 4: [...]
