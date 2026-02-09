@@ -313,7 +313,6 @@ Cache-Control: no-store
 | `/v1/auth/approle/login` | POST | Login via AppRole |
 | `/v1/auth/ldap/login/:username` | POST | Login via LDAP |
 | `/v1/auth/userpass/login/:username` | POST | Login user/pass |
-
 ```
 
 ## 🎯 Résumé
@@ -329,8 +328,7 @@ Cache-Control: no-store
 | **Stockage** | Backend configurable (Raft, Consul, etc.) |
 | **Sécurité** | Seal/Unseal avec Shamir Secret Sharing |
 
----
----
+
 
 ## 3️⃣ **Bonnes pratiques**
 
