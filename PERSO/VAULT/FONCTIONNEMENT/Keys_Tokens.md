@@ -15,7 +15,7 @@ Ici seront traité les Unseal Keys, Master Keys et Root Token.
 Les Unseal Keys sont attribuées à la premiére initialisation de Vault, leurs nombres est configurable mais par default 5 clées sont créées.
 Après l'installation de Vault, suite à la commande `vault operator init` ce message apparait :
 
-```
+>
  / # vault operator init
         Unseal Key 1: [...]
         Unseal Key 2: [...]
@@ -35,4 +35,3 @@ Après l'installation de Vault, suite à la commande `vault operator init` ce me
         
         It is possible to generate new unseal keys, provided you have a quorum of
         existing unseal keys shares. See "vault operator rekey" for more information.
-```
