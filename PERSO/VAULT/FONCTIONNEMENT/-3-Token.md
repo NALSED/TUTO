@@ -62,6 +62,7 @@ Un token peut être révoqué manuellement ou à expiration du TTL
 === Token standard ===
 
 Limité dans le temps (TTL), expiration automatique.
+
 <img width="343" height="364" alt="image" src="https://github.com/user-attachments/assets/c548c2af-dde7-4315-b3fa-9d37971fa753" />
 
 ===Token avec privilège ===
