@@ -17,7 +17,7 @@ Après l'installation de Vault, suite à la commande `vault operator init` ce me
 
 
 > / # vault operator init
-        Unseal Key 1: [...]
+>        Unseal Key 1: [...]
         Unseal Key 2: [...]
         Unseal Key 3: [...]
         Unseal Key 4: [...]
