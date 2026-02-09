@@ -36,10 +36,14 @@ Sur le shéma (montre un service token) ci-dessus on voit que le token `A` à cr
 `A` parent => `B`
 `B` enfant => `A` et Le token `G` est quand à lui orphelin.
 
+---
+
 Le TTL peut être prolongé, arrêté et avoir un temps maximum.
 Ici, le TTL a été prolongé de 5 h ; la durée actuelle est de 4 h avec une durée maximale de 9 h.
 
 <img width="346" height="363" alt="image" src="https://github.com/user-attachments/assets/ae8903b1-f7d2-4db3-b5eb-d04573375207" />
+
+---
 
 -2. `Actions possible`
 
@@ -51,14 +55,14 @@ Le TTL arrive à expiration on peux le renouveler, soit d'une valeur par defaut,
 
 Un token peut être révoqué manuellement ou à expiration du TTL
 
+---
+
 -3. `Type token`
 
 === Token standard ===
 
 Limité dans le temps (TTL), expiration automatique.
 <img width="343" height="364" alt="image" src="https://github.com/user-attachments/assets/c548c2af-dde7-4315-b3fa-9d37971fa753" />
-
-
 
 ===Token avec privilège ===
 
