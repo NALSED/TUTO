@@ -14,16 +14,16 @@
 Deux manières d'implémenter une durée de vie aux tokens : le `TTL` (time to live) et la `Révocation`.
 -Hiérarchie TTL Vault 
 
-1. **System** (config globale Vault)
-             |
-             v
-2. **Mount** (moteur auth/secrets)
-             |
-             v
-3. **Role** (rôle spécifique)
-             |
-             v
-4. **Request** (token/lease individuel)
+      1 System (config globale Vault)
+                   |
+                   v
+      2 Mount (moteur auth/secrets)
+                   |
+                   v
+      3 Role (rôle spécifique)
+                   |
+                   v
+      4 Request (token/lease individuel)
 
 
 [EXEMPLE]
