@@ -343,16 +343,3 @@ Cache-Control: no-store
 | **PostgreSQL/MySQL** | Production | ⚠️ Avec setup | 🐢 Moyenne |
 | **Fichier local** | Dev/Test | ❌ Non | ⚡ Bonne |
 | **AWS S3** | Production | ⚠️ Avec DynamoDB | 🐢 Moyenne |
-
-### Exemple avec Raft (Recommandé)
-```
-/opt/vault/data/
-└── raft/
-    ├── raft.db           # Base de données SQLite (données chiffrées)
-    ├── snapshots/        # Snapshots automatiques
-    │   ├── 1-123-456.snap
-    │   └── 2-124-789.snap
-    └── wal/              # Write-Ahead Log
-        ├── 00000001.log
-        └── 00000002.log
-```
