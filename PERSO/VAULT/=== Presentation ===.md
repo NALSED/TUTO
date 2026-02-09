@@ -78,11 +78,7 @@ Cette architecture garantit une séparation claire entre l’accès, la gestion 
 
 - II) `Flux d'une Requête` 
 
-- III)
-
-- IV)
-
-- V)
+- III) `Principaux Chemins (Endpoints)`  
 
 ---
 
@@ -257,7 +253,7 @@ Cache-Control: no-store
 
 ---
 
-### III) 🛣️ `Principaux Chemins (Endpoints)`
+### III) 🛣️ `Principaux Chemins (Endpoints)` 🛣️ 
 
 [RAPPEL] === Méthodes HTTP et Actions ===
 
