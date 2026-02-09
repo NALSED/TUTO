@@ -58,7 +58,7 @@ Ces clés sont des fragments de la master key, divisée selon l’algorithme de 
 
 ### 2️⃣ **Root Token**
 
-Le `Root Token` est lui aussi fourni par Vault lors de la première initialisation, il est léquivelent de root sur linux => c'est Token avec les `privilèges absolus` sur Vault.
+Le `Root Token` est lui aussi fourni par Vault lors de la première initialisation, il est l'équivelent de root sur linux => c'est Token avec les `privilèges absolus` sur Vault.
 
 Il peut : 
 - Tout lire, écrire, supprimer
