@@ -12,6 +12,7 @@
 -1. `Presentation token :`
 
 Deux manières d'implémenter une durée de vie aux tokens : le `TTL` (time to live) et la `Révocation`.
+
 -Hiérarchie TTL Vault 
 
       1 System (config globale Vault)
