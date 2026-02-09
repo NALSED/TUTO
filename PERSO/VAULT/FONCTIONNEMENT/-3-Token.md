@@ -27,7 +27,7 @@ Deux manières d'implémenter une durée de vie aux tokens : le `TTL` (time to l
       4 Request (token/lease individuel)
 
 
-[EXEMPLE]
+`[EXEMPLE]`
 
  <img width="877" height="860" alt="image" src="https://github.com/user-attachments/assets/16ce2f76-7b33-40a8-bfaa-e72ea72e075e" />
 
