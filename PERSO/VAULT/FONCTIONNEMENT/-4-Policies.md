@@ -32,7 +32,7 @@
 
 <img width="1083" height="320" alt="image" src="https://github.com/user-attachments/assets/43094bcb-1246-4784-bb42-ed5074fd0474" />
 
-**Arborecence fichier dans Vault**
+**Arborecence fichier dans Vault** (non exaustif)
 
           Vault Server (127.0.0.1:8200)
           │
