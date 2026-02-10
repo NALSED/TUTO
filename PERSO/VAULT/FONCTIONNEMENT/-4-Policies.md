@@ -21,12 +21,12 @@
 
 **[CAPABILITIES]**
 
--  Possibilitées Standard / HTTP verbs : 
+#### -  Possibilitées Standard / HTTP verbs : 
 
 <img width="1636" height="338" alt="image" src="https://github.com/user-attachments/assets/a3c22a2a-eeb6-451f-8ca8-069eb00f1a7b" />
 
 
-- Possibilitées spécial / HTTP verbs :
+#### - Possibilitées spécial / HTTP verbs :
 
 <img width="1083" height="320" alt="image" src="https://github.com/user-attachments/assets/43094bcb-1246-4784-bb42-ed5074fd0474" />
 
