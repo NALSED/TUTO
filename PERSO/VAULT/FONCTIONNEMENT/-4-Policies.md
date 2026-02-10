@@ -93,7 +93,7 @@
 <img width="1257" height="701" alt="image" src="https://github.com/user-attachments/assets/003abdd5-f319-4a20-9945-a10634215a6c" />
 
 
-- Ici :
+- Ici le politique appliquées aux path :
 
     - secret/ : uniquement lister les secret commencant par `secret/`
 
