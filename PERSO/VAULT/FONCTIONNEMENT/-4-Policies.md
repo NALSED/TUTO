@@ -21,7 +21,7 @@
 
 <img width="1020" height="239" alt="image" src="https://github.com/user-attachments/assets/3be72ddf-eeed-476d-9c23-e8ae12bb5088" />
 
-**[CAPABILITIES]**
+### **[CAPABILITIES]**
 
 #### -  Possibilitées Standard / HTTP verbs : 
 
@@ -88,7 +88,7 @@
 
 
 
-**[EXEMPLE Policy]**
+### **[EXEMPLE Policy]**
 
 <img width="1257" height="701" alt="image" src="https://github.com/user-attachments/assets/003abdd5-f319-4a20-9945-a10634215a6c" />
 
@@ -102,7 +102,7 @@
     - secret/cloud/bastion :Le secret doit exister pour pouvoir Update dessus. 
 
 
-**[Path Glob Pattern]**
+### **[Path Glob Pattern]**
 
 Permet d'appliquer une policy à **plusieurs paths** en utilisant des wildcards au lieu de spécifier chaque path individuellement.
 (tous les paths qui matchent le pattern avec wildcard)
@@ -130,6 +130,7 @@ La politique s'appliquera à tous les secret qui commence par `secret/`
 
 Les politique avec `*` ne s'appliqueront pas à `secret/confidential`
 
+---
 
 #### - `+`
 
@@ -141,35 +142,8 @@ Spécifie que n'importe quelle valeur entre les deux parties du path est accept�
         capabilities = ["deny"]
      }
 
-
-
 Ici, toutes les valeurs entre `secret` et `admin` sont acceptées.
 
-
-
-
-
-
-
-
-
-
-
-
-
--. ``
-
-
-
--. ``
-
-
-
--. ``
-
-
-
--. ``
 
 ---
 ---
