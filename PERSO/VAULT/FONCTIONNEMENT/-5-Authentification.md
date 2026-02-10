@@ -5,7 +5,7 @@
 
 ### 1️⃣ `Présentation`
 ### 2️⃣ `Utilisation`
-### `COMMANDES`
+### [CHOSES A RETENIR]
 
 ---
 
@@ -65,90 +65,77 @@ Deux choix `User` ou `App`
 
 Précisions sur quelques authentifications spécifiques :
 
+🟢 **Vert** = Recommandé pour la production / Bonne pratique
+
+🟡 **Jaune** = Acceptable dans certains cas spécifiques / Attention requise
+
+🔴 **Rouge** = Déconseillé / Risque de sécurité
+
 === USER ===
 
-- `Vault Token` 🔴 Déconseillé : impossibilité de vérifier l'identité de l'utilisateur.  
-- `Userpass` 🟢 Authentification via nom d'utilisateur et mot de passe.  
-- `LDAP` 🟢 Permet à Vault d'authentifier les employés avec leurs identifiants corporate au lieu de créer des comptes séparés.  
-  (LDAP = annuaire centralisé d'entreprise qui stocke utilisateurs, groupes et mots de passe)
+* `Vault Token` 🔴 Déconseillé : impossibilité de vérifier l'identité de l'utilisateur.
+
+* `Userpass` 🟢 Authentification via nom d'utilisateur et mot de passe.
+
+* `LDAP` 🟢 Permet à Vault d'authentifier les employés avec leurs identifiants corporate au lieu de créer des comptes séparés. (LDAP = annuaire centralisé d'entreprise qui stocke utilisateurs, groupes et mots de passe)
+
+* `OIDC` 🟢 Authentification via fournisseur externe (Google, Okta, Azure AD) avec redirection navigateur pour SSO. (OIDC = protocole d'authentification qui utilise des JWT)
+
+* `GitHub` 🟡 Authentification via personal access token GitHub. Utile pour développeurs mais limité (pas pour production).
 
 ---
 
 === APP ===
 
+* `AppRole` 🟢 Authentification pour applications/machines via role-id (public) + secret-id (temporaire). Idéal pour automatisation sans credentials humains.
 
+* `Kubernetes` 🟢 Les pods Kubernetes s'authentifient automatiquement via leur service account token. Pas de credentials à gérer manuellement.
 
+* `AWS IAM` 🟢 Les instances EC2/Lambda s'authentifient via leur rôle IAM. Vault vérifie auprès d'AWS. Pas de secrets à stocker.
 
--. ``
+* `JWT` 🟡 L'application a déjà un token JWT signé, Vault vérifie sa signature et délivre un token Vault. (Cas d'usage : CI/CD, service-to-service)
 
-
-
--. ``
-
-
-
--. ``
+* `TLS Certificate` 🟡 Authentification via certificat client TLS. Sécurisé mais gestion des certificats complexe.
 
 ---
 ---
 
 ### 2️⃣ **Utilisation**
 
+Pour la présentation, Vault vient d'être initialisé et, par conséquent, seule l'authentification par token est disponible.
+
+<img width="771" height="562" alt="image" src="https://github.com/user-attachments/assets/729e2852-ebb0-4d97-873c-c09d4dcd12ad" />
+
+Pour des raisons d'infrastructure, toutes les authentifications ne pourront pas être développées.
+
+-Présentation des Auth 
+
+-1. UserPass
+
+### `Shéma`
+<img width="1280" height="488" alt="image" src="https://github.com/user-attachments/assets/64fbb20e-2970-4210-a5f5-a00345c8063b" />
+
+### `Résumé Commandes`
+
+<img width="1529" height="658" alt="image" src="https://github.com/user-attachments/assets/e104dfaa-2d77-4d9b-9d42-36af3906fff9" />
+
+-2. AppRoles
+
+### `Shéma`
+<img width="1549" height="740" alt="image" src="https://github.com/user-attachments/assets/7800d11c-563b-460a-91af-1233277eb3d3" />
+
+### `Résumé Commandes`
+
+<img width="1516" height="626" alt="image" src="https://github.com/user-attachments/assets/0a1fd581-b8b8-4142-aaa1-9b4f0c9968ab" />
+
+<img width="1515" height="638" alt="image" src="https://github.com/user-attachments/assets/d40d9d96-d640-4ec9-a5e8-0644080792d0" />
+
+**=== AUTRE ===**
+
+-3. GitHub
+-4. LDAP
 
 ---
 ---
 
-### **COMMANDES**
-
-
-``
-
-
--Sortie
-
-
----
-
-
-``
-
-
--Sortie
-
-
----
-
-``
-
-
--Sortie
-
-
----
-
-``
-
-
--Sortie
-
-
----
-
-``
-
-
--Sortie
-
-
----
-
-``
-
-
--Sortie
-
-
----
-
-
- [CHOSES A RETENIR]
+[CHOSES A RETENIR]
