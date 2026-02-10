@@ -51,27 +51,27 @@ Deux choix `User` ou `App`
           │<──────────────────────│                              │
 
 
-- `Étapes`
+        - `Étapes`
+        
+        1. **User** → Envoie credentials (username/password) à Vault
+        2. **Vault** → Vérifie auprès du backend d'auth (LDAP/AD/GitHub...)
+        3. **Backend** → Retourne OK + infos utilisateur (groupes, email...)
+        4. **Vault** → Mappe groupes backend → policies Vault
+        5. **Vault** → Retourne TOKEN avec policies attachées
+        6. **User** → Utilise le token pour accéder aux secrets
+        7. **Vault** → Retourne secrets si policies autorisent
 
-1. **User** → Envoie credentials (username/password) à Vault
-2. **Vault** → Vérifie auprès du backend d'auth (LDAP/AD/GitHub...)
-3. **Backend** → Retourne OK + infos utilisateur (groupes, email...)
-4. **Vault** → Mappe groupes backend → policies Vault
-5. **Vault** → Retourne TOKEN avec policies attachées
-6. **User** → Utilise le token pour accéder aux secrets
-7. **Vault** → Retourne secrets si policies autorisent
-
-
+---
 
 Précisions sur quelques authentifications spécifiques :
 
-🟢 **Vert** = Recommandé pour la production / Bonne pratique
+🟢 = Recommandé pour la production / Bonne pratique
 
-🟡 **Jaune** = Acceptable dans certains cas spécifiques / Attention requise
+🟡 = Acceptable dans certains cas spécifiques / Attention requise
 
-🔴 **Rouge** = Déconseillé / Risque de sécurité
+🔴  = Déconseillé / Risque de sécurité
 
-=== USER ===
+#### **=== USER ===**
 
 * `Vault Token` 🔴 Déconseillé : impossibilité de vérifier l'identité de l'utilisateur.
 
@@ -85,7 +85,7 @@ Précisions sur quelques authentifications spécifiques :
 
 ---
 
-=== APP ===
+#### **=== APP ===**
 
 * `AppRole` 🟢 Authentification pour applications/machines via role-id (public) + secret-id (temporaire). Idéal pour automatisation sans credentials humains.
 
@@ -102,13 +102,13 @@ Précisions sur quelques authentifications spécifiques :
 
 ### 2️⃣ **Utilisation**
 
-Pour la présentation, Vault vient d'être initialisé et, par conséquent, seule l'authentification par token est disponible.
+Pour la présentation, Vault vient d'être initialisé (prod) et, par conséquent, seule l'authentification par token est disponible.
 
 <img width="771" height="562" alt="image" src="https://github.com/user-attachments/assets/729e2852-ebb0-4d97-873c-c09d4dcd12ad" />
 
 Pour des raisons d'infrastructure, toutes les authentifications ne pourront pas être développées.
 
-** === BONNE PRATIQUE ===**
+#### ** === BONNE PRATIQUE ===**
 
 Afin de ranger correctement les policies, voici une suggestion :
 
