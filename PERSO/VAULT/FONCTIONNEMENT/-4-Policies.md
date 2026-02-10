@@ -105,6 +105,7 @@
 ### **[Path Glob Pattern]**
 
 Permet d'appliquer une policy à **plusieurs paths** en utilisant des symboles au lieu de spécifier chaque path individuellement.
+
 (tous les paths qui matchent le pattern avec `*` ou `+`)
 
 #### - `*` ou Wildcard
