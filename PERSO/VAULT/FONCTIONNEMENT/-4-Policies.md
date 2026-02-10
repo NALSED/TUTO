@@ -4,8 +4,6 @@
 
 1️⃣ `Présentation`
 
-2️⃣ `Utilisation`
-
 `COMMANDES`
 
 ---
@@ -129,7 +127,7 @@ La politique s'appliquera à tous les secret qui commence par `secret/`
       path "secret/confidential"
             capabilities = ["deny"]
 
-Les politique avec `*` ne s'appliqueront pas à `secret/confidential`
+Les politiques avec `*` ne s'appliqueront pas à `secret/confidential`
 
 ---
 
@@ -147,63 +145,10 @@ Ici, toutes les valeurs entre `secret` et `admin` sont acceptées.
 
 
 ---
----
-
-### 2️⃣ **Utilisation**
-
-
----
----
 
 ### **COMMANDES**
 
-
-``
-
-
--Sortie
-
-
----
-
-
-``
-
-
--Sortie
-
-
----
-
-``
-
-
--Sortie
-
-
----
-
-``
-
-
--Sortie
-
-
----
-
-``
-
-
--Sortie
-
-
----
-
-``
-
-
--Sortie
-
+Voir la documentation officiel de Vault [ICI](https://developer.hashicorp.com/vault/docs/concepts/policies)
 
 ---
 
