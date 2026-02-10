@@ -108,23 +108,23 @@ Pour la présentation, Vault vient d'être initialisé et, par conséquent, seul
 
 Pour des raisons d'infrastructure, toutes les authentifications ne pourront pas être développées.
 
--Présentation des Auth 
+### `- Présentation des Auth` 
 
--1. UserPass
+**-1. UserPass**
 
-### `Shéma`
+#### `Shéma`
 <img width="1280" height="488" alt="image" src="https://github.com/user-attachments/assets/64fbb20e-2970-4210-a5f5-a00345c8063b" />
 
-### `Résumé Commandes`
+#### `Résumé Commandes`
 
 <img width="1529" height="658" alt="image" src="https://github.com/user-attachments/assets/e104dfaa-2d77-4d9b-9d42-36af3906fff9" />
 
--2. AppRoles
+**-2. AppRoles**
 
-### `Shéma`
+#### `Shéma`
 <img width="1549" height="740" alt="image" src="https://github.com/user-attachments/assets/7800d11c-563b-460a-91af-1233277eb3d3" />
 
-### `Résumé Commandes`
+#### `Résumé Commandes`
 
 <img width="1516" height="626" alt="image" src="https://github.com/user-attachments/assets/0a1fd581-b8b8-4142-aaa1-9b4f0c9968ab" />
 
