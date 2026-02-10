@@ -157,7 +157,9 @@ Afin de ranger correctement les policies, voici une suggestion :
 -2. Création de la policy qui administrera l'authentification User
 
          nano vault-config/policies/user/policy_user_auth.hcl
+
 -Editer 
+       
         path "secret/data/users" {
           capabilities = ["read", "create", "update", "delete"]
         }
