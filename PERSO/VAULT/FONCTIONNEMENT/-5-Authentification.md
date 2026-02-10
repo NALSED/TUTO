@@ -108,6 +108,22 @@ Pour la présentation, Vault vient d'être initialisé et, par conséquent, seul
 
 Pour des raisons d'infrastructure, toutes les authentifications ne pourront pas être développées.
 
+** === BONNE PRATIQUE ===**
+
+Afin de ranger correctement les policies, voici une suggestion :
+
+        vault-config/
+        ├── policies/
+        │   ├── humans/
+        │   │   ├── admin.hcl
+        │   │   └── developer.hcl
+        │   └── apps/
+        │       ├── jenkins.hcl
+        │       └── gitlab.hcl
+        ├── scripts/
+        │   └── deploy-policies.sh
+        └── README.md
+
 ### `- Présentation des Auth` 
 
 **-1. UserPass**
@@ -119,6 +135,61 @@ Pour des raisons d'infrastructure, toutes les authentifications ne pourront pas 
 
 <img width="1529" height="658" alt="image" src="https://github.com/user-attachments/assets/e104dfaa-2d77-4d9b-9d42-36af3906fff9" />
 
+### **[DEMONSTRATION]**
+
+-1. Création de l'arborécence ci dessus ⬆️ (BONNE PRATIQUE)
+       
+        mkdir -p vault-config/{policies/{user,apps},scripts}
+
+<img width="381" height="156" alt="image" src="https://github.com/user-attachments/assets/a82f309a-1e48-419f-9ca9-964a56e69383" />
+
+
+-2.
+
+
+** === BONNE PRATIQUE ===**
+
+        - EXEMPLE
+        secret/data/{env}/{app}/{type}/{name}
+        secret/data/prod/ecommerce/database/mysql
+
+→ Clair, prévisible, scalable
+
+-3.
+
+
+
+-4.
+
+
+
+-5.
+
+
+
+-6.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
 **-2. AppRoles**
 
 #### `Shéma`
@@ -128,12 +199,41 @@ Pour des raisons d'infrastructure, toutes les authentifications ne pourront pas 
 
 <img width="1516" height="626" alt="image" src="https://github.com/user-attachments/assets/0a1fd581-b8b8-4142-aaa1-9b4f0c9968ab" />
 
-<img width="1515" height="638" alt="image" src="https://github.com/user-attachments/assets/d40d9d96-d640-4ec9-a5e8-0644080792d0" />
+<img width="1531" height="647" alt="image" src="https://github.com/user-attachments/assets/35657fb7-cb67-4153-88ec-225d7cc51faf" />
+
+### **[DEMONSTRATION]**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
 
 **=== AUTRE ===**
 
--3. GitHub
--4. LDAP
+**-3. GitHub**
+
+### **[DEMONSTRATION]**
+
+**-4. LDAP**
+
+### **[DEMONSTRATION]**
 
 ---
 ---
