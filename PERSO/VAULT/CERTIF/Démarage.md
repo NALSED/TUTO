@@ -21,6 +21,7 @@ après installation
       HA Enabled         false
 
 -3. `vault status`
+     
       Key                Value
       ---                -----
       Seal Type          shamir
