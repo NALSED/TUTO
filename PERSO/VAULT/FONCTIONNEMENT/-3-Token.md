@@ -3,7 +3,7 @@
 ---
 
 ### 1️⃣ `Durée de vie des token`
-### 2️⃣ ``
+### 2️⃣ `Utilisation`
 ### `COMMANDES`
 ---
 
@@ -32,6 +32,7 @@ Deux manières d'implémenter une durée de vie aux tokens : le `TTL` (time to l
  <img width="877" height="860" alt="image" src="https://github.com/user-attachments/assets/16ce2f76-7b33-40a8-bfaa-e72ea72e075e" />
 
 Sur le shéma (montre un service token) ci-dessus on voit que le token `A` à créé le token `B` et `C` avec des TTL différent, on peux aussi noter que `B` et `C` sont parent.
+C'est le Token utilisé pour la connection à Vault qui détermine le parent. 
 
 `A` parent => `B`
 `B` enfant => `A` et Le token `G` est quand à lui orphelin.
@@ -57,7 +58,7 @@ Un token peut être révoqué manuellement ou à expiration du TTL
 
 ---
 
--3. `Type token`
+-3. `Les deux Familles de Token`
 
 === Token standard ===
 
@@ -80,10 +81,156 @@ Bonne pratique : l’utiliser une seule fois pour configurer Vault, puis le rév
 
 <img width="337" height="307" alt="image" src="https://github.com/user-attachments/assets/d2bc4fde-86c8-44cc-86c7-4fa28ed7f68f" />
 
+
+
 `[RESUME]`
 
 <img width="1271" height="568" alt="image" src="https://github.com/user-attachments/assets/cecc1dcd-24bd-4875-a72b-edde21d75aa0" />
 
 ---
+---
+
+### 2️⃣ **Utilisation**
+`[NOTE]`
+
+| Type de jeton        | Vault 1.9.x ou versions antérieures | Vault 1.10 et versions ultérieures |
+|---------------------|--------------------------------------|------------------------------------|
+| Service Token    | `s.<random>`                         | `hvs.<random>`                     |
+| Batch Token        | `b.<random>`                         | `hvb.<random>`                     |
+| Recovery Token | `r.<random>`                       | `hvr.<random>`                     |
+
+
+-2.1. `Token accessor`
+
+- Clé d’authentification permettant de récupérer des information  
+- Associé à des **policies** qui définissent les permissions (read, write, list, etc.)  
+- Possède une **durée de vie (TTL)**  
+- Peut être **renouvelable** ou **révoqué**
+
+
+-2.3. `Token Type`
+
+<img width="1452" height="500" alt="image" src="https://github.com/user-attachments/assets/122907e7-6f18-4228-a64f-ca4d3827c9d6" />
+
+- Service Token vs Batch Token (Vault)
+
+**Service Token**
+
+- Token `persistant`
+- Stocké par Vault (état conservé)
+- Peut être `renouvelé`
+- Peut créer d’autres tokens
+- Idéal pour les `services / applications long-running`
+- Peut être explicitement `révoqué`
+
+**Batch Token**
+
+- Token `éphémère` et `stateless`
+- Non stocké par Vault (plus léger)
+- `Non renouvelable`
+- Ne peut pas créer d’autres tokens
+- Expire automatiquement
+- Idéal pour les `jobs courts / CI / scripts`
+
+---
+
+
+
+---
+---
 
 ### **COMMANDES**
+
+- `Voir les information d'un token`
+
+       vault token lookup [token ou token accessor]
+
+
+[EXEMPLE]
+
+            sednal@VaultTraining:~$ vault token lookup [TOKEN]
+            Key                 Value
+            ---                 -----
+            accessor            NeulGtbCoGPb0jsSx8khuI2G
+            creation_time       1770706551
+            creation_ttl        10m
+            display_name        token
+            entity_id           n/a
+            expire_time         2026-02-10T08:05:51.97408552+01:00
+            explicit_max_ttl    20m
+            id                 
+            issue_time          2026-02-10T07:55:51.974086504+01:00
+            meta                <nil>
+            num_uses            0
+            orphan              false
+            path                auth/token/create
+            policies            [default]
+            renewable           true
+            ttl                 8m37s
+            type                service
+            
+            sednal@VaultTraining:~$ vault token lookup -accessor NeulGtbCoGPb0jsSx8khuI2G
+            Key                 Value
+            ---                 -----
+            accessor            NeulGtbCoGPb0jsSx8khuI2G
+            creation_time       1770706551
+            creation_ttl        10m
+            display_name        token
+            entity_id           n/a
+            expire_time         2026-02-10T08:05:51.97408552+01:00
+            explicit_max_ttl    20m
+            id                  n/a
+            issue_time          2026-02-10T07:55:51.974086504+01:00
+            meta                <nil>
+            num_uses            0
+            orphan              false
+            path                auth/token/create
+            policies            [default]
+            renewable           true
+            ttl                 8m15s
+            type                service
+
+
+
+
+
+
+- `Augmenter la durée d'un token`
+      vault token renew
+
+      sednal@VaultTraining:/var/log$ vault token renew [TOKEN]
+Key                  Value
+---                  -----
+token               
+token_accessor       DdI5TRGVtW9qtVLEWFd1kJDr
+token_duration       10m
+token_renewable      true
+token_policies       ["default"]
+identity_policies    []
+policies             ["default"]
+
+
+- ``
+ 
+- ``
+
+- ``
+
+
+- ``
+ 
+- ``
+
+  - ``
+
+
+- ``
+ 
+- ``
+
+- ``
+
+
+- ``
+ 
+- ``
