@@ -110,7 +110,7 @@ Permet d'appliquer une policy à **plusieurs paths** en utilisant des symboles a
 
 #### - `*` ou Wildcard
 
-Le `*` est un **préfixe** : il se place toujours à la fin d’un segment et indique que la policy s’applique à tout ce qui commence exactement par ce segment avant la wildcard.
+Le `*` est un **préfixe** (de a suite du path) : il se place toujours à la fin d’un segment et indique que la policy s’applique à tout ce qui commence exactement par ce segment avant la wildcard.
 
 - exemple 1 :
 
