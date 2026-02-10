@@ -147,14 +147,14 @@ Afin de ranger correctement les policies, voici une suggestion :
 
         Success! Enabled the kv-v2 secrets engine at: secret/
         
--1. Création de l'arborécence ci dessus ⬆️ (BONNE PRATIQUE)
+#### `-1.` Création de l'arborécence ci dessus ⬆️ (BONNE PRATIQUE)
        
         mkdir -p vault-config/{policies/{user,apps},scripts}
 
 <img width="381" height="156" alt="image" src="https://github.com/user-attachments/assets/a82f309a-1e48-419f-9ca9-964a56e69383" />
 
 
--2. Création de la policy qui administrera l'authentification User
+#### `-2.` Création de la policy qui administrera l'authentification User
 
          nano vault-config/policies/user/policy_user_auth.hcl
 
@@ -172,28 +172,27 @@ Afin de ranger correctement les policies, voici une suggestion :
 
 => Clair, prévisible, scalable
 
--3.
+#### `-3.`
 
 
 
--4.
+#### `-4.`
 
 
 
--5.
+#### `-5.`
 
 
 
--6.
+#### `-6.`
 
 
-
-
-
-
-
-
-
+#### `-.`
+#### `-.`
+#### `-.`
+#### `-.`
+#### `-.`
+#### `-.`
 
 
 
