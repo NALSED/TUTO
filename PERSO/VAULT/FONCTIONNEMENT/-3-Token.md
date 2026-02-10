@@ -283,3 +283,4 @@ Bonne pratique : l’utiliser une seule fois pour configurer Vault, puis le rév
 
 <img width="1740" height="817" alt="image" src="https://github.com/user-attachments/assets/d698d12e-299a-4333-9d07-ad9ea975f826" />
 
+<img width="1260" height="773" alt="image" src="https://github.com/user-attachments/assets/7e10ac50-8050-4b31-bc96-c5316a681eb6" />
