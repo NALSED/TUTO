@@ -15,16 +15,11 @@ Deux manières d'implémenter une durée de vie aux tokens : le `TTL` (time to l
 
 -Hiérarchie TTL Vault 
 
-      1 System (config globale Vault)
-                   |
-                   v
-      2 Mount (moteur auth/secrets)
-                   |
-                   v
-      3 Role (rôle spécifique)
-                   |
-                   v
-      4 Request (token/lease individuel)
+System max_lease_ttl (limite absolue Vault)
+         ↓ (peut réduire mais pas dépasser)
+Backend max_lease_ttl (auth/token tune)
+         ↓ (peut réduire mais pas dépasser)
+Token -explicit-max-ttl (individuel)
 
 
 `[EXEMPLE]`
@@ -32,7 +27,7 @@ Deux manières d'implémenter une durée de vie aux tokens : le `TTL` (time to l
  <img width="877" height="860" alt="image" src="https://github.com/user-attachments/assets/16ce2f76-7b33-40a8-bfaa-e72ea72e075e" />
 
 Sur le shéma (montre un service token) ci-dessus on voit que le token `A` à créé le token `B` et `C` avec des TTL différent, on peux aussi noter que `B` et `C` sont parent.
-C'est le Token utilisé pour la connection à Vault qui détermine le parent. 
+Par défaut c'est le Token utilisé pour la connection à Vault qui détermine le parent, mais il est possible de choisir le token parent (voir commandes ⬇️ )
 
 `A` parent => `B`
 `B` enfant => `A` et Le token `G` est quand à lui orphelin.
@@ -146,7 +141,8 @@ Bonne pratique : l’utiliser une seule fois pour configurer Vault, puis le rév
        vault token lookup [token ou token accessor]
 
 
-[EXEMPLE]
+
+- Sortie
 
             sednal@VaultTraining:~$ vault token lookup [TOKEN]
             Key                 Value
@@ -192,45 +188,125 @@ Bonne pratique : l’utiliser une seule fois pour configurer Vault, puis le rév
 
 
 
-
+---
 
 
 - `Augmenter la durée d'un token`
+
       vault token renew
 
+- Sortie
+
       sednal@VaultTraining:/var/log$ vault token renew [TOKEN]
-Key                  Value
----                  -----
-token               
-token_accessor       DdI5TRGVtW9qtVLEWFd1kJDr
-token_duration       10m
-token_renewable      true
-token_policies       ["default"]
-identity_policies    []
-policies             ["default"]
+      Key                  Value
+      ---                  -----
+      token               
+      token_accessor       DdI5TRGVtW9qtVLEWFd1kJDr
+      token_duration       10m
+      token_renewable      true
+      token_policies       ["default"]
+      identity_policies    []
+      policies             ["default"]
 
+---
+
+- `MAX ttl system`
+
+      ault read sys/auth/token/tune
+
+
+---
+ 
+- `Choisir le token Parent`
+⚠️ Policies doivent être correct
+
+      VAULT_TOKEN=[TOKEN] vault token create -ttl=600s -policy=default
+
+[EXEMPLE SANS POLICIES]
+     
+      sednal@VaultTraining:~$ VAULT_TOKEN=[TOKEN] vault token create -ttl=600s -policy=default
+      
+      Error creating token: Error making API request.
+      
+      URL: POST http://127.0.0.1:8200/v1/auth/token/create
+      Code: 403. Errors:
+      
+      * 1 error occurred:
+              * permission denied
+      
+      
+      sednal@VaultTraining:~$ TOKEN_ID=$(vault token create -ttl=60s -explicit-max-ttl=600s -policy=root -field=token)
+      
+      sednal@VaultTraining:~$ VAULT_TOKEN=$TOKEN_ID vault token create -ttl=600s -policy=default
+      Key                  Value
+      ---                  -----
+      token                [TOKEN]
+      token_accessor       yROjBXp6LNtjPmYN0r8c2iK7
+      token_duration       10m
+      token_renewable      true
+      token_policies       ["default"]
+      identity_policies    []
+      policies             ["default"]
+
+---
+
+- `Révoquer un Token`
+
+      vault token revoke - accessor yROjBXp6LNtjPmYN0r8c2iK7
+
+- Sortie
+
+         Success! Revoked token (if it existed)
+
+---
+
+- `Créer un token Batch`
+
+      vault token create -type=batch -policy="default" -ttl=120s
+
+- Sortie :
+
+      Key                  Value
+      ---                  -----
+      token                [TOKEN]
+      token_accessor       n/a <= PAS D'accessor
+      token_duration       2m
+      token_renewable      false <= NON renouvelable
+      token_policies       ["default"]
+      identity_policies    []
+      policies             ["default"]
+
+---
+---
+
+**[CHOSES A RETENIR]**
+
+<img width="1740" height="817" alt="image" src="https://github.com/user-attachments/assets/d698d12e-299a-4333-9d07-ad9ea975f826" />
+
+
+---
 
 - ``
+
+---
+
+- ``
+
+---
  
 - ``
 
+---
+
 - ``
 
+---
 
 - ``
+
+---
  
 - ``
 
-  - ``
 
-
-- ``
- 
-- ``
-
-- ``
-
-
-- ``
- 
-- ``
+---
