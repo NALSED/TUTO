@@ -137,6 +137,16 @@ Afin de ranger correctement les policies, voici une suggestion :
 
 ### **[DEMONSTRATION]**
 
+⚠️ Le serveur utilisé pour la démo, n'est pas en dev mode, donc vault secrets non actif
+
+- Pour activer : 
+
+        vault secrets enable -path=secret kv-v2
+
+-Sortie:
+
+        Success! Enabled the kv-v2 secrets engine at: secret/
+        
 -1. Création de l'arborécence ci dessus ⬆️ (BONNE PRATIQUE)
        
         mkdir -p vault-config/{policies/{user,apps},scripts}
@@ -144,16 +154,21 @@ Afin de ranger correctement les policies, voici une suggestion :
 <img width="381" height="156" alt="image" src="https://github.com/user-attachments/assets/a82f309a-1e48-419f-9ca9-964a56e69383" />
 
 
--2.
+-2. Création de la policy qui administrera l'authentification User
 
+         nano vault-config/policies/user/policy_user_auth.hcl
+-Editer 
+        path "secret/data/users" {
+          capabilities = ["read", "create", "update", "delete"]
+        }
 
 ** === BONNE PRATIQUE ===**
 
-        - EXEMPLE
+        - EXEMPLE d'arborécence endpoint
         secret/data/{env}/{app}/{type}/{name}
         secret/data/prod/ecommerce/database/mysql
 
-→ Clair, prévisible, scalable
+=> Clair, prévisible, scalable
 
 -3.
 
