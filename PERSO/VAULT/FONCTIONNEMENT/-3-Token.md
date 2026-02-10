@@ -2,12 +2,12 @@
 
 ---
 
-### 1️⃣ `Durée de vie des token`
+### 1️⃣ `Présentation`
 ### 2️⃣ `Utilisation`
 ### `COMMANDES`
 ---
 
-### 1️⃣ **Durée de vie des token**
+### 1️⃣ **Présentation**
 
 -1. `Presentation token :`
 
