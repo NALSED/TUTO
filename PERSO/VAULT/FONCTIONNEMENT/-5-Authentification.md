@@ -124,9 +124,9 @@ Afin de ranger correctement les policies, voici une suggestion :
         │   └── deploy-policies.sh
         └── README.md
 
-### `- Présentation des Auth` 
+## `- Présentation de moyens d'authentification` 
 
-**-1. UserPass**
+### **-1. UserPass**
 
 #### `Shéma`
 <img width="1280" height="488" alt="image" src="https://github.com/user-attachments/assets/64fbb20e-2970-4210-a5f5-a00345c8063b" />
@@ -207,7 +207,7 @@ Afin de ranger correctement les policies, voici une suggestion :
 
 ---
 
-**-2. AppRoles**
+### **-2. AppRoles**
 
 #### `Shéma`
 <img width="1549" height="740" alt="image" src="https://github.com/user-attachments/assets/7800d11c-563b-460a-91af-1233277eb3d3" />
