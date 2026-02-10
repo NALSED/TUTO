@@ -283,30 +283,3 @@ Bonne pratique : l’utiliser une seule fois pour configurer Vault, puis le rév
 
 <img width="1740" height="817" alt="image" src="https://github.com/user-attachments/assets/d698d12e-299a-4333-9d07-ad9ea975f826" />
 
-
----
-
-- ``
-
----
-
-- ``
-
----
- 
-- ``
-
----
-
-- ``
-
----
-
-- ``
-
----
- 
-- ``
-
-
----
