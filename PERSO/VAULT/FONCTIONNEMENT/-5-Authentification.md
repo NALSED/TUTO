@@ -108,7 +108,7 @@ Pour la présentation, Vault vient d'être initialisé (prod) et, par conséquen
 
 Pour des raisons d'infrastructure, toutes les authentifications ne pourront pas être développées.
 
-#### ** === BONNE PRATIQUE ===**
+#### **=== BONNE PRATIQUE ===**
 
 Afin de ranger correctement les policies, voici une suggestion :
 
