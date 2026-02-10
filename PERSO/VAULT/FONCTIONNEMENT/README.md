@@ -18,7 +18,34 @@
 - []()
 - []()
 
-**Arborecence Compléte**
+
+**Arborecence post init**
+
+           Vault Server (https://vault.prod.com:8200)
+           │
+           ├── sys/                              ✅ Existe toujours (système Vault)
+           │   ├── auth/                         # Config auth methods
+           │   ├── mounts/                       # Config secrets engines  
+           │   ├── policies/                     # Policies stockées ici
+           │   │   ├── default                   ✅ Policy par défaut (minimale)
+           │   │   └── root                      ✅ Policy root (accès total)
+           │   └── audit/                        # Config audit logs (vide)
+           │
+           ├── auth/                             ✅ Existe toujours
+           │   └── token/                        ✅ SEULE méthode d'auth par défaut
+           │       ├── create                    # Créer tokens
+           │       ├── lookup                    # Info token
+           │       └── accessors/                # Liste accessors
+           │
+           └── identity/                         ✅ Existe toujours
+               ├── entity/                       # Entités (vide)
+               └── group/                        # Groupes (vide)
+           
+           ❌ PAS de secret/
+           ❌ PAS de database/
+           ❌ PAS d'autres auth methods
+
+**Arborecence Complétement configurée**
 
            Vault Server (http://127.0.0.1:8200)
           │
