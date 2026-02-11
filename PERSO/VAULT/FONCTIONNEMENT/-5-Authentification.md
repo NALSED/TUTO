@@ -326,26 +326,3 @@ Ici
 
 <img width="925" height="245" alt="image" src="https://github.com/user-attachments/assets/b9dd6e39-0b38-40b4-817a-546b4c7c4a20" />
 
-
----
-
-**=== AUTRE ===**
-
-**-3. GitHub**
-
-### **[DEMONSTRATION]**
-
-**-4. LDAP**
-
-### **[DEMONSTRATION]**
-
----
----
-
-[CHOSES A RETENIR]
-
-
-
-
-
-
