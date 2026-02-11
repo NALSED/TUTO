@@ -19,10 +19,10 @@ Pour les besoins d'un test de connection via `Ldap` sur le logiciel [Vault](http
 
 #### - `AD CS` (Active Directory Certificate Services)
 
-    - Met en place une **PKI** dans Active Directory  
-    - Émet et gère des **certificats numériques**  
-    - Sert à l’authentification, au chiffrement et à la sécurisation des communications.
-    - Passer de LDAP à LDAPS
+   - Met en place une **PKI** dans Active Directory  
+   - Émet et gère des **certificats numériques**  
+   - Sert à l’authentification, au chiffrement et à la sécurisation des communications.
+   - Passer de LDAP à LDAPS
 
 #### - `Types de déploiement AD CS`
 
