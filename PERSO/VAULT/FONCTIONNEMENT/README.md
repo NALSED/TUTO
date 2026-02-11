@@ -4,7 +4,7 @@
 - [Variables environement](https://developer.hashicorp.com/vault/docs/commands#configure-environment-variables)
 - [Création de Token](https://developer.hashicorp.com/vault/api-docs/auth/token#create-token)
 - [Policies](https://developer.hashicorp.com/vault/docs/concepts/policies)
-- []()
+- [Auth](https://developer.hashicorp.com/vault/docs/auth)
 - []()
 - []()
 - []()
@@ -18,6 +18,42 @@
 - []()
 - []()
 
+---
+---
+
+**[TIPS]**
+
+- Modifier les options lors / après la création avec `write`.
+Avec l’option `read`, on a accès à tous les paramètres.
+
+[EXEMPLE]
+
+           vault read auth/approle/role/app
+
+- Sortie : 
+
+      Key                        Value
+      ---                        -----
+      alias_metadata             map[]
+      bind_secret_id             true
+      local_secret_ids           false
+      secret_id_bound_cidrs      <nil>
+      secret_id_num_uses         0
+      secret_id_ttl              0s
+      token_bound_cidrs          []
+      token_explicit_max_ttl     0s
+      token_max_ttl              0s
+      token_no_default_policy    false
+      token_num_uses             0
+      token_period               0s
+      token_policies             [default]
+      token_ttl                  0s
+      token_type                 default
+
+Tous les éléments présents dans la colonne `Key` sont paramétrables.
+
+---
+---
 
 **Arborecence post init**
 
