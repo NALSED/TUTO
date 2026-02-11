@@ -230,32 +230,39 @@ ici
 - `Mot de passe` : password=131213
 - `Politique créer plus haut` : policies=user
   
-#### `-6.`
+#### `-6.` Lister et lire les info de notre utilisateur `sednal`
+
+        vault list auth/userpass/users/
+        vault read auth/userpass/users/sednal
+
+<img width="564" height="345" alt="image" src="https://github.com/user-attachments/assets/4d5d52d6-6a80-4965-a7ca-c7b0be058136" />
+
+`[NOTE]` Ici que le `token_max_ttl` = 0, mais il y à le token_max_ttl sys qui prend le dessus avec environ 32 jours
+
+#### `-7.` TEST Authentification en CLI et WEB UI
+
+- `CLI`
+
+<img width="926" height="349" alt="image" src="https://github.com/user-attachments/assets/fd6fd3ce-920d-4a76-b923-8d174f47cbd2" />
+
+`[NOTE]` Le max ttl est bien celui du system
+Maintenant l'utilisateur peux se connecter via userpass ou token.
+
+- `WEB`
+
+<img width="615" height="608" alt="image" src="https://github.com/user-attachments/assets/2d98582a-f2bd-4cd6-99a0-13dba75da5e7" />
+
+-Tout est OK
+
+<img width="515" height="420" alt="image" src="https://github.com/user-attachments/assets/9b3d4f23-88f7-42c1-bd72-372cd7c62369" />
 
 
-#### `-.`
-#### `-.`
-#### `-.`
-#### `-.`
-#### `-.`
-#### `-.`
-
-
-
-
-
-
-
-
-
-
-
----
 
 ### **-2. AppRoles**
 
 [DOC HASHICORP](https://developer.hashicorp.com/vault/docs/auth/approle)
 
+ `AppRole` permet `d'automatiser la connexion des applicatioons` pour accéder à des secrets de manière sécurisée.
 
 #### `Shéma`
 <img width="1549" height="740" alt="image" src="https://github.com/user-attachments/assets/7800d11c-563b-460a-91af-1233277eb3d3" />
@@ -270,22 +277,54 @@ ici
 
 
 
+#### `-1.` Autoriser l'Authentification via AppRole
 
+        vault auth enable approle
 
+-Sortie :
 
+        Success! Enabled approle auth method at: approle/
 
+-Liste 
+          vault auth list
 
+<img width="794" height="112" alt="image" src="https://github.com/user-attachments/assets/2b38282e-b69b-4d9e-a789-4e0a07890669" />
 
+#### `-2.` Création du role d'authentification AppRole
 
+        vault write auth/approle/role/app token_policies="default"
+- Ici la politique de token est par defaut, dans la doc officiel il est décrit comment gérer ça [ICI](https://developer.hashicorp.com/vault/docs/auth/approle#via-the-cli-1)
+Pour modifier les Information
 
+-Sortie :
 
+        Success! Data written to: auth/approle/role/app
 
+-Liste : 
 
+<img width="487" height="76" alt="image" src="https://github.com/user-attachments/assets/93fa6194-359b-4c81-aee4-f4f03b75268c" />
 
+#### `-3.` Récupérer le Role-ID et Secret-ID
 
+📝 role-id => statique
+📝 secret-id => dynamique, il est délivré à la demande
 
+        vault read auth/approle/role/app/role-id      
 
+<img width="582" height="75" alt="image" src="https://github.com/user-attachments/assets/95f45d7b-26c1-4a66-9fcd-74602295545c" />
 
+        vault write -f auth/approle/role/app/secret-id
+
+<img width="634" height="138" alt="image" src="https://github.com/user-attachments/assets/ba202a52-c0b1-493d-a500-bfb10252fc26" />
+
+#### `-4.` Test via CLI
+vault write auth/approle/login role_id=$ROLE_ID secret_id=$SECRET_ID
+
+Ici 
+
+        vault write auth/approle/login role_id=493f9341-d783-4029-0c30-9c12f53e2157 secret_id=e4b3b425-5a53-f50f-b654-15e19d97bc3e
+
+<img width="925" height="245" alt="image" src="https://github.com/user-attachments/assets/b9dd6e39-0b38-40b4-817a-546b4c7c4a20" />
 
 
 ---
@@ -304,3 +343,9 @@ ici
 ---
 
 [CHOSES A RETENIR]
+
+
+
+
+
+
