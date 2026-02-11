@@ -1,5 +1,6 @@
 ## Accès rapide à la doc :
 
+[DOC GITHUB](https://github.com/hashicorp/web-unified-docs/tree/main/content/vault/v1.21.x/content/docs)
 
 - [Variables environement](https://developer.hashicorp.com/vault/docs/commands#configure-environment-variables)
 - [Création de Token](https://developer.hashicorp.com/vault/api-docs/auth/token#create-token)
