@@ -128,6 +128,8 @@ Afin de ranger correctement les policies, voici une suggestion :
 
 ### **-1. UserPass**
 
+[DOC HASHICORP](https://developer.hashicorp.com/vault/docs/auth/userpass)
+
 #### `Shéma`
 <img width="1280" height="488" alt="image" src="https://github.com/user-attachments/assets/64fbb20e-2970-4210-a5f5-a00345c8063b" />
 
@@ -172,18 +174,62 @@ Afin de ranger correctement les policies, voici une suggestion :
 
 => Clair, prévisible, scalable
 
-#### `-3.`
+#### `-3.` Uploader la policy  dans Vault
+`[NOTE]` La policy est stocker sous le nom que l'on donne au fichier en local, et sous le nom que l'on donne lors de l'upload dans Vault.
+
+=> En Local : vault-config/policies/user/policy_user_auth.hcl
+
+=> Dans Vault user (Dans le endpoint policies) 
+
+        vault policy write user [CHEMIN ABSOLU DU FICHIER POLICY] ou se trouver dans le fichier
+
+- Ici
+        
+        vault policy write user /home/sednal/vault-config/policies/user/policy_user_auth.hcl
+
+-Sortie 
+
+        Success! Uploaded policy: user
+
+-Vérification dans Vault
+
+        vault policy list
+
+<img width="382" height="74" alt="image" src="https://github.com/user-attachments/assets/7ae5b300-be2b-4c66-86aa-5a6ab9b16323" />
+
+Tout est OK.
 
 
+#### `-4.` autoriser l'authentification via Userpass 
+- par defaut le chemin sera auth/userpass quand activation userpass
+Si besoin de chemin different : `vault auth enable -path="test" userpass`
+Ici le chemin sera auth/test
 
-#### `-4.`
+- Mais pour cette démonstrations nous utiliserons
+  
+        vault auth enable userpass
 
+-Sortie 
 
+        Success! Enabled userpass auth method at: userpass/
 
-#### `-5.`
+-Vérification 
 
+        vault auth list
 
+<img width="769" height="98" alt="image" src="https://github.com/user-attachments/assets/529c9ad4-971c-4519-babc-de32c488aaaf" />
 
+#### `-5.` Créer un utilisateur
+
+        vault write auth/userpass/users/sednal password=131213 policies=user
+
+ici 
+-`Syntaxe classique` : vault write
+- `path` : auth/userpass/users/ ⚠️ `users` n'est pass une convention
+- `Nom Utilisateur` : sednal
+- `Mot de passe` : password=131213
+- `Politique créer plus haut` : policies=user
+  
 #### `-6.`
 
 
@@ -207,6 +253,9 @@ Afin de ranger correctement les policies, voici une suggestion :
 ---
 
 ### **-2. AppRoles**
+
+[DOC HASHICORP](https://developer.hashicorp.com/vault/docs/auth/approle)
+
 
 #### `Shéma`
 <img width="1549" height="740" alt="image" src="https://github.com/user-attachments/assets/7800d11c-563b-460a-91af-1233277eb3d3" />
