@@ -106,15 +106,15 @@ Vault supporte la rotation automatique des clés de chiffrement sans rechiffrer 
 
 - Avec la commande `vault operator rotate`, voilà ce que fait Vault :
 
-- Une nouvelle clé (version 3) est ajoutée au key ring
-
-- Les nouveaux secrets sont chiffrés avec la clé v3
-
-- Les anciens secrets restent chiffrés avec leurs clés d'origine (v1, v2)
+     - Une nouvelle clé (version 3) est ajoutée au key ring
+     
+     - Les nouveaux secrets sont chiffrés avec la clé v3
+     
+     - Les anciens secrets restent chiffrés avec leurs clés d'origine (v1, v2)
 
 Vault sait quelle version de clé utiliser (Grace aux métadonnées) pour déchiffrer chaque secret.
 
-- Fonctionnement SEAL / UNSEAL
+- `Fonctionnement SEAL / UNSEAL`
 
 **Tant que Vault est sealed :**
 
