@@ -8,7 +8,9 @@ Pour les besoins d'un test de connection via `Ldap` sur le logiciel [Vault](http
 ---
 
 1️⃣ `Role ADCS et Certificat`
+
 2️⃣ `LDAPS`
+
 3️⃣
 
 
@@ -16,6 +18,13 @@ Pour les besoins d'un test de connection via `Ldap` sur le logiciel [Vault](http
 
 
 ### 1️⃣ **Role ADCS et Certificat**
+
+### ⚠️ La déclaration DNS resolver et le FQND du certificat doit être identique. ⚠️
+
+- Ici
+
+<img width="1135" height="33" alt="image" src="https://github.com/user-attachments/assets/54a622e7-6bfc-4e13-b2dc-3f0711d26b75" />
+
 
 #### - `AD CS` (Active Directory Certificate Services)
 
@@ -129,22 +138,97 @@ Ce privilège est là uniquement pour l'installation du rôle CA. Pour des raiso
 
 <img width="1083" height="563" alt="image" src="https://github.com/user-attachments/assets/70c769a9-9c0f-4a5a-abfd-5f7b162010d3" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ---
 
 ### 2️⃣ **LDAPS**
+
+### `[NOTE]` ⚠️ Ici, c'est une phase de test, donc on gère l'enregistrement DNS via pfSense. Mais en environnement de production, un flux comme ci-dessous est conseillé.
+
+#### **Architecture DNS Production - pfSense + Active Directory**
+
+ 📊 `Schéma d'architecture`
+
+
+         ┌─────────────────────────┐
+         │       Clients           │
+         │   (DHCP DNS = pfSense)  │
+         └───────────┬─────────────┘
+                     │
+                     v
+         ┌───────────────────────────┐
+         │         pfSense           │
+         │   DNS Resolver (Unbound)  │
+         │   • Cache DNS             │
+         │   • Forwarding Mode       │
+         │   • Host Overrides        │
+         └───────────┬───────────────┘
+                     │
+                     v Forward sednal.lan
+         ┌─────────────────────────────┐
+         │      DC1 <────────> DC2     │
+         │  • Zone: sednal.lan         │
+         │  • Réplication AD           │
+         │  • Enregistrements DNS      │
+         └─────────────────────────────┘
+
+`- Configuration`
+
+### pfSense
+- **DNS Resolver**: Enabled + Forwarding Mode
+- **DNS Servers**: `IP_DC1`, `IP_DC2`
+- **DHCP**: DNS = `IP_pfSense`
+- **Host Overrides**: Services hors domaine uniquement
+
+### Domain Controllers
+- **Zone**: `sednal.lan` (réplication AD automatique)
+- **Enregistrements**: Gérés sur les DC
+- **Redondance**: DC1 ↔ DC2
+
+
+
+`-1.` Créer un Certificat
+
+Win + R
+
+        certsrv.msc
+
+
+`-2.` Dans certsrv => ouvrir le menue certificat => clic droit : Certificate Templates => Manage
+
+<img width="1308" height="819" alt="image" src="https://github.com/user-attachments/assets/6df2e3d3-cdfd-46b3-bfed-a477c4332544" />
+
+
+`-3.` Kerberos Authentification => clic droit : Duplicate Template
+
+<img width="455" height="642" alt="image" src="https://github.com/user-attachments/assets/1dfd26bf-7887-493a-9408-bdc8b4ddecd5" />
+
+`-4.` Onglet : General => Renseigner un Nom => ici `LDAPS`
+
+`-5.` Onglet : Request Handling => cocher Allow private key to be exported
+
+<img width="399" height="556" alt="image" src="https://github.com/user-attachments/assets/a80a173f-98d3-4f89-80de-564a16e54f64" />
+
+`-6.` Onglet : Subject Name => Supply in the request , message alerte normal
+
+<img width="541" height="613" alt="image" src="https://github.com/user-attachments/assets/01203365-5ab7-41e1-9ba5-9b6e87b296e6" />
+
+`-7.` Onglet : Security pour respecter la politique de sédcurité du message précédent :
+
+- garder uniquement :
+   - Authenticated Users => read only 
+   - Domain Admin => read , write , enroll
+   - Domain Controllers => enroll, autoenroll
+   - ENTREPRISE DOMAIN CONTROLLERS => enroll, autoenroll
+
+
+
+
+
+
+
+
+
+
+
+
+
