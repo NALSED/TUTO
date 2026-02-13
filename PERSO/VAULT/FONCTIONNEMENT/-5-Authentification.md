@@ -330,9 +330,72 @@ Ici
 
 ### **-3. LDAPS**
 
+[DOC LDAP](https://github.com/hashicorp/web-unified-docs/blob/main/content/vault/v1.21.x/content/docs/auth/ldap.mdx)
+
 Configuration ADDS ADCS LDAPS => [ICI](https://github.com/NALSED/TUTO/edit/main/PERSO/LDAP/Windows_Server_2025.md)
 
+`-1.` Exporter les certificats LDAPS sur le serveur vault via scp
+=== Depuis Windows serveur 2025 === 192.168.0.252 => === Serveur Vault === 192.168.0.250
 
+        scp C:\Users\Administrator\Desktop\CA-Certificat.cer sednal@192.168.0.250:/home/sednal/cert_CA
+
+
+`-2.` Autoriser Auth Ldap
+        
+        vault auth enable ldap       
+
+
+`-3.` Convertir CER en PEM
+openssl x509 -inform der \
+    -in /home/sednal/cert_AD/CA-Certificat.cer \
+    -out /home/sednal/cert_AD/CA-Certificat.pem
+
+`-4.` Configuration Auth Vault
+
+        vault write auth/ldap/config \
+            url="ldaps://ad_ldap.sednal.lan:636" \
+            binddn="CN=vault-service,CN=Users,DC=sednal,DC=lan" \
+            bindpass="MotDePasseDuCompteService" \
+            userdn="CN=Users,DC=sednal,DC=lan" \
+            userattr="sAMAccountName" \
+            discoverdn=true \
+            groupdn="CN=Users,DC=sednal,DC=lan" \
+            groupattr="cn" \
+            certificate=@/home/sednal/cert_AD/CA-Certificat.pem \
+            insecure_tls=false \
+            starttls=false
+
+<img width="390" height="27" alt="image" src="https://github.com/user-attachments/assets/851c0f25-4496-40bd-9178-d7b90fa20c95" />
+
+
+`-5.` policy
+
+        sudo nano vault-config/policies/use/user_ldap.hcl
+
+- Editer
+
+        path "secret/*" {
+          capabilities = ["read", "list"]
+        }
+
+- Mappage
+
+    vault policy write testos-policy user_ldap.hcl
+    vault write auth/ldap/users/a.testos policies=testos-policy
+
+# PORT FINIR CONFIG
+
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
 
 
 
