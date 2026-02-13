@@ -362,7 +362,7 @@ Password => Azerty*
 
 `-2.` Pour le test Création d'une VM Win 11, faire entrer le poste sur le domaine, installer Vault.
 
-**2.1** Configuration de Vault : Voir [ICI]()
+**2.1** Configuration de Vault : Voir [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/FONCTIONNEMENT/-5-Authentification.md#-3-ldaps)
 
 
 `-.`
