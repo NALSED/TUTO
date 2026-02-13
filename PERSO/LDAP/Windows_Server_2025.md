@@ -11,9 +11,6 @@ Pour les besoins d'un test de connection via `Ldap` sur le logiciel [Vault](http
 
 2️⃣ `LDAPS`
 
-3️⃣
-
-
 ---
 
 
