@@ -19,14 +19,7 @@ Pour les besoins d'un test de connection via `Ldap` sur le logiciel [Vault](http
 
 ### 1️⃣ **Role ADCS et Certificat**
 
-### ⚠️ La déclaration DNS resolver et le FQND du certificat doit être identique. ⚠️
-
-- Ici
-
-<img width="1135" height="33" alt="image" src="https://github.com/user-attachments/assets/54a622e7-6bfc-4e13-b2dc-3f0711d26b75" />
-
-
-#### - `AD CS` (Active Directory Certificate Services)
+#### -Présentation role `AD CS` (Active Directory Certificate Services)
 
    - Met en place une **PKI** dans Active Directory  
    - Émet et gère des **certificats numériques**  
@@ -45,7 +38,9 @@ Pour les besoins d'un test de connection via `Ldap` sur le logiciel [Vault](http
   - **CA intermédiaire d’entreprise (Subordinate CA)**  
     => Émet les certificats aux utilisateurs et machines, intégrée à Active Directory.
 
-Ici, nous développerons le cas d’un serveur unique.
+Ici, nous développerons le cas d’un serveur unique. ⬆️
+
+---
 
 `[Prérequis]`
 
@@ -56,6 +51,7 @@ Ici, nous développerons le cas d’un serveur unique.
 
 <img width="674" height="475" alt="image" src="https://github.com/user-attachments/assets/96b8e66c-41b6-4de9-b039-de41311ae4ee" />
 
+---
 
 `-1.` Installation Role ADCS
 
@@ -143,6 +139,11 @@ Ce privilège est là uniquement pour l'installation du rôle CA. Pour des raiso
 ### 2️⃣ **LDAPS**
 
 ### `[NOTE]` ⚠️ Ici, c'est une phase de test, donc on gère l'enregistrement DNS via pfSense. Mais en environnement de production, un flux comme ci-dessous est conseillé.
+### La déclaration DNS resolver et le FQND du certificat doit être identique.
+
+- Ici
+
+<img width="1135" height="33" alt="image" src="https://github.com/user-attachments/assets/54a622e7-6bfc-4e13-b2dc-3f0711d26b75" />
 
 #### **Architecture DNS Production - pfSense + Active Directory**
 
@@ -184,7 +185,9 @@ Ce privilège est là uniquement pour l'installation du rôle CA. Pour des raiso
 - **Enregistrements**: Gérés sur les DC
 - **Redondance**: DC1 ↔ DC2
 
+---
 
+**Création du template de certificat**
 
 `-1.` Créer un Certificat
 
@@ -220,15 +223,63 @@ Win + R
    - Domain Controllers => enroll, autoenroll
    - ENTREPRISE DOMAIN CONTROLLERS => enroll, autoenroll
 
+---
+
+**Edition du certificat**
+
+`-1.` Retrouver le template
+
+win + R
+
+      certsrv.msc
+
+`-2.` Clic droit : Certificate Templates => New => rechercher le certificat LDAPS
+
+<img width="801" height="469" alt="image" src="https://github.com/user-attachments/assets/a459fd57-b0c4-4104-bc19-e5738d4ab0a0" />
+
+Le certificat est maintenant disponible pour les machines ayant les permissions.
+
+---
+
+**Demande de certificat**
+
+`-1.` Ouvrir une console `mmc` (Console Root)
+
+win + R
+
+      mmc
+
+`-2.` Add/Remove Snap-in...
+
+<img width="348" height="331" alt="image" src="https://github.com/user-attachments/assets/f168f8de-a385-4cf3-bce9-0bcf38b2de3c" />
+
+`-3.` Certificates => Add => Computer account => local computer => OK
+
+<img width="378" height="338" alt="image" src="https://github.com/user-attachments/assets/f863ea45-7108-4da6-99d0-e8b5ca7335f1" />
+
+
+`-4.` Dérouler Certificates (Local computer) => Personal => Certificates => All Tasks => Request New Certificate
+
+<img width="592" height="267" alt="image" src="https://github.com/user-attachments/assets/9fe64665-c6d8-42b5-a800-302978dff980" />
+
+`-5.` Next => Next, Ici dans Active Directory Enrollment Policy, `LDAPS` devrait apparaître => cocher LDAPS et cliquer sur le texte en bleu
+
+
+`-6.` Renseigner le CN et DNS qui quoi être le m^me que le enregistrment DNS de pfsense
+
+<img width="498" height="508" alt="image" src="https://github.com/user-attachments/assets/e4069d0e-0f08-409a-8ff9-074c1b75d466" />
 
 
 
+`-.`
 
 
 
+`-.`
 
 
 
+`-.`
 
 
-
+`-.`
