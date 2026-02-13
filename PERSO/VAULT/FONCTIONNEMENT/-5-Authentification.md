@@ -256,7 +256,7 @@ Maintenant l'utilisateur peux se connecter via userpass ou token.
 
 <img width="515" height="420" alt="image" src="https://github.com/user-attachments/assets/9b3d4f23-88f7-42c1-bd72-372cd7c62369" />
 
-
+---
 
 ### **-2. AppRoles**
 
@@ -325,4 +325,38 @@ Ici
         vault write auth/approle/login role_id=493f9341-d783-4029-0c30-9c12f53e2157 secret_id=e4b3b425-5a53-f50f-b654-15e19d97bc3e
 
 <img width="925" height="245" alt="image" src="https://github.com/user-attachments/assets/b9dd6e39-0b38-40b4-817a-546b4c7c4a20" />
+
+---
+
+### **-3. LDAPS**
+
+Configuration ADDS ADCS LDAPS => [ICI](https://github.com/NALSED/TUTO/edit/main/PERSO/LDAP/Windows_Server_2025.md)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
