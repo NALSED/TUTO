@@ -187,7 +187,7 @@ Ce privilège est là uniquement pour l'installation du rôle CA. Pour des raiso
 
 ---
 
-**Création du template de certificat**
+### `I` **Création du template de certificat**
 
 `-1.` Créer un Certificat
 
@@ -225,7 +225,8 @@ Win + R
 
 ---
 
-**Edition du certificat**
+
+### `II` **Edition du certificat**
 
 `-1.` Retrouver le template
 
@@ -241,7 +242,8 @@ Le certificat est maintenant disponible pour les machines ayant les permissions.
 
 ---
 
-**Demande de certificat**
+
+### `III` **Demande de certificat**
 
 `-1.` Ouvrir une console `mmc` (Console Root)
 
@@ -265,21 +267,163 @@ win + R
 `-5.` Next => Next, Ici dans Active Directory Enrollment Policy, `LDAPS` devrait apparaître => cocher LDAPS et cliquer sur le texte en bleu
 
 
-`-6.` Renseigner le CN et DNS qui quoi être le m^me que le enregistrment DNS de pfsense
+`-6.` Renseigner le CN et DNS (ils doivent être les même que les enregistrement DNS de pfsense); ainsi que celui de l'adds.
 
-<img width="498" height="508" alt="image" src="https://github.com/user-attachments/assets/e4069d0e-0f08-409a-8ff9-074c1b75d466" />
+<img width="499" height="507" alt="image" src="https://github.com/user-attachments/assets/bb62feb8-71f0-44cc-bc16-78d6450c9bdd" />
+
+- OK => Enroll
+
+-Dans la partie Personal => Certificates : on peux retrouver les certificats
+
+<img width="1129" height="631" alt="image" src="https://github.com/user-attachments/assets/e751eb02-5fc7-4c78-b1dd-8efbb251e14a" />
 
 
 
+`-7.` `[SECURITE]` Un fois les certificats édités, supprimer le template LDAPS.
+
+<img width="754" height="524" alt="image" src="https://github.com/user-attachments/assets/71a01ee0-9bf1-4c4c-a500-3d2adfdae8a8" />
+
+
+### `IV` **Exporter le certificat LDAPS**
+
+
+`-1.` Sur le certificat => Clic droit : All Tasks => Export
+
+<img width="875" height="325" alt="image" src="https://github.com/user-attachments/assets/5e1c9b40-d8ee-49c4-9204-0071d9f30287" />
+
+
+`-2.` Exporter avec la clé privée 
+
+<img width="533" height="522" alt="image" src="https://github.com/user-attachments/assets/e766f363-9e28-4da6-9d65-466141b66626" />
+
+
+`-3.` Next
+
+<img width="532" height="519" alt="image" src="https://github.com/user-attachments/assets/83c90122-8784-4829-ae8f-37f76071cac4" />
+
+
+`-4.` Group or user names
+
+<img width="532" height="518" alt="image" src="https://github.com/user-attachments/assets/a1001f6b-44a5-4758-ab9f-f719b35c1bd0" />
+
+
+`-5.` Browse et renseigner un nom de fichier
+ 
+<img width="1193" height="701" alt="image" src="https://github.com/user-attachments/assets/ae403f89-8e08-4aae-9885-ae274c310c1a" />
+
+- Message réussite
+
+<img width="177" height="130" alt="image" src="https://github.com/user-attachments/assets/29ef82d5-0e41-4dd7-b701-42d043c4eed2" />
+
+
+`-6.` Exporter le CA 
+
+- win + R : mmc
+- File => Add/Remove Snap-in...
+- Certificates => Add => Computer account => Local computer => Ok
+
+<img width="496" height="634" alt="image" src="https://github.com/user-attachments/assets/912b84ae-b34b-4266-9399-8d2481cbdd10" />
+
+clic droit sur le certificat, All Task => Export => Suivre l'assistant
+
+
+### `V` **TEST**
+
+Le serveur Adds avec la configuration `Ldaps` est sur un VM en 192.168.0.252, sur mon poste en 192.168.0.235 :
+
+         Test-NetConnection -ComputerName ad_ldap.sednal.lan -Port 636
+
+<img width="744" height="191" alt="image" src="https://github.com/user-attachments/assets/33d03eec-ae81-4f3b-8228-cedd8f90d97e" />
+
+---
+
+**La suite concerne le Test LDAPS avec Vault**
+
+<details>
+<summary>
+<h2>
+Tuto complet 
+</h2>
+</summary>
+
+**Labs** 
+
+- Windows Serveur 2025 : 192.168.0.252 : ADDS / ADCS / LDAPS
+
+- Serveur Vault : 192.168.0.250 : Vault configuré en ldap
+
+- Client pour le test
+
+---
+ 
+`-1.` Clic droit sur ADDS => Active Drectory User and Computers => Users => Clic Droit => New User
+- Suivre l'assistant de création
+
+<img width="431" height="374" alt="image" src="https://github.com/user-attachments/assets/b31d3ae3-30d3-4083-b0bd-a1d218aee4d3" />
+
+Password => Azerty*
+
+`-2.` Pour le test Création d'une VM Win 11, faire entrer le poste sur le domaine, installer Vault.
+
+**2.1** Configuration de Vault : Voir [ICI]()
+
+
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
+`-.`
 `-.`
 
 
 
-`-.`
 
 
 
-`-.`
 
 
-`-.`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
