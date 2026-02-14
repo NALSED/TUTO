@@ -326,12 +326,77 @@ clic droit sur le certificat, All Task => Export => Suivre l'assistant
 
 ### `V` **TEST**
 
-Le serveur Adds avec la configuration `Ldaps` est sur un VM en 192.168.0.252, sur mon poste en 192.168.0.235 :
+
+`-1.` Test sur Windows Serveur 2025
+
+⚠️ Les outils d'aministration ADDS doivent être installés ⚠️
+
+`[VERIFICATION]`
+
+Dans => Add Roles and Features Wizard :
+
+         - Features
+             └── Remote Server Administration Tools (5 of 43 installed)
+                  └── Role Administration Tools (5 of 27 Tools)
+                       └── AD DS and AD LDS Tools (3 of 4 Installed)
+                           └── AD DS Tools (Installed) 
+                                 🟢 ICI AD DS Snap-Ins and Command-Line Tools => Doit être installé
+
+
+- Après cette Vérification : 
+
+`-1.` rechercher `ldp`
+
+<img width="773" height="332" alt="image" src="https://github.com/user-attachments/assets/c1178562-e58d-4922-9821-08690d21c6d8" />
+
+`-2.` Connection => Connect...
+
+<img width="189" height="229" alt="image" src="https://github.com/user-attachments/assets/193ddb60-0353-43b4-a1ad-e80325280cc8" />
+
+`-3.` Renseigner le FQND du serveur AD + Port LDAPS + SSL => OK
+
+-Résultat attendu :
+
+<img width="1202" height="903" alt="image" src="https://github.com/user-attachments/assets/1ff0cbdb-510e-495b-99e4-2510e288137b" />
+
+
+---
+
+`-2.`Le serveur Adds avec la configuration `Ldaps` est sur un VM en 192.168.0.252, sur mon poste en 192.168.0.235 :
 
          Test-NetConnection -ComputerName ad_ldap.sednal.lan -Port 636
 
 <img width="744" height="191" alt="image" src="https://github.com/user-attachments/assets/33d03eec-ae81-4f3b-8228-cedd8f90d97e" />
 
+---
+
+`-3.` Test sur le serveur Vault => 192.168.0.250 
+
+-Ici c'est un machine Linux Debian 13, le certificat de l'AD (192.168.0.252), est déployé sur le serveur Vault, pour la marche à suivre voir [Ici](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/FONCTIONNEMENT/-5-Authentification.md#-3-ldaps)
+
+`-1.` Installer le paquet `ldap-utils`
+
+      sudo apt update && sudo apt -y install ldap-utils
+
+`2.` Tester avec `ldapsearch`
+
+      ldapsearch -x -H ldaps://ad_ldap.sednal.lan:636 \
+     -D "a.testos@sednal.lan" \
+     -W \
+     -b "DC=sednal,DC=lan" \
+
+-Sortie Attendu (extrait) 
+
+### - 🧔 **USER**
+
+<img width="655" height="698" alt="image" src="https://github.com/user-attachments/assets/596a78f0-84a8-41ac-afdc-af4d34a3de0e" />
+
+### - 💻 **MACHINE**
+
+<img width="658" height="825" alt="image" src="https://github.com/user-attachments/assets/e45e434c-4714-4b5b-a341-d395e410f9d2" />
+
+  
+---
 ---
 
 **La suite concerne le Test LDAPS avec Vault**
@@ -364,50 +429,30 @@ Password => Azerty*
 
 **2.1** Configuration de Vault : Voir [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/FONCTIONNEMENT/-5-Authentification.md#-3-ldaps)
 
+**ICI** Le test d'authentification sur le serveur Vault vai ldaps, avec l'utilisateur `a.testos` est OK.
 
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
+---
 
+**2.2** Test Depuis le poste de a.testos => Win 10 
 
+`2.2.1` Installation de Vault sur le Client 192.168.0.19
+ 
+<img width="1009" height="403" alt="image" src="https://github.com/user-attachments/assets/c0584058-96a7-4800-9199-f8ee1e4793f4" />
 
+`2.2.2` Test de Connection depuis la machine Win 10
 
+- pointer le serveur 192.168.0.250 (Linux debian 13)
 
+      $env:VAULT_ADDR = "http://192.168.0.250:8200"
 
+- Authentification en LDAPS
+
+      vault login -method=ldap username=a.testos
 
 
+-Resultat 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<img width="837" height="415" alt="image" src="https://github.com/user-attachments/assets/0d98ae52-a409-4aeb-85f7-d04214e62209" />
 
 
 
