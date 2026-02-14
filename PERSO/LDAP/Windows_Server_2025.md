@@ -429,7 +429,7 @@ Password => Azerty*
 
 **2.1** Configuration de Vault : Voir [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/FONCTIONNEMENT/-5-Authentification.md#-3-ldaps)
 
-**ICI** Le test d'authentification sur le serveur Vault vai ldaps, avec l'utilisateur `a.testos` est OK.
+**ICI** Le test d'authentification sur le serveur Vault via ldaps, avec l'utilisateur `a.testos` est OK.
 
 ---
 
