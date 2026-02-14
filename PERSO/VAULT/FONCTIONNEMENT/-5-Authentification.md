@@ -457,8 +457,29 @@ openssl x509 -inform der \
 
 `-7. Tester la configuration 
 
+**Depuis le serveur Vault**
+
         vault login -method=ldap username=a.testos
 
 Tout est OK :
 
 <img width="1079" height="303" alt="image" src="https://github.com/user-attachments/assets/30d18701-6152-4888-95d6-7407f670921b" />
+
+**Depuis le Client a.testos**
+
+` Test de Connection depuis la machine Win 10
+
+- pointer le serveur 192.168.0.250 (Linux debian 13)
+
+      $env:VAULT_ADDR = "http://192.168.0.250:8200"
+
+- Authentification en LDAPS
+
+      vault login -method=ldap username=a.testos
+
+
+-Resultat 
+
+<img width="837" height="415" alt="image" src="https://github.com/user-attachments/assets/0d98ae52-a409-4aeb-85f7-d04214e62209" />
+
+
