@@ -369,9 +369,9 @@ Architecture réseau
         scp C:\Users\Administrator\Desktop\CA-Certificat.cer sednal@192.168.0.250:/home/sednal/cert_CA
 
 `-2.` Convertir CER en PEM
-openssl x509 -inform der \
-    -in /home/sednal/cert_AD/CA-Certificat.cer \
-    -out /home/sednal/cert_AD/CA-Certificat.crt
+        openssl x509 -inform der \
+            -in /home/sednal/cert_AD/CA-Certificat.cer \
+            -out /home/sednal/cert_AD/CA-Certificat.crt
 
 `-3.` Intégrer le certificat
 
