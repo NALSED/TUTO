@@ -366,18 +366,49 @@ openssl x509 -inform der \
 
         vault write auth/ldap/config \
             url="ldaps://ad_ldap.sednal.lan:636" \
-            binddn="CN=vault-service,CN=Users,DC=sednal,DC=lan" \
-            bindpass="MotDePasseDuCompteService" \
+            binddn="CN=antoine testos,CN=Users,DC=sednal,DC=lan" \
+            bindpass="[MOT_DE_PASSE]" \
             userdn="CN=Users,DC=sednal,DC=lan" \
             userattr="sAMAccountName" \
-            discoverdn=true \
             groupdn="CN=Users,DC=sednal,DC=lan" \
+            groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))" \
             groupattr="cn" \
-            certificate=@/home/sednal/cert_AD/CA-Certificat.pem \
             insecure_tls=false \
             starttls=false
 
 <img width="390" height="27" alt="image" src="https://github.com/user-attachments/assets/851c0f25-4496-40bd-9178-d7b90fa20c95" />
+
+### **[EXPLICATION]**
+       
+        url="ldaps://ad_ldap.sednal.lan:636"
+        # Adresse LDAPS du contrôleur de domaine (protocole sécurisé, port 636)
+        
+        binddn="CN=antoine testos,CN=Users,DC=sednal,DC=lan"
+        # Compte que Vault utilise pour se connecter à l'AD (Distinguished Name complet)
+        
+        bindpass="[MOT_DE_PASSE]"
+        # Mot de passe du compte binddn
+        
+        userdn="CN=Users,DC=sednal,DC=lan"
+        # Où chercher les utilisateurs dans l'arborescence AD
+        
+        userattr="sAMAccountName"
+        # Attribut AD utilisé pour identifier l'utilisateur (ex: a.testos)
+        
+        groupdn="CN=Users,DC=sednal,DC=lan"
+        # Où chercher les groupes dans l'arborescence AD
+        
+        groupfilter="(&(objectClass=group)(member:1.2.840.113556.1.4.1941:={{.UserDN}}))"
+        # Filtre LDAP pour trouver tous les groupes dont l'utilisateur est membre (inclut les groupes imbriqués)
+        
+        groupattr="cn"
+        # Attribut du groupe à utiliser comme nom (cn = Common Name, ex: "Domain Admins")
+        
+        insecure_tls=false
+        # Vérifier le certificat SSL (false = sécurisé, true = accepter tout certificat)
+        
+        starttls=false
+        # Ne pas utiliser STARTTLS (car on utilise déjà LDAPS natif sur le port 636)
 
 
 `-6.` policy
@@ -395,43 +426,10 @@ openssl x509 -inform der \
     vault policy write testos-policy user_ldap.hcl
     vault write auth/ldap/users/a.testos policies=testos-policy
 
-# PORT FINIR CONFIG
+`-7. Tester la configuration 
 
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
-`-.`
+        vault login -method=ldap username=a.testos
 
+Tout est OK :
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<img width="1079" height="303" alt="image" src="https://github.com/user-attachments/assets/30d18701-6152-4888-95d6-7407f670921b" />
