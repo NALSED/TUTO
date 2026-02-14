@@ -334,6 +334,36 @@ Ici
 
 Configuration ADDS ADCS LDAPS => [ICI](https://github.com/NALSED/TUTO/edit/main/PERSO/LDAP/Windows_Server_2025.md)
 
+Architecture réseau
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                         Réseau 192.168.0.0/24                           │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────┐       ┌──────────────────────┐       ┌──────────────────────┐
+│   Serveur Vault      │       │   Serveur AD         │       │   Client Windows     │
+│   (Debian 13)        │◄─────►│   (Windows Server    │◄─────►│   (Windows 10 Pro)   │
+│                      │       │    2025)             │       │                      │
+│  IP: 192.168.0.250   │       │  IP: 192.168.0.252   │       │  IP: 192.168.0.19    │
+│  Port: 8200 (HTTP)   │       │  Port: 636 (LDAPS)   │       │                      │
+│                      │       │  Port: 389 (LDAP)    │       │  User: a.testos      │
+│  Services:           │       │  Port: 88 (Kerberos) │       │                      │
+│  - HashiCorp Vault   │       │  Port: 53 (DNS)      │       │  Domaine: sednal.lan │
+│  - Auth: LDAP        │       │                      │       │                      │
+│                      │       │  Services:           │       │                      │
+│  Domaine: -          │       │  - AD DS             │       │                      │
+│  Hostname: VaultTrain│       │  - AD CS (CA)        │       │                      │
+│                      │       │  - DNS Server        │       │                      │
+│                      │       │  - LDAPS (TLS)       │       │                      │
+│                      │       │                      │       │                      │
+│                      │       │  Domaine: sednal.lan │       │                      │
+│                      │       │  Hostname: AD-LDAP   │       │                      │
+│                      │       │  FQDN: ad_ldap.      │       │                      │
+│                      │       │        sednal.lan    │       │                      │
+└──────────────────────┘       └──────────────────────┘       └──────────────────────┘
+```
+
 `-1.` Exporter les certificats LDAPS sur le serveur vault via scp
 === Depuis Windows serveur 2025 === 192.168.0.252 => === Serveur Vault === 192.168.0.250
 
