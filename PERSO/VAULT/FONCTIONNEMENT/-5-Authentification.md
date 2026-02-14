@@ -339,18 +339,30 @@ Configuration ADDS ADCS LDAPS => [ICI](https://github.com/NALSED/TUTO/edit/main/
 
         scp C:\Users\Administrator\Desktop\CA-Certificat.cer sednal@192.168.0.250:/home/sednal/cert_CA
 
+`-2.` Convertir CER en PEM
+openssl x509 -inform der \
+    -in /home/sednal/cert_AD/CA-Certificat.cer \
+    -out /home/sednal/cert_AD/CA-Certificat.crt
 
-`-2.` Autoriser Auth Ldap
+`-3.` Intégrer le certificat
+
+- Copiez le certificat dans le bon répertoire
+
+         sudo cp /home/sednal/cert_AD/CA-Certificat.crt /usr/local/share/ca-certificates/
+
+- Mettez à jour les certificats de confiance
+
+        sudo update-ca-certificates
+
+  -Sortie
+
+<img width="886" height="117" alt="image" src="https://github.com/user-attachments/assets/ec702229-cf23-4787-b6c5-ee3dd4e40e45" />
+
+`-4.` Autoriser Auth Ldap
         
         vault auth enable ldap       
 
-
-`-3.` Convertir CER en PEM
-openssl x509 -inform der \
-    -in /home/sednal/cert_AD/CA-Certificat.cer \
-    -out /home/sednal/cert_AD/CA-Certificat.pem
-
-`-4.` Configuration Auth Vault
+`-5.` Configuration Auth Vault
 
         vault write auth/ldap/config \
             url="ldaps://ad_ldap.sednal.lan:636" \
@@ -368,7 +380,7 @@ openssl x509 -inform der \
 <img width="390" height="27" alt="image" src="https://github.com/user-attachments/assets/851c0f25-4496-40bd-9178-d7b90fa20c95" />
 
 
-`-5.` policy
+`-6.` policy
 
         sudo nano vault-config/policies/use/user_ldap.hcl
 
