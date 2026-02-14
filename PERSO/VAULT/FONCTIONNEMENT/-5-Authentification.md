@@ -364,8 +364,7 @@ Architecture réseau
 └──────────────────────┘       └──────────────────────┘       └──────────────────────┘
 ```
 
-`-1.` Exporter les certificats LDAPS sur le serveur vault via scp
-=== Depuis Windows serveur 2025 === 192.168.0.252 => === Serveur Vault === 192.168.0.250
+`-1.` Exporter les certificats LDAPS sur le `serveur vault` depuis le `serveur AD`
 
         scp C:\Users\Administrator\Desktop\CA-Certificat.cer sednal@192.168.0.250:/home/sednal/cert_CA
 
