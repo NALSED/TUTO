@@ -144,8 +144,7 @@ Afin de ranger correctement les policies (sur la machine qui accueille le serveu
 
 - Sortie:
 
-```
-Success! Enabled the kv-v2 secrets engine at: secret/
+```Success! Enabled the kv-v2 secrets engine at: secret/
 ```
 
 ---
