@@ -139,8 +139,9 @@ Afin de ranger correctement les policies (sur la machine qui accueille le serveu
 ⚠️ Le serveur utilisé pour la démo, n'est pas en dev mode, donc vault secrets non actif
 
 - Activation : 
-
-        vault secrets enable -path=secret kv-v2
+```
+vault secrets enable -path=secret kv-v2
+```
 
 - Sortie:
 ```
