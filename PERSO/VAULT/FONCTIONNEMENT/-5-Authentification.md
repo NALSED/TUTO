@@ -171,11 +171,13 @@ path "secret/data/users" {
 }
 ```
 
-** === BONNE PRATIQUE ===**
+**=== BONNE PRATIQUE ===**
 
-        - EXEMPLE d'arborécence endpoint
-        secret/data/{env}/{app}/{type}/{name}
-        secret/data/prod/ecommerce/database/mysql
+- [EXEMPLE] d'arborécence endpoint dans Vault
+```
+secret/data/{env}/{app}/{type}/{name}
+secret/data/prod/ecommerce/database/mysql
+```
 
 => Clair, prévisible, scalable
 
@@ -185,9 +187,10 @@ path "secret/data/users" {
 => En Local : vault-config/policies/user/policy_user_auth.hcl
 
 => Dans Vault user (Dans le endpoint policies) 
-```
-vault policy write user [CHEMIN ABSOLU DU FICHIER POLICY] ou se trouver dans le fichier
-```
+
+---
+
+`[SYNTAXE]`vault policy write user [CHEMIN ABSOLU DU FICHIER POLICY] ou se trouver dans le fichier
 
 - Ici
 ```
@@ -276,7 +279,7 @@ Maintenant l'utilisateur peux se connecter via userpass ou token.
 
 [DOC HASHICORP](https://developer.hashicorp.com/vault/docs/auth/approle)
 
- `AppRole` permet `d'automatiser la connexion des applicatioons` pour accéder à des secrets de manière sécurisée.
+ `AppRole` permet `d'automatiser la connexion des applications` pour accéder à des secrets de manière sécurisée.
 
 #### `Shéma`
 <img width="1549" height="740" alt="image" src="https://github.com/user-attachments/assets/7800d11c-563b-460a-91af-1233277eb3d3" />
@@ -343,7 +346,7 @@ vault write -f auth/approle/role/app/secret-id
 
 #### `-4.` Test via CLI
 
-Syntaxe => vault write auth/approle/login role_id=$ROLE_ID secret_id=$SECRET_ID
+`[SYNTAXE]` => vault write auth/approle/login role_id=$ROLE_ID secret_id=$SECRET_ID
 
 Ici 
 ```
@@ -378,7 +381,7 @@ Architecture réseau
 │  - HashiCorp Vault   │       │  Port: 53 (DNS)      │       │  Domaine: sednal.lan │
 │  - Auth: LDAP        │       │                      │       │                      │
 │                      │       │  Services:           │       │                      │
-│  Domaine: -          │       │  - AD DS             │       │                      │
+│  Domaine: sednal.lan │       │  - AD DS             │       │                      │
 │  Hostname: VaultTrain│       │  - AD CS (CA)        │       │                      │
 │                      │       │  - DNS Server        │       │                      │
 │                      │       │  - LDAPS (TLS)       │       │                      │
@@ -395,7 +398,7 @@ Architecture réseau
 scp C:\Users\Administrator\Desktop\CA-Certificat.cer sednal@192.168.0.250:/home/sednal/cert_CA
 ```
 
-`-2.` Convertir CER en PEM
+`-2.` Convertir CER en CRT
 ```
 openssl x509 -inform der \
     -in /home/sednal/cert_AD/CA-Certificat.cer \
@@ -491,9 +494,9 @@ vault policy write testos-policy user_ldap.hcl
 vault write auth/ldap/users/a.testos policies=testos-policy
 ```
 
-`-7. Tester la configuration 
+`-7.` Tester la configuration 
 
-**Depuis le serveur Vault**
+### **Depuis le serveur Vault**
 ```
 vault login -method=ldap username=a.testos
 ```
@@ -502,9 +505,9 @@ Tout est OK :
 
 <img width="1079" height="303" alt="image" src="https://github.com/user-attachments/assets/30d18701-6152-4888-95d6-7407f670921b" />
 
-**Depuis le Client a.testos**
+### **Depuis le Client a.testos**
 
-` Test de Connection depuis la machine Win 10
+` Test de Connection depuis la machine Win 10`
 
 - pointer le serveur 192.168.0.250 (Linux debian 13)
 ```
