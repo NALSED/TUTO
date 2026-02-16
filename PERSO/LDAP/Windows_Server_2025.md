@@ -92,7 +92,7 @@ Ici, nous développerons le cas d’un serveur unique. ⬆️
 
 <img width="760" height="558" alt="image" src="https://github.com/user-attachments/assets/acd813d8-0d60-45a2-9ed0-dfac81290a48" />
 
-- trouver la concole de gestion de certification :
+### `[NOTE]` trouver la concole de gestion de certification :
 
 <img width="639" height="785" alt="image" src="https://github.com/user-attachments/assets/2188d14f-bd57-4337-8fde-b39e62b6726e" />
 
