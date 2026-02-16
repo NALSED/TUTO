@@ -136,11 +136,7 @@ Ce privilège est là uniquement pour l'installation du rôle CA. Pour des raiso
 ### 2️⃣ **LDAPS**
 
 ### `[NOTE]` ⚠️ Ici, c'est une phase de test, donc on gère l'enregistrement DNS via pfSense. Mais en environnement de production, un flux comme ci-dessous est conseillé.
-### La déclaration DNS resolver et le FQND du certificat doit être identique.
 
-- Ici
-
-<img width="1135" height="33" alt="image" src="https://github.com/user-attachments/assets/54a622e7-6bfc-4e13-b2dc-3f0711d26b75" />
 
 #### **Architecture DNS Production - pfSense + Active Directory**
 
@@ -265,6 +261,11 @@ win + R
 
 
 `-6.` Renseigner le CN et DNS (ils doivent être les même que les enregistrement DNS de pfsense); ainsi que celui de l'adds.
+- La déclaration DNS resolver et le FQND du certificat doit être identique.
+
+- Ici
+
+<img width="1135" height="33" alt="image" src="https://github.com/user-attachments/assets/54a622e7-6bfc-4e13-b2dc-3f0711d26b75" />
 
 <img width="499" height="507" alt="image" src="https://github.com/user-attachments/assets/bb62feb8-71f0-44cc-bc16-78d6450c9bdd" />
 
@@ -345,6 +346,8 @@ Dans => Add Roles and Features Wizard :
 
 - Après cette Vérification : 
 
+### [TEST-1] : sur serveur AD
+
 `-1.` rechercher `ldp`
 
 <img width="773" height="332" alt="image" src="https://github.com/user-attachments/assets/c1178562-e58d-4922-9821-08690d21c6d8" />
@@ -362,7 +365,8 @@ Dans => Add Roles and Features Wizard :
 
 ---
 
-`-2.`Le serveur Adds avec la configuration `Ldaps` est sur un VM en 192.168.0.252, sur mon poste en 192.168.0.235 :
+### [TEST-2] : sur une machine du réseau 192.168.0.0/24 ici 192.168.0.235
+
 
          Test-NetConnection -ComputerName ad_ldap.sednal.lan -Port 636
 
@@ -370,7 +374,8 @@ Dans => Add Roles and Features Wizard :
 
 ---
 
-`-3.` Test sur le serveur Vault => 192.168.0.250 
+### [TEST-3] : sur serveur Vault
+
 
 -Ici c'est un machine Linux Debian 13, le certificat de l'AD (192.168.0.252), est déployé sur le serveur Vault, pour la marche à suivre voir [Ici](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/FONCTIONNEMENT/-5-Authentification.md#-3-ldaps)
 
@@ -399,7 +404,7 @@ Dans => Add Roles and Features Wizard :
 ---
 ---
 
-**La suite concerne le Test LDAPS avec Vault**
+### **La suite concerne le Test LDAPS avec Vault sur une machine connecter à l'AD**
 
 <details>
 <summary>
@@ -414,11 +419,13 @@ Tuto complet
 
 - Serveur Vault : 192.168.0.250 : Vault configuré en ldap
 
-- Client pour le test
+- Client pour le test : 192.168.0.19
 
 ---
  
-`-1.` Clic droit sur ADDS => Active Drectory User and Computers => Users => Clic Droit => New User
+`-1.` Création d'un User sur l'AD:
+
+- Clic droit sur ADDS => Active Drectory User and Computers => Users => Clic Droit => New User
 - Suivre l'assistant de création
 
 <img width="431" height="374" alt="image" src="https://github.com/user-attachments/assets/b31d3ae3-30d3-4083-b0bd-a1d218aee4d3" />
@@ -427,9 +434,7 @@ Password => Azerty*
 
 `-2.` Pour le test Création d'une VM Win 11, faire entrer le poste sur le domaine, installer Vault.
 
-**2.1** Configuration de Vault : Voir [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/FONCTIONNEMENT/-5-Authentification.md#-3-ldaps)
-
-**ICI** Le test d'authentification sur le serveur Vault via ldaps, avec l'utilisateur `a.testos` est OK.
+**2.1** Configuration certificats LDAPS sue client Vault : Voir [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/FONCTIONNEMENT/-5-Authentification.md#-3-ldaps)
 
 ---
 
