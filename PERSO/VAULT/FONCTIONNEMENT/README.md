@@ -22,38 +22,42 @@
 ---
 ---
 
-### POINTS FONDAMENTAUX
+###  ARCHITECTURE VAULT 
 ```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                                                                             │
-│  ┌────────────────┐    ┌────────────────┐    ┌────────────────┐             │
-│  │   API LAYER    │───>│  VAULT CORE    │───>│  K/V ENGINE    │             │
-│  │                │<───│                │<───│                │             │
-│  └────────────────┘    └────────────────┘    └────────────────┘             │
-│                                                                             │
-│  *Responsabilités:      *Responsabilités:       *Responsabilités:           │
-│    • HTTP/REST            • Authentication        • Logique K/V             │
-│    • Parsing              • Authorization         • Versioning              │
-│    • Validation           • Policy check          • Métadonnées             │
-│    • Formatting           • Chiffrement           • Validation              │
-│                           • Déchiffrement         • Structure               │
-│                           • Routing                                         │
-│                           • Orchestration                                   │
-│                           │                                                 │
-│                           │                                                 │
-│                           v                                                 │
-│                  ┌────────────────┐                                         │
-│                  │ STORAGE BACKEND│                                         │
-│                  └────────────────┘                                         │
-│                                                                             │
-│                  *Responsabilités:                                          │
-│                    • Persistance physique                                   │
-│                    • Lecture/Écriture disque                                │
-│                    • Atomicité                                              │
-│                    • Réplication                                            │
-│                    • Haute disponibilité                                    │
-│                                                                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+
+    ┌─────────────┐         ┌─────────────┐         ┌─────────────┐
+    │  COUCHE API │ <────>  │  VAULT CORE │ <────>  │  K/V ENGINE │
+    │  API LAYER  │         │  Sécurité   │         │   Métier    │
+    └─────────────┘         └─────────────┘         └─────────────┘
+          │                       │                        │
+          │                       v                        │
+          │              ┌─────────────────┐               │
+          │              │ BACKEND STOCKAGE│               │
+          │              │  Persistance    │               │
+          │              └─────────────────┘               │
+          │                                                │
+          v                                                v
+    ┌──────────────────────────────────────────────────────────────┐
+    │                                                              │
+    │  COUCHE API            NOYAU VAULT          MOTEUR K/V       │
+    │  ──────────            ────────────          ──────────      │
+    │  • HTTP/REST           • Authentification    • Logique K/V   │
+    │  • Analyse             • Autorisation        • Versioning    │
+    │  • Validation          • Vérif. politiques   • Métadonnées   │
+    │  • Formatage           • Chiffrement         • Validation    │
+    │                        • Déchiffrement       • Structure     │
+    │                        • Routage                             │
+    │                        • Orchestration                       │
+    │                                                              │
+    │                     BACKEND STOCKAGE                         │
+    │                     ────────────────                         │
+    │                     • Persistance physique                   │
+    │                     • Lecture/Écriture disque                │
+    │                     • Atomicité                              │
+    │                     • Réplication                            │
+    │                     • Haute disponibilité                    │
+    │                                                              │
+    └──────────────────────────────────────────────────────────────┘
 ```
 
 ---
