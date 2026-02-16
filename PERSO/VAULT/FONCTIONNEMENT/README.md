@@ -63,7 +63,7 @@
 **[TIPS]**
 
 - Modifier les options lors ou après la création avec `write`.
-Avec l’option `read`, on a accès à tous les paramètres.
+- Avec l’option `read`, on a accès à toutes les options les paramètrables.
 
 [EXEMPLE]
 
