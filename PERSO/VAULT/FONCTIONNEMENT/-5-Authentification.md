@@ -18,9 +18,6 @@ Deux choix `User` ou `App`
 
 <img width="1366" height="757" alt="image" src="https://github.com/user-attachments/assets/a627a1f4-a866-4555-b6bd-433d610a2983" />
 
-
-### Pour les méthodes d'identification suivante voila le flux User => Vault => Auth => Data
-
 # Schéma d'authentification Vault
 
         USER                    VAULT                    AUTH BACKEND
@@ -110,7 +107,7 @@ Pour des raisons d'infrastructure, toutes les authentifications ne pourront pas 
 
 #### **=== BONNE PRATIQUE ===**
 
-Afin de ranger correctement les policies, voici une suggestion :
+Afin de ranger correctement les policies (sur la machine qui accueille le serveur Vault, avant édition), voici une suggestion :
 
         vault-config/
         ├── policies/
@@ -141,15 +138,19 @@ Afin de ranger correctement les policies, voici une suggestion :
 
 ⚠️ Le serveur utilisé pour la démo, n'est pas en dev mode, donc vault secrets non actif
 
-- Pour activer : 
+- Activation : 
 
         vault secrets enable -path=secret kv-v2
 
--Sortie:
+- Sortie:
 
-        Success! Enabled the kv-v2 secrets engine at: secret/
+```
+Success! Enabled the kv-v2 secrets engine at: secret/
+```
+
+---
         
-#### `-1.` Création de l'arborécence ci dessus ⬆️ (BONNE PRATIQUE)
+#### `-1.` Création de l'arborécence ci dessus ⬆️ (=== BONNE PRATIQUE ===)
        
         mkdir -p vault-config/{policies/{user,apps},scripts}
 
