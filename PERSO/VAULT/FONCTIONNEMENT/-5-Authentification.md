@@ -292,6 +292,13 @@ Maintenant l'utilisateur peux se connecter via userpass ou token.
 
 ### **[DEMONSTRATION]**
 
+`[RAPPEL]`
+```
+vault write  [engine]/[type]/[nom-libre]
+                │        │        │
+                │        │        └── Libre
+                │        └─────────── Imposé par Vault (config, roles, creds)
+                └──────────────────── Imposé par Vault (database, aws, pki…)
 
 
 #### `-1.` Autoriser l'Authentification via AppRole
