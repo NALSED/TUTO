@@ -67,6 +67,9 @@
 ## **[TIPS]**
 
 ### `I`
+Dès le début après (vault operator init et vault login), créer une arborescence de chemins dans Vault, pour avoir une vision claire de ce qui est déployé
+
+### `II`
 - Modifier les options lors ou après la création avec `write`.
 - Avec l’option `read`, on a accès à toutes les options les paramètrables.
 
@@ -96,7 +99,7 @@
 
 Tous les éléments présents dans la colonne `Key` sont paramétrables.
 
-### `II`
+### `III`
 Activer l'autocomplétion
 ```
 vault -autocomplete-install
