@@ -64,8 +64,9 @@
 ---
 
 
-**[TIPS]**
+## **[TIPS]**
 
+### `I`
 - Modifier les options lors ou après la création avec `write`.
 - Avec l’option `read`, on a accès à toutes les options les paramètrables.
 
@@ -94,6 +95,13 @@
       token_type                 default
 
 Tous les éléments présents dans la colonne `Key` sont paramétrables.
+
+### `II`
+Activer l'autocomplétion
+```
+vault -autocomplete-install
+exec $SHELL
+```
 
 ---
 ---
