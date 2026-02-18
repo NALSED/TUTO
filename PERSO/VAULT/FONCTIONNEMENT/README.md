@@ -7,7 +7,7 @@
 - [Policies](https://developer.hashicorp.com/vault/docs/concepts/policies)
 - [Auth](https://developer.hashicorp.com/vault/docs/auth)
 - [KV](https://developer.hashicorp.com/vault/docs/secrets/kv)
-- []()
+- [PKI](https://developer.hashicorp.com/vault/docs/secrets/pki)
 - []()
 - []()
 - []()
