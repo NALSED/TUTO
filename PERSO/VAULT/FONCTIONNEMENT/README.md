@@ -106,6 +106,22 @@ vault -autocomplete-install
 exec $SHELL
 ```
 
+### `IV`
+ Voir toutes les endpoints possible d'un engine
+```
+bashvault path-help database
+```
+
+### `V`
+```
+
+```
+
+### ``
+```
+
+```
+
 ---
 ---
 
