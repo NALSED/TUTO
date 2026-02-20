@@ -6,6 +6,7 @@ base="/etc/Vault/PKI"
 usermod -aG vault sednal
 
 # === Création de l'arborescence ===
+mkdir -p "$base"/Config/Policy
 mkdir -p "$base"/{private,public}/{Bareos,Infra,Pihole,Proxmox,Upsnap,PostGreSQL,Cockpit,Vps}/{Rsa,Ecdsa}
 mkdir -p "$base"/Cert_CA/{Inter,Root,CSR}
 
@@ -14,6 +15,10 @@ chown -R vault:vault "$base"
 
 # === Droits dossiers ===
 chmod 750 "$base"
+
+# Config/
+chmod 750 "$base/Config"
+chmod 750 "$base/Config/Policy"
 
 # private/
 chmod 700 "$base/private"
