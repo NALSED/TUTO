@@ -144,6 +144,27 @@ Spécifie que n'importe quelle valeur entre les deux parties du path est accept�
 Ici, toutes les valeurs entre `secret` et `admin` sont acceptées.
 
 
+### **Ecrire une policy**
+
+-1. - Créer le fichier policy
+nano /home/sednal/secret-list.hcl
+
+-2. Autoriser la liste des secrets
+path "secret/*" {
+    capabilities = ["list"]
+}
+
+-3. Appliquer la policy dans Vault
+vault policy write secret-list /home/sednal/secret-list.hcl
+
+-4. - Vérifier que la policy est bien créée
+vault policy read secret-list
+
+-5. - Lister toutes les policies
+vault policy list
+
+
+
 ---
 
 ### **COMMANDES**
