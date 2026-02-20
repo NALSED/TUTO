@@ -39,7 +39,7 @@ toujours être en `HTTP` et non en `HTTPS` pour deux raisons :
 
 -1.2. Création du répertoire
 ```
-mkdir /var/www/pki/
+sudo mkdir /var/www/pki/
 ```
 
 -1.3. Sur le serveur web, avec apache 2 créer le fichier de endpoint.
