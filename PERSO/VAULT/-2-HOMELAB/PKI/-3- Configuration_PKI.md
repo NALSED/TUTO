@@ -68,12 +68,66 @@ path "PKI_Sednal_Inter_ECDSA*" {
 vault policy write sednal-pki /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
 ```
 
-
-
-
 ---
 
 ## 2️⃣ **Configuration PKI** 
+
+-Les certificats Root seront **cross-signés** entre RSA et ECDSA, 
+offrant une compatibilité maximale avec tous les services.
+
+-RSA est généré en premier — un service ne supportant pas ECDSA 
+peut se rabattre sur RSA, mais l'inverse est impossible. 
+-Le cross-signing crée un pont entre les deux chaînes de confiance.
+
+-Pour plus de clarté, toute la génération suivra systématiquement 
+cet ordre :
+
+   - 1. `=== RSA ===`
+   - 2. `=== ECDSA ===`
+
+
+
+`-1.`
+
+
+
+
+
+`-2.`
+
+`-3.`
+
+`-4.`
+
+`-5.`
+
+`-6.`
+
+`-7.`
+
+`-8.`
+
+`-9.`
+
+`-10.`
+
+`-11.`
+
+`-12.`
+
+`-13.`
+
+`-14.`
+
+`-15.`
+
+`-16.`
+
+`-17.`
+
+`-18.`
+
+`-19.`
 
 ---
 
