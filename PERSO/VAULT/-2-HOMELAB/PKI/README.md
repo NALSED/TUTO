@@ -83,28 +83,6 @@ R = RSA  |  E = ECDSA  |  XS = Cross-Sign
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
-
----
-
-## Flux PKI
-
-```
-Vault 238
-   │
-   ├── Génère Root RSA + Root ECDSA
-   ├── Cross-sign ECDSA par RSA → cert XS
-   ├── Génère Inter RSA + Inter ECDSA
-   ├── Génère certs leaf par service
-   │
-   ├── Push CRL → 241 /var/www/pki/  (cron 24h)
-   │
-   └── SCP certs → chaque machine    (script déploiement)
-          └── rm anciens → copy nouveaux → chmod/chown → reload service
-
-241 Apache2 :80
-   └── Sert /crl/* ← consulté automatiquement par tous les clients TLS
-```
-
 ---
 
 ## Certificats par machine
@@ -117,6 +95,151 @@ Vault 238
 | proxmox.sednal.lan | 192.168.0.242 | proxmox RSA+ECDSA |
 | VPS | 176.31.163.227 | vps RSA+ECDSA |
 | Toutes machines | — | Sednal_Root_All.crt dans store système |
+
+
+---
+
+# Arborécences
+
+## **Vault : 192.168.0.238**
+```
+/etc/Vault
+├── PKI
+   ├── private
+   │   ├── Bareos
+   │   │   ├── Rsa
+   │   │   │   ├── bareos-dir_rsa.key
+   │   │   │   ├── bareos-fd_rsa.key
+   │   │   │   ├── bareos-sd_rsa.key
+   │   │   │   └── bareos_rsa.key
+   │   │   └── Ecdsa
+   │   │       ├── bareos-dir_ecdsa.key
+   │   │       ├── bareos-fd_ecdsa.key
+   │   │       ├── bareos-sd_ecdsa.key
+   │   │       └── bareos_ecdsa.key
+   │   │
+   │   ├── Infra
+   │   │   ├── Rsa
+   │   │   │   └── infra_rsa.key
+   │   │   └── Ecdsa
+   │   │       └── infra_ecdsa.key
+   │   │
+   │   ├── Pihole
+   │   │   ├── Rsa
+   │   │   │   └── pihole_rsa.key
+   │   │   └── Ecdsa
+   │   │       └── pihole_ecdsa.key
+   │   │
+   │   ├── Proxmox
+   │   │   ├── Rsa
+   │   │   │   └── proxmox_rsa.key
+   │   │   └── Ecdsa
+   │   │       └── proxmox_ecdsa.key
+   │   │
+   │   ├── PostGreSQL
+   │   │   ├── Rsa
+   │   │   │   └── postgresql_rsa.key
+   │   │   └── Ecdsa
+   │   │        └── postgresql_ecdsa.key
+   │   ├── VPS
+   │   │   ├── Rsa
+   │   │   │   └── vps_rsa.key
+   │   │   └── Ecdsa
+   │   │        └── vps_ecdsa.key 
+   │   ├── Cockpit
+   │   │   ├── Rsa
+   │   │   │   └── cockpit_rsa.key
+   │   │   └── Ecdsa
+   │   │        └── cockpit_ecdsa.key 
+   │   │  
+   │   │
+   │   └── Upsnap
+   │       ├── Rsa
+   │       │   └── upsnap_rsa.key
+   │       └── Ecdsa
+   │           └── upsnap_ecdsa.key
+   │
+   ├── public
+   │   ├── Bareos
+   │   │   ├── Rsa
+   │   │   │   ├── bareos-dir_rsa.crt
+   │   │   │   ├── bareos-fd_rsa.crt
+   │   │   │   ├── bareos-sd_rsa.crt
+   │   │   │   └── bareos_rsa.crt
+   │   │   └── Ecdsa
+   │   │       ├── bareos-dir_ecdsa.crt
+   │   │       ├── bareos-fd_ecdsa.crt
+   │   │       ├── bareos-sd_ecdsa.crt
+   │   │       └── bareos_ecdsa.crt
+   │   │
+   │   ├── Infra
+   │   │   ├── Rsa
+   │   │   │   └── infra_rsa.crt
+   │   │   └── Ecdsa
+   │   │       └── infra_ecdsa.crt
+   │   │
+   │   ├── Pihole
+   │   │   ├── Rsa
+   │   │   │   └── pihole_rsa.crt
+   │   │   └── Ecdsa
+   │   │       └── pihole_ecdsa.crt
+   │   │
+   │   ├── Proxmox
+   │   │   ├── Rsa
+   │   │   │   └── proxmox_rsa.crt
+   │   │   └── Ecdsa
+   │   │       └── proxmox_ecdsa.crt
+   │   │
+   │   ├── PostGreSQL
+   │   │   ├── Rsa
+   │   │   │   └── postgresql_rsa.crt
+   │   │   └── Ecdsa
+   │   │        └── postgresql_ecdsa.crt
+   │   │
+   │   ├── Cockpit
+   │   │   ├── Rsa
+   │   │   │   └── cockpit_rsa.crt
+   │   │   └── Ecdsa
+   │   │        └── cockpit_ecdsa.crt 
+   │   ├── VPS
+   │   │   ├── Rsa
+   │   │   │   └── vps_rsa.crt
+   │   │   └── Ecdsa
+   │   │        └── vps_ecdsa.crt 
+   │   └── Upsnap
+   │       ├── Rsa
+   │       │   └── upsnap_rsa.crt
+   │       └── Ecdsa
+   │           └── upsnap_ecdsa.crt
+   │
+   └── Cert_CA
+          ├── Inter 
+          │    ├── Sednal_Inter_E-1.cert.pem
+          │    └── Sednal_Inter_R-1.cert.pem
+          │
+          ├── Root
+          │      ├── Sednal_Root_R-1.crt
+          │      ├── Sednal_Root_E-1.crt
+          │      ├── Sednal_Root_XS_1.crt
+          │      ├── Sednal_Root_All.crt => Sednal_Root_R-1.crt + Sednal_Root_E-1.crt + Sednal_Root_XS_1.crt
+          │      ├── ca_chain_rsa.crt
+          │      └── ca_chain_ecdsa.crt   
+          │  
+          └── CSR
+                ├── cross_e1.csr
+                ├── Sednal_Inter_R-1.csr
+                └── Sednal_Inter_E-1.csr
+```
+
+
+
+
+
+
+
+
+
+
 
 
 
