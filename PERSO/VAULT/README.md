@@ -1,3 +1,4 @@
+```
 # Arborécence Vault 192.168.0.238
 
 vault.sednal.lan (192.168.0.238)
@@ -73,3 +74,4 @@ vault.sednal.lan (192.168.0.238)
     │   └── Cert_Inter_ECDSA         # Rôle émission leaf ECDSA
     └── issue/
         └── Cert_Inter_ECDSA         # Emission certificats leaf ECDSA
+```
