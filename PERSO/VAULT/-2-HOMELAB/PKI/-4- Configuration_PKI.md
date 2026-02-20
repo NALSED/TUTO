@@ -2,11 +2,11 @@
 
 ---
 
-### 1️⃣ `Création Policy` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_PKI.md#1%EF%B8%8F%E2%83%A3-cr%C3%A9ation-policy-acc%C3%A8s-rapide-1)
-### 2️⃣ `Configuration PKI` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_PKI.md#2%EF%B8%8F%E2%83%A3-configuration-pki)
-### 3️⃣ `Role PKI` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_PKI.md#3%EF%B8%8F%E2%83%A3-role-pki)
-### 4️⃣ `Demande de Certificats` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_PKI.md#4%EF%B8%8F%E2%83%A3-demande-de-certificats)
-### 5️⃣ `Renouvelement` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_PKI.md#5%EF%B8%8F%E2%83%A3-renouvelement)
+### 1️⃣ `Création Policy` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-4-%20Configuration_PKI.md#1%EF%B8%8F%E2%83%A3-cr%C3%A9ation-policy-acc%C3%A8s-rapide-1)
+### 2️⃣ `Configuration PKI` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-4-%20Configuration_PKI.md#2%EF%B8%8F%E2%83%A3-configuration-pki)
+### 3️⃣ `Role PKI` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-4-%20Configuration_PKI.md#3%EF%B8%8F%E2%83%A3-role-pki)
+### 4️⃣ `Demande de Certificats` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-4-%20Configuration_PKI.md#4%EF%B8%8F%E2%83%A3-demande-de-certificats)
+### 5️⃣ `Renouvelement` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-4-%20Configuration_PKI.md#5%EF%B8%8F%E2%83%A3-renouvelement)
 
 ---
 
