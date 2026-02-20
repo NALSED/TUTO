@@ -31,11 +31,11 @@ toujours être en `HTTP` et non en `HTTPS` pour deux raisons :
 
   - Si le certificat du serveur qui héberge la CRL est révoqué ou 
     invalide, les clients ne pourront pas télécharger la CRL pour 
-    vérifier la révocation → paradoxe impossible à résoudre
+    vérifier la révocation.
 
   - Lors de la validation d'un certificat, le client n'a pas encore 
-    établi de contexte TLS valide pour contacter un serveur HTTPS → 
-    il ne peut donc pas vérifier la CRL en HTTPS
+    établi de contexte TLS valide pour contacter un serveur HTTPS => 
+    il ne peut donc pas vérifier la CRL en HTTPS.
 
 -1.2. Création du répertoire et droits 
 ```
