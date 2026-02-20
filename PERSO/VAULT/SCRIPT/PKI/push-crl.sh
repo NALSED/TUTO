@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 curl -s https://vault.sednal.lan:8200/v1/PKI_Sednal_Root_RSA/crl \
     -o /tmp/root_r.crl
