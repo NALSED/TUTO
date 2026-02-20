@@ -30,7 +30,7 @@
 │  ├── intermediate_r.crl   │   │  └───────────────────────────────┘   │
 │  └── intermediate_e.crl   │   │                                      │
 │                           │   │  ┌───────────────────────────────┐   │
-└───────────────────────────┘   │  │  PROXMOX — 192.168.0.252      │   │
+└───────────────────────────┘   │  │  PROXMOX — 192.168.0.242      │   │
              ▲                  │  │  proxmox.sednal.lan           │   │
              │ Consulte CRL     │  │  Rôle : Hyperviseur VMs/CTs   │   │
              └──────────────────┤  │  Certs : proxmox RSA+ECDSA    │   │
@@ -86,6 +86,6 @@ Vault 238
 | infra.sednal.lan | 192.168.0.239 | infra RSA+ECDSA |
 | bareos.sednal.lan | 192.168.0.240 | dir / sd / fd / web / postgresql RSA+ECDSA |
 | pihole.sednal.lan | 192.168.0.241 | pihole / upsnap / cockpit RSA+ECDSA |
-| proxmox.sednal.lan | 192.168.0.252 | proxmox RSA+ECDSA |
+| proxmox.sednal.lan | 192.168.0.242 | proxmox RSA+ECDSA |
 | VPS | 176.31.163.227 | bareos-fd RSA+ECDSA |
 | Toutes machines | — | Sednal_Root_All.crt dans store système |
