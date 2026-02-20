@@ -1,3 +1,23 @@
+## Convention de nomage
+
+>{émetteur}_{rôle}_{algo}-{génération}
+
+=== CA ===
+Sednal_Root_R-1    → Root CA RSA          gen 1
+Sednal_Root_E-1    → Root CA ECDSA        gen 1
+Sednal_Root_XS-1   → Cross-sign           gen 1
+Sednal_Inter_R-1   → Intermediate RSA     gen 1
+Sednal_Inter_E-1   → Intermediate ECDSA   gen 1
+
+=== LEAF ===
+proxmox_rsa        → Proxmox RSA
+proxmox_ecdsa      → Proxmox ECDSA
+bareos-dir_rsa     → Bareos Director RSA
+bareos-dir_ecdsa   → Bareos Director ECDSA
+...
+
+R = RSA  |  E = ECDSA  |  XS = Cross-Sign
+
 # Plan de Flux PKI — Sednal
 
 ```
@@ -90,5 +110,8 @@ Vault 238
 | bareos.sednal.lan | 192.168.0.240 | dir / sd / fd / web / postgresql RSA+ECDSA |
 | pihole.sednal.lan | 192.168.0.241 | pihole / upsnap / cockpit RSA+ECDSA |
 | proxmox.sednal.lan | 192.168.0.242 | proxmox RSA+ECDSA |
-| VPS | 176.31.163.227 | bareos-fd RSA+ECDSA |
+| VPS | 176.31.163.227 | vps RSA+ECDSA |
 | Toutes machines | — | Sednal_Root_All.crt dans store système |
+
+
+
