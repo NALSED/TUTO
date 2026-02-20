@@ -1,6 +1,6 @@
 ## Convention de nomage
 
-> ### {émetteur}_{rôle}_{algo}-{génération}
+ > ### {émetteur} _ {role} _ {algo} - {génération}
 
 ```
 === CA ===
