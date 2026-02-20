@@ -2,13 +2,16 @@
 
 >{émetteur}_{rôle}_{algo}-{génération}
 
+```
 === CA ===
 Sednal_Root_R-1    → Root CA RSA          gen 1
 Sednal_Root_E-1    → Root CA ECDSA        gen 1
 Sednal_Root_XS-1   → Cross-sign           gen 1
 Sednal_Inter_R-1   → Intermediate RSA     gen 1
 Sednal_Inter_E-1   → Intermediate ECDSA   gen 1
+```
 
+```
 === LEAF ===
 proxmox_rsa        → Proxmox RSA
 proxmox_ecdsa      → Proxmox ECDSA
@@ -17,6 +20,8 @@ bareos-dir_ecdsa   → Bareos Director ECDSA
 ...
 
 R = RSA  |  E = ECDSA  |  XS = Cross-Sign
+```
+
 
 # Plan de Flux PKI — Sednal
 
