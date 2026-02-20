@@ -297,64 +297,128 @@ vault write  PKI_Sednal_Inter_RSA/intermediate/set-signed certificate=@/etc/Vaul
 vault write  PKI_Sednal_Inter_ECDSA/intermediate/set-signed certificate=@/etc/Vault/PKI/Cert_CA/Inter/Sednal_Inter_E-1.cert.pem
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-`-5.`
-
-`-6.`
-
-`-7.`
-
-`-8.`
-
-`-9.`
-
-`-10.`
-
-`-11.`
-
-`-12.`
-
-`-13.`
-
-`-14.`
-
-`-15.`
-
-`-16.`
-
-`-17.`
-
-`-18.`
-
-`-19.`
-
 ---
 
 ## 3️⃣ **Role PKI**
+
+- 17 - Créer un role pour les certificats inter RSA
+
+vault write PKI_Sednal_Inter_RSA/roles/Cert_Inter_RSA \
+    issuer_ref="$(vault read -field=default PKI_Sednal_Inter_RSA/config/issuers)" \
+    allowed_domains="sednal.lan" \
+    allow_subdomains=true \
+    allow_localhost=true \
+    key_type=rsa \
+    key_bits=4096 \
+    max_ttl="365d" \
+    ttl="90d" \
+    no_store=false
+
+- issuer_ref : utilise la sortie par defaut
+- TTL : `90 jours`
+- no_store=false : Conserve les certificats émis dans Vault pour audit
+
+
+- 18 - Créer un role pour les certificats inter ECDSA
+
+vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
+    issuer_ref="$(vault read -field=default PKI_Sednal_Inter_ECDSA/config/issuers)" \
+    allowed_domains="sednal.lan" \
+    allow_subdomains=true \
+    allow_localhost=true \
+    key_type=ec \
+    key_bits=384 \
+    max_ttl="365d" \
+    ttl="90d" \
+    no_store=false
+
+- issuer_ref : utilise la sortie par defaut
+- TTL : `90 jours`
+- no_store=false : Conserve les certificats émis dans Vault pour audit
 
 ---
 
 ## 4️⃣ **Demande de Certificats** 
 
+- Ici utilisation du Script : [demande_cert.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/renew_cert.sh)
+
 ---
 
 ## 5️⃣ **Renouvelement** 
+
+- Inscription à systemd avec timer pour execution tous les 80 jours, les certificats finaux on une TTL de 90 jours
+
+`1.1` Editer le Script
+```
+sudo nano /etc/Vault_Script/Script_Renouvelement/renew_cert.sh
+```
+
+- Ici utilisation du Script : [renouvelement_cert.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/renouvelement_cert.sh)
+
+-Le rendre exécutable
+```
+sudo chmod +x  /etc/Vault_Script/Script_Renouvelement/renew_cert.sh
+```
+
+-Appliquer les permission
+```
+ sudo chown sednal:vault  /etc/Vault_Script/Script_Renouvelement/renew_cert.sh
+```
+
+`-1.2.` Inscription exécution du Script => Systemd :
+```
+  sudo nano /etc/systemd/system/renew_cert_ssl.service 
+```
+
+**=== SERVICE ===**
+```
+[Unit]
+Description=Renouvellement cerficats SSL Infra
+After=network.target
+RefuseManualStart=yes
+
+[Service]
+Type=oneshot
+ExecStart=/etc/Vault_Script/Script_Renouvelement/renew_cert.sh
+User=sednal
+Group=vault
+
+[Install]
+WantedBy=multi-user.target
+```
+
+`-1.3.` Edition timer
+```
+ sudo nano /etc/systemd/system/renew_cert_ssl.timer 
+```
+
+**=== TIMER ===**
+
+```
+[Unit]
+Description=Renouvellement du certificat tous les 80 jours
+Requires=renew_cert_ssl.service
+  
+[Timer]
+OnCalendar=*-*-1/80
+Persistent=true
+  
+[Install]
+WantedBy=timers.target
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
