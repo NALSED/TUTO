@@ -349,8 +349,12 @@ vault write  PKI_Sednal_Inter_ECDSA/intermediate/set-signed certificate=@/etc/Va
 
 ---
 
-## 5️⃣ **Demande de Certificats** 
+## 3️⃣ **Role PKI**
 
 ---
 
-## 6️⃣ **Renouvelement** 
+## 4️⃣ **Demande de Certificats** 
+
+---
+
+## 5️⃣ **Renouvelement** 
