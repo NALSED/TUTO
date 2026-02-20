@@ -103,8 +103,14 @@ R = RSA  |  E = ECDSA  |  XS = Cross-Sign
 
 ## **Vault : 192.168.0.238**
 ```
+# ARBORECENCE FICHIER
 /etc/Vault
 ├── PKI
+   │
+   ├── Config
+   │     └── Policy
+   │
+   │    
    ├── private
    │   ├── Bareos
    │   │   ├── Rsa
@@ -229,17 +235,5 @@ R = RSA  |  E = ECDSA  |  XS = Cross-Sign
                 ├── cross_e1.csr
                 ├── Sednal_Inter_R-1.csr
                 └── Sednal_Inter_E-1.csr
+
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
