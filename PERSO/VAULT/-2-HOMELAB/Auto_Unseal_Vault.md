@@ -13,11 +13,11 @@ Ce tutotriel à pour objectif :
 -4. La configuration et la mise en place de l'aute-unseal via transit secret 
 
 ---
-### 1️⃣ `Infra` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/Auto_Unseal_Vault.md#1%EF%B8%8F%E2%83%A3-infra)
-### 2️⃣ `Certificats` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/Auto_Unseal_Vault.md#2%EF%B8%8F%E2%83%A3-certificats) 
-### 3️⃣ `Renouvelement` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/Auto_Unseal_Vault.md#3%EF%B8%8F%E2%83%A3-renouvelement)
-### 4️⃣ `Installation` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/Auto_Unseal_Vault.md#4%EF%B8%8F%E2%83%A3-installation)
-### 5️⃣ `Configuration` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/Auto_Unseal_Vault.md#5%EF%B8%8F%E2%83%A3-configuration)
+### 1️⃣ `Infra` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#1%EF%B8%8F%E2%83%A3-infra)
+### 2️⃣ `Certificats` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#2%EF%B8%8F%E2%83%A3-certificats) 
+### 3️⃣ `Renouvelement` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#3%EF%B8%8F%E2%83%A3-renouvelement)
+### 4️⃣ `Installation` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#4%EF%B8%8F%E2%83%A3-installation)
+### 5️⃣ `Configuration` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#5%EF%B8%8F%E2%83%A3-configuration)
 
 
 
