@@ -109,7 +109,6 @@ R = RSA  |  E = ECDSA  |  XS = Cross-Sign
    │
    ├── Config
    │     └── Policy
-   │
    │    
    ├── private
    │   ├── Bareos
