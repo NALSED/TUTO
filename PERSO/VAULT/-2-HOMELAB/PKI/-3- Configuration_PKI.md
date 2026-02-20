@@ -82,8 +82,8 @@ peut se rabattre sur RSA, mais l'inverse est impossible.
 -Pour plus de clarté, toute la génération suivra systématiquement 
 cet ordre :
 
-   - 1. `=== RSA ===`
-   - 2. `=== ECDSA ===`
+   -1. `=== RSA ===`
+   -2. `=== ECDSA ===`
 
 
 
