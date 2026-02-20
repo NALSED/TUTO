@@ -33,11 +33,11 @@ get_folder() {
 # Fonction : émettre un certificat via Vault 
 # ---------------------------------------------------------------------------
 issue_cert() {
-    local pki="$1"      # ex: PKI_Sednal_Inter_RSA
-    local role="$2"     # ex: Cert_Inter_RSA
-    local cn="$3"       # common_name
-    local out_crt="$4"  # chemin complet du .crt
-    local out_key="$5"  # chemin complet du .key
+    local pki="$1"      
+    local role="$2"     
+    local cn="$3"      
+    local out_crt="$4"  
+    local out_key="$5"  
 
     local json="$TMP/cert_$$.json"
 
