@@ -93,21 +93,7 @@ Ici on ne met pas cette solution en place car le service OCSP et Vault devaient 
 nano /usr/local/bin/push-crl.sh
 ```
 
-`=>` - Éditer
-```
-curl -s https://vault.sednal.lan:8200/v1/PKI_Sednal_Root_RSA/crl \
-    -o /tmp/root_r.crl
-curl -s https://vault.sednal.lan:8200/v1/PKI_Sednal_Root_ECDSA/crl \
-    -o /tmp/root_e.crl
-curl -s https://vault.sednal.lan:8200/v1/PKI_Sednal_Inter_RSA/crl \
-    -o /tmp/intermediate_r.crl
-curl -s https://vault.sednal.lan:8200/v1/PKI_Sednal_Inter_ECDSA/crl \
-    -o /tmp/intermediate_e.crl
-
-scp /tmp/root_r.crl /tmp/root_e.crl \
-    /tmp/intermediate_r.crl /tmp/intermediate_e.crl \
-    sednal@pihole.sednal.lan:/var/www/pki/
-```
+`=>` - Éditer [Script_push-crl.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/PKI/push-crl.sh)
 
 
 -2.2. Edition du cron 
