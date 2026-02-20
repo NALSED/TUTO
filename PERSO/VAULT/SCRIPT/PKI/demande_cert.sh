@@ -30,7 +30,7 @@ get_folder() {
 }
 
 # ---------------------------------------------------------------------------
-# Fonction : émettre un certificat via Vault (1 seul appel = cert + clé cohérents)
+# Fonction : émettre un certificat via Vault 
 # ---------------------------------------------------------------------------
 issue_cert() {
     local pki="$1"      # ex: PKI_Sednal_Inter_RSA
@@ -52,7 +52,7 @@ issue_cert() {
 }
 
 # ---------------------------------------------------------------------------
-# CA chain — générée une seule fois (1 appel chacun, on extrait ce qu'on veut)
+# CA chain — générée une seule fois 
 # ---------------------------------------------------------------------------
 echo "=== Génération CA chain RSA ==="
 vault write -format=json PKI_Sednal_Inter_RSA/issue/Cert_Inter_RSA \
