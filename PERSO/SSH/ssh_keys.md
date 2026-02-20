@@ -16,7 +16,7 @@
 ![image](https://github.com/user-attachments/assets/ccbf4b8b-7824-4c50-b050-a8264791c22e)
 
 ### Créer la clé
-    ssh-keygen -t ecdsa
+    ssh-keygen -t ed25519
 ### Elle se trouve dans C:\Users\sednal/.ssh/id_ecdsa.pub 
 
 ---
