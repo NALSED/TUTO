@@ -37,9 +37,17 @@ toujours être en `HTTP` et non en `HTTPS` pour deux raisons :
     établi de contexte TLS valide pour contacter un serveur HTTPS → 
     il ne peut donc pas vérifier la CRL en HTTPS
 
--1.2. Création du répertoire
+-1.2. Création du répertoire et droits 
 ```
 sudo mkdir /var/www/pki/
+```
+
+```
+sudo chown sednal:sednal /var/www/pki
+```
+
+```
+sudo chmod 755 /var/www/pki
 ```
 
 -1.3. Sur le serveur web, avec apache 2 créer le fichier de endpoint.
@@ -73,18 +81,76 @@ nano /etc/apache2/sites-available/pki-crl.conf
 
 -1.4. Créer un lien symbolique depuis sites-available vers sites-enabled
 ```
-a2ensite pki-crl.conf
+sudo a2ensite pki-crl.conf
 ```
 
--1.5. Redémarrer le service Apache2
+-Sortie
+
+<img width="471" height="77" alt="image" src="https://github.com/user-attachments/assets/d3a47ef1-e22f-4ef9-927c-bff75184649a" />
+
+-1.5. Désactiver la page par defaut
 ```
-systemctl reload apache2
+sudo a2dissite 000-default.conf
 ```
 
+-1.6. Redémarrer le service Apache2
+```
+sudo systemctl reload apache2
+```
+
+-Sortie
+
+<img width="545" height="77" alt="image" src="https://github.com/user-attachments/assets/7bc7b93d-256f-4c8e-b3b3-8bb5bf90eed3" />
+
+⚠️ `[TEST]` ⚠️
+-Pour vérifier que tout est Ok, création d'un fichier test_rsa et test_ecdsa et utilisation de curl.
+
+=== RSA ===
+```
+nano /var/www/pki/root_r.crl
+```
+
+- Editer
+```
+test_RSA
+```
+
+=== ECDSA ===
+```
+nano /var/www/pki/root_e.crl
+```
+
+- Editer
+```
+test_ECDSA
+```
+
+- curl rsa
+```
+curl http://infra.sednal.lan/crl/root_r
+```
+
+- curl ecdsa
+```
+curl http://infra.sednal.lan/crl/root_e
+```
+
+- `Résultats`
+
+<img width="632" height="109" alt="image" src="https://github.com/user-attachments/assets/ed3ce4e6-798f-4091-a765-54f3720170ac" />
+
+
+- Pour finir
+```
+sudo rm /var/www/pki/root_e.crl && sudo rm /var/www/pki/root_r.crl
+```
+
+---
 
 `[NOTE]` Pour allez plus loin [OCSP](https://fr.wikipedia.org/wiki/Online_Certificate_Status_Protocol)
 Ici on ne met pas cette solution en place car le service OCSP et Vault devaient être dispo 24/24.
 
+---
 ---
 
 ### 2️⃣ Création d'une tâche cron sur Serveur Vault 192.168.0.238, pour pousser les CRL
