@@ -7,10 +7,12 @@
 │  Rôle : Génération Root CA / Inter CA / Certs leaf / CRL             │
 │  PKI  : PKI_Sednal_Root_RSA   | PKI_Sednal_Root_ECDSA               │
 │         PKI_Sednal_Inter_RSA  | PKI_Sednal_Inter_ECDSA              │
-└───────────────┬──────────────────────────┬───────────────────────────┘
-                │                          │
-                │ Push CRL (cron 24h)      │ SCP certs + clés
-                ▼                          ▼
+└──────────┬───────────────────────────────────────┬───────────────────┘
+           │                                       │
+           │ * Push CRL (cron 24h)                 │ * SCP certs + clés
+           │ * SCP certs + clés                    │ * Renouvellement
+           │ * Renouvellement                      │
+           v                                       v
 ┌───────────────────────────┐   ┌──────────────────────────────────────┐
 │  PI — 192.168.0.241       │   │                                      │
 │  pihole.sednal.lan        │   │  ┌───────────────────────────────┐   │
@@ -31,7 +33,7 @@
 │  └── intermediate_e.crl   │   │                                      │
 │                           │   │  ┌───────────────────────────────┐   │
 └───────────────────────────┘   │  │  PROXMOX — 192.168.0.242      │   │
-             ▲                  │  │  proxmox.sednal.lan           │   │
+             ^                  │  │  proxmox.sednal.lan           │   │
              │ Consulte CRL     │  │  Rôle : Hyperviseur VMs/CTs   │   │
              └──────────────────┤  │  Certs : proxmox RSA+ECDSA    │   │
                                 │  └───────────────────────────────┘   │
@@ -55,6 +57,7 @@
 │  Store : Sednal_Root_All.crt installé                                │
 └──────────────────────────────────────────────────────────────────────┘
 ```
+
 
 ---
 
