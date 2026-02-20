@@ -238,8 +238,6 @@ R = RSA  |  E = ECDSA  |  XS = Cross-Sign
 ```
 
 ```
-# Arborécence Vault 192.168.0.238
-
 vault.sednal.lan (192.168.0.238)
 │
 ├── sys/
