@@ -156,13 +156,26 @@ Ici on ne met pas cette solution en place car le service OCSP et Vault devaient 
 
 ### 2️⃣ Création d'une tâche cron sur Serveur Vault 192.168.0.238, pour pousser les CRL
 
+⚠️ Avant tout mettre sednal dans le groupe vault
+```
+sudo /sbin/usermod -aG vault sednal
+```
+
 -2.1 Edition du script 
 ```
-nano /usr/local/bin/push-crl.sh
+sudo nano /usr/local/bin/push-crl.sh
 ```
 
 `=>` - Éditer Script : [push-crl.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/PKI/push-crl.sh)
 
+- Droits + Execution :
+```
+sudo chown vault:vault /usr/local/bin/push-crl.sh
+```
+
+```
+sudo  chmod +x /usr/local/bin/push-crl.sh
+```
 
 -2.2. Edition du cron 
 ```
@@ -171,6 +184,8 @@ crontab-e
 
 `=>` - Éditer 
 ```
+# === Vault PKI ===
+# Pousser le CRL vers serveur Apache2 (192.168.0.239)
 0 11 * * * /usr/local/bin/push-crl.sh
 ```
 
@@ -188,7 +203,7 @@ ssh-keygen -t ed25519 -C "vault-admin"
 ssh-copy-id sednal@192.168.0.239
 ssh-copy-id sednal@192.168.0.240
 ssh-copy-id sednal@192.168.0.241
-ssh-copy-id sednal@192.168.0.242
+ssh-copy-id root@192.168.0.242
 ssh-copy-id debian@176.31.163.227
 ```
 
@@ -196,7 +211,7 @@ ssh-copy-id debian@176.31.163.227
 
 ### 4️⃣ Groupe et User
 
--4.1 Pour Bareos, les certificats sont utilisés, par => `bareos:bareos`, mais l'utilisateur commun à besoin de pouvoir accéder à ces fichiers.
+-4.1 Pour Bareos 192.168.0.240, les certificats sont utilisés, par => `bareos:bareos`, mais l'utilisateur commun à besoin de pouvoir accéder à ces fichiers.
 ```
 sudo usermod -aG bareos sednal
 ```
@@ -207,13 +222,87 @@ sudo usermod -aG bareos sednal
 
 -5.1. Créer script 
 ```
-nano /home/$USER/deploiement_vault.sh
+nano /home/sednal/deploiement_vault.sh
+```
+
+```
+chmod +x /home/sednal/deploiement_vault.sh
+```
+
+```
+sudo chown sednal:sednal deploiement_vault.sh
+```
+
+```
+sudo ./deploiement_vault.sh
 ```
 
 `=>` - Éditer Script : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/PKI/deploiement_vault.sh) 
 
 
+`[VERIFICATION]`
 
+- Avec tree
 
+```
+sednal@vault:/etc/Vault$ sudo tree PKI
+PKI
+├── Cert_CA
+│   ├── CSR
+│   ├── Inter
+│   └── Root
+├── Config
+│   └── Policy
+├── private
+│   ├── Bareos
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Cockpit
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Infra
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Pihole
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── PostGreSQL
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Proxmox
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Upsnap
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   └── Vps
+│       ├── Ecdsa
+│       └── Rsa
+└── public
+    ├── Bareos
+    │   ├── Ecdsa
+    │   └── Rsa
+    ├── Cockpit
+    │   ├── Ecdsa
+    │   └── Rsa
+    ├── Infra
+    │   ├── Ecdsa
+    │   └── Rsa
+    ├── Pihole
+    │   ├── Ecdsa
+    │   └── Rsa
+    ├── PostGreSQL
+    │   ├── Ecdsa
+    │   └── Rsa
+    ├── Proxmox
+    │   ├── Ecdsa
+    │   └── Rsa
+    ├── Upsnap
+    │   ├── Ecdsa
+    │   └── Rsa
+    └── Vps
+        ├── Ecdsa
+        └── Rsa
 
-
+57 directories, 0 files
+```
