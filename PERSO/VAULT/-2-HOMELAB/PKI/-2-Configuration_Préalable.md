@@ -103,7 +103,8 @@ sudo systemctl reload apache2
 <img width="545" height="77" alt="image" src="https://github.com/user-attachments/assets/7bc7b93d-256f-4c8e-b3b3-8bb5bf90eed3" />
 
 ⚠️ `[TEST]` ⚠️
--Pour vérifier que tout est Ok, création d'un fichier test_rsa et test_ecdsa et utilisation de curl.
+
+-Pour vérifier que tout est Ok, création d'un fichier `test_rsa` et `test_ecdsa` et utilisation de curl.
 
 === RSA ===
 ```
