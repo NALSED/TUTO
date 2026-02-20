@@ -135,12 +135,12 @@ Ce tutotriel à pour objectif :
                ├── Vault_Root.hcl 
                └── Vault_Root.cnf  
 
--1. Créer les dossiers via les scripts.
+-2. Créer les dossiers via les scripts.
 
 #### [Script déploiement dossier](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-2-creation_dossier_Vault_Root.sh) ⬆️
 
 
--2. Déclarer `FQDN` dans Pfsense
+-3. Déclarer `FQDN` dans Pfsense
 
 <img width="1144" height="81" alt="image" src="https://github.com/user-attachments/assets/3124aa98-3ae9-4bec-b408-064408dff0d3" />
 
