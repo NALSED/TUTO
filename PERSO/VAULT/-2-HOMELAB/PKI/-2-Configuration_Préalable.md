@@ -20,6 +20,7 @@ Dans cette partie toutes les configuration préalable sur les client ainsi que s
 - 2️⃣ Mise en Place d'une tache cron pour pousser les CRL de Vault 192.168.0.238 vers le serveur Web 192.168.0.239
 - 3️⃣ Les clients de Vault qui vont recevoir les certificats doivent pouvoir être contactés en `ssh` par Vault sans mot de passe.  
 - 4️⃣ La gestion des groupes et des utilisateurs est faite en amont pour éviter tout oubli.
+- 5️⃣ Création des Répertoires Cetificats sur le serveur Vault.
 
 ---
 
@@ -93,7 +94,7 @@ Ici on ne met pas cette solution en place car le service OCSP et Vault devaient 
 nano /usr/local/bin/push-crl.sh
 ```
 
-`=>` - Éditer [Script_push-crl.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/PKI/push-crl.sh)
+`=>` - Éditer Script : [push-crl.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/PKI/push-crl.sh)
 
 
 -2.2. Edition du cron 
@@ -133,9 +134,16 @@ ssh-copy-id debian@176.31.163.227
 sudo usermod -aG bareos sednal
 ```
 
+---
 
+### 5️⃣ Création de répertoire avec Script
 
+-5.1. Créer script 
+```
+nano /home/$USER/deploiement_vault.sh
+```
 
+`=>` - Éditer Script : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/PKI/deploiement_vault.sh) 
 
 
 
