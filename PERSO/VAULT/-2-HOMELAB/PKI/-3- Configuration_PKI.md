@@ -21,7 +21,12 @@
 
 `-1.1` Créer les policy Relative à la PKI
 ```
-nano /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
+sudo nano /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
+```
+
+- DROITS
+```
+chmown vault:vault /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
 ```
 
 `=>` - Editer
