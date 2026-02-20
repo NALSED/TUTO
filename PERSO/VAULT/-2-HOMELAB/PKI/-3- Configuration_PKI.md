@@ -2,14 +2,14 @@
 
 ---
 
-### 1️⃣ `Création Policy` [Accès rapide]()
+### 1️⃣ `Création Policy` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_PKI.md#1%EF%B8%8F%E2%83%A3-cr%C3%A9ation-policy-acc%C3%A8s-rapide-1)
 ### 2️⃣ `Configuration PKI` [Accès rapide]()
 ### 3️⃣ `Demande de Certificats` [Accès rapide]()
 ### 4️⃣ `Renouvelement` [Accès rapide]()
 
 ---
 
-## 1️⃣ **Création Policy** [Accès rapide]()
+## 1️⃣ **Création Policy** 
 
 `[NOTE]`
  Dans les bonnes pratiques, le **Root Token** ne doit être utilisé que pour la configuration initiale de Vault.  
@@ -73,12 +73,12 @@ vault policy write sednal-pki /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
 
 ---
 
-## 2️⃣ **Configuration PKI** [Accès rapide]()
+## 2️⃣ **Configuration PKI** 
 
 ---
 
-## 3️⃣ **Demande de Certificats** [Accès rapide]()
+## 3️⃣ **Demande de Certificats** 
 
 ---
 
-## 4️⃣ **Renouvelement** [Accès rapide]()
+## 4️⃣ **Renouvelement** 
