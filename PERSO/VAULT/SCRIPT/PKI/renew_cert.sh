@@ -1,247 +1,177 @@
 #!/bin/bash
-# =============================================================================
-# 02_vault_renew_certs.sh — Renouvellement des certificats depuis Vault PKI
-# Exécuté sur le serveur Vault Via systemd
-# =============================================================================
-set -euo pipefail
 
-SERVICES=(proxmox pihole upsnap infra bareos-dir bareos-fd bareos-sd bareos postgresql vps cockpit)
-DOMAIN=".sednal.lan"
-BASE="/etc/Vault/PKI"
-BASE_CA="$BASE/Cert_CA/Root"
-TMP=$(mktemp -d)
-trap 'rm -rf "$TMP"' EXIT
+set -e
 
-# ---------------------------------------------------------------------------
-# Fonction : chemin du dossier pour chaque service
-# ---------------------------------------------------------------------------
-get_folder() {
-    case "$1" in
-        proxmox)    echo "Proxmox"    ;;
-        pihole)     echo "Pihole"     ;;
-        upsnap)     echo "Upsnap"     ;;
-        infra)      echo "Infra"      ;;
-        bareos*)    echo "Bareos"     ;;
-        postgresql) echo "PostGreSQL" ;;
-        vps)        echo "VPS"        ;;
-        cockpit)    echo "Cockpit"    ;;
-        *) echo "Unknown" ;;
-    esac
+services=(proxmox pihole upsnap infra bareos-dir bareos-fd bareos-sd bareos postgresql vps cockpit)
+base_pki="/etc/Vault/PKI"
+domain=".sednal.lan"
+
+path() {
+    if [[ "$1" == "proxmox" ]]; then echo "Proxmox"
+    elif [[ "$1" == "pihole" ]]; then echo "Pihole"
+    elif [[ "$1" == "upsnap" ]]; then echo "Upsnap"
+    elif [[ "$1" == "infra" ]]; then echo "Infra"
+    elif [[ "$1" == bareos* ]]; then echo "Bareos"
+    elif [[ "$1" == "postgresql" ]]; then echo "PostGreSQL"
+    elif [[ "$1" == "vps" ]]; then echo "VPS"
+    elif [[ "$1" == "cockpit" ]]; then echo "Cockpit"
+    fi
 }
 
-# --------------------------------------------
-# Fonction : émettre un certificat via Vault 
-# --------------------------------------------
-issue_cert() {
-    local pki="$1"
-    local role="$2"
-    local cn="$3"
-    local out_crt="$4"
-    local out_key="$5"
+# === RENOUVELLEMENT CERTIFICATS ===
+for service in "${services[@]}"; do
+    cert="${service}${domain}"
+    folder=$(path "$service")
 
-    local json="$TMP/cert_$$.json"
+    echo "Renouvellement RSA : $cert → $folder"
+    result=$(vault write -format=json PKI_Sednal_Inter_RSA/issue/Cert_Inter_RSA common_name="$cert")
+    echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/Rsa/${service}_rsa.crt" > /dev/null
+    echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Rsa/${service}_rsa.key" > /dev/null
 
-    vault write -format=json "${pki}/issue/${role}" \
-        common_name="$cn" > "$json"
+    echo "Renouvellement ECDSA : $cert → $folder"
+    result=$(vault write -format=json PKI_Sednal_Inter_ECDSA/issue/Cert_Inter_ECDSA common_name="$cert")
+    echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/Ecdsa/${service}_ecdsa.crt" > /dev/null
+    echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Ecdsa/${service}_ecdsa.key" > /dev/null
 
-    jq -r '.data.certificate' "$json" | sudo tee "$out_crt" > /dev/null
-    jq -r '.data.private_key' "$json" | sudo tee "$out_key" > /dev/null
-
-    sudo chmod 644 "$out_crt"
-    sudo chmod 600 "$out_key"
-}
-
-# ---------------------------------------------------------------------------
-# Renouvellement des certificats finaux
-# ---------------------------------------------------------------------------
-echo "=== Renouvellement des certificats ==="
-
-for service in "${SERVICES[@]}"; do
-    cn="${service}${DOMAIN}"
-    folder=$(get_folder "$service")
-
-    echo "--- RSA   : $cn → $folder ---"
-    issue_cert \
-        "PKI_Sednal_Inter_RSA" "Cert_Inter_RSA" "$cn" \
-        "$BASE/public/$folder/Rsa/${service}_rsa.crt" \
-        "$BASE/private/$folder/Rsa/${service}_rsa.key"
-
-    echo "--- ECDSA : $cn → $folder ---"
-    issue_cert \
-        "PKI_Sednal_Inter_ECDSA" "Cert_Inter_ECDSA" "$cn" \
-        "$BASE/public/$folder/Ecdsa/${service}_ecdsa.crt" \
-        "$BASE/private/$folder/Ecdsa/${service}_ecdsa.key"
 done
 
-# Droits globaux sur le stockage Vault
-sudo find "$BASE/private" -type f -name "*.key" -exec chmod 600 {} \;
-sudo find "$BASE/public"  -type f -name "*.crt" -exec chmod 644 {} \;
-sudo chown -R vault:vault "$BASE"
+# Réappliquer les droits sur Vault
+find "$base_pki/private" -type f -name "*.key" -exec chmod 600 {} \;
+find "$base_pki/public"  -type f -name "*.crt" -exec chmod 644 {} \;
+chown -R vault:vault "$base_pki"
 
-# ---------------------------------------------------------------------------
-# Déploiement — INFRA (192.168.0.239)
-# ---------------------------------------------------------------------------
-echo "=== Déploiement INFRA ==="
-CIBLE="sednal@192.168.0.239"
+# ===== INFRA =====
+cible="sednal@192.168.0.239"
+base_infra="/etc/infra"
 
-ssh "$CIBLE" "rm -f /etc/infra/Keys/* /etc/infra/Cert/* /etc/infra/CA/*"
+ssh "$cible" "rm -f $base_infra/Keys/* $base_infra/Cert/*"
 
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Infra/Rsa/infra_rsa.key"    "$CIBLE:/etc/infra/Keys/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Infra/Ecdsa/infra_ecdsa.key" "$CIBLE:/etc/infra/Keys/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Infra/Rsa/infra_rsa.crt"      "$CIBLE:/etc/infra/Cert/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Infra/Ecdsa/infra_ecdsa.crt"  "$CIBLE:/etc/infra/Cert/"
-rsync -e ssh --no-p --chmod=F644 \
-    "$BASE_CA/Sednal_Root_All.crt" \
-    "$BASE_CA/ca_chain_rsa.crt" \
-    "$BASE_CA/ca_chain_ecdsa.crt" \
-    "$CIBLE:/etc/infra/CA/"
+rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
+    "$base_pki/private/Infra/Rsa/infra_rsa.key" \
+    "$base_pki/private/Infra/Ecdsa/infra_ecdsa.key" \
+    "$cible":"$base_infra/Keys/"
+rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
+    "$base_pki/public/Infra/Rsa/infra_rsa.crt" \
+    "$base_pki/public/Infra/Ecdsa/infra_ecdsa.crt" \
+    "$cible":"$base_infra/Cert/"
 
-ssh "$CIBLE" "chown -R sednal:sednal /etc/infra/"
+# ===== BAREOS =====
+cible="sednal@192.168.0.240"
+base_bareos="/etc/bareos/ssl"
 
-ssh "$CIBLE" "cp /etc/infra/CA/Sednal_Root_All.crt \
-                  /etc/infra/CA/ca_chain_rsa.crt \
-                  /etc/infra/CA/ca_chain_ecdsa.crt \
-                  /usr/local/share/ca-certificates/ \
-              && sudo update-ca-certificates --fresh"
+ssh "$cible" "rm -f $base_bareos/Keys/*/* $base_bareos/Cert/*/*"
 
-# ---------------------------------------------------------------------------
-# Déploiement — BAREOS (192.168.0.240)
-# ---------------------------------------------------------------------------
-echo "=== Déploiement BAREOS ==="
-CIBLE="sednal@192.168.0.240"
-BSSL="/etc/bareos/ssl"
+# DIR
+rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+    "$base_pki/private/Bareos/Rsa/bareos-dir_rsa.key" \
+    "$base_pki/private/Bareos/Ecdsa/bareos-dir_ecdsa.key" \
+    "$cible":"$base_bareos"/Keys/dir/
+rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
+    "$base_pki/public/Bareos/Rsa/bareos-dir_rsa.crt" \
+    "$base_pki/public/Bareos/Ecdsa/bareos-dir_ecdsa.crt" \
+    "$cible":"$base_bareos"/Cert/dir/
 
-ssh "$CIBLE" "rm -f $BSSL/key/*/* $BSSL/cert/*/* $BSSL/CA/*"
+# SD
+rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+    "$base_pki/private/Bareos/Rsa/bareos-sd_rsa.key" \
+    "$base_pki/private/Bareos/Ecdsa/bareos-sd_ecdsa.key" \
+    "$cible":"$base_bareos"/Keys/sd/
+rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
+    "$base_pki/public/Bareos/Rsa/bareos-sd_rsa.crt" \
+    "$base_pki/public/Bareos/Ecdsa/bareos-sd_ecdsa.crt" \
+    "$cible":"$base_bareos"/Cert/sd/
 
-# CA
-rsync -e ssh --no-p --chmod=F644 \
-    "$BASE_CA/Sednal_Root_All.crt" \
-    "$BASE_CA/ca_chain_rsa.crt" \
-    "$BASE_CA/ca_chain_ecdsa.crt" \
-    "$CIBLE:$BSSL/CA/"
+# FD
+rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+    "$base_pki/private/Bareos/Rsa/bareos-fd_rsa.key" \
+    "$base_pki/private/Bareos/Ecdsa/bareos-fd_ecdsa.key" \
+    "$cible":"$base_bareos"/Keys/fd/
+rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
+    "$base_pki/public/Bareos/Rsa/bareos-fd_rsa.crt" \
+    "$base_pki/public/Bareos/Ecdsa/bareos-fd_ecdsa.crt" \
+    "$cible":"$base_bareos"/Cert/fd/
 
-# bareos-dir
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Bareos/Rsa/bareos-dir_rsa.key"     "$CIBLE:$BSSL/key/dir/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Bareos/Ecdsa/bareos-dir_ecdsa.key" "$CIBLE:$BSSL/key/dir/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Bareos/Rsa/bareos-dir_rsa.crt"      "$CIBLE:$BSSL/cert/dir/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Bareos/Ecdsa/bareos-dir_ecdsa.crt"  "$CIBLE:$BSSL/cert/dir/"
+# WEBUI
+rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+    "$base_pki/private/Bareos/Rsa/bareos_rsa.key" \
+    "$base_pki/private/Bareos/Ecdsa/bareos_ecdsa.key" \
+    "$cible":"$base_bareos"/Keys/web/
+rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
+    "$base_pki/public/Bareos/Rsa/bareos_rsa.crt" \
+    "$base_pki/public/Bareos/Ecdsa/bareos_ecdsa.crt" \
+    "$cible":"$base_bareos"/Cert/web/
 
-# bareos-sd
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Bareos/Rsa/bareos-sd_rsa.key"      "$CIBLE:$BSSL/key/sd/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Bareos/Ecdsa/bareos-sd_ecdsa.key"  "$CIBLE:$BSSL/key/sd/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Bareos/Rsa/bareos-sd_rsa.crt"       "$CIBLE:$BSSL/cert/sd/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Bareos/Ecdsa/bareos-sd_ecdsa.crt"   "$CIBLE:$BSSL/cert/sd/"
+# POSTGRESQL
+rsync -e ssh --no-p --chmod=F640 --chown=postgres:postgres \
+    "$base_pki/private/PostGreSQL/Rsa/postgresql_rsa.key" \
+    "$base_pki/private/PostGreSQL/Ecdsa/postgresql_ecdsa.key" \
+    "$cible":"$base_bareos"/Keys/post/
+rsync -e ssh --no-p --chmod=F644 --chown=postgres:postgres \
+    "$base_pki/public/PostGreSQL/Rsa/postgresql_rsa.crt" \
+    "$base_pki/public/PostGreSQL/Ecdsa/postgresql_ecdsa.crt" \
+    "$cible":"$base_bareos"/Cert/post/
 
-# bareos-fd
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Bareos/Rsa/bareos-fd_rsa.key"      "$CIBLE:$BSSL/key/fd/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Bareos/Ecdsa/bareos-fd_ecdsa.key"  "$CIBLE:$BSSL/key/fd/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Bareos/Rsa/bareos-fd_rsa.crt"       "$CIBLE:$BSSL/cert/fd/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Bareos/Ecdsa/bareos-fd_ecdsa.crt"   "$CIBLE:$BSSL/cert/fd/"
+# ===== PI =====
+cible="sednal@192.168.0.241"
+base_pi="/etc/ssl"
 
-# bareos web
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Bareos/Rsa/bareos_rsa.key"         "$CIBLE:$BSSL/key/web/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Bareos/Ecdsa/bareos_ecdsa.key"     "$CIBLE:$BSSL/key/web/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Bareos/Rsa/bareos_rsa.crt"          "$CIBLE:$BSSL/cert/web/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Bareos/Ecdsa/bareos_ecdsa.crt"      "$CIBLE:$BSSL/cert/web/"
+ssh "$cible" "rm -f $base_pi/Pihole/Keys/* $base_pi/Pihole/Cert/*
+              rm -f $base_pi/Upsnap/Keys/* $base_pi/Upsnap/Cert/*
+              rm -f $base_pi/Cockpit/Keys/* $base_pi/Cockpit/Cert/*"
 
-# postgresql (bareos:bareos — postgres doit être dans le groupe bareos)
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/PostGreSQL/Rsa/postgresql_rsa.key"     "$CIBLE:$BSSL/key/post/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/PostGreSQL/Ecdsa/postgresql_ecdsa.key" "$CIBLE:$BSSL/key/post/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/PostGreSQL/Rsa/postgresql_rsa.crt"      "$CIBLE:$BSSL/cert/post/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/PostGreSQL/Ecdsa/postgresql_ecdsa.crt"  "$CIBLE:$BSSL/cert/post/"
+rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
+    "$base_pki/private/Pihole/Rsa/pihole_rsa.key" \
+    "$base_pki/private/Pihole/Ecdsa/pihole_ecdsa.key" \
+    "$cible":"$base_pi"/Pihole/Keys/
+rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
+    "$base_pki/public/Pihole/Rsa/pihole_rsa.crt" \
+    "$base_pki/public/Pihole/Ecdsa/pihole_ecdsa.crt" \
+    "$cible":"$base_pi"/Pihole/Cert/
 
-ssh "$CIBLE" "chown -R bareos:bareos $BSSL/"
+rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
+    "$base_pki/private/Upsnap/Rsa/upsnap_rsa.key" \
+    "$base_pki/private/Upsnap/Ecdsa/upsnap_ecdsa.key" \
+    "$cible":"$base_pi"/Upsnap/Keys/
+rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
+    "$base_pki/public/Upsnap/Rsa/upsnap_rsa.crt" \
+    "$base_pki/public/Upsnap/Ecdsa/upsnap_ecdsa.crt" \
+    "$cible":"$base_pi"/Upsnap/Cert/
 
-# ---------------------------------------------------------------------------
-# Déploiement — PI : Pihole + Upsnap + Cockpit (192.168.0.241)
-# ---------------------------------------------------------------------------
-echo "=== Déploiement PI ==="
-CIBLE="sednal@192.168.0.241"
+rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
+    "$base_pki/private/Cockpit/Rsa/cockpit_rsa.key" \
+    "$base_pki/private/Cockpit/Ecdsa/cockpit_ecdsa.key" \
+    "$cible":"$base_pi"/Cockpit/Keys/
+rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
+    "$base_pki/public/Cockpit/Rsa/cockpit_rsa.crt" \
+    "$base_pki/public/Cockpit/Ecdsa/cockpit_ecdsa.crt" \
+    "$cible":"$base_pi"/Cockpit/Cert/
 
-ssh "$CIBLE" "rm -f /etc/ssl/Pihole/Keys/* /etc/ssl/Pihole/Cert/* \
-                    /etc/ssl/Upsnap/Keys/* /etc/ssl/Upsnap/Cert/* \
-                    /etc/ssl/Cockpit/Keys/* /etc/ssl/Cockpit/Cert/* \
-                    /etc/ssl/CA/*"
+# ===== PROXMOX =====
+cible="sednal@192.168.0.242"
+base_proxmox="/etc/ssl/proxmox"
 
-# CA
-rsync -e ssh --no-p --chmod=F644 \
-    "$BASE_CA/Sednal_Root_All.crt" \
-    "$BASE_CA/ca_chain_rsa.crt" \
-    "$BASE_CA/ca_chain_ecdsa.crt" \
-    "$CIBLE:/etc/ssl/CA/"
+ssh "$cible" "rm -f $base_proxmox/Keys/* $base_proxmox/Cert/*"
 
-# Pihole
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Pihole/Rsa/pihole_rsa.key"     "$CIBLE:/etc/ssl/Pihole/Keys/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Pihole/Ecdsa/pihole_ecdsa.key" "$CIBLE:/etc/ssl/Pihole/Keys/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Pihole/Rsa/pihole_rsa.crt"      "$CIBLE:/etc/ssl/Pihole/Cert/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Pihole/Ecdsa/pihole_ecdsa.crt"  "$CIBLE:/etc/ssl/Pihole/Cert/"
+rsync -e ssh --no-p --chmod=F600 --chown=root:root \
+    "$base_pki/private/Proxmox/Rsa/proxmox_rsa.key" \
+    "$base_pki/private/Proxmox/Ecdsa/proxmox_ecdsa.key" \
+    "$cible":"$base_proxmox"/Keys/
+rsync -e ssh --no-p --chmod=F644 --chown=root:root \
+    "$base_pki/public/Proxmox/Rsa/proxmox_rsa.crt" \
+    "$base_pki/public/Proxmox/Ecdsa/proxmox_ecdsa.crt" \
+    "$cible":"$base_proxmox"/Cert/
 
-# Upsnap
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Upsnap/Rsa/upsnap_rsa.key"     "$CIBLE:/etc/ssl/Upsnap/Keys/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Upsnap/Ecdsa/upsnap_ecdsa.key" "$CIBLE:/etc/ssl/Upsnap/Keys/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Upsnap/Rsa/upsnap_rsa.crt"      "$CIBLE:/etc/ssl/Upsnap/Cert/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Upsnap/Ecdsa/upsnap_ecdsa.crt"  "$CIBLE:/etc/ssl/Upsnap/Cert/"
+# ===== VPS =====
+cible="debian@176.31.163.227"
+base_vps="/etc/ssl"
 
-# Cockpit
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Cockpit/Rsa/cockpit_rsa.key"     "$CIBLE:/etc/ssl/Cockpit/Keys/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Cockpit/Ecdsa/cockpit_ecdsa.key" "$CIBLE:/etc/ssl/Cockpit/Keys/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Cockpit/Rsa/cockpit_rsa.crt"      "$CIBLE:/etc/ssl/Cockpit/Cert/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Cockpit/Ecdsa/cockpit_ecdsa.crt"  "$CIBLE:/etc/ssl/Cockpit/Cert/"
+ssh "$cible" "rm -f $base_vps/Keys/* $base_vps/Cert/*"
 
-# chown uniquement sur les sous-dossiers concernés
-ssh "$CIBLE" "
-    chown -R sednal:sednal /etc/ssl/Pihole/
-    chown -R sednal:sednal /etc/ssl/Upsnap/
-    chown -R sednal:sednal /etc/ssl/Cockpit/
-    chown -R root:root     /etc/ssl/CA/
-"
-
-ssh "$CIBLE" "cp /etc/ssl/CA/Sednal_Root_All.crt \
-                  /etc/ssl/CA/ca_chain_rsa.crt \
-                  /etc/ssl/CA/ca_chain_ecdsa.crt \
-                  /usr/local/share/ca-certificates/ \
-              && sudo update-ca-certificates --fresh"
-
-# ---------------------------------------------------------------------------
-# Déploiement — PROXMOX (192.168.0.242)
-# ---------------------------------------------------------------------------
-echo "=== Déploiement PROXMOX ==="
-CIBLE="sednal@192.168.0.242"
-
-ssh "$CIBLE" "rm -f /etc/ssl/proxmox/Keys/* /etc/ssl/proxmox/Cert/* /etc/ssl/proxmox/CA/*"
-
-rsync -e ssh --no-p --chmod=F644 \
-    "$BASE_CA/Sednal_Root_All.crt" \
-    "$BASE_CA/ca_chain_rsa.crt" \
-    "$BASE_CA/ca_chain_ecdsa.crt" \
-    "$CIBLE:/etc/ssl/proxmox/CA/"
-
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Proxmox/Rsa/proxmox_rsa.key"     "$CIBLE:/etc/ssl/proxmox/Keys/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/Proxmox/Ecdsa/proxmox_ecdsa.key" "$CIBLE:/etc/ssl/proxmox/Keys/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Proxmox/Rsa/proxmox_rsa.crt"      "$CIBLE:/etc/ssl/proxmox/Cert/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/Proxmox/Ecdsa/proxmox_ecdsa.crt"  "$CIBLE:/etc/ssl/proxmox/Cert/"
-
-ssh "$CIBLE" "chown -R root:root /etc/ssl/proxmox/"
-
-# ---------------------------------------------------------------------------
-# Déploiement — VPS (176.31.163.227)
-# ---------------------------------------------------------------------------
-echo "=== Déploiement VPS ==="
-CIBLE="debian@176.31.163.227"
-
-ssh "$CIBLE" "rm -f /etc/ssl/vps/Keys/* /etc/ssl/vps/Cert/* /etc/ssl/vps/CA/*"
-
-rsync -e ssh --no-p --chmod=F644 \
-    "$BASE_CA/Sednal_Root_All.crt" \
-    "$BASE_CA/ca_chain_rsa.crt" \
-    "$BASE_CA/ca_chain_ecdsa.crt" \
-    "$CIBLE:/etc/ssl/vps/CA/"
-
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/VPS/Rsa/vps_rsa.key"      "$CIBLE:/etc/ssl/vps/Keys/"
-rsync -e ssh --no-p --chmod=F600 "$BASE/private/VPS/Ecdsa/vps_ecdsa.key"  "$CIBLE:/etc/ssl/vps/Keys/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/VPS/Rsa/vps_rsa.crt"       "$CIBLE:/etc/ssl/vps/Cert/"
-rsync -e ssh --no-p --chmod=F644 "$BASE/public/VPS/Ecdsa/vps_ecdsa.crt"   "$CIBLE:/etc/ssl/vps/Cert/"
-
-ssh "$CIBLE" "chown -R debian:debian /etc/ssl/vps/"
-
-echo "=== Renouvellement et déploiement terminés ==="
+rsync -e ssh --no-p --chmod=F600 --chown=debian:debian \
+    "$base_pki/private/VPS/Rsa/vps_rsa.key" \
+    "$base_pki/private/VPS/Ecdsa/vps_ecdsa.key" \
+    "$cible":"$base_vps"/Keys/
+rsync -e ssh --no-p --chmod=F644 --chown=debian:debian \
+    "$base_pki/public/VPS/Rsa/vps_rsa.crt" \
+    "$base_pki/public/VPS/Ecdsa/vps_ecdsa.crt" \
+    "$cible":"$base_vps"/Cert/
