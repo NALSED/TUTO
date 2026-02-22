@@ -237,7 +237,7 @@ sudo chown sednal:sednal deploiement_vault.sh
 sudo ./deploiement_vault.sh
 ```
 
-`=>` - Éditer Script : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/deploiement_vault.sh) 
+`=>` - Éditer Script : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/%20deploiement_vault.sh) 
 
 
 `[VERIFICATION]`
