@@ -1,11 +1,14 @@
 #!/bin/bash
 
+# === AJOUTER === Nom Service
 # Tableau des services en minuscule
 services=()
 
+# === AJOUTER === Cible Certificats
 # Où l'on va copier les certificats : Format => user@IP
 cible=""
 
+# === AJOUTER === Nom Service
 # Dossier de destination sur la machine cible (exemple /etc/bareos)
 base_service="/etc/"
 
