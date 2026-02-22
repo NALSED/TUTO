@@ -438,7 +438,7 @@ vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
 
 ## 4️⃣ **Demande de Certificats** 
 
-- Ici utilisation du Script : [demande_cert.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/renew_cert.sh)
+- Ici utilisation du Script : [demande_cert.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/demande_cert.sh)
 
 ---
 
@@ -451,7 +451,7 @@ vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
 sudo nano /etc/Vault_Script/Script_Renouvelement/renew_cert.sh
 ```
 
-- Ici utilisation du Script : [renouvelement_cert.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/renouvelement_cert.sh)
+- Ici utilisation du Script : [renouvelement_cert.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/renew_cert.sh)
 
 -Le rendre exécutable
 ```
