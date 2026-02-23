@@ -67,9 +67,9 @@ chmod 755 "$base/public/PostGreSQL/Ecdsa"
 chmod 755 "$base/public/Cockpit"
 chmod 755 "$base/public/Cockpit/Rsa"
 chmod 755 "$base/public/Cockpit/Ecdsa"
-chmod 755 "$base/public/Vps"
-chmod 755 "$base/public/Vps/Rsa"
-chmod 755 "$base/public/Vps/Ecdsa"
+chmod 755 "$base/public/VPS"
+chmod 755 "$base/public/VPS/Rsa"
+chmod 755 "$base/public/VPS/Ecdsa"
 
 # Cert_CA/
 chmod 755 "$base/Cert_CA"
