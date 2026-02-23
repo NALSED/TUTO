@@ -1,9 +1,11 @@
 #!/bin/bash
 
+# ============================================================
 # Services RSA + ECDSA
-services_dual=(proxmox pihole upsnap infra vps cockpit)
-# Services RSA uniquement (Bareos)
-services_rsa=(bareos-dir bareos-fd bareos-sd-local bareos-sd-remote bareos win lin postgresql)
+services_dual=(proxmox cockpit infra)
+# Services RSA uniquement
+services_rsa=(bareos-dir bareos-fd bareos-sd-local bareos-sd-remote bareos win lin postgresql pihole upsnap vps)
+# ============================================================
 base_pki="/etc/Vault/PKI"
 domain=".sednal.lan"
 
@@ -44,7 +46,7 @@ for service in "${services_dual[@]}"; do
     echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Ecdsa/${service}_ecdsa.key" > /dev/null
 done
 
-# === RSA UNIQUEMENT (Bareos) ===
+# === RSA UNIQUEMENT ===
 for service in "${services_rsa[@]}"; do
     cert="${service}${domain}"
     folder=$(path "$service")
@@ -53,6 +55,11 @@ for service in "${services_rsa[@]}"; do
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/Rsa/${service}_rsa.crt" > /dev/null
     echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Rsa/${service}_rsa.key" > /dev/null
 done
+
+# Réappliquer les droits sur Vault
+find "$base_pki/private" -type f -name "*.key" -exec chmod 600 {} \;
+find "$base_pki/public"  -type f -name "*.crt" -exec chmod 644 {} \;
+chown -R vault:vault "$base_pki"
 
 # ===== INFRA =====
 cible="sednal@192.168.0.239"
@@ -170,24 +177,23 @@ rsync -e ssh --no-p --chmod=F644 --chown=root:root \
     "$base_ca/ca_chain_ecdsa.crt" \
     "$cible":"$base_pi"/CA/
 
+# Pihole — RSA uniquement
 rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
     "$base_pki/private/Pihole/Rsa/pihole_rsa.key" \
-    "$base_pki/private/Pihole/Ecdsa/pihole_ecdsa.key" \
     "$cible":"$base_pi"/Pihole/Keys/
 rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
     "$base_pki/public/Pihole/Rsa/pihole_rsa.crt" \
-    "$base_pki/public/Pihole/Ecdsa/pihole_ecdsa.crt" \
     "$cible":"$base_pi"/Pihole/Cert/
 
+# Upsnap — RSA uniquement
 rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
     "$base_pki/private/Upsnap/Rsa/upsnap_rsa.key" \
-    "$base_pki/private/Upsnap/Ecdsa/upsnap_ecdsa.key" \
     "$cible":"$base_pi"/Upsnap/Keys/
 rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
     "$base_pki/public/Upsnap/Rsa/upsnap_rsa.crt" \
-    "$base_pki/public/Upsnap/Ecdsa/upsnap_ecdsa.crt" \
     "$cible":"$base_pi"/Upsnap/Cert/
 
+# Cockpit — RSA + ECDSA
 rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
     "$base_pki/private/Cockpit/Rsa/cockpit_rsa.key" \
     "$base_pki/private/Cockpit/Ecdsa/cockpit_ecdsa.key" \
