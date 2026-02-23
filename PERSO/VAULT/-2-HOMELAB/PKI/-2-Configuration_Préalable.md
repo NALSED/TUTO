@@ -190,7 +190,7 @@ ssh-keygen -t ed25519 -C "vault-admin"
 ssh-copy-id sednal@192.168.0.239
 ssh-copy-id sednal@192.168.0.240
 ssh-copy-id sednal@192.168.0.241
-ssh-copy-id sednal@192.168.0.242
+ssh-copy-id root@192.168.0.242
 ssh-copy-id debian@176.31.163.227
 ```
 
