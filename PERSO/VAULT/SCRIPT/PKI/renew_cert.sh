@@ -184,7 +184,7 @@ rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
     "$cible":"$base_pi"/Cockpit/Cert/
 
 # ===== PROXMOX =====
-cible="sednal@192.168.0.242"
+cible="root@192.168.0.242"
 base_proxmox="/etc/ssl/proxmox"
 
 ssh "$cible" "rm -f $base_proxmox/Keys/* $base_proxmox/Cert/*"
