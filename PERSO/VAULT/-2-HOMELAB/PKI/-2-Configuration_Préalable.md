@@ -14,13 +14,13 @@
 
 
 ---
-Dans cette partie toutes les configuration préalable sur les client ainsi que sur Vault:
+Dans cette partie toutes les configurations préalables sur les clients ainsi que sur Vault :
 
-- 1️⃣ Mise en Place d'un point de récupération CRL, pour les clients du réseaux su 192.168.0.239
-- 2️⃣ Mise en Place d'une tache cron pour pousser les CRL de Vault 192.168.0.238 vers le serveur Web 192.168.0.239
-- 3️⃣ Les clients de Vault qui vont recevoir les certificats doivent pouvoir être contactés en `ssh` par Vault sans mot de passe.  
+- 1️⃣ Mise en Place d'un point de récupération CRL, pour les clients du réseau sur 192.168.0.239
+- 2️⃣ Mise en Place d'une tâche cron pour pousser les CRL de Vault 192.168.0.238 vers le serveur Web 192.168.0.239
+- 3️⃣ Les clients de Vault qui vont recevoir les certificats doivent pouvoir être contactés en `ssh` par Vault sans mot de passe.
 - 4️⃣ La gestion des groupes et des utilisateurs est faite en amont pour éviter tout oubli.
-- 5️⃣ Création des Répertoires Cetificats sur le serveur Vault.
+- 5️⃣ Création des Répertoires Certificats sur le serveur Vault.
 
 ---
 
@@ -50,7 +50,7 @@ sudo chown sednal:sednal /var/www/pki
 sudo chmod 755 /var/www/pki
 ```
 
--1.3. Sur le serveur web, avec apache 2 créer le fichier de endpoint.
+-1.3. Sur le serveur web, avec apache2 créer le fichier de endpoint.
 - Ici ils couvriront les CRL émises par Vault pour les CA (Root / Intermédiaire) Rsa et Ecdsa.
 ```
 nano /etc/apache2/sites-available/pki-crl.conf
@@ -84,11 +84,7 @@ nano /etc/apache2/sites-available/pki-crl.conf
 sudo a2ensite pki-crl.conf
 ```
 
--Sortie
-
-<img width="471" height="77" alt="image" src="https://github.com/user-attachments/assets/d3a47ef1-e22f-4ef9-927c-bff75184649a" />
-
--1.5. Désactiver la page par defaut
+-1.5. Désactiver la page par défaut
 ```
 sudo a2dissite 000-default.conf
 ```
@@ -97,10 +93,6 @@ sudo a2dissite 000-default.conf
 ```
 sudo systemctl reload apache2
 ```
-
--Sortie
-
-<img width="545" height="77" alt="image" src="https://github.com/user-attachments/assets/7bc7b93d-256f-4c8e-b3b3-8bb5bf90eed3" />
 
 ⚠️ `[TEST]` ⚠️
 
@@ -136,11 +128,6 @@ curl http://infra.sednal.lan/crl/root_r
 curl http://infra.sednal.lan/crl/root_e
 ```
 
-- `Résultats`
-
-<img width="632" height="109" alt="image" src="https://github.com/user-attachments/assets/ed3ce4e6-798f-4091-a765-54f3720170ac" />
-
-
 - Pour finir
 ```
 sudo rm /var/www/pki/root_e.crl && sudo rm /var/www/pki/root_r.crl
@@ -148,8 +135,8 @@ sudo rm /var/www/pki/root_e.crl && sudo rm /var/www/pki/root_r.crl
 
 ---
 
-`[NOTE]` Pour allez plus loin [OCSP](https://fr.wikipedia.org/wiki/Online_Certificate_Status_Protocol)
-Ici on ne met pas cette solution en place car le service OCSP et Vault devaient être dispo 24/24.
+`[NOTE]` Pour aller plus loin : [OCSP](https://fr.wikipedia.org/wiki/Online_Certificate_Status_Protocol)
+Ici on ne met pas cette solution en place car le service OCSP et Vault devraient être disponibles 24/24.
 
 ---
 ---
@@ -174,12 +161,12 @@ sudo chown vault:vault /usr/local/bin/push-crl.sh
 ```
 
 ```
-sudo  chmod +x /usr/local/bin/push-crl.sh
+sudo chmod +x /usr/local/bin/push-crl.sh
 ```
 
 -2.2. Edition du cron 
 ```
-crontab-e
+crontab -e
 ```
 
 `=>` - Éditer 
@@ -203,7 +190,7 @@ ssh-keygen -t ed25519 -C "vault-admin"
 ssh-copy-id sednal@192.168.0.239
 ssh-copy-id sednal@192.168.0.240
 ssh-copy-id sednal@192.168.0.241
-ssh-copy-id root@192.168.0.242
+ssh-copy-id sednal@192.168.0.242
 ssh-copy-id debian@176.31.163.227
 ```
 
@@ -211,9 +198,10 @@ ssh-copy-id debian@176.31.163.227
 
 ### 4️⃣ Groupe et User
 
--4.1 Pour Bareos 192.168.0.240, les certificats sont utilisés, par => `bareos:bareos`, mais l'utilisateur commun à besoin de pouvoir accéder à ces fichiers.
+-4.1 Pour Bareos 192.168.0.240, les certificats sont utilisés par => `bareos:bareos`, mais l'utilisateur commun a besoin de pouvoir accéder à ces fichiers. PostgreSQL nécessite également l'accès au groupe bareos pour lire sa clé privée.
 ```
 sudo usermod -aG bareos sednal
+sudo usermod -aG bareos postgres
 ```
 
 ---
@@ -237,7 +225,7 @@ sudo chown sednal:sednal deploiement_vault.sh
 sudo ./deploiement_vault.sh
 ```
 
-`=>` - Éditer Script : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/%20deploiement_vault.sh) 
+`=>` - Éditer Script : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/deploiement_vault.sh)
 
 
 `[VERIFICATION]`
@@ -248,58 +236,58 @@ sudo ./deploiement_vault.sh
 sednal@vault:/etc/Vault$ sudo tree PKI
 PKI
 ├── Cert_CA
-│   ├── CSR
-│   ├── Inter
-│   └── Root
+│   ├── CSR
+│   ├── Inter
+│   └── Root
 ├── Config
-│   └── Policy
+│   └── Policy
 ├── private
-│   ├── Bareos
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Cockpit
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Infra
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Pihole
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── PostGreSQL
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Proxmox
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Upsnap
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   └── Vps
-│       ├── Ecdsa
-│       └── Rsa
+│   ├── Bareos
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Cockpit
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Infra
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Pihole
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── PostGreSQL
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Proxmox
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   ├── Upsnap
+│   │   ├── Ecdsa
+│   │   └── Rsa
+│   └── Vps
+│       ├── Ecdsa
+│       └── Rsa
 └── public
     ├── Bareos
-    │   ├── Ecdsa
-    │   └── Rsa
+    │   ├── Ecdsa
+    │   └── Rsa
     ├── Cockpit
-    │   ├── Ecdsa
-    │   └── Rsa
+    │   ├── Ecdsa
+    │   └── Rsa
     ├── Infra
-    │   ├── Ecdsa
-    │   └── Rsa
+    │   ├── Ecdsa
+    │   └── Rsa
     ├── Pihole
-    │   ├── Ecdsa
-    │   └── Rsa
+    │   ├── Ecdsa
+    │   └── Rsa
     ├── PostGreSQL
-    │   ├── Ecdsa
-    │   └── Rsa
+    │   ├── Ecdsa
+    │   └── Rsa
     ├── Proxmox
-    │   ├── Ecdsa
-    │   └── Rsa
+    │   ├── Ecdsa
+    │   └── Rsa
     ├── Upsnap
-    │   ├── Ecdsa
-    │   └── Rsa
+    │   ├── Ecdsa
+    │   └── Rsa
     └── Vps
         ├── Ecdsa
         └── Rsa
