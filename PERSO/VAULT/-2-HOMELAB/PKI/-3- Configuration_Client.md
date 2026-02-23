@@ -379,13 +379,26 @@ sudo systemctl restart pihole-FTL
 
 -1.4. Éditer le fichier de configuration
 ```
-sudo nano /etc/upsnap/config.env
+sudo nano /home/sednal/Upsnap/docker-composer.yml
 ```
 
 -1.5. Ajouter les lignes
 ```
-UPSNAP_SSL_CERT=/etc/ssl/Upsnap/Cert/upsnap_rsa.crt
-UPSNAP_SSL_KEY=/etc/ssl/Upsnap/Keys/upsnap_rsa.key
+services:
+  upsnap:
+    container_name: upsnap
+    image: ghcr.io/seriousm4x/upsnap:4
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /srv/appdata/upsnap/data:/app/pb_data
+      - /etc/ssl/Upsnap/Cert/upsnap_rsa.crt:/app/cert.crt:ro
+      - /etc/ssl/Upsnap/Keys/upsnap_rsa.key:/app/cert.key:ro
+    environment:
+      - UPSNAP_SCAN_RANGE=192.168.0.1/24
+      - TZ=Asia/Yerevan
+      - UPSNAP_SSL_CERT=/app/cert.crt
+      - UPSNAP_SSL_KEY=/app/cert.key
 ```
 
 -1.6. Redémarrer le service
@@ -515,3 +528,69 @@ cat /etc/bareos/ssl/Cert/web/bareos_rsa.crt \
     > /etc/bareos/ssl/web/bareos_webui.pem
 chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
 chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
+
+-2. Redémarrage des services
+```
+sudo systemctl restart bareos-dir
+sudo systemctl restart bareos-sd
+sudo systemctl restart bareos-fd
+sudo systemctl restart postgresql
+```
+
+-3. Vérification
+```
+sudo systemctl status bareos-dir
+sudo systemctl status bareos-sd
+sudo systemctl status bareos-fd
+sudo systemctl status postgresql
+```
+
+### DNS 192.168.0.241
+
+-1. pihole
+
+Redémarrer le service
+```
+sudo systemctl restart pihole-FTL
+```
+
+-2. upsnap
+
+Redémarrer le service
+```
+sudo systemctl restart upsnap
+```
+
+-3. cockpit
+
+```
+cat /etc/ssl/Cockpit/Cert/cockpit_rsa.crt \
+    /etc/ssl/Cockpit/Keys/cockpit_rsa.key \
+    > /etc/cockpit/ws-certs.d/cockpit.cert
+chmod 640 /etc/cockpit/ws-certs.d/cockpit.cert
+chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit.cert
+```
+
+Redémarrer le service
+```
+sudo systemctl restart cockpit
+```
+
+### Proxmox 192.168.0.242 
+
+Copier les fichiers vers Proxmox
+```
+cp /etc/ssl/proxmox/Cert/proxmox_rsa.crt /etc/pve/local/pve-ssl.pem
+cp /etc/ssl/proxmox/Keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
+```
+
+Redémarrer le service
+```
+sudo systemctl restart pveproxy
+```
+
+
+
+
+
+
