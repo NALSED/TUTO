@@ -35,7 +35,7 @@
 
 -1.1. Modifier les chemins des certificats dans le fichier de configuration
 ```
-sudo nano /etc/apache2/sites-available/default-ssl
+sudo nano /etc/apache2/sites-available/default-ssl.conf
 ```
 
 -1.2. Remplacer les lignes :
@@ -53,11 +53,10 @@ SSLCertificateFile      /etc/infra/Cert/infra_ecdsa.crt
 SSLCertificateKeyFile   /etc/infra/Keys/infra_ecdsa.key
 ```
 
--1.3. Activer le module SSL et le site SSL
 ```
-a2enmod ssl
-a2ensite default-ssl
-service apache2 reload
+sudo a2enmod ssl
+sudo a2ensite default-ssl
+sudo service apache2 reload
 ```
 
 ### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
@@ -199,7 +198,7 @@ ssh debian@176.31.163.227
 
 -1.16. Éditer le fichier `Remote-Sd`
 ```
-sudo nano /etc/bareos/bareos-sd.d/storage/Remote-Sd.conf
+sudo nano /etc/bareos/bareos-sd.d/storage/Remote_Sd.conf
 ```
 
 -1.17. Ajouter les lignes
@@ -211,7 +210,7 @@ sudo nano /etc/bareos/bareos-sd.d/storage/Remote-Sd.conf
     TLS Verify Peer = no
 ```
 
--1.18. Éditer le fichier `Director-Sd` (sur VPS)
+-1.18. Éditer le fichier `Director-Sd` (176.31.163.227)
 ```
 sudo nano /etc/bareos/bareos-sd.d/director/bareos-dir.conf
 ```
@@ -492,3 +491,24 @@ sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
 sednal ALL=(ALL) NOPASSWD: /bin/cp
 sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
 ```
+
+=> # ⚠️ RELOAD TOUS LES SERVICES **APRES -4- Configuration_PKI**⚠️
+
+
+### Infra 192.168.0.239
+
+```
+sudo a2enmod ssl
+sudo a2ensite default-ssl
+sudo service apache2 reload
+```
+
+### Bareos 192.168.0.240
+
+-1. Créer le fichier PEM combiné cert + clé (requis par WebUI)
+```
+cat /etc/bareos/ssl/Cert/web/bareos_rsa.crt \
+    /etc/bareos/ssl/Keys/web/bareos_rsa.key \
+    > /etc/bareos/ssl/web/bareos_webui.pem
+chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
+chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
