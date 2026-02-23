@@ -66,10 +66,6 @@ for service in "${services_rsa[@]}"; do
 
 done
 
-# Réappliquer les droits sur Vault
-find "$base_pki/private" -type f -name "*.key" -exec chmod 600 {} \;
-find "$base_pki/public"  -type f -name "*.crt" -exec chmod 644 {} \;
-chown -R vault:vault "$base_pki"
 
 # ===== INFRA =====
 cible="sednal@192.168.0.239"
