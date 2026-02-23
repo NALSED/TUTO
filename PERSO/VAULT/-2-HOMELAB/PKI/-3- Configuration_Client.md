@@ -6,10 +6,20 @@
 
 - **Vault PKI** : 192.168.0.238
 - **Serveur Web / Infra** : 192.168.0.239
+  - Apache2
 - **Serveur Bareos** : 192.168.0.240
+  - Bareos-dir
+  - Bareos-fd
+  - Bareos-sd
+  - Bareos-WebUI
+  - PostgreSQL
 - **DNS** : 192.168.0.241
+  - Pihole
+  - Upsnap
+  - Cockpit
 - **Proxmox** : 192.168.0.242
-- **Vps** : 176.31.163.227
+- **VPS** : 176.31.163.227
+  - Bareos-sd
 
 ---
 
@@ -17,12 +27,13 @@
 
 ---
 
-- **Serveur Web / Infra** : 192.168.0.239
+# **Serveur Web / Infra** : 192.168.0.239
+
 [SOURCE](https://www.it-connect.fr/configurer-le-ssl-avec-apache-2%EF%BB%BF/)
 
 ### 1️⃣ Intégration des chemins des certificats
 
--1.1. Changement des chemins pour les certificats dans le fichier de configuration
+-1.1. Modifier les chemins des certificats dans le fichier de configuration
 ```
 sudo nano /etc/apache2/sites-available/default-ssl
 ```
@@ -32,7 +43,7 @@ sudo nano /etc/apache2/sites-available/default-ssl
 SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
 SSLCertificateKeyFile   /etc/ssl/private/ssl-cert-snakeoil.key
 ```
-Par
+Par :
 ```
 # === RSA ===
 SSLCertificateFile      /etc/infra/Cert/infra_rsa.crt
@@ -51,7 +62,7 @@ service apache2 reload
 
 ### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
 
--2.1. Editer
+-2.1. Éditer
 ```
 sudo visudo
 ```
@@ -73,7 +84,7 @@ sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
 
 `1` **Bareos Director**
 
--1.1. Editer le fichier `Director`
+-1.1. Éditer le fichier `Director`
 ```
 sudo nano /etc/bareos/bareos-dir.d/director/bareos-dir.conf
 ```
@@ -88,7 +99,7 @@ sudo nano /etc/bareos/bareos-dir.d/director/bareos-dir.conf
     TLS Allowed CN = "bareos.sednal.lan"
 ```
 
--1.3. Editer le fichier `Storage_Local`
+-1.3. Éditer le fichier `Storage_Local`
 ```
 sudo nano /etc/bareos/bareos-dir.d/storage/Storage_Local.conf
 ```
@@ -102,7 +113,7 @@ sudo nano /etc/bareos/bareos-dir.d/storage/Storage_Local.conf
     TLS Allowed CN = bareos.sednal.lan
 ```
 
--1.5. Editer le fichier `Storage_Remote`
+-1.5. Éditer le fichier `Storage_Remote`
 ```
 sudo nano /etc/bareos/bareos-dir.d/storage/Storage_Remote.conf
 ```
@@ -116,7 +127,7 @@ sudo nano /etc/bareos/bareos-dir.d/storage/Storage_Remote.conf
     TLS Allowed CN = vps.sednal.lan
 ```
 
--1.7. Editer le fichier `win`
+-1.7. Éditer le fichier `win`
 ```
 sudo nano /etc/bareos/bareos-dir.d/client/win.conf
 ```
@@ -130,7 +141,7 @@ sudo nano /etc/bareos/bareos-dir.d/client/win.conf
     TLS Allowed CN = win.sednal.lan
 ```
 
--1.9. Editer le fichier `lin`
+-1.9. Éditer le fichier `lin`
 ```
 sudo nano /etc/bareos/bareos-dir.d/client/lin.conf
 ```
@@ -148,7 +159,7 @@ sudo nano /etc/bareos/bareos-dir.d/client/lin.conf
 
 `2` **Bareos Storage Daemon — sur 192.168.0.240**
 
--1.11. Editer le fichier `Local-Sd`
+-1.11. Éditer le fichier `Local-Sd`
 ```
 sudo nano /etc/bareos/bareos-sd.d/storage/Local-Sd.conf
 ```
@@ -162,7 +173,7 @@ sudo nano /etc/bareos/bareos-sd.d/storage/Local-Sd.conf
     TLS Verify Peer = no
 ```
 
--1.13. Editer le fichier `Director-Sd` (sur 192.168.0.240)
+-1.13. Éditer le fichier `Director-Sd` (sur 192.168.0.240)
 ```
 sudo nano /etc/bareos/bareos-sd.d/director/bareos-dir.conf
 ```
@@ -186,7 +197,7 @@ sudo nano /etc/bareos/bareos-sd.d/director/bareos-dir.conf
 ssh debian@176.31.163.227
 ```
 
--1.16. Editer le fichier `Remote-Sd`
+-1.16. Éditer le fichier `Remote-Sd`
 ```
 sudo nano /etc/bareos/bareos-sd.d/storage/Remote-Sd.conf
 ```
@@ -200,7 +211,7 @@ sudo nano /etc/bareos/bareos-sd.d/storage/Remote-Sd.conf
     TLS Verify Peer = no
 ```
 
--1.18. Editer le fichier `Director-Sd` (sur VPS)
+-1.18. Éditer le fichier `Director-Sd` (sur VPS)
 ```
 sudo nano /etc/bareos/bareos-sd.d/director/bareos-dir.conf
 ```
@@ -219,7 +230,7 @@ sudo nano /etc/bareos/bareos-sd.d/director/bareos-dir.conf
 
 `3` **Bareos File Daemon — sur 192.168.0.240**
 
--1.20. Editer le fichier `myself`
+-1.20. Éditer le fichier `myself`
 ```
 sudo nano /etc/bareos/bareos-fd.d/client/myself.conf
 ```
@@ -233,7 +244,7 @@ sudo nano /etc/bareos/bareos-fd.d/client/myself.conf
     TLS Allowed CN = bareos.sednal.lan
 ```
 
--1.22. Editer le fichier `Director-fd`
+-1.22. Éditer le fichier `Director-fd`
 ```
 sudo nano /etc/bareos/bareos-fd.d/director/bareos-dir.conf
 ```
@@ -261,7 +272,7 @@ chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
 chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
 ```
 
--1.25. Editer le fichier `directors.ini`
+-1.25. Éditer le fichier `directors.ini`
 ```
 sudo nano /etc/bareos-webui/directors.ini
 ```
@@ -284,85 +295,200 @@ ca_file = "/etc/bareos/ssl/CA/Sednal_Root_All.crt"
 cert_file = "/etc/bareos/ssl/web/bareos_webui.pem"
 ```
 
-`5` **PostGreSQL**
+---
+
+`5` **PostgreSQL**
+
+[DOC](https://www.postgresql.org/docs/current/ssl-tcp.html#SSL-SETUP)
+
+-1.27. Éditer le fichier `postgresql.conf`
+```
+sudo nano /etc/postgresql/18/main/postgresql.conf
 ```
 
+-1.28. Ajouter les lignes
+```
+ssl = on
+ssl_cert_file = '/etc/bareos/ssl/Cert/post/postgresql_rsa.crt'
+ssl_key_file  = '/etc/bareos/ssl/Keys/post/postgresql_rsa.key'
+ssl_ca_file   = '/etc/bareos/ssl/CA/Sednal_Root_All.crt'
 ```
 
+-1.29. Redémarrage des services
+```
+sudo systemctl restart bareos-dir
+sudo systemctl restart bareos-sd
+sudo systemctl restart bareos-fd
+sudo systemctl restart postgresql
+```
 
+-1.30. Vérification
+```
+sudo systemctl status bareos-dir
+sudo systemctl status bareos-sd
+sudo systemctl status bareos-fd
+sudo systemctl status postgresql
+```
 
 ### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
--1.1. Editer
+
+-2.1. Éditer
 ```
 sudo visudo
 ```
 
--1.2. Ajouter 
+-2.2. Ajouter
 ```
-# User alias specification
 sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
 sednal ALL=(ALL) NOPASSWD: /bin/cp
 sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
+```
+
+### 3️⃣ Ajouter `sednal` et `postgres` au groupe `bareos`
+```
+sudo usermod -aG bareos sednal
+sudo usermod -aG bareos postgres
+```
+
 ---
 
 # **DNS** : 192.168.0.241
+
 ### 1️⃣ Intégration des chemins des certificats
+
+**I) Pihole**
+
+-1.1. Éditer le fichier `pihole.toml`
+```
+sudo nano /etc/pihole/pihole.toml
 ```
 
+-1.2. Ajouter les lignes dans la section `[webserver]`
+```
+ssl_cert = "/etc/ssl/Pihole/Cert/pihole_rsa.crt"
+ssl_key  = "/etc/ssl/Pihole/Keys/pihole_rsa.key"
 ```
 
+-1.3. Redémarrer le service
+```
+sudo systemctl restart pihole-FTL
+```
+
+---
+
+**II) Upsnap**
+
+-1.4. Éditer le fichier de configuration
+```
+sudo nano /etc/upsnap/config.env
+```
+
+-1.5. Ajouter les lignes
+```
+UPSNAP_SSL_CERT=/etc/ssl/Upsnap/Cert/upsnap_rsa.crt
+UPSNAP_SSL_KEY=/etc/ssl/Upsnap/Keys/upsnap_rsa.key
+```
+
+-1.6. Redémarrer le service
+```
+sudo systemctl restart upsnap
+```
+
+---
+
+**III) Cockpit**
+
+-1.7. Créer le fichier PEM combiné cert + clé
+```
+cat /etc/ssl/Cockpit/Cert/cockpit_rsa.crt \
+    /etc/ssl/Cockpit/Keys/cockpit_rsa.key \
+    > /etc/cockpit/ws-certs.d/cockpit.cert
+chmod 640 /etc/cockpit/ws-certs.d/cockpit.cert
+chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit.cert
+```
+
+-1.8. Redémarrer le service
+```
+sudo systemctl restart cockpit
+```
 
 ### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
--1.1. Editer
+
+-2.1. Éditer
 ```
 sudo visudo
 ```
 
--1.2. Ajouter 
+-2.2. Ajouter
 ```
-# User alias specification
 sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
 sednal ALL=(ALL) NOPASSWD: /bin/cp
 sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
+```
+
 ---
 
 # **Proxmox** : 192.168.0.242
+
 ### 1️⃣ Intégration des chemins des certificats
+
+-1.1. Copier les fichiers vers Proxmox
+```
+cp /etc/ssl/proxmox/Cert/proxmox_rsa.crt /etc/pve/local/pve-ssl.pem
+cp /etc/ssl/proxmox/Keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
 ```
 
+-1.2. Redémarrer le service
 ```
-
+sudo systemctl restart pveproxy
+```
 
 ### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
--1.1. Editer
+
+-2.1. Éditer
 ```
 sudo visudo
 ```
 
--1.2. Ajouter 
+-2.2. Ajouter
 ```
-# User alias specification
 sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
 sednal ALL=(ALL) NOPASSWD: /bin/cp
 sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
+```
+
 ---
 
- # **Vps** : 176.31.163.227
+# **VPS** : 176.31.163.227
+
 ### 1️⃣ Intégration des chemins des certificats
+
+-1.1. Éditer le fichier de configuration du Storage Daemon
+```
+sudo nano /etc/bareos/bareos-sd.d/storage/Remote-Sd.conf
 ```
 
+-1.2. Vérifier les chemins
+```
+TLS Certificate = /etc/ssl/Cert/vps_rsa.crt
+TLS Key         = /etc/ssl/Keys/vps_rsa.key
 ```
 
+-1.3. Redémarrer le service
+```
+sudo systemctl restart bareos-sd
+```
 
 ### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
--1.1. Editer
+
+-2.1. Éditer
 ```
 sudo visudo
 ```
 
--1.2. Ajouter 
+-2.2. Ajouter
 ```
-# User alias specification
 sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
 sednal ALL=(ALL) NOPASSWD: /bin/cp
 sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
+```
