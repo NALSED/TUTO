@@ -35,10 +35,19 @@ for service in "${services_dual[@]}"; do
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/Rsa/${service}_rsa.crt" > /dev/null
     echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Rsa/${service}_rsa.key" > /dev/null
 
+    # Changer propriétaire après création
+    sudo chown vault:vault "$base_pki/public/$folder/Rsa/${service}_rsa.crt"
+    sudo chown vault:vault "$base_pki/private/$folder/Rsa/${service}_rsa.key"
+    
     echo "Renouvellement ECDSA : $cert → $folder"
     result=$(vault write -format=json PKI_Sednal_Inter_ECDSA/issue/Cert_Inter_ECDSA common_name="$cert")
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/Ecdsa/${service}_ecdsa.crt" > /dev/null
     echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Ecdsa/${service}_ecdsa.key" > /dev/null
+
+    # Changer propriétaire après création
+    sudo chown vault:vault "$base_pki/public/$folder/Ecdsa/${service}_ecdsa.crt"
+    sudo chown vault:vault "$base_pki/private/$folder/Ecdsa/${service}_ecdsa.key"
+
 done
 
 # === RSA UNIQUEMENT ===
@@ -50,6 +59,11 @@ for service in "${services_rsa[@]}"; do
     result=$(vault write -format=json PKI_Sednal_Inter_RSA/issue/Cert_Inter_RSA common_name="$cert")
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/Rsa/${service}_rsa.crt" > /dev/null
     echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Rsa/${service}_rsa.key" > /dev/null
+
+    # Changer propriétaire après création
+    sudo chown vault:vault "$base_pki/public/$folder/Rsa/${service}_rsa.crt"
+    sudo chown vault:vault "$base_pki/private/$folder/Rsa/${service}_rsa.key"
+
 done
 
 # Réappliquer les droits sur Vault
