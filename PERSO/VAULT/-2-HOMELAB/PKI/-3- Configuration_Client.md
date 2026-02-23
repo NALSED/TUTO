@@ -492,7 +492,10 @@ sednal ALL=(ALL) NOPASSWD: /bin/cp
 sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
 ```
 
-=> # ⚠️ RELOAD TOUS LES SERVICES **APRES -4- Configuration_PKI**⚠️
+---
+---
+
+## => # ⚠️ RELOAD TOUS LES SERVICES **APRES -4- Configuration_PKI**⚠️
 
 
 ### Infra 192.168.0.239
