@@ -186,11 +186,21 @@ ssh-keygen -t ed25519 -C "vault-admin"
 ```
 
 -3.2. Copier la clé publique vers chaque machine cible
+=IP=
 ```
 ssh-copy-id sednal@192.168.0.239
 ssh-copy-id sednal@192.168.0.240
 ssh-copy-id sednal@192.168.0.241
 ssh-copy-id root@192.168.0.242
+ssh-copy-id debian@176.31.163.227
+```
+
+=DOMAIN=
+```
+ssh-copy-id sednal@infra.sednal.lan
+ssh-copy-id sednal@bareos.sednal.lan
+ssh-copy-id sednal@pihole.sednal.lan
+ssh-copy-id root@proxmox.sednal.lan
 ssh-copy-id debian@176.31.163.227
 ```
 
