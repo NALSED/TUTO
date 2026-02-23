@@ -201,7 +201,7 @@ ssh "$cible" "sudo cp $base_pi/CA/Sednal_Root_All.crt /usr/local/share/ca-certif
 ssh "$cible" "sudo update-ca-certificates --fresh"
 
 # ===== PROXMOX =====
-cible="sednal@192.168.0.242"
+cible="root@192.168.0.242"
 base_proxmox="/etc/ssl/proxmox"
 base_ca="$base_pki/Cert_CA/Root"
 
