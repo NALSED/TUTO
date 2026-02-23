@@ -26,7 +26,7 @@ sudo nano /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
 
 - DROITS
 ```
-chmown vault:vault /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
+chown vault:vault /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
 ```
 
 `=>` - Editer
@@ -304,7 +304,7 @@ révoquer et régénérer l'intermédiaire sans toucher à la Root CA.
 vault secrets enable -path=PKI_Sednal_Inter_RSA -max-lease-ttl=1825d pki
 ```
 
-`-3.1.` Génération du CSR  
+`-3.2.` Génération du CSR  
 ```
 vault write -format=json PKI_Sednal_Inter_RSA/intermediate/generate/internal \
      common_name="sednal.lan Intermediate Authority" \
@@ -453,7 +453,7 @@ vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
 sudo nano /etc/Vault_Script/Script_Renouvelement/renew_cert.sh
 ```
 
-- Ici utilisation du Script : [renouvelement_cert.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/renew_cert.sh)
+- Ici utilisation du Script : [renew_cert.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/renew_cert.sh)
 
 -Le rendre exécutable
 ```
@@ -507,7 +507,12 @@ Persistent=true
 WantedBy=timers.target
 ```
 
-
+`-1.3.` Autoriser et Activer le timer
+```
+sudo systemctl daemon-reload
+sudo systemctl enable --now renew_cert_ssl.timer
+systemctl list-timers renew_cert_ssl.timer
+```
 
 
 
