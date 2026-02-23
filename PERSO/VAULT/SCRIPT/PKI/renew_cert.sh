@@ -124,10 +124,10 @@ rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
     "$cible":"$base_bareos"/Cert/web/
 
 # POSTGRESQL
-rsync -e ssh --no-p --chmod=F640 --chown=postgres:postgres \
+rsync -e ssh --no-p --chmod=F640 --chown=bareos:bareos \
     "$base_pki/private/PostGreSQL/Rsa/postgresql_rsa.key" \
     "$cible":"$base_bareos"/Keys/post/
-rsync -e ssh --no-p --chmod=F644 --chown=postgres:postgres \
+rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
     "$base_pki/public/PostGreSQL/Rsa/postgresql_rsa.crt" \
     "$cible":"$base_bareos"/Cert/post/
 
