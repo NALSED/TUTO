@@ -1,3 +1,8 @@
+**[NOTE]**
+
+Les captures d’écran utilisées pour résumer les grands principes de cette présentation sur Vault proviennent toutes de ces [vidéos YouTube](https://www.youtube.com/watch?v=I4Xu3DGfk60&list=PLCFwfUlM-doNzjCQDDU9jvZ57tNWX03xy&index=1).  
+Contenu créé par **M. Mehdi Laruelle** de chez **Devoteam – A Cloud France**.
+
 ## Accès rapide à la doc :
 
 [DOC GITHUB](https://github.com/hashicorp/web-unified-docs/tree/main/content/vault/v1.21.x/content/docs)
