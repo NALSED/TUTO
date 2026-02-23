@@ -8,7 +8,7 @@ set -e
 usermod -aG vault sednal
 
 # === Création de l'arborescence ===
-mkdir -p "$base"/{private,public}/{Bareos,Infra,Pihole,Proxmox,Upsnap,PostGreSQL,Cockpit,Vps}/{Rsa,Ecdsa}
+mkdir -p "$base"/{private,public}/{Bareos,Infra,Pihole,Proxmox,Upsnap,PostGreSQL,Cockpit,VPS}/{Rsa,Ecdsa}
 mkdir -p "$base"/Cert_CA/{Inter,Root,CSR}
 mkdir -p "$base"/Config/Policy 
 
