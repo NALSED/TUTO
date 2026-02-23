@@ -24,7 +24,7 @@ Dans cette partie toutes les configurations préalables sur les clients ainsi qu
 
 ---
 
-### 1️⃣ Point de récupération CRL (192.168.0.239)
+### 1️⃣ Point de récupération CRL sur `Infra` (192.168.0.239)
 
 - 1.1. ⚠️ Point très important, le point de distribution `CRL` doit 
 toujours être en `HTTP` et non en `HTTPS` pour deux raisons :
@@ -141,7 +141,7 @@ Ici on ne met pas cette solution en place car le service OCSP et Vault devraient
 ---
 ---
 
-### 2️⃣ Création d'une tâche cron sur Serveur Vault 192.168.0.238, pour pousser les CRL
+### 2️⃣ Création d'une tâche cron sur `Serveur Vault` 192.168.0.238, pour pousser les CRL
 
 ⚠️ Avant tout mettre sednal dans le groupe vault
 ```
@@ -178,7 +178,7 @@ crontab -e
 
 ---
 
-### 3️⃣ SSH
+### 3️⃣ SSH sur `Serveur Vault` 192.168.0.238
 
 -3.1. Créer la clé 
 ```
@@ -206,7 +206,7 @@ ssh-copy-id debian@176.31.163.227
 
 ---
 
-### 4️⃣ Groupe et User
+### 4️⃣ Groupe et User su `Bareos` 192.168.0.240
 
 -4.1 Pour Bareos 192.168.0.240, les certificats sont utilisés par => `bareos:bareos`, mais l'utilisateur commun a besoin de pouvoir accéder à ces fichiers. PostgreSQL nécessite également l'accès au groupe bareos pour lire sa clé privée.
 ```
@@ -216,7 +216,7 @@ sudo usermod -aG bareos postgres
 
 ---
 
-### 5️⃣ Création de répertoire avec Script
+### 5️⃣ Création de répertoire avec Script sur `serveur Vault` 192.168.0.238
 
 -5.1. Créer script 
 ```
