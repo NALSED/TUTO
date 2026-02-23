@@ -175,7 +175,7 @@ vault write -field=certificate PKI_Sednal_Root_ECDSA/root/generate/internal \
      ttl=9132d \
      key_type=ec key_bits=384 \
      exclude_cn_from_sans=true
-     | sudo tee /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_E-1.crt > /dev/null
+| sudo tee /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_E-1.crt > /dev/null
 
 ```
 sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_E-1.crt
@@ -231,8 +231,8 @@ _key_id=$(vault read PKI_Sednal_Root_ECDSA/issuer/$_e1_default_issuer | grep -i 
 vault write -format=json PKI_Sednal_Root_ECDSA/intermediate/cross-sign \
     common_name="Sednal_Root_XS_1" \
     key_ref=$_key_id
-    | jq -r '.data.csr'
-    | sudo  tee  /etc/Vault/PKI/Cert_CA/CSR/cross_e1.csr > /dev/null
+| jq -r '.data.csr'
+| sudo  tee  /etc/Vault/PKI/Cert_CA/CSR/cross_e1.csr > /dev/null
 ```
 
 ```
