@@ -129,7 +129,7 @@ sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_R-1.crt
 ```
 vault write PKI_Sednal_Root_RSA/config/urls \
     issuing_certificates="https://vault.sednal.lan/v1/PKI_Sednal_Root_RSA/ca" \
-    crl_distribution_points="http://pihole.sednal.lan/crl/root_r"
+    crl_distribution_points="http://infra.sednal.lan/crl/root_r"
 ```    
 
 - issuing_certificates : URL encodée dans le certificat qui permettre aux clients de télécharger le certificat de la CA et reconstituer la chaîne de confiance.
@@ -174,7 +174,7 @@ vault write -field=certificate PKI_Sednal_Root_ECDSA/root/generate/internal \
      issuer_name="Sednal_Root_E-1" \
      ttl=9132d \
      key_type=ec key_bits=384 \
-     exclude_cn_from_sans=true
+     exclude_cn_from_sans=true \
 | sudo tee /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_E-1.crt > /dev/null
 
 ```
@@ -190,7 +190,7 @@ sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_E-1.crt
 ```
  vault write PKI_Sednal_Root_ECDSA/config/urls \
      issuing_certificates="https://vault.sednal.lan/v1/PKI_Sednal_Root_ECDSA/ca" \
-     crl_distribution_points="http://pihole.sednal.lan/crl/root_e"
+     crl_distribution_points="http://infra410.sednal.lan/crl/root_e"
 ```    
 
 - issuing_certificates : URL encodée dans le certificat qui permettre aux clients de télécharger le certificat de la CA et reconstituer la chaîne de confiance.
@@ -230,8 +230,8 @@ _key_id=$(vault read PKI_Sednal_Root_ECDSA/issuer/$_e1_default_issuer | grep -i 
 ```
 vault write -format=json PKI_Sednal_Root_ECDSA/intermediate/cross-sign \
     common_name="Sednal_Root_XS_1" \
-    key_ref=$_key_id
-| jq -r '.data.csr'
+    key_ref=$_key_id \
+| jq -r '.data.csr' \
 | sudo  tee  /etc/Vault/PKI/Cert_CA/CSR/cross_e1.csr > /dev/null
 ```
 
@@ -392,7 +392,7 @@ vault write  PKI_Sednal_Inter_ECDSA/intermediate/set-signed certificate=@/etc/Va
 ## 3️⃣ **Role PKI**
 
 - 17 - Créer un role pour les certificats inter RSA
-
+```
 vault write PKI_Sednal_Inter_RSA/roles/Cert_Inter_RSA \
     issuer_ref="$(vault read -field=default PKI_Sednal_Inter_RSA/config/issuers)" \
     allowed_domains="sednal.lan" \
@@ -403,6 +403,7 @@ vault write PKI_Sednal_Inter_RSA/roles/Cert_Inter_RSA \
     max_ttl="365d" \
     ttl="90d" \
     no_store=false
+```
 
 - issuer_ref : utilise la sortie par defaut
 - TTL : `90 jours`
@@ -414,7 +415,7 @@ vault write PKI_Sednal_Inter_RSA/roles/Cert_Inter_RSA \
 <img width="786" height="957" alt="image" src="https://github.com/user-attachments/assets/a6956da5-a649-412a-b47d-39632f75d20b" />
 
 - 18 - Créer un role pour les certificats inter ECDSA
-
+```
 vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
     issuer_ref="$(vault read -field=default PKI_Sednal_Inter_ECDSA/config/issuers)" \
     allowed_domains="sednal.lan" \
@@ -425,6 +426,7 @@ vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
     max_ttl="365d" \
     ttl="90d" \
     no_store=false
+```
 
 - issuer_ref : utilise la sortie par defaut
 - TTL : `90 jours`
