@@ -22,4 +22,4 @@ chmod 755       /etc/ssl/proxmox/Cert
 chown root:root /etc/ssl/proxmox/Keys
 chmod 755       /etc/ssl/proxmox/Keys
 
-echo "Arborescence Proxmox créée et droits appliqués ✅"
+echo "Arborescence Proxmox créée et droits appliqués "
