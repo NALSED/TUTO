@@ -508,9 +508,9 @@ sudo systemctl restart upsnap
 ```
 cat /etc/ssl/Cockpit/Cert/cockpit_rsa.crt \
     /etc/ssl/Cockpit/Keys/cockpit_rsa.key \
-    > /etc/cockpit/ws-certs.d/cockpit.cert
-chmod 640 /etc/cockpit/ws-certs.d/cockpit.cert
-chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit.cert
+    > /etc/ssl/Cockpit/Cert/cockpit.cert
+chmod 640 /etc/ssl/Cockpit/Cert/cockpit.cert
+sudo chown root:cockpit-ws /etc/ssl/Cockpit/Cert/cockpit.cert
 ```
 
 Redémarrer le service
