@@ -514,7 +514,10 @@ sudo systemctl enable --now renew_cert_ssl.timer
 systemctl list-timers renew_cert_ssl.timer
 ```
 
-# ⚠️ dernière configuration client => [FINAl](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#--%EF%B8%8F-reload-tous-les-services-apres--4--configuration_pki%EF%B8%8F)
+<img width="928" height="112" alt="image" src="https://github.com/user-attachments/assets/8ea3d271-77b7-4796-a81c-7b07713d53e2" />
+
+
+# ⚠️ dernière configuration client => [FINAL](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#--%EF%B8%8F-reload-tous-les-services-apres--4--configuration_pki%EF%B8%8F)
 
 
 
