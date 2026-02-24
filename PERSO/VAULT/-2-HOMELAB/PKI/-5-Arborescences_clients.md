@@ -81,7 +81,7 @@
 │   ├── dir/                                 [drwxrwsr-x bareos:bareos]
 │   ├── fd/                                  [drwxrwsr-x bareos:bareos]
 │   ├── post/                                [drwxrwsr-x bareos:bareos]
-│   ├── sd/                                  [drwxrwsr-x root:bareos]   ← root owner
+│   ├── sd/                                  [drwxrwsr-x bareos:bareos]   
 │   │   ├── local/                           [drwxrwsr-x bareos:bareos]
 │   │   └── remote/                          [drwxrwsr-x bareos:bareos]
 │   └── web/                                 [drwxrwsr-x bareos:bareos]
