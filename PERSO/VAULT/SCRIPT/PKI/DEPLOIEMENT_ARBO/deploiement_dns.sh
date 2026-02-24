@@ -40,4 +40,4 @@ chmod 755           /etc/ssl/Cockpit/Cert
 chown sednal:sednal /etc/ssl/Cockpit/Keys
 chmod 755           /etc/ssl/Cockpit/Keys
 
-echo "Arborescence Pi créée et droits appliqués ✅"
+echo "Arborescence Pi créée et droits appliqués "
