@@ -59,20 +59,6 @@ sudo a2ensite default-ssl
 sudo service apache2 reload
 ```
 
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
-
--2.1. Éditer
-```
-sudo visudo
-```
-
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
-```
-
 ---
 
 # **Serveur Bareos** : 192.168.0.240
@@ -329,21 +315,7 @@ sudo systemctl status bareos-fd
 sudo systemctl status postgresql
 ```
 
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
-
--2.1. Éditer
-```
-sudo visudo
-```
-
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
-```
-
-### 3️⃣ Ajouter `sednal` et `postgres` au groupe `bareos`
+### 2️⃣ Ajouter `sednal` et `postgres` au groupe `bareos`
 ```
 sudo usermod -aG bareos sednal
 sudo usermod -aG bareos postgres
@@ -424,19 +396,6 @@ chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit.cert
 sudo systemctl restart cockpit
 ```
 
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
-
--2.1. Éditer
-```
-sudo visudo
-```
-
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
-```
 
 ---
 
@@ -453,20 +412,6 @@ cp /etc/ssl/proxmox/Keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
 -1.2. Redémarrer le service
 ```
 sudo systemctl restart pveproxy
-```
-
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
-
--2.1. Éditer
-```
-sudo visudo
-```
-
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
 ```
 
 ---
@@ -491,24 +436,13 @@ TLS Key         = /etc/ssl/Keys/vps_rsa.key
 sudo systemctl restart bareos-sd
 ```
 
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
-
--2.1. Éditer
-```
-sudo visudo
-```
-
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
-```
-
 ---
 ---
+## 1️⃣ Ajouter
 
-## => # ⚠️ RELOAD TOUS LES SERVICES **APRES -4- Configuration_PKI**⚠️
+ 
+ 
+### 2️⃣ => # ⚠️ RELOAD TOUS LES SERVICES **APRES -4- Configuration_PKI**⚠️
 
 
 ### Infra 192.168.0.239
@@ -528,6 +462,7 @@ cat /etc/bareos/ssl/Cert/web/bareos_rsa.crt \
     > /etc/bareos/ssl/web/bareos_webui.pem
 chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
 chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
+```
 
 -2. Redémarrage des services
 ```
