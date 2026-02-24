@@ -1,6 +1,9 @@
+
 #!/bin/bash
 
-# ============================================================
+# ===============================================================
+# ========== SCRIPT DE RENOUVELEMENT DE CERTIFICAT SSL ==========
+# ===============================================================
 # Services RSA + ECDSA
 services_dual=(proxmox cockpit infra)
 # Services RSA uniquement
@@ -220,3 +223,5 @@ rsync -e ssh --no-p --chmod=F600 --chown=debian:debian \
 rsync -e ssh --no-p --chmod=F644 --chown=debian:debian \
     "$base_pki/public/VPS/Rsa/vps_rsa.crt" \
     "$cible":"$base_vps"/Cert/
+
+echo -e "Déploiement OK"
