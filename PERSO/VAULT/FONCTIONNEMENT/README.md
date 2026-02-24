@@ -78,7 +78,7 @@ vault path-help
 ```
 
 - Une longue liste de tout les path possible.
-- Dans l'exemple on cherche à connaitre les ID de certificat dans pki.
+- Dans l'exemple on cherche à connaitre les clés des certificats de pki.
 
 ```
 vault list pki/cert
