@@ -15,12 +15,13 @@ Deux manières d'implémenter une durée de vie aux tokens : le `TTL` (time to l
 
 -Hiérarchie TTL Vault 
 
+````
 System max_lease_ttl (limite absolue Vault)
          ↓ (peut réduire mais pas dépasser)
 Backend max_lease_ttl (auth/token tune)
          ↓ (peut réduire mais pas dépasser)
 Token -explicit-max-ttl (individuel)
-
+````
 
 `[EXEMPLE]`
 
