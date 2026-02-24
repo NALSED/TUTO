@@ -528,7 +528,7 @@ cp /etc/ssl/proxmox/Keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
 
 Redémarrer le service
 ```
-sudo systemctl restart pveproxy
+systemctl restart pveproxy
 ```
 
 
