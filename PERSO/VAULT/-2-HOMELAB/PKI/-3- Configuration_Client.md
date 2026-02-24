@@ -444,6 +444,7 @@ sudo systemctl restart bareos-sd
 sudo cp [ADAPTER LE CHEMIN]/CA/Sednal_Root_All.crt /usr/local/share/ca-certificates/
 ```
 
+- Rafraichir
 ```
 sudo update-ca-certificates --fresh
 ````
