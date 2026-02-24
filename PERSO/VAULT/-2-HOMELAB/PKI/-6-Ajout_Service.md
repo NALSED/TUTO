@@ -20,15 +20,17 @@ Les CA Root et Intermédiaires sont en place, les scripts sont déployés sur Va
 
 ## 1️⃣ Prérequis sur la machine cible
 
--1.1. Autoriser `sednal` à exécuter les commandes nécessaires sans mot de passe
+-1.1. Vérifier que `reload_ssl.sh` est bien en place sur la machine
+```
+ls -la /usr/local/bin/reload_ssl.sh
+```
+Si absent, le déployer (voir script `reload_ssl_<machine>.sh`) et configurer le sudoers :
 ```
 sudo visudo
 ```
-Ajouter :
+Ajouter **uniquement** :
 ```
-sednal ALL=(ALL) NOPASSWD: /usr/sbin/update-ca-certificates
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
+sednal ALL=(ALL) NOPASSWD: /usr/local/bin/reload_ssl.sh
 ```
 
 -1.2. Si le service tourne sous un utilisateur tiers, ajouter `sednal` au groupe concerné
@@ -90,9 +92,7 @@ sudo mkdir -p /etc/Vault/PKI/{private,public}/<Folder>/Rsa
 Appliquer les droits :
 ```
 sudo chown -R vault:vault /etc/Vault/PKI/{private,public}/<Folder>
-sudo chmod 700 /etc/Vault/PKI/private/<Folder>
 sudo chmod 700 /etc/Vault/PKI/private/<Folder>/{Rsa,Ecdsa}
-sudo chmod 755 /etc/Vault/PKI/public/<Folder>
 sudo chmod 755 /etc/Vault/PKI/public/<Folder>/{Rsa,Ecdsa}
 ```
 
@@ -122,7 +122,7 @@ Remplir les variables :
 sudo /usr/local/bin/ajout_service.sh
 ```
 
-Le script génère les certificats RSA + ECDSA, déploie clés + certificats sur la cible et installe la CA dans le store système.
+Le script génère les certificats, déploie clés + certificats sur la cible puis appelle `reload_ssl.sh` pour mettre à jour la CA système.
 
 ---
 
@@ -153,7 +153,7 @@ cat /etc/<service>/ssl/Cert/<service>_rsa.crt \
 chmod 640 /etc/<service>/ssl/<service>.pem
 ```
 
-Redémarrer le service :
+Redémarrer le service manuellement :
 ```
 sudo systemctl restart <service>
 ```
@@ -205,13 +205,18 @@ rsync -e ssh --no-p --chmod=F644 --chown=<owner> \
     "$base_pki/public/<Folder>/Rsa/<service>_rsa.crt" \
     "$cible":"$base_service"/Cert/
 
-# Si dual RSA + ECDSA
+# Si dual RSA + ECDSA — ajouter
 rsync -e ssh --no-p --chmod=F600 --chown=<owner> \
     "$base_pki/private/<Folder>/Ecdsa/<service>_ecdsa.key" \
     "$cible":"$base_service"/Keys/
 rsync -e ssh --no-p --chmod=F644 --chown=<owner> \
     "$base_pki/public/<Folder>/Ecdsa/<service>_ecdsa.crt" \
     "$cible":"$base_service"/Cert/
+```
+
+-6.5. Mettre à jour `reload_ssl.sh` sur la machine cible pour ajouter le rappel de redémarrage du nouveau service
+```
+sudo nano /usr/local/bin/reload_ssl.sh
 ```
 
 ---
