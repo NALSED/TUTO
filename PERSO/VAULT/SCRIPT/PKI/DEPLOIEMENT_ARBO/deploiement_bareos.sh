@@ -86,4 +86,4 @@ chmod 2775          "$base/Keys/client/win"
 chown bareos:bareos "$base/Keys/client/lin"
 chmod 2775          "$base/Keys/client/lin"
 
-echo "Arborescence Bareos créée et droits appliqués ✅"
+echo "Arborescence Bareos créée et droits appliqués"
