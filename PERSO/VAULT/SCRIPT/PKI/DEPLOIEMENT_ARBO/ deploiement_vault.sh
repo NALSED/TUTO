@@ -78,4 +78,4 @@ chmod 755 "$base/Cert_CA/Inter"
 chmod 755 "$base/Cert_CA/Root"
 chmod 700 "$base/Cert_CA/CSR"
 
-echo "Arborescence créée et droits appliqués ✅"
+echo "Arborescence créée et droits appliqués "
