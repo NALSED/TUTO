@@ -13,16 +13,6 @@ Contenu créé par **M. Mehdi Laruelle** de chez **Devoteam – A Cloud France**
 - [Auth](https://developer.hashicorp.com/vault/docs/auth)
 - [KV](https://developer.hashicorp.com/vault/docs/secrets/kv)
 - [PKI](https://developer.hashicorp.com/vault/docs/secrets/pki)
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
 
 ---
 ---
@@ -70,6 +60,32 @@ Contenu créé par **M. Mehdi Laruelle** de chez **Devoteam – A Cloud France**
 
 
 ## **[TIPS]**
+
+### COMMANDE POUR IDENTIFIER LES BON PATH
+```
+vault [moteur] list
+```
+
+
+`[EXEMPLE]`
+
+<img width="952" height="233" alt="image" src="https://github.com/user-attachments/assets/157131a4-74b8-4498-a148-c1d6a6a839fe" />
+
+ici on aimerai avoir les donnés/valeurs clé dans un des points de montage ci dessus, mais on ne sait plus la syntaxe
+
+```
+vault path-help
+```
+
+- Une longue liste de tout les path possible.
+- Dans l'exemple on cherche à connaitre les ID de certificat dans pki.
+
+```
+vault list pki/cert
+```
+
+<img width="553" height="99" alt="image" src="https://github.com/user-attachments/assets/13769e68-21d2-49ec-8d17-c51aa3b30a3f" />
+
 
 ### `I`
 Dès le début après (vault operator init et vault login), créer une arborescence de chemins dans Vault, pour avoir une vision claire de ce qui est déployé
