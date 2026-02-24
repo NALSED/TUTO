@@ -1,243 +1,141 @@
-# Arborescences SSL — Machines clientes PKI Sednal
+# Arborescences SSL — Dossiers par machine (droits réels)
 
 ---
 
-## 192.168.0.239 — infra.sednal.lan (Apache2)
+## 192.168.0.238 — vault.sednal.lan
 
 ```
-/etc/infra
-├── CA
-│   ├── Sednal_Root_All.crt
-│   ├── ca_chain_rsa.crt
-│   └── ca_chain_ecdsa.crt
-│
-├── Cert
-│   ├── infra_rsa.crt
-│   └── infra_ecdsa.crt
-│
-└── Keys
-    ├── infra_rsa.key       (600 sednal:sednal)
-    └── infra_ecdsa.key     (600 sednal:sednal)
-```
-
-**Config Apache2** `/etc/apache2/sites-available/default-ssl` :
-```
-SSLCertificateFile      /etc/infra/Cert/infra_rsa.crt
-SSLCertificateKeyFile   /etc/infra/Keys/infra_rsa.key
-SSLCertificateFile      /etc/infra/Cert/infra_ecdsa.crt
-SSLCertificateKeyFile   /etc/infra/Keys/infra_ecdsa.key
-```
-
-**Point de distribution CRL** `/var/www/pki/` :
-```
-/var/www/pki
-├── root_r.crl
-├── root_e.crl
-├── intermediate_r.crl
-└── intermediate_e.crl
-```
-
----
-
-## 192.168.0.240 — bareos.sednal.lan (Bareos + PostgreSQL)
-
-```
-/etc/bareos/ssl
-├── CA
-│   └── Sednal_Root_All.crt                      (644 bareos:bareos)
-│
-├── Cert
-│   ├── dir
-│   │   └── bareos-dir_rsa.crt
-│   ├── fd
-│   │   └── bareos-fd_rsa.crt
-│   ├── sd
-│   │   ├── local
-│   │   │   └── bareos-sd-local_rsa.crt
-│   │   └── remote
-│   │       └── bareos-sd-remote_rsa.crt
-│   ├── web
-│   │   └── bareos_rsa.crt
-│   ├── post
-│   │   └── postgresql_rsa.crt
-│   └── client
-│       ├── win
-│       │   └── win_rsa.crt
-│       └── lin
-│           └── lin_rsa.crt
-│
-├── Keys
-│   ├── dir
-│   │   └── bareos-dir_rsa.key          (600 bareos:bareos)
-│   ├── fd
-│   │   └── bareos-fd_rsa.key           (600 bareos:bareos)
-│   ├── sd
-│   │   ├── local
-│   │   │   └── bareos-sd-local_rsa.key (600 bareos:bareos)
-│   │   └── remote
-│   │       └── bareos-sd-remote_rsa.key(600 bareos:bareos)
-│   ├── web
-│   │   └── bareos_rsa.key              (600 bareos:bareos)
-│   ├── post
-│   │   └── postgresql_rsa.key          (640 bareos:bareos)
-│   └── client
-│       ├── win
-│       │   └── win_rsa.key             (600 bareos:bareos)
-│       └── lin
-│           └── lin_rsa.key             (600 bareos:bareos)
-│
-└── web
-    └── bareos_webui.pem    ← cat bareos_rsa.crt + bareos_rsa.key
-                               (640 bareos:bareos)
-```
-
-**Groupes requis** :
-```
-sudo usermod -aG bareos sednal
-sudo usermod -aG bareos postgres
-```
-
-**Config Bareos Director** `/etc/bareos/bareos-dir.d/director/bareos-dir.conf` :
-```
-TLS Certificate = /etc/bareos/ssl/Cert/dir/bareos-dir_rsa.crt
-TLS Key         = /etc/bareos/ssl/Keys/dir/bareos-dir_rsa.key
-TLS CA Certificate File = /etc/bareos/ssl/CA/Sednal_Root_All.crt
-```
-
-**Config PostgreSQL** `/etc/postgresql/18/main/postgresql.conf` :
-```
-ssl_cert_file = '/etc/bareos/ssl/Cert/post/postgresql_rsa.crt'
-ssl_key_file  = '/etc/bareos/ssl/Keys/post/postgresql_rsa.key'
-ssl_ca_file   = '/etc/bareos/ssl/CA/Sednal_Root_All.crt'
+/etc/Vault/PKI/                              [drwxr-x--- vault:vault]
+├── Config/                                  [drwxr-x--- vault:vault]
+│   └── Policy/                              [drwxr-x--- vault:vault]
+├── Cert_CA/                                 [drwxr-xr-x vault:vault]
+│   ├── CSR/                                 [drwx------ vault:vault]
+│   ├── Inter/                               [drwxr-xr-x vault:vault]
+│   └── Root/                                [drwxr-xr-x vault:vault]
+├── private/                                 [drwx------ vault:vault]
+│   ├── Bareos/                              [drwx------ vault:vault]
+│   │   ├── Ecdsa/                           [drwx------ vault:vault]
+│   │   └── Rsa/                             [drwx------ vault:vault]
+│   ├── Cockpit/                             [drwx------ vault:vault]
+│   │   ├── Ecdsa/                           [drwx------ vault:vault]
+│   │   └── Rsa/                             [drwx------ vault:vault]
+│   ├── Infra/                               [drwx------ vault:vault]
+│   │   ├── Ecdsa/                           [drwx------ vault:vault]
+│   │   └── Rsa/                             [drwx------ vault:vault]
+│   ├── Pihole/                              [drwx------ vault:vault]
+│   │   └── Rsa/                             [drwx------ vault:vault]
+│   ├── PostGreSQL/                          [drwx------ vault:vault]
+│   │   └── Rsa/                             [drwx------ vault:vault]
+│   ├── Proxmox/                             [drwx------ vault:vault]
+│   │   ├── Ecdsa/                           [drwx------ vault:vault]
+│   │   └── Rsa/                             [drwx------ vault:vault]
+│   ├── Upsnap/                              [drwx------ vault:vault]
+│   │   └── Rsa/                             [drwx------ vault:vault]
+│   └── VPS/                                 [drwx------ vault:vault]
+│       └── Rsa/                             [drwx------ vault:vault]
+└── public/                                  [drwxr-xr-x vault:vault]
+    ├── Bareos/                              [drwxr-xr-x vault:vault]
+    │   ├── Ecdsa/                           [drwxr-xr-x vault:vault]
+    │   └── Rsa/                             [drwxr-xr-x vault:vault]
+    ├── Cockpit/                             [drwxr-xr-x vault:vault]
+    │   ├── Ecdsa/                           [drwxr-xr-x vault:vault]
+    │   └── Rsa/                             [drwxr-xr-x vault:vault]
+    ├── Infra/                               [drwxr-xr-x vault:vault]
+    │   ├── Ecdsa/                           [drwxr-xr-x vault:vault]
+    │   └── Rsa/                             [drwxr-xr-x vault:vault]
+    ├── Pihole/                              [drwxr-xr-x vault:vault]
+    │   └── Rsa/                             [drwxr-xr-x vault:vault]
+    ├── PostGreSQL/                          [drwxr-xr-x vault:vault]
+    │   └── Rsa/                             [drwxr-xr-x vault:vault]
+    ├── Proxmox/                             [drwxr-xr-x vault:vault]
+    │   ├── Ecdsa/                           [drwxr-xr-x vault:vault]
+    │   └── Rsa/                             [drwxr-xr-x vault:vault]
+    ├── Upsnap/                              [drwxr-xr-x vault:vault]
+    │   └── Rsa/                             [drwxr-xr-x vault:vault]
+    └── VPS/                                 [drwxr-xr-x vault:vault]
+        └── Rsa/                             [drwxr-xr-x vault:vault]
 ```
 
 ---
 
-## 192.168.0.241 — pihole.sednal.lan (Pihole + Upsnap + Cockpit)
+## 192.168.0.239 — infra.sednal.lan
 
 ```
-/etc/ssl
-├── CA
-│   ├── Sednal_Root_All.crt
-│   ├── ca_chain_rsa.crt
-│   └── ca_chain_ecdsa.crt
-│
-├── Pihole                           (RSA uniquement)
-│   ├── Cert
-│   │   └── pihole_rsa.crt
-│   └── Keys
-│       └── pihole_rsa.key          (600 sednal:sednal)
-│
-├── Upsnap                           (RSA uniquement)
-│   ├── Cert
-│   │   └── upsnap_rsa.crt
-│   └── Keys
-│       └── upsnap_rsa.key          (600 sednal:sednal)
-│
-└── Cockpit                          (RSA + ECDSA)
-    ├── Cert
-    │   ├── cockpit_rsa.crt
-    │   └── cockpit_ecdsa.crt
-    └── Keys
-        ├── cockpit_rsa.key         (600 sednal:sednal)
-        └── cockpit_ecdsa.key       (600 sednal:sednal)
-```
-
-**Cockpit — fichiers PEM déployés** `/etc/cockpit/ws-certs.d/` :
-```
-/etc/cockpit/ws-certs.d
-├── cockpit.cert    ← cat cockpit_rsa.crt + cockpit_rsa.key
-│                      (640 root:cockpit-ws)
-└── cockpit_ecdsa.cert  ← cat cockpit_ecdsa.crt + cockpit_ecdsa.key
-                           (640 root:cockpit-ws)
-```
-
-**Config Pihole** `/etc/pihole/pihole.toml` (section `[webserver]`) :
-```
-ssl_cert = "/etc/ssl/Pihole/Cert/pihole_rsa.crt"
-ssl_key  = "/etc/ssl/Pihole/Keys/pihole_rsa.key"
-```
-
-**Config Upsnap** `/etc/upsnap/config.env` :
-```
-UPSNAP_SSL_CERT=/etc/ssl/Upsnap/Cert/upsnap_rsa.crt
-UPSNAP_SSL_KEY=/etc/ssl/Upsnap/Keys/upsnap_rsa.key
+/etc/infra/                                  [drwxr-xr-x root:root]
+├── CA/                                      [drwxr-xr-x sednal:sednal]
+├── Cert/                                    [drwxr-xr-x sednal:sednal]
+└── Keys/                                    [drwxr-xr-x sednal:sednal]
 ```
 
 ---
 
-## 192.168.0.242 — proxmox.sednal.lan (Proxmox)
+## 192.168.0.240 — bareos.sednal.lan
 
 ```
-/etc/ssl/proxmox
-├── CA
-│   ├── Sednal_Root_All.crt
-│   ├── ca_chain_rsa.crt
-│   └── ca_chain_ecdsa.crt
-│
-├── Cert
-│   ├── proxmox_rsa.crt
-│   └── proxmox_ecdsa.crt
-│
-└── Keys
-    ├── proxmox_rsa.key             (600 root:root)
-    └── proxmox_ecdsa.key           (600 root:root)
+/etc/bareos/ssl/                             [drwxrwsr-x bareos:bareos]  ← setgid
+├── CA/                                      [drwxrwsr-x bareos:bareos]
+├── Cert/                                    [drwxrwsr-x bareos:bareos]
+│   ├── client/                              [drwxrwsr-x bareos:bareos]
+│   │   ├── lin/                             [drwxrwsr-x bareos:bareos]
+│   │   └── win/                             [drwxrwsr-x bareos:bareos]
+│   ├── dir/                                 [drwxrwsr-x bareos:bareos]
+│   ├── fd/                                  [drwxrwsr-x bareos:bareos]
+│   ├── post/                                [drwxrwsr-x bareos:bareos]
+│   ├── sd/                                  [drwxrwsr-x root:bareos]   ← root owner
+│   │   ├── local/                           [drwxrwsr-x bareos:bareos]
+│   │   └── remote/                          [drwxrwsr-x bareos:bareos]
+│   └── web/                                 [drwxrwsr-x bareos:bareos]
+└── Keys/                                    [drwxrwsr-x bareos:bareos]
+    ├── client/                              [drwxrwsr-x bareos:bareos]
+    │   ├── lin/                             [drwxrwsr-x bareos:bareos]
+    │   └── win/                             [drwxrwsr-x bareos:bareos]
+    ├── dir/                                 [drwxrwsr-x bareos:bareos]
+    ├── fd/                                  [drwxrwsr-x bareos:bareos]
+    ├── post/                                [drwxrwsr-x bareos:bareos]
+    ├── sd/                                  [drwxrwsr-x bareos:bareos]
+    │   ├── local/                           [drwxrwsr-x bareos:bareos]
+    │   └── remote/                          [drwxrwsr-x bareos:bareos]
+    └── web/                                 [drwxrwsr-x bareos:bareos]
 ```
 
-**Déploiement vers Proxmox** (copié dans les chemins natifs PVE) :
-```
-/etc/pve/local
-├── pve-ssl.pem   ← proxmox_rsa.crt
-└── pve-ssl.key   ← proxmox_rsa.key
-```
-
-**SSH** : `root@192.168.0.242`
+`⚠️ setgid (s) sur tous les dossiers : les fichiers créés héritent automatiquement du groupe bareos`
 
 ---
 
-## 176.31.163.227 — VPS (Bareos SD remote)
+## 192.168.0.241 — pihole.sednal.lan
 
 ```
-/etc/ssl
-├── CA
-│   └── Sednal_Root_All.crt
-│
-├── Cert
-│   └── vps_rsa.crt
-│
-└── Keys
-    └── vps_rsa.key                 (600 debian:debian)
+/etc/ssl/                                    [drwxr-xr-x root:root]
+├── CA/                                      [drwxr-xr-x sednal:sednal]
+├── Cockpit/                                 [drwxr-xr-x root:root]
+│   ├── Cert/                                [drwxr-xr-x sednal:sednal]
+│   └── Keys/                                [drwxr-xr-x sednal:sednal]
+├── Pihole/                                  [drwxr-xr-x root:root]
+│   ├── Cert/                                [drwxr-xr-x sednal:sednal]
+│   └── Keys/                                [drwxr-xr-x sednal:sednal]
+└── Upsnap/                                  [drwxr-xr-x root:root]
+    ├── Cert/                                [drwxr-xr-x sednal:sednal]
+    └── Keys/                                [drwxr-xr-x sednal:sednal]
 ```
-
-**Config Bareos SD Remote** `/etc/bareos/bareos-sd.d/storage/Remote-Sd.conf` :
-```
-TLS Certificate = /etc/ssl/Cert/vps_rsa.crt
-TLS Key         = /etc/ssl/Keys/vps_rsa.key
-TLS CA Certificate File = /etc/ssl/CA/Sednal_Root_All.crt
-```
-
-**Config Director-Sd** `/etc/bareos/bareos-sd.d/director/bareos-dir.conf` :
-```
-TLS Certificate = /etc/ssl/Cert/vps_rsa.crt
-TLS Key         = /etc/ssl/Keys/vps_rsa.key
-TLS CA Certificate File = /etc/ssl/CA/Sednal_Root_All.crt
-TLS Verify Peer = yes
-TLS Allowed CN  = "bareos.sednal.lan"
-```
-
-**SSH** : `debian@176.31.163.227`
 
 ---
 
-## Récapitulatif des droits
+## 192.168.0.242 — proxmox.sednal.lan
 
-| Chemin | Droits | Propriétaire |
-|---|---|---|
-| Clés privées (standard) | 600 | selon service |
-| Clé privée PostgreSQL | 640 | bareos:bareos |
-| Certificats publics | 644 | selon service |
-| PEM WebUI Bareos | 640 | bareos:bareos |
-| PEM Cockpit | 640 | root:cockpit-ws |
-| Dossiers private Vault | 700 | vault:vault |
-| Dossiers public Vault | 755 | vault:vault |
-| /var/www/pki/ | 755 | sednal:sednal |
+```
+/etc/ssl/proxmox/                            [drwxr-xr-x root:root]
+├── CA/                                      [drwxr-xr-x root:root]
+├── Cert/                                    [drwxr-xr-x root:root]
+└── Keys/                                    [drwxr-xr-x root:root]
+```
+
+---
+
+## 176.31.163.227 — VPS
+
+```
+/etc/ssl/                                    [drwxr-xr-x root:root]
+├── CA/                                      [drwxrwxr-x debian:debian]
+├── Cert/                                    [drwxrwxr-x debian:debian]
+└── Keys/                                    [drwxrwxr-x debian:debian]
+```
