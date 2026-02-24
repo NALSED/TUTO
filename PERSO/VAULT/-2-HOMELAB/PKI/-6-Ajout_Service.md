@@ -214,11 +214,10 @@ rsync -e ssh --no-p --chmod=F644 --chown=<owner> \
     "$cible":"$base_service"/Cert/
 ```
 
--6.5. Mettre à jour `reload_ssl.sh` sur la machine cible pour ajouter le rappel de redémarrage du nouveau service
+-6.5. Ne pas oublier de redémarrer le service manuellement après le prochain renouvellement
 ```
-sudo nano /usr/local/bin/reload_ssl.sh
+sudo systemctl restart <service>
 ```
-
 ---
 
 ## ✅ Vérification
