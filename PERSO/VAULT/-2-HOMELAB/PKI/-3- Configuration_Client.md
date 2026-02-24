@@ -440,14 +440,13 @@ sudo systemctl restart bareos-sd
 ---
 ## 1️⃣ Ajouter `CA Root ` au magasin de certificats sur chaque machine
 
-````
+```
 sudo cp [ADAPTER LE CHEMIN]/CA/Sednal_Root_All.crt /usr/local/share/ca-certificates/
 ```
 
-- Rafraichir
 ```
 sudo update-ca-certificates --fresh
-````
+```
  
  
 ### 2️⃣ => # ⚠️ RELOAD TOUS LES SERVICES **APRES -4- Configuration_PKI**⚠️
