@@ -252,9 +252,9 @@ sudo nano /etc/bareos/bareos-fd.d/director/bareos-dir.conf
 ```
 cat /etc/bareos/ssl/Cert/web/bareos_rsa.crt \
     /etc/bareos/ssl/Keys/web/bareos_rsa.key \
-    > /etc/bareos/ssl/web/bareos_webui.pem
-chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
-chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
+    > /etc/bareos/ssl/Cert/web/bareos_webui.pem
+chmod 640 /etc/bareos/ssl/Cert/web/bareos_webui.pem
+chown bareos:bareos /etc/bareos/ssl/Cert/web/bareos_webui.pem
 ```
 
 -1.25. Éditer le fichier `directors.ini`
