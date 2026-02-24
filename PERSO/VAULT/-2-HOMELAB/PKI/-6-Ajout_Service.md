@@ -20,26 +20,14 @@ Les CA Root et Intermédiaires sont en place, les scripts sont déployés sur Va
 
 ## 1️⃣ Prérequis sur la machine cible
 
--1.1. Vérifier que `reload_ssl.sh` est bien en place sur la machine
-```
-ls -la /usr/local/bin/reload_ssl.sh
-```
-Si absent, le déployer (voir script `reload_ssl_<machine>.sh`) et configurer le sudoers :
-```
-sudo visudo
-```
-Ajouter **uniquement** :
-```
-sednal ALL=(ALL) NOPASSWD: /usr/local/bin/reload_ssl.sh
-```
 
--1.2. Si le service tourne sous un utilisateur tiers, ajouter `sednal` au groupe concerné
+-1.1. Si le service tourne sous un utilisateur tiers, ajouter `sednal` au groupe concerné
 ```
 sudo usermod -aG <groupe> sednal
 ```
 ⚠️ Se déconnecter / reconnecter pour que le groupe soit pris en compte.
 
--1.3. Vérifier que Vault peut atteindre la machine en SSH sans mot de passe
+-1.2. Vérifier que Vault peut atteindre la machine en SSH sans mot de passe
 ```
 # Depuis Vault
 ssh <user>@<hostname>
