@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# ============================================================
+# ===============================================================
+# ========== SCRIPT DE DEMANDE INITIALE DE CERTIFICATS SSL =======
+# ===============================================================
 # Services RSA + ECDSA
 services_dual=(proxmox cockpit infra)
 # Services RSA uniquement
@@ -25,25 +27,36 @@ path() {
     fi
 }
 
-# CA chain générée une seule fois
+# === CA chain générée une seule fois ===
+echo "Génération ca_chain RSA..."
 vault write -field=ca_chain PKI_Sednal_Inter_RSA/issue/Cert_Inter_RSA \
     common_name="ca-chain.sednal.lan" | sudo tee "$base_pki/Cert_CA/Root/ca_chain_rsa.crt" > /dev/null
+sudo chown vault:vault "$base_pki/Cert_CA/Root/ca_chain_rsa.crt"
 
+echo "Génération ca_chain ECDSA..."
 vault write -field=ca_chain PKI_Sednal_Inter_ECDSA/issue/Cert_Inter_ECDSA \
     common_name="ca-chain.sednal.lan" | sudo tee "$base_pki/Cert_CA/Root/ca_chain_ecdsa.crt" > /dev/null
+sudo chown vault:vault "$base_pki/Cert_CA/Root/ca_chain_ecdsa.crt"
 
 # === RSA + ECDSA ===
 for service in "${services_dual[@]}"; do
     cert="${service}${domain}"
     folder=$(path "$service")
 
+    echo "Demande RSA : $cert → $folder"
     result=$(vault write -format=json PKI_Sednal_Inter_RSA/issue/Cert_Inter_RSA common_name="$cert")
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/Rsa/${service}_rsa.crt" > /dev/null
     echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Rsa/${service}_rsa.key" > /dev/null
+    sudo chown vault:vault "$base_pki/public/$folder/Rsa/${service}_rsa.crt"
+    sudo chown vault:vault "$base_pki/private/$folder/Rsa/${service}_rsa.key"
 
+    echo "Demande ECDSA : $cert → $folder"
     result=$(vault write -format=json PKI_Sednal_Inter_ECDSA/issue/Cert_Inter_ECDSA common_name="$cert")
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/Ecdsa/${service}_ecdsa.crt" > /dev/null
     echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Ecdsa/${service}_ecdsa.key" > /dev/null
+    sudo chown vault:vault "$base_pki/public/$folder/Ecdsa/${service}_ecdsa.crt"
+    sudo chown vault:vault "$base_pki/private/$folder/Ecdsa/${service}_ecdsa.key"
+
 done
 
 # === RSA UNIQUEMENT ===
@@ -51,18 +64,18 @@ for service in "${services_rsa[@]}"; do
     cert="${service}${domain}"
     folder=$(path "$service")
 
+    echo "Demande RSA : $cert → $folder"
     result=$(vault write -format=json PKI_Sednal_Inter_RSA/issue/Cert_Inter_RSA common_name="$cert")
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/Rsa/${service}_rsa.crt" > /dev/null
     echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/Rsa/${service}_rsa.key" > /dev/null
+    sudo chown vault:vault "$base_pki/public/$folder/Rsa/${service}_rsa.crt"
+    sudo chown vault:vault "$base_pki/private/$folder/Rsa/${service}_rsa.key"
+
 done
 
-# Réappliquer les droits sur Vault
-find "$base_pki/private" -type f -name "*.key" -exec chmod 600 {} \;
-find "$base_pki/public"  -type f -name "*.crt" -exec chmod 644 {} \;
-chown -R vault:vault "$base_pki"
 
 # ===== INFRA =====
-cible="sednal@192.168.0.239"
+cible="sednal@infra.sednal.lan"
 base_infra="/etc/infra"
 base_ca="$base_pki/Cert_CA/Root"
 
@@ -86,11 +99,11 @@ ssh "$cible" "sudo cp $base_infra/CA/Sednal_Root_All.crt /usr/local/share/ca-cer
 ssh "$cible" "sudo update-ca-certificates --fresh"
 
 # ===== BAREOS =====
-cible="sednal@192.168.0.240"
+cible="sednal@bareos.sednal.lan"
 base_bareos="/etc/bareos/ssl"
 base_ca="$base_pki/Cert_CA/Root"
 
-ssh "$cible" "mkdir -p $base_bareos/{CA,Keys/{dir,sd/{local,remote},fd,web,post,client/{win,lin}},Cert/{dir,sd/{local,remote},fd,web,post,client/{win,lin}}}"
+ssh "$cible" "mkdir -p $base_bareos/{CA,Keys/{dir,sd/{local,remote},fd,web,post,client/{win,lin}},Cert/{dir,sd/{local,remote},fd,web,post,client/{win,lin}},web}"
 
 # CA
 rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
@@ -165,7 +178,7 @@ ssh "$cible" "sudo cp $base_bareos/CA/Sednal_Root_All.crt /usr/local/share/ca-ce
 ssh "$cible" "sudo update-ca-certificates --fresh"
 
 # ===== PI =====
-cible="sednal@192.168.0.241"
+cible="sednal@pihole.sednal.lan"
 base_pi="/etc/ssl"
 base_ca="$base_pki/Cert_CA/Root"
 
@@ -207,7 +220,7 @@ ssh "$cible" "sudo cp $base_pi/CA/Sednal_Root_All.crt /usr/local/share/ca-certif
 ssh "$cible" "sudo update-ca-certificates --fresh"
 
 # ===== PROXMOX =====
-cible="root@192.168.0.242"
+cible="root@proxmox.sednal.lan"
 base_proxmox="/etc/ssl/proxmox"
 base_ca="$base_pki/Cert_CA/Root"
 
@@ -228,8 +241,10 @@ rsync -e ssh --no-p --chmod=F644 --chown=root:root \
     "$base_pki/public/Proxmox/Ecdsa/proxmox_ecdsa.crt" \
     "$cible":"$base_proxmox"/Cert/
 
-ssh "$cible" "sudo cp $base_proxmox/CA/Sednal_Root_All.crt /usr/local/share/ca-certificates/"
-ssh "$cible" "sudo update-ca-certificates --fresh"
+ssh "$cible" "cp $base_proxmox/Cert/proxmox_rsa.crt /etc/pve/local/pve-ssl.pem"
+ssh "$cible" "cp $base_proxmox/Keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key"
+ssh "$cible" "cp $base_proxmox/CA/Sednal_Root_All.crt /usr/local/share/ca-certificates/"
+ssh "$cible" "update-ca-certificates --fresh"
 
 # ===== VPS =====
 cible="debian@176.31.163.227"
@@ -251,3 +266,5 @@ rsync -e ssh --no-p --chmod=F644 --chown=debian:debian \
 
 ssh "$cible" "sudo cp $base_vps/CA/Sednal_Root_All.crt /usr/local/share/ca-certificates/"
 ssh "$cible" "sudo update-ca-certificates --fresh"
+
+echo -e "\nDemande et déploiement initiaux OK ✅"
