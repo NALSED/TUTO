@@ -50,48 +50,76 @@ sudo chown sednal:sednal /var/www/pki
 sudo chmod 755 /var/www/pki
 ```
 
--1.3. Sur le serveur web, avec apache2 créer le fichier de endpoint.
+-1.3. Sur le serveur web, avec nginx créer le fichier de endpoint.
 - Ici ils couvriront les CRL émises par Vault pour les CA (Root / Intermédiaire) Rsa et Ecdsa.
 ```
-nano /etc/apache2/sites-available/pki-crl.conf
+sudo nano /etc/nginx/sites-available/infra.sednal.lan.conf
 ```
 
 `=>` - Éditer
 ```
-<VirtualHost *:80>
-    ServerName infra.sednal.lan
+# ===== HTTP — CRL =====
+server {
+    listen 80;
+    server_name infra.sednal.lan;
 
-    AddType application/pkix-crl .crl
+    types {
+        application/pkix-crl crl;
+    }
 
-    # === RSA ===
-    Alias /crl/root_r /var/www/pki/root_r.crl
-    Alias /crl/intermediate_r /var/www/pki/intermediate_r.crl
+    location /crl/ {
+        alias /var/www/pki/;
+        autoindex off;
 
-    # === ECDSA ===
-    Alias /crl/root_e /var/www/pki/root_e.crl
-    Alias /crl/intermediate_e /var/www/pki/intermediate_e.crl
+        location /crl/root_r         { alias /var/www/pki/root_r.crl; }
+        location /crl/intermediate_r { alias /var/www/pki/intermediate_r.crl; }
+        location /crl/root_e         { alias /var/www/pki/root_e.crl; }
+        location /crl/intermediate_e { alias /var/www/pki/intermediate_e.crl; }
+    }
+}
 
-    <Directory /var/www/pki>
-        Options -Indexes
-        Require all granted
-    </Directory>
+# ===== HTTPS =====
+server {
+    listen 443 ssl;
+    server_name infra.sednal.lan;
 
-</VirtualHost>
+    # RSA
+    ssl_certificate     /etc/infra/Cert/infra_rsa_full.crt;
+    ssl_certificate_key /etc/infra/Keys/infra_rsa.key;
+
+    # ECDSA
+    ssl_certificate     /etc/infra/Cert/infra_ecdsa_full.crt;
+    ssl_certificate_key /etc/infra/Keys/infra_ecdsa.key;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+
+    root /var/www/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
 ```
 
--1.4. Créer un lien symbolique depuis sites-available vers sites-enabled
+-1.4. Activer le site et désactiver le défaut :
 ```
-sudo a2ensite pki-crl.conf
+sudo ln -s /etc/nginx/sites-available/infra.sednal.lan.conf /etc/nginx/sites-enabled/
+
 ```
 
--1.5. Désactiver la page par défaut
 ```
-sudo a2dissite 000-default.conf
+sudo rm -f /etc/nginx/sites-enabled/default
 ```
 
--1.6. Redémarrer le service Apache2
 ```
-sudo systemctl reload apache2
+sudo nginx -t
+```
+
+-1.6. Redémarrer le service nginx
+```
+sudo systemctl restart nginx
 ```
 
 ⚠️ `[TEST]` ⚠️
