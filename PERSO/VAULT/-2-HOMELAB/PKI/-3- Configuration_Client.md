@@ -32,13 +32,23 @@
 [SOURCE](https://www.it-connect.fr/configurer-le-ssl-avec-apache-2%EF%BB%BF/)
 
 ### 1️⃣ Intégration des chemins des certificats
+-1.1. Concaténer ca_chain_rsa et ca_chain_ecdsa avec les certificat leaf
+```
+etc/infra/Cert/infra_rsa.crt /etc/infra/CA/ca_chain_rsa.crt > /etc/infra/Cert/infra_rsa_full.crt
+```
 
--1.1. Modifier les chemins des certificats dans le fichier de configuration
+```
+/etc/infra/Cert/infra_ecdsa.crt /etc/infra/CA/ca_chain_ecdsa.crt > /etc/infra/Cert/infra_ecdsa_full.crt
+```
+
+
+
+-1.2. Modifier les chemins des certificats dans le fichier de configuration
 ```
 sudo nano /etc/apache2/sites-available/default-ssl.conf
 ```
 
--1.2. Remplacer les lignes :
+-1.3. Remplacer les lignes :
 ```
 SSLCertificateFile      /etc/ssl/certs/ssl-cert-snakeoil.pem
 SSLCertificateKeyFile   /etc/ssl/private/ssl-cert-snakeoil.key
@@ -46,10 +56,10 @@ SSLCertificateKeyFile   /etc/ssl/private/ssl-cert-snakeoil.key
 Par :
 ```
 # === RSA ===
-SSLCertificateFile      /etc/infra/Cert/infra_rsa.crt
+SSLCertificateFile      /etc/infra/Cert/infra_rsa_full.crt
 SSLCertificateKeyFile   /etc/infra/Keys/infra_rsa.key
 # === ECDSA ===
-SSLCertificateFile      /etc/infra/Cert/infra_ecdsa.crt
+SSLCertificateFile      /etc/infra/Cert/infra_ecdsa_full.crt
 SSLCertificateKeyFile   /etc/infra/Keys/infra_ecdsa.key
 ```
 
