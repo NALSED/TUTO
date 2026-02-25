@@ -78,12 +78,6 @@ vault policy write sednal-pki /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
 
 ## 2️⃣ **Configuration PKI** 
 
--Les certificats Root seront **cross-signés** entre RSA et ECDSA, 
-offrant une compatibilité maximale avec tous les services.
-
--RSA est généré en premier — un service ne supportant pas ECDSA 
-peut se rabattre sur RSA, mais l'inverse est impossible. 
--Le cross-signing crée un pont entre les deux chaînes de confiance.
 
 -Pour plus de clarté, toute la génération suivra systématiquement 
 cet ordre :
@@ -208,73 +202,10 @@ vault write PKI_Sednal_Root_ECDSA/config/crl \
 - enable_delta : Active les CRL delta (incrementales) pour optimiser les performances
 
 
----
-
-### `-2.` Cross siging
-
-`-2.1.` Récupérer la clé de Root_ECDSA
-```
-_e1_default_issuer=$(vault read -field=default PKI_Sednal_Root_ECDSA/config/issuers)
-_key_id=$(vault read PKI_Sednal_Root_ECDSA/issuer/$_e1_default_issuer | grep -i key_id | awk '{print $2}')
-```
-
-`-2.2.`Générer le CSR de cross-sign
-```
-vault write -format=json PKI_Sednal_Root_ECDSA/intermediate/cross-sign \
-    common_name="Sednal_Root_XS_1" \
-    key_ref=$_key_id \
-| jq -r '.data.csr' \
-| sudo  tee  /etc/Vault/PKI/Cert_CA/CSR/cross_e1.csr > /dev/null
-```
-
-```
-sudo chown vault:vault /etc/Vault/PKI/Cert_CA/CSR/cross_e1.csr
-```
-
-
-`-2.3.` Root_RSA signe le CSR
-```
-vault write -format=json PKI_Sednal_Root_RSA/root/sign-intermediate \
-    use_csr_values=true \
-    csr=@/etc/Vault/PKI/Cert_CA/CSR/cross_e1.csr \
-    ttl=1826d \
-    exclude_cn_from_sans=true \
-| jq -r '.data.certificate' \
-| sudo tee /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_XS-1.crt > /dev/null
-```
-
-```
-sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_XS-1.crt
-```
-
-
-`-2.4.` Importer le cert croisé dans Root
-```
-vault write PKI_Sednal_Root_ECDSA/intermediate/set-signed \
-    certificate=@/etc/Vault/PKI/Cert_CA/Root/Sednal_Root_XS-1.crt
-```
-
-- Sortie 
-
-<img width="911" height="173" alt="image" src="https://github.com/user-attachments/assets/d7095892-939b-4599-964c-49570f973229" />
-
-
-`-2.5.` Concaténation (Pour permettre au client de reconstituer le chaine de confiance)
-```
-path=/etc/Vault/PKI/Cert_CA/Root
-```
-
-```
-sudo cat "$path"/Sednal_Root_XS-1.crt "$path"/Sednal_Root_R-1.crt "$path"/Sednal_Root_E-1.crt | sudo tee "$path/Sednal_Root_All.crt" > /dev/null```
-```
-
-```
-sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_All.crt
-```
 
 ----
 
-### `-3.` Certificats Intermédiaire
+### `-2.` Certificats Intermédiaire
 
 `[NOTE]` 
 
