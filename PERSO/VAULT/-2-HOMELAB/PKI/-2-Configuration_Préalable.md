@@ -71,10 +71,8 @@ server {
         alias /var/www/pki/;
         autoindex off;
 
-        location /crl/root_r         { alias /var/www/pki/root_r.crl; }
-        location /crl/intermediate_r { alias /var/www/pki/intermediate_r.crl; }
-        location /crl/root_e         { alias /var/www/pki/root_e.crl; }
-        location /crl/intermediate_e { alias /var/www/pki/intermediate_e.crl; }
+        location /crl/root        { alias /var/www/pki/root_r.crl; }
+        location /crl/intermediate { alias /var/www/pki/intermediate_r.crl; }
     }
 }
 
@@ -84,7 +82,7 @@ server {
     server_name infra.sednal.lan;
 
     # RSA
-    ssl_certificate     /etc/infra/Cert/infra_rsa_full.crt;
+    ssl_certificate     /etc/infra/Cert/infra.crt;
     ssl_certificate_key /etc/infra/Keys/infra_rsa.key;
 
     # ECDSA
