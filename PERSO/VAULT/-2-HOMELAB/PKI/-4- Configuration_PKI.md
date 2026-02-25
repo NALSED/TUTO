@@ -136,9 +136,9 @@ vault write PKI_Sednal_Root_RSA/config/urls \
 
 - crl_distribution_points : indique le endpoint du CRL dans le certificat.
 
-- `Sortie`
+cat
 
-<img width="780" height="212" alt="image" src="https://github.com/user-attachments/assets/d3a644da-ea79-46a2-ae81-31688eefadff" />
+
 
 
 ```
@@ -151,9 +151,7 @@ vault write PKI_Sednal_Root_RSA/config/crl \
 
 - enable_delta : Active les CRL delta (incrementales) pour optimiser les performances
 
-- `Sortie`
 
-<img width="637" height="327" alt="image" src="https://github.com/user-attachments/assets/867f5ccb-10d2-4f3b-9f3c-5a9b35ef19e2" />
 
 
 **=== ECDSA ===**
@@ -197,9 +195,6 @@ sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_E-1.crt
 
 - crl_distribution_points : indique le endpoint du CRL dans le certificat.
 
-- `Sortie`
-
-<img width="799" height="185" alt="image" src="https://github.com/user-attachments/assets/35a40971-2a67-478f-9643-2a12e6792bae" />
 
 
 ```
@@ -212,9 +207,6 @@ vault write PKI_Sednal_Root_ECDSA/config/crl \
 
 - enable_delta : Active les CRL delta (incrementales) pour optimiser les performances
 
-- `Sortie`
-
-<img width="655" height="321" alt="image" src="https://github.com/user-attachments/assets/169c2eb1-c85c-4c0c-97f7-cc32c0396d63" />
 
 ---
 
