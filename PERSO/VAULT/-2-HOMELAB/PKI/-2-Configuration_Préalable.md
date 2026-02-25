@@ -126,40 +126,21 @@ sudo systemctl restart nginx
 
 -Pour vérifier que tout est Ok, création d'un fichier `test_rsa` et `test_ecdsa` et utilisation de curl.
 
-=== RSA ===
-```
-nano /var/www/pki/root_r.crl
-```
-
-- Editer
-```
-test_RSA
-```
-
-=== ECDSA ===
-```
-nano /var/www/pki/root_e.crl
-```
-
-- Editer
-```
-test_ECDSA
-```
-
 - curl rsa
 ```
 curl http://infra.sednal.lan/crl/root_r
 ```
+
+<img width="639" height="304" alt="image" src="https://github.com/user-attachments/assets/67ff974b-6017-4628-92f6-228d5227075b" />
+
 
 - curl ecdsa
 ```
 curl http://infra.sednal.lan/crl/root_e
 ```
 
-- Pour finir
-```
-sudo rm /var/www/pki/root_e.crl && sudo rm /var/www/pki/root_r.crl
-```
+<img width="639" height="190" alt="image" src="https://github.com/user-attachments/assets/64b430b9-6e35-4df4-921d-6f461fd7c327" />
+
 
 ---
 
