@@ -282,7 +282,7 @@ sudo usermod -aG bareos postgres
 sudo nano /etc/pihole/pihole.toml
 ```
 
--1.2. Ajouter les lignes dans la section `[webserver]`
+-1.2. Ajouter les lignes dans la section `[webserver] => [webserver.tls]`
 ```
 cert = "/etc/pihole/ssl/cert/cert_key_tls.pem"
 ```
