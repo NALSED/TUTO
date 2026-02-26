@@ -106,43 +106,10 @@ sudo /usr/local/bin/ajout_service.sh
 
 Le script génère les certificats, déploie clés + certificats + CA sur la cible.
 
----
-
-## 5️⃣ Configurer le service pour utiliser SSL
-
-Adapter selon le service. Exemple générique RSA :
-```
-ssl_cert = "/etc/<service>/ssl/cert/<service>_rsa.crt"
-ssl_key  = "/etc/<service>/ssl/keys/<service>_rsa.key"
-ssl_ca   = "/etc/<service>/ssl/ca/Sednal_Root_All.crt"
-```
-
-=== Si RSA + ECDSA (ex: Apache2) ===
-```
-# RSA
-SSLCertificateFile    /etc/<service>/ssl/cert/<service>_rsa.crt
-SSLCertificateKeyFile /etc/<service>/ssl/keys/<service>_rsa.key
-# ECDSA
-SSLCertificateFile    /etc/<service>/ssl/cert/<service>_ecdsa.crt
-SSLCertificateKeyFile /etc/<service>/ssl/keys/<service>_ecdsa.key
-```
-
-=== Si PEM combiné requis (ex: Cockpit, Bareos WebUI) ===
-```
-cat /etc/<service>/ssl/cert/<service>_rsa.crt \
-    /etc/<service>/ssl/keys/<service>_rsa.key \
-    > /etc/<service>/ssl/<service>.pem
-chmod 640 /etc/<service>/ssl/<service>.pem
-```
-
-Redémarrer le service manuellement :
-```
-sudo systemctl restart <service>
-```
 
 ---
 
-## 6️⃣ Intégrer le service dans `renew_cert.sh`
+## 5️⃣ Intégrer le service dans `renew_cert.sh`
 
 ⚠️ Étape obligatoire — sans ça le certificat ne sera pas renouvelé dans 80 jours.
 
