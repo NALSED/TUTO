@@ -43,7 +43,7 @@ ssh-copy-id <user>@<hostname>
 
 -2.1. Créer l'arborescence
 ```
-sudo mkdir -p /etc/<service>/ssl/{CA,Cert,Keys}
+sudo mkdir -p /etc/<service>/ssl/{ca,cert,keys}
 ```
 
 -2.2. Appliquer les droits selon le cas :
@@ -51,14 +51,14 @@ sudo mkdir -p /etc/<service>/ssl/{CA,Cert,Keys}
 === Propriétaire `sednal` ===
 ```
 sudo chown root:root /etc/<service>/ssl
-sudo chown sednal:sednal /etc/<service>/ssl/{CA,Cert,Keys}
-sudo chmod 755 /etc/<service>/ssl/{CA,Cert,Keys}
+sudo chown sednal:sednal /etc/<service>/ssl/{ca,cert,keys}
+sudo chmod 755 /etc/<service>/ssl/{ca,cert,keys}
 ```
 
 === Service avec groupe dédié (ex: bareos) ===
 ```
 sudo chown <user>:<groupe> /etc/<service>/ssl
-sudo chmod 2775 /etc/<service>/ssl/{CA,Cert,Keys}
+sudo chmod 2775 /etc/<service>/ssl/{ca,cert,keys}
 ```
 
 ---
@@ -67,21 +67,15 @@ sudo chmod 2775 /etc/<service>/ssl/{CA,Cert,Keys}
 
 Sur **Vault (192.168.0.238)** :
 
-=== RSA + ECDSA ===
 ```
-sudo mkdir -p /etc/Vault/PKI/{private,public}/<Folder>/{Rsa,Ecdsa}
-```
-
-=== RSA uniquement ===
-```
-sudo mkdir -p /etc/Vault/PKI/{private,public}/<Folder>/Rsa
+sudo mkdir -p /etc/vault/pki/{private,public}/<service>/{rsa,ecdsa}
 ```
 
 Appliquer les droits :
 ```
-sudo chown -R vault:vault /etc/Vault/PKI/{private,public}/<Folder>
-sudo chmod 700 /etc/Vault/PKI/private/<Folder>/{Rsa,Ecdsa}
-sudo chmod 755 /etc/Vault/PKI/public/<Folder>/{Rsa,Ecdsa}
+sudo chown -R vault:vault /etc/vault/pki/{private,public}/<service>
+sudo chmod 700 /etc/vault/pki/private/<service>/{rsa,ecdsa}
+sudo chmod 755 /etc/vault/pki/public/<service>/{rsa,ecdsa}
 ```
 
 ---
@@ -98,8 +92,8 @@ Remplir les variables :
 | Variable | Description | Exemple |
 |---|---|---|
 | `service` | Nom du service | `monservice` |
-| `algo` | `rsa` ou `dual` (RSA+ECDSA) | `dual` |
-| `folder` | Dossier Vault dans `/etc/Vault/PKI/` | `MonService` |
+| `algo` | `rsa` \| `ecdsa` \| `dual` (RSA+ECDSA) | `dual` |
+| `folder` | Dossier Vault dans `/etc/vault/pki/` | `monservice` |
 | `cible` | SSH cible depuis Vault | `sednal@monservice.sednal.lan` |
 | `base_dest` | Chemin SSL sur la machine cible | `/etc/monservice/ssl` |
 | `owner` | Propriétaire fichiers sur la cible | `sednal:sednal` |
@@ -110,33 +104,33 @@ Remplir les variables :
 sudo /usr/local/bin/ajout_service.sh
 ```
 
-Le script génère les certificats, déploie clés + certificats sur la cible puis appelle `reload_ssl.sh` pour mettre à jour la CA système.
+Le script génère les certificats, déploie clés + certificats + CA sur la cible.
 
 ---
 
 ## 5️⃣ Configurer le service pour utiliser SSL
 
-Adapter selon le service. Exemple générique :
+Adapter selon le service. Exemple générique RSA :
 ```
-ssl_cert = "/etc/<service>/ssl/Cert/<service>_rsa.crt"
-ssl_key  = "/etc/<service>/ssl/Keys/<service>_rsa.key"
-ssl_ca   = "/etc/<service>/ssl/CA/Sednal_Root_All.crt"
+ssl_cert = "/etc/<service>/ssl/cert/<service>_rsa.crt"
+ssl_key  = "/etc/<service>/ssl/keys/<service>_rsa.key"
+ssl_ca   = "/etc/<service>/ssl/ca/Sednal_Root_All.crt"
 ```
 
-=== Si dual RSA + ECDSA (ex: Apache2) ===
+=== Si RSA + ECDSA (ex: Apache2) ===
 ```
 # RSA
-SSLCertificateFile    /etc/<service>/ssl/Cert/<service>_rsa.crt
-SSLCertificateKeyFile /etc/<service>/ssl/Keys/<service>_rsa.key
+SSLCertificateFile    /etc/<service>/ssl/cert/<service>_rsa.crt
+SSLCertificateKeyFile /etc/<service>/ssl/keys/<service>_rsa.key
 # ECDSA
-SSLCertificateFile    /etc/<service>/ssl/Cert/<service>_ecdsa.crt
-SSLCertificateKeyFile /etc/<service>/ssl/Keys/<service>_ecdsa.key
+SSLCertificateFile    /etc/<service>/ssl/cert/<service>_ecdsa.crt
+SSLCertificateKeyFile /etc/<service>/ssl/keys/<service>_ecdsa.key
 ```
 
 === Si PEM combiné requis (ex: Cockpit, Bareos WebUI) ===
 ```
-cat /etc/<service>/ssl/Cert/<service>_rsa.crt \
-    /etc/<service>/ssl/Keys/<service>_rsa.key \
+cat /etc/<service>/ssl/cert/<service>_rsa.crt \
+    /etc/<service>/ssl/keys/<service>_rsa.key \
     > /etc/<service>/ssl/<service>.pem
 chmod 640 /etc/<service>/ssl/<service>.pem
 ```
@@ -157,24 +151,30 @@ sudo systemctl restart <service>
 sudo nano /etc/Vault_Script/Script_Renouvelement/renew_cert.sh
 ```
 
--6.2. Ajouter le service dans la liste en tête de script
-
-=== RSA + ECDSA ===
-```bash
-services_dual=(proxmox cockpit infra ... <service>)
-```
+-6.2. Ajouter le service dans les listes en tête de script selon le type souhaité
 
 === RSA uniquement ===
 ```bash
-services_rsa=(bareos-dir ... <service>)
+services_rsa=(... <service>)
 ```
 
--6.3. Ajouter la fonction `path()` si le dossier Vault diffère du nom de service
+=== ECDSA uniquement ===
+```bash
+services_ecdsa=(... <service>)
+```
+
+=== RSA + ECDSA ===
+```bash
+services_rsa=(... <service>)
+services_ecdsa=(... <service>)
+```
+
+-6.3. Si le dossier Vault du service ne correspond pas au nom du service, mettre à jour la fonction `path()`
 ```bash
 path() {
     ...
-    elif [[ "$1" == "<service>" ]]; then echo "<Folder>"
-    fi
+    elif [[ "$1" == "<service>" ]]; then echo "<folder>"
+    ...
 }
 ```
 
@@ -184,22 +184,22 @@ path() {
 cible="<user>@<hostname>"
 base_service="/etc/<service>/ssl"
 
-ssh "$cible" "rm -f $base_service/Keys/* $base_service/Cert/*"
+ssh "$cible" "rm -f $base_service/keys/* $base_service/cert/*"
 
 rsync -e ssh --no-p --chmod=F600 --chown=<owner> \
-    "$base_pki/private/<Folder>/Rsa/<service>_rsa.key" \
-    "$cible":"$base_service"/Keys/
+    "$base_pki/private/<folder>/rsa/<service>_rsa.key" \
+    "$cible":"$base_service/keys/"
 rsync -e ssh --no-p --chmod=F644 --chown=<owner> \
-    "$base_pki/public/<Folder>/Rsa/<service>_rsa.crt" \
-    "$cible":"$base_service"/Cert/
+    "$base_pki/public/<folder>/rsa/<service>_rsa.crt" \
+    "$cible":"$base_service/cert/"
 
-# Si dual RSA + ECDSA — ajouter
+# Si ECDSA aussi — ajouter
 rsync -e ssh --no-p --chmod=F600 --chown=<owner> \
-    "$base_pki/private/<Folder>/Ecdsa/<service>_ecdsa.key" \
-    "$cible":"$base_service"/Keys/
+    "$base_pki/private/<folder>/ecdsa/<service>_ecdsa.key" \
+    "$cible":"$base_service/keys/"
 rsync -e ssh --no-p --chmod=F644 --chown=<owner> \
-    "$base_pki/public/<Folder>/Ecdsa/<service>_ecdsa.crt" \
-    "$cible":"$base_service"/Cert/
+    "$base_pki/public/<folder>/ecdsa/<service>_ecdsa.crt" \
+    "$cible":"$base_service/cert/"
 ```
 
 -6.5. Ne pas oublier de redémarrer le service manuellement après le prochain renouvellement
@@ -212,13 +212,13 @@ sudo systemctl restart <service>
 
 ```
 # Vérifier le certificat
-openssl x509 -in /etc/<service>/ssl/Cert/<service>_rsa.crt -noout -text \
+openssl x509 -in /etc/<service>/ssl/cert/<service>_rsa.crt -noout -text \
     | grep -E "Subject|Issuer|Not After"
 
 # Vérifier la chaîne de confiance
 openssl verify \
-    -CAfile /etc/<service>/ssl/CA/Sednal_Root_All.crt \
-    /etc/<service>/ssl/Cert/<service>_rsa.crt
+    -CAfile /etc/<service>/ssl/ca/Sednal_Root_All.crt \
+    /etc/<service>/ssl/cert/<service>_rsa.crt
 
 # Vérifier le service
 sudo systemctl status <service>
