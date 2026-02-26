@@ -239,7 +239,7 @@ rm /etc/bareos/ssl/ca/test /etc/bareos/ssl/cert/test /etc/bareos/ssl/keys/test
 `=== DNS ===` 
 PIHOLE
 ```
-rm/etc/pihole/ssl/ca/test /etc/pihole/ssl/cert/test /etc/pihole/ssl/keys/test etc/upsnap/ssl/ca/test /etc/upsnap/ssl/cert/test /etc/upsnap/ssl/keys/test /etc/cockpit/ssl/ca/test /etc/cockpit/ssl/cert/test /etc/cockpit/ssl/keys
+rm /etc/pihole/ssl/ca/test /etc/pihole/ssl/cert/test /etc/pihole/ssl/keys/test etc/upsnap/ssl/ca/test /etc/upsnap/ssl/cert/test /etc/upsnap/ssl/keys/test /etc/cockpit/ssl/ca/test /etc/cockpit/ssl/cert/test /etc/cockpit/ssl/keys/test
 ```
 
 `=== PROMOX ===` 
