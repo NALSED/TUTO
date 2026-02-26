@@ -21,12 +21,12 @@
 
 `-1.1` Créer les policy Relative à la PKI
 ```
-sudo nano /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
+sudo nano /etc/vault/pki/config/policy/Policy_PKI.hcl
 ```
 
 - DROITS
 ```
-chown vault:vault /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
+chown vault:vault /etc/vault/pki/config/policy/Policy_PKI.hcl
 ```
 
 `=>` - Editer
@@ -44,8 +44,6 @@ path "sys/mounts" {
 }
 
 # Accès complet au moteur PKI Root RSA
-# Couvre toutes les opérations : génération, signature, révocation, config...
-# sudo requis pour certaines opérations sensibles comme config/urls
 path "PKI_Sednal_Root_RSA*" {
   capabilities = [ "create", "read", "update", "delete", "list", "sudo", "patch" ]
 }
@@ -56,7 +54,6 @@ path "PKI_Sednal_Root_ECDSA*" {
 }
 
 # Accès complet au moteur PKI Intermediate RSA
-# Couvre : émission certs leaf, gestion rôles, import CSR signé...
 path "PKI_Sednal_Inter_RSA*" {
   capabilities = [ "create", "read", "update", "delete", "list", "sudo", "patch" ]
 }
@@ -71,16 +68,16 @@ path "PKI_Sednal_Inter_ECDSA*" {
 
 `-1.2` Editer dans Vault
 ```
-vault policy write sednal-pki /etc/Vault/PKI/Config/Policy/Policy_PKI.hcl
+vault policy write sednal-pki /etc/vault/pki/config/policy/Policy_PKI.hcl
 ```
 
 ---
 
 ## 2️⃣ **Configuration PKI** 
 
-
--Pour plus de clarté, toute la génération suivra systématiquement 
-cet ordre :
+- Deux chaînes de confiance indépendantes : RSA et ECDSA.
+- Les certificats Root et Intermédiaires sont générés séparément, sans cross-signing.
+- Pour plus de clarté, toute la génération suivra systématiquement cet ordre :
 
    -1. `=== RSA ===`
    
@@ -108,11 +105,11 @@ vault write -field=certificate PKI_Sednal_Root_RSA/root/generate/internal \
   ttl=9132d \
   key_type=rsa key_bits=4096 \
   exclude_cn_from_sans=true \
-| sudo tee /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_R-1.crt > /dev/null
+| sudo tee /etc/vault/pki/cert_ca/root/Sednal_Root_R-1.crt > /dev/null
 ```
 
 ```
-sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_R-1.crt
+sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal_Root_R-1.crt
 ```
 
 
@@ -123,16 +120,16 @@ sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_R-1.crt
 ```
 vault write PKI_Sednal_Root_RSA/config/urls \
     issuing_certificates="https://vault.sednal.lan/v1/PKI_Sednal_Root_RSA/ca" \
-    crl_distribution_points="http://infra.sednal.lan/crl/root_r"
+    crl_distribution_points="http://pihole.sednal.lan/crl/root_r"
 ```    
 
 - issuing_certificates : URL encodée dans le certificat qui permettre aux clients de télécharger le certificat de la CA et reconstituer la chaîne de confiance.
 
 - crl_distribution_points : indique le endpoint du CRL dans le certificat.
 
-cat
+- `Sortie`
 
-
+<img width="780" height="212" alt="image" src="https://github.com/user-attachments/assets/d3a644da-ea79-46a2-ae81-31688eefadff" />
 
 
 ```
@@ -145,7 +142,9 @@ vault write PKI_Sednal_Root_RSA/config/crl \
 
 - enable_delta : Active les CRL delta (incrementales) pour optimiser les performances
 
+- `Sortie`
 
+<img width="637" height="327" alt="image" src="https://github.com/user-attachments/assets/867f5ccb-10d2-4f3b-9f3c-5a9b35ef19e2" />
 
 
 **=== ECDSA ===**
@@ -167,12 +166,11 @@ vault write -field=certificate PKI_Sednal_Root_ECDSA/root/generate/internal \
      ttl=9132d \
      key_type=ec key_bits=384 \
      exclude_cn_from_sans=true \
-| sudo tee /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_E-1.crt > /dev/null
-
-```
-sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_E-1.crt
+| sudo tee /etc/vault/pki/cert_ca/root/Sednal_Root_E-1.crt > /dev/null
 ```
 
+```
+sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal_Root_E-1.crt
 ```
 
 - nom : `Sednal_Root_E-1`
@@ -182,13 +180,16 @@ sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Root/Sednal_Root_E-1.crt
 ```
  vault write PKI_Sednal_Root_ECDSA/config/urls \
      issuing_certificates="https://vault.sednal.lan/v1/PKI_Sednal_Root_ECDSA/ca" \
-     crl_distribution_points="http://infra410.sednal.lan/crl/root_e"
+     crl_distribution_points="http://pihole.sednal.lan/crl/root_e"
 ```    
 
 - issuing_certificates : URL encodée dans le certificat qui permettre aux clients de télécharger le certificat de la CA et reconstituer la chaîne de confiance.
 
 - crl_distribution_points : indique le endpoint du CRL dans le certificat.
 
+- `Sortie`
+
+<img width="799" height="185" alt="image" src="https://github.com/user-attachments/assets/35a40971-2a67-478f-9643-2a12e6792bae" />
 
 
 ```
@@ -201,11 +202,32 @@ vault write PKI_Sednal_Root_ECDSA/config/crl \
 
 - enable_delta : Active les CRL delta (incrementales) pour optimiser les performances
 
+- `Sortie`
 
+<img width="655" height="321" alt="image" src="https://github.com/user-attachments/assets/169c2eb1-c85c-4c0c-97f7-cc32c0396d63" />
 
-----
+---
 
-### `-2.` Certificats Intermédiaire
+### `-2.` Concaténation Root CA (bundle distribué aux clients)
+
+`-2.1.` Concaténer les deux CA Root dans un fichier unique
+
+```
+path=/etc/vault/pki/cert_ca/root
+```
+
+```
+sudo cat "$path/Sednal_Root_R-1.crt" "$path/Sednal_Root_E-1.crt" \
+    | sudo tee "$path/Sednal_Root_All.crt" > /dev/null
+```
+
+```
+sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal_Root_All.crt
+```
+
+---
+
+### `-3.` Certificats Intermédiaire
 
 `[NOTE]` 
 
@@ -233,11 +255,11 @@ vault write -format=json PKI_Sednal_Inter_RSA/intermediate/generate/internal \
      common_name="sednal.lan Intermediate Authority" \
      issuer_name="Sednal_Inter_R-1" \
 | jq -r '.data.csr' \
-| sudo tee /etc/Vault/PKI/Cert_CA/CSR/Sednal_Inter_R-1.csr > /dev/null
+| sudo tee /etc/vault/pki/cert_ca/csr/Sednal_Inter_R-1.csr > /dev/null
 ```
 
 ```
-sudo chown vault:vault /etc/Vault/PKI/Cert_CA/CSR/Sednal_Inter_R-1.csr
+sudo chown vault:vault /etc/vault/pki/cert_ca/csr/Sednal_Inter_R-1.csr
 ```
 
 
@@ -245,15 +267,15 @@ sudo chown vault:vault /etc/Vault/PKI/Cert_CA/CSR/Sednal_Inter_R-1.csr
 ```
 vault write -format=json PKI_Sednal_Root_RSA/root/sign-intermediate \
      issuer_ref="Sednal_Root_R-1" \
-     csr=@/etc/Vault/PKI/Cert_CA/CSR/Sednal_Inter_R-1.csr \
+     csr=@/etc/vault/pki/cert_ca/csr/Sednal_Inter_R-1.csr \
      format=pem_bundle \
      ttl="1825d" \
 | jq -r '.data.certificate' \
-| sudo tee /etc/Vault/PKI/Cert_CA/Inter/Sednal_Inter_R-1.cert.pem > /dev/null
+| sudo tee /etc/vault/pki/cert_ca/inter/Sednal_Inter_R-1.cert.pem > /dev/null
 ```
 
 ```
-sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Inter/Sednal_Inter_R-1.cert.pem
+sudo chown vault:vault /etc/vault/pki/cert_ca/inter/Sednal_Inter_R-1.cert.pem
 ```
 
 **=== ECDSA ===**
@@ -269,31 +291,32 @@ vault write -format=json PKI_Sednal_Inter_ECDSA/intermediate/generate/internal \
      common_name="sednal.lan Intermediate Authority" \
      issuer_name="Sednal_Inter_E-1" \
 | jq -r '.data.csr' \
-| sudo tee /etc/Vault/PKI/Cert_CA/CSR/Sednal_Inter_E-1.csr > /dev/null
+| sudo tee /etc/vault/pki/cert_ca/csr/Sednal_Inter_E-1.csr > /dev/null
 ```
 
 ```
-sudo chown vault:vault /etc/Vault/PKI/Cert_CA/CSR/Sednal_Inter_E-1.csr
+sudo chown vault:vault /etc/vault/pki/cert_ca/csr/Sednal_Inter_E-1.csr
 ```
 
 `-3.6.` Signature du certifiact inter via CA Root ECDSA
 ```
 vault write -format=json PKI_Sednal_Root_ECDSA/root/sign-intermediate \
      issuer_ref="Sednal_Root_E-1" \
-     csr=@/etc/Vault/PKI/Cert_CA/CSR/Sednal_Inter_E-1.csr \
+     csr=@/etc/vault/pki/cert_ca/csr/Sednal_Inter_E-1.csr \
      format=pem_bundle \
      ttl="1825d" \
 | jq -r '.data.certificate' \
-| sudo tee /etc/Vault/PKI/Cert_CA/Inter/Sednal_Inter_E-1.cert.pem > /dev/null
+| sudo tee /etc/vault/pki/cert_ca/inter/Sednal_Inter_E-1.cert.pem > /dev/null
 ```
 
 ```
-sudo chown vault:vault /etc/Vault/PKI/Cert_CA/Inter/Sednal_Inter_E-1.cert.pem
+sudo chown vault:vault /etc/vault/pki/cert_ca/inter/Sednal_Inter_E-1.cert.pem
 ```
 
 `-3.7.` Importation certificats  inter RSA et ECDSA dans Vault.
 ```
-vault write  PKI_Sednal_Inter_RSA/intermediate/set-signed certificate=@/etc/Vault/PKI/Cert_CA/Inter/Sednal_Inter_R-1.cert.pem
+vault write PKI_Sednal_Inter_RSA/intermediate/set-signed \
+    certificate=@/etc/vault/pki/cert_ca/inter/Sednal_Inter_R-1.cert.pem
 ```
 
 - Sortie 
@@ -302,7 +325,8 @@ vault write  PKI_Sednal_Inter_RSA/intermediate/set-signed certificate=@/etc/Vaul
 
 
 ```
-vault write  PKI_Sednal_Inter_ECDSA/intermediate/set-signed certificate=@/etc/Vault/PKI/Cert_CA/Inter/Sednal_Inter_E-1.cert.pem
+vault write PKI_Sednal_Inter_ECDSA/intermediate/set-signed \
+    certificate=@/etc/vault/pki/cert_ca/inter/Sednal_Inter_E-1.cert.pem
 ```
 
 - Sortie 
@@ -315,7 +339,7 @@ vault write  PKI_Sednal_Inter_ECDSA/intermediate/set-signed certificate=@/etc/Va
 ## 3️⃣ **Role PKI**
 
 - 17 - Créer un role pour les certificats inter RSA
-```
+
 vault write PKI_Sednal_Inter_RSA/roles/Cert_Inter_RSA \
     issuer_ref="$(vault read -field=default PKI_Sednal_Inter_RSA/config/issuers)" \
     allowed_domains="sednal.lan" \
@@ -326,7 +350,6 @@ vault write PKI_Sednal_Inter_RSA/roles/Cert_Inter_RSA \
     max_ttl="365d" \
     ttl="90d" \
     no_store=false
-```
 
 - issuer_ref : utilise la sortie par defaut
 - TTL : `90 jours`
@@ -338,7 +361,7 @@ vault write PKI_Sednal_Inter_RSA/roles/Cert_Inter_RSA \
 <img width="786" height="957" alt="image" src="https://github.com/user-attachments/assets/a6956da5-a649-412a-b47d-39632f75d20b" />
 
 - 18 - Créer un role pour les certificats inter ECDSA
-```
+
 vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
     issuer_ref="$(vault read -field=default PKI_Sednal_Inter_ECDSA/config/issuers)" \
     allowed_domains="sednal.lan" \
@@ -349,7 +372,6 @@ vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
     max_ttl="365d" \
     ttl="90d" \
     no_store=false
-```
 
 - issuer_ref : utilise la sortie par defaut
 - TTL : `90 jours`
@@ -429,27 +451,3 @@ Persistent=true
 [Install]
 WantedBy=timers.target
 ```
-
-`-1.3.` Autoriser et Activer le timer
-```
-sudo systemctl daemon-reload
-sudo systemctl enable --now renew_cert_ssl.timer
-systemctl list-timers renew_cert_ssl.timer
-```
-
-<img width="928" height="112" alt="image" src="https://github.com/user-attachments/assets/8ea3d271-77b7-4796-a81c-7b07713d53e2" />
-
-
-# ⚠️ dernière configuration client => [FINAL](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#1%EF%B8%8F%E2%83%A3-ajouter-ca-root--au-magasin-de-certificats-sur-chaque-machine)
-
-
-
-
-
-
-
-
-
-
-
-
