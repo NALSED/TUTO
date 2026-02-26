@@ -105,11 +105,6 @@ sudo ln -s /etc/nginx/sites-available/pki-crl.conf /etc/nginx/sites-enabled/
 sudo rm /etc/nginx/sites-enabled/default
 ```
 
--1.6. Redémarrer le service Nginx
-```
-sudo systemctl reload nginx
-```
-
 ⚠️ `[TEST]` ⚠️
 
 
