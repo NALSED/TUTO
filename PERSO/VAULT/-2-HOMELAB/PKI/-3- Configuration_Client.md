@@ -220,21 +220,12 @@ sudo nano /etc/bareos/bareos-fd.d/director/bareos-dir.conf
 
 `4` **Bareos WebUI**
 
--1.24. Créer le fichier PEM combiné cert + clé (requis par WebUI)
-```
-cat /etc/bareos/ssl/cert/web/bareos_rsa.crt \
-    /etc/bareos/ssl/keys/web/bareos_rsa.key \
-    > /etc/bareos/ssl/web/bareos_webui.pem
-chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
-chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
-```
-
--1.25. Éditer le fichier `directors.ini`
+-1.24. Éditer le fichier `directors.ini`
 ```
 sudo nano /etc/bareos-webui/directors.ini
 ```
 
--1.26. Ajouter les lignes
+-1.25. Ajouter les lignes
 ```
 ;------------------------------------------------------------------------------
 ; Section bareos.sednal.lan
@@ -371,8 +362,19 @@ TLS Key         = /etc/vps/ssl/keys/vps_rsa.key
 ---
 
 # Configuration Final **A réaliser après -4- Configuration PKI**
+`-1.` Editer certificat Bareos Webui
 
-`-1.` Redémarrer les services
+-2.1.. Créer le fichier PEM combiné cert + clé (requis par WebUI)
+```
+cat /etc/bareos/ssl/cert/web/bareos_rsa.crt \
+    /etc/bareos/ssl/keys/web/bareos_rsa.key \
+    > /etc/bareos/ssl/web/bareos_webui.pem
+chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
+chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
+
+---
+
+`-.` Redémarrer les services
 
 -1.1. Infra
 ```
@@ -440,8 +442,17 @@ sudo systemctl restart pveproxy
 sudo systemctl restart bareos-sd
 ```
 
+---
 
+`-2.` Editer certificat Bareos Webui
 
+-2.1.. Créer le fichier PEM combiné cert + clé (requis par WebUI)
+```
+cat /etc/bareos/ssl/cert/web/bareos_rsa.crt \
+    /etc/bareos/ssl/keys/web/bareos_rsa.key \
+    > /etc/bareos/ssl/web/bareos_webui.pem
+chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
+chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
 
 
 
