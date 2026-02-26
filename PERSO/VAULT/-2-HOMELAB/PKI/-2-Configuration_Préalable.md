@@ -58,6 +58,7 @@ nano /etc/nginx/sites-available/pki-crl.conf
 
 `=>` - Éditer
 ```
+# ===== HTTP — CRL =====
 server {
     listen 80;
     server_name infra.sednal.lan;
@@ -70,6 +71,30 @@ server {
     location /crl/root_e        { alias /var/www/pki/root_e.crl; }
     location /crl/intermediate_e { alias /var/www/pki/intermediate_e.crl; }
 }
+# ===== HTTPS =====
+server {
+    listen 443 ssl;
+    server_name infra.sednal.lan;
+
+    # RSA
+    ssl_certificate     /etc/infra/Cert/infra_rsa_full.crt;
+    ssl_certificate_key /etc/infra/Keys/infra_rsa.key;
+
+    # ECDSA
+    ssl_certificate     /etc/infra/Cert/infra_ecdsa_full.crt;
+    ssl_certificate_key /etc/infra/Keys/infra_ecdsa.key;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+
+    root /var/www/html;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+se
 ```
 
 -1.4. Créer un lien symbolique depuis sites-available vers sites-enabled
