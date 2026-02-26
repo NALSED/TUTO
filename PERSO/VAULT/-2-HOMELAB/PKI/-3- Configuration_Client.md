@@ -284,8 +284,7 @@ sudo nano /etc/pihole/pihole.toml
 
 -1.2. Ajouter les lignes dans la section `[webserver]`
 ```
-ssl_cert = "/etc/pihole/ssl/cert/pihole_rsa.crt"
-ssl_key  = "/etc/pihole/ssl/keys/pihole_rsa.key"
+cert = "/etc/pihole/ssl/cert/cert_key_tls.pem"
 ```
 
 ---
@@ -362,15 +361,41 @@ TLS Key         = /etc/vps/ssl/keys/vps_rsa.key
 ---
 
 # Configuration Final **A réaliser après -4- Configuration PKI**
-`-1.` Editer certificat Bareos Webui
+`-1.` CONCATENATION
 
--2.1.. Créer le fichier PEM combiné cert + clé (requis par WebUI)
+-1.1.. BAREOS Créer le fichier PEM combiné cert + clé (requis par WebUI)
 ```
 cat /etc/bareos/ssl/cert/web/bareos_rsa.crt \
     /etc/bareos/ssl/keys/web/bareos_rsa.key \
     > /etc/bareos/ssl/web/bareos_webui.pem
+```
+
+```
 chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
+```
+
+```
 chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
+```
+
+---
+
+-1.2. PIHOLE Créer le fichier PEM combiné cert + clé
+```
+cp /etc/pihole/ssl/cert/pihole_rsa.crt /etc/pihole/ssl/cert/cert_key_tls.pem
+```
+
+```
+cat /etc/pihole/ssl/keys/pihole_rsa.key >> /etc/pihole/ssl/cert/cert_key_tls.pem
+```
+
+```
+chown pihole:pihole /etc/pihole/ssl/cert/cert_key_tls.pem
+```
+
+```
+chmod 600 /etc/pihole/ssl/cert/cert_key_tls.pem
+```
 
 ---
 
