@@ -202,8 +202,9 @@ sudo usermod -aG bareos postgres
 
 ---
 
-### 5️⃣ Création de répertoire avec Script sur toutes les machines:
+### 5️⃣ Création de répertoire avec Script sur toutes les machines
 
+`-5.1.` Création de Arborécences sur chaque machine :
 `=>` - Éditer Script Vault (192.168.0.238) : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/%20deploiement_vault.sh)
 
 `=>` - Éditer Script Infra (192.168.0.239) : [deploiement_infra.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_infra.sh)
@@ -216,10 +217,12 @@ sudo usermod -aG bareos postgres
 
 `=>` - Éditer Script Vps (176.31.163.227) : [deploiement_vps.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_vps.sh)
 
-⚠️ `[TESTER RSYNC]` Depuis Vault = Infra
+---
+
+`-5.2.` ⚠️ `[TESTER RSYNC]` Depuis Vault = Infra
 Tester via le script : [test_rsync.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/test_rsync.sh)
 
-Sur chaque machine: 
+`-5.3.`Suprimmer fichier test sur chaque machine: 
 
 `=== INFRA ===`
 ```
