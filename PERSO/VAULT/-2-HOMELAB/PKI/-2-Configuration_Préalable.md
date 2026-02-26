@@ -217,16 +217,32 @@ sudo usermod -aG bareos postgres
 `=>` - Éditer Script Vps (176.31.163.227) : [deploiement_vps.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_vps.sh)
 
 ⚠️ `[TESTER RSYNC]` Depuis Vault = Infra
-````
-rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal /etc/vault/test  sednal@192.168.0. :/etc/ /ssl/ca
-````
+Tester via le script : [test_rsync.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/test_rsync.sh)
 
-````
-rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal /etc/vault/test  sednal@192.168.0. :/etc/ /ssl/cert
-````
+Sur chaque machine: 
 
-````
-rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal /etc/vault/test  sednal@192.168.0. :/etc/ /ssl/keys
-````
+`=== INFRA ===`
+```
+rm /etc/infra/ssl/ca /etc/infra/ssl/cert /etc/infra/ssl/keys
+```
 
+`=== BAREOS ===` 
+```
+rm /etc/bareos/ssl/ca /etc/bareos/ssl/cert /etc/bareos/ssl/keys
+```
 
+`=== DNS ===` 
+PIHOLE
+```
+rm/etc/pihole/ssl/ca /etc/pihole/ssl/cert /etc/pihole/ssl/keys etc/upsnap/ssl/ca /etc/upsnap/ssl/cert /etc/upsnap/ssl/keys /etc/cockpit/ssl/ca /etc/cockpit/ssl/cert /etc/cockpit/ssl/keys
+```
+
+`=== PROMOX ===` 
+```
+rm /etc/proxmox/ssl/ca /etc/proxmox/ssl/cert /etc/proxmox/ssl/keys
+```
+
+`=== VPS ===` 
+```
+rm /etc/vps/ssl/ca /etc/vps/ssl/cert /etc/vps/ssl/keys
+```
