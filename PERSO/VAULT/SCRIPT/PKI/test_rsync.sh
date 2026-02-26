@@ -34,9 +34,9 @@ rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal /etc/vault/test sednal@19
 echo "rsync sur cockpit ok"
 
 # === PROMOX === 
-rsync -e ssh --no-p --chmod=F644 --chown=root:root /etc/vault/test sednal@192.168.0.242:/etc/proxmox/ssl/ca
-rsync -e ssh --no-p --chmod=F644 --chown=root:root /etc/vault/test sednal@192.168.0.242:/etc/proxmox/ssl/cert
-rsync -e ssh --no-p --chmod=F644 --chown=root:root /etc/vault/test sednal@192.168.0.242:/etc/proxmox/ssl/keys
+rsync -e ssh --no-p --chmod=F644 --chown=root:root /etc/vault/test root@192.168.0.242:/etc/proxmox/ssl/ca
+rsync -e ssh --no-p --chmod=F644 --chown=root:root /etc/vault/test root@192.168.0.242:/etc/proxmox/ssl/cert
+rsync -e ssh --no-p --chmod=F644 --chown=root:root /etc/vault/test root@192.168.0.242:/etc/proxmox/ssl/keys
 echo "rsync sur proxmox ok"
 
 # === VPS === 
