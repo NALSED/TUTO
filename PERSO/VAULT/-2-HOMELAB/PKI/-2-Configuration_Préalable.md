@@ -216,6 +216,17 @@ sudo usermod -aG bareos postgres
 
 `=>` - Éditer Script Vps (176.31.163.227) : [deploiement_vps.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_vps.sh)
 
+⚠️ `[TESTER RSYNC]`
+````
+rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal /etc/vault/test  sednal@192.168.0. :/etc/ /ca
+````
 
+````
+rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal /etc/vault/test  sednal@192.168.0. :/etc/ /cert
+````
+
+````
+rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal /etc/vault/test  sednal@192.168.0. :/etc/ /keys
+````
 
 
