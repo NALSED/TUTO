@@ -156,7 +156,7 @@ ssh debian@176.31.163.227
 
 -1.16. Éditer le fichier `Remote-Sd`
 ```
-sudo nano /etc/bareos/bareos-sd.d/storage/Remote-Sd.conf
+sudo nano /etc/bareos/bareos-sd.d/storage/Remote_Sd.conf
 ```
 
 -1.17. Ajouter les lignes
