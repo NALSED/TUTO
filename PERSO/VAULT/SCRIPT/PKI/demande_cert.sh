@@ -242,3 +242,5 @@ rsync -e ssh --no-p --chmod=F644 --chown=debian:debian \
     "$base_pki/public/vps/rsa/vps_rsa.crt" \
     "$base_pki/public/vps/ecdsa/vps_ecdsa.crt" \
     "$cible":"$base_vps/cert/"
+
+echo "Déploiement Certificats et Clées OK"
