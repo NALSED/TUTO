@@ -270,6 +270,7 @@ sudo usermod -aG bareos postgres
 ```
 
 ---
+---
 
 # **DNS** : 192.168.0.241
 
@@ -319,51 +320,27 @@ services:
 
 **III) Cockpit**
 
--1.7. Créer le fichier PEM combiné cert + clé
-```
-cat /etc/cockpit/ssl/cert/cockpit_rsa.crt \
-    /etc/cockpit/ssl/keys/cockpit_rsa.key \
-    > /etc/cockpit/ws-certs.d/cockpit.cert
-chmod 640 /etc/cockpit/ws-certs.d/cockpit.cert
-chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit.cert
-```
+-1.6. Configuration après génération des Certificats ⬇️
 
+---
 ---
 
 # **Proxmox** : 192.168.0.242
 
-### 1️⃣ Intégration des chemins des certificats
-
--1.1. Copier les fichiers vers Proxmox
-```
-cp /etc/proxmox/ssl/cert/proxmox_rsa.crt /etc/pve/local/pve-ssl.pem
-cp /etc/proxmox/ssl/keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
-```
+-1.1. Configuration après génération des Certificats ⬇️
 
 ---
-
-# **VPS** : 176.31.163.227
-
-### 1️⃣ Intégration des chemins des certificats
-
--1.1. Éditer le fichier de configuration du Storage Daemon
-```
-sudo nano /etc/bareos/bareos-sd.d/storage/Remote-Sd.conf
-```
-
--1.2. Vérifier les chemins
-```
-TLS Certificate = /etc/vps/ssl/cert/vps_rsa.crt
-TLS Key         = /etc/vps/ssl/keys/vps_rsa.key
-```
-
 ---
+
+# **VPS** : 176.31.163.227  Service SSL `OK` => Fait dans la section proxmox
+
+
 ---
 
 # Configuration Final **A réaliser après -4- Configuration PKI**
-`-1.` CONCATENATION
+`-1. CONCATENATION`
 
--1.1.. BAREOS Créer le fichier PEM combiné cert + clé (requis par WebUI)
+-1.1.. **BAREOS** Créer le fichier PEM combiné cert + clé (requis par WebUI)
 ```
 cat /etc/bareos/ssl/cert/web/bareos_rsa.crt \
     /etc/bareos/ssl/keys/web/bareos_rsa.key \
@@ -380,7 +357,7 @@ chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
 
 ---
 
--1.2. PIHOLE Créer le fichier PEM combiné cert + clé
+-1.2. **PIHOLE** Créer le fichier PEM combiné cert + clé
 ```
 cp /etc/pihole/ssl/cert/pihole_rsa.crt /etc/pihole/ssl/cert/cert_key_tls.pem
 ```
@@ -396,6 +373,68 @@ chown pihole:pihole /etc/pihole/ssl/cert/cert_key_tls.pem
 ```
 chmod 600 /etc/pihole/ssl/cert/cert_key_tls.pem
 ```
+
+---
+
+-1.3. **COCKPIT** Créer le fichier PEM combiné cert + clé
+
+=== RSA ===
+```
+cat /etc/cockpit/ssl/cert/cockpit_rsa.crt \
+    /etc/cockpit/ssl/ca/Sednal_Inter_R-1.cert.pem \
+    > /etc/cockpit/ws-certs.d/cockpit_rsa.crt
+```
+
+```
+cp /etc/cockpit/ssl/keys/cockpit_rsa.key /etc/cockpit/ws-certs.d/cockpit_rsa.key
+```
+
+```
+chmod 640 /etc/cockpit/ws-certs.d/cockpit_rsa.crt
+```
+
+```
+chmod 640 /etc/cockpit/ws-certs.d/cockpit_rsa.key
+```
+
+```
+chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_rsa.crt
+```
+
+```
+chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_rsa.key
+```
+
+=== ECDSA ===
+```
+cat /etc/cockpit/ssl/cert/cockpit_ecdsa.crt \
+    /etc/cockpit/ssl/ca/Sednal_Inter_E-1.cert.pem \
+    > /etc/cockpit/ws-certs.d/cockpit_ecdsa.crt
+```
+
+```
+cp /etc/cockpit/ssl/keys/cockpit_ecdsa.key /etc/cockpit/ws-certs.d/cockpit_ecdsa.key
+```
+
+```
+chmod 640 /etc/cockpit/ws-certs.d/cockpit_ecdsa.crt
+```
+
+```
+chmod 640 /etc/cockpit/ws-certs.d/cockpit_ecdsa.key
+```
+
+```
+chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_ecdsa.crt
+```
+
+```
+chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_ecdsa.key
+```
+
+---
+
+**Configuration Proxmox**
 
 ---
 
