@@ -24,7 +24,7 @@ Dans cette partie toutes les configurations préalables sur les clients ainsi qu
 
 ---
 
-### 1️⃣ Point de récupération CRL sur `Infra` (192.168.0.239)
+### 1️⃣ Point de récupération CRL (192.168.0.239)
 
 - 1.1. ⚠️ Point très important, le point de distribution `CRL` doit 
 toujours être en `HTTP` et non en `HTTPS` pour deux raisons :
@@ -53,92 +53,78 @@ sudo chmod 755 /var/www/pki
 -1.3. Sur le serveur web, avec nginx créer le fichier de endpoint.
 - Ici ils couvriront les CRL émises par Vault pour les CA (Root / Intermédiaire) Rsa et Ecdsa.
 ```
-sudo nano /etc/nginx/sites-available/infra.sednal.lan.conf
+nano /etc/nginx/sites-available/pki-crl.conf
 ```
 
 `=>` - Éditer
 ```
-# ===== HTTP — CRL =====
 server {
     listen 80;
     server_name infra.sednal.lan;
 
-    types {
-        application/pkix-crl crl;
-    }
+    # === RSA ===
+    location /crl/root_r        { alias /var/www/pki/root_r.crl; }
+    location /crl/intermediate_r { alias /var/www/pki/intermediate_r.crl; }
 
-    location /crl/ {
-        alias /var/www/pki/;
-        autoindex off;
-
-        location /crl/root        { alias /var/www/pki/root_r.crl; }
-        location /crl/intermediate { alias /var/www/pki/intermediate_r.crl; }
-    }
-}
-
-# ===== HTTPS =====
-server {
-    listen 443 ssl;
-    server_name infra.sednal.lan;
-
-    # RSA
-    ssl_certificate     /etc/infra/Cert/infra.crt;
-    ssl_certificate_key /etc/infra/Keys/infra_rsa.key;
-
-    # ECDSA
-    ssl_certificate     /etc/infra/Cert/infra_ecdsa_full.crt;
-    ssl_certificate_key /etc/infra/Keys/infra_ecdsa.key;
-
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_prefer_server_ciphers on;
-
-    root /var/www/html;
-    index index.html;
-
-    location / {
-        try_files $uri $uri/ =404;
-    }
+    # === ECDSA ===
+    location /crl/root_e        { alias /var/www/pki/root_e.crl; }
+    location /crl/intermediate_e { alias /var/www/pki/intermediate_e.crl; }
 }
 ```
 
--1.4. Activer le site et désactiver le défaut :
+-1.4. Créer un lien symbolique depuis sites-available vers sites-enabled
 ```
-sudo ln -s /etc/nginx/sites-available/infra.sednal.lan.conf /etc/nginx/sites-enabled/
-
-```
-
-```
-sudo rm -f /etc/nginx/sites-enabled/default
+sudo ln -s /etc/nginx/sites-available/pki-crl.conf /etc/nginx/sites-enabled/
 ```
 
+-1.5. Désactiver la page par défaut
 ```
-sudo nginx -t
+sudo rm /etc/nginx/sites-enabled/default
 ```
 
--1.6. Redémarrer le service nginx
+-1.6. Redémarrer le service Nginx
 ```
-sudo systemctl restart nginx
+sudo systemctl reload nginx
 ```
 
 ⚠️ `[TEST]` ⚠️
 
 -Pour vérifier que tout est Ok, création d'un fichier `test_rsa` et `test_ecdsa` et utilisation de curl.
 
+=== RSA ===
+```
+nano /var/www/pki/root_r.crl
+```
+
+- Editer
+```
+test_RSA
+```
+
+=== ECDSA ===
+```
+nano /var/www/pki/root_e.crl
+```
+
+- Editer
+```
+test_ECDSA
+```
+
 - curl rsa
 ```
 curl http://infra.sednal.lan/crl/root_r
 ```
-
-<img width="639" height="304" alt="image" src="https://github.com/user-attachments/assets/67ff974b-6017-4628-92f6-228d5227075b" />
-
 
 - curl ecdsa
 ```
 curl http://infra.sednal.lan/crl/root_e
 ```
 
-<img width="639" height="190" alt="image" src="https://github.com/user-attachments/assets/64b430b9-6e35-4df4-921d-6f461fd7c327" />
-
+- Pour finir
+```
+sudo rm /var/www/pki/root_e.crl && sudo rm /var/www/pki/root_r.crl
+```
 
 ---
 
@@ -148,7 +134,7 @@ Ici on ne met pas cette solution en place car le service OCSP et Vault devraient
 ---
 ---
 
-### 2️⃣ Création d'une tâche cron sur `Serveur Vault` 192.168.0.238, pour pousser les CRL
+### 2️⃣ Création d'une tâche cron sur Serveur Vault 192.168.0.238, pour pousser les CRL
 
 ⚠️ Avant tout mettre sednal dans le groupe vault
 ```
@@ -179,13 +165,13 @@ crontab -e
 `=>` - Éditer 
 ```
 # === Vault PKI ===
-# Pousser le CRL vers serveur Apache2 (192.168.0.239)
+# Pousser le CRL vers serveur Nginx (192.168.0.239)
 0 11 * * * /usr/local/bin/push-crl.sh
 ```
 
 ---
 
-### 3️⃣ SSH sur `Serveur Vault` 192.168.0.238
+### 3️⃣ SSH
 
 -3.1. Créer la clé 
 ```
@@ -193,27 +179,17 @@ ssh-keygen -t ed25519 -C "vault-admin"
 ```
 
 -3.2. Copier la clé publique vers chaque machine cible
-=IP=
 ```
 ssh-copy-id sednal@192.168.0.239
 ssh-copy-id sednal@192.168.0.240
 ssh-copy-id sednal@192.168.0.241
-ssh-copy-id root@192.168.0.242
-ssh-copy-id debian@176.31.163.227
-```
-
-=DOMAIN=
-```
-ssh-copy-id sednal@infra.sednal.lan
-ssh-copy-id sednal@bareos.sednal.lan
-ssh-copy-id sednal@pihole.sednal.lan
-ssh-copy-id root@proxmox.sednal.lan
+ssh-copy-id sednal@192.168.0.242
 ssh-copy-id debian@176.31.163.227
 ```
 
 ---
 
-### 4️⃣ Groupe et User su `Bareos` 192.168.0.240
+### 4️⃣ Groupe et User
 
 -4.1 Pour Bareos 192.168.0.240, les certificats sont utilisés par => `bareos:bareos`, mais l'utilisateur commun a besoin de pouvoir accéder à ces fichiers. PostgreSQL nécessite également l'accès au groupe bareos pour lire sa clé privée.
 ```
@@ -223,7 +199,7 @@ sudo usermod -aG bareos postgres
 
 ---
 
-### 5️⃣ Création de répertoire avec Script sur `serveur Vault` 192.168.0.238
+### 5️⃣ Création de répertoire avec Script
 
 -5.1. Créer script 
 ```
@@ -242,7 +218,7 @@ sudo chown sednal:sednal deploiement_vault.sh
 sudo ./deploiement_vault.sh
 ```
 
-`=>` - Éditer Script : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/deploiement_vault.sh)
+`=>` - Éditer Script : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_vault.sh)
 
 
 `[VERIFICATION]`
@@ -250,64 +226,64 @@ sudo ./deploiement_vault.sh
 - Avec tree
 
 ```
-sednal@vault:/etc/Vault$ sudo tree PKI
-PKI
-├── Cert_CA
-│   ├── CSR
-│   ├── Inter
-│   └── Root
-├── Config
-│   └── Policy
+sednal@vault:/etc/vault$ sudo tree pki
+pki
+├── cert_ca
+│   ├── csr
+│   ├── inter
+│   └── root
+├── config
+│   └── policy
 ├── private
-│   ├── Bareos
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Cockpit
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Infra
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Pihole
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── PostGreSQL
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Proxmox
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   ├── Upsnap
-│   │   ├── Ecdsa
-│   │   └── Rsa
-│   └── Vps
-│       ├── Ecdsa
-│       └── Rsa
+│   ├── bareos
+│   │   ├── ecdsa
+│   │   └── rsa
+│   ├── cockpit
+│   │   ├── ecdsa
+│   │   └── rsa
+│   ├── infra
+│   │   ├── ecdsa
+│   │   └── rsa
+│   ├── pihole
+│   │   ├── ecdsa
+│   │   └── rsa
+│   ├── postgresql
+│   │   ├── ecdsa
+│   │   └── rsa
+│   ├── proxmox
+│   │   ├── ecdsa
+│   │   └── rsa
+│   ├── upsnap
+│   │   ├── ecdsa
+│   │   └── rsa
+│   └── vps
+│       ├── ecdsa
+│       └── rsa
 └── public
-    ├── Bareos
-    │   ├── Ecdsa
-    │   └── Rsa
-    ├── Cockpit
-    │   ├── Ecdsa
-    │   └── Rsa
-    ├── Infra
-    │   ├── Ecdsa
-    │   └── Rsa
-    ├── Pihole
-    │   ├── Ecdsa
-    │   └── Rsa
-    ├── PostGreSQL
-    │   ├── Ecdsa
-    │   └── Rsa
-    ├── Proxmox
-    │   ├── Ecdsa
-    │   └── Rsa
-    ├── Upsnap
-    │   ├── Ecdsa
-    │   └── Rsa
-    └── Vps
-        ├── Ecdsa
-        └── Rsa
+    ├── bareos
+    │   ├── ecdsa
+    │   └── rsa
+    ├── cockpit
+    │   ├── ecdsa
+    │   └── rsa
+    ├── infra
+    │   ├── ecdsa
+    │   └── rsa
+    ├── pihole
+    │   ├── ecdsa
+    │   └── rsa
+    ├── postgresql
+    │   ├── ecdsa
+    │   └── rsa
+    ├── proxmox
+    │   ├── ecdsa
+    │   └── rsa
+    ├── upsnap
+    │   ├── ecdsa
+    │   └── rsa
+    └── vps
+        ├── ecdsa
+        └── rsa
 
 57 directories, 0 files
 ```
