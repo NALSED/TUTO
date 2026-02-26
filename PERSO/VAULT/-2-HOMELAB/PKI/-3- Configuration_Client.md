@@ -435,21 +435,36 @@ chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_ecdsa.key
 ---
 
 **Configuration Proxmox**
+```
+cp /etc/proxmox/ssl/cert/proxmox_rsa.crt /etc/pve/local/pve-ssl.pem
+cp /etc/proxmox/ssl/keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
+```
 
 ---
 
-`-.` Redémarrer les services
+## ⚠️ `-2.` **A effectuer sur chaque systeme**
+```
+sudo cp /usr/local/share/ca-certificates/Sednal_Root_All.crt
+```
 
--1.1. Infra
+```
+sudo update-ca-certificates --fresh
+```
+
+---
+
+`-3.` Redémarrer les services
+
+-3.1. Infra
 ```
 sudo systemctl reload nginx
 ```
 
 ---
 
--1.2. Bareos
+-3.2. Bareos
 
-1.2.1. Redémarrage des services
+3.2.1. Redémarrage des services
 ```
 sudo systemctl restart bareos-dir
 sudo systemctl restart bareos-sd
@@ -457,7 +472,7 @@ sudo systemctl restart bareos-fd
 sudo systemctl restart postgresql
 ```
 
--1.2.2. Vérification
+-3.2.2. Vérification
 ```
 sudo systemctl status bareos-dir
 sudo systemctl status bareos-sd
@@ -468,7 +483,7 @@ sudo systemctl status postgresql
 
 ---
 
--1.3. Pihole
+-3.3. Pihole
 ```
 sudo systemctl restart pihole-FTL
 ```
@@ -476,7 +491,7 @@ sudo systemctl restart pihole-FTL
 ---
 
 
--1.4. Upsnap
+-3.4. Upsnap
 ```
 sudo systemctl restart upsnap
 ```
@@ -484,7 +499,7 @@ sudo systemctl restart upsnap
 ---
 
 
--1.5. Cockpit
+-3.5. Cockpit
 ```
 sudo systemctl restart cockpit
 ```
@@ -492,7 +507,7 @@ sudo systemctl restart cockpit
 ---
 
 
--1.6. Proxmox
+-3.6. Proxmox
 ```
 sudo systemctl restart pveproxy
 ```
@@ -501,22 +516,13 @@ sudo systemctl restart pveproxy
 ---
 
 
--1.7. Vps
+-3.7. Vps
 ```
 sudo systemctl restart bareos-sd
 ```
 
 ---
 
-`-2.` Editer certificat Bareos Webui
-
--2.1.. Créer le fichier PEM combiné cert + clé (requis par WebUI)
-```
-cat /etc/bareos/ssl/cert/web/bareos_rsa.crt \
-    /etc/bareos/ssl/keys/web/bareos_rsa.key \
-    > /etc/bareos/ssl/web/bareos_webui.pem
-chmod 640 /etc/bareos/ssl/web/bareos_webui.pem
-chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
 
 
 
