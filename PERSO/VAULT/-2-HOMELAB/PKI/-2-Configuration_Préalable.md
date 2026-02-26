@@ -114,42 +114,20 @@ sudo systemctl reload nginx
 
 ⚠️ `[TEST]` ⚠️
 
--Pour vérifier que tout est Ok, création d'un fichier `test_rsa` et `test_ecdsa` et utilisation de curl.
+
 
 === RSA ===
-```
-nano /var/www/pki/root_r.crl
-```
-
-- Editer
-```
-test_RSA
-```
-
-=== ECDSA ===
-```
-nano /var/www/pki/root_e.crl
-```
-
-- Editer
-```
-test_ECDSA
-```
-
-- curl rsa
 ```
 curl http://infra.sednal.lan/crl/root_r
 ```
 
-- curl ecdsa
+=== ECDSA ===
 ```
 curl http://infra.sednal.lan/crl/root_e
 ```
 
-- Pour finir
-```
-sudo rm /var/www/pki/root_e.crl && sudo rm /var/www/pki/root_r.crl
-```
+<img width="919" height="479" alt="image" src="https://github.com/user-attachments/assets/a037facc-9726-468d-adfa-190e95dfade5" />
+
 
 ---
 
