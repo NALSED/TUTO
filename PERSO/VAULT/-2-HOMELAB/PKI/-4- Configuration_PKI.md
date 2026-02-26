@@ -456,3 +456,9 @@ Persistent=true
 [Install]
 WantedBy=timers.target
 ```
+
+
+---
+---
+
+### [FINALISER CONFIGURATION](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#configuration-final-a-r%C3%A9aliser-apr%C3%A8s--4--configuration-pki)
