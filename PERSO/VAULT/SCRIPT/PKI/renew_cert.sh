@@ -28,7 +28,11 @@ for service in "${services_rsa[@]}"; do
     echo "Renouvellement RSA : $cert → $folder"
     result=$(vault write -format=json PKI_Sednal_Inter_RSA/issue/Cert_Inter_RSA common_name="$cert")
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/rsa/${service}_rsa.crt" > /dev/null
-    echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/rsa/${service}_rsa.key" > /dev/null
+    sudo chmod 644 "$base_pki/public/$folder/rsa/${service}_rsa.crt"
+    sudo chown vault:vault "$base_pki/public/$folder/rsa/${service}_rsa.crt"
+    echo "$result" | jq -r '.data.private_key' | sudo tee "$base_pki/private/$folder/rsa/${service}_rsa.key" > /dev/null
+    sudo chmod 600 "$base_pki/private/$folder/rsa/${service}_rsa.key"
+    sudo chown vault:vault "$base_pki/private/$folder/rsa/${service}_rsa.key"
 done
 
 # === Renouvellement ECDSA ===
@@ -39,15 +43,15 @@ for service in "${services_ecdsa[@]}"; do
     echo "Renouvellement ECDSA : $cert → $folder"
     result=$(vault write -format=json PKI_Sednal_Inter_ECDSA/issue/Cert_Inter_ECDSA common_name="$cert")
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/ecdsa/${service}_ecdsa.crt" > /dev/null
-    echo "$result" | jq -r '.data.private_key'  | sudo tee "$base_pki/private/$folder/ecdsa/${service}_ecdsa.key" > /dev/null
+    sudo chmod 644 "$base_pki/public/$folder/ecdsa/${service}_ecdsa.crt"
+    sudo chown vault:vault "$base_pki/public/$folder/ecdsa/${service}_ecdsa.crt"
+    echo "$result" | jq -r '.data.private_key' | sudo tee "$base_pki/private/$folder/ecdsa/${service}_ecdsa.key" > /dev/null
+    sudo chmod 600 "$base_pki/private/$folder/ecdsa/${service}_ecdsa.key"
+    sudo chown vault:vault "$base_pki/private/$folder/ecdsa/${service}_ecdsa.key"
 done
 
-# Réappliquer les droits sur Vault
-find "$base_pki/private" -type f -name "*.key" -exec chmod 600 {} \;
-find "$base_pki/public"  -type f -name "*.crt" -exec chmod 644 {} \;
-chown -R vault:vault "$base_pki"
-
 base_ca="$base_pki/cert_ca/root"
+base_inter="$base_pki/cert_ca/inter"
 
 # ===== INFRA =====
 cible="sednal@192.168.0.239"
