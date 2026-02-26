@@ -30,7 +30,7 @@ for service in "${services_rsa[@]}"; do
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/rsa/${service}_rsa.crt" > /dev/null
     sudo chmod 644 "$base_pki/public/$folder/rsa/${service}_rsa.crt"
     echo "$result" | jq -r '.data.private_key' | sudo tee "$base_pki/private/$folder/rsa/${service}_rsa.key" > /dev/null
-    sudo chmod 600 "$base_pki/private/$folder/rsa/${service}_rsa.key"
+    sudo chmod 640 "$base_pki/private/$folder/rsa/${service}_rsa.key"
 done
 
 # === Renouvellement ECDSA ===
@@ -43,7 +43,7 @@ for service in "${services_ecdsa[@]}"; do
     echo "$result" | jq -r '.data.certificate' | sudo tee "$base_pki/public/$folder/ecdsa/${service}_ecdsa.crt" > /dev/null
     sudo chmod 644 "$base_pki/public/$folder/ecdsa/${service}_ecdsa.crt"
     echo "$result" | jq -r '.data.private_key' | sudo tee "$base_pki/private/$folder/ecdsa/${service}_ecdsa.key" > /dev/null
-    sudo chmod 600 "$base_pki/private/$folder/ecdsa/${service}_ecdsa.key"
+    sudo chmod 640 "$base_pki/private/$folder/ecdsa/${service}_ecdsa.key"
 done
 
 # Réappliquer propriétaire vault sur tous les fichiers générés
@@ -58,7 +58,7 @@ base_infra="/etc/infra/ssl"
 
 ssh "$cible" "rm -f $base_infra/keys/* $base_infra/cert/*"
 
-rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
+rsync -e ssh --no-p --chmod=F640 --chown=sednal:sednal \
     "$base_pki/private/infra/rsa/infra_rsa.key" \
     "$base_pki/private/infra/ecdsa/infra_ecdsa.key" \
     "$cible":"$base_infra/keys/"
@@ -81,7 +81,7 @@ ssh "$cible" "rm -f $base_bareos/keys/dir/* $base_bareos/cert/dir/*
               rm -f $base_bareos/keys/client/lin/* $base_bareos/cert/client/lin/*"
 
 # DIR
-rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+rsync -e ssh --no-p --chmod=F640 --chown=bareos:bareos \
     "$base_pki/private/bareos/rsa/bareos-dir_rsa.key" \
     "$base_pki/private/bareos/ecdsa/bareos-dir_ecdsa.key" \
     "$cible":"$base_bareos/keys/dir/"
@@ -91,7 +91,7 @@ rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
     "$cible":"$base_bareos/cert/dir/"
 
 # SD LOCAL
-rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+rsync -e ssh --no-p --chmod=F640 --chown=bareos:bareos \
     "$base_pki/private/bareos/rsa/bareos-sd-local_rsa.key" \
     "$base_pki/private/bareos/ecdsa/bareos-sd-local_ecdsa.key" \
     "$cible":"$base_bareos/keys/sd/local/"
@@ -101,7 +101,7 @@ rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
     "$cible":"$base_bareos/cert/sd/local/"
 
 # SD REMOTE
-rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+rsync -e ssh --no-p --chmod=F640 --chown=bareos:bareos \
     "$base_pki/private/bareos/rsa/bareos-sd-remote_rsa.key" \
     "$base_pki/private/bareos/ecdsa/bareos-sd-remote_ecdsa.key" \
     "$cible":"$base_bareos/keys/sd/remote/"
@@ -111,7 +111,7 @@ rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
     "$cible":"$base_bareos/cert/sd/remote/"
 
 # FD
-rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+rsync -e ssh --no-p --chmod=F640 --chown=bareos:bareos \
     "$base_pki/private/bareos/rsa/bareos-fd_rsa.key" \
     "$base_pki/private/bareos/ecdsa/bareos-fd_ecdsa.key" \
     "$cible":"$base_bareos/keys/fd/"
@@ -121,7 +121,7 @@ rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
     "$cible":"$base_bareos/cert/fd/"
 
 # WEBUI
-rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+rsync -e ssh --no-p --chmod=F640 --chown=bareos:bareos \
     "$base_pki/private/bareos/rsa/bareos_rsa.key" \
     "$base_pki/private/bareos/ecdsa/bareos_ecdsa.key" \
     "$cible":"$base_bareos/keys/web/"
@@ -141,7 +141,7 @@ rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
     "$cible":"$base_bareos/cert/post/"
 
 # CLIENT WIN
-rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+rsync -e ssh --no-p --chmod=F640 --chown=bareos:bareos \
     "$base_pki/private/bareos/rsa/win_rsa.key" \
     "$base_pki/private/bareos/ecdsa/win_ecdsa.key" \
     "$cible":"$base_bareos/keys/client/win/"
@@ -151,7 +151,7 @@ rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
     "$cible":"$base_bareos/cert/client/win/"
 
 # CLIENT LIN
-rsync -e ssh --no-p --chmod=F600 --chown=bareos:bareos \
+rsync -e ssh --no-p --chmod=F640 --chown=bareos:bareos \
     "$base_pki/private/bareos/rsa/lin_rsa.key" \
     "$base_pki/private/bareos/ecdsa/lin_ecdsa.key" \
     "$cible":"$base_bareos/keys/client/lin/"
@@ -168,7 +168,7 @@ ssh "$cible" "rm -f /etc/pihole/ssl/keys/* /etc/pihole/ssl/cert/*
               rm -f /etc/cockpit/ssl/keys/* /etc/cockpit/ssl/cert/*"
 
 # Pihole
-rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
+rsync -e ssh --no-p --chmod=F640 --chown=sednal:sednal \
     "$base_pki/private/pihole/rsa/pihole_rsa.key" \
     "$base_pki/private/pihole/ecdsa/pihole_ecdsa.key" \
     "$cible":/etc/pihole/ssl/keys/
@@ -178,7 +178,7 @@ rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
     "$cible":/etc/pihole/ssl/cert/
 
 # Upsnap
-rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
+rsync -e ssh --no-p --chmod=F640 --chown=sednal:sednal \
     "$base_pki/private/upsnap/rsa/upsnap_rsa.key" \
     "$base_pki/private/upsnap/ecdsa/upsnap_ecdsa.key" \
     "$cible":/etc/upsnap/ssl/keys/
@@ -188,7 +188,7 @@ rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
     "$cible":/etc/upsnap/ssl/cert/
 
 # Cockpit
-rsync -e ssh --no-p --chmod=F600 --chown=sednal:sednal \
+rsync -e ssh --no-p --chmod=F640 --chown=sednal:sednal \
     "$base_pki/private/cockpit/rsa/cockpit_rsa.key" \
     "$base_pki/private/cockpit/ecdsa/cockpit_ecdsa.key" \
     "$cible":/etc/cockpit/ssl/keys/
@@ -203,7 +203,7 @@ base_proxmox="/etc/proxmox/ssl"
 
 ssh "$cible" "rm -f $base_proxmox/keys/* $base_proxmox/cert/*"
 
-rsync -e ssh --no-p --chmod=F600 --chown=root:root \
+rsync -e ssh --no-p --chmod=F640 --chown=root:root \
     "$base_pki/private/proxmox/rsa/proxmox_rsa.key" \
     "$base_pki/private/proxmox/ecdsa/proxmox_ecdsa.key" \
     "$cible":"$base_proxmox/keys/"
@@ -218,7 +218,7 @@ base_vps="/etc/vps/ssl"
 
 ssh "$cible" "rm -f $base_vps/keys/* $base_vps/cert/*"
 
-rsync -e ssh --no-p --chmod=F600 --chown=debian:debian \
+rsync -e ssh --no-p --chmod=F640 --chown=debian:debian \
     "$base_pki/private/vps/rsa/vps_rsa.key" \
     "$base_pki/private/vps/ecdsa/vps_ecdsa.key" \
     "$cible":"$base_vps/keys/"
