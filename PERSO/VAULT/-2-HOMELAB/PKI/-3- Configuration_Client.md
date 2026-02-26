@@ -306,8 +306,8 @@ services:
     restart: unless-stopped
     volumes:
       - /srv/appdata/upsnap/data:/app/pb_data
-      - /etc/ssl/Upsnap/Cert/upsnap_rsa.crt:/app/cert.crt:ro
-      - /etc/ssl/Upsnap/Keys/upsnap_rsa.key:/app/cert.key:ro
+      - /etc/ssl/upsnap/cert/upsnap_rsa.crt:/app/cert.crt:ro
+      - /etc/ssl/upsnap/keys/upsnap_rsa.key:/app/cert.key:ro
     environment:
       - UPSNAP_SCAN_RANGE=192.168.0.1/24
       - TZ=Asia/Yerevan
