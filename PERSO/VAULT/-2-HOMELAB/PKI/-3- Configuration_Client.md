@@ -380,9 +380,9 @@ chmod 600 /etc/pihole/ssl/cert/cert_key_tls.pem
 
 === RSA ===
 ```
-cat /etc/cockpit/ssl/cert/cockpit_rsa.crt \
+sudo cat /etc/cockpit/ssl/cert/cockpit_rsa.crt \
     /etc/cockpit/ssl/ca/Sednal_Inter_R-1.cert.pem \
-    > /etc/cockpit/ws-certs.d/cockpit_rsa.crt
+    | sudo tee /etc/cockpit/ws-certs.d/cockpit_rsa.crt > /dev/null
 ```
 
 ```
@@ -407,9 +407,9 @@ chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_rsa.key
 
 === ECDSA ===
 ```
-sudo cat /etc/cockpit/ssl/cert/cockpit_rsa.crt \
-    /etc/cockpit/ssl/ca/Sednal_Inter_R-1.cert.pem \
-    | sudo tee /etc/cockpit/ws-certs.d/cockpit_rsa.crt > /dev/null
+sudo cat /etc/cockpit/ssl/cert/cockpit_ecdsa.crt \
+    /etc/cockpit/ssl/ca/Sednal_Inter_E-1.cert.pem \
+    | sudo tee /etc/cockpit/ws-certs.d/cockpit_ecdsa.crt > /dev/null
 ```
 
 ```
