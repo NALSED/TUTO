@@ -407,9 +407,9 @@ chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_rsa.key
 
 === ECDSA ===
 ```
-cat /etc/cockpit/ssl/cert/cockpit_ecdsa.crt \
-    /etc/cockpit/ssl/ca/Sednal_Inter_E-1.cert.pem \
-    > /etc/cockpit/ws-certs.d/cockpit_ecdsa.crt
+sudo cat /etc/cockpit/ssl/cert/cockpit_rsa.crt \
+    /etc/cockpit/ssl/ca/Sednal_Inter_R-1.cert.pem \
+    | sudo tee /etc/cockpit/ws-certs.d/cockpit_rsa.crt > /dev/null
 ```
 
 ```
