@@ -76,14 +76,12 @@ server {
     listen 443 ssl;
     server_name infra.sednal.lan;
 
-    # RSA
-    ssl_certificate     /etc/infra/Cert/infra_rsa_full.crt;
-    ssl_certificate_key /etc/infra/Keys/infra_rsa.key;
-
-    # ECDSA
-    ssl_certificate     /etc/infra/Cert/infra_ecdsa_full.crt;
-    ssl_certificate_key /etc/infra/Keys/infra_ecdsa.key;
-
+    # === RSA ===
+    ssl_certificate     /etc/infra/ssl/cert/infra_rsa.crt;
+    ssl_certificate_key /etc/infra/ssl/keys/infra_rsa.key;
+    # === ECDSA ===
+    ssl_certificate     /etc/infra/ssl/cert/infra_ecdsa.crt;
+    ssl_certificate_key /etc/infra/ssl/keys/infra_ecdsa.key;
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_prefer_server_ciphers on;
 
@@ -94,7 +92,7 @@ server {
         try_files $uri $uri/ =404;
     }
 }
-se
+
 ```
 
 -1.4. Créer un lien symbolique depuis sites-available vers sites-enabled
