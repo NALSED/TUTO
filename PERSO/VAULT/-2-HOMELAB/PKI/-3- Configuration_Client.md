@@ -23,49 +23,13 @@
 
 ---
 
-- **Vault PKI** : 192.168.0.238 : Service SSL `OK`
+# **Vault PKI** : 192.168.0.238 : Service SSL `OK`
 
 ---
 
-# **Serveur Web / Infra** : 192.168.0.239
+# **Serveur Web / Infra** : 192.168.0.239 Service SSL `OK`
 
 [SOURCE](https://nginx.org/en/docs/http/configuring_https_servers.html)
-
-### 1️⃣ Intégration des chemins des certificats
-
--1.1. Modifier les chemins des certificats dans le fichier de configuration
-```
-sudo nano /etc/nginx/sites-available/default-ssl
-```
-
--1.2. Ajouter / remplacer les lignes SSL :
-```
-# === RSA ===
-ssl_certificate     /etc/infra/ssl/cert/infra_rsa.crt;
-ssl_certificate_key /etc/infra/ssl/keys/infra_rsa.key;
-# === ECDSA ===
-ssl_certificate     /etc/infra/ssl/cert/infra_ecdsa.crt;
-ssl_certificate_key /etc/infra/ssl/keys/infra_ecdsa.key;
-```
-
--1.3. Activer le site SSL et recharger Nginx
-```
-sudo ln -s /etc/nginx/sites-available/default-ssl /etc/nginx/sites-enabled/
-sudo systemctl reload nginx
-```
-
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
-
--2.1. Éditer
-```
-sudo visudo
-```
-
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
-```
 
 ---
 
@@ -307,36 +271,8 @@ ssl_key_file  = '/etc/bareos/ssl/keys/post/postgresql_rsa.key'
 ssl_ca_file   = '/etc/bareos/ssl/ca/Sednal_Root_All.crt'
 ```
 
--1.29. Redémarrage des services
-```
-sudo systemctl restart bareos-dir
-sudo systemctl restart bareos-sd
-sudo systemctl restart bareos-fd
-sudo systemctl restart postgresql
-```
 
--1.30. Vérification
-```
-sudo systemctl status bareos-dir
-sudo systemctl status bareos-sd
-sudo systemctl status bareos-fd
-sudo systemctl status postgresql
-```
-
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
-
--2.1. Éditer
-```
-sudo visudo
-```
-
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
-```
-
-### 3️⃣ Ajouter `sednal` et `postgres` au groupe `bareos`
+### 2️⃣ Ajouter `sednal` et `postgres` au groupe `bareos`
 ```
 sudo usermod -aG bareos sednal
 sudo usermod -aG bareos postgres
@@ -361,29 +297,32 @@ ssl_cert = "/etc/pihole/ssl/cert/pihole_rsa.crt"
 ssl_key  = "/etc/pihole/ssl/keys/pihole_rsa.key"
 ```
 
--1.3. Redémarrer le service
-```
-sudo systemctl restart pihole-FTL
-```
-
 ---
 
 **II) Upsnap**
 
 -1.4. Éditer le fichier de configuration
 ```
-sudo nano /etc/upsnap/config.env
+sudo nano /home/sednal/Upsnap/docker-compose.yml
 ```
 
 -1.5. Ajouter les lignes
 ```
-UPSNAP_SSL_CERT=/etc/upsnap/ssl/cert/upsnap_rsa.crt
-UPSNAP_SSL_KEY=/etc/upsnap/ssl/keys/upsnap_rsa.key
-```
-
--1.6. Redémarrer le service
-```
-sudo systemctl restart upsnap
+services:
+  upsnap:
+    container_name: upsnap
+    image: ghcr.io/seriousm4x/upsnap:4
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+      - /srv/appdata/upsnap/data:/app/pb_data
+      - /etc/ssl/Upsnap/Cert/upsnap_rsa.crt:/app/cert.crt:ro
+      - /etc/ssl/Upsnap/Keys/upsnap_rsa.key:/app/cert.key:ro
+    environment:
+      - UPSNAP_SCAN_RANGE=192.168.0.1/24
+      - TZ=Asia/Yerevan
+      - UPSNAP_SSL_CERT=/app/cert.crt
+      - UPSNAP_SSL_KEY=/app/cert.key
 ```
 
 ---
@@ -399,24 +338,6 @@ chmod 640 /etc/cockpit/ws-certs.d/cockpit.cert
 chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit.cert
 ```
 
--1.8. Redémarrer le service
-```
-sudo systemctl restart cockpit
-```
-
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
-
--2.1. Éditer
-```
-sudo visudo
-```
-
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
-```
-
 ---
 
 # **Proxmox** : 192.168.0.242
@@ -427,24 +348,6 @@ sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
 ```
 cp /etc/proxmox/ssl/cert/proxmox_rsa.crt /etc/pve/local/pve-ssl.pem
 cp /etc/proxmox/ssl/keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
-```
-
--1.2. Redémarrer le service
-```
-sudo systemctl restart pveproxy
-```
-
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
-
--2.1. Éditer
-```
-sudo visudo
-```
-
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
 ```
 
 ---
@@ -464,20 +367,83 @@ TLS Certificate = /etc/vps/ssl/cert/vps_rsa.crt
 TLS Key         = /etc/vps/ssl/keys/vps_rsa.key
 ```
 
--1.3. Redémarrer le service
+---
+---
+
+# Configuration Final **A réaliser après -4- Configuration PKI**
+
+`-1.` Redémarrer les services
+
+-1.1. Infra
+```
+sudo systemctl reload nginx
+```
+
+---
+
+-1.2. Bareos
+
+1.2.1. Redémarrage des services
+```
+sudo systemctl restart bareos-dir
+sudo systemctl restart bareos-sd
+sudo systemctl restart bareos-fd
+sudo systemctl restart postgresql
+```
+
+-1.2.2. Vérification
+```
+sudo systemctl status bareos-dir
+sudo systemctl status bareos-sd
+sudo systemctl status bareos-fd
+sudo systemctl status postgresql
+```
+
+
+---
+
+-1.3. Pihole
+```
+sudo systemctl restart pihole-FTL
+```
+
+---
+
+
+-1.4. Upsnap
+```
+sudo systemctl restart upsnap
+```
+
+---
+
+
+-1.5. Cockpit
+```
+sudo systemctl restart cockpit
+``
+
+---
+
+
+-1.6. Proxmox
+```
+sudo systemctl restart pveproxy
+```
+
+
+---
+
+
+-1.7. Vps
 ```
 sudo systemctl restart bareos-sd
 ```
 
-### 2️⃣ Autorisation sudo sans mot de passe pour installer/supprimer des certificats CA
 
--2.1. Éditer
-```
-sudo visudo
-```
 
--2.2. Ajouter
-```
-sednal ALL=(ALL) NOPASSWD: /bin/cp
-sednal ALL=(ALL) NOPASSWD: /usr/bin/rm
-```
+
+
+
+
+
