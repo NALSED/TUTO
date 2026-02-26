@@ -421,7 +421,7 @@ sudo systemctl restart upsnap
 -1.5. Cockpit
 ```
 sudo systemctl restart cockpit
-``
+```
 
 ---
 
