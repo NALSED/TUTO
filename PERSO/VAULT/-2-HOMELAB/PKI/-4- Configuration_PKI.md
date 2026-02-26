@@ -259,6 +259,10 @@ vault write -format=json PKI_Sednal_Inter_RSA/intermediate/generate/internal \
 ```
 
 ```
+sudo chmod 644 /etc/vault/pki/cert_ca/csr/Sednal_Inter_R-1.csr
+```
+
+```
 sudo chown vault:vault /etc/vault/pki/cert_ca/csr/Sednal_Inter_R-1.csr
 ```
 
@@ -321,7 +325,8 @@ vault write PKI_Sednal_Inter_RSA/intermediate/set-signed \
 
 - Sortie 
 
-<img width="1472" height="288" alt="image" src="https://github.com/user-attachments/assets/9bedf4a3-9a07-4a9a-a8bf-afc1f24cb90c" />
+<img width="1243" height="309" alt="image" src="https://github.com/user-attachments/assets/8d442a58-a8fe-4047-a597-6a2e8dc6e2e7" />
+
 
 
 ```
@@ -331,7 +336,7 @@ vault write PKI_Sednal_Inter_ECDSA/intermediate/set-signed \
 
 - Sortie 
 
-<img width="1495" height="292" alt="image" src="https://github.com/user-attachments/assets/7e962a03-4014-4da2-93bf-f54de2e22cca" />
+<img width="1245" height="305" alt="image" src="https://github.com/user-attachments/assets/62cb4aa7-43ac-4592-8183-57a96df3b5ab" />
 
 
 ---
