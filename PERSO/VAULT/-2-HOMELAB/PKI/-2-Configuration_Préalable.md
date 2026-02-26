@@ -228,26 +228,26 @@ Tester via le script : [test_rsync.sh](https://github.com/NALSED/TUTO/blob/main/
 
 `=== INFRA ===`
 ```
-rm /etc/infra/ssl/ca /etc/infra/ssl/cert /etc/infra/ssl/keys
+rm /etc/infra/ssl/ca/test /etc/infra/ssl/cert/test /etc/infra/ssl/keys/test
 ```
 
 `=== BAREOS ===` 
 ```
-rm /etc/bareos/ssl/ca /etc/bareos/ssl/cert /etc/bareos/ssl/keys
+rm /etc/bareos/ssl/ca/test /etc/bareos/ssl/cert/test /etc/bareos/ssl/keys/test
 ```
 
 `=== DNS ===` 
 PIHOLE
 ```
-rm/etc/pihole/ssl/ca /etc/pihole/ssl/cert /etc/pihole/ssl/keys etc/upsnap/ssl/ca /etc/upsnap/ssl/cert /etc/upsnap/ssl/keys /etc/cockpit/ssl/ca /etc/cockpit/ssl/cert /etc/cockpit/ssl/keys
+rm/etc/pihole/ssl/ca/test /etc/pihole/ssl/cert/test /etc/pihole/ssl/keys/test etc/upsnap/ssl/ca/test /etc/upsnap/ssl/cert/test /etc/upsnap/ssl/keys/test /etc/cockpit/ssl/ca/test /etc/cockpit/ssl/cert/test /etc/cockpit/ssl/keys
 ```
 
 `=== PROMOX ===` 
 ```
-rm /etc/proxmox/ssl/ca /etc/proxmox/ssl/cert /etc/proxmox/ssl/keys
+rm /etc/proxmox/ssl/ca/test /etc/proxmox/ssl/cert/test /etc/proxmox/ssl/keys/test
 ```
 
 `=== VPS ===` 
 ```
-rm /etc/vps/ssl/ca /etc/vps/ssl/cert /etc/vps/ssl/keys
+rm /etc/vps/ssl/ca/test /etc/vps/ssl/cert/test /etc/vps/ssl/keys/test
 ```
