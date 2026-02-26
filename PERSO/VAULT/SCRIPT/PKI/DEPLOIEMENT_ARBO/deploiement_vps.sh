@@ -7,16 +7,19 @@
 set -e
 
 # === Création de l'arborescence ===
-mkdir -p /etc/ssl/{CA,Cert,Keys}
+mkdir -p /etc/vps/ssl/{ca,cert,keys}
 
 # === Propriétaire et droits ===
-chown debian:debian /etc/ssl/CA
-chmod 775           /etc/ssl/CA
+chown debian:debian /etc/vps/ssl
+chmod 755           /etc/vps/ssl
 
-chown debian:debian /etc/ssl/Cert
-chmod 775           /etc/ssl/Cert
+chown debian:debian /etc/vps/ssl/ca
+chmod 755           /etc/vps/ssl/ca
 
-chown debian:debian /etc/ssl/Keys
-chmod 775           /etc/ssl/Keys
+chown debian:debian /etc/vps/ssl/cert
+chmod 755           /etc/vps/ssl/cert
+
+chown debian:debian /etc/vps/ssl/keys
+chmod 755           /etc/vps/ssl/keys
 
 echo "Arborescence VPS créée et droits appliqués "
