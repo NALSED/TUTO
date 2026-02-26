@@ -7,19 +7,19 @@
 set -e
 
 # === Création de l'arborescence ===
-mkdir -p /etc/ssl/proxmox/{CA,Cert,Keys}
+mkdir -p /etc/proxmox/ssl/{ca,cert,keys}
 
 # === Propriétaire et droits ===
-chown root:root /etc/ssl/proxmox
-chmod 755       /etc/ssl/proxmox
+chown root:root /etc/proxmox/ssl
+chmod 755       /etc/proxmox/ssl
 
-chown root:root /etc/ssl/proxmox/CA
-chmod 755       /etc/ssl/proxmox/CA
+chown root:root /etc/proxmox/ssl/ca
+chmod 755       /etc/proxmox/ssl/ca
 
-chown root:root /etc/ssl/proxmox/Cert
-chmod 755       /etc/ssl/proxmox/Cert
+chown root:root /etc/proxmox/ssl/cert
+chmod 755       /etc/proxmox/ssl/cert
 
-chown root:root /etc/ssl/proxmox/Keys
-chmod 755       /etc/ssl/proxmox/Keys
+chown root:root /etc/proxmox/ssl/keys
+chmod 755       /etc/proxmox/ssl/keys
 
 echo "Arborescence Proxmox créée et droits appliqués "
