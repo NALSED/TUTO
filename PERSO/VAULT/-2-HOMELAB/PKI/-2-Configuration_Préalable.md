@@ -205,10 +205,17 @@ sudo usermod -aG bareos postgres
 ### 5️⃣ Création de répertoire avec Script sur toutes les machines:
 
 `=>` - Éditer Script Vault (192.168.0.238) : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_vault.sh)
+
 `=>` - Éditer Script Infra (192.168.0.239) : [deploiement_infra.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_infra.sh)
+
 `=>` - Éditer Script Bareos (192.168.0.240) : [deploiement_bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_bareos.sh)
+
 `=>` - Éditer Script DNS (192.168.0.241) : [deploiement_dns.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_dns.sh)
+
 `=>` - Éditer Script Proxmox (192.168.0.242) : [deploiement_proxmox.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_proxmox.sh)
+
 `=>` - Éditer Script Vps (176.31.163.227) : [deploiement_vps.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_vps.sh)
+
+
 
 
