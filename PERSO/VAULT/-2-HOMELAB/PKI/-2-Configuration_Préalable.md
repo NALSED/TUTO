@@ -222,6 +222,8 @@ sudo usermod -aG bareos postgres
 `-5.2.` ⚠️ `[TESTER RSYNC]` Depuis Vault = Infra
 Tester via le script : [test_rsync.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/test_rsync.sh)
 
+---
+
 `-5.3.`Suprimmer fichier test sur chaque machine: 
 
 `=== INFRA ===`
