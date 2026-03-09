@@ -7,13 +7,13 @@
 - **Vault PKI** : 192.168.0.238
 - **Serveur Web / Infra** : 192.168.0.239
   - Nginx
-- **Serveur Bareos** : 192.168.0.240
+- **[Serveur Bareos](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#serveur-bareos--1921680240)** : 192.168.0.240
   - Bareos-dir
   - Bareos-fd
   - Bareos-sd
   - Bareos-WebUI
   - PostgreSQL
-- **DNS** : 192.168.0.241
+- **[DNS](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#1%EF%B8%8F%E2%83%A3-int%C3%A9gration-des-chemins-des-certificats-1)** : 192.168.0.241
   - Pihole
   - Upsnap
   - Cockpit
