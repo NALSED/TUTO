@@ -144,7 +144,9 @@ Ce tutotriel à pour objectif :
 
 <img width="1144" height="81" alt="image" src="https://github.com/user-attachments/assets/3124aa98-3ae9-4bec-b408-064408dff0d3" />
 
-`[NOTE]` ici `vault.sednal.lan` = Vault_Root, et `vault.sednal.lan` = Vault_Auto.
+`[NOTE]` 
+
+ici `vault.sednal.lan` = Vault_Root, et `vault.sednal.lan` = Vault_Auto.
 
 ---
 ---
