@@ -48,7 +48,8 @@ base_infra="/etc/infra/ssl"
 ssh "$cible" "mkdir -p $base_infra/{ca,cert,keys}"
 
 rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
-    "$base_ca/Sednal_Root_All.crt" \
+    "$base_ca/Sednal_Root_R-1.crt" \
+    "$base_ca/Sednal_Root_E-1.crt" \   
     "$base_inter/Sednal_Inter_R-1.cert.pem" \
     "$base_inter/Sednal_Inter_E-1.cert.pem" \
     "$cible":"$base_infra/ca/"
@@ -69,7 +70,8 @@ ssh "$cible" "mkdir -p $base_bareos/{ca,keys/{dir,sd/{local,remote},fd,web,post,
 
 # CA
 rsync -e ssh --no-p --chmod=F644 --chown=bareos:bareos \
-    "$base_ca/Sednal_Root_All.crt" \
+    "$base_ca/Sednal_Root_R-1.crt" \
+    "$base_ca/Sednal_Root_E-1.crt" \
     "$base_inter/Sednal_Inter_R-1.cert.pem" \
     "$base_inter/Sednal_Inter_E-1.cert.pem" \
     "$cible":"$base_bareos/ca/"
@@ -160,7 +162,8 @@ cible="sednal@192.168.0.241"
 # Pihole
 ssh "$cible" "mkdir -p /etc/pihole/ssl/{ca,cert,keys}"
 rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
-    "$base_ca/Sednal_Root_All.crt" \
+    "$base_ca/Sednal_Root_R-1.crt" \
+    "$base_ca/Sednal_Root_E-1.crt" \
     "$base_inter/Sednal_Inter_R-1.cert.pem" \
     "$base_inter/Sednal_Inter_E-1.cert.pem" \
     "$cible":/etc/pihole/ssl/ca/
@@ -176,7 +179,8 @@ rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
 # Upsnap
 ssh "$cible" "mkdir -p /etc/upsnap/ssl/{ca,cert,keys}"
 rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
-    "$base_ca/Sednal_Root_All.crt" \
+    "$base_ca/Sednal_Root_R-1.crt" \
+    "$base_ca/Sednal_Root_E-1.crt" \
     "$base_inter/Sednal_Inter_R-1.cert.pem" \
     "$base_inter/Sednal_Inter_E-1.cert.pem" \
     "$cible":/etc/upsnap/ssl/ca/
@@ -192,7 +196,8 @@ rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
 # Cockpit
 ssh "$cible" "mkdir -p /etc/cockpit/ssl/{ca,cert,keys}"
 rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
-    "$base_ca/Sednal_Root_All.crt" \
+    "$base_ca/Sednal_Root_R-1.crt" \
+    "$base_ca/Sednal_Root_E-1.crt" \
     "$base_inter/Sednal_Inter_R-1.cert.pem" \
     "$base_inter/Sednal_Inter_E-1.cert.pem" \
     "$cible":/etc/cockpit/ssl/ca/
@@ -212,7 +217,8 @@ base_proxmox="/etc/proxmox/ssl"
 ssh "$cible" "mkdir -p $base_proxmox/{ca,cert,keys}"
 
 rsync -e ssh --no-p --chmod=F644 --chown=root:root \
-    "$base_ca/Sednal_Root_All.crt" \
+    "$base_ca/Sednal_Root_R-1.crt" \
+    "$base_ca/Sednal_Root_E-1.crt" \
     "$base_inter/Sednal_Inter_R-1.cert.pem" \
     "$base_inter/Sednal_Inter_E-1.cert.pem" \
     "$cible":"$base_proxmox/ca/"
