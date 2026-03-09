@@ -38,6 +38,58 @@
 [SOURCE](https://docs.bareos.org/TasksAndConcepts/TransportEncryption.html#example-tls-configuration-files)
 
 ### 1️⃣ Intégration des chemins des certificats
+`0` **Bareos Console**
+
+-0.1 Editer le fichier de configuration de la console
+````
+sudo nano /etc/bareos/bconsole.conf
+````
+
+````
+#
+# Bareos User Agent (or Console) Configuration File
+#
+
+Director {
+  Name = bareos-dir
+  address = localhost
+  Password = "q0NKvWfXvtAKlkCi/qWfgJokMy31P7lCFdW+F/VnAWnU"
+  Description = "Bareos Console credentials for local Director"
+  TLS CA Certificate File = /etc/bareos/ssl/ca/Sednal_Root_All.crt
+  TLS Key = /etc/bareos/ssl/keys/dir/bareos-dir_rsa.key
+  TLS Certificate = /etc/bareos/ssl/cert/dir/bareos-dir_rsa.crt
+  TLS Authenticate = yes
+
+}
+````
+
+-0.2 Editer le fichier de configuration de la console Web-Ui
+````
+/etc/bareos/bareos-dir.d/console/admin.conf
+````
+
+````
+#
+# Restricted console used by bareos-webui
+#
+Console {
+  Name = sednal
+  Password = "131213"
+  Profile = "webui-admin"
+
+
+  # As php does not support TLS-PSK,
+  # and the director has TLS enabled by default,
+  # we need to either disable TLS or setup
+  # TLS with certificates.
+  #
+  # For testing purposes we disable it here
+  TLS CA Certificate File = /etc/bareos/ssl/ca/Sednal_Root_All.crt
+  TLS Key = /etc/bareos/ssl/keys/dir/bareos-dir_rsa.key
+  TLS Certificate = /etc/bareos/ssl/cert/dir/bareos-dir_rsa.crt
+  TlS Require = true
+}
+````
 
 `1` **Bareos Director**
 
@@ -48,12 +100,11 @@ sudo nano /etc/bareos/bareos-dir.d/director/bareos-dir.conf
 
 -1.2. Ajouter les lignes
 ```
-    TLS Enable = yes
     TLS CA Certificate File = /etc/bareos/ssl/ca/Sednal_Root_All.crt
     TLS Certificate = /etc/bareos/ssl/cert/dir/bareos-dir_rsa.crt
     TLS Key = /etc/bareos/ssl/keys/dir/bareos-dir_rsa.key
-    TLS Verify Peer = yes
     TLS Allowed CN = "bareos.sednal.lan"
+    TLS Authenticate = yes  
 ```
 
 -1.3. Éditer le fichier `Storage_Local`
