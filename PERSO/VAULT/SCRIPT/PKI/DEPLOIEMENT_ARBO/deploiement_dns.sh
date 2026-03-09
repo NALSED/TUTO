@@ -18,17 +18,6 @@ chmod 755           /etc/pihole/ssl/cert
 chown sednal:sednal /etc/pihole/ssl/keys
 chmod 755           /etc/pihole/ssl/keys
 
-# === Upsnap ===
-mkdir -p /etc/upsnap/ssl/{ca,cert,keys}
-
-chown root:root     /etc/upsnap/ssl
-chmod 755           /etc/upsnap/ssl
-chown sednal:sednal /etc/upsnap/ssl/ca
-chmod 755           /etc/upsnap/ssl/ca
-chown sednal:sednal /etc/upsnap/ssl/cert
-chmod 755           /etc/upsnap/ssl/cert
-chown sednal:sednal /etc/upsnap/ssl/keys
-chmod 755           /etc/upsnap/ssl/keys
 
 # === Cockpit ===
 mkdir -p /etc/cockpit/ssl/{ca,cert,keys}
