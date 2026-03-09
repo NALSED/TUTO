@@ -316,14 +316,31 @@ issuer=CN = sednal.lan Intermediate Authority
 
 ---
 
-
-
-
-
-
-
-
-
-
-
 ### 6️⃣ Proxmox
+
+`-6.1.` Commande de test
+````
+openssl s_client -connect proxmox.sednal.lan:8006
+````
+
+`-6.2.` Extrait de la sortie
+````
+CONNECTED(00000003)
+depth=2 CN = sednal.com
+verify return:1
+depth=1 CN = sednal.lan Intermediate Authority
+verify return:1
+depth=0 CN = proxmox.sednal.lan
+verify return:1
+---
+Certificate chain
+ 0 s:CN = proxmox.sednal.lan
+   i:CN = sednal.lan Intermediate Authority
+   a:PKEY: rsaEncryption, 4096 (bit); sigalg: RSA-SHA256
+   v:NotBefore: Feb 26 12:39:01 2026 GMT; NotAfter: May 27 12:39:29 2026 GMT
+
+[...]
+
+subject=CN = proxmox.sednal.lan
+issuer=CN = sednal.lan Intermediate Authority
+````
