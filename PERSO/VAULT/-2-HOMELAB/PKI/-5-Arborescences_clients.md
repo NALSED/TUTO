@@ -2,7 +2,7 @@
 
 ---
 
-## 192.168.0.239 — infra.sednal.lan (Apache2)
+## 192.168.0.239 — infra.sednal.lan 
 
 ```
 /etc/infra/ssl
