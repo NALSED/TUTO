@@ -187,12 +187,12 @@ sudo nano /etc/bareos/bareos-dir.d/client/lin.conf
 
 `2` **Bareos Storage Daemon — sur 192.168.0.240**
 
--1.11. Éditer le fichier `Local-Sd`
+-2.1. Éditer le fichier `Local-Sd`
 ```
 sudo nano /etc/bareos/bareos-sd.d/storage/Local-Sd.conf
 ```
 
--1.12. Ajouter les lignes
+-2.2. Ajouter les lignes
 ```
     TLS Enable = yes
     TLS CA Certificate File = /etc/bareos/ssl/ca/Sednal_Root_All.crt
@@ -201,12 +201,12 @@ sudo nano /etc/bareos/bareos-sd.d/storage/Local-Sd.conf
     TLS Verify Peer = no
 ```
 
--1.13. Éditer le fichier `Director-Sd` (sur 192.168.0.240)
+-2.3. Éditer le fichier `Director-Sd` (sur 192.168.0.240)
 ```
 sudo nano /etc/bareos/bareos-sd.d/director/bareos-dir.conf
 ```
 
--1.14. Ajouter les lignes
+-2.4. Ajouter les lignes
 ```
     TLS Enable = yes
     TLS CA Certificate File = /etc/bareos/ssl/ca/Sednal_Root_All.crt
@@ -220,17 +220,17 @@ sudo nano /etc/bareos/bareos-sd.d/director/bareos-dir.conf
 
 `2b` **Bareos Storage Daemon Remote — sur 176.31.163.227**
 
--1.15. Se connecter au Storage Remote
+-2b.5. Se connecter au Storage Remote
 ```
 ssh debian@176.31.163.227
 ```
 
--1.16. Éditer le fichier `Remote-Sd`
+-2b.6. Éditer le fichier `Remote-Sd`
 ```
 sudo nano /etc/bareos/bareos-sd.d/storage/Remote_Sd.conf
 ```
 
--1.17. Ajouter les lignes
+-2b.7. Ajouter les lignes
 ```
     TLS Enable = yes
     TLS CA Certificate File = /etc/vps/ssl/ca/Sednal_Root_All.crt
@@ -239,12 +239,12 @@ sudo nano /etc/bareos/bareos-sd.d/storage/Remote_Sd.conf
     TLS Verify Peer = no
 ```
 
--1.18. Éditer le fichier `Director-Sd` (sur VPS)
+-2b.8. Éditer le fichier `Director-Sd` (sur VPS)
 ```
 sudo nano /etc/bareos/bareos-sd.d/director/bareos-dir.conf
 ```
 
--1.19. Ajouter les lignes
+-2b.9. Ajouter les lignes
 ```
     TLS Enable = yes
     TLS CA Certificate File = /etc/vps/ssl/ca/Sednal_Root_All.crt
@@ -258,12 +258,12 @@ sudo nano /etc/bareos/bareos-sd.d/director/bareos-dir.conf
 
 `3` **Bareos File Daemon — sur 192.168.0.240**
 
--1.20. Éditer le fichier `myself`
+-3.1. Éditer le fichier `myself`
 ```
 sudo nano /etc/bareos/bareos-fd.d/client/myself.conf
 ```
 
--1.21. Ajouter les lignes
+-3.2. Ajouter les lignes
 ```
     TLS Enable = yes
     TLS CA Certificate File = /etc/bareos/ssl/ca/Sednal_Root_All.crt
@@ -272,12 +272,12 @@ sudo nano /etc/bareos/bareos-fd.d/client/myself.conf
     TLS Allowed CN = bareos.sednal.lan
 ```
 
--1.22. Éditer le fichier `Director-fd`
+-3.3. Éditer le fichier `Director-fd`
 ```
 sudo nano /etc/bareos/bareos-fd.d/director/bareos-dir.conf
 ```
 
--1.23. Ajouter les lignes
+-3.4. Ajouter les lignes
 ```
     TLS Enable = yes
     TLS CA Certificate File = /etc/bareos/ssl/ca/Sednal_Root_All.crt
@@ -291,12 +291,12 @@ sudo nano /etc/bareos/bareos-fd.d/director/bareos-dir.conf
 
 `4` **Bareos WebUI**
 
--1.24. Éditer le fichier `directors.ini`
+-4.1. Éditer le fichier `directors.ini`
 ```
 sudo nano /etc/bareos-webui/directors.ini
 ```
 
--1.25. Ajouter les lignes
+-4.2. Ajouter les lignes
 ```
 ;------------------------------------------------------------------------------
 ; Section bareos.sednal.lan
@@ -320,12 +320,12 @@ cert_file = "/etc/bareos/ssl/web/bareos_webui.pem"
 
 [DOC](https://www.postgresql.org/docs/current/ssl-tcp.html#SSL-SETUP)
 
--1.27. Éditer le fichier `postgresql.conf`
+-5.1. Éditer le fichier `postgresql.conf`
 ```
 sudo nano /etc/postgresql/18/main/postgresql.conf
 ```
 
--1.28. Ajouter les lignes
+-5.2. Ajouter les lignes
 ```
 ssl = on
 ssl_cert_file = '/etc/bareos/ssl/cert/post/postgresql_rsa.crt'
@@ -334,7 +334,7 @@ ssl_ca_file   = '/etc/bareos/ssl/ca/Sednal_Root_All.crt'
 ```
 
 
-### 2️⃣ Ajouter `sednal` et `postgres` au groupe `bareos`
+### Ajouter `sednal` et `postgres` au groupe `bareos`
 ```
 sudo usermod -aG bareos sednal
 sudo usermod -aG bareos postgres
@@ -345,9 +345,9 @@ sudo usermod -aG bareos postgres
 
 # **DNS** : 192.168.0.241
 
-### 1️⃣ Intégration des chemins des certificats
+### Intégration des chemins des certificats
 
-**I) Pihole**
+`1` **Pihole**
 
 -1.1. Éditer le fichier `pihole.toml`
 ```
@@ -364,7 +364,7 @@ cert = "/etc/pihole/ssl/cert/cert_key_tls.pem"
 
 ---
 
-**II) Cockpit**
+`2` **Cockpit**
 
 -2.1. Configuration après génération des Certificats ⬇️
 `[NOTE]` Car concaténation .key et .crt
