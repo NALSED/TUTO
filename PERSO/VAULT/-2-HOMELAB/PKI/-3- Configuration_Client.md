@@ -15,13 +15,30 @@
   - PostgreSQL
 - **[DNS](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#1%EF%B8%8F%E2%83%A3-int%C3%A9gration-des-chemins-des-certificats-1)** : 192.168.0.241
   - Pihole
-  - Upsnap
   - Cockpit
 - **Proxmox** : 192.168.0.242
 - **VPS** : 176.31.163.227
   - Bareos-sd
 
 ---
+
+Cette partie se décompose en 2 parties :
+
+**-1.** Configuration pré-génération des certificats SSL, mise en place et édition des fichiers de configuration pour les différents services. Ainsi, lors de leur édition, les fichiers seront prêts à les accueillir.
+
+**-2.** Configuration post-génération des certificats SSL, concaténation des certificats CA intermédiaire et racine, autorisation d'utilisation du certificat SSL et redémarrage du service.
+
+---
+
+### **SOMMAIRES**
+1️⃣ `Configuration Prè-Génération Certificats SSL`
+2️⃣ `Configuration post-génération`
+
+
+---
+---
+
+## 1️⃣ **Configuration Prè-Génération Certificats SSL**
 
 # **Vault PKI** : 192.168.0.238 : Service SSL `OK`
 
@@ -38,6 +55,7 @@
 [SOURCE](https://docs.bareos.org/TasksAndConcepts/TransportEncryption.html#example-tls-configuration-files)
 
 ### 1️⃣ Intégration des chemins des certificats
+
 `0` **Bareos Console**
 
 -0.1 Editer le fichier de configuration de la console
@@ -341,37 +359,12 @@ cert = "/etc/pihole/ssl/cert/cert_key_tls.pem"
 
 ---
 
-**II) Upsnap**
-
--1.4. Éditer le fichier de configuration
-```
-sudo nano /home/sednal/Upsnap/docker-compose.yml
-```
-
--1.5. Ajouter les lignes
-```
-services:
-  upsnap:
-    container_name: upsnap
-    image: ghcr.io/seriousm4x/upsnap:4
-    network_mode: host
-    restart: unless-stopped
-    volumes:
-      - /srv/appdata/upsnap/data:/app/pb_data
-      - /etc/ssl/upsnap/cert/upsnap_rsa.crt:/app/cert.crt:ro
-      - /etc/ssl/upsnap/keys/upsnap_rsa.key:/app/cert.key:ro
-    environment:
-      - UPSNAP_SCAN_RANGE=192.168.0.1/24
-      - TZ=Asia/Yerevan
-      - UPSNAP_SSL_CERT=/app/cert.crt
-      - UPSNAP_SSL_KEY=/app/cert.key
-```
 
 ---
 
-**III) Cockpit**
+**II) Cockpit**
 
--1.6. Configuration après génération des Certificats ⬇️
+-2.1. Configuration après génération des Certificats ⬇️
 `[NOTE]` Car concaténation .key et .crt
 
 ---
@@ -380,7 +373,7 @@ services:
 # **Proxmox** : 192.168.0.242
 
 -1.1. Configuration après génération des Certificats ⬇️
-`[NOTE]` Car copue dans un dossier cible différent de celui de stockage des certificats
+`[NOTE]` Car copie dans un dossier cible, différent de celui de stockage des certificats.
 
 ---
 ---
@@ -390,10 +383,11 @@ services:
 
 ---
 
-# Configuration Final **A réaliser après -4- Configuration PKI**
-`-1. CONCATENATION`
+## 2️⃣ **Configuration post-génération**
 
--1.1.. **BAREOS** Créer le fichier PEM combiné cert + clé (requis par WebUI)
+### `CONCATENATION`
+
+-2.1. **BAREOS** Créer le fichier PEM combiné cert + clé (requis par WebUI)
 ```
 cat /etc/bareos/ssl/cert/web/bareos_rsa.crt \
     /etc/bareos/ssl/keys/web/bareos_rsa.key \
@@ -410,7 +404,7 @@ chown bareos:bareos /etc/bareos/ssl/web/bareos_webui.pem
 
 ---
 
--1.2. **PIHOLE** Créer le fichier PEM combiné cert + clé
+-2.2. **PIHOLE** Créer le fichier PEM combiné cert + clé
 ```
 cp /etc/pihole/ssl/cert/pihole_rsa.crt /etc/pihole/ssl/cert/cert_key_tls.pem
 ```
@@ -429,7 +423,7 @@ chmod 600 /etc/pihole/ssl/cert/cert_key_tls.pem
 
 ---
 
--1.3. **COCKPIT** Créer le fichier PEM combiné cert + clé 
+-2.3. **COCKPIT** Créer le fichier PEM combiné cert + clé 
 
 [DOC](https://cockpit-project.org/guide/latest/https.html#https-certificates)
 
@@ -466,7 +460,7 @@ sudo systemctl restart cockpit
 
 ---
 
--1.4. **Configuration Proxmox**
+-2.4. **Configuration Proxmox**
 ```
 cp /etc/proxmox/ssl/cert/proxmox_rsa.crt /etc/pve/local/pve-ssl.pem
 cp /etc/proxmox/ssl/keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
@@ -474,7 +468,7 @@ cp /etc/proxmox/ssl/keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
 
 ---
 
-## ⚠️ `-2.` **A effectuer sur chaque systeme**
+## ⚠️ **A effectuer sur chaque systeme**
 ```
 sudo cp Sednal_Inter_E-1.cert.pem Sednal_Inter_R-1.cert.pem Sednal_Root_E-1.crt Sednal_Root_R-1.crt /usr/local/share/ca-certificates
 ```
@@ -485,18 +479,18 @@ sudo update-ca-certificates --fresh
 
 ---
 
-`-3.` Redémarrer les services
+`Redémarrer les services`
 
--3.1. Infra
+-2.5. Infra
 ```
 sudo systemctl reload nginx
 ```
 
 ---
 
--3.2. Bareos
+-2.6. Bareos
 
-3.2.1. Redémarrage des services
+2.6.1. Redémarrage des services
 ```
 sudo systemctl restart bareos-dir
 sudo systemctl restart bareos-sd
@@ -504,7 +498,7 @@ sudo systemctl restart bareos-fd
 sudo systemctl restart postgresql
 ```
 
--3.2.2. Vérification
+-2.6.2. Vérification
 ```
 sudo systemctl status bareos-dir
 sudo systemctl status bareos-sd
@@ -515,7 +509,7 @@ sudo systemctl status postgresql
 
 ---
 
--3.3. Pihole
+-2.7. Pihole
 ```
 sudo systemctl restart pihole-FTL
 ```
@@ -523,15 +517,8 @@ sudo systemctl restart pihole-FTL
 ---
 
 
--3.4. Upsnap
-```
-sudo systemctl restart upsnap
-```
 
----
-
-
--3.5. Cockpit
+-2.8. Cockpit
 ```
 sudo systemctl restart cockpit
 ```
@@ -539,7 +526,7 @@ sudo systemctl restart cockpit
 ---
 
 
--3.6. Proxmox
+-2.9. Proxmox
 ```
 sudo systemctl restart pveproxy
 ```
@@ -548,7 +535,7 @@ sudo systemctl restart pveproxy
 ---
 
 
--3.7. Vps
+-2.10. Vps
 ```
 sudo systemctl restart bareos-sd
 ```
