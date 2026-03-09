@@ -23,7 +23,8 @@ cible="sednal@infra.sednal.lan"
 
 ssh "$cible" "mkdir -p /etc/infra/ssl/ca"
 rsync -e ssh --no-p --chmod=F644 --chown=sednal:sednal \
-    "$base_ca/Sednal_Root_All.crt" \
+    "$base_ca/Sednal_Root_R-1.crt" \
+    "$base_ca/Sednal_Root_E-1.crt" \
     "$base_inter/Sednal_Inter_R-1.cert.pem" \
     "$base_inter/Sednal_Inter_E-1.cert.pem" \
     "$cible":/etc/infra/ssl/ca/
