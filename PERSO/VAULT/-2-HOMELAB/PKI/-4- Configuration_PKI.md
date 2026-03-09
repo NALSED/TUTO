@@ -206,28 +206,11 @@ vault write PKI_Sednal_Root_ECDSA/config/crl \
 
 <img width="655" height="321" alt="image" src="https://github.com/user-attachments/assets/169c2eb1-c85c-4c0c-97f7-cc32c0396d63" />
 
----
 
-### `-2.` Concaténation Root CA (bundle distribué aux clients)
-
-`-2.1.` Concaténer les deux CA Root dans un fichier unique
-
-```
-path=/etc/vault/pki/cert_ca/root
-```
-
-```
-sudo cat "$path/Sednal_Root_R-1.crt" "$path/Sednal_Root_E-1.crt" \
-    | sudo tee "$path/Sednal_Root_All.crt" > /dev/null
-```
-
-```
-sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal_Root_All.crt
-```
 
 ---
 
-### `-3.` Certificats Intermédiaire
+### `-2.` Certificats Intermédiaire
 
 `[NOTE]` 
 
@@ -244,12 +227,12 @@ révoquer et régénérer l'intermédiaire sans toucher à la Root CA.
 
 **=== RSA ===**
 
-`-3.1.` - Générer le certificat intermédiare 
+`-2.1.` - Générer le certificat intermédiare 
 ```
 vault secrets enable -path=PKI_Sednal_Inter_RSA -max-lease-ttl=1825d pki
 ```
 
-`-3.2.` Génération du CSR  
+`-2.2.` Génération du CSR  
 ```
 vault write -format=json PKI_Sednal_Inter_RSA/intermediate/generate/internal \
      common_name="sednal.lan Intermediate Authority" \
@@ -267,7 +250,7 @@ sudo chown vault:vault /etc/vault/pki/cert_ca/csr/Sednal_Inter_R-1.csr
 ```
 
 
-`-3.3.` Signature du certifiact inter via CA Root RSA
+`-2.3.` Signature du certifiact inter via CA Root RSA
 ```
 vault write -format=json PKI_Sednal_Root_RSA/root/sign-intermediate \
      issuer_ref="Sednal_Root_R-1" \
@@ -284,12 +267,12 @@ sudo chown vault:vault /etc/vault/pki/cert_ca/inter/Sednal_Inter_R-1.cert.pem
 
 **=== ECDSA ===**
 
-`-3.4.` Générer le certificat intermédiare 
+`-2.4.` Générer le certificat intermédiare 
 ```
 vault secrets enable -path=PKI_Sednal_Inter_ECDSA -max-lease-ttl=1825d pki
 ```
 
-`-3.5.` Génération du CSR  
+`-2.5.` Génération du CSR  
 ```
 vault write -format=json PKI_Sednal_Inter_ECDSA/intermediate/generate/internal \
      common_name="sednal.lan Intermediate Authority" \
@@ -302,7 +285,7 @@ vault write -format=json PKI_Sednal_Inter_ECDSA/intermediate/generate/internal \
 sudo chown vault:vault /etc/vault/pki/cert_ca/csr/Sednal_Inter_E-1.csr
 ```
 
-`-3.6.` Signature du certifiact inter via CA Root ECDSA
+`-2.6.` Signature du certifiact inter via CA Root ECDSA
 ```
 vault write -format=json PKI_Sednal_Root_ECDSA/root/sign-intermediate \
      issuer_ref="Sednal_Root_E-1" \
@@ -317,7 +300,7 @@ vault write -format=json PKI_Sednal_Root_ECDSA/root/sign-intermediate \
 sudo chown vault:vault /etc/vault/pki/cert_ca/inter/Sednal_Inter_E-1.cert.pem
 ```
 
-`-3.7.` Importation certificats  inter RSA et ECDSA dans Vault.
+`-2.7.` Importation certificats  inter RSA et ECDSA dans Vault.
 ```
 vault write PKI_Sednal_Inter_RSA/intermediate/set-signed \
     certificate=@/etc/vault/pki/cert_ca/inter/Sednal_Inter_R-1.cert.pem
@@ -338,6 +321,39 @@ vault write PKI_Sednal_Inter_ECDSA/intermediate/set-signed \
 
 <img width="1245" height="305" alt="image" src="https://github.com/user-attachments/assets/62cb4aa7-43ac-4592-8183-57a96df3b5ab" />
 
+`-2.8.` **CONCATENATION** Certificat Inter => Root RSA et ECDSA (Pour Certain service)
+
+---
+
+### `-2.` Concaténation Root CA 
+- ICI Uniquement RSA car aucun service n'a besoin de ECDSA pour le moment, en cas d'édition ECDSA, adapter le nom de `Sednal_Root_All.crt`.
+
+`-2.1.` Concaténer les deux CA Root dans un fichier unique
+
+```
+path_root=/etc/vault/pki/cert_ca/root
+```
+
+```
+path_inter=/etc/vault/pki/cert_ca/inter
+```
+
+`=== RSA ===`
+```
+sudo cat "$path_inter/Sednal_Inter_R.crt" "$path_root/Sednal_Root_R-1.crt" \
+    | sudo tee "$path/Sednal_Root_All.crt" > /dev/null
+```
+
+`=== ECDSA ===`
+```
+sudo cat "$path_inter/Sednal_Inter_E.crt" "$path_root/Sednal_Root_E-1.crt" \
+    | sudo tee "$path/Sednal_Root_All.crt" > /dev/null
+```
+
+
+```
+sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal_Root_All.crt
+```
 
 ---
 
