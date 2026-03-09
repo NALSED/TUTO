@@ -65,7 +65,7 @@ chown -R vault:vault "$base_pki/private/$folder" "$base_pki/public/$folder"
 echo "=== Déploiement vers $cible ==="
 ssh "$cible" "mkdir -p $base_dest/{ca,cert,keys}"
 
-# CA
+# CA ATTENTION ICI RSA
 rsync -e ssh --no-p --chmod=F644 --chown="$owner" \
     "$base_ca/Sednal_Root_All.crt" \
     "$base_inter/Sednal_Inter_R-1.cert.pem" \
