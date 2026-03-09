@@ -38,7 +38,7 @@ vault.sednal.lan (192.168.0.238)
 │   ├── config/
 │   │   ├── urls
 │   │   └── crl
-│   ├── issuers/                     # Sednal_Root_E-1 + XS-1
+│   ├── issuers/                     # Sednal_Root_E-1 
 │   ├── root/
 │   │   └── generate/internal        # Génération Root ECDSA
 │   └── intermediate/
