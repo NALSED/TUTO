@@ -31,7 +31,9 @@ Cette partie se décompose en 2 parties :
 ---
 
 ### **SOMMAIRES**
+
 1️⃣ `Configuration Prè-Génération Certificats SSL`
+
 2️⃣ `Configuration post-génération`
 
 
