@@ -380,28 +380,36 @@ chmod 600 /etc/pihole/ssl/cert/cert_key_tls.pem
 
 -1.3. **COCKPIT** Créer le fichier PEM combiné cert + clé 
 
-[DOC](https://cockpit-project.org/guide/195/https.html#https-compat)
+[DOC](https://cockpit-project.org/guide/latest/https.html#https-certificates)
 
 ⚠️ Uniquement du serveur Cockpit, étant donné que les certificats Inter et Root sont dans `/usr/share/ca-certificates`.
 
-`[NOTE]` Ici utilisation du certificat signé RSA pour Cockpit
+`[NOTE]` Ici utilisation du certificat signé RSA pour Cockpit, les deux fichier .crt rt .key doivent avoir le même nom.
 
 === RSA ===
 ```
-sudo cat cert/cockpit_rsa.crt keys/cockpit_rsa.key | sudo tee /etc/cockpit/ws-certs.d/cockpit_rsa.crt
+sudo cp /etc/cockpit/ssl/cert/cockpit_rsa.crt /etc/cockpit/ssl/keys/cockpit_rsa.key /etc/cockpit/ws-certs.d/
 ```
 
 ```
-chmod 640 /etc/cockpit/ws-certs.d/cockpit_rsa.crt
+sudo chmod 640 /etc/cockpit/ws-certs.d/cockpit_rsa.crt
+```
+
+```
+sudo chmod 640 /etc/cockpit/ws-certs.d/cockpit_rsa.key
 ```
 
 
 ```
-chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_rsa.crt
+sudo chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_rsa.crt
+```
+
+```
+sudo chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_rsa.key
 ```
 
 ````
-systemctl restart cockpit
+sudo systemctl restart cockpit
 ````
 
 
