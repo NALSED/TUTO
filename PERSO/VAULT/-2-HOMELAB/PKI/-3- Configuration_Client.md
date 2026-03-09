@@ -321,6 +321,7 @@ services:
 **III) Cockpit**
 
 -1.6. Configuration après génération des Certificats ⬇️
+`[NOTE]` Car concaténation .key et .crt
 
 ---
 ---
@@ -328,6 +329,7 @@ services:
 # **Proxmox** : 192.168.0.242
 
 -1.1. Configuration après génération des Certificats ⬇️
+`[NOTE]` Car copue dans un dossier cible différent de celui de stockage des certificats
 
 ---
 ---
@@ -376,65 +378,32 @@ chmod 600 /etc/pihole/ssl/cert/cert_key_tls.pem
 
 ---
 
--1.3. **COCKPIT** Créer le fichier PEM combiné cert + clé
+-1.3. **COCKPIT** Créer le fichier PEM combiné cert + clé 
+⚠️ Uniquement du serveur Cockpit, étant donné que les certificats Inter et Root sont dans `/usr/share/ca-certificates`.
+`[NOTE]` Ici utilisation du certificat signé RSA pour Cockpit
 
 === RSA ===
 ```
-sudo cat /etc/cockpit/ssl/cert/cockpit_rsa.crt \
-    /etc/cockpit/ssl/ca/Sednal_Inter_R-1.cert.pem \
-    | sudo tee /etc/cockpit/ws-certs.d/cockpit_rsa.crt > /dev/null
-```
-
-```
-cp /etc/cockpit/ssl/keys/cockpit_rsa.key /etc/cockpit/ws-certs.d/cockpit_rsa.key
+sudo cat cert/cockpit_rsa.crt keys/cockpit_rsa.key | sudo tee /etc/cockpit/ws-certs.d/cockpit_rsa.crt
 ```
 
 ```
 chmod 640 /etc/cockpit/ws-certs.d/cockpit_rsa.crt
 ```
 
-```
-chmod 640 /etc/cockpit/ws-certs.d/cockpit_rsa.key
-```
 
 ```
 chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_rsa.crt
 ```
 
-```
-chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_rsa.key
-```
+````
+systemctl restart cockpit
+````
 
-=== ECDSA ===
-```
-sudo cat /etc/cockpit/ssl/cert/cockpit_ecdsa.crt \
-    /etc/cockpit/ssl/ca/Sednal_Inter_E-1.cert.pem \
-    | sudo tee /etc/cockpit/ws-certs.d/cockpit_ecdsa.crt > /dev/null
-```
-
-```
-cp /etc/cockpit/ssl/keys/cockpit_ecdsa.key /etc/cockpit/ws-certs.d/cockpit_ecdsa.key
-```
-
-```
-chmod 640 /etc/cockpit/ws-certs.d/cockpit_ecdsa.crt
-```
-
-```
-chmod 640 /etc/cockpit/ws-certs.d/cockpit_ecdsa.key
-```
-
-```
-chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_ecdsa.crt
-```
-
-```
-chown root:cockpit-ws /etc/cockpit/ws-certs.d/cockpit_ecdsa.key
-```
 
 ---
 
-**Configuration Proxmox**
+-1.4. **Configuration Proxmox**
 ```
 cp /etc/proxmox/ssl/cert/proxmox_rsa.crt /etc/pve/local/pve-ssl.pem
 cp /etc/proxmox/ssl/keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
