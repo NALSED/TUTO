@@ -72,31 +72,31 @@
 │
 ├── keys
 │   ├── dir
-│   │   ├── bareos-dir_rsa.key          (600 bareos:bareos)
-│   │   └── bareos-dir_ecdsa.key        (600 bareos:bareos)
+│   │   ├── bareos-dir_rsa.key          (640 bareos:bareos)
+│   │   └── bareos-dir_ecdsa.key        
 │   ├── fd
-│   │   ├── bareos-fd_rsa.key           (600 bareos:bareos)
-│   │   └── bareos-fd_ecdsa.key         (600 bareos:bareos)
+│   │   ├── bareos-fd_rsa.key           
+│   │   └── bareos-fd_ecdsa.key         
 │   ├── sd
 │   │   ├── local
-│   │   │   ├── bareos-sd-local_rsa.key (600 bareos:bareos)
-│   │   │   └── bareos-sd-local_ecdsa.key (600 bareos:bareos)
+│   │   │   ├── bareos-sd-local_rsa.key 
+│   │   │   └── bareos-sd-local_ecdsa.key 
 │   │   └── remote
-│   │       ├── bareos-sd-remote_rsa.key(600 bareos:bareos)
-│   │       └── bareos-sd-remote_ecdsa.key(600 bareos:bareos)
+│   │       ├── bareos-sd-remote_rsa.key
+│   │       └── bareos-sd-remote_ecdsa.key
 │   ├── web
-│   │   ├── bareos_rsa.key              (600 bareos:bareos)
-│   │   └── bareos_ecdsa.key            (600 bareos:bareos)
+│   │   ├── bareos_rsa.key          
+│   │   └── bareos_ecdsa.key          
 │   ├── post
-│   │   ├── postgresql_rsa.key          (640 bareos:bareos)
-│   │   └── postgresql_ecdsa.key        (640 bareos:bareos)
+│   │   ├── postgresql_rsa.key         
+│   │   └── postgresql_ecdsa.key        
 │   └── client
 │       ├── win
-│       │   ├── win_rsa.key             (600 bareos:bareos)
-│       │   └── win_ecdsa.key           (600 bareos:bareos)
+│       │   ├── win_rsa.key            
+│       │   └── win_ecdsa.key           
 │       └── lin
-│           ├── lin_rsa.key             (600 bareos:bareos)
-│           └── lin_ecdsa.key           (600 bareos:bareos)
+│           ├── lin_rsa.key             
+│           └── lin_ecdsa.key           
 │
 └── web
     └── bareos_webui.pem    ← cat bareos_rsa.crt + bareos_rsa.key
@@ -105,7 +105,7 @@
 
 ---
 
-## 192.168.0.241 — pihole.sednal.lan (Pihole + Upsnap + Cockpit)
+## 192.168.0.241 — pihole.sednal.lan (Pihole + Cockpit)
 
 ```
 /etc/pihole/ssl
@@ -120,17 +120,6 @@
     ├── pihole_rsa.key      (600 sednal:sednal)
     └── pihole_ecdsa.key    (600 sednal:sednal)
 
-/etc/upsnap/ssl
-├── ca
-│   ├── Sednal_Root_All.crt
-│   ├── Sednal_Inter_R-1.cert.pem
-│   └── Sednal_Inter_E-1.cert.pem
-├── cert
-│   ├── upsnap_rsa.crt
-│   └── upsnap_ecdsa.crt
-└── keys
-    ├── upsnap_rsa.key      (600 sednal:sednal)
-    └── upsnap_ecdsa.key    (600 sednal:sednal)
 
 /etc/cockpit/ssl
 ├── ca
