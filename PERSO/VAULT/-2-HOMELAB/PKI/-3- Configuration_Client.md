@@ -444,7 +444,7 @@ cp /etc/proxmox/ssl/keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
 
 ## ⚠️ `-2.` **A effectuer sur chaque systeme**
 ```
-sudo cp /usr/local/share/ca-certificates/Sednal_Root_All.crt
+sudo cp Sednal_Inter_E-1.cert.pem Sednal_Inter_R-1.cert.pem Sednal_Root_E-1.crt Sednal_Root_R-1.crt /usr/local/share/ca-certificates
 ```
 
 ```
