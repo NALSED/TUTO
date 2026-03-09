@@ -379,7 +379,11 @@ chmod 600 /etc/pihole/ssl/cert/cert_key_tls.pem
 ---
 
 -1.3. **COCKPIT** Créer le fichier PEM combiné cert + clé 
+
+[DOC](https://cockpit-project.org/guide/195/https.html#https-compat)
+
 ⚠️ Uniquement du serveur Cockpit, étant donné que les certificats Inter et Root sont dans `/usr/share/ca-certificates`.
+
 `[NOTE]` Ici utilisation du certificat signé RSA pour Cockpit
 
 === RSA ===
