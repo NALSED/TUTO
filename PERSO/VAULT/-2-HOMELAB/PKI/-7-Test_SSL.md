@@ -44,7 +44,7 @@ issuer=CN=Sednal-CA
 
 ---
 
-### 2️⃣ **Infra**
+### 2️⃣ **Infra** 192.168.0.239
 
 `-2.1.` Commande de test
 ````
@@ -78,7 +78,7 @@ issuer=CN = sednal.lan Intermediate Authority
 
 ---
 
-### 3️⃣ Bareos
+### 3️⃣ Bareos 192.168.0.240
 
 - Pour Bareos, les différents Daemon comunique en SSl ainsi , que la WebUi.
 
@@ -249,7 +249,7 @@ issuer=CN=sednal.lan Intermediate Authority
 
 ---
 
-### 4️⃣ Pihole
+### 4️⃣ Pihole 192.168.0.241
 
 `-4.1. `**PIHOLE**
 
@@ -282,7 +282,7 @@ issuer=CN = sednal.lan Intermediate Authority
 
 ---
 
-### 5️⃣ Cockpit
+### 5️⃣ Cockpit 192.168.0.241
 
 
 `5.2 `**COCKPIT**
@@ -316,7 +316,7 @@ issuer=CN = sednal.lan Intermediate Authority
 
 ---
 
-### 6️⃣ Proxmox
+### 6️⃣ Proxmox 192.168.0.242
 
 `-6.1.` Commande de test
 ````
