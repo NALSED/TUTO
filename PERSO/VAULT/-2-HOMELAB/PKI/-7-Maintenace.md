@@ -160,5 +160,19 @@ sudo systemctl restart bareos-sd
 ---
 
 
+### **-5-** Rappel Win 11
 
+- En admin
+````
+# Création de la tâche
+$msg = "=== Maintenance Certificat Infra ==="
+$action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-WindowStyle Hidden -Command `"Add-Type -AssemblyName PresentationFramework; [System.Windows.MessageBox]::Show('$msg', 'Rappel', 'OK', 'Information')`""
+$trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddDays(80) -RepetitionInterval (New-TimeSpan -Days 80)
+Register-ScheduledTask -TaskName "RappelSSL" -Action $action -Trigger $trigger -RunLevel Highest -Force
+````
 
+````
+#Test
+Start-ScheduledTask -TaskName "RappelSSL"
+Write-Host "Tâche créée et testée " -ForegroundColor Green
+````
