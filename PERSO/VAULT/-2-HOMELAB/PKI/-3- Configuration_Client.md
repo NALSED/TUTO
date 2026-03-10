@@ -459,9 +459,9 @@ chmod 600 /etc/pihole/ssl/cert/cert_key_tls.pem
 
 [DOC](https://cockpit-project.org/guide/latest/https.html#https-certificates)
 
-⚠️ Uniquement du serveur Cockpit, étant donné que les certificats Inter et Root sont dans `/usr/share/ca-certificates`.
+⚠️ Copie certificat du serveur Cockpituniquement, étant donné que les certificats Inter et Root sont dans `/usr/share/ca-certificates`.
 
-`[NOTE]` Ici utilisation du certificat signé RSA pour Cockpit, les deux fichier .crt rt .key doivent avoir le même nom.
+`[NOTE]` Ici utilisation du certificat signé RSA pour Cockpit, les deux fichier .crt et .key doivent avoir le même nom.
 
 === RSA ===
 ```
