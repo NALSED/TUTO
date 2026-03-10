@@ -326,7 +326,7 @@ vault write PKI_Sednal_Inter_ECDSA/intermediate/set-signed \
 ---
 
 ### `-2.` Concaténation Root CA 
-- ICI Uniquement RSA car aucun service n'a besoin de ECDSA pour le moment, en cas d'édition ECDSA, adapter le nom de `Sednal_Root_All.crt`.
+- ICI Concaténation Uniquement des certificats Algo => RSA (Inter + Root, !! dans cet ordre !!) car aucun service n'a besoin de ECDSA pour le moment, en cas d'édition ECDSA, adapter le nom de `Sednal_Root_All.crt`, pour éviter les conflits.
 
 `-2.1.` Concaténer les deux CA Root dans un fichier unique
 
