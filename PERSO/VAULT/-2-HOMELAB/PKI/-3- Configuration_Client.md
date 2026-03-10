@@ -315,12 +315,12 @@ cert_file = "/etc/bareos/ssl/web/bareos_webui.pem"
 ```
 
 
-`-4.3.` créez le vhost
+-4.3. créez le vhost
 ````
 sudo nano /etc/apache2/sites-available/bareos-webui-ssl.conf
 ````
 
-`-4.4.` Editer 
+-4.4. Editer 
 ````
 <IfModule mod_ssl.c>
   <VirtualHost *:443>
