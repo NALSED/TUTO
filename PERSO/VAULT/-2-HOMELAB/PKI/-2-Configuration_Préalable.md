@@ -21,7 +21,7 @@ Dans cette partie toutes les configurations préalables sur les clients ainsi qu
 - 3️⃣ Les clients de Vault qui vont recevoir les certificats doivent pouvoir être contactés en `ssh` par Vault sans mot de passe.
 - 4️⃣ La gestion des groupes et des utilisateurs est faite en amont pour éviter tout oubli.
 - 5️⃣ Création des Répertoires Certificats sur le serveur Vault.
-- 6️⃣ Mise en place certificats, sur serveur web Bareos. (Apache2)
+
 ---
 
 ### 1️⃣ Point de récupération CRL (192.168.0.239)
@@ -198,6 +198,7 @@ sudo usermod -aG bareos postgres
 ### 5️⃣ Création de répertoire avec Script sur toutes les machines
 
 `-5.1.` Création de Arborécences sur chaque machine :
+
 `=>` - Éditer Script Vault (192.168.0.238) : [deploiement_vault.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/%20deploiement_vault.sh)
 
 `=>` - Éditer Script Infra (192.168.0.239) : [deploiement_infra.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/DEPLOIEMENT_ARBO/deploiement_infra.sh)
@@ -247,37 +248,6 @@ rm /etc/vps/ssl/ca/test /etc/vps/ssl/cert/test /etc/vps/ssl/keys/test
 
 ---
 ---
-
-### 6️⃣ Mise en place certificats, sur serveur web Bareos. (Apache2)
-
-`-6.1.` créez le vhost
-````
-sudo nano /etc/apache2/sites-available/bareos-webui-ssl.conf
-````
-
-`-6.2.` Editer 
-````
-<IfModule mod_ssl.c>
-  <VirtualHost *:443>
-    ServerName bareos.sednal.lan
-
-    SSLEngine on
-    SSLCertificateFile    /etc/bareos/ssl/certs/bareos.sednal.lan.crt
-    SSLCertificateKeyFile /etc/bareos/ssl/private/bareos.sednal.lan.key
-    SSLCACertificateFile  /etc/bareos/ssl/ca/Sednal_Root_All.crt
-
-    Include /etc/apache2/conf-enabled/bareos-webui.conf
-  </VirtualHost>
-</IfModule>
-````
-
-`-6.3.` Activer
-````
-sudo a2ensite bareos-webui-ssl.conf
-sudo apache2ctl configtest   # vérifier qu'il n'y a pas d'erreur
-sudo systemctl reload apache2
-````
-
 
 
 
