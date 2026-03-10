@@ -152,8 +152,7 @@
 
 
   
-- configuration mini avec configuration ssl ([création certificat](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/Auto_Unseal_Vault.md#2%EF%B8%8F%E2%83%A3-certificats) )
-
+- configuration mini avec configuration ssl 
     
           disable_mlock = true
           ui = true
