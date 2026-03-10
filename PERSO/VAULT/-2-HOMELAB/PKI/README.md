@@ -18,7 +18,7 @@ proxmox_ecdsa      → Proxmox ECDSA
 
 
 R = RSA  |  E = ECDSA  
-```
+
 
 
 # Plan de Flux PKI — Sednal
