@@ -371,7 +371,7 @@ sudo usermod -aG bareos postgres
 ---
 ---
 
-# **DNS** : 192.168.0.241
+## **DNS** : 192.168.0.241
 
 ### Intégration des chemins des certificats
 
@@ -400,7 +400,7 @@ cert = "/etc/pihole/ssl/cert/cert_key_tls.pem"
 ---
 ---
 
-# **Proxmox** : 192.168.0.242
+## **Proxmox** : 192.168.0.242
 
 -1.1. Configuration après génération des Certificats ⬇️
 `[NOTE]` Car copie dans un dossier cible, différent de celui de stockage des certificats.
@@ -408,7 +408,7 @@ cert = "/etc/pihole/ssl/cert/cert_key_tls.pem"
 ---
 ---
 
-# **VPS** : 176.31.163.227  Service SSL `OK` => Fait dans la section proxmox
+## **VPS** : 176.31.163.227  Service SSL `OK` => Fait dans la section proxmox
 
 
 ---
