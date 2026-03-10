@@ -22,7 +22,6 @@ R = RSA  |  E = ECDSA
 
 
 # Plan de Flux PKI — Sednal
-
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
 │  VAULT ADMIN — 192.168.0.238 — vault.sednal.lan                      │
