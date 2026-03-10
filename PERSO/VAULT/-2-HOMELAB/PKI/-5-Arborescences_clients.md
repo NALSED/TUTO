@@ -20,7 +20,7 @@
     └── infra_ecdsa.key     (600 sednal:sednal)
 ```
 
-```
+---
 
 **Point de distribution CRL** `/var/www/pki/` :
 ```
