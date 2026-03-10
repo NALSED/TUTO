@@ -2,6 +2,16 @@
 
  > ### {émetteur} _ {role} _ {algo} - {génération}
 
+- {émetteur}
+````
+Sednal
+````
+
+- {role}
+````
+Root /Inter ...
+````
+
 ```
 === CA ===
 Sednal_Root_R-1    → Root CA RSA          1
@@ -16,9 +26,11 @@ proxmox_rsa        → Proxmox RSA
 proxmox_ecdsa      → Proxmox ECDSA
 ```
 
-
+- {algo} - {génération}
+````
 R = RSA  |  E = ECDSA  
-
+1, 2, 3 etc ...
+````
 
 
 # Plan de Flux PKI — Sednal
