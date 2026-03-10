@@ -314,6 +314,35 @@ ca_file = "/etc/bareos/ssl/ca/Sednal_Root_All.crt"
 cert_file = "/etc/bareos/ssl/web/bareos_webui.pem"
 ```
 
+
+`-4.3.` créez le vhost
+````
+sudo nano /etc/apache2/sites-available/bareos-webui-ssl.conf
+````
+
+`-4.4.` Editer 
+````
+<IfModule mod_ssl.c>
+  <VirtualHost *:443>
+    ServerName bareos.sednal.lan
+
+    SSLEngine on
+    SSLCertificateFile    /etc/bareos/ssl/certs/bareos.sednal.lan.crt
+    SSLCertificateKeyFile /etc/bareos/ssl/private/bareos.sednal.lan.key
+    SSLCACertificateFile  /etc/bareos/ssl/ca/Sednal_Root_All.crt
+
+    Include /etc/apache2/conf-enabled/bareos-webui.conf
+  </VirtualHost>
+</IfModule>
+````
+
+`-6.3.` Activer
+````
+sudo a2ensite bareos-webui-ssl.conf
+sudo apache2ctl configtest   # vérifier qu'il n'y a pas d'erreur
+````
+
+
 ---
 
 `5` **PostgreSQL**
