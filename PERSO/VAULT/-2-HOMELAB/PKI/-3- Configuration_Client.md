@@ -54,7 +54,9 @@ Cette partie se décompose en 2 parties :
 
 ## **Serveur Bareos** : 192.168.0.240
 
-[SOURCE](https://docs.bareos.org/TasksAndConcepts/TransportEncryption.html#example-tls-configuration-files)
+[DOC OFFICIEL BAREOS](https://docs.bareos.org/TasksAndConcepts/TransportEncryption.html#example-tls-configuration-files)
+
+[DEBUG SSL BCONSOL](https://github.com/bareos/bareos/issues/2224)
 
 
 `0` **Bareos Console**
