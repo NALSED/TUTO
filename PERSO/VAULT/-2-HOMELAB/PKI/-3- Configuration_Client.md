@@ -40,23 +40,22 @@ Cette partie se décompose en 2 parties :
 ---
 ---
 
-## 1️⃣ **Configuration Prè-Génération Certificats SSL**
+# 1️⃣ **Configuration Prè-Génération Certificats SSL**
 
-# **Vault PKI** : 192.168.0.238 : Service SSL `OK`
+## **Vault PKI** : 192.168.0.238 : Service SSL `OK`
 
 ---
 
-# **Serveur Web / Infra** : 192.168.0.239 Service SSL `OK`
+## **Serveur Web / Infra** : 192.168.0.239 Service SSL `OK`
 
 [SOURCE](https://nginx.org/en/docs/http/configuring_https_servers.html)
 
 ---
 
-# **Serveur Bareos** : 192.168.0.240
+## **Serveur Bareos** : 192.168.0.240
 
 [SOURCE](https://docs.bareos.org/TasksAndConcepts/TransportEncryption.html#example-tls-configuration-files)
 
-### 1️⃣ Intégration des chemins des certificats
 
 `0` **Bareos Console**
 
@@ -414,7 +413,7 @@ cert = "/etc/pihole/ssl/cert/cert_key_tls.pem"
 
 ---
 
-## 2️⃣ **Configuration post-génération**
+# 2️⃣ **Configuration post-génération**
 
 ### `CONCATENATION`
 
