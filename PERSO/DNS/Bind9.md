@@ -1,4 +1,4 @@
-
+:red_square:
 # `DNS LOCAL VIA BIND`
 
 ---
