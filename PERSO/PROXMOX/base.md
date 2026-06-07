@@ -16,33 +16,33 @@ Proxmox fonctionne selon 3 niveaux :
 
 - Guest
 
-’’’
+```
 ┌─────────────────────────────────────────────────────────┐
 │                     DATACENTER                          │
 │  Niveau logique global — vue d'ensemble du cluster      │
 │                                                         │
-│  • Gestion des utilisateurs et permissions (RBAC)       │
-│  • Config réseau partagée (SDN)                         │
-│  • Stockage partagé (Ceph, NFS, etc.)                   │
-│  • Haute dispo (HA) entre les nodes                     │
-│  • Backup jobs globaux                                  │
-│  • Firewall global                                      │
+│  - Gestion des utilisateurs et permissions (RBAC)       │
+│  - Config réseau partagée (SDN)                         │
+│  - Stockage partagé (Ceph, NFS, etc.)                   │
+│  - Haute dispo (HA) entre les nodes                     │
+│  - Backup jobs globaux                                  │
+│  - Firewall global                                      │
 ├─────────────────────────────────────────────────────────┤
 │                       NODE                              │
 │  Serveur physique — l'hyperviseur                       │
 │                                                         │
-│  • Ressources réelles : CPU, RAM, disques               │
-│  • Stockage local (LVM, ZFS, ext4...)                   │
-│  • Réseau local (bridges, bonds, VLANs)                 │
-│  • Firewall node                                        │
-│  • Shell direct (accès root à la machine)               │
+│  - Ressources réelles : CPU, RAM, disques               │
+│  - Stockage local (LVM, ZFS, ext4...)                   │
+│  - Réseau local (bridges, bonds, VLANs)                 │
+│  - Firewall node                                        │
+│  - Shell direct (accès root à la machine)               │
 ├─────────────────────────────────────────────────────────┤
 │                      GUEST                              │
 │  VM ou CT — ce qui tourne sur le node                   │
 │                                                         │
-│  • VM  : machine virtuelle complète (noyau propre)      │
-│  • CT  : conteneur LXC (partage le noyau du node)       │
-│  • Config propre : CPU, RAM, disque, réseau             │
-│  • Firewall guest                                       │
+│  - VM  : machine virtuelle complète (noyau propre)      │
+│  - CT  : conteneur LXC (partage le noyau du node)       │
+│  - Config propre : CPU, RAM, disque, réseau             │
+│  - Firewall guest                                       │
 └─────────────────────────────────────────────────────────┘
-’’’
+```
