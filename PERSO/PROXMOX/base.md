@@ -46,3 +46,52 @@ Proxmox fonctionne selon 3 niveaux :
 │  - Firewall guest                                       │
 └─────────────────────────────────────────────────────────┘
 ```
+
+---
+
+### `VM`
+
+**Télécharger**
+
+Avant de pouvoir installer un `vm`, il faut se procurer l'iso.
+
+Plusieurs options (exemple avec Ubuntu 22.04):
+
+- Télécharger l'iso depuis le site
+```
+https://releases.ubuntu.com/jammy/
+```
+
+-  Télécharger depuis proxmox
+```
+# Se rendre sur le node, Stockage local (ce qui corespond à l'espace disque dédié à proxmox) 
+# ISO Images -> Dowload from URL
+```
+
+
+-  Depuis le shell avec `wget`
+```
+cd /var/lib/vz/template/iso
+wget https://releases.ubuntu.com/22.04/ubuntu-22.04.5-live-server-amd64.iso
+```
+
+**Installer**
+
+- Onglet `Create VM` en haut à droite.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
