@@ -67,3 +67,14 @@
         # Better to keep this synchronized with storage->device->vfile Count parameters
         Maximum Concurrent Jobs = 10
       }
+
+
+==============================================================================================
+Congiguration PKI Vault 
+
+### `=== DATE === : 20/10/2026`
+
+
+```
+https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#serveur-bareos--1921680240
+```
