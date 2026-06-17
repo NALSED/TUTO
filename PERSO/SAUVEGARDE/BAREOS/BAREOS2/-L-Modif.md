@@ -70,11 +70,12 @@
 
 
 ==============================================================================================
-Congiguration PKI Vault 
+
 
 ### `=== DATE === : 20/10/2026`
 
 
+**Congiguration PKI Vault** 
 ```
 https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#serveur-bareos--1921680240
 ```
