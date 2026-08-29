@@ -17,7 +17,7 @@
 |enp0s8|192.168.0.250/24|fd44:35a8:39d8:192::250/64|
 |enp0s9|dhcp|dhcp|
 ### 2️⃣ `Configurer le routage`
-* #### Voir l'état d'IP fordwarding ⚠️être en root
+* #### Voir l'état d'IP forwarding ⚠️être en root
       sysctl net.ipv4.ip_forward
 #### = > net.ipv4.ip_forward = 0 Donc désactivé
 ##### (L'activation et la désactivation de l'IP forwarding, en IPv4 comme en IPv6, s'effectue dans les fichiers "/proc" du système. Il s'agit de "/proc/sys/net/ipv4/ip_forward" pour l'IPv4 et "/proc/sys/net/ipv6/conf/all/forwarding" pour IPv6.)

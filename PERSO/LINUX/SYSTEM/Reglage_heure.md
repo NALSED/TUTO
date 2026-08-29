@@ -1,4 +1,4 @@
-# Différente manière de  régler l'heure ou debug des probléme lié à l'heure et date d'une machine
+# Différente manière de  régler l'heure ou debug des problème lié à l'heure et date d'une machine
 
 ---
 ---
@@ -11,7 +11,7 @@
 ---
 ---
 
-### Si la commaande ne fonbtionne pas utiliser la suite de commande
+### Si la commande ne fonctionne pas utiliser la suite de commande
 
        sudo ln -sf /usr/share/zoneinfo/Asia/Yerevan /etc/localtime
 

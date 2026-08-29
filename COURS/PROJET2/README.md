@@ -114,8 +114,8 @@ Taux de réalisation en pourcentage des commandes :
 |Information|Ordinateur client|Liste des lecteurs monté (disque, CD, etc.) (SSH)|:white_check_mark:|:x:|
 |Information|Ordinateur client|Liste des applications/paquets installées (local)|:white_check_mark:|:x:|
 |Information|Ordinateur client|Liste des applications/paquets installées (SSH)|:white_check_mark:|:x:|
-|Information|Ordinateur client|Liste des services en cours d'execution (local)|:white_check_mark:|:x:|
-|Information|Ordinateur client|Liste des services en cours d'execution (SSH)|:white_check_mark:|:x:|
+|Information|Ordinateur client|Liste des services en cours d'exécution (local)|:white_check_mark:|:x:|
+|Information|Ordinateur client|Liste des services en cours d'exécution (SSH)|:white_check_mark:|:x:|
 |Information|Ordinateur client|Liste des utilisateurs locaux (local)|:white_check_mark:|:x:|
 |Information|Ordinateur client|Liste des utilisateurs locaux (SSH)|:white_check_mark:|:x:|
 |Information|Ordinateur client|Mémoire RAM totale (local)|:white_check_mark:|:x:|
@@ -133,8 +133,8 @@ Taux de réalisation en pourcentage des commandes :
 1) Notre première difficulté a été de comprendre les besoins de ce script, et donc les solutions que nous allions devoir trouver.
 2) La recherche et la compréhension des commandes pour les actions demandées.
 3) Temps passé à coder des parties en local et en SSH qui ne devaient être qu'en SSH.
-4) La compréhention de ce que représente, ainsi que la création de la partie information.
-5) Organisation dans le groupe, notament un agenda commun des tache type Myro.
+4) La compréhension de ce que représente, ainsi que la création de la partie information.
+5) Organisation dans le groupe, notamment un agenda commun des tache type Myro.
 
 
 **- Solutions trouvées : Solutions et alternatives trouvées**

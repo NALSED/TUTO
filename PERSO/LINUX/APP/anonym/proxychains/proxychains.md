@@ -2,14 +2,14 @@
 
 ---
 
-### 1️⃣ Instalation
+### 1️⃣ Installation
 ### 2️⃣ Configuration
 ### 3️⃣ Utilisation
 
 ---
 ---
 
-### 1️⃣ Instalation
+### 1️⃣ Installation
       sudo apt install proxychains
       sudo apt install proxychains4 proxycheck proxytrack proxytunnel torsocks torbrowser-launcher
       
@@ -21,7 +21,7 @@
 
 [LISTE MALEKAL](https://www.malekal.com/liste-des-meilleurs-proxy-gratuits-2022/)
 
-#### Editer le fichier de conf
+#### Éditer le fichier de conf
       
       sudo nano /etc/proxychains.conf
 

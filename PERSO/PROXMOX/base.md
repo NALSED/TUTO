@@ -2,7 +2,7 @@
 
 ---
 
-- Suite à l'intallation de proxmox, suivre le cours de [Stéphane Robert](https://blog.stephane-robert.info/docs/virtualiser/type1/proxmox/fondamentaux/interface-ui/), pour avoir les bases de proxmox.
+- Suite à l'installation de proxmox, suivre le cours de [Stéphane Robert](https://blog.stephane-robert.info/docs/virtualiser/type1/proxmox/fondamentaux/interface-ui/), pour avoir les bases de proxmox.
 
 ---
 

@@ -23,12 +23,12 @@
 
 ### 1️⃣ Prise en main de [JtR](https://github.com/NALSED/Future-R-vision/blob/main/LINUX/app/password/john_the_ripper2.md)
 
-### 2️⃣ Utilisation de [crunch](https://ns3edu.com/blog/a-detailed-guide-on-crunch-tool/) [crunch2](https://itintegrity.wordpress.com/2012/08/18/crunch-un-generateur-de-wordlist-simple-et-efficace/) pour généger une wordlist.
+### 2️⃣ Utilisation de [crunch](https://ns3edu.com/blog/a-detailed-guide-on-crunch-tool/) [crunch2](https://itintegrity.wordpress.com/2012/08/18/crunch-un-generateur-de-wordlist-simple-et-efficace/) pour générer une wordlist.
 
 ### Vérifier que crunch est installé et version
       crunch -h
 
-### Editer le fichier de charset dans `/usr/share/crunch/charset.lst`
+### Éditer le fichier de charset dans `/usr/share/crunch/charset.lst`
 
 ![image](https://github.com/user-attachments/assets/69eaf5fd-95d6-4355-b929-ea250f4ad418)
 
@@ -40,9 +40,9 @@
 
 ### `8 8` Min et Max pour le MDP
 
-### `-f /usr/share/crunch/charset.lst tssr` Appel le charset créer précédement
+### `-f /usr/share/crunch/charset.lst tssr` Appel le charset créer précédemment
 
-### `-t Az@@@@@7` spécifie que le MDP doit commencer par Az finir par 7 et les @ autres caractéres
+### `-t Az@@@@@7` spécifie que le MDP doit commencer par Az finir par 7 et les @ autres caractères
 
 ### `-o wordlist.lst` redirige la sortie vers le fichier demandé
 
@@ -63,7 +63,7 @@
 
 ### `--wordlist=/home/practoxx/Documents/wordlist.lst` chemin vers la liste créer avec crunch
 
-### `/home/practoxx/haszip` sur le fichier contenant le hash précédemement extrait. 
+### `/home/practoxx/haszip` sur le fichier contenant le hash précédemment extrait. 
 
 ### Et voila le MDP
 
@@ -82,17 +82,17 @@
 
 ## 1️⃣ `Accéder à la VM`
 
-### Au démarage spammer e
+### Au démarrage spammer e
 ### On arrive sur cette page
 ![image](https://github.com/user-attachments/assets/5b4dcb50-0cec-4332-9dd3-48ec8b6c6f41)
 
-### A laide des fléches descendre jusquà la ligne commençant "linux"
+### A laide des flèches descendre jusqu'à la ligne commençant "linux"
 ![image](https://github.com/user-attachments/assets/f17c24bf-e563-4784-b83a-93058ca2a100)
 
 ### Derrière le mot quiet
 ![image](https://github.com/user-attachments/assets/906445e9-68aa-47f6-9033-09d0c9df2138)
 
-### Ecrire rw init=/bin/bash ⚠️ Clavier en qwerty ⚠️ Puis sauvegarder.
+### Écrire rw init=/bin/bash ⚠️ Clavier en qwerty ⚠️ Puis sauvegarder.
 
 ### Résultat attendu
 ![image](https://github.com/user-attachments/assets/39cf6d06-daf0-48ff-9a18-381f9b697da3)
@@ -123,7 +123,7 @@
 ![image](https://github.com/user-attachments/assets/3741657c-7994-42be-b1e6-a2591bcb1039)
 
 ### ⚠️ Message erreur après => apt install unzip : en attente de l'entête
-### Probléme avec le fichier => etc/apt/sources.list
+### Problème avec le fichier => etc/apt/sources.list
 ### Ajouter la première ligne
 
 ![image](https://github.com/user-attachments/assets/06a17126-8a39-46b4-9e89-ffd6b50e7c89)
@@ -193,11 +193,11 @@
       sudo service ssh start # démare le ssh
       scp challenge1.zip practoxx@192.168.0.131:/home/practoxx/Documents
       
-### Déziper le fichier avec le MDP `Azerty1*43` 
+### Dézipper le fichier avec le MDP `Azerty1*43` 
 
 ### 2️⃣ Analyser le PDF
 
-### Le PDF nous racconte l'hisoire des argonautes et à la fin une URL nous est donné :
+### Le PDF nous raconte l'histoire des argonautes et à la fin une URL nous est donné :
 https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 
 ### Une fois cette url entrée dans le navigateur un fichier wireshark est téléchargé => challenge.pcap
@@ -324,14 +324,14 @@ https://quest_editor_uploads.storage.googleapis.com/challenge.pcap
 
 ### 2️⃣ Trouver le digicode pour ouvrir le coffre
 
-### Le boutton ne fonctione pas, se tourner vers le code html
+### Le bouton ne fonctionne pas, se tourner vers le code html
 ### Clic droit sur la page du coffre 51 contenant la toison d'or => inspecter
-### On se rend compte que le boutton est désactivé
+### On se rend compte que le bouton est désactivé
 
 ![image](https://github.com/user-attachments/assets/38410803-ef25-4707-9a8d-3de45f413dc8)
 
 ### Remplacer disabled => enabled (clic droit sur la ligne de code => edit HTML)
-### On peux maintenant cliquer sur le boutton d'ouverture :
+### On peux maintenant cliquer sur le bouton d'ouverture :
 
 ![image](https://github.com/user-attachments/assets/1e1aa62f-90b2-46b1-8189-2bc314964978)
 
@@ -394,7 +394,7 @@ insert into user (id, first_name, last_name, email, gender, birth_date, password
 
 >Challenge 5 : trouver le mot de passe
 >Mot de passe du fichier :
->Date de naissance (en français) sur 6 chiffres concatenée avec le nom de
+>Date de naissance (en français) sur 6 chiffres concaténée avec le nom de
 >famille
 
 ### 1️⃣ MDP 
@@ -404,7 +404,7 @@ insert into user (id, first_name, last_name, email, gender, birth_date, password
 
 ### 2️⃣ MDP AGRGOS décrypté
 
-### Utilistaion de Hashcat
+### Utilisation de Hashcat
 
 
 

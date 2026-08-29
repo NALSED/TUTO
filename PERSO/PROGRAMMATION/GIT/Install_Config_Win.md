@@ -12,7 +12,7 @@
 
 <img width="492" height="383" alt="image" src="https://github.com/user-attachments/assets/9e702251-6c6b-4ca6-a9e4-7278badddd80" />
 
-## 1.2) Editeur ⬇️
+## 1.2) Éditeur ⬇️
 #### `Use Visual Studio Code as Git's default editor`
 
 ## 1.3) Branch

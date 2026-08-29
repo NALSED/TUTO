@@ -37,7 +37,7 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
   	- RAM (2048 Mo)
 	- ROM (50 Go)
 	- 1 carte réseau (en réseau interne)
-### Utiliser la description du lab pour l'instalation des machines
+### Utiliser la description du lab pour l'installation des machines
 ## ⚠️Dans ce labo nous utiliserons SSH pour passer d'un routeur à l'autre
 ## 3️⃣ `Configuration Network et Routage`
 #### * Network Client 
@@ -75,17 +75,17 @@ ___
 * #### `nft add table ip` : création de la table
 * #### `table_NAT` : Nom de la table
 		nft add chain ip table_NAT chain_postrouting { type nat hook postrouting priority 0\; }
-* #### `nft add chain ip` : création de la chaine
-* #### `table_NAT` : la chaine est créer dans la table_NAT
-* #### `chain_postrouting` : Nom de la chaine
-* #### `type nat hook postrouting priority 0\;``: Type et priotité de la chaine 
+* #### `nft add chain ip` : création de la chaîne
+* #### `table_NAT` : la chaîne est créer dans la table_NAT
+* #### `chain_postrouting` : Nom de la chaîne
+* #### `type nat hook postrouting priority 0\;``: Type et priorité de la chaîne 
 		nft add rule table_NAT chain_postrouting 	ip saddr 10.0.99.252/30 oif enp0s8 snat 192.168.10.11
 								ip saddr 10.0.0.0/22 oif "enp0s8" snat to 192.168.0.104
 
-* #### `nft add rule table_NAT chain_postrouting` : création de la régle
-* #### `ip saddr 10.0.99.252/30` : addresse ip source
+* #### `nft add rule table_NAT chain_postrouting` : création de la règle
+* #### `ip saddr 10.0.99.252/30` : adresse ip source
 * #### `oif enp0s8 snat 192.168.10.11` : adresse de sortie
-* #### Ajout d'une second régle NAT afin de pouvoir connecter les clients à internet
+* #### Ajout d'une second règle NAT afin de pouvoir connecter les clients à internet
 
 ![image](https://github.com/user-attachments/assets/f8f05654-d6e0-4a68-81c0-9aadcb91c50a)
 
@@ -104,7 +104,7 @@ ___
 		pre-up nft -f /root/table_NAT.nft	
 
 ![image](https://github.com/user-attachments/assets/a8f1eff4-0bba-4ced-a651-c250249c0434)
-### Si on ping 8.8.8.8 avec R-INTER c'est bien R-EDGE qui envoie la requéte
+### Si on ping 8.8.8.8 avec R-INTER c'est bien R-EDGE qui envoie la requête
 ![image](https://github.com/user-attachments/assets/9a3203b5-dd17-49d2-82d6-d4f2f12f7277)
 ### ⚠️TEST⚠️(est sera supprimé) Copier le fichier NAT de R-EDGE sur R-INTER en modifiant la dernière ligne
 
@@ -121,7 +121,7 @@ ___
 ### Si l'on ajoute la route suivante
 		
   		ip route add 10.0.1.0/24 via 10.0.99.253
-### Le ping depuis le cliens fontionne depuis 10.0.1.1 => 8.8.8.8
+### Le ping depuis le cliens fonctionne depuis 10.0.1.1 => 8.8.8.8
 
 ## ICI il est possible de pinger internet depuis le client
 

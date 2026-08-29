@@ -24,7 +24,7 @@
 
 ### 2️⃣ Copier la clé sur `DEBIAN`
 
-### Vérifier l'existance de dossier => /home/sednal/.ssh 
+### Vérifier l'existence de dossier => /home/sednal/.ssh 
 ### Si inexistant
     ssh-keygen
     # qui générera le dossier ssh avec 
@@ -32,7 +32,7 @@
     -rw------- 1 sednal sednal 2602 May 13 12:47 id_rsa
     -rw-r--r-- 1 sednal sednal  565 May 13 12:47 id_rsa.pub
 
-### Si probléme lors de la création
+### Si problème lors de la création
      nano /home/sednal/.ssh/authorized_keys
     
 ### copier le fichier C:\Users\sednal\.ssh\id_ecdsa dans /home/sednal/authorized_keys

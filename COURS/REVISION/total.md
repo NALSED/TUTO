@@ -8,7 +8,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
 ---
 ## 1) [`Méthodes Agiles`](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#1-m%C3%A9thodes-agiles) :
  * ### 1.1 Définition :
- * ### 1.2 Etapes et Compositions : 
+ * ### 1.2 Étapes et Compositions : 
    * #### 1.2.1  Sprint Backlog.
    * #### 1.2.2 Sprint planning.
    * #### 1.2.3 Daily scrum.
@@ -35,7 +35,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
     * #### 3.1.6 [Matériel d'interconnection.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#316-mat%C3%A9riel-dinterconnection-1)
 * ### 3.2 [`Ethernet`](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#32-ethernet-) 
    * #### 3.2.1 [Normes et Architecture.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#321-normes-et-architecture-1)
-   * #### 3.2.2 [Cablage et équipement.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#322-cablage-et-%C3%A9quipement-1)
+   * #### 3.2.2 [Câblage et équipement.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#322-cablage-et-%C3%A9quipement-1)
    * #### 3.2.3 [Adresse Mac.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#323-adresse-mac-1)
    * #### 3.2.4 [Trame ethernet.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#324-trame-ethernet-1)
    * #### 3.2.5 [Protocole CSMA/CD.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#325-protocole-csmacd-1)
@@ -75,7 +75,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
 
 * ### 3.6 [`Active Directory`](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#36-active-directory-1)
   * #### 3.6.1 [Définitions/Protocole LDAP/rôle AD](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#361-d%C3%A9finitionsprotocole-ldapr%C3%B4le-ad-1)
-  * #### 3.6.2 [Arborécence](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#362-arbor%C3%A9cence-1)
+  * #### 3.6.2 [Arborescence](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#362-arbor%C3%A9cence-1)
   * #### 3.6.3 [Composants](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#363-composants-1)
   * #### 3.6.4 [Protocoles](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#364-protocoles-1)
   * #### 3.6.5[(Fontionalitées)](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#365fontionalit%C3%A9es-1)
@@ -89,7 +89,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
     * #### 3.6.10.1 [Partage de fichier](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#3611-partage-de-fichier-)
     * #### 3.6.10.2 [SMB](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#3612-smb-)
 * ### 3.7 [`Gestion des logs`](https://github.com/NALSED/R-vision/edit/main/Fichier%20de%20r%C3%A9vision.md#37-gestion-des-logs-1)    
-  * ### 3.7.1  [Instalation configuration WinRM](https://github.com/NALSED/R-vision/edit/main/Fichier%20de%20r%C3%A9vision.md#371-instalation-configuration-winrm)
+  * ### 3.7.1  [Installation configuration WinRM](https://github.com/NALSED/R-vision/edit/main/Fichier%20de%20r%C3%A9vision.md#371-instalation-configuration-winrm)
   * ### 3.7.2 [Création journal de log](https://github.com/NALSED/R-vision/edit/main/Fichier%20de%20r%C3%A9vision.md#372-r%C3%A9cup%C3%A9ration-des-logs-via-journal-event)
 * ## 4) [`Serveur`](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#4-serveur-1)
 
@@ -120,7 +120,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
  ---
  * ##  1.1 [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)`Définitions`
 ---
-   ##### Création de **cycles répétitif**, ayant pour buts la **réalisations de projets complexes,** en intégrant un procédé **incrémentale**, des différentre étape de la réalisation, des solutions techniques, et des livrables. 
+   ##### Création de **cycles répétitif**, ayant pour buts la **réalisations de projets complexes,** en intégrant un procédé **incrémentale**, des différente étape de la réalisation, des solutions techniques, et des livrables. 
  * ### 1.2[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Etapes et Compositions`
 ---
    * ### 1.2.1[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Le Product Backlog:`
@@ -150,7 +150,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
      * #### 2.1.1 Dépot Distant
      ##### ((penser à passer en "main" pour pouvoir faire certaine action ( rendre la destination C:, safe aux yeux de git):)) 
     git config --global --add safe.directory C:/
-##### Effacer tout dépot précédant 
+##### Effacer tout dépôt précédant 
 
     git remote rm origin.
 
@@ -180,7 +180,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
 4) ##### Modification via le tuto précédent et push sur GitHub
    * ### 2.1.3[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Conflit Merge`
 ---
-  ###### Quand un conflit apparait entre un dépôt distant et un dépôt local:(( après git pull))
+  ###### Quand un conflit apparaît entre un dépôt distant et un dépôt local:(( après git pull))
      git pull origin main
 ##### ((MESSAGE ERREUR)) Le conflits se sont inscrit dans le dossier README
    
@@ -207,7 +207,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 		 ">>>>>>> main"
 
 ##### Quand le choix est fait supprimer la partie indésirable.
-##### **Toujours penser à commit les modifs, sinon probléme de branch et update...**
+##### **Toujours penser à commit les modifs, sinon problème de branch et update...**
 1) ##### lande@Admin MINGW64 ~/git/A (main) git add README.md		
 2) ##### lande@Admin MINGW64 ~/git/A (main) git commit -m "[TEXT]	
 3) ##### lande@Admin MINGW64 ~/git/A (main) git pull origin main ((UPDATE LES DEUX VERSION))
@@ -222,8 +222,8 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 - [Remarques générales/précautions](#remarques-généralesprécautions)
 - [Avant de travailler dans les dépôts](#avant-de-travailler-dans-les-dépôts)
-- [Cas de figure 1 : Créer un dépot git depuis un répertoire local](#cas-de-figure-1-créer-un-dépôt-git-depuis-un-répertoire-local)
-- [Cas de figure 2 : Récupérer un dépot distant vers mon espace local](#cas-de-figure-2-récupérer-un-dépôt-distant-vers-mon-espace-local)
+- [Cas de figure 1 : Créer un dépôt git depuis un répertoire local](#cas-de-figure-1-créer-un-dépôt-git-depuis-un-répertoire-local)
+- [Cas de figure 2 : Récupérer un dépôt distant vers mon espace local](#cas-de-figure-2-récupérer-un-dépôt-distant-vers-mon-espace-local)
   - [A local copy](#a-local-copy)
   - [Manip des branches](#manip-des-branches)
   - [Lier branche locale et distante](#lier-branche-locale-et-distante)
@@ -270,10 +270,10 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 ***Git*** = logiciel de gestion de versions installé localement
 
-***Github*** = plateforme de dépot de fichiers à distance, managée par git.
+***Github*** = plateforme de dépôt de fichiers à distance, managée par git.
 
 ***Workspace*** != ***Local-repository*** != ***Remote-repository***
->*il est important de comprendre que votre espace de travail est un espace différent du dépot local, ce dernier est censé faire mirroir avec le dépot distant*
+>*il est important de comprendre que votre espace de travail est un espace différent du dépôt local, ce dernier est censé faire miroir avec le dépôt distant*
 
 <br>
 
@@ -306,7 +306,7 @@ Si vous avez besoin de générer une clé ssh sur votre machine, suivre ce tuto 
 
 <br>
 
-:small_orange_diamond: Sur github : créer un dépot en ligne, lui donner un nom, pas besoin de readme car on a déjà initialisé le dépot en local.
+:small_orange_diamond: Sur github : créer un dépôt en ligne, lui donner un nom, pas besoin de readme car on a déjà initialisé le dépôt en local.
 Récupérer son lien ssh.
 
 <p align="center">
@@ -331,13 +331,13 @@ Par défaut, la branche active est la branche principale *main*. La bonne pratiq
 
 <br>
 
-# Cas de figure 2 : Récupérer un dépot distant vers mon espace local
+# Cas de figure 2 : Récupérer un dépôt distant vers mon espace local
 
 <br>
 
-<ins>Situation </ins> : Je n'ai pas encore travaillé dans mon dossier local, je souhaite récupérer le contenu du dépot distant (de mon équipe ou de qqun d'autre) pour travailler dessus en local.
+<ins>Situation </ins> : Je n'ai pas encore travaillé dans mon dossier local, je souhaite récupérer le contenu du dépôt distant (de mon équipe ou de qqun d'autre) pour travailler dessus en local.
 
->*Pour avoir les droits d'accès et de manipulation d'un dépot dont on est pas propriétaire, il faut s'assurer que l'administrateur/propriétaire de ce dépot ajoute notre clé ssh au dépot, et nous ajoute en tant que collaborateur.*
+>*Pour avoir les droits d'accès et de manipulation d'un dépôt dont on est pas propriétaire, il faut s'assurer que l'administrateur/propriétaire de ce dépôt ajoute notre clé ssh au dépôt, et nous ajoute en tant que collaborateur.*
 
 ### A local copy
 
@@ -346,7 +346,7 @@ Par défaut, la branche active est la branche principale *main*. La bonne pratiq
 <img src="https://github.com/Eulsi/Basic-gitGithub-manip-pour-TSSR/blob/main/imgGuide/get-alocalcopy.png" alt="Pictures" width="300" >
 </p>
 
-:small_orange_diamond: Cloner le dépot distant sur son espace de travail en local :
+:small_orange_diamond: Cloner le dépôt distant sur son espace de travail en local :
 
 ```cd ``` dans mon espace de travail
 
@@ -363,7 +363,7 @@ Bien qu'on soit dans le terminal, une aide visuelle sur les branches peut être 
 
 :small_orange_diamond:  Faites ```git branch -a```
 
-La branche active est signalée avec une astérisque devant son nom. En l'occurence ca devrait être \*main 
+La branche active est signalée avec une astérisque devant son nom. En l'occurrence ca devrait être \*main 
 
 :small_orange_diamond:  Créons notre nouvelle branche.
 
@@ -390,7 +390,7 @@ A ce moment toute modification effectuée dans votre espace de travail se fera d
 
 :small_orange_diamond: ```git push -u origin ma-nouvelle-fonctionnalité``` ( -u pour --set-upstream)
 
-Si la connexion a bien été établie au préalable, cette commande ajuste l'arboresence de votre dépot distant github avec votre nouvelle branche.
+Si la connexion a bien été établie au préalable, cette commande ajuste l'arborescence de votre dépôt distant github avec votre nouvelle branche.
 Pourquoi la réaliser à ce moment ? 
 * Elle notifie l'équipe qu'une nouvelle branche a été créée et qu'une fonctionnalité est en cours de travail.
 * Aussi tous vos nouveaux *git add . git commit git push* permettront de sécuriser votre travail en ayant une copie distante. 
@@ -426,7 +426,7 @@ Avant de push votre travail, pendant que vous travailliez quelqu'un a peut être
 
 (Normalement non. Mais peut être).
 
-Il est important de récupérer le dépot distant tel qu'il est en état actuel pour ensuite placer votre ajout ou votre modification. Ceci permettant d'éviter des erreurs de conflits supplémentaires ou de se battre inutilement avec une version obsolète du code commun :expressionless:
+Il est important de récupérer le dépôt distant tel qu'il est en état actuel pour ensuite placer votre ajout ou votre modification. Ceci permettant d'éviter des erreurs de conflits supplémentaires ou de se battre inutilement avec une version obsolète du code commun :expressionless:
 
 Cette remarque prend pour exemple le *main*, mais il peut très bien s'agir d'une arborescence plus chargée.
 
@@ -449,15 +449,15 @@ Cette remarque prend pour exemple le *main*, mais il peut très bien s'agir d'un
 
 ```git push```
 
-> dans ``` git pull origin main ``` "origin" spécifie à git que c'est depuis le dépot distant que nous voulons la récupération du *main*.
+> dans ``` git pull origin main ``` "origin" spécifie à git que c'est depuis le dépôt distant que nous voulons la récupération du *main*.
 
 <br>
 
 ### Fusion
 
-Si à un moment donné dans votre travail, la fonctionnalité que vous créez sur votre branche est estimée sufisamment fonctionnelle, vous pouvez décider après la triade *add-commit-push* de faire une *Pull Request* depuis github. Ce n'est pas toujours très utile. Mais c'est très fair-play.
+Si à un moment donné dans votre travail, la fonctionnalité que vous créez sur votre branche est estimée suffisamment fonctionnelle, vous pouvez décider après la triade *add-commit-push* de faire une *Pull Request* depuis github. Ce n'est pas toujours très utile. Mais c'est très fair-play.
 
-La *Pull Request* envoie une notification aux collaborateurs et surtout à la personne responsable de l'administration du dépot distant, par exemple le PO.
+La *Pull Request* envoie une notification aux collaborateurs et surtout à la personne responsable de l'administration du dépôt distant, par exemple le PO.
 C'est avec celle-ci, ou le responsable de la branche parente, que le travail de collaboration se poursuit. En général on fait une revue du code ensemble pour anticiper les conflits s'il y en a et approuver l'ajout de cette nouvelle portion de code dans le *main* (ou la branche à fusionner).
 
 :small_orange_diamond: Avec ou sans *Pull Request*, fusionner la branche quand on est prêt.
@@ -478,14 +478,14 @@ Si ce dernier se comporte comme souhaité, selon que vous ayez géré le conflit
 
 * Si la fusion a été effectuée localement :
 
-:small_orange_diamond: ```git push origin main``` envoyez le résultat du *merge* dans le dépot distant
+:small_orange_diamond: ```git push origin main``` envoyez le résultat du *merge* dans le dépôt distant
 
 * Si la fusion a été effectuée sur GitHub :
 
-:small_orange_diamond: ```git pull origin main```  Dans cet autre cas, récupérez le résultat du *merge* effectué sur le dépot distant
+:small_orange_diamond: ```git pull origin main```  Dans cet autre cas, récupérez le résultat du *merge* effectué sur le dépôt distant
 
 
-De cette manière, dépot local et distant sont synchronisés.
+De cette manière, dépôt local et distant sont synchronisés.
 
 <br>
 
@@ -495,14 +495,14 @@ De cette manière, dépot local et distant sont synchronisés.
 
 ### Cas de figure 1
 
-:small_orange_diamond: Créer un dépot local avec git (dans notre espace de travail)
+:small_orange_diamond: Créer un dépôt local avec git (dans notre espace de travail)
 ```
 git init
 git add .
 git commit -m "toujours préciser un commentaire, ici, bon, 'start' suffit"
 ```
 
-:small_orange_diamond: Créer un dépot en ligne <ins>sur Github</ins>, puis l'associer au local
+:small_orange_diamond: Créer un dépôt en ligne <ins>sur Github</ins>, puis l'associer au local
 
 ```
 git remote add origin git@github.com:username/nom-du-depot.git
@@ -639,7 +639,7 @@ git pull origin main
 <br>
 
 * S'habituer à écrire les commandes permet à la longue de mieux retenir et comprendre ce qu'il se passe dans le versionning.
-* Controler ce qu'on fait. Les GUI ne sont pas tous pareils, ils peuvent évoluer, et les actions peuvent sembler moins transparentes.
+* Contrôler ce qu'on fait. Les GUI ne sont pas tous pareils, ils peuvent évoluer, et les actions peuvent sembler moins transparentes.
 * Les manip peuvent être plus fine, git propose une quantité de commandes qui dépassent son utilisation basique
 * Peut être beaucoup plus rapide à la longue, côté performance machine, mais côté humain également. Certains se créent des alias pour combiner des commandes complexes (on sort du git basique), ou des scripts leur permettant de raccourcir les manip.
 * Les lignes de commandes ne changent pas ou très peu avec le temps. (exemple git checkout est devenu git switch, mais checkout fonctionne toujours).
@@ -664,7 +664,7 @@ git pull origin main
 <br>
 
 * utiliser depuis VS code
-* gérer dossier dans le dépot local
+* gérer dossier dans le dépôt local
 * revert à partir d'un commit précédent
 
     
@@ -708,12 +708,12 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 
  * ### 3.1.2[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `protocole réseau.`
 ---
-##### :scroll: Définitions: Un protocole réseau est mis œuvre sur un réseau informatique ou un réseau de télécommunication. Ensemble des règles que doivent suivre tous les équipements pour pouvoir communiquer.L'idée est qu'un premier service soit appuyé sur un autre lui même appuyé sur un autre, lé découpage de problémes complexs facilite leurs resolutions.
+##### :scroll: Définitions: Un protocole réseau est mis œuvre sur un réseau informatique ou un réseau de télécommunication. Ensemble des règles que doivent suivre tous les équipements pour pouvoir communiquer.L'idée est qu'un premier service soit appuyé sur un autre lui même appuyé sur un autre, lé découpage de problèmes complexes facilite leurs resolutions.
    
   * ### 3.1.3 [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)`Modéle en couche.`
  ---
- ##### Pour pallier au différents probléme lié au transport d'information et de donnée, nous avons recourt à l'encapsulation.
-##### L'idée est qu'un premier service soit appuyé sur un autre lui même appuyé sur un autre, le découpage de problémes complexs facilite leurs resolutions.
+ ##### Pour pallier au différents problème lié au transport d'information et de donnée, nous avons recourt à l'encapsulation.
+##### L'idée est qu'un premier service soit appuyé sur un autre lui même appuyé sur un autre, le découpage de problèmes complexes facilite leurs resolutions.
 * ### 3.1.4 [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)`Modèle OSI.`
 ---
  ##### Le **Modèle OSI** est une norme de communication elle se décompose de la manière suivante:
@@ -721,7 +721,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 ![image](https://doknet.fr/wp-content/uploads/2023/11/diagramme-osi-1024x751.png)
    * ### 3.1.5[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Modèle **TCP\IP.**`
 ---
-   ##### Le modéle TCP\IP Interconnexion de réseaux physiques, création de réseaux logiques pouvant communiquer, bien qu'étant sur des réseaux physiques différents par des passerelles.
+   ##### Le modèle TCP\IP Interconnexion de réseaux physiques, création de réseaux logiques pouvant communiquer, bien qu'étant sur des réseaux physiques différents par des passerelles.
 ![image](https://upload.wikimedia.org/wikipedia/commons/e/e4/TCPIP_couche_ISO_modele_OSI.png)
    * ### 3.1.6[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Matériel d'interconnection.`
  --- 
@@ -753,12 +753,12 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 * ##### Cable ethernet avec connecteurs RJ45 ( droit ou croisée)
 * ##### Fibre optique (MMF -- ou SMF ++)
 * ##### Carte Réseau 
-* ##### Emetteur-recepteurs (GBIC,SFP,QSFP,CFP,XFP)
+* ##### Émetteur-récepteurs (GBIC,SFP,QSFP,CFP,XFP)
 * ##### Switch(commutateurs)
  
    * ### 3.2.3[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Adresse **Mac.**`
 ---
-##### Permet de connaitre l'hôtes et le destinataire. Cencées être unique
+##### Permet de connaître l'hôtes et le destinataire. Censées être unique
 ##### **Format :** En 48 bits (6 octets) noté en Héxa
 ![image](https://upload.wikimedia.org/wikipedia/commons/9/94/MAC-48_Address.svg)
 
@@ -779,7 +779,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 
    * ### 3.2.5[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Protocole **CSMA/CD**.`
 ---
-   ##### Permet la bonne gestion du trafic et la transmition de données
+   ##### Permet la bonne gestion du trafic et la transmission de données
    ##### **CS** (Carrier Sense) ⇒ Écoute de la porteuse
    ##### **MA** (Multiple Access) ⇒ Accès multiple
    ##### **Principes :**
@@ -815,7 +815,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 * #####  L'adresse est donc codée sur 32 bits (4 octets), comporte deux partie ID réseau et l'ID hôtes => sur 32 bits => n bits(id réseau) et 32-n bits
 * ##### Chaque octet est converti en base 10 => 4 octets => 4 nombres
 * ##### Chaque adresses à des plages réservées : la première adresse => **l'adresse réseau** et la dernière adresse => **adresse de diffusion (broadcast)**
-* #####  Utilisation de masque de sous réseau qui corespond au CIDR
+* #####  Utilisation de masque de sous réseau qui correspond au CIDR
 * ##### Calcule nombre hôte: 32((ipv4))-21 CIDR  ==> 2^11=2048-2  ((Broadcast et reseau)).
 
      * ### 3.3.2.2[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `CIDR.`
@@ -847,7 +847,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 ##### Ce calcule ce fait avec le CIDR : 192.168.10.5/18
 ##### 18 = 8*2 + 2
 ##### Les deux premier bit 8 et 8 donnent le NetID => 192.168
-##### pour l'adresse de réseau on se référe au tableau des puissance de 2 | 128 | 64 | => donc le réseau va de 64 en 64 🔽
+##### pour l'adresse de réseau on se réfère au tableau des puissance de 2 | 128 | 64 | => donc le réseau va de 64 en 64 🔽
 ##### Résumé : 
 | **Propriété**                 | **Valeur**          |
 |-------------------------------|---------------------|
@@ -857,7 +857,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 | **Adresse de broadcast**       | 192.168.63.255      |
 | **Nombre d'adresses IP dispo** | 16 382              |
 ##### `Calcule pour englober plusieurs réseau`
-##### Exemple : Pour éditer une régle NAT ou des routes, j'ai besoin de prendre plusieurs réseaux ave un seul afin de ne pas avoir à tous les retaopper dans les fichiers de configurations.
+##### Exemple : Pour éditer une règle NAT ou des routes, j'ai besoin de prendre plusieurs réseaux ave un seul afin de ne pas avoir à tous les retaopper dans les fichiers de configurations.
 ##### On cherche donc un CIDR capable de le faire :
 
 ##### Trouver un réseau qui comprend ces trois réseaux 10.0.1.0/24 // 10.0.2.0/24 // 10.0.3.0/24
@@ -875,11 +875,11 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 ##### 10.0.3.255
 
 ##### Les deux premier octets sont à 8 => 8+8 = 16 
-##### On cherche donc combien d'octets sont nécessaires pour pouvoir créer un réseau qui va de 4 en 4, pour corespondre à l'étendu Total
+##### On cherche donc combien d'octets sont nécessaires pour pouvoir créer un réseau qui va de 4 en 4, pour correspondre à l'étendu Total
 ##### En se référent au tableau des puissance de 2 pour aller à 4
 ##### | 128 | 64 | 32 | 28 | 8 | [4] | 2 | 1 |
 ##### Il faut donc rajouter 6 bits
-##### Cequi fait 8+8+6 = 22
+##### Ce qui fait 8+8+6 = 22
 ### Donc Réseau global => 10.0.0.0/22 prend les trois réseaux précédent.
   
   
@@ -889,7 +889,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
   * ### 3.3.4 [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)`Les paquets :`
 ---
    ##### IP découpe l'information qu'il doit transmettre, reçu de la couche supérieure (Protocole de couche 4 : TCP, UDP…) => Pour transmission au lien (Protocole de couche 1&2 : Ethernet).Chaque paquet comporte un entête.
-#### **Voici la décoposition de l'entête :**
+#### **Voici la décomposition de l'entête :**
 ![1](https://github.com/user-attachments/assets/7d2cd000-53c1-4ab4-ae5e-d13c1691c46b)
 
 
@@ -910,8 +910,8 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 
  * #### 3.3.5 Les Protocoles connexes :
 ---
-##### Protocoles servant au bon fontionnement de l'ip: ICMP et ARP
-##### **ICMP** Protocole de niveau 3 **controle les erreurs de transmitions**
+##### Protocoles servant au bon fonctionnement de l'ip: ICMP et ARP
+##### **ICMP** Protocole de niveau 3 **contrôle les erreurs de transmissions**
 ![7](https://github.com/user-attachments/assets/8126582a-2c8c-4227-be4b-eaf301f2d299)
 
 ##### **ARP** Protocole **d'association** de l'adresse **IP** et de l'adresse **MAC**
@@ -924,14 +924,14 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
   * ### 3.4.1[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Objectifs.`
 ---
   ##### Ce protocole de v6 à pour but de:
- * ##### Etendre les capacités d'adressage (lutter contre la pénurie de v4).
+ * ##### Étendre les capacités d'adressage (lutter contre la pénurie de v4).
  * ##### Simplification des entêtes (par rapport à v4).
  * ##### Automatiser la configuration.
  * ##### Authentification et confidentialité
  * ##### Supprimer/diminuer la fragmentation
   * ### 3.4.2[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Définition + Notions`
  ---
-  ##### Une adresse IPv6 est sur 128 bits (IPv4 32 bits), en héxadécimal, il existe 3 catégories :
+  ##### Une adresse IPv6 est sur 128 bits (IPv4 32 bits), en hexadécimal, il existe 3 catégories :
 ##### 🔹Unicast (une interface)
     ![unicast](https://github.com/user-attachments/assets/683d205d-09bf-4590-83ca-5da2fa14e18b)
 
@@ -951,7 +951,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
  * ##### **::** => Adresse indéfinie, Equivalent à 0.0.0.0 en IPv4, utilisée pour signifier qu'une adresse n'est pas spécifiée.
  * ##### **ff00::/8** => Adresses multicast, utilisées pour communiquer avec plusieurs hôtes en une seule transmission, utilisées dans le routage, la découverte de voisins, etc
  * ##### **fe80::/64** => Adresses unicast lien local, adressage propre à un réseau physique, communication avec les interfaces du même lien et passage routeur impossible, configuration manuelle ou automatique (en général automatique) 
- * ##### **fc00::/7** => Adresses unicast locales uniques (RFC 4193) Réservées à des usages privés (réseaux internes), similaire aux adresses privées IPv4, non routable sur internet, facilement identifiable, globalemùùent unique, elle permet l'interconnection de site, pas de conflits si routage par erreur
+ * ##### **fc00::/7** => Adresses unicast locales uniques (RFC 4193) Réservées à des usages privés (réseaux internes), similaire aux adresses privées IPv4, non routable sur internet, facilement identifiable, globalement unique, elle permet l'interconnection de site, pas de conflits si routage par erreur
     
 ![unicast local](https://github.com/user-attachments/assets/e8387d59-e025-43b5-83aa-f34bb930961c)
  * ##### **reste** => Adresses unicast globales (Internet/publiques)
@@ -967,7 +967,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
   * ### 3.4.4[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Entêtes`
  ---
   ![ENTËTE IPv6](https://github.com/user-attachments/assets/4c3d9910-2784-4cd6-9483-cb091f7716a1)
-##### La fragmentation devient optionnelle, en utilisant le PMUTUd, le paquet est rejeté jusqu'à que l'emméteur adapte la taille du paquet.
+##### La fragmentation devient optionnelle, en utilisant le PMUTUd, le paquet est rejeté jusqu'à que l'émetteur adapte la taille du paquet.
   * #### 3.4.5[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Protocoles associés.`
 ---
 ![icmpv6](https://github.com/user-attachments/assets/3f4cd98a-23eb-40f5-90f6-6ec37d51faa6)
@@ -982,11 +982,11 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ---
 * ### 3.5.1[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Définition et notions.` 
 ---
-  ##### Le routage est in protocole d'interconection de réseau, en effet les noeuds d'un même réseau IP (logique) doivent être sur le même lien (réseau physique), des chemins sont sélectionnés dans un réseau pour acheminer les données d'un expéditeur jusqu'à un ou plusieurs destinataires.
+  ##### Le routage est in protocole d'interconnexion de réseau, en effet les noeuds d'un même réseau IP (logique) doivent être sur le même lien (réseau physique), des chemins sont sélectionnés dans un réseau pour acheminer les données d'un expéditeur jusqu'à un ou plusieurs destinataires.
   * ### 3.5.2[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Mécaniques.`
  ---
 #####  Chaque routeur possède des informations sur son voisinage. Chaque routeur maintient une liste des réseaux connus, chacun de ces réseaux étant associé à un ou plusieurs routeurs voisins à qui le message peut être passé.
-#####  Si on veux envoyer sur une interface d'un même réseau, le paquet est directement envoyé sur l'interface physique corespondant à l'IP de destination, le routage interviens quand les machines ne sont pas sur le même réseau, en effet on encapsule donc le paquet IP dans une trame [ethernet](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#324-trame-ethernet-1), mais si la destrination ne fait pas partie du même réseau que l'hôte il fera appel à ça table de routage.
+#####  Si on veux envoyer sur une interface d'un même réseau, le paquet est directement envoyé sur l'interface physique correspondant à l'IP de destination, le routage interviens quand les machines ne sont pas sur le même réseau, en effet on encapsule donc le paquet IP dans une trame [ethernet](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#324-trame-ethernet-1), mais si la destination ne fait pas partie du même réseau que l'hôte il fera appel à ça table de routage.
    
   * ### 3.5.3[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Tables de routages.`
 ---   
@@ -995,10 +995,10 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
    ##### :one: **Une destination** (adresse de réseau et masque)
    #####  2️⃣ **Saut suivant** (next hop) : l'adresse de la passerelle pour y aller (un autre noeud ou directement l'hôte) 
    ##### (Note : en IPv6, on utilise les adresses lien local des routeurs/passerelles)
-   #####  3️⃣ (Eventuellement on peut y trouver aussi :) L'interface associée : celle par laquelle ce noeud peut joindre lapasserelle, une métrique : une mesure de la qualité de cette route (moins = mieux), parfois d'autres choses (comme le protocole utilisé).
-##### :large_blue_diamond: Le routeur reçoit donc une trame, l'ethertype ( qui contetient le protocole à appliquer sur le prochain noeud) ici IP, si on était dans le cas d'un hôte classique du réseau => on jette le paquet
+   #####  3️⃣ (Éventuellement on peut y trouver aussi :) L'interface associée : celle par laquelle ce noeud peut joindre la passerelle, une métrique : une mesure de la qualité de cette route (moins = mieux), parfois d'autres choses (comme le protocole utilisé).
+##### :large_blue_diamond: Le routeur reçoit donc une trame, l'ethertype ( qui contient le protocole à appliquer sur le prochain noeud) ici IP, si on était dans le cas d'un hôte classique du réseau => on jette le paquet
 ##### Mais ce noeud est un routeur, donc il doit transmettre le paquet => Il procède à la même mécanique d'envoi de paquet IP.
-##### :large_blue_diamond: Il est posible sur de très grand réseau d'utiliser der sur-réseaux comme préfixe de routage en agglomérant, quand c'est possible, plusieurs adresses de réseau en une seule, plus les réseaux sont grands plus la table de routage est petite.
+##### :large_blue_diamond: Il est possible sur de très grand réseau d'utiliser der sur-réseaux comme préfixe de routage en agglomérant, quand c'est possible, plusieurs adresses de réseau en une seule, plus les réseaux sont grands plus la table de routage est petite.
 ##### Pour des réseaux de grande envergure, il est nécessaire de passer à du routage dynamique et de déployer des protocoles dédiées comme OSPF et BGP.
    * ### 3.5.4[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Routage dynamique`
 ---
@@ -1018,7 +1018,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
  --- 
  ##### :scroll:-Définitions- :
 ##### UDP - User Datagram Protocol port ⇒ 17
-##### Conçu comme un protocol minimal, Permet la communication entre processus (application), il est supporté par IPv4 et IPv6. Permet d'identifier certaines erreurs de transmission, contrôle de la taille, vérification de la Checksum.UDP est notâment utilisé pour le streaming. Mais il n'assure pas la fibilité , si les contrôles échouent le datagramme est jeté par le destinataire.
+##### Conçu comme un protocol minimal, Permet la communication entre processus (application), il est supporté par IPv4 et IPv6. Permet d'identifier certaines erreurs de transmission, contrôle de la taille, vérification de la Checksum.UDP est notamment utilisé pour le streaming. Mais il n'assure pas la fiabilité , si les contrôles échouent le datagramme est jeté par le destinataire.
 ##### -DATAGRAMME UDP- :
 
 ![edf](https://github.com/user-attachments/assets/4d895bad-2b8e-434d-891e-187a94d11aa9)
@@ -1027,7 +1027,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
   ---
   ##### :scroll:-Définitions- :
   ##### TCP - Transmission Control Protocol port ⇒ 6
-  ##### Protocole fiable, est un flux en mode connecté il établi une connexion bi-directionnelle et garantie du séquencement (ordre), les paquets sont vérrifier pour voir si il ne sont pas corompus, si c'est le cas le paquet est renvoyé, cherche à optimiser l'utilisation du réseau(congestion du réseau).
+  ##### Protocole fiable, est un flux en mode connecté il établi une connexion bi-directionnelle et garantie du séquencement (ordre), les paquets sont vérifier pour voir si il ne sont pas corrompus, si c'est le cas le paquet est renvoyé, cherche à optimiser l'utilisation du réseau(congestion du réseau).
    ##### Déroulé d'un envoi TCP :
     ##### 1️⃣ Transmission de segments TCP : TCP découpe le PDU en segments, chaque segment est associé à un numéro de séquence par la source
     ##### 2️⃣ À l'émission d'un segment => démarrage d'un compte à rebours pour ce numéro de séquence
@@ -1050,7 +1050,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ##### Principe de connection et fin de connection
 ![1](https://github.com/user-attachments/assets/edcf330a-79b6-4f37-baf3-6f1bba4d245d)
 ![2](https://github.com/user-attachments/assets/528629b8-f626-4ad3-92db-c83127d76b5d)
-##### TCP n'attend pas pour émettre cela nuit trop au débit, mais IP ne garenti pas l'ordre des paquets, donc utilisation de La fenêtre TCP (champs Window) sert au destinataire à indiquer combien d'octets il est prêt à recevoir.
+##### TCP n'attend pas pour émettre cela nuit trop au débit, mais IP ne garantit pas l'ordre des paquets, donc utilisation de La fenêtre TCP (champs Window) sert au destinataire à indiquer combien d'octets il est prêt à recevoir.
 #####  Réserver de la mémoire pour stocker les segments en attente.
 ##### Remettre les segments dans l'ordre une fois l'ensemble reçu.
 
@@ -1062,7 +1062,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
    ##### 🔹 un couple adresse IP/port source.
 ##### De la même façon qu'il ne peut pas y avoir 2 adresses identiques sur un réseau, il ne peut pas y avoir 2 ports identiques sur une même adresse
 ##### Les ports sont codés sur 16 bits (de 0 à 65535)
-* #####  On distingue 3 plages [liste exaustive](https://www.frameip.com/liste-des-ports-tcp-udp/):
+* #####  On distingue 3 plages [liste exhaustive](https://www.frameip.com/liste-des-ports-tcp-udp/):
 ##### :large_blue_diamond: 0 à 1023 : Les ports systèmes (Well Known Ports) - Serveur
 ##### :large_blue_diamond: 1024 à 49151 : les ports utilisateurs (Registered Ports) - Serveur
 ##### :large_blue_diamond: 49152 à 65535 : les ports dynamiques (Ephemeral Ports) - Client
@@ -1077,8 +1077,8 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
   ##### Dans sa version la plus simple, dite Basic NAT, on configure le routeur qui fait la passerelle entre un réseau interne et un réseau externe (Internet, réseau d'une autre structure, etc…), puis on choisi un ensemble d'adresses IP valables sur le réseau externe. Sur le routeur, on associe à chacune d'elles, l'adresse d'une machine interne devant communiquer avec l'extérieur.
   ##### La table de routage peut-être configurée à la main (NAT statique) ou remplie dynamiquement (cas général)
    ##### Pour héberger un serveur derrière un NAT, il faut mettre en place une correspondance statique, ce genre de correspondance est souvent appelée port forwarding. Elle consiste à déclarer un port sur le routeur NAT et à lui associer une adresse interne (et éventuellement un port).
-   ##### large_red_diamond: Limite : dans le cas de plusieurs serveurs pour le même service, seul un d'entre euxpourra utiliser le port standard
-##### L'utilisation de NAT implique qu'une adresse IP est utilisée par plusieurs interfaces demanière transparente
+   ##### large_red_diamond: Limite : dans le cas de plusieurs serveurs pour le même service, seul un d'entre eux pourra utiliser le port standard
+##### L'utilisation de NAT implique qu'une adresse IP est utilisée par plusieurs interfaces de manière transparente
 
  ##### large_blue_diamond: Exemple :
   ##### avec un routeur adresse publique 203.1.113.123
@@ -1090,7 +1090,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 * #####  Réponse de 216.58.214.83:443 -> 203.1.113.123:52369
 * #####  Le routeur reçoit cette réponse pour lui MAIS, il fait du NAT donc
 * #####  Le routeur cherche dans sa table une correspondance pour le port 52369 : 10.0.0.1
-* #####  Il transmet donc sur le réseau interne le paquet en remplaçant l'adresse dedestination (la sienne) par 10.0.0.1
+* #####  Il transmet donc sur le réseau interne le paquet en remplaçant l'adresse de destination (la sienne) par 10.0.0.1
    * ### 3.5.5.[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `NAPT`
 ---
   ##### Utilisé quand il y à moins d'adresse privé que d'adresse publiques, exemple box inernet. Ne pas considérer juste l'adresse comme identifiant mais le couple adresse IP/port (couche 4).
@@ -1142,7 +1142,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
  ##### :mag: Recherche OU :arrow_heading_down:
 ![AD2](https://github.com/user-attachments/assets/6addf165-d19f-4d0b-93a4-1099768df227)
 ##### :large_blue_diamond: un Domaine est une unité administrative et de sécurité dans un environnement, représente un groupe de ressources réseau et d'utilisateurs qui sont gérés comme une seule entité.
-##### :scroll: Fonctionalités
+##### :scroll: Fonctionnalités
 ##### :small_blue_diamond: `Contrôle Centralisé :`
 ##### Gestion centralisée des politiques de sécurité, des comptes d'utilisateurs, des comptes d'ordinateurs, permet une administration et une gestion simplifiées.
 ##### :small_blue_diamond:`Périmètre de Sécurité :`
@@ -1169,7 +1169,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 
  * ### 3.6.3[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Composants`
 ---  
- ##### :large_blue_diamond: DC (Domain Controler) : serveur sur lequel on effectue les opérations sont promus au rôle de DC du domaine créé, sera sollicité par les clients pour répondre aux demandes d’authentification à destination de ce domaine. 
+ ##### :large_blue_diamond: DC (Domain Contrôler) : serveur sur lequel on effectue les opérations sont promus au rôle de DC du domaine créé, sera sollicité par les clients pour répondre aux demandes d’authentification à destination de ce domaine. 
  ##### :large_blue_diamond: RODC (Read Only Domain Controller) Serveur ayant le rôle de DC, utilisé pour les sites distants, possède des droits de lecture seule.
  ##### :small_blue_diamond: Améliorations d'équilibrage de la charge et continuité du service :
 ##### :small_blue_diamond: Le serveur AD du site local transmettra les modifications de l’AD au RODC du site distant
@@ -1183,18 +1183,18 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ##### 3️⃣: `LDAP` : Créations de service d'annuaire (voir 3.7.1) 
 ##### 4️⃣: `LDIF` fichiers textes permettant d’interagir avec l’AD, Importation/exportation et modifs' de l'AD.
 ##### :five: `Kerberos` Protocole d’authentification central par défaut
-##### 6️⃣: `X509` Moyen d'autentifications supplémentaire
+##### 6️⃣: `X509` Moyen d'authentifications supplémentaire
 ##### 7️⃣: `NTFS` Gestion des droits, des contrôles d’accès et permissions par les groupes AD
   * ### 3.6.5[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)(`Fontionalitées`)
 ---   
-##### :large_blue_diamond: `Le niveau fonctionnel` correspond à la version de l’OS serveur depuis lequel on crée le domaine.(Si plusieur DC avec niveau fontionnel différent, c'est le plus ancien qui prévaut.
+##### :large_blue_diamond: `Le niveau fonctionnel` correspond à la version de l’OS serveur depuis lequel on crée le domaine.(Si plusieurs DC avec niveau fonctionnel différent, c'est le plus ancien qui prévaut.
 ##### :large_blue_diamond: ` Le schéma` contient des définitions formelles de chaque classe d’objets qui peuvent être créées dans une forêt Active Directory. 
 ##### :large_blue_diamond: `La réplication` processus pour maintenir la cohérence et la mise à jour des informations à travers les différents `CD`, via le protocole RPC over IP.
 ![ad 1](https://github.com/user-attachments/assets/42c671a0-ce58-490f-8052-f161060a1a0b)
 ##### :large_blue_diamond: `KCC` (Knowledge Consistency Checker) est un composant qui génère et gère automatiquement la topologie de réplication intrasite et intersite
 ![AD 1](https://github.com/user-attachments/assets/99f58f65-d250-4f97-ae77-8849f7d7a28d)
-####  :warning: Intervalle de réplication (par defaut) inter-site de 180 min/intra-site de 5 min.Un petit intervalle réduit la latence, mais augmente la quantité de trafic réseau. Pour tenir à jour les partitions d’annuaire de domaine, une faible latence est recommandée.:warning:
-#### :large_blue_diamond: `FSMO` (Flexible Single Master Operation), Dans un AD avec plusieurs DC (disposent d’un accès en écriture sur l’annuaire), les données sensible sont donc gére par FSMO, pour eviter que tout les DC puissent modifier l'AD. 
+####  :warning: Intervalle de réplication (par défaut) inter-site de 180 min/intra-site de 5 min.Un petit intervalle réduit la latence, mais augmente la quantité de trafic réseau. Pour tenir à jour les partitions d’annuaire de domaine, une faible latence est recommandée.:warning:
+#### :large_blue_diamond: `FSMO` (Flexible Single Master Operation), Dans un AD avec plusieurs DC (disposent d’un accès en écriture sur l’annuaire), les données sensible sont donc gère par FSMO, pour éviter que tout les DC puissent modifier l'AD. 
 ##### :one: `Schema master` 1 seul par forêt (obligatoire), Gère les MAJ du schéma
 ##### 2️⃣: `domain naming master` 1 seul par forêt Gère les noms de domaines, peut les supprimer, les ajouter, 
 ##### 3️⃣: `RID master`1 seul par domaine Gère les attributions de SID ( identifiant de sécurité unique, stocké dans l'attribut "objectSid", si un objet est renommez, l'AD sera toujours en mesure de l'identifier, car le SID reste le même pendant toute la vie d'un objet.)
@@ -1305,12 +1305,12 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![ad1](https://github.com/user-attachments/assets/507a069b-b6df-4404-8dab-e340a7f65dfe)
 ##### 3️⃣:Un attribut gPLink
 ![ad1](https://github.com/user-attachments/assets/3a1bdc94-4dfc-4f7c-a934-f267328fd258)
- ##### :small_blue_diamond:Etat => En plus des caractéristiques d’une GPO vus précédemment, 2 types d’états existent :
- ##### :one:Forcée (Enforced) avec 2 possibilitées: oui ou non
+ ##### :small_blue_diamond:État => En plus des caractéristiques d’une GPO vus précédemment, 2 types d’états existent :
+ ##### :one:Forcée (Enforced) avec 2 possibilités: oui ou non
  ##### Lorsqu'une GPO est "enforced", elle a la priorité sur les GPO appliquées à des niveaux inférieurs dans la hiérarchie AD.
  ##### 2️⃣:Active (Enable), qui peut avoir également l’état désactivée (Disable)
 
-##### :small_blue_diamond:Statégies locales :les stratégies locales, sont un ensemble de configurations de sécurité et de gestion appliquées directement à un ordinateur individuel.
+##### :small_blue_diamond:Stratégies locales :les stratégies locales, sont un ensemble de configurations de sécurité et de gestion appliquées directement à un ordinateur individuel.
  ![ad1](https://github.com/user-attachments/assets/61ccbd9e-1778-45f4-94ea-63e74cb44698)
 ![ad1](https://github.com/user-attachments/assets/d608776f-753c-42fa-87e4-e96434dff783)
 ![ad1](https://github.com/user-attachments/assets/79a61df4-67c6-43e5-a7c8-14a2c2b44795)
@@ -1327,7 +1327,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![vm 1](https://github.com/user-attachments/assets/7bc1754a-5761-4ce7-aa4f-3f227f49edf6)
 ##### Dérouler Forest => Domains => domain.local => Domain controllers Policy => clic droit => Default Domain Controllers Policy => Edit
 ![vm 1](https://github.com/user-attachments/assets/29d472fa-6fa3-4007-94fb-395c71a7a008)
-##### Dans cette fenêtre toutes les régle User et Computer son réalisable :
+##### Dans cette fenêtre toutes les règle User et Computer son réalisable :
 ![vm 1](https://github.com/user-attachments/assets/59942eaa-1e84-44f2-b43e-656c6b4e5c71)
 #### :arrow_forward: exemple edition de GPO
 ##### Restriction d'un groupe d'utilisateur
@@ -1337,10 +1337,10 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ##### Dans wilder_students on vois maintenant le nouveau GPO à droite
 
 ![vm 1](https://github.com/user-attachments/assets/65fe4691-7d9b-49d9-810c-e73e5866eca5)
-##### Editer
+##### Éditer
 ![vm 1](https://github.com/user-attachments/assets/f0d96297-e79e-4617-9492-8f2f5e2db38d)
-##### Dérouler le menu corespondant pour trouver la politique de paneau de configuration :
-##### Ici User Configuration => Policies => Administrative Templates => Control Panel => Toutes les régles relatives au Control Panel.
+##### Dérouler le menu correspondant pour trouver la politique de panneau de configuration :
+##### Ici User Configuration => Policies => Administrative Templates => Control Panel => Toutes les règles relatives au Control Panel.
 ![vm 1](https://github.com/user-attachments/assets/eab7e2ff-7310-4ff9-93a5-c7bb008693fd)
 ##### Mettre disabled puis ok
 ![vm 1](https://github.com/user-attachments/assets/a837248b-1331-482c-a9db-7d42f6182997)
@@ -1348,14 +1348,14 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![vm 1](https://github.com/user-attachments/assets/f3145f00-ddc3-49ff-bd53-a51b993a027d)
 ##### Sur la machine client:
    * ##### Sur Powershell en Admistrator exécuter la commande : gpupdate /force
-   * ##### faire windows+R => Ecrire : Control.exe
+   * ##### faire windows+R => Écrire : Control.exe
 ##### Résultat machine client :
 ![vm 1](https://github.com/user-attachments/assets/5accd1aa-8048-4c96-9526-538866c74e59)
  * ### 3.6.8.3[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Gestion client`
 ---
 1) #### **INSTALATION DU SERVEUR ADDS**
 * ##### Au sein du **Serveur manager**, cliquez sur **Manage** et **add roles and feature** .
-  * ##### Choisissez l'option **Role-based or feature-based instalation** et poursuivez.
+  * ##### Choisissez l'option **Role-based or feature-based installation** et poursuivez.
   * ##### Choisir Active Directory Domain Services
   * ##### Continuer l'installation, puis cliquer  sur **Add Features**
 *********************************************************************************************************
@@ -1364,7 +1364,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![adds1](https://github.com/user-attachments/assets/bc78a096-f64c-4ee1-bed9-d854ebe4b2f9)
  * ##### cocher Add new forest et Root domain name
 ![adds 2](https://github.com/user-attachments/assets/264e92a0-3881-4c32-b772-0fa2c0cbc31c)
-* ##### renseigner le niveau de windows suporté **Forest functional level** et dans **Domain functional level**
+* ##### renseigner le niveau de windows supporté **Forest functional level** et dans **Domain functional level**
 * ##### entrer des **Password**  
 * ##### Ne pas cocher Create DNS delegation
 * ##### Renseigner **The NetBIOS domain name**
@@ -1373,8 +1373,8 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 * ##### après une vérification le résultat :
  ![adds 4](https://github.com/user-attachments/assets/48233b21-c883-4eeb-b95a-8b5e209e27ec)
  * ##### **Install**
- * ##### L'opération peux durer et un redémarage est nécéssaire.
- *  #### Au redémmarage la **connection** se fait avec **DOMAINE** créer précédement et via le **Password** de A dministrator
+ * ##### L'opération peux durer et un redémarrage est nécessaire.
+ *  #### Au redémarrage la **connection** se fait avec **DOMAINE** créer précédemment et via le **Password** de Administrator
 ![adds5](https://github.com/user-attachments/assets/1e75b322-17d4-4822-a698-2cbf8d84b234)
 
 
@@ -1390,7 +1390,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 
 ### Faire entrer un client dans un domain
 
-#### ⚠️ Prérequis machine sur le même réseau et seveur DNS renseigner sur le/les client(s), les Différent cliens renommé avec des nom diférent ⚠️
+#### ⚠️ Prérequis machine sur le même réseau et serveur DNS renseigner sur le/les client(s), les Différent cliens renommé avec des nom différent ⚠️
 
 ##### :arrow_forward: AD GPO sur le clients:
 ##### clic sur "View" :arrow_down:
@@ -1416,12 +1416,12 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ### Ici le serveur à répliquer nest pas autorisé
 ### clic Authorize (bleu) => rentrer l'IP du serveur à autoriser(rouge)
 ![ad1](https://github.com/user-attachments/assets/ad23a564-f483-41e9-97de-b191793cb530)
-### Le serveur est retouvé et demande de confirmation 
+### Le serveur est retrouvé et demande de confirmation 
 #### ⚠️(le faire pour les deux serveurs SUR les deux serveurs)⚠️
 ![ad1](https://github.com/user-attachments/assets/1c30ba9c-9673-4678-937b-9a1616712d3e)
 ### Résultat 
 ![ad1](https://github.com/user-attachments/assets/db10e800-51c4-4c4d-ba9d-530591e21bf0)
-### Pour démarer le redondance :
+### Pour démarrer le redondance :
 ### Clic droit sur Scope => Configure Failover...
 ![ad1](https://github.com/user-attachments/assets/f1cc67e0-36c4-44e0-9398-312127750935)
 ### Rentrer l'IP du serveur de secours
@@ -1431,10 +1431,10 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ### Choisir Hot standby(rouge), 
 ##### (l'autre option permet de partager la charge dans l'attribution des adresses IP)
 ![ad1](https://github.com/user-attachments/assets/ce0f9c0e-e9b7-45a9-8b89-7bb6f4291b1d)
-### Pour la suite diminuer l'intervale de 60 min par defaut à 5 min
+### Pour la suite diminuer l'intervalle de 60 min par défaut à 5 min
 ##### (c'est le temps qu mettre le serveur deux à prendre le relais)
 ### Et cocher le case Enable Message Authentification
-#### (Cela permet de chiffrer le echange au niveau de la trame)
+#### (Cela permet de chiffrer le échange au niveau de la trame)
 ![ad1](https://github.com/user-attachments/assets/6afddf6b-a7f4-408f-974a-54706d8efd2a)
 ### Puis finish
 ### Vérifier d'être en Successful partout
@@ -1458,12 +1458,12 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ### Créer un nouvel enregistrement de type A ou AAAA.
 ![ad1](https://github.com/user-attachments/assets/594eff4f-9494-4643-9e44-5a49ecac86e3)
 ### Remplir le nom du nouvel enregistrement(peux importe le nom) (bleu)
-##### ⚠️Une Reverse Lookup Zone doit être présente sur le serveur maitre, dans le cas contraire,la créer!⚠️
+##### ⚠️Une Reverse Lookup Zone doit être présente sur le serveur maître, dans le cas contraire,la créer!⚠️
 ### Ip du serveur secondaire (rouge)
 ### Cocher la case Create associated (PTR) record (vert)
 ![ad1](https://github.com/user-attachments/assets/882bb546-5b39-44d6-92ec-b23ad9dcfe5c)
 ###  Puis Add Host
-### Sur le serveur maitre Action => Properties
+### Sur le serveur maître Action => Properties
 ![ad1](https://github.com/user-attachments/assets/6b701638-b0ad-4151-853f-7453dbc8052f)
 ### Name server (bleu)
 ### Add (rouge)
@@ -1478,19 +1478,19 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ### Cocher Only to servers listed on the Name Server tab (rouge)
 ![ad1](https://github.com/user-attachments/assets/72f50913-50b5-4b9a-9423-72e43b30b55e)
 ## 3️⃣ `Redondance ADDS`
-#### ⚠️Les deux serveurs doivent être sur le même réseau, et le DNS du serveur maitre renseigné dans le serveur secondaire. 
+#### ⚠️Les deux serveurs doivent être sur le même réseau, et le DNS du serveur maître renseigné dans le serveur secondaire. 
 ### sur un second serveur créer un rôle ADDS
 ### Puis Promote ths server to a domain controller
-### Cocher la case Add a domain contoller to an existing domain 
-### Puis renseigner le nom du domaine maitre(bleu)
-### Cliquer change sur puis renseigner le nom(comme présent sur l'écran de connection) et MDT du serveur maitre.(rouge)
+### Cocher la case Add a domain contrôler to an existing domain 
+### Puis renseigner le nom du domaine maître(bleu)
+### Cliquer change sur puis renseigner le nom(comme présent sur l'écran de connection) et MDT du serveur maître.(rouge)
 ![ad1](https://github.com/user-attachments/assets/883eb080-4c21-4cdf-a780-1b6627d273ba)
-### Laisser par defaut (ou voir avec reda notament RODC), puis rentrer MDT 
+### Laisser par défaut (ou voir avec reda notamment RODC), puis rentrer MDT 
 ![ad1](https://github.com/user-attachments/assets/90313b3b-ceda-450a-a00e-2cce26d6fd9e)
 ### Next
 ### Spécifier le domaine
 ![ad1](https://github.com/user-attachments/assets/baefd9d0-0382-4fd8-baf1-756ae837341e)
-### Next jusqu'a Install.
+### Next jusqu'à Install.
 * ### 3.6.10[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Partage de fichier et SMB`
   ### 3.6.10.1 Partage de fichier[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)
 #### Clic droit sur le dossier 
@@ -1526,22 +1526,22 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 #### Assigned valide directement le package
 #### Advanced permet de configurer le package
  * ## 4️⃣ `Debian`
-### Intégration du serveur débian => ADDS maitre
-### Configurer les deuxcarte réseaux(interne, bridge)
+### Intégration du serveur débian => ADDS maître
+### Configurer les deux cartes réseaux(interne, bridge)
 ### Se connecter en root
   nano /etc/network/interfaces
 ![ad1](https://github.com/user-attachments/assets/8a46e58a-32d0-4abd-832e-b5a348b4d96a)
 
   systemctl restart networking
 ![ad2](https://github.com/user-attachments/assets/880a767b-fc37-4026-b9b8-b82d75e64e79)
-### Ici le mieux est de se connecter en ssh depuis le serveur maitre( le commande sont longue)
+### Ici le mieux est de se connecter en ssh depuis le serveur maître( le commande sont longue)
   apt install packagekit samba-common-bin sssd-tools sssd libnss-sss libpam-sss policykit-1 sssd ntpdate ntp realmd
-### Editer le fichier de configuretion DNS
+### Éditer le fichier de configuration DNS
   nano /etc/resolv.conf
 ![ad1](https://github.com/user-attachments/assets/9dadd937-8732-45a5-9c90-738351a311db)
 ### Resultet attendu ⬇️
 ![ad2](https://github.com/user-attachments/assets/9e486877-1727-4c84-b498-ff0fb610572b)
-### Editer le fichier hostname avec le FQDN
+### Éditer le fichier hostname avec le FQDN
   #### 3.6.1.1 Partage de fichier [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)
 #### Clic droit sur le dossier 
 ![ad1](https://github.com/user-attachments/assets/a9024313-01d9-488e-9870-42593f27f786)
@@ -1585,8 +1585,8 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ---
 ## Création du dossier de partage à la racine de C:
 ![ad1](https://github.com/user-attachments/assets/05e985b3-0a4d-435b-8e08-a4e58b461024)
-### Modifier les régle pour que tout les Utilisateur du domaine est accés en lecture seul à Document_Entreprise
-### (Pour les modifications de régle dossier de référer au Document Partage AD)
+### Modifier les règle pour que tout les Utilisateur du domaine est accès en lecture seul à Document_Entreprise
+### (Pour les modifications de règle dossier de référer au Document Partage AD)
 ![ad1](https://github.com/user-attachments/assets/d8dff58f-a29b-49e3-891c-ebfef7b6ab8e)
 ---
 
@@ -1646,27 +1646,27 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![image](https://github.com/user-attachments/assets/ffaf09db-9622-40be-aafb-25832f072e72)
 #### Allow remote server management through WinRM
 ![image](https://github.com/user-attachments/assets/966e873b-8f8e-4ed2-b855-0d53e01385f1)
-#### Enable , puis dans IPv4 et IPv6 filter => * pour que toutes les addresse IP puissent (mais il est conseillé de rentrer les IP du service SI non configuré encore)
+#### Enable , puis dans IPv4 et IPv6 filter => * pour que toutes les adresse IP puissent (mais il est conseillé de rentrer les IP du service SI non configuré encore)
 ### 2️⃣ `Démarrer automatiquement le service WinRM`
 #### Computer Configuration => Polities => Windows Settings => Security Settings => System Service 
 ![image](https://github.com/user-attachments/assets/58a257a7-ae3b-4878-a6be-aec4eae4c484)
 ### Automatic 
 ![image](https://github.com/user-attachments/assets/3c0ed8bc-7ab7-4e07-8424-38e692d15849)
 ### 3️⃣ Firewall
-#### Dans les régle rentrante => New Rules
+#### Dans les règle rentrante => New Rules
 ![image](https://github.com/user-attachments/assets/d10bddad-6dd2-49b7-a52b-84ba5f389711)
 #### Cocher Predefined => Windows Remote Management
 ![image](https://github.com/user-attachments/assets/58edd5e1-7735-46f4-a2cc-6db7c8ffd39f)
 #### Puis Profile => Domain, Pivate
 ![image](https://github.com/user-attachments/assets/76f7488e-ccff-435e-ade2-fa8adb10d025)
 #### Allow Connection
-### 4️⃣ Edition de la Régle Firewall
+### 4️⃣ Edition de la Règle Firewall
 #### Clic droit sur Windows Remote Management (HTTP-In) => Properties
 ![image](https://github.com/user-attachments/assets/7be50976-2c66-47f2-97e9-28dd08801eba)
 #### Advanced => Cocher Domain
 ![image](https://github.com/user-attachments/assets/d33ab730-74d3-4fbe-bc96-8a92957a63a3)
   * ### `3.7.2 Récupération des Logs via journal event`
-# Instalation/Configuration de WinRM
+# Installation/Configuration de WinRM
 ##### Source [IT1](https://www.it-connect.fr/observateur-devenements-transferts-et-abonnements/)
 ##### [IT2](https://www.it-connect.fr/activer-winrm-par-gpo-sous-windows-server/)
 ---
@@ -1679,7 +1679,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![image](https://github.com/user-attachments/assets/890c875e-f02c-42d6-95c8-2d0b6e99f0a1)
 ---
 * ### `Firewall`
-#### Dans les régle rentrante => New Rules 
+#### Dans les règle rentrante => New Rules 
 ![image](https://github.com/user-attachments/assets/d10bddad-6dd2-49b7-a52b-84ba5f389711)
 #### Cocher Predefined => Windows Remote Management et par la suite Remote Management(compatibility
 ![image](https://github.com/user-attachments/assets/58edd5e1-7735-46f4-a2cc-6db7c8ffd39f)
@@ -1727,9 +1727,9 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 * ### `créer un abonnement`
 #### Event Viewer => clic droit Create Subsciption...
 ![image](https://github.com/user-attachments/assets/d81c7eac-4ab0-4632-808e-7db5ca8e13c3)
-#### 🔵 Renseigner le Nom du serveur colecteur et une description.
-#### 🔴 Ici le nom du journal dans lequel l'abonement sera collecté.
-#### 🟢 Ici c'est le serveur colecteur qui est à l'initiative de la collecte, renseiger sont FQDN.
+#### 🔵 Renseigner le Nom du serveur collecteur et une description.
+#### 🔴 Ici le nom du journal dans lequel l'abonnement sera collecté.
+#### 🟢 Ici c'est le serveur collecteur qui est à l'initiative de la collecte, renseiger sont FQDN.
 ![image](https://github.com/user-attachments/assets/7a807ef6-f053-4f18-9adb-1f1c971a05d1)
 #### 🔵 Select Events... => Filtrages des Evenements
 #### 🔴 Event Level => Critical + Warning
@@ -1748,7 +1748,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 * ## 4.1 [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)`DNS`
 
 * ### 4.1.1[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Définitions et fonctionement`
- ##### Base de donnée répartie et décentralisée, permettant la corespondance IP => Domain ==> Internet, AD
+ ##### Base de donnée répartie et décentralisée, permettant la correspondance IP => Domain ==> Internet, AD
  ##### Ce protocole fonctionne en arborescence : :arrow_heading_down:
 ![vm](https://github.com/user-attachments/assets/bde287af-cf89-4b15-b972-07224e85ad4b)
 #### DNS se décompose 
@@ -1761,9 +1761,9 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![Enregistrement 2024-11-21 084923](https://github.com/user-attachments/assets/c6568452-e3b0-48f5-9d98-31bb537918d6)
 * ### 4.1.2 [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-):closed_book: `DNS Récurcif /` :blue_book: `DNS faisant autorité`
 
- ##### :closed_book: DNS Récurcif
+ ##### :closed_book: DNS Récursif
  ##### :large_blue_diamond: Le terme « récursif » est à une procédure pouvant se répéter indéfiniment.
- ##### :large_blue_diamond: Tous les appareils/systèmes qui accèdent à Internet utilisent un DNS récursif. Lorsque sur l'on réalise une recherche sur internet, notre réquête est envoyée à un résolveur récurcif.
+ ##### :large_blue_diamond: Tous les appareils/systèmes qui accèdent à Internet utilisent un DNS récursif. Lorsque sur l'on réalise une recherche sur internet, notre requête est envoyée à un résolveur récursif.
  ##### :large_blue_diamond: Processus :
 ##### :one: Lorsqu’une demande est reçue par un résolveur récursif, celui-ci tente d’abord d’y répondre en utilisant les informations contenues dans son cache. 
 ##### :two: Si aucune information n’est disponible dans le cache, le résolveur contacte un serveur racine, qui le renvoie vers un serveur TLD (Top Level Domain). 
@@ -1772,20 +1772,20 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ##### :large_blue_diamond: Les serveurs DNS faisant autorité détiennent les enregistrements faisant autorité pour des domaines spécifiques, agissant comme points de référence pour les adresses IP et autres données DNS.Ils sont chargés de fournir des réponses aux serveurs DNS récursifs concernant l'emplacement des sites web.
 
 ##### :no_entry_sign: -Différences- :no_entry_sign: :
-||:closed_book: DNS Récurcif|:blue_book: DNS Autoritaire|
+||:closed_book: DNS Récursif|:blue_book: DNS Autoritaire|
 |:-:|:-:|:-:|
- |Fonctionnalitées|chargés de résoudre les requêtes des utilisateurs en récupérant de manière récursive des informations auprès des serveurs DNS faisant autorité.|stockent et fournissent les enregistrements DNS officiels pour des noms de domaine spécifiques.|
+ |Fonctionnalités|chargés de résoudre les requêtes des utilisateurs en récupérant de manière récursive des informations auprès des serveurs DNS faisant autorité.|stockent et fournissent les enregistrements DNS officiels pour des noms de domaine spécifiques.|
  |Interaction utilisateur|interagissent directement|n'interagissent pas directement|
  |Requêtes DNS|traitent les requêtes DNS itératives, en recherchant continuellement des informations auprès d'autres serveurs |traitent les requêtes DNS faisant autorité, en fournissant l'adresse IP correcte|
  |Mise en cache| mettent en cache les données DNS pour accélérer les requêtes futures et de réduire la charge des serveurs faisant autorité|pas de données en cache puisqu'ils détiennent les informations DNS les plus récentes et les plus précises pour les domaines qui leur sont attribués.|
- |Responsabilité| résolution DNS pour les utilisateurs finaux|hargés de fournir les enregistrements DNS officiels et de répondre aux requêtes des serveurs récursifs|
+ |Responsabilité| résolution DNS pour les utilisateurs finaux|chargés de fournir les enregistrements DNS officiels et de répondre aux requêtes des serveurs récursifs|
  
 * ### 4.1.3[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Serveurs Racines et Résolveurs`
-   ##### :red_circle: Hyérarchie :
+   ##### :red_circle: Hiérarchie :
    ##### :one: Serveurs faisant autorité : contenant les informations pour une (ou plusieurs) zone(s), plusieurs serveurs sur une zones pour éviter les pannes.
    ##### 2️⃣ Serveurs Racines : Ils gèrent une zone contenant les TLD et sont censés être connus par tous les résolveurs
-   ##### 3️⃣ Résolveurs publiques accéssibles à tous, intéroge les Srv autoritaire comme vu dans la section précédente.  
-   ##### 4️⃣ Stub résolver (DNS Local) non récurcif, gére un cache, connais l'adresse d'au moins un résolveur récursif.En générale intégrer à un systéme d'exploitation.
+   ##### 3️⃣ Résolveurs publiques accessibles à tous, intéroge les Srv autoritaire comme vu dans la section précédente.  
+   ##### 4️⃣ Stub résolver (DNS Local) non récursif, gère un cache, connais l'adresse d'au moins un résolveur récursif.En générale intégrer à un système d'exploitation.
      
  * ### 4.1.4 [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)`Windows`
 ##### **Le serveur est configuré avec une IP fixe de 172.16.10.10 et le client 172.16.10.20.**
@@ -1793,8 +1793,8 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ##### 1 Créer un nouveau services DNS avec "Manage==> Add roles and Features."
 
 ##### 2 dans DNS manager configurer le service DNS:
- ##### * Clic droit sur les champs dans "Forward Lookup Zones"=> New zone...=> Donner le nom de la zone => Tout garder par defaut.
- ##### * Clic droit sur les champs dans "Reverse Lookup Zones"=> New zone...=> Donner le nom de la zone => Tout garder par defaut.
+ ##### * Clic droit sur les champs dans "Forward Lookup Zones"=> New zone...=> Donner le nom de la zone => Tout garder par défaut.
+ ##### * Clic droit sur les champs dans "Reverse Lookup Zones"=> New zone...=> Donner le nom de la zone => Tout garder par défaut.
 
 ##### 3 
  ##### sur la nouvelle zone dans "Forward Lookup Zones" clic droit sur la zone=> "New Host (A or AAAA) :
@@ -1822,7 +1822,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 #### Serveur DNS sous Debian 12
 ##### :pencil2: Modification du fichier "*interfaces*"
 - Nom de la carte réseau `enp0s3`  
-- Etat de la carte réseau `static`  
+- État de la carte réseau `static`  
 - Adresse IP du serveur DNS `10.0.0.5`  
 - Adresse IP de la passerelle `10.0.0.1`  
 - CIDR `/24`
@@ -1832,7 +1832,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 #### Client sous Debian 12
 ##### :pencil2: Modification du fichier "*interfaces*"
 - Nom de la carte réseau `enpos3`  
-- Etat de la carte réseau `static`  
+- État de la carte réseau `static`  
 - Adresse IP du client `10.0.0.20`  
 - Adresse IP de la passerelle `10.0.0.1`  
 - CIDR `/24`
@@ -1907,7 +1907,7 @@ Tout d'abord il faut copier le fichier "*db.127*" vers "*reverse.wilders.lan*"
 - Ping depuis serveur vers client `ping`
 - Vérification de la syntaxe du fichier "*named.conf.local*" avec `named-checkconf`
 - Vérification de la syntaxe des fichiers "*forward*" et "*reverse*" avec `named-checkzone`
-- Ouverture du port 53 si parefeu actif `sudo ufw allow 53`  
+- Ouverture du port 53 si pare-feu actif `sudo ufw allow 53`  
 
 ### :negative_squared_cross_mark: Quelques tests depuis la machine client
 - `dig primary.wilders.lan`  
@@ -1964,15 +1964,15 @@ Tout d'abord il faut copier le fichier "*db.127*" vers "*reverse.wilders.lan*"
 ![vm 1](https://github.com/user-attachments/assets/fcb0d23a-1415-41c7-a79f-a28ea25a9959)
 #### Optional features
 ![vm1](https://github.com/user-attachments/assets/2f55ae2c-b5e4-4a2e-9dbe-3b01637f47eb)
-#### Editer les régles au démarage :
+#### Éditer les règles au démarrage :
 ![vm 2](https://github.com/user-attachments/assets/acb80868-0b54-44a6-be29-9362c269993e)
 ![vm 1](https://github.com/user-attachments/assets/7d1d38a9-59c1-4013-bdaa-f4d0c8c7ed20)
 #### Rechercher Open ssh server
 ![vm1](https://github.com/user-attachments/assets/92066d5b-43af-42be-ba20-7bc04d97493b)
 #### Le démarrer
 ![vm 1](https://github.com/user-attachments/assets/8592b937-3da3-4c8c-9d88-dba56bca8278)
-#### L'activer au démarage => dans le même menu => Properties
-#### Selectionner => Atomatic (Delayed Start)
+#### L'activer au démarrage => dans le même menu => Properties
+#### Sélectionner => Atomatic (Delayed Start)
 ![vm 1](https://github.com/user-attachments/assets/820ad474-e52d-46f1-841e-831102c639a8)
 #### DEMO SSH AVEC IDENTIFICATION AUTO
 ## UBUNTU -> UBUNTU
@@ -2181,7 +2181,7 @@ ON EXCECUTE TERMINAL ET POWERSHELL EN ADMIN SUR LES MACHINES RESPECTIVES
 > ##### télécharger le packet
 >	apt-get install isc-dhcp-server
 > ##### passer en réseau interne
-> ##### renomer la machine
+> ##### renommer la machine
 >	nano /etc/hosts
 >	srv-dhcp
 >	nano /etc/hostname
@@ -2212,22 +2212,22 @@ ON EXCECUTE TERMINAL ET POWERSHELL EN ADMIN SUR LES MACHINES RESPECTIVES
 ________________________________________________
 * ### 4.4.2.2[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Windows 22` 
 >[!NOTE]
->* #### Instalation DHCP
+>* #### Installation DHCP
 >* ##### Au sein du **Serveur manager**, cliquez sur **Manage** et **add roles and feature** .
->  * ##### Choisissez l'option **Role-based or feature-based instalation** et poursuivez.
->  * #####   Continuez, le serveur est déjà selectioné.
->  * ##### Dans la liste cochez "DHCP server" et dans la fenétre **include management tools**.Cliquez sur **Add Features**
+>  * ##### Choisissez l'option **Role-based or feature-based installation** et poursuivez.
+>  * #####   Continuez, le serveur est déjà sélectionné.
+>  * ##### Dans la liste cochez "DHCP server" et dans la fenêtre **include management tools**.Cliquez sur **Add Features**
 >  * ##### Cliquez sur **Install**
 > * #### **Configuration** du serveur DHCP :
-> * ##### Ouvrir **Administrativ Tools**
+> * ##### Ouvrir **Administratif Tools**
 > * ##### Clic droit sur **IPv4**, choisir **New Scope**
 > * ##### Rentrer la plage d'adresse IP et le masque de sous réseau ici : **start** 172.20.0.100 / **end** 172.20.0.200 / **length** 24 / **subnet mask** 255.255.255.0
 > * ##### Dans Router rentrer un IP éloigné de la plage pour plus de visibilité là 172.20.0.254
 > * ##### Faire **next** jusqu'à la page suivante : **Configure DHCP Options** : cocher **Yes, i want to configure these options now** 
 > * ##### On peux ne pas remplir les Options **Router et DNS** car nous ne sortirons pas du réseau privé.
 > *  #### **Machine cliens :**
->   * ##### Ouvrir Powershell : **ipconfig**, pour vérifier l'adresse ip, si elle ne corespond pas à la plage définie **ipconfig /renew**
->   * ##### Si le problème persiste, dans la fenétre de configuration du serveur DHCP, dérouler IPv4 et regarder dans **Scope [172.20.0.0]**, l'option **Activate/Desactivate** est bien sur **Activate**.
+>   * ##### Ouvrir Powershell : **ipconfig**, pour vérifier l'adresse ip, si elle ne correspond pas à la plage définie **ipconfig /renew**
+>   * ##### Si le problème persiste, dans la fenêtre de configuration du serveur DHCP, dérouler IPv4 et regarder dans **Scope [172.20.0.0]**, l'option **Activate/Desactivate** est bien sur **Activate**.
 > * #### Créer une **Réservation** :
 >   *  ##### Clic droit sur réservation **New Reservation...**, rentrer l'IP **172.20.0.10** de réservation, le nom du clients et l'adresse MAC (du clients) choisir **DHCP**, puis **add**.
 >   *  ##### Chez le client, **ipconfig /renew**==> TADDAAAAAA!!

@@ -60,7 +60,7 @@ La technique utilisé est un trunk et le nom réseau est routeur on a stick
 
 ### 6. `Quelle doit être la passerelle par défaut du vlan 60 ?`
 
-ça passerelle par defaut devra être 10.60.0.1, afin de pouvoir comuniquer avec internet et les autres réseaux après le routeur R3
+ça passerelle par défaut devra être 10.60.0.1, afin de pouvoir communiquer avec internet et les autres réseaux après le routeur R3
 
 
 

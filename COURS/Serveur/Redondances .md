@@ -6,12 +6,12 @@
 ### Ici le serveur à répliquer nest pas autorisé
 ### clic Authorize (bleu) => rentrer l'IP du serveur à autoriser(rouge)
 ![ad1](https://github.com/user-attachments/assets/ad23a564-f483-41e9-97de-b191793cb530)
-### Le serveur est retouvé et demande de confirmation 
+### Le serveur est retrouvé et demande de confirmation 
 #### ⚠️(le faire pour les deux serveurs SUR les deux serveurs)⚠️
 ![ad1](https://github.com/user-attachments/assets/1c30ba9c-9673-4678-937b-9a1616712d3e)
 ### Résultat 
 ![ad1](https://github.com/user-attachments/assets/db10e800-51c4-4c4d-ba9d-530591e21bf0)
-### Pour démarer le redondance :
+### Pour démarrer le redondance :
 ### Clic droit sur Scope => Configure Failover...
 ![ad1](https://github.com/user-attachments/assets/f1cc67e0-36c4-44e0-9398-312127750935)
 ### Rentrer l'IP du serveur de secours
@@ -21,10 +21,10 @@
 ### Choisir Hot standby(rouge), 
 ##### (l'autre option permet de partager la charge dans l'attribution des adresses IP)
 ![ad1](https://github.com/user-attachments/assets/ce0f9c0e-e9b7-45a9-8b89-7bb6f4291b1d)
-### Pour la suite diminuer l'intervale de 60 min par defaut à 5 min
+### Pour la suite diminuer l'intervalle de 60 min par défaut à 5 min
 ##### (c'est le temps qu mettre le serveur deux à prendre le relais)
 ### Et cocher le case Enable Message Authentification
-#### (Cela permet de chiffrer le echange au niveau de la trame)
+#### (Cela permet de chiffrer le échange au niveau de la trame)
 ![ad1](https://github.com/user-attachments/assets/6afddf6b-a7f4-408f-974a-54706d8efd2a)
 ### Puis finish
 ### Vérifier d'être en Successful partout
@@ -48,12 +48,12 @@
 ### Créer un nouvel enregistrement de type A ou AAAA.
 ![ad1](https://github.com/user-attachments/assets/594eff4f-9494-4643-9e44-5a49ecac86e3)
 ### Remplir le nom du nouvel enregistrement(peux importe le nom) (bleu)
-##### ⚠️Une Reverse Lookup Zone doit être présente sur le serveur maitre, dans le cas contraire,la créer!⚠️
+##### ⚠️Une Reverse Lookup Zone doit être présente sur le serveur maître, dans le cas contraire,la créer!⚠️
 ### Ip du serveur secondaire (rouge)
 ### Cocher la case Create associated (PTR) record (vert)
 ![ad1](https://github.com/user-attachments/assets/882bb546-5b39-44d6-92ec-b23ad9dcfe5c)
 ###  Puis Add Host
-### Sur le serveur maitre Action => Properties
+### Sur le serveur maître Action => Properties
 ![ad1](https://github.com/user-attachments/assets/6b701638-b0ad-4151-853f-7453dbc8052f)
 ### Name server (bleu)
 ### Add (rouge)
@@ -68,37 +68,37 @@
 ### Cocher Only to servers listed on the Name Server tab (rouge)
 ![ad1](https://github.com/user-attachments/assets/72f50913-50b5-4b9a-9423-72e43b30b55e)
 # 3️⃣ Redondance ADDS
-#### ⚠️Les deux serveurs doivent être sur le même réseau, et le DNS du serveur maitre renseigné dans le serveur secondaire. 
+#### ⚠️Les deux serveurs doivent être sur le même réseau, et le DNS du serveur maître renseigné dans le serveur secondaire. 
 ### sur un second serveur créer un rôle ADDS
 ### Puis Promote ths server to a domain controller
-### Cocher la case Add a domain contoller to an existing domain 
-### Puis renseigner le nom du domaine maitre(bleu)
-### Cliquer change sur puis renseigner le nom(comme présent sur l'écran de connection) et MDT du serveur maitre.(rouge)
+### Cocher la case Add a domain contrôler to an existing domain 
+### Puis renseigner le nom du domaine maître(bleu)
+### Cliquer change sur puis renseigner le nom(comme présent sur l'écran de connection) et MDT du serveur maître.(rouge)
 ![ad1](https://github.com/user-attachments/assets/883eb080-4c21-4cdf-a780-1b6627d273ba)
-### Laisser par defaut (ou voir avec reda notament RODC), puis rentrer MDT 
+### Laisser par défaut (ou voir avec reda notamment RODC), puis rentrer MDT 
 ![ad1](https://github.com/user-attachments/assets/90313b3b-ceda-450a-a00e-2cce26d6fd9e)
 ### Next
 ### Spécifier le domaine
 ![ad1](https://github.com/user-attachments/assets/baefd9d0-0382-4fd8-baf1-756ae837341e)
-### Next jusqu'a Install.
+### Next jusqu'à Install.
 
 * # 4️⃣ Debian
-### Intégration du serveur débian => ADDS maitre
-### Configurer les deuxcarte réseaux(interne, bridge)
+### Intégration du serveur débian => ADDS maître
+### Configurer les deux cartes réseaux(interne, bridge)
 ### Se connecter en root
   nano /etc/network/interfaces
 ![ad1](https://github.com/user-attachments/assets/8a46e58a-32d0-4abd-832e-b5a348b4d96a)
 
   systemctl restart networking
 ![ad2](https://github.com/user-attachments/assets/880a767b-fc37-4026-b9b8-b82d75e64e79)
-### Ici le mieux est de se connecter en ssh depuis le serveur maitre( le commande sont longue)
+### Ici le mieux est de se connecter en ssh depuis le serveur maître( le commande sont longue)
   apt install packagekit samba-common-bin sssd-tools sssd libnss-sss libpam-sss policykit-1 sssd ntpdate ntp realmd
-### Editer le fichier de configuretion DNS
+### Éditer le fichier de configuration DNS
   nano /etc/resolv.conf
 ![ad1](https://github.com/user-attachments/assets/9dadd937-8732-45a5-9c90-738351a311db)
 ### Resultet attendu ⬇️
 ![ad2](https://github.com/user-attachments/assets/9e486877-1727-4c84-b498-ff0fb610572b)
-### Editer le fichier hostname avec le FQDN
+### Éditer le fichier hostname avec le FQDN
 
 
 

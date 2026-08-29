@@ -3,7 +3,7 @@
 ---
 
 ### Ce tuto à pour objectif la mise en place de  certificat SSL auto-signé pour :
-### ⚠️ A faire quand les intéraction avec bareos et les certifcat ssl seront gérer ⚠️
+### ⚠️ A faire quand les interaction avec bareos et les certificat ssl seront gérer ⚠️
 
 
 

@@ -2,7 +2,7 @@
 
 ---
 
-# Ce tuto à pour but l'installation, la configutation et le test de la mise enb place d'une WebUi pour la solution Bareos.
+# Ce tuto à pour but l'installation, la configuration et le test de la mise enb place d'une WebUi pour la solution Bareos.
 
 ---
 
@@ -20,21 +20,21 @@
 <details>
 <summary>
 <h2>
-1️⃣ Instalation
+1️⃣ Installation
 </h2>
 </summary>
 
-### Instalation des paquet WebUi Bareos
+### Installation des paquet WebUi Bareos
     apt-get install bareos-webui -y
 
 ### Activer `php-fpm` pour Apache2
     a2enmod proxy_fcgi setenvif
     a2enconf php8.1-fpm
 
-### Si ce message apparait :
+### Si ce message apparaît :
 ![image](https://github.com/user-attachments/assets/2af52b1a-0932-43d2-86d6-c4038d7c14e8)
     
-### Probléme d'installation, et impossible à installer avec:
+### Problème d'installation, et impossible à installer avec:
       sudo apt install php8.1 php8.1-fpm  
  ![image](https://github.com/user-attachments/assets/64410a03-0f15-4701-9268-ca6a2497361d)
    
@@ -75,13 +75,13 @@
 ### vérifier que le fichier /etc/bareos/bareos-dir.d/profile/webui-admin.conf est présent et correct
 ![image](https://github.com/user-attachments/assets/bf265e7c-4ea1-4599-ae3f-129f9ea1849e)
 
-### Redemarrer les services 
+### Redémarrer les services 
     systemctl restart apache2
     systemctl restart php8.2-fpm
     systemctl restart bareos-director
 
 
-### Accés à Bareos WebUi => Dans un navigateur IP-SERVEUR/bareos-webui
+### Accès à Bareos WebUi => Dans un navigateur IP-SERVEUR/bareos-webui
 ![image](https://github.com/user-attachments/assets/261dbe72-bc50-4bfa-8884-6035d1a27d60)
 
 ### Entrer login et password défini dans => /etc/bareos/bareos-dir.d/console/admin.conf

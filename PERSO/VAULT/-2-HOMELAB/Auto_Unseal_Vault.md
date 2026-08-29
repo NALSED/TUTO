@@ -2,22 +2,22 @@
 
 ---
 
-Ce tutotriel à pour objectif : 
+Ce tutoriel à pour objectif : 
 
 -1. La mise en place de certificat ssl pour que les serveur Vault soit en https,
 
--2. Le renouvelement automatique de ces certificats via systemd
+-2. Le renouvellement automatique de ces certificats via systemd
 
 -3. L'installation standard de vault en version ARM64 et AMD64.
 
--4. La configuration et la mise en place de l'aute-unseal via transit secret 
+-4. La configuration et la mise en place de l'auto-unseal via transit secret 
 
 ---
-### 1️⃣ `Infra` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#1%EF%B8%8F%E2%83%A3-infra)
-### 2️⃣ `Certificats` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#2%EF%B8%8F%E2%83%A3-certificats) 
-### 3️⃣ `Renouvelement` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#3%EF%B8%8F%E2%83%A3-renouvelement)
-### 4️⃣ `Installation` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#4%EF%B8%8F%E2%83%A3-installation)
-### 5️⃣ `Configuration` [Accés rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#5%EF%B8%8F%E2%83%A3-configuration)
+### 1️⃣ `Infra` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#1%EF%B8%8F%E2%83%A3-infra)
+### 2️⃣ `Certificats` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#2%EF%B8%8F%E2%83%A3-certificats) 
+### 3️⃣ `Renouvelement` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#3%EF%B8%8F%E2%83%A3-renouvelement)
+### 4️⃣ `Installation` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#4%EF%B8%8F%E2%83%A3-installation)
+### 5️⃣ `Configuration` [Accès rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/Auto_Unseal_Vault.md#5%EF%B8%8F%E2%83%A3-configuration)
 
 
 
@@ -75,7 +75,7 @@ Ce tutotriel à pour objectif :
    - kleopatra (chiffrement GPG des clé vault)
    - DNS Resolver, Ici Pfsense.
 
-- Optionelle :
+- Optionnelle :
    - VSC comme éditeur de texte.
    - ⚠️ Des commandes ssh sont présente,pour créer des connections ssh sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
 
@@ -278,7 +278,7 @@ et sur 192.168.0.238
             -extfile /etc/Vault/Vault_Auto/Config/Vault_Auto_ext.cnf \
             -extensions v3_req
 
-- Suppression CSR (Pour renouvelement)
+- Suppression CSR (Pour renouvellement)
 
    sudo rm -f /etc/Vault/Vault_Auto/Cert/public/Vault_Auto.csr
    
@@ -356,7 +356,7 @@ et sur 192.168.0.238
             -extensions v3_req
 
 
-- Suppression CSR (Pour renouvelement)
+- Suppression CSR (Pour renouvellement)
 
     sudo rm -f /etc/Vault/Vault_Root/Cert/public/Vault_Root.csr
 
@@ -468,9 +468,9 @@ et sur 192.168.0.238
 
 -Editer
 
- [Script de renouvelement automatique 192.168.0.241](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-5-renouvelement_Vault_Auto.sh)
+ [Script de renouvellement automatique 192.168.0.241](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-5-renouvelement_Vault_Auto.sh)
 
-[Script de renouvelement automatique 192.168.0.238](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-6-renouvelement_Vault_root.sh)
+[Script de renouvellement automatique 192.168.0.238](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-6-renouvelement_Vault_root.sh)
 
 
 - Le rendre exécutable     
@@ -673,17 +673,17 @@ Le service sera déclenché par le timer.
 
 **=== 192.168.0.241 ===**
 
--1. Suite à l'intallation le fichier /etc/vault.d/vault.hcl à été édité pour la configuration de 192.168.0.241.
+-1. Suite à l'installation le fichier /etc/vault.d/vault.hcl à été édité pour la configuration de 192.168.0.241.
 
--2. redemmarage dun service vault, pour prise en compte des changement, inscription des variables d'environement dans  /usr/local/share/ca-certificates/ et ~/.bashrc
+-2. redémarrage dun service vault, pour prise en compte des changement, inscription des variables d'environnement dans  /usr/local/share/ca-certificates/ et ~/.bashrc
 
 -3. Autorisation du transit + création de la politique auto-unseal et token sur 192.168.0.241.
 
 **=== 192.168.0.238 ===**
 
--1. Suite à l'intallation le fichier /etc/vault.d/vault.hcl à été édité pour la configuration de 192.168.0.238.
+-1. Suite à l'installation le fichier /etc/vault.d/vault.hcl à été édité pour la configuration de 192.168.0.238.
 
--2. Inscription des variables d'environement dans  /usr/local/share/ca-certificates/ et ~/.bashrc
+-2. Inscription des variables d'environnement dans  /usr/local/share/ca-certificates/ et ~/.bashrc
 
 -3. Utiliser les commandes vault pour initialiser le serveur
 
@@ -691,7 +691,7 @@ Le service sera déclenché par le timer.
 
 **=== 192.168.0.241 ===**
 
--1. Redemarrer et tester vault 
+-1. Redémarrer et tester vault 
 
      sudo systemctl restart vault.service
      sudo systemctl status vault.service
@@ -735,7 +735,7 @@ Le service sera déclenché par le timer.
 
       vault operator init
 
-⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
+⚠️ ATTENTION ⚠️ les unseal keys et root token n'apparaîtront qu'une seul fois, penser à les sauvegarder.
 Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 
 -4. Entrer les commande suivante 3 fois
@@ -805,7 +805,7 @@ Sortie attendue
 **=== 192.168.0.238 ===**
 
 
--1. Editer le fichier de configuration ci dessus ⬆️
+-1. Éditer le fichier de configuration ci dessus ⬆️
 
 -2. -2. Pour éviter d'entrer les variables  `export VAULT_CACERT='/etc/Vault/Vault_Root/Cert/public/CA.crt'` et `export VAULT_ADDR='https://vault.sednal.lan:8200'` à chaque connection.
 
@@ -842,7 +842,7 @@ Sortie attendue
 
        vault operator init
 
-⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
+⚠️ ATTENTION ⚠️ les unseal keys et root token n'apparaîtront qu'une seul fois, penser à les sauvegarder.
 
 - Juste après initialisation
 

@@ -61,7 +61,7 @@
 <details>
 <summary>
 <h2>
-⚙️ Paramétres Fonction ⚙️ 
+⚙️ Paramètres Fonction ⚙️ 
 </h2>
 </summary>
 
@@ -235,7 +235,7 @@
 <details>
 <summary>
 <h2>
- ⚡Fontion par Type  d'objet⚡
+ ⚡Fonction par Type  d'objet⚡
 </h2>
 </summary>
 

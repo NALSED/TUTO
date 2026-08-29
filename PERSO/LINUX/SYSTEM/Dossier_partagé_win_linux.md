@@ -56,7 +56,7 @@
 
 ## 3️⃣ Créer utilisateur et groupe du partage OU utiliser un utilisateur existant
 
-### 3.1) Créaation
+### 3.1) Création
 
         adduser <USER> # Créer utilisateur , j'utilisea un user déjà présent
 

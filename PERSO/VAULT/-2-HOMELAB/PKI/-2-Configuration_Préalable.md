@@ -218,7 +218,7 @@ Tester via le script : [test_rsync.sh](https://github.com/NALSED/TUTO/blob/main/
 
 ---
 
-`-5.3.` Suprimmer fichier test sur chaque machine: 
+`-5.3.` Supprimer fichier test sur chaque machine: 
 
 `=== INFRA ===`
 ```

@@ -4,7 +4,7 @@
 
 `[RAPPEL]` 
 
-- Les certificats finaux on comme TTL = 90 jours, un script de renouvelement, activer par systemd et timer est éxécuté tous les 80 jours.
+- Les certificats finaux on comme TTL = 90 jours, un script de renouvellement, activer par systemd et timer est exécuté tous les 80 jours.
 
 `[DATE]` 
 

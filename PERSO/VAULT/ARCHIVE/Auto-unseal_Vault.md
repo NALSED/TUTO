@@ -9,7 +9,7 @@
 
 ---
 
-#### Installation compléte et configuration démarrage de Vault via Auto-unseal
+#### Installation complète et configuration démarrage de Vault via Auto-unseal
 
 ---
 
@@ -68,7 +68,7 @@
 #### 1.2) Pouvoir faire tourner Vault A 24h/24h ici => raspbery-pi 192.168.0.241
 #### 1.3) kleopatra (chiffrement GPG)
 #### 1.4) DNS Resolver, Ici Pfsense.
-#### 1.5) optionelle : VSC comme éditeur de texte.
+#### 1.5) optionnelle : VSC comme éditeur de texte.
 
              === PATH 192.168.0.241:8100===
             
@@ -294,7 +294,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
 ---
 
-### 3.3) Création CSR + Certificats + cles => Vault_Root et Vault_Auto
+### 3.3) Création CSR + Certificats + clés => Vault_Root et Vault_Auto
 
 `=== Vault_Root ===`
 
@@ -341,7 +341,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 ---
 
 
-### 3.4) Création d'un renouvelement automatique via script + systemd
+### 3.4) Création d'un renouvellement automatique via script + systemd
 
 #### Le script génère une clé et un certificat, supprime les anciens sur 192.168.0.243, puis copie les nouveaux dans les dossiers appropriés sur cette machine.
 
@@ -508,11 +508,11 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
           sudo useradd --system --home /etc/vault --shell /bin/false vault
 
--3. Editer le fichier de configuation `/home/sednal/Vault/Vault_Auto/Config/Vault_Auto.hcl`
+-3. Éditer le fichier de configuration `/home/sednal/Vault/Vault_Auto/Config/Vault_Auto.hcl`
 
           nano /etc/vault/Vault_Auto.hcl
 
-- Editer
+- Éditer
 
           disable_mlock = true
           ui = true
@@ -545,7 +545,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
           sudo nano /etc/systemd/system/vault.service
 
-- Editer
+- Éditer
 
           [Unit]
           Description=HashiCorp Vault - Vault Auto
@@ -561,7 +561,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
           [Install]
           WantedBy=multi-user.target
 
-- Autoriser et demarrer le service
+- Autoriser et démarrer le service
 
           sudo systemctl daemon-reload
           sudo systemctl enable vault
@@ -580,7 +580,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
           vault operator init
 
 
-⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
+⚠️ ATTENTION ⚠️ les unseal keys et root token n'apparaîtront qu'une seul fois, penser à les sauvegarder.
 Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 
             / # vault operator init
@@ -684,11 +684,11 @@ Sortie attendue
 
           sudo useradd --system --home /etc/vault --shell /bin/false vault
 
--3. Editer le fichier de configuation `/home/sednal/Vault/Vault_Root/Config/Vault_Root.hcl`
+-3. Éditer le fichier de configuration `/home/sednal/Vault/Vault_Root/Config/Vault_Root.hcl`
 
           nano /etc/vault/Vault_Root.hcl
 
-- Editer
+- Éditer
 
           disable_mlock = true
           ui = true
@@ -730,7 +730,7 @@ Sortie attendue
 
           sudo nano /etc/systemd/system/vault.service
 
-- Editer
+- Éditer
 
           [Unit]
           Description=HashiCorp Vault - Vault Auto
@@ -747,7 +747,7 @@ Sortie attendue
           [Install]
           WantedBy=multi-user.target
 
-- Autoriser et demarrer le service
+- Autoriser et démarrer le service
 
           sudo systemctl daemon-reload
           sudo systemctl enable vault
@@ -767,7 +767,7 @@ Sortie attendue
           vault operator init
 
 
-⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
+⚠️ ATTENTION ⚠️ les unseal keys et root token n'apparaîtront qu'une seul fois, penser à les sauvegarder.
 Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 
             / # vault operator init

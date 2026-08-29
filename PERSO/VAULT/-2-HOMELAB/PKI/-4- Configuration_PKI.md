@@ -29,7 +29,7 @@ sudo nano /etc/vault/pki/config/policy/Policy_PKI.hcl
 chown vault:vault /etc/vault/pki/config/policy/Policy_PKI.hcl
 ```
 
-`=>` - Editer
+`=>` - Éditer
 ```
 # Autoriser la gestion des moteurs de secrets (activation, suppression...)
 # Nécessaire pour faire vault secrets enable/disable
@@ -66,7 +66,7 @@ path "PKI_Sednal_Inter_ECDSA*" {
 
 
 
-`-1.2` Editer dans Vault
+`-1.2` Éditer dans Vault
 ```
 vault policy write sednal-pki /etc/vault/pki/config/policy/Policy_PKI.hcl
 ```
@@ -97,7 +97,7 @@ vault secrets enable -path=PKI_Sednal_Root_RSA -max-lease-ttl=9132d pki
 - nom moteur : `PKI_Sednal_Root_RSA`
 - TTL : `25 ans`
 
-`-1.2.` Générer l'autorité de certifiaction racine
+`-1.2.` Générer l'autorité de certification racine
 ```
 vault write -field=certificate PKI_Sednal_Root_RSA/root/generate/internal \
   common_name="sednal.com" \
@@ -140,7 +140,7 @@ vault write PKI_Sednal_Root_RSA/config/crl \
 
 - auto_rebuild : Active la reconstruction automatique de la CRL avant expiration
 
-- enable_delta : Active les CRL delta (incrementales) pour optimiser les performances
+- enable_delta : Active les CRL delta (incrémentales) pour optimiser les performances
 
 - `Sortie`
 
@@ -158,7 +158,7 @@ vault secrets enable -path=PKI_Sednal_Root_ECDSA -max-lease-ttl=9132d pki
 - nom moteur : `PKI_Sednal_Root_ECDSA`
 - TTL : `25 ans`
 
-`-1.5.` Générer l'autorité de certifiaction racine
+`-1.5.` Générer l'autorité de certification racine
 ```
 vault write -field=certificate PKI_Sednal_Root_ECDSA/root/generate/internal \
    common_name="sednal.com" \
@@ -200,7 +200,7 @@ vault write PKI_Sednal_Root_ECDSA/config/crl \
 
 - auto_rebuild : Active la reconstruction automatique de la CRL avant expiration
 
-- enable_delta : Active les CRL delta (incrementales) pour optimiser les performances
+- enable_delta : Active les CRL delta (incrémentales) pour optimiser les performances
 
 - `Sortie`
 
@@ -250,7 +250,7 @@ sudo chown vault:vault /etc/vault/pki/cert_ca/csr/Sednal_Inter_R-1.csr
 ```
 
 
-`-2.3.` Signature du certifiact inter via CA Root RSA
+`-2.3.` Signature du certificat inter via CA Root RSA
 ```
 vault write -format=json PKI_Sednal_Root_RSA/root/sign-intermediate \
      issuer_ref="Sednal_Root_R-1" \
@@ -285,7 +285,7 @@ vault write -format=json PKI_Sednal_Inter_ECDSA/intermediate/generate/internal \
 sudo chown vault:vault /etc/vault/pki/cert_ca/csr/Sednal_Inter_E-1.csr
 ```
 
-`-2.6.` Signature du certifiact inter via CA Root ECDSA
+`-2.6.` Signature du certificat inter via CA Root ECDSA
 ```
 vault write -format=json PKI_Sednal_Root_ECDSA/root/sign-intermediate \
      issuer_ref="Sednal_Root_E-1" \
@@ -372,7 +372,7 @@ vault write PKI_Sednal_Inter_RSA/roles/Cert_Inter_RSA \
     ttl="90d" \
     no_store=false
 
-- issuer_ref : utilise la sortie par defaut
+- issuer_ref : utilise la sortie par défaut
 - TTL : `90 jours`
 - no_store=false : Conserve les certificats émis dans Vault pour audit
 
@@ -394,7 +394,7 @@ vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
     ttl="90d" \
     no_store=false
 
-- issuer_ref : utilise la sortie par defaut
+- issuer_ref : utilise la sortie par défaut
 - TTL : `90 jours`
 - no_store=false : Conserve les certificats émis dans Vault pour audit
 
@@ -410,11 +410,11 @@ vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
 
 ---
 
-## 5️⃣ **Renouvelement** 
+## 5️⃣ **Renouvellement** 
 
 - Inscription à systemd avec timer pour execution tous les 80 jours, les certificats finaux on une TTL de 90 jours
 
-`1.1` Editer le Script
+`1.1` Éditer le Script
 ```
 sudo nano /etc/Vault_Script/Script_Renouvelement/renew_cert.sh
 ```

@@ -131,7 +131,7 @@
 
 ## ⚠️Utilisation de .lan car .local peux provoquer des conflits, avec des appareils Apple ou Linux qui supportent mDNS.
 
-### Editer le fichier : /etc/bind/db.sednal.lan
+### Éditer le fichier : /etc/bind/db.sednal.lan
 
             ; BIND data file for sednal.lan
             ;
@@ -179,7 +179,7 @@
 
 * Serial "1" : numéro de série de la zone. À incrémenter chaque fois que le fichier de zone est modifié pour notifier les serveurs secondaires d'une mise à jour.
  
- * Refresh "604800" : c’est le délai de rafraichissement pour la synchronisation des configurations entre plusieurs serveurs DNS.
+ * Refresh "604800" : c’est le délai de rafraîchissement pour la synchronisation des configurations entre plusieurs serveurs DNS.
  
  * Retry "86400" : c’est le délai au bout duquel un serveur DNS secondaire devra retenter une synchronisation si celle qu'il a faite au bout du temps "refresh" a échoué.
  
@@ -215,7 +215,7 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
         sudo cp /etc/bind/db.sednal.lan /etc/bind/db.reverse.sednal.lan
         sudo nano /etc/bind/db.reverse.sednal.lan
 
-### Editer les services comme ceci
+### Éditer les services comme ceci
 
         ;
         ; BIND data file for 0.168.192.in-addr.arpa
@@ -243,7 +243,7 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ![image](https://github.com/user-attachments/assets/47df5bda-94aa-42f7-b612-1648b164ddd8)
 
-### Démarage et autorisation de bind9
+### Démarrage et autorisation de bind9
 
         sudo systemctl start bind9
         sudo systemctl enable named.service
@@ -275,7 +275,7 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ## 7️⃣ `Récap`
 
-## 1️⃣ Instalation
+## 1️⃣ Installation
 
 ---
 
@@ -284,17 +284,17 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ---
 
-## 3️⃣ Déclaration de zone (on pourrai faire la zonne simple et inversé en même temps)
+## 3️⃣ Déclaration de zone (on pourrai faire la zone simple et inversé en même temps)
 
 ### * Faire un backup du document de base `named.conf.local`
 ### * Dans `named.conf.local` déclarer la zone simple => `db.sednal.local`
-### * Editer la zone simple db.sednal.local et vérif
+### * Éditer la zone simple db.sednal.local et vérif
 ### * Copier la zone simple `db.sednal.local` dans le fichier de zone inverse `db.reverse.sednal.local`, pour éviter une typo et gagne du temps.
  
 ### Fichier `named.conf.local`
 ![image](https://github.com/user-attachments/assets/1aa6150a-0b08-4e53-ac61-46a0b9c21f39)
 
-### * Editer la zone inverse `db.reverse.sednal.local` et vérif.
+### * Éditer la zone inverse `db.reverse.sednal.local` et vérif.
 ### Test
 
 

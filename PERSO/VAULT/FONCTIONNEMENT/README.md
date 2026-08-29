@@ -7,7 +7,7 @@ Contenu créé par **M. Mehdi Laruelle** de chez **Devoteam – A Cloud France**
 
 [DOC GITHUB](https://github.com/hashicorp/web-unified-docs/tree/main/content/vault/v1.21.x/content/docs)
 
-- [Variables environement](https://developer.hashicorp.com/vault/docs/commands#configure-environment-variables)
+- [Variables environnement](https://developer.hashicorp.com/vault/docs/commands#configure-environment-variables)
 - [Création de Token](https://developer.hashicorp.com/vault/api-docs/auth/token#create-token)
 - [Policies](https://developer.hashicorp.com/vault/docs/concepts/policies)
 - [Auth](https://developer.hashicorp.com/vault/docs/auth)
@@ -78,7 +78,7 @@ vault path-help
 ```
 
 - Une longue liste de tout les path possible.
-- Dans l'exemple on cherche à connaitre les clés des certificats de pki.
+- Dans l'exemple on cherche à connaître les clés des certificats de pki.
 
 ```
 vault list pki/cert
@@ -146,7 +146,7 @@ bashvault path-help database
 ---
 ---
 
-**Arborecence post init**
+**Arborescence post init**
 ```
 Vault Server (https://vault.prod.com:8200)
 │
@@ -173,7 +173,7 @@ Vault Server (https://vault.prod.com:8200)
 ❌ PAS d'autres auth methods
 ```
 
-**Arborecence Complétement configurée**
+**Arborescence Complètement configurée**
 ```
 
 Vault Server (http://127.0.0.1:8200)

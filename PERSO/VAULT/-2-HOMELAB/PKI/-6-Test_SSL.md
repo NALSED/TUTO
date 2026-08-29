@@ -80,7 +80,7 @@ issuer=CN = sednal.lan Intermediate Authority
 
 ### 3️⃣ Bareos 192.168.0.240
 
-- Pour Bareos, les différents Daemon comunique en SSl ainsi , que la WebUi.
+- Pour Bareos, les différents Daemon communique en SSl ainsi , que la WebUi.
 
 `-3.1` **DIR**
 

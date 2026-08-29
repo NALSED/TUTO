@@ -67,7 +67,7 @@ Le **Device** définit le **périphérique physique ou logique** utilisé par le
 <details>
 <summary>
 <h2>
-I) Régles à respecter
+I) Règles à respecter
 </h2>
 </summary>
 
@@ -80,11 +80,11 @@ I) Régles à respecter
             }
 
 * #### 1.3) Chaque SD définit ses Devices
-* #### 1.4) Il faut que le nomdre de storage créé corespondent au  nom de storage déclaré dans le bareos-dir dans /etc/bareos/bareos-dir.d/storage. Sinon conflit!
+* #### 1.4) Il faut que le nombre de storage créé corespondent au  nom de storage déclaré dans le bareos-dir dans /etc/bareos/bareos-dir.d/storage. Sinon conflit!
 
 
-## II) Arborécence de fichier pour bareos-SD(avec un SD  local et un distant)
-#### Ici  l'exemple est fait à partir d'une  VM mais le  principe est  le même avec le tunel ssh pour accéder au VPS en WAN        
+## II) Arborescence de fichier pour bareos-SD(avec un SD  local et un distant)
+#### Ici  l'exemple est fait à partir d'une  VM mais le  principe est  le même avec le tunnel ssh pour accéder au VPS en WAN        
           
           Bareos Director (192.168.0.240)
           ├── /etc/bareos/bareos-dir.d/storage/
@@ -351,7 +351,7 @@ I) Régles à respecter
       sudo systemctl status bareos-sd --no-pager
       sudo systemctl status bareos-dir --no-pager
 
-### Resultat attendu
+### Résultat attendu
 
 ### Tout les services en vert et actifs et bconsole ⬇️
 

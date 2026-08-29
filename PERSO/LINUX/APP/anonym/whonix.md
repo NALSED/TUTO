@@ -1,18 +1,18 @@
 # Whonix
 ---
 ## 1️⃣ Téléchargement
-## 2️⃣ Instalation
+## 2️⃣ Installation
 ## 3️⃣ Configuration
 ## 4️⃣ Utilisation
 ---
 ---
 ## 1️⃣ Téléchargement
-#### Le liens fourni sur le [SITE](https://www.whonix.org/), ne fonctione pas
+#### Le liens fourni sur le [SITE](https://www.whonix.org/), ne fonctionne pas
 #### Utiliser [LIEN1](https://mirrors.cicku.me/whonix/) ou [LIEN2](https://mirrors.dotsrc.org/whonix/) fourni [ICI](https://www.whonix.org/wiki/Hosting_a_Mirror)
 
 ---
 
-## 2️⃣ Instalation
+## 2️⃣ Installation
 #### fichier => importer un appareil virtuel => trouver le fichier et importer
 #### ⚠️Faire une redirection de port⚠️
 #### Solution trouvées [ICI POUR WHONIX](https://www.whonix.org/wiki/Host_a_Bridge_or_Tor_Relay) // [ICI POUR LA REDIRECTION](https://blog.microlinux.fr/ssh-virtualbox-nat/)
@@ -29,7 +29,7 @@
       sudo apt update
       sudo apt upgrade
 
-### 2) querty => azerty
+### 2) qwerty => azerty
       sudo dpkg-reconfigure locales
 #### descendre jusqu'à
 ![image](https://github.com/user-attachments/assets/f5625c79-d805-492a-ba7f-70c6b5b60fba)
@@ -40,10 +40,10 @@
 #### French
 
 ### 3) Autoriser traffic Tor
-#### Se rendre dans l'icone bleu => System => System Check
+#### Se rendre dans l'icône bleu => System => System Check
 ![image](https://github.com/user-attachments/assets/2a5ec0ee-b771-4d5f-915a-4cb3db4ba3dc)
 
-#### Resultat attendu
+#### Résultat attendu
 ![image](https://github.com/user-attachments/assets/303e19b7-f4a1-431f-bc25-d066754b937b)
 
 ---
@@ -54,7 +54,7 @@
 #### Sur Kali passer le mode d'accès réseau en Réseau interne et choisir Whonix
 ![image](https://github.com/user-attachments/assets/888ad1d8-c32a-4dca-a3c3-87bde813708a)
 
-#### Ralumer Kali et modifier la configuration IP
+#### Rallumer Kali et modifier la configuration IP
 ![image](https://github.com/user-attachments/assets/ea10a0d9-f6b6-4f3d-b9ed-de3df687ebed)
 
 #### Mettre Kali sur le même réseau que Whonix, Gateway Whonix ainsi que DNS (eth1) => Apply

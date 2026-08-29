@@ -90,10 +90,10 @@
 
 <img width="1188" height="306" alt="image" src="https://github.com/user-attachments/assets/89e0ca19-e655-45c7-9676-b011786241a1" />
 
-#### 2.5 Redemarrer les services 
+#### 2.5 Redémarrer les services 
     systemctl restart apache2 && systemctl restart php8.4-fpm && systemctl restart bareos-director
     
-#### Accés => `http://192.168.0.240/bareos-webui/`
+#### Accès => `http://192.168.0.240/bareos-webui/`
 
 ### III) `Tunnel SSH` 
 
@@ -105,7 +105,7 @@
 
 ---
 
-### 3.1) Afin que le Bareo.SD du VPS puisse comuniquer avec le  bareos.DIR du serveur local mise en  place d'un tunnel SSH.
+### 3.1) Afin que le Bareo.SD du VPS puisse communiquer avec le  bareos.DIR du serveur local mise en  place d'un tunnel SSH.
 #### Ce tunnel sera configuré dans systemd afin que, à chaque démarrage du serveur, le tunnel soit recréé automatiquement.
 
 #### 3.2) Installer Auto SSH
@@ -113,7 +113,7 @@
 #### 3.3) Copier la clé ssh sur serveur  distant
         ssh-copy-id -i /home/sednal/.ssh/id_ecdsa.pub debian@176.31.163.227
 
-#### 3.4) Créer une régle Iptable  sur le  serveur distant(VPS), pour autoriser  uniquement les  connection  depuis le serveur local sur le port 9103(port  Bareos.SD).
+#### 3.4) Créer une règle Iptable  sur le  serveur distant(VPS), pour autoriser  uniquement les  connection  depuis le serveur local sur le port 9103(port  Bareos.SD).
         # Autoriser le serveur local à se connecter au SD distant
         sudo iptables -A INPUT -p tcp -s 192.168.0.240 --dport 9103 -m state --state NEW,ESTABLISHED -j ACCEPT
         # Autoriser les paquets liés aux connexions existantes

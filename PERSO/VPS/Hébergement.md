@@ -7,7 +7,7 @@
 ---
 ## 1️⃣ ⏳ Préalables: ⏳
 *  #### Avoir un nom de domaine, enregistré, valide et actif
-*  #### Faire un enregistrement A du nom de demaine pointant vers l'IP du VPS => www.nalsed.fr.  0	A	176.31.163.227
+*  #### Faire un enregistrement A du nom de domaine pointant vers l'IP du VPS => www.nalsed.fr.  0	A	176.31.163.227
 * #### Créer une page html (ou autre) en local
 * #### Installer sur serveur `LAN`
      * #### autossh
@@ -20,11 +20,11 @@
   
 ## 2️⃣  ⤴️ Mise en place `Reverse  proxy` ⤵️
 
-#### ⚠️  Ne pas utiliser UFW, problémes si  mal configuré. ⚠️
+#### ⚠️  Ne pas utiliser UFW, problèmes si  mal configuré. ⚠️
 
 ### I) `SUR VPS`
 
-#### 1.1) Création d'une régle avec iptable sur le port `8080 TCP`
+#### 1.1) Création d'une règle avec iptable sur le port `8080 TCP`
         sudo iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
 
 ####  RESULTAT
@@ -119,7 +119,7 @@
 
 #### Solution plus pérenne :
 #### Utiliser systemd =>Elle permet de démarrer automatiquement le tunnel au boot, et il sera indépendant du terminal.
-#### Editer
+#### Éditer
        sudo  nano /etc/systemd/system/tunnel-nalsed.service
 
 #### Remplir le fichier

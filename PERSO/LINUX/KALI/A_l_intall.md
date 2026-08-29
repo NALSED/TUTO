@@ -1,4 +1,4 @@
-## A chaque instalation de kali
+## A chaque installation de kali
 
 ### En 4 points
 ---
@@ -16,7 +16,7 @@
  ### 2️⃣ `ssh / sshd`
      sudo nano /etc/ssh/sshd_config
 
-### Editer comme ⬇️
+### Éditer comme ⬇️
 ![image](https://github.com/user-attachments/assets/11a94ff4-fa2e-490d-a8c3-0d16db61c704)
 
 ### Et si pas besoin de ssh

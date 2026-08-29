@@ -1,4 +1,4 @@
-### Politique des doits sur Vault (Policies)
+### Politique des droits sur Vault (Policies)
 
 ---
 
@@ -21,16 +21,16 @@
 
 ### **[CAPABILITIES]**
 
-#### -  Possibilitées Standard / HTTP verbs : 
+#### -  Possibilités Standard / HTTP verbs : 
 
 <img width="1636" height="338" alt="image" src="https://github.com/user-attachments/assets/a3c22a2a-eeb6-451f-8ca8-069eb00f1a7b" />
 
 
-#### - Possibilitées spécial / HTTP verbs :
+#### - Possibilités spécial / HTTP verbs :
 
 <img width="1083" height="320" alt="image" src="https://github.com/user-attachments/assets/43094bcb-1246-4784-bb42-ed5074fd0474" />
 
-**Arborecence fichier dans Vault** (non exaustif)
+**Arborescence fichier dans Vault** (non exhaustif)
 
           Vault Server (127.0.0.1:8200)
           │
@@ -144,7 +144,7 @@ Spécifie que n'importe quelle valeur entre les deux parties du path est accept�
 Ici, toutes les valeurs entre `secret` et `admin` sont acceptées.
 
 
-### **Ecrire une policy**
+### **Écrire une policy**
 
 -1. - Créer le fichier policy
 nano /home/sednal/secret-list.hcl

@@ -5,7 +5,7 @@ Remote [WSL:Debian] => Code Spell Checker => descendre => Edit in settings.json
 <img width="1164" height="685" alt="image" src="https://github.com/user-attachments/assets/5a59bc92-3af6-488c-a2f8-a7d9479e9d7b" />
 
 
-### Editer settings.json
+### Éditer settings.json
       {
           "python.defaultInterpreterPath": "/bin/python3",
       

@@ -1,4 +1,4 @@
-# Disque Utilisé pour la sauegarde des Snapshot de l'infra.
+# Disque Utilisé pour la sauvegarde des Snapshot de l'infra.
 
 ---
 
@@ -7,7 +7,7 @@
 
 ## `Fichier Bareos`
 
-### Editer dans  /etc/bareos/bareos-sd.d/device/ pour déclarer le volume
+### Éditer dans  /etc/bareos/bareos-sd.d/device/ pour déclarer le volume
       nano /etc/bareos/bareos-sd.d/device/SNAP.conf
 ### Fichier :
       Device  {

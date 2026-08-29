@@ -1,4 +1,4 @@
-# Instalation/Configuration de WinRM
+# Installation/Configuration de WinRM
 ##### Source [IT1](https://www.it-connect.fr/observateur-devenements-transferts-et-abonnements/)
 ##### [IT2](https://www.it-connect.fr/activer-winrm-par-gpo-sous-windows-server/)
 ---
@@ -11,7 +11,7 @@
 ![image](https://github.com/user-attachments/assets/890c875e-f02c-42d6-95c8-2d0b6e99f0a1)
 ---
 * ### `Firewall`
-#### Dans les régle rentrante => New Rules 
+#### Dans les règle rentrante => New Rules 
 ![image](https://github.com/user-attachments/assets/d10bddad-6dd2-49b7-a52b-84ba5f389711)
 #### Cocher Predefined => Windows Remote Management et par la suite Remote Management(compatibility
 ![image](https://github.com/user-attachments/assets/58edd5e1-7735-46f4-a2cc-6db7c8ffd39f)
@@ -59,9 +59,9 @@
 * ### `créer un abonnement`
 #### Event Viewer => clic droit Create Subsciption...
 ![image](https://github.com/user-attachments/assets/d81c7eac-4ab0-4632-808e-7db5ca8e13c3)
-#### 🔵 Renseigner le Nom du serveur colecteur et une description.
-#### 🔴 Ici le nom du journal dans lequel l'abonement sera collecté.
-#### 🟢 Ici c'est le serveur colecteur qui est à l'initiative de la collecte, renseiger sont FQDN.
+#### 🔵 Renseigner le Nom du serveur collecteur et une description.
+#### 🔴 Ici le nom du journal dans lequel l'abonnement sera collecté.
+#### 🟢 Ici c'est le serveur collecteur qui est à l'initiative de la collecte, renseiger sont FQDN.
 ![image](https://github.com/user-attachments/assets/7a807ef6-f053-4f18-9adb-1f1c971a05d1)
 #### 🔵 Select Events... => Filtrages des Evenements
 #### 🔴 Event Level => Critical + Warning

@@ -1,4 +1,4 @@
-## 1️⃣ Instaler un serveur Web
+## 1️⃣ Installer un serveur Web
       sudo apt update
       sudo apt install apache2
 ## 2️⃣Configurer Les logs
@@ -7,9 +7,9 @@
 #### Puis si ce n'est pas le cas décommenter les lignes
       ErrorLog ${APACHE_LOG_DIR}/error.log
       CustomLog ${APACHE_LOG_DIR}/access.log combined
-## 3️⃣ Instalation et utilisation de curl
+## 3️⃣ Installation et utilisation de curl
       apt install curl
-#### Puis lancer des réquetes
+#### Puis lancer des requêtes
       curl https://192.168.10.12 🟢
       curl https://192.16.10.12/lls🔴
 ## 4️⃣ Logs

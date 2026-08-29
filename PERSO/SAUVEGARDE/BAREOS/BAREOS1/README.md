@@ -22,7 +22,7 @@
 * ## `DNS2 :`
    * ### Bind9, résolution de nom en locale
 * ## `Serveur_Web :`
-   * ### intranet, accés à GitHub et Services
+   * ### intranet, accès à GitHub et Services
 * ## `Serveur Sauvegarde :`
    * ### Bareos : dipose d'un RAID1 => 2 x 1 To et un autre disque 1 To
    * ### Plex.
@@ -35,7 +35,7 @@
 ### => Pour la répartition entre Sauvegarde et Snapshot :
 * ### 🔴 Sauvegarde : se concentrera uniquement sur les documents sensibles et fichiers de configuration.
 * ### 🟢 Snapshoot : Uniquement points de restauration, tout les autres fichiers seront exclus, pour ne pas surcharger.
-* ### Avec deux moyende sauvegarde différent : 🔴 Sauvegarde => RAID1 et 🟢 Snapshoot un disque séparer voir [ici](https://github.com/NALSED/TUTO/tree/main/PERSO/SAUVEGARDE#disk)
+* ### Avec deux moyen de sauvegarde différent : 🔴 Sauvegarde => RAID1 et 🟢 Snapshoot un disque séparer voir [ici](https://github.com/NALSED/TUTO/tree/main/PERSO/SAUVEGARDE#disk)
 
 <details>
 <summary>
@@ -129,11 +129,11 @@ Projet de Base
 |Job|job NOM MACHINE back.conf|job NOM MACHINE snap.conf|
 
 ### Nom Machine :
-* ### PC Adminitration : `admin`
+* ### PC Administration : `admin`
 * ### Serveur Sauvegarde : `save`
 * ### DNS PiHole : `dns1`
 * ### DNS Bind9 : `dns2`
-* ### Servveur Web : `web`
+* ### Serveur Web : `web`
 ---
 
 ---

@@ -2,7 +2,7 @@
 
 ---
 
-#### Configuration du systeme Windows 11 (192.168.0.235) et Linux (192.168.0.241) pour pouvoir éteindre Win 11 avec Upsnap.
+#### Configuration du système Windows 11 (192.168.0.235) et Linux (192.168.0.241) pour pouvoir éteindre Win 11 avec Upsnap.
 
 ---
 
@@ -12,9 +12,9 @@
 
 <img width="433" height="69" alt="image" src="https://github.com/user-attachments/assets/bf8f25c2-e11c-4971-ad68-468e188e0569" />
 
-### 2️⃣ Vérifier les droit Administreur
+### 2️⃣ Vérifier les droit Administrateur
 
-#### Pour exécuter la commande à distance d'extinction, un utilisateur faisant partie du groupe admin ou un administrateur doit être présent et configuré sur le systeme Win 11.
+#### Pour exécuter la commande à distance d'extinction, un utilisateur faisant partie du groupe admin ou un administrateur doit être présent et configuré sur le système Win 11.
 
 #### 2.1) Utilisateur présent 
 

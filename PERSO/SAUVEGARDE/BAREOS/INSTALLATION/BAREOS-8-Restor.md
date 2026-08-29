@@ -7,7 +7,7 @@
 
 ---
 ### Suivre le même mode opératoire de dans le précédent chapitre, tout se passe dans /etc/bareos/bareos-dir.d
-### Suivre l'order des chapitre pour évviter les erreurs, par rapport au fichier job, qui sera réalisé en dernier.
+### Suivre l'order des chapitre pour éviter les erreurs, par rapport au fichier job, qui sera réalisé en dernier.
 
 ---
 
@@ -30,8 +30,8 @@
 </h2>
 </summary>
 
-### Ici le fichier sera créer pour récupérer les backups précédement fait
-### Editer dans le dossier /etc/bareos/bareos-dir.d/fileset
+### Ici le fichier sera créer pour récupérer les backups précédemment fait
+### Éditer dans le dossier /etc/bareos/bareos-dir.d/fileset
    nano /etc/bareos/bareos-dir.d/fileset/restor1.conf
 
 ![image](https://github.com/user-attachments/assets/f47e18c1-881b-4e1b-9c50-587ace0f8cdd)
@@ -57,7 +57,7 @@
 
 ### La ressource Stockage définit les deamon de stockage qui peuvent être utilisés par le director.
 ### Ici 192.168.0.173 et RAID1
-### Editer dans le dossier /etc/bareos/bareos-dir.d/storage
+### Éditer dans le dossier /etc/bareos/bareos-dir.d/storage
    nano /etc/bareos/bareos-dir.d/storage/restorfile.conf
 ![image](https://github.com/user-attachments/assets/cda2ae02-ae14-4ba0-b62e-885b3106d81b)
 
@@ -76,7 +76,7 @@
 </summary>
  
 ### Ici le type d'action à réaliser.
-### Editer dans le dossier /etc/bareos/bareos-dir.d/pool
+### Éditer dans le dossier /etc/bareos/bareos-dir.d/pool
          nano /etc/bareos/bareos-dir.d/pool/restop.conf
 ![image](https://github.com/user-attachments/assets/0e27356f-68a5-4028-af7d-05d5c09293c8)
 
@@ -98,7 +98,7 @@
 </summary>
 
 ### Dans ce fichier l'action à réaliser
-### Editer dans le dossier /etc/bareos/bareos-dir.d/job
+### Éditer dans le dossier /etc/bareos/bareos-dir.d/job
       nano /etc/bareos/bareos-dir.d/job/restorwin.conf
 ![image](https://github.com/user-attachments/assets/5af5d17e-bfed-4572-87ae-93cafd63c3c3)
 
@@ -135,7 +135,7 @@
 ![image](https://github.com/user-attachments/assets/47cf778f-b332-4303-acd5-92cc1695f765)
 
 ### Et c'est le numéro 13 qui nous intéresse.
-### A ajuster en fonction des besoin, mais ici je souhaite restaurer les données les plus rescente de mon client
+### A ajuster en fonction des besoin, mais ici je souhaite restaurer les données les plus récentes de mon client
 ### Donc je choisi `5`
 ![image](https://github.com/user-attachments/assets/6bc1dc18-9d06-4d7f-aa11-6a4c3fe07317)
 
@@ -153,7 +153,7 @@
 ### Choisir le client souhaité
 ![image](https://github.com/user-attachments/assets/7958311a-f20c-47ad-961f-d0a6753658fd)
 
-### Une fois la tache réalisée, vériffication
+### Une fois la tache réalisée, vérification
       message
 ![image](https://github.com/user-attachments/assets/60512752-cf93-413b-910d-ede5c724622e)
 

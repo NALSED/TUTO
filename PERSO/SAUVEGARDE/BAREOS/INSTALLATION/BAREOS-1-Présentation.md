@@ -103,7 +103,7 @@
 
 # I) `Bareos-DIR`
 
-## Bareos-dir est le chef d'orchestre du logiciel, via le shell (ssh conseillé car beaucoup de fichier de conf) configuration des fichier pour déterminer toutes les otions de sauvegarde
+## Bareos-dir est le chef d'orchestre du logiciel, via le shell (ssh conseillé car beaucoup de fichier de conf) configuration des fichier pour déterminer toutes les options de sauvegarde
 ## ⚠️Bareos-dir est le dossier de configuration principal ou l'on passe le plus de temps.⚠️
 
 ---
@@ -115,7 +115,7 @@
 * ## 1.1) `catalog`
 
 ### Catalog sert à `définir` la `base de données` utilisée pour stocker toutes les `métadonnées de sauvegarde`.
-### Il est édité lors de l'instalation de Bareos.
+### Il est édité lors de l'installation de Bareos.
 
     Exemple
       Catalog {
@@ -146,7 +146,7 @@
 ---
 
 * ## 1.3) `console`
-### `Console` est installé et configuré lors de l'intallation de `Bareos-WebUi`
+### `Console` est installé et configuré lors de l'installation de `Bareos-WebUi`
 
  
     #
@@ -170,7 +170,7 @@
 ---
 
 * ## 1.4) `director` 
-### Director contient les information pour `l'execution de tache du daemon Bareos-dir`, configuré lors de l'instalation de Bareos
+### Director contient les information pour `l'execution de tache du daemon Bareos-dir`, configuré lors de l'installation de Bareos
 
     Director {                            # define myself
       Name = bareos-dir
@@ -249,7 +249,7 @@
 [RESSOURCE](https://docs.bareos.org/Configuration/Director.html#job-resource)
 
 * ## 1.7) `jobdefs`
-### `Template` pour le fichier `Job`, on peux rajounter un ligne Jobdefs, ainsi on évite les erreurs et l'on gagne du temps
+### `Template` pour le fichier `Job`, on peux rajouter un ligne Jobdefs, ainsi on évite les erreurs et l'on gagne du temps
 
 ### Fichier de base : 
 
@@ -273,8 +273,8 @@
 
 * ## 1.8) `messages`
 
-### `Message` gére les `log`, où et comment. Deux type 
-* ### `Daemon` : Utilisé dans la configuration globale du `Director`, du `Storage Daemon` ou du `File Daemon`, ce bloc s'applique à des événements systéme.
+### `Message` gère les `log`, où et comment. Deux type 
+* ### `Daemon` : Utilisé dans la configuration globale du `Director`, du `Storage Daemon` ou du `File Daemon`, ce bloc s'applique à des événements système.
 * ### `Standart` : `majoritérement` pour créer des log pour les `Jobs`.
 
       Messages {
@@ -360,7 +360,7 @@
 
 * ## 1.12) `storage`
 
-### Storage gére les `volume physique` en liens avec `Bareo-SD`.
+### Storage gère les `volume physique` en liens avec `Bareo-SD`.
 
       Storage {
         Name = test
@@ -398,7 +398,7 @@
 ## 2.2) `device`
 
 
-### Device gére le `support physique` sont emplacement, ses propriétés.
+### Device gère le `support physique` sont emplacement, ses propriétés.
 
             Device {
             Name = RAID1
@@ -419,12 +419,12 @@
 
 ## 2.3) `director`
  
-### Director permet de faire le `liens` entre les différent sercices `SD / FD / DIR` 
+### Director permet de faire le `liens` entre les différent services `SD / FD / DIR` 
 
 
 ## 2.4) `message`
 
-### Message gére les logs
+### Message gère les logs
 
             Messages {
               Name = Standard

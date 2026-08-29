@@ -16,7 +16,7 @@
         ---
 
 ### `Activer environement`
-#### Une fois activé les instalations et modifs se feront dans  l'environement  virtuel
+#### Une fois activé les installations et modifs se feront dans  l'environnement  virtuel
 
          # Win
          .\.venv\Scripts\activate

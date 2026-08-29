@@ -17,7 +17,7 @@
 * ### Mettre le bon fuseau horaire
          timedatectl set-timezone Europe/Paris
 
-* ### Mise à jour et instalation des outils:
+* ### Mise à jour et installation des outils:
          apt-get update
          apt-get install curl lsb-release ca-certificates gnupg2 pwgen
 ***
@@ -81,7 +81,7 @@
                   plugins.security.disabled: true
 
 ## 4) 
-## `Configurer Java (JVM)` (si la mémoir à alouer a openseach doit être sup a 1G)
+## `Configurer Java (JVM)` (si la mémoire à allouer a OpenSearch doit être sup a 1G)
 ### Nous garderons la conf de base.
 
 ## 5) 

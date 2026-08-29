@@ -151,7 +151,7 @@ Success! Enabled the kv-v2 secrets engine at: secret/
 
 ---
         
-#### `-1.` Création de l'arborécence ci dessus ⬆️ (=== BONNE PRATIQUE ===)
+#### `-1.` Création de l'arborescence ci dessus ⬆️ (=== BONNE PRATIQUE ===)
 ```
 mkdir -p vault-config/{policies/{user,apps},scripts}
 ```
@@ -173,7 +173,7 @@ path "secret/data/users" {
 
 **=== BONNE PRATIQUE ===**
 
-- [EXEMPLE] d'arborécence endpoint dans Vault
+- [EXEMPLE] d'arborescence endpoint dans Vault
 ```
 secret/data/{env}/{app}/{type}/{name}
 secret/data/prod/ecommerce/database/mysql
@@ -213,7 +213,7 @@ Tout est OK.
 
 
 #### `-4.` autoriser l'authentification via Userpass 
-- par defaut le chemin sera auth/userpass quand activation userpass
+- par défaut le chemin sera auth/userpass quand activation userpass
 Si besoin de chemin different : `vault auth enable -path="test" userpass`
 Ici le chemin sera auth/test
 
@@ -323,7 +323,7 @@ vault auth list
 vault write auth/approle/role/app token_policies="default"
 ```
 
-- Ici la politique de token est par defaut, dans la doc officiel il est décrit comment gérer ça [ICI](https://developer.hashicorp.com/vault/docs/auth/approle#via-the-cli-1)
+- Ici la politique de token est par défaut, dans la doc officiel il est décrit comment gérer ça [ICI](https://developer.hashicorp.com/vault/docs/auth/approle#via-the-cli-1)
 Pour modifier les Information
 
 -Sortie :
@@ -488,7 +488,7 @@ vault write auth/ldap/config \
 sudo nano vault-config/policies/use/user_ldap.hcl
 ```
 
-- Editer
+- Éditer
 ```
 path "secret/*" {
   capabilities = ["read", "list"]

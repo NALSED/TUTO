@@ -14,13 +14,13 @@
 
 #### `De nouvelles stations de travail viennent d’être acquises par une entreprise. Cependant les disques sont de capacités insuffisantes. On souhaiterait les remplacer par des disques de 4 To minimum. Quelles sont les précautions et vérifications à prendre avant d’installer le système pour que ces derniers puissent être reconnus ?`
 
-#### Vérifier le formatage des disque en fontiond des Os à installer
+#### Vérifier le formatage des disque en fonction des Os à installer
 
 
 
 #### `Citer différents logiciels permettant de prendre le contrôle à distance d’un équipement numérique et préciser leurs caractéristiques.`
 
-#### RDP: Bureau à distance, permet de prendre la main sur un ordinateur, avvec son interface visuel
+#### RDP: Bureau à distance, permet de prendre la main sur un ordinateur, avec son interface visuel
 #### ssh wirrm?
 
 
@@ -28,8 +28,8 @@
 
 #### `Rédiger une note de service sous forme d’un email à destination des utilisateurs de votre entreprise les prévenant d’une opération de maintenance du service SI sur la base de données du serveur d’applications de l’entreprise (pendant cette période, la base de données ne sera pas accessible).`
 Bonjour, 
-durant 24 h du 12.01.25 au 13.12.25, le service de stockage/sauvegardes ne sera pas disponible, nous vous invvitons à télécharger les documents sur lesquels vous travaillé actuelement et à les stocker en physique sur votre machine.
-Veulliez nous excuser pour la gêne occasionés
+durant 24 h du 12.01.25 au 13.12.25, le service de stockage/sauvegardes ne sera pas disponible, nous vous invitons à télécharger les documents sur lesquels vous travaillé actuellement et à les stocker en physique sur votre machine.
+Veuillez nous excuser pour la gêne occasionnés
 
 
 #### `Vous devez former les utilisateurs à l’utilisation d’une solution de stockage de fichiers en ligne. Quels sont les points que vous évoquez dans votre document de présentation ?`
@@ -52,7 +52,7 @@ Son adresse mail, numéro de téléphone, nom prénom
 
 
 #### `Après différents tests, vous venez de résoudre un problème remonté par un utilisateur sur son poste de travail. Que devez-vous faire après avoir trouvé cette solution technique ?`
- Réaliser une doc technique afin de pouvoir palier rapidement au probléme si il se représente.
+ Réaliser une doc technique afin de pouvoir palier rapidement au problème si il se représente.
 
 
 
@@ -82,7 +82,7 @@ Créer un dossier individuel qui sera chargé à la connection de l'utilisateur,
 * logparcer
 
 #### `Qu'est-ce qu'une GPO ?`
-Une GPO est une régle,qui permet au SI de gérer le parc informatique, administrer les utilisateur, gérer les accés, autoriser ou interdire des actions sur un PC.
+Une GPO est une règle,qui permet au SI de gérer le parc informatique, administrer les utilisateur, gérer les accès, autoriser ou interdire des actions sur un PC.
 
 #### `Est-ce une bonne pratique de partager des fichiers ou des dossiers sur un partage réseau, en mettant des permissions NTFS sur des utilisateurs ?`
 Oui c'est une bonne pratique, car elle permet une gestion plus fine des droits d'accées.
@@ -90,7 +90,7 @@ Oui c'est une bonne pratique, car elle permet une gestion plus fine des droits d
 
 #### `Si l'utilisateur jdoe existe sur un domaine Active Directory, sur une machine spécifique, utilisera-t-il le même bureau que l'utilisateur local jdoe ?`
 
-Oui si l'AD est configuré corectement
+Oui si l'AD est configuré correctement
 
 
 
@@ -100,7 +100,7 @@ Une base de donnée Hiérarchique, avec la foret, et les différents domains,OU,
 #### `Comment mettre en place une politique de mots de passe sur un domaine Active Directory ?`
 En appliquant à une OU, des GPO en liens avec: 
 * la complexité du MDP
-* son renouvélement
+* son renouvellement
 * son changement dans le temps
 
 
@@ -108,7 +108,7 @@ En appliquant à une OU, des GPO en liens avec:
 Les objets en Active Directory, sont des objets unique gérer est administré par AD ex: user, group, imprimante, PC, etc...
 
 #### `Est-ce une bonne pratique de supprimer un compte utilisateur le lendemain du départ d'un collaborateur d'une société ?`
-Non car on peux avoir besoin de ces dossier, donnés, pour un audit, vérrifier des informations, ou récupérer des donnés.
+Non car on peux avoir besoin de ces dossier, donnés, pour un audit, vérifier des informations, ou récupérer des donnés.
 
 #### `Comment gérer l'administration d'un serveur core ?`
 
@@ -125,7 +125,7 @@ fstab
 
 
 #### `Est-ce que "systemctl start" et "systemctl enable" ont le même effet ?`
-Non systemctl start démart un service tandis que systemctl enable démare automatiquement au démarage.
+Non systemctl start démarre un service tandis que systemctl enable démarre automatiquement au démarrage.
 
 #### `Est-ce que la commande dig sur Linux est la même chose que tracert sur Windows ?`
 
@@ -146,7 +146,7 @@ Non systemctl start démart un service tandis que systemctl enable démare autom
 
 
 #### `Un technicien a exécuté la commande suivante : chmod 777 startScript.sh . Est-ce une bonne idée ?`
-Non car tout le monde aura les droit d'éxecution sur le script, sur les trois chiffres le premier représente l'utilisateur, le second les groupes, et le dernier les autres utilisateurs. C'est mieux de faire chmod 744 startScript.sh 
+Non car tout le monde aura les droit d'exécution sur le script, sur les trois chiffres le premier représente l'utilisateur, le second les groupes, et le dernier les autres utilisateurs. C'est mieux de faire chmod 744 startScript.sh 
 
 
 #### `Est-ce que mount et umount sur Linux ont la même fonctionnalité que dism mount et dism umount sur windows ?`
@@ -203,10 +203,10 @@ GigabitInterfaces 1/2
 Trois Vlan 1/2/10
 
 #### `Qu'est-ce qu'un trunk pour des vlans ?`
-Un trunk est une configuration réseau qui permet de faire communiquer des machines appartenant au méme Vlan sur des Vlan différents, d'utiliser une interface physique pour faire communiquer plusieurs Vlan
+Un trunk est une configuration réseau qui permet de faire communiquer des machines appartenant au même Vlan sur des Vlan différents, d'utiliser une interface physique pour faire communiquer plusieurs Vlan
 
 #### `Quel est l’intérêt de faire des sous-réseaux du point de vue des tables de routage ?`
-Cela permet de simplifier la table de routage, en effet si plusieur réseau sont "derière" la même Default Gateway , il est possible de regrouper les vlan corespondant sur une seul passerelle, en effet si les tables de routages sont corectement faites, les routeurs connaisent leurs voisins, et les paquets seront transmits.
+Cela permet de simplifier la table de routage, en effet si plusieurs réseau sont "derrière" la même Default Gateway , il est possible de regrouper les vlan correspondant sur une seul passerelle, en effet si les tables de routages sont correctement faites, les routeurs connaissent leurs voisins, et les paquets seront transmits.
 
 
 
@@ -214,8 +214,8 @@ Cela permet de simplifier la table de routage, en effet si plusieur réseau sont
 
 #### `a. Combien de bits supplémentaires sont nécessaires pour définir ces 8 sous-réseaux ?`
 Il faut rajouter 3 bits pour passer deu CIDR 16 à 19
-car /16 permet 65536 hotes /8 = 8192 -2 = 8190 
-On recherche la racine de 2 qui corespond 2^13 = 8192 
+car /16 permet 65536 hôtes /8 = 8192 -2 = 8190 
+On recherche la racine de 2 qui correspond 2^13 = 8192 
 donc 32-13 = 19 pour le CIDR
 
 #### `b. Quel est le masque correspondant ?`

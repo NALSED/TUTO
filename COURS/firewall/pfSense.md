@@ -1,4 +1,4 @@
-## Premiére configuration de pfSense
+## Première configuration de pfSense
 ### 1️⃣Installer pfSense => [liens IT connect](https://www.it-connect.fr/comment-installer-pfsense-dans-virtualbox-pour-creer-un-lab-virtuel/)
 #### ⚠️Vérifier si les carte corespondent bien à LAN et WAN sinon menu 1
 ### 2️⃣Configuration de pfSense en CLI
@@ -7,14 +7,14 @@
 * #### Renseigner la nouvelle IP
 ![ad1](https://github.com/user-attachments/assets/29262ade-e66a-44ff-897e-c1b1426042f0)
 ![ad1](https://github.com/user-attachments/assets/87dce0d2-3b4b-4649-9ea0-3d3c267f61db)
-#### (Résultat après édition IP et corection des interfaces via menu 1)
+#### (Résultat après édition IP et correction des interfaces via menu 1)
 * #### Un message nous indique `https://172.16.10.20.`
 *  #### Se rendre sur le client puis configurer l'interface réseau.
 ![ad1](https://github.com/user-attachments/assets/f43f82e6-52c1-4c59-8bd0-8d0fd3b66817)
 * #### test ping
 ![ad1](https://github.com/user-attachments/assets/69f7a5dd-8fc8-4f6f-a1d3-bd1d1f0b50dd)
 ### 3️⃣ Configuration de pfSense en GUI
-* #### Se rendre sur la page pfSense et conection avec => admin + pfsense.
+* #### Se rendre sur la page pfSense et connexion avec => admin + pfsense.
 * ### `step 2`
    * #### renseigner les DNS et AD si besoin ⬇️
 ![ad1](https://github.com/user-attachments/assets/eb60e7a4-306a-4f47-8915-8833ce8cecc6)
@@ -30,18 +30,18 @@
 * ### `step 6`
    * #### Modification de mot de passe pfSense
 * ### `step 7`
-   * #### redémarage 
+   * #### redémarrage 
 * ### `step 8`
    * #### Idem
 * ### `step 9`
    * #### finish ⬇️
 ![ad1](https://github.com/user-attachments/assets/099c2f4b-d737-484c-9acd-362150aa621e)
 ### 4️⃣ Bloquer la connection sur le client
-   * #### Avant édition de régle
+   * #### Avant édition de règle
 ![ad1](https://github.com/user-attachments/assets/2f492a98-76e9-4658-939f-ed8812bbd22b)
    * #### Dans l'Interface GUI Firewall/Rules/Edit Puis ⬇️
 ![ad1](https://github.com/user-attachments/assets/26fbf581-5964-4ce0-8658-035f3db2b375)
-   * #### Editer la régle 
+   * #### Éditer la règle 
 ![ad1](https://github.com/user-attachments/assets/b0fe6511-c4c2-4589-b4ab-8f5d6ebbd824)
    * #### Résultat  
 ![ad1](https://github.com/user-attachments/assets/8e17fce6-c252-4a68-9c5d-3b81899e108f)

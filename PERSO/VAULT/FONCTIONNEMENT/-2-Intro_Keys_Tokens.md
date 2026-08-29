@@ -1,4 +1,4 @@
-# Les clées et tokens dans Vault.
+# Les clés et tokens dans Vault.
 
 ---
 
@@ -13,7 +13,7 @@ Ici seront traité les Unseal Keys, Master Keys, Root Token et L'Encryption Key 
 
 ### 1️⃣ **Unseal Keys**
 
-⚠️ Point trés important sur Vault : Les `unseal keys` servent à `reconstituer la master key en mémoire` pour passer de l'état SEALED à UNSEALED.
+⚠️ Point très important sur Vault : Les `unseal keys` servent à `reconstituer la master key en mémoire` pour passer de l'état SEALED à UNSEALED.
 
 Par exemple après  un redémarrage, crash, maintenance etc ...  la master key disparaît de la mémoire. Les données sur disque restent chiffrées et inaccessibles sans cette clé.
 Protection contre le vol physique : Même si quelqu'un vole le serveur ou le disque dur, les données restent chiffrées car la master key n'est pas stockée avec elles.
@@ -58,7 +58,7 @@ Ces clés sont des fragments de la master key, divisée selon l’algorithme de 
 
 ### 2️⃣ **Root Token**
 
-Le `Root Token` est lui aussi fourni par Vault lors de la première initialisation, il est l'équivelent de root sur linux => c'est Token avec les `privilèges absolus` sur Vault.
+Le `Root Token` est lui aussi fourni par Vault lors de la première initialisation, il est l'équivalent de root sur linux => c'est Token avec les `privilèges absolus` sur Vault.
 
 Il peut : 
 - Tout lire, écrire, supprimer

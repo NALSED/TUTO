@@ -24,12 +24,12 @@
 
 ## 1️⃣ Connection Serveur / VSC.
 
-### 1.1) Installer  l'extention Remote - SSH sur VSC
+### 1.1) Installer  l'extension Remote - SSH sur VSC
 ![image](https://github.com/user-attachments/assets/d435f3f0-81ef-444d-be27-eda72e1bc165)
 
 ### 1.2) Ouvrir la palette de commande (Ctrl+Shift+P), taper `>Add New SSH Host...`
 ### Entrer les infos : SSH `sednal@192.168.0.103`
-###  Puis pour se connecter à l'hôte `>Remote-SSH: Connect to Host...` et  l'IP de l'hôte apparaitra
+###  Puis pour se connecter à l'hôte `>Remote-SSH: Connect to Host...` et  l'IP de l'hôte apparaîtra
 ###  Explorer ces  modes
 ![image](https://github.com/user-attachments/assets/b25fd532-d78d-4288-812f-97bff29bc1e3)
 
@@ -45,7 +45,7 @@
 </h2>
 </summary>
 
-## 🐳 Activer l'accée au serveur Ubuntu via un emachine Windows 11, mais sans certificats,  chiffrements, déconseillé en production, car les infos passent en clairs.
+## 🐳 Activer l'accès au serveur Ubuntu via une machine Windows 11, mais sans certificats,  chiffrements, déconseillé en production, car les infos passent en clairs.
 
 
 ### 2.1) Activer le daemon Docker distant sur Ubuntu:
@@ -55,7 +55,7 @@
 
       sudo nano /etc/docker/daemon.json
 
-### Editer
+### Éditer
       {
         "hosts": ["unix:///var/run/docker.sock", "tcp://IPSERVEUR:2375"] # ici 192.168.0.103
       }
@@ -68,10 +68,10 @@
       sudo ss -tuln | grep 2375
 
 
-### 2.4) configurer parfeu
+### 2.4) configurer pare-feu
       sudo ufw allow 2375/tcp
 
-### Et restreindre l'accés
+### Et restreindre l'accès
       sudo ufw allow from 192.168.0.111 to any port 2375 proto tcp
 
 
@@ -113,7 +113,7 @@
       mkdir -p ~/docker-certs
       cd ~/docker-certs
 
-### Génèrer la CA :
+### Générer la CA :
       openssl genrsa -aes256 -out ca-key.pem 4096
       openssl req -new -x509 -days 365 -key ca-key.pem -sha256 -out ca.pem
 
@@ -146,7 +146,7 @@
 ### 3.4)  Configurer Docker pour utiliser TLS
        nano /etc/docker/daemon.json
 
-### Editer
+### Éditer
 ###  Mettre l'IP de la   VM sur laquelle  tourne Docker, et le port  d''écoute  change, il  passe de  2375 => 2376      
       
       {
@@ -171,18 +171,18 @@
 *  ### Modifier le service systemd (via sudo systemctl edit --full docker.service) pour supprimer -H fd:// dans la ligne ExecStart.
 *  ### Vérifier la modification avec sudo systemctl cat docker.service.
 *  ### Recharger systemd (sudo systemctl daemon-reload) et redémarrer Docker (sudo systemctl restart docker).
-### Probléme 
+### Problème 
 
-### Editer le fichier docker.service
+### Éditer le fichier docker.service
       sudo systemctl edit --full docker.service
 
 ### Supprimer `-H fd://`
       ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
-### Resultat
+### Résultat
       ExecStart=/usr/bin/dockerd --containerd=/run/containerd/containerd.sock
 
-### Redémarer le service
+### Redémarrer le service
       sudo systemctl daemon-reload
       sudo systemctl restart docker
       sudo systemctl status docker
@@ -193,7 +193,7 @@
 ### Copier les fichiers serveur=>admin
        sudo scp -r /etc/docker/certs sednal@192.168.0.111:C/certif
 
-### Renomer les fichier copier  en => ca.pem / cert.pem / key.pem
+### Renommer les fichier copier  en => ca.pem / cert.pem / key.pem
 
 ### Créer un dossier ici
       C:\cert-docker\
@@ -207,7 +207,7 @@
       --tlskey="C:\cert-docker\key.pem" `
       -H=tcp://192.168.0.103:2376 version
 
-### Resultat attendu
+### Résultat attendu
 ![image](https://github.com/user-attachments/assets/a2cff0cc-8a9b-4ac5-9a26-99ce18854dd6)
 
 
@@ -237,21 +237,21 @@
 
 ---
 
-###  L'objectif de cette dernière partie  est de créer un session permanant et sécurisée entre  Pc admin etle serveur Ubuntu.
-### 4.1) Pour ce  passer de ces lignes à chaques commandes
+###  L'objectif de cette dernière partie  est de créer un session permanent et sécurisée entre  Pc admin et le serveur Ubuntu.
+### 4.1) Pour ce  passer de ces lignes à chaque commandes
              --tlsverify `
              --tlscacert="C:\cert-docker\ca.pem" `
              --tlscert="C:\cert-docker\cert.pem" `
              --tlskey="C:\cert-docker\key.pem" `
 
-### 4.2) On  pourrait définir des variables d'environement
+### 4.2) On  pourrait définir des variables d'environnement
             $env:DOCKER_HOST = "tcp://192.168.0.101:2376"
             $env:DOCKER_TLS_VERIFY = "1"
             $env:DOCKER_CERT_PATH = "C:\cert-docker"
 
-### Mais  à chaque redémarage elle seront effacées
+### Mais  à chaque redémarrage elle seront effacées
 
-###  4.3) Inscription définitive  des variables d'environement: 
+###  4.3) Inscription définitive  des variables d'environnement: 
 ### Powershell en Admin  
             [System.Environment]::SetEnvironmentVariable("DOCKER_HOST", "tcp://192.168.0.101:2376", "User")
             [System.Environment]::SetEnvironmentVariable("DOCKER_TLS_VERIFY", "1", "User")
@@ -270,7 +270,7 @@
 
 ## II) Plusieurs Clients
 
-### Ici utilisation de docker context pour changer de client, ici les variables d'environements doivent être supprimées.   
+### Ici utilisation de docker context pour changer de client, ici les variables d'environnements doivent être supprimées.   
 
 ### 2.1) Création du docker context
      docker context create remote101-tls --docker host=tcp://192.168.0.101:2376,ca=C:\cert-docker\ca.pem,cert=C:\cert-docker\cert.pem,key=C:\cert-docker\key.pem
@@ -282,7 +282,7 @@
       docker context ls
       docker context use remote104-tls
 
-###  Resultat
+###  Résultat
 ![image](https://github.com/user-attachments/assets/0ed276ae-639f-4524-ae89-19a86b7f0610)
 
 

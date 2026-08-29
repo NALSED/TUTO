@@ -1,6 +1,6 @@
 # Test avant sauvegarde :
 
-### Cette commande permet simuler une sauvegarde, sans la faire réelement, elle permet donc de tester la config en condition réel,, et estimer le temps de sauvegarde, par defaut sauvegarde Full
+### Cette commande permet simuler une sauvegarde, sans la faire réellement, elle permet donc de tester la config en condition réel,, et estimer le temps de sauvegarde, par défaut sauvegarde Full
 ### Voir [TUTO](https://docs.bareos.org/TasksAndConcepts/BareosConsole.html#bareos-console)
         estimate job=<job-name> listing client=<client-name> accurate=<yes|no> fileset=<fileset-name> level=<level-name>
 ### ⚠️Cette commande fera defiler tous les fichiers!
@@ -13,7 +13,7 @@
     bconsole 
     run => 5
   ![image](https://github.com/user-attachments/assets/e79288b4-a0ef-4d55-9b54-bf7cbae94515)
-### ⚠️Si la console ne s'affiche pas, probléme de droit!
+### ⚠️Si la console ne s'affiche pas, problème de droit!
        sudo chmod -R u+rw /etc/bareos/bareos-dir.d/ 
        sudo chown -R bareos:bareos /etc/bareos/bareos-dir.d/    
        sudo systemctl restart bareos-dir

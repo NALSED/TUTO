@@ -19,7 +19,7 @@
 
 ## 2️⃣ `Utilisation`
 
-##### Recon-ng permet decoupler des modules de recherche OSINT les un à la suite des autres pour accélérer les recherches, le tout dans un espace de travail.
+##### Recon-ng permet découpler des modules de recherche OSINT les un à la suite des autres pour accélérer les recherches, le tout dans un espace de travail.
 
 
 
@@ -35,12 +35,12 @@
 ---
 
 
-#### 2.2) MODULE(liste non exaustive) : 
+#### 2.2) MODULE(liste non exhaustive) : 
 **discovery/info_disclosure/interesting_files** Extrait des fichiers type robot.txt d'un domaine
 
 **recon/credentials-credentials/bozocrack** Tente de trouver dans Google le décryptage d un mot de passe
 
-**recon/domains-contacts/hunter_io** Recheche des contacts et E-mail à partir d'un nom de domaine
+**recon/domains-contacts/hunter_io** Recherche des contacts et E-mail à partir d'un nom de domaine
 
 **recon/domains-contacts/wikileaker** Recherche dans les Wikileak si une correspondance existe par rapport au domaine et rempli la table contact
 
@@ -114,7 +114,7 @@
 
 **recon/repositories-vulnerabilities/gists_search** Recherche depuis la liste des repository ciblant Github une liste de vulnérabilité
 
-**recon/repositories-vulnerabilities/github_dorks** Recherche deouis les repository une liste de vulnérabilité
+**recon/repositories-vulnerabilities/github_dorks** Recherche depuis les repository une liste de vulnérabilité
 
 **reporting/html** Permet de faire un export HTML des résultats
 
@@ -126,7 +126,7 @@
  ##### [vidéo](https://www.youtube.com/watch?v=3M4jJhTuy6Q&ab_channel=%E2%99%A4%CA%82%C4%85%C6%96%C9%AC%C4%B1%E1%83%9D%E1%83%AA%C4%85%C5%8B%C6%99%E2%99%A4)
  ##### a partir de 40:56.
  
- ### Ici D(dépendance des moduleS) et K(API KEY) 
+ ### Ici D(dépendance des modules) et K(API KEY) 
 ![image](https://github.com/user-attachments/assets/0186ec73-7b18-4d9b-b0ab-641fe5553905)
 
 

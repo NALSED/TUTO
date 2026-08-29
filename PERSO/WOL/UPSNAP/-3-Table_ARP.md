@@ -9,7 +9,7 @@
 
      sudo vim /usr/local/bin/arp-wol.sh
 
-#### 1.1) Editer 
+#### 1.1) Éditer 
       
       #!/bin/bash
       # /usr/local/bin/arp-wol.sh
@@ -31,11 +31,11 @@
 
 ---
 
-### 3) Editer systemd
+### 3) Éditer systemd
 
       sudo vim /etc/systemd/system/arp-wol.service
 
-#### 3.1) Editer
+#### 3.1) Éditer
 
         [Unit]
         Description=ARP statique pour Wake-on-LAN

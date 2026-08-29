@@ -3,7 +3,7 @@
 ## Sommaire
 - [Licence](https://github.com/rikiya-gabimaru/lab-routage-linux-NAT-NFTABLES-RIP-DHCP-RADVD-IPv4-IPv6/blob/main/README.md#licence-)
 - [Description du projet](https://github.com/rikiya-gabimaru/lab-routage-linux-NAT-NFTABLES-RIP-DHCP-RADVD-IPv4-IPv6/blob/main/README.md#description-du-projet-)
-- [Etat d'avancement du projet](https://github.com/rikiya-gabimaru/lab-routage-linux-NAT-NFTABLES-RIP-DHCP-RADVD-IPv4-IPv6/blob/main/README.md#etat-davancement-du-projet-)
+- [État d'avancement du projet](https://github.com/rikiya-gabimaru/lab-routage-linux-NAT-NFTABLES-RIP-DHCP-RADVD-IPv4-IPv6/blob/main/README.md#etat-davancement-du-projet-)
 - [Schéma synoptique du lab](https://github.com/rikiya-gabimaru/lab-routage-linux-NAT-NFTABLES-RIP-DHCP-RADVD-IPv4-IPv6/blob/main/README.md#sch%C3%A9ma-synoptique-du-lab-)
 - [Outils du lab](https://github.com/rikiya-gabimaru/lab-routage-linux-NAT-NFTABLES-RIP-DHCP-RADVD-IPv4-IPv6/blob/main/README.md#outils-du-lab-)
 - [Spécifications techniques du lab](https://github.com/rikiya-gabimaru/lab-routage-linux-NAT-NFTABLES-RIP-DHCP-RADVD-IPv4-IPv6/blob/main/README.md#sp%C3%A9cifications-techniques-du-lab-)
@@ -20,10 +20,10 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 - Les protocoles suivant seront implémentés (NAT, RIP, DHCP, IPv4, IPv6).
 - Différents clients seront répartis dans les LANs.
 
-## Etat d'avancement du projet :
+## État d'avancement du projet :
 - [x] Information sur les spécifications techniques du lab
 - [x] Activation du routage sur R-EDGE et R-INTER
-- [x] Configuration des régles NAT avec nftables sur R-EDGE
+- [x] Configuration des règles NAT avec nftables sur R-EDGE
 - [x] Configuration des interfaces réseaux sur R-EDGE
 - [x] Configuration des interfaces réseaux sur R-INTER
 - [x] Configuration du routage dynamique
@@ -81,15 +81,15 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 </p>
 
 - Quitter le fichier en sauvegardant : `Ctrl+x` puis `y`
-- Charger la nouvelle configurration avec la commande : `sysctl -p`
+- Charger la nouvelle configuration avec la commande : `sysctl -p`
 
-**3 - Configuration des régles NAT avec nftables sur R-EDGE :**
+**3 - Configuration des règles NAT avec nftables sur R-EDGE :**
 
    - Création de la table pour le NAT (qu'on va appeler "table_NAT") :  
 	`nft add table ip table_NAT`
-   - Création d'une chaine pour la table du NAT (qu'on va appeler "chain_postrouting") :  
+   - Création d'une chaîne pour la table du NAT (qu'on va appeler "chain_postrouting") :  
 	`nft add chain ip table_NAT chain_postrouting { type nat hook postrouting priority 0 \; }`
-   - Création d'une règle pour la chaine de la table du NAT (on va ajouter en 2 règles 4 LANs pour les nater) :  
+   - Création d'une règle pour la chaîne de la table du NAT (on va ajouter en 2 règles 4 LANs pour les nater) :  
 	`nft add rule table_NAT chain_postrouting ip saddr 10.0.99.0/30 oif enp0s3 snat <mettez entre ces balises l'IP de sortie>`  
 	`nft add rule table_NAT chain_postrouting ip saddr 10.0.0.0/22 oif enp0s3 snat <mettez entre ces balises l'IP de sortie>`
    - Sauvegarder cette table pour le NAT :  
@@ -130,7 +130,7 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 
  **8 - Vérification du partage des routes de R-INTER à R-EDGE**
 
- - Vérication directe depuis R-EDGE : `ip route`
+ - Vérification directe depuis R-EDGE : `ip route`
  - Vérification depuis le shell de configuration de FRRouting : `show ip rip` ou en dehors du shell `vtysh -c "show ip rip"`
  - Vérification depuis le shell de configuration de FRRouting des routers voisins : `show ip neigh` ou en dehors du shell `vtysh -c "show ip neigh"`
 
