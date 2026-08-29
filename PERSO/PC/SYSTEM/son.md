@@ -5,6 +5,6 @@
 
 #### Faire le réglage comme ci dessous:
 ### 🟢 Entrée ligne
-### 🔴 Ecouteurs
+### 🔴 Écouteurs
 
 ## DANS LE PANNEAU ARRIERE LES SORTIE ET ENTR2E SONT INVERSE!!!!

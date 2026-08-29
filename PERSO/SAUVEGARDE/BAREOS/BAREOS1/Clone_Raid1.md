@@ -1,10 +1,10 @@
 # `Clonage RAID 1`
 
 ### Ce tuto montre comment cloner deux disques logiciel en RAID 1, sur un disque externe.
-### L'idée est d'assurer un BackUp des disques RAID, aucas ou il y aurait un probléme lor du transsfert d'un  serveur  à l'autre.
-### Le clonage de l'OS, contenant Bareos,  Plex et cockpit à était réalisé via clonezilla, ainsique le disque contenant les snapshot des différents clients.  
+### L'idée est d'assurer un BackUp des disques RAID, au cas où il y aurait un problème lor du transfert d'un  serveur  à l'autre.
+### Le clonage de l'OS, contenant Bareos,  Plex et cockpit à était réalisé via clonezilla, ainsi que le disque contenant les snapshot des différents clients.  
 
-#### Voici la sortie  de  la commnde lsblk -f
+#### Voici la sortie  de  la commande lsblk -f
 
       NAME    FSTYPE            FSVER LABEL     UUID                                 FSAVAIL FSUSE% MOUNTPOINTS
       fd0

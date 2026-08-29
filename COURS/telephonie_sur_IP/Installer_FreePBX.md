@@ -1,6 +1,6 @@
 # Installer/Configurer FreePbx
 
-### L'instalation est réalisé avec ce tuto
+### L'installation est réalisé avec ce tuto
 https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Installation
 
 ## SOMMAIRE 
@@ -35,7 +35,7 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 
 ### 2️⃣ `Configuration WebUi`
 
-#### 2.1) Sur la page d'acceuil de FreePBX
+#### 2.1) Sur la page d'accueil de FreePBX
 #### Admin => System Admin 
 
 ![image](https://github.com/user-attachments/assets/9ccbc032-bc8a-4b27-88a8-ef209d25da9e)
@@ -74,7 +74,7 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 
 ### 3️⃣ `Création d'Utilisateur`
 
-#### 3.1) Se rendre dans Connectivity => Extention
+#### 3.1) Se rendre dans Connectivity => Extension
 ![image](https://github.com/user-attachments/assets/5d04a45f-8e03-4ef7-84dd-867e16589a1e)
 
 
@@ -86,7 +86,7 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 
 ![image](https://github.com/user-attachments/assets/45072ff3-aa5d-43ae-9e2e-25c65f9eb6db)
 
-|Numéro de ligne/User Extention|Nom|MDP|
+|Numéro de ligne/User Extension|Nom|MDP|
 |:-:|:-:|:-:|
 |80100|Adrian Schultz|Azerty1*131213|
 |80101|Virginie Perrin|Azerty1*131213|
@@ -118,7 +118,7 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 
 ![image](https://github.com/user-attachments/assets/2a612d3b-8798-4fc8-9c85-ec6b01bfc840)
 
-#### 4.5) Faire la même chose sur le deuxiéme client
+#### 4.5) Faire la même chose sur le deuxième client
  
 #### Account Name : Virginie Perrin
 #### Caller ID : 80101
@@ -145,7 +145,7 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 ![image](https://github.com/user-attachments/assets/fb8d8ff1-dfec-4e17-8d95-be472a9961eb)
 
 #### Lancer la requête : telnet 10.15.0.36 389
-#### Si aucun message d'érreur et le shell change => port ouvert
+#### Si aucun message d'erreur et le shell change => port ouvert
 ![image](https://github.com/user-attachments/assets/fb1a3b76-a0f8-490e-bbff-221fded9b420)
 
 #### 5.2) Se rendre dans Admin => User Management => Directories Add
@@ -172,7 +172,7 @@ https://sangomakb.atlassian.net/wiki/spaces/FP/pages/230326391/FreePBX+17+Instal
 #### Le status à changer 
 ![image](https://github.com/user-attachments/assets/f1fd55be-47f6-4f06-8db0-b90d7b703794)
 
- #### 5.4) Renseigner l'ogject class ici par defaut
+ #### 5.4) Renseigner l'ogject class ici par défaut
 
  #### 5.5) User object filter 
  #### Ici il faut créer un filtre prenant tout les utilisateur appartenant au groupe Domain User

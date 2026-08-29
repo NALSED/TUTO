@@ -1,4 +1,4 @@
-### Cette partie aborde les problémes liés au partitionement avec LVM. 
+### Cette partie aborde les problèmes liés au partitionnement avec LVM. 
 
 ---
 
@@ -19,7 +19,7 @@
       sde      8:64   0 931.5G  0 disk
       └─sde1   8:65   0 931.5G  0 part
 
-#### Ici les disques sont partitionés, et impossible d'utiliser LVM.
+#### Ici les disques sont partitionnés, et impossible d'utiliser LVM.
       
       root@serveur:/# pvcreate /dev/sdb /dev/sdc /dev/sdd /dev/sde
       Cannot use /dev/sdb: device is partitioned
@@ -27,7 +27,7 @@
       Cannot use /dev/sdd: device is partitioned
       Cannot use /dev/sde: device is partitioned
 
-#### Utiliser les utilitaire parted (créer un nnouvelle table de partion, ici gpt) et wipefs (efface les métadonnées
+#### Utiliser les utilitaire parted (créer un nouvelle table de partition, ici gpt) et wipefs (efface les métadonnées
 
 ----
 
@@ -44,14 +44,14 @@
         (parted) mklabel gpt
         (parted) quit
 
-#### Répéter l'opération pour chaques disques
+#### Répéter l'opération pour chaque disque
 
 
 * #### II) `wipefs`
 
         wipefs -a /dev/sdb      
 
-#### Répéter l'opération pour chaques disques
+#### Répéter l'opération pour chaque disque
 
 #### Résultats :
 

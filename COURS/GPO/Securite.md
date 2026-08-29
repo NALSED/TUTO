@@ -40,7 +40,7 @@
 ![ad1](https://github.com/user-attachments/assets/a490ebca-ae27-4554-963f-fa68345d1ed3)
 * ##### Edition => Dsignated File Types=> Rajouter VBS et PAF
 ![ad1](https://github.com/user-attachments/assets/b0619ccd-f449-4824-9bad-4eb2b5c61e76)
-* ##### Dans Additional Rules (régles éditées)⬇️
+* ##### Dans Additional Rules (règles éditées)⬇️
 ![ad2](https://github.com/user-attachments/assets/2b1d438f-da1c-4da7-9e64-2884de646c96)
 * ##### Clic droite sur Additional Rules => New Path Rules
 ![ad1](https://github.com/user-attachments/assets/d928c515-afd0-49e2-a4c9-61aaea865a32)
@@ -61,7 +61,7 @@
 #### 6.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Gestion de Windows update` 
 * ##### Computer Configuration => Policies => Administrative Templates => Windows Components => Windows Update.
 * ##### Configure Automatic Updates
-* ##### Configurer comme si dessous, pour que les mises à jours se fassent le 1er lundi de chaques mois 
+* ##### Configurer comme si dessous, pour que les mises à jours se fassent le 1er lundi de chaque mois 
 ![ad1](https://github.com/user-attachments/assets/8d894b28-66e3-41f2-b43a-a8e895009bc5)
 #### 7.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Gestion du pare-feu`	
 * ##### Computer Configuration > Policies > Windows Settings > Security Settings > Windows Firewall with Advanced Security
@@ -87,11 +87,11 @@
 #### 4.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Déploiement de logiciels`
 
 ### 🔵`.msi`
-* ##### Computer Configuration => Policies => Software Settings => Software Instalation
+* ##### Computer Configuration => Policies => Software Settings => Software Installation
 * ##### New 
 ![ad2](https://github.com/user-attachments/assets/d5c1340b-8cdd-4fd5-a30b-bc0fc5615fc5)
 * ##### Renseigner le chemin du logiciel à déployer via Le partage.
-* ##### Le fichier apparait ici après configuration
+* ##### Le fichier apparaît ici après configuration
 ![ad33](https://github.com/user-attachments/assets/f9deb51f-ea6c-473d-9f95-8317e81ceb2e)
 ### 🔵 `.exe`
 * #### 1) Script installer un exécutable
@@ -180,9 +180,9 @@
         }else{
        Write-Output "Le logiciel est déjà installé dans la bonne version !"
         }
-🔵### GLPI instalation GLPI Agent
+🔵### GLPI installation GLPI Agent
 *  ###  1) Se rendre sur GUI GLPI
-* ##### Acceuil => Administration => Inventaire => Activer l'inventaire 
+* ##### Accueil => Administration => Inventaire => Activer l'inventaire 
 ![ad1](https://github.com/user-attachments/assets/efe7f65c-ac41-4789-8c52-71038e55769e)
 * ##### Télécharger l'agent GLPI 
       https://github.com/glpi-project/glpi-agent/releases/tag/1.5
@@ -199,12 +199,12 @@
 * ##### Clic droit New => Registry Item 
 * ##### Renseigner dans la fenêtre comme ci dessous
 ![ad2](https://github.com/user-attachments/assets/7ed3a7dd-8686-4819-b423-0801c63178e2)
-* ##### Resultat 
+* ##### Résultat 
 ![ad3](https://github.com/user-attachments/assets/64687da4-4725-4ae6-b76a-b727aebd3004)
 * ### 4) Rendre le script executable dans la GPO
 * ##### Computer Configuration => Windows Settings => Scripts => Startup
 ![ad1](https://github.com/user-attachments/assets/5a8b2bbf-b3eb-46bf-9ec6-2fb3ce2e554a)
-* ##### ⚠️Conserver le chemin présent à l'ouverture de la fenétre
+* ##### ⚠️Conserver le chemin présent à l'ouverture de la fenêtre
 ![ad1](https://github.com/user-attachments/assets/bccae377-9ae8-41fd-a647-1905773669b3)
 * ##### Choisir Run Windows PowerShell script first
 ![ad1](https://github.com/user-attachments/assets/3ca8c003-a7f7-44c6-a9f9-fef41f157b5d)
@@ -220,7 +220,7 @@
 ![ad1](https://github.com/user-attachments/assets/2351a6ec-40d8-40cd-a299-e36d9df9bffd)
 ### 2️⃣ Configurer le navigateur
 * ##### Récupérer le fichier admx et adml sur le GitHub
-* ##### Copier le fichier admx et adml (=> US, sinon risque d'incompatiblité).
+* ##### Copier le fichier admx et adml (=> US, sinon risque d'incompatibilité).
             Dans => %SYSTEMROOT%\PolicyDefinitions
 ![ad1](https://github.com/user-attachments/assets/be6226e1-c13d-402e-b40d-30d1797be03a)
 * ##### Les nouvelles options GPO sont ici ⏬

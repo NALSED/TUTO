@@ -60,7 +60,7 @@
 #### Choisir eth0
 #### Choisir le DNS  déclaré dans /etc/dhcpcd.conf => ICI Cloudflare
 #### Ici show everything car réseau perso
-#### Une fois l'installation terminée chnger MDP  
+#### Une fois l'installation terminée changer MDP  
       sudo pihole setpassword
 
 ## 2️⃣ `Configuration`
@@ -102,7 +102,7 @@
 
 #### Changer le fichier /etc/dhcpcd.conf => static domain_name_servers=127.0.0.1
 
-### ⚠️Pour solutions instalées sur `Debian  Bullseyes` ⬇️ 
+### ⚠️Pour solutions installées sur `Debian  Bullseyes` ⬇️ 
 
 #### À partir de Debian Bullseye, un paquet appelé openresolv est automatiquement installé avec une configuration qui cause des problèmes inattendus pour Pi-hole et Unbound. En effet, le service unbound-resolvconf.service demande à resolvconf d’écrire dans le fichier /etc/resolv.conf une ligne indiquant le serveur DNS 127.0.0.1 (Unbound local), mais sans préciser le port 5335 utilisé par Unbound.
 

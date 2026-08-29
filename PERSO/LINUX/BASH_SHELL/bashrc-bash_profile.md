@@ -1,8 +1,8 @@
 # .bascrc
 
 ---
-- Executer au demarage d'un shell
-- Permet de personaliser le shell, avec un script.
+- Executer au démarrage d'un shell
+- Permet de personnaliser le shell, avec un script.
 
 Pour plus de détail [Malekal](https://www.malekal.com/bashrc-bash-profile-differences-linux/)
 

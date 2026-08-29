@@ -2,7 +2,7 @@
 
 ---
 ---
-#### Automatisation d'un cycle pouyr allumer et eteindre les machines concernées pas la sauvegarde de Bareos.
+#### Automatisation d'un cycle pour allumer et éteindre les machines concernées pas la sauvegarde de Bareos.
 
 ---
 
@@ -17,7 +17,7 @@
 #### 1.3) Tache cron
       crontab -e => 1
 
-#### Editer Wol pour linux Et wol et shutdown pour Win 11
+#### Éditer Wol pour linux Et wol et shutdown pour Win 11
 #### Pour que la commande `shutdown /s /t 0 /f`, puisse fonctionner créer une connection ssh sans mot de pas de linux => win 11 [voir](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---windows)       
      # ADMIN
       0 12 * * 0 /usr/bin/wakeonlan 04:7c:16:cb:89:1d
@@ -36,7 +36,7 @@
 
       sudo contab -e
 
-#### Editer serveur Bareos `192.168.0.240`
+#### Éditer serveur Bareos `192.168.0.240`
 
       # Extinction
       05 16 * * 0 /sbin/powerofff

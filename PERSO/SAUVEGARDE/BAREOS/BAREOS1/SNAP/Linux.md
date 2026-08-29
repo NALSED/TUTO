@@ -2,7 +2,7 @@
 
 ---
 
-### Ce Tuto commence, avec RAID, PostGreSQL, Baros opérationel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
+### Ce Tuto commence, avec RAID, PostGreSQL, Baros opérationnel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
 
 ---
 
@@ -54,7 +54,7 @@
 
 ---
 
-## I) Programation et Réalisation du Snapshot
+## I) Programmation et Réalisation du Snapshot
 ## II Sauvegarde sur serveur Bareos
 
 
@@ -63,14 +63,14 @@
 
 ## `I) Programation et Réalisation du Snapshot`
 
-### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
-### Il traitera de l'installation des différents paquets nécéssaire à la programmation ainsi que la réaalisation de snapshot systeme du serveur de sauvegarde. 
+### Ce Tuto commence après l'installation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
+### Il traitera de l'installation des différents paquets nécessaire à la programmation ainsi que la réalisation de snapshot système du serveur de sauvegarde. 
 
 
 ## ⚠️Syncronisation des montres!!
  	timedatectl set-timezone Asia/Yerevan
  
-### 1.1) Instalation Logiciel
+### 1.1) Installation Logiciel
     apt install timeshift  
     apt install rsync 
     apt install cron
@@ -102,7 +102,7 @@
 ### 2.4) Executer le Script
     ./ScriptSnapshot.sh
 
-### 2.5) Dans l'utilisateur sednal créer le dossier du tranfert vers Bareos
+### 2.5) Dans l'utilisateur sednal créer le dossier du transfert vers Bareos
 
       mkdir SnapshotSave
 
@@ -130,7 +130,7 @@
 
 
 ## 2.7) Changer le dossier de sauvegarde de timeshift:
-### Actuelement timeshift utilise md0 (RAID1).
+### Actuellement timeshift utilise md0 (RAID1).
 ### Je veux que se soit Bareos qui orchestre les transferts sur différents support pour plus de cohérence et de clarté.
 
 ### Créer le dossier de reception des snapshot
@@ -275,7 +275,7 @@
 
 ---
 
-## I) Programation et Réalisation du Snapshot
+## I) Programmation et Réalisation du Snapshot
 ## II Sauvegarde sur serveur Bareos
 
 ---
@@ -283,11 +283,11 @@
 
 ## `I) Programation et Réalisation du Snapshot`
 
-### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
+### Ce Tuto commence après l'installation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
 ## ⚠️Syncronisation des montres!!
  	timedatectl set-timezone Asia/Yerevan
  
-### 1.1) Instalation Logiciel
+### 1.1) Installation Logiciel
     apt install timeshift  
     apt install rsync 
     apt install cron
@@ -318,7 +318,7 @@
 ### 2.4) Executer le Script
     ./ScriptSnapshot.sh
 
-### 2.5) Dans l'utilisateur sednal créer le dossier du tranfert vers Bareos
+### 2.5) Dans l'utilisateur sednal créer le dossier du transfert vers Bareos
 
       mkdir SnapshotDNS1
 
@@ -483,7 +483,7 @@
 
 ## 1) Installation 
 
-### 1.1) Instalation Logiciel
+### 1.1) Installation Logiciel
     apt install timeshift  
     apt install rsync
     apt install sudo 
@@ -523,7 +523,7 @@
 ### 2.4) Executer le Script
     ./ScriptSnapshot.sh
 
-### 2.5) Dans l'utilisateur sednal créer les dossier du tranfert
+### 2.5) Dans l'utilisateur sednal créer les dossier du transfert
       mkdir TotalDNS2
       cd TotalDNS2
       mkdir BackupDNS2
@@ -560,7 +560,7 @@
      chown -R sednal:sednal /home/sednal/TotalDNS2
      chmod -R u+rwX /home/sednal/TotalDNS2
 
-### Sans ça les copies Rsync ne fontionnerons pas...
+### Sans ça les copies Rsync ne fonctionneront pas...
 
 </details>
 
@@ -578,7 +578,7 @@
 
 ## 1) Installation 
 
-### 1.1) Instalation Logiciel
+### 1.1) Installation Logiciel
     apt install timeshift  
     apt install rsync
     apt install cron
@@ -613,7 +613,7 @@
 ### 2.4) Executer le Script
     ./ScriptSnapshot.sh
 
-### 2.5) Dans l'utilisateur sednal créer les dossier du tranfert
+### 2.5) Dans l'utilisateur sednal créer les dossier du transfert
       mkdir TotalWeb
       cd TotalWeb
       mkdir BackupWeb
@@ -645,7 +645,7 @@
      chown -R sednal:sednal /home/sednal/TotalWeb
      chmod -R u+rwX /home/sednal/TotalWeb
 
-### Sans ça les copies Rsync ne fontionnerons pas...
+### Sans ça les copies Rsync ne fonctionneront pas...
 
 
 

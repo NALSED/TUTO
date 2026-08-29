@@ -1,4 +1,4 @@
-# Instalation de security onion sur un VM dédié.
+# Installation de security onion sur un VM dédié.
 
 ---
 
@@ -25,7 +25,7 @@
 ![image](https://github.com/user-attachments/assets/660c14c6-92b6-46f8-9966-e10c0183b688)
 
 ### 4) Entrer Password et login (mail, même fictif)
-### Il seront demandé comme identifiant pour la conbnection en WebUi
+### Il seront demandé comme identifiant pour la connexion en WebUi
 ### ⚠️ clavier en qwerty.
 ![image](https://github.com/user-attachments/assets/9ee748b6-8755-4cc9-b0ec-1d5c539f812a)
 

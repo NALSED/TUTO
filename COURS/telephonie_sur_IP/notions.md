@@ -12,7 +12,7 @@
 ### 1) La VoIP
 
 ### C'est la technologie utilisée, ce qui permet de pouvoir passer des appels vocaux par internet.
-### Les signaux audio analogiques sont convertis en paquets de données numériques. Cette conversion se fait à l'aide de codec (pour Codeur/Decodeur).
+### Les signaux audio analogiques sont convertis en paquets de données numériques. Cette conversion se fait à l'aide de codec (pour Codeur/Décodeur).
 ### Ces paquets IP sont ensuite transmis sur Internet.
 ### Plusieurs protocoles réseaux sont implémentés.
 ### Ainsi on peut dire que VoIP = `technologie utilisée (protocoles).`

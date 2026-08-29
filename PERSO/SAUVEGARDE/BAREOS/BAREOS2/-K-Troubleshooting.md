@@ -1,4 +1,4 @@
-# Liste des Problémes réglé sur Bareos
+# Liste des Problèmes réglé sur Bareos
 
 ---
 => Format
@@ -24,7 +24,7 @@
       Failed to connect to Storage daemon File.
 
 
-#### - Echec de connection TLS 
+#### - Échec de connection TLS 
 
 
 `message erreur:`
@@ -84,8 +84,8 @@ Donc on à maintenant le PID du processus : 1098
 **Sortie :**
       bsmtp: tools/bsmtp.cc:129-0 Fatal malformed reply from localhost: 501 <root>: sender address must contain a domain 
 
-On à donc le probléme => Déclaration DNS non conforme pour le `Bareos-sd`,étant donné que c'est lui qui pose problème. 
-Lors du `status` dans `bconsole` il est le seul à présenter des problémes.
+On à donc le problème => Déclaration DNS non conforme pour le `Bareos-sd`,étant donné que c'est lui qui pose problème. 
+Lors du `status` dans `bconsole` il est le seul à présenter des problèmes.
 
 ---
 

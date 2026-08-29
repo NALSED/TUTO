@@ -214,11 +214,11 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 ---
 
 
-## 4️⃣ Geters et Seters
+## 4️⃣ Getters et Setters
 #### Les **getters** et **setters** sont des **méthodes** utilisées pour **accéder** (get) ou **modifier** (set) les **attributs privés** d’un objet, tout en **contrôlant** leur usage (validation, transformation, etc.).
 
 
-#### EXEMPLE geter
+#### EXEMPLE getter
      
      class Utilisateur:
      
@@ -254,7 +254,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
 
 ---
 
-#### EXEMPLE seters
+#### EXEMPLE setters
 
      class Utilisateur:
          

@@ -17,14 +17,14 @@
 
 * #### `Télécharger/exécuter` un container
       docker run [options] image [commande]
-* #### télécharger/éxécuter un  container  en `background` => `-d` (detached mode)
+* #### télécharger/exécuter un  container  en `background` => `-d` (detached mode)
       docker run -d nginx:latest
-* #### télécharger/éxécuter un container et `changer de nom`
+* #### télécharger/exécuter un container et `changer de nom`
       docker run -d  --name c1 nginx:latest => --name
 * #### `Stopper/Démmarrer`
       docker stop [NAME]//[ID]
       docker start [NAME]//[ID]
- * #### changer le `hostname` du contnaire => --hostname
+ * #### changer le `hostname` du conteneur => --hostname
        docker run --name c2 --hostname test debian:latest
 
 ## `Supprimer`
@@ -65,7 +65,7 @@
 
 
 
-#### En nommant un volume  existant volume à la création d'un autre contener il est  possible  d'utiliser un volume pour plusieurs contener.
+#### En nommant un volume  existant volume à la création d'un autre conteneur il est  possible  d'utiliser un volume pour plusieurs conteneur.
 #### ⚠️ En local `/var/lib/docker/volumes/mynginx/` ⚠️
 
 * #### `Lister`

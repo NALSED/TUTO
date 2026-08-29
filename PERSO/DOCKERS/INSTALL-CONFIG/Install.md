@@ -1,8 +1,8 @@
-# Instalation de Docker
+# Installation de Docker
 
 ---
 
-## Ce tuto présentera l'instalation de docker manuelement sur, l''avantage de cette installation, est que par la suite docker pourra être mise à jour via `apt` 
+## Ce tuto présentera l'installation de docker manuellement sur, l''avantage de cette installation, est que par la suite docker pourra être mise à jour via `apt` 
 ### un serveur Ubuntu noble 24.04.1 (la version doit être 64bits) 
 * ### RAM 5Gb
 * ### Coeurs 2
@@ -21,10 +21,10 @@
 [TUTO KORBEN](https://www.youtube.com/watch?v=9ml-cHpwdXQ&ab_channel=Korben)
 
 ##  1️⃣ `Prérequis`
-### 1.1) Plusieurs paquets sont nécessaires avant l'instalation de Docker, pour la créationnde certificats clés gpg.  
+### 1.1) Plusieurs paquets sont nécessaires avant l'installation de Docker, pour la création de certificats clés gpg.  
      sudo apt install -y ca-certificates curl  gnupg
 
-### 1.2) Créer un répertoir keyrings  dans /etc/apt afin de  stocker  les clés : 
+### 1.2) Créer un répertoire keyrings  dans /etc/apt afin de  stocker  les clés : 
     sudo install -m 0755 -d /etc/apt/keyrings
 
 * #### `install ` créer le répertoire.
@@ -40,9 +40,9 @@
 * #### f => n'affiche pas les erreurs
 * #### s => si le téléchargement échoue, affichage erreur
 * #### S => Montre les erreurs de redirection
-* #### L => gére les redirections
-* #### --dearmor retir l'envelope ASCII => -----BEGIN PGP PUBLIC KEY BLOCK----- et -----END PGP PUBLIC KEY BLOCK-----
-* #### -o outpout => donc la sortie vers
+* #### L => gère les redirections
+* #### --dearmor retire l'enveloppe ASCII => -----BEGIN PGP PUBLIC KEY BLOCK----- et -----END PGP PUBLIC KEY BLOCK-----
+* #### -o output => donc la sortie vers
 
 ### 1.4) changer permitions en lecture
           sudo chmod a+r /etc/apt/keyrings/docker.gpg
@@ -69,7 +69,7 @@
 ### Création de la liste (pour ubuntu)
     sudo nano /etc/apt/sources.list.d/docker.sources
 
-### Editer (Ubuntu server)  
+### Éditer (Ubuntu server)  
     Types: deb
     URIs: https://download.docker.com/linux/ubuntu
     Suites: noble
@@ -77,7 +77,7 @@
     Architectures: amd64
     Signed-By: /etc/apt/keyrings/docker.gpg
 
-### Editer (Debian 12) 
+### Éditer (Debian 12) 
 
     sudo nano /etc/apt/sources.list.d/docker.list
     deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian/ bookworm stable

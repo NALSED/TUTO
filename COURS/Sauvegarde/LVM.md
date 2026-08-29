@@ -27,7 +27,7 @@ Commandes pour plus de détails
 
 </details>
 
-##### On peux vérifier si ces systéme sont bien monté au démarage : 
+##### On peux vérifier si ces système sont bien monté au démarrage : 
 ![ad1](https://github.com/user-attachments/assets/385a872e-1a4d-4de2-b655-27c259907b25)
 ### `Actions`
 <details>
@@ -52,7 +52,7 @@ après la commande rajouter le disque souhaité :
 
 </details>
 
-#### Odre => 1️⃣ Initialiser un Volume => 2️⃣ Créer un groupe => 3️⃣ Créer un volume logique.
+#### Ordre => 1️⃣ Initialiser un Volume => 2️⃣ Créer un groupe => 3️⃣ Créer un volume logique.
 
 ### Exercice :
 

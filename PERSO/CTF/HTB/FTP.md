@@ -7,7 +7,7 @@
 
 
 > Le FTP est une méthode simple pour transférer des fichiers entre ordinateurs sur un réseau ; il s'agit d'un service de messagerie numérique. Il permet de télécharger des fichiers vers un ordinateur distant (comme l'envoi de colis) ou d'en télécharger depuis celui-ci (comme la réception de colis). Étant l'une des méthodes les plus anciennes et les plus simples de partage de fichiers sur Internet, le FTP sert de passerelle entre deux ordinateurs pour le transfert de données. Cependant, il est important de noter que, dans sa forme la plus simple, le FTP transmet les données sans chiffrement, ce qui le rend inadapté au transfert sécurisé de fichiers sensibles.
-> Lors de la recherche via Nmap un prtocol FTP Anonymous à été découvert (créer par l'admin pour les gens de passage ou le public), pour des raison de facilité, mais mauvaise pratique.
+> Lors de la recherche via Nmap un protocole FTP Anonymous à été découvert (créer par l'admin pour les gens de passage ou le public), pour des raison de facilité, mais mauvaise pratique.
 
 
 
@@ -48,7 +48,7 @@
 
 ![image](https://github.com/user-attachments/assets/8efb9290-0633-4c06-8e58-380832a27eb1)
 
-### :heavy_exclamation_mark: fichiers intéréssant : 
+### :heavy_exclamation_mark: fichiers intéressant : 
 
 > * .bash_history(ce qui peut révéler l'existence de certains programmes, fichiers, répertoires, accès, etc.). 
 
@@ -60,7 +60,7 @@
 
 > * L'accès FTP anonyme a été activé sur le port 21
 
-> * Nous avons identifié ceci comme un répertoire personnel pour l'utilisateurjohn
+> * Nous avons identifié ceci comme un répertoire personnel pour l'utilisateur john
 
 > * Plusieurs fichiers de configuration et d'historique importants étaient accessibles
 

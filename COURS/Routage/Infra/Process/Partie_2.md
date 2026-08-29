@@ -1,4 +1,4 @@
-# Dans cette deuxiéme partie Réaliser plusieurs méthode de routage :
+# Dans cette deuxième partie Réaliser plusieurs méthode de routage :
 
 
 ## SOMMAIRE :
@@ -18,13 +18,13 @@
 </h2>
 </summary>
 
- #### Cette méthode consiste à subdiviser l'interface physique d'un routeur en plusieurs sous interfaces logiques. Cette méthode peut être utilisée quand l'équipement à disposition ne possède pas suffisement d'interfaces physiques pour servir de passerelle par défaut à tous les VLANs de l'infrastructure.
+ #### Cette méthode consiste à subdiviser l'interface physique d'un routeur en plusieurs sous interfaces logiques. Cette méthode peut être utilisée quand l'équipement à disposition ne possède pas suffisamment d'interfaces physiques pour servir de passerelle par défaut à tous les VLANs de l'infrastructure.
 
 ### Préparation du Lab
 
 #### 1.1 ) Nous repartons de la sauvegarde vidéo 18, nettoyage de l'infra:
 * Les interfaces Gigabytes des trois switchs sont libérés, nettoyés et éteints.
-*Le mode trunk est reconstitué via les ports FastEthernet corespondant
+*Le mode trunk est reconstitué via les ports FastEthernet correspondant
 * les PC retrouvent leurs Vlan
 
 #### 1.2) Le test sera réalisé avec un switch 4331( se ne sera pas la solution retenu)
@@ -47,18 +47,18 @@
 #### 1.6) On lui applique le protocole `iE802.1Q` et on tag le Vlan
       Router(config-subif)#encapsulation dot1Q 10 
    
-#### On répéte l'opération pour le Vlan 20,30,40
+#### On répète l'opération pour le Vlan 20,30,40
 
-#### 1.7) Appliquer des adresse IP aux Interfaces créer précédement
+#### 1.7) Appliquer des adresse IP aux Interfaces créer précédemment
       Router(config)#interface gigabitEthernet 0/0/1.10
       Router(config-subif)#ip address 10.10.10.254 255.255.255.0
 
-#### On répéte l'opération pour le Vlan 20,30,40
+#### On répète l'opération pour le Vlan 20,30,40
 #### Copie de la config
      Router(config-subif)#do wr
 
-### ⚠️Tout les Vlan doivent être déclarer sur tous les switchs, sinon ça ne fontionne pas!!⚠️
-### Si l'on oubli des Vlans en raport avec la division on a stick impossible de se connecter.
+### ⚠️Tout les Vlan doivent être déclarer sur tous les switchs, sinon ça ne fonctionne pas!!⚠️
+### Si l'on oubli des Vlans en rapport avec la division on a stick impossible de se connecter.
 ### ⚠️Panne possible sur saiph vvlan non déclaré, juste vvlan 10 les autres non donc pas de routage possible......
 
 
@@ -133,7 +133,7 @@
 
 ### `SAIPH`
 
-#### 2.6) Eteindre et sécuriser interface FastEthernet0/23 et interface FastEthernet0/24
+#### 2.6) Éteindre et sécuriser interface FastEthernet0/23 et interface FastEthernet0/24
 
            interface FastEthernet0/23
            switchport access vlan 3000
@@ -188,7 +188,7 @@
             rigel(config-if-range)#switchport mode trunk 
             rigel(config-if-range)#no shutdown
 
-##### ⚠️Les differentes machines peuvent communiquer ⚠️
+##### ⚠️Les différentes machines peuvent communiquer ⚠️
 
 ## Création d'un `UP-Link` entre Betelgeuse et Rigel
 

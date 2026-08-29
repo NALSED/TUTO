@@ -30,7 +30,7 @@
     python --version # Pour le mettre dans le script ⬇️
     sudo gedit build.shh
 
-### Changer la version actuel de python dans le scrit.⬆️
+### Changer la version actuel de python dans le script.⬆️
 
     ./build.sh
     sudo python3 torghost.py

@@ -1,5 +1,5 @@
 1) INTRO ### Raid
-#### Le systéme Raid permet la sauvegarde de donnés, les disques ne sont pas accessibles directement mais via un contrôleur RAID. 
+#### Le système Raid permet la sauvegarde de donnés, les disques ne sont pas accessibles directement mais via un contrôleur RAID. 
 #### Pour ce faire il existe 4 types de Raid:
 * #### `Raid 0`(striped ou spanned) => deux disques mini, les données sont réparties sur les deux disques(très sensible à la panne, utilisé pour ça rapidité) 
 ![ad0](https://github.com/user-attachments/assets/22eeb378-d6e5-499f-bd12-9eb69ef178dd)
@@ -79,15 +79,15 @@
 ##### Et le nom avec lsblk -l
 ##### Dans le fichier /etc/mdadm/mdadm.conf
 ![ad1](https://github.com/user-attachments/assets/e46bcd6f-9587-4467-b93b-7aa6d9ac3d8c)
-##### Appliquer les changement et redémarer
+##### Appliquer les changement et redémarrer
       sudo update-initramfs -u
-##### Créer un fichier/dossier dans le dossier DATA-RAID1(ouvir le dossier dans le terminal => mkdir)  
+##### Créer un fichier/dossier dans le dossier DATA-RAID1(ouvrir le dossier dans le terminal => mkdir)  
 ![ad1](https://github.com/user-attachments/assets/85cf8406-5534-4115-b559-87fe58f9e2a4)
 ##### Le disque à été retiré via VB
 ##### Reconstituer le RAID 
                   sudo mdadm --manage /dev/md0 --add /dev/sdd1
 ### RAID 5 (https://www.youtube.com/watch?v=j_y25HkWSOs&ab_channel=KnowledgeSharingTech)
-##### Deux nouvelles partion on été créer, formater sdb/c comme précedement, juste a la fin formater avec fd( type de partition) 
+##### Deux nouvelles partition on été créer, formater sdb/c comme précédemment, juste a la fin formater avec fd( type de partition) 
 ![ad1](https://github.com/user-attachments/assets/15ba5d6d-d771-4288-8c81-5606d19f4d93)
 sdb
 ![ad1](https://github.com/user-attachments/assets/aa2212ee-3e02-4e4d-a2e8-387e10afb2dc)
@@ -101,7 +101,7 @@ sdc
 ##### Montage du RAID
             sudo mkdir /home/wilder/Data-RAID1 -p
             sudo mount /dev/md0 /home/wilder/Data-RAID1/
-##### Lorsque le disque à eu un probléme, ajouter un nouveau et le coupler au RAID
+##### Lorsque le disque à eu un problème, ajouter un nouveau et le coupler au RAID
 ![ad1](https://github.com/user-attachments/assets/1235826f-b03b-405c-8a08-c1be8ec93e1c)
             sudo mdadm --manage /dev/md0 --add /dev/sdd1
 ![ad1](https://github.com/user-attachments/assets/8cb7da7f-3e50-431d-9d19-aadaebc18a2a)

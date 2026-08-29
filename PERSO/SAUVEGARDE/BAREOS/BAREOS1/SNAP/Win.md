@@ -1,4 +1,4 @@
-# Réalisation d'un point de montage avec >indows 11
+# Réalisation d'un point de montage avec Windows 11
 ## :disappointed_relieved: Windows ne permet pas officiellement de copier ou déplacer un point de restauration..
 ## Ce point de restauration restera donc sur le PC Admin.
 ---
@@ -24,7 +24,7 @@
 ### Powershell
      systempropertiesprotection
 
-### On arrive sur cette fenétre
+### On arrive sur cette fenêtre
 ![image](https://github.com/user-attachments/assets/55c9651d-6123-4375-97d9-127fc4734d37)
 
 ### OK
@@ -50,12 +50,12 @@
           taskschd.msc
 
 ### 2.2.2) En haut à gauche => Action => Créer un tache ...
-### 2.2.3) Donner un  nom à la tache, cocher Executer avec les autorisarions maximales 
+### 2.2.3) Donner un  nom à la tache, cocher Executer avec les autorisations maximales 
           RESTO_POINT
 ## 2.3) `Déclencheurs` 
 
 ### 2.3.1) Nouveau...
-### Ici la taache sera réalisée :
+### Ici la tâche sera réalisée :
 * ### Chaque mois
 * ### Le premier
 * ### Sera arrêtée si elle dure plus trente minutes

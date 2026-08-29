@@ -11,7 +11,7 @@
 * ### Serveur web 192.168.0.122 => apache2 // page infra
 * ### Serveur debian 192.168.0.141 => Bareos // Plex // Cockpit
 * ### DNS secondaire 192.168.0.210 => bind9
-### Donc utilisation d'un reverse proxy afin de faire pointer les différents services présent sur le serveur débian, vers le DNS secondaire, et accéssible en WebUi via le serveur web. 
+### Donc utilisation d'un reverse proxy afin de faire pointer les différents services présent sur le serveur débian, vers le DNS secondaire, et accessible en WebUi via le serveur web. 
 
 ---
 
@@ -27,7 +27,7 @@
 
 ## Configuration pour rediriger les ip sur les bon nom de domain via bind9 
 ### ⚠️ Penser à changer le adresse IP dans bind9 des services concernés par le reverse proxy, afin qu'il soit redirigés vers le serveur web .
-### Adresse réel de Bareos//cockpit et Plex 192.168.0.141 mais dans bind9 192.168.0.122 pour pointer vers le serceur web.⚠️
+### Adresse réel de Bareos//cockpit et Plex 192.168.0.141 mais dans bind9 192.168.0.122 pour pointer vers le serveur web.⚠️
 
       <VirtualHost *:80>
           ServerName plex.sednal.lan

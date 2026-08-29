@@ -26,7 +26,7 @@
 ### Savoir ce que l'on peux consulter
       saiph>show => sh
 
-### Elévation de privilége
+### Élévation de privilège
      saiph>enable => en 
      saiph#
 
@@ -40,11 +40,11 @@
 
         show running-config
 
-### Voir la configuration au démarage
+### Voir la configuration au démarrage
 
         show startup-config
 
-### Sauvegarger la conf actuel
+### Sauvegarder la conf actuel
         copy running-config startup-config => cp run start => wr
 
 
@@ -53,7 +53,7 @@
 
 ## FILTRES : 
 
-### Pour faire apparaitre plusieur lignes
+### Pour faire apparaître plusieurs lignes
         show <argument> | include/exclude <argument>
 
 
@@ -70,7 +70,7 @@
 ### Créer un Vlan
        saiph(config)#vlan <number>
 
-### Suprimmer un Vlan/interface vlan 100
+### Supprimer un Vlan/interface vlan 100
        saiph(config)#no vlan <number>
        saiph(config)#no interface vlan <number>
 
@@ -92,7 +92,7 @@
      saiph(config-if)#interface range fastEthernet <0/1-24>   
      saiph(config-if-range)#
 
-### Empécher le Trunk sur une interface (en conf t et après avoir selectioné la/les interfaces)
+### Empêcher le Trunk sur une interface (en conf t et après avoir sélectionné la/les interfaces)
 ### ⚠️Pensez à le faire sur fastEthernet et GigabitEthernet     
      saiph(config-if)#switchport mode access     
 
@@ -150,13 +150,13 @@
             saiph(config)#enable algorithm-type sha-256 secret <motDePasse> 
 ### impossible ici sha-256 n'est pas implémenté sur IOS
 
-### Activer le criptage du mot de passe(invisible dans run/start-conf)
+### Activer le cryptage du mot de passe(invisible dans run/start-conf)
             saiph(config)#service password-encrytion
             saiph(config)#enable password salut => le mot de passe ne sera plus en claire 
-### Pour activer/désactiver des privilége en fontion du poste de la personne qui se connect
+### Pour activer/désactiver des privilège en fonction du poste de la personne qui se connect
             saiph(config)#enable secret level ?
                  <1-15>  Level number
-### Chiffre bas = privilége bas [DOC CISCO](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/security/d1/sec-d1-xe-3se-3650-cr-book/sec-d1-xe-3se-3850-cr-book_chapter_010.pdf)
+### Chiffre bas = privilège bas [DOC CISCO](https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/security/d1/sec-d1-xe-3se-3650-cr-book/sec-d1-xe-3se-3850-cr-book_chapter_010.pdf)
 
 ***
 
@@ -175,7 +175,7 @@
 ***
 ### `VTY`
 
-### Selectionner la/les interface(s)
+### Sélectionner la/les interface(s)
           saiph(config)# line vty <number>
 
 ### Demande d'authentification

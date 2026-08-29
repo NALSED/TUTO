@@ -2,7 +2,7 @@
 
 ---
 
-### Ce Tuto commence, avec RAID, PostGreSQL, Baros opérationel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
+### Ce Tuto commence, avec RAID, PostGreSQL, Baros opérationnel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
 
 ---
 
@@ -215,7 +215,7 @@ I) DNS1
 
 # IP `192.168.0.241`
 
-### Ce Tuto commence après l'intallation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
+### Ce Tuto commence après l'installation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
 
 
 
@@ -632,6 +632,6 @@ II) WEB
      chown -R sednal:sednal /home/sednal/TotalDNS2
      chmod -R u+rwX /home/sednal/TotalDNS2
 
-### Sans ça les copies Rsync ne fontionnerons pas...
+### Sans ça les copies Rsync ne fonctionneront pas...
 
 </details>

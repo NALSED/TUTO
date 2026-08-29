@@ -4,5 +4,5 @@
     
   - 'CPU' : Intel(R) Core(TM) i7 CPU 920  @ 2.67GH
   - 'RAM' : 16 Gb DDR3 
-  - Network : - Partage de connection via iPhone SE, pour troubleshoot voir la [section de résolution](https://github.com/NALSED/TUTO/blob/main/PERSO/LINUX/troubleshoot_Proxmox_Wifi.md) du probléme lié à la wifi via partage de connection.
+  - Network : - Partage de connection via iPhone SE, pour troubleshoot voir la [section de résolution](https://github.com/NALSED/TUTO/blob/main/PERSO/LINUX/troubleshoot_Proxmox_Wifi.md) du problème lié à la wifi via partage de connection.
   - IP : https://172.20.10.10:8006

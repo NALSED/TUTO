@@ -61,7 +61,7 @@ Cette partie se décompose en 2 parties :
 
 `0` **Bareos Console**
 
--0.1 Editer le fichier de configuration de la console
+-0.1 Éditer le fichier de configuration de la console
 ````
 sudo nano /etc/bareos/bconsole.conf
 ````
@@ -84,7 +84,7 @@ Director {
 }
 ````
 
--0.2 Editer le fichier de configuration de la console Web-Ui
+-0.2 Éditer le fichier de configuration de la console Web-Ui
 ````
 /etc/bareos/bareos-dir.d/console/admin.conf
 ````
@@ -321,7 +321,7 @@ cert_file = "/etc/bareos/ssl/web/bareos_webui.pem"
 sudo nano /etc/apache2/sites-available/bareos-webui-ssl.conf
 ````
 
--4.4. Editer 
+-4.4. Éditer 
 ````
 <IfModule mod_ssl.c>
   <VirtualHost *:443>
@@ -500,7 +500,7 @@ cp /etc/proxmox/ssl/keys/proxmox_rsa.key /etc/pve/local/pve-ssl.key
 
 ---
 
-## ⚠️ **A effectuer sur chaque systeme**
+## ⚠️ **A effectuer sur chaque système**
 ```
 sudo cp Sednal_Inter_E-1.cert.pem Sednal_Inter_R-1.cert.pem Sednal_Root_E-1.crt Sednal_Root_R-1.crt /usr/local/share/ca-certificates
 ```

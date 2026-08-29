@@ -1,4 +1,4 @@
-## Pour sauvgarder la conf sur pc admin
+## Pour sauvegarder la conf sur pc admin
 ### Créer fichier de sauvegarde
     mkdir -p /root/backup-configs-bareos
 

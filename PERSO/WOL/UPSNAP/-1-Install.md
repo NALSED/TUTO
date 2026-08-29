@@ -1,11 +1,11 @@
-# Instalation upsnap et configuration clients:
+# Installation upsnap et configuration clients:
 
 ## 192.168.0.241
 ### Créer un docker compose => docker-compose.yml       
      
       nano  docker-compose.yml 
 
-###  Editer       
+###  Éditer       
       services:
         upsnap:
           container_name: upsnap
@@ -19,7 +19,7 @@
             - TZ=Asia/Yerevan
 
 ### Ce script crée le dossier /srv/appdata/upsnap/data (y compris tous les dossiers parents manquants) puis changer son propriétaire et son groupe pour l’utilisateur actuel.
-### Dossier editer dans le docker compose...
+### Dossier éditer dans le docker compose...
 
              sudo mkdir -p /srv/appdata/upsnap/data
              sudo chown -R $USER:$USER /srv/appdata/upsnap/

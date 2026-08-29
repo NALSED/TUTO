@@ -26,7 +26,7 @@
 </summary>
 
 
-#### C'est un mauvaise pratique d'avoir tout les port sur le même Vlan, comme dans la configuration par defaut.
+#### C'est un mauvaise pratique d'avoir tout les port sur le même Vlan, comme dans la configuration par défaut.
 
 #### 1.1) Changer son nom 
       saiph#hostname <name>
@@ -34,7 +34,7 @@
 #### 1.2) Rentrer le switch sur un domaine, le domaine sert entre autre à créer des clé SSH
          saiph(config)#ip domain-name stars.local
 
-#### 1.3) Création d'un Vlan exotique et le fermer administrativement(afin de retarder un attaquant évantuel, qui chercherai à accéder à l'infra via les interfaces)
+#### 1.3) Création d'un Vlan exotique et le fermer administrativement(afin de retarder un attaquant éventuel, qui chercherai à accéder à l'infra via les interfaces)
         saiph(config)#vlan 3000
         saiph(config) shutdown
 
@@ -43,7 +43,7 @@
 
 ![image](https://github.com/user-attachments/assets/5cb509b3-912b-4173-906f-cb5687907e79)
 
-#### 1.5) Déplacer les interfaces sur le Vlan 3000 créer précédement 
+#### 1.5) Déplacer les interfaces sur le Vlan 3000 créer précédemment 
        saiph(config-if)#switchport access vlan 3000
     
 
@@ -53,7 +53,7 @@
 
 ![image](https://github.com/user-attachments/assets/0737aa01-ea9a-4b23-bf24-464d404b6ee8)
 
-### 1.6 ) Eteindre administrativement les interfaces fast Ethernet et Gigabit
+### 1.6 ) Éteindre administrativement les interfaces fast Ethernet et Gigabit
             saiph#conf t
             saiph(config)#interface range fastEthernet 0/1-24 
             saiph(config-if-range)#shutdown
@@ -139,7 +139,7 @@
 
 ### 3.3) `VTY et Line Console`
 
-### La bonne pratique est de configurer au moins 3 lignes, afin de pouvoir se connecter à distance (1), en même temps qu'un autre admin (2), et un troisiéme lignes de secours (3).
+### La bonne pratique est de configurer au moins 3 lignes, afin de pouvoir se connecter à distance (1), en même temps qu'un autre admin (2), et un troisième lignes de secours (3).
 ### Et configuration des interfaces consoles afin de les rendre impossible sans MDP.
 
 ![image](https://github.com/user-attachments/assets/28455763-60f9-4c46-ba0d-8cc76a1cdc72)
@@ -151,7 +151,7 @@
 ### Utiliser un login local (ici admin1)
                  saiph(config-line)#login local
 
-### Mettre un time out sur cette interface(si une utilisation inactive prolongué est détecté la session est fermé)
+### Mettre un time out sur cette interface(si une utilisation inactive prolongée est détecté la session est fermé)
                  saiph(config-line)#exec-timeout 3 => en minutes
 
 ### ⚠️Maintenant si on se connect avec le cable bleu sur le switch un login et un MDP sera demandé.
@@ -159,10 +159,10 @@
 ### 3.2.2) `VTY`
 ### Ici configuration du nombre de lignes dédiées à la gestion à distance du switch
 
-### Selectionner la/les ligne(s)
+### Sélectionner la/les ligne(s)
              saiph(config)# line vty 0 2                 
 
-### Accées par user local
+### Accès par user local
             saiph(config-line)# login local
 
 ### Time out ⚠️en minutes
@@ -195,7 +195,7 @@
 </h2>
 </summary>
 
-### ⚠️Ici un deuxiéme switch est configuré en copiant la configuration de saiph
+### ⚠️Ici un deuxième switch est configuré en copiant la configuration de saiph
 #### 4.1) Brancher PC1 (FastEthernet 0/1) et PC2  (FastEthernet 0/2) sur alnilam
 #### 4.2) Renseigner les IP des interfaces 
 ![image](https://github.com/user-attachments/assets/452b3aaa-676c-4c16-aa01-e97ca8f1bf96)
@@ -229,8 +229,8 @@
 </summary>
 
 #### 5.1) Connecter alnilam => saiph <= ainitak via GigabitEthernet
-#### 5.2) Configuration des ports GiGabit afin de créer des Truncks
-#### ⚠️La séquance réalisée ci desous est à répéter sur les 3 switchs.
+#### 5.2) Configuration des ports Gigabit afin de créer des Truncks
+#### ⚠️La séquence réalisée ci dessous est à répéter sur les 3 switchs.
 #### L'idée est de repartir sur un configuration de base des ports pour les configurer.
 #### Réactiver le port (en mode switchport mode access)
             alnilam(config)#interface gigabitEthernet 0/1
@@ -260,8 +260,8 @@
             ainitak(config)#interface fastEthernet 0/1
             ainitak(config-if)#no sh
 
-#### 5.7) "Ratacher" le port fastEthernet 0/24
-#### ⚠️Ici on recréer un Vlan 10 sur le switch ainitak, il faut donc le renomer, et c'est le mode trunck qui va faire le taf             
+#### 5.7) "Rattacher" le port fastEthernet 0/24
+#### ⚠️Ici on recréer un Vlan 10 sur le switch ainitak, il faut donc le renommer, et c'est le mode trunck qui va faire le taf             
             ainitak(config-if)#switchport access vlan 10
             % Access VLAN does not exist. Creating vlan 10
             ainitak(config)# vlan 10
@@ -272,7 +272,7 @@
             saiph(config)#vlan 10
             saiph(config-vlan)#name DIR
 
-#### ==> ping fontionne entre PC2 10.10.10.2 et PC1 10.10.10.1 🍾
+#### ==> ping fonctionne entre PC2 10.10.10.2 et PC1 10.10.10.1 🍾
 
 ![image](https://github.com/user-attachments/assets/b396ca59-6a57-4743-a969-4646333b5a13)
 

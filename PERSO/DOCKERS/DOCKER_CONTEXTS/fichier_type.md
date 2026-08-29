@@ -1,4 +1,4 @@
-# Première utilistation de Docker context.
+# Première utilisation de Docker context.
 
 ---
 

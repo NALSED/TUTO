@@ -2,7 +2,7 @@
 
 ---
 
-Pour les besoins d'un test de connection via `Ldap` sur le logiciel [Vault](https://github.com/NALSED/TUTO/tree/main/PERSO/VAULT), mise en place d'un LDAPS, avec création de certifcats Ssl avec le Role `ADCS`.
+Pour les besoins d'un test de connection via `Ldap` sur le logiciel [Vault](https://github.com/NALSED/TUTO/tree/main/PERSO/VAULT), mise en place d'un LDAPS, avec création de certificats Ssl avec le Role `ADCS`.
 
 
 ---
@@ -44,7 +44,7 @@ Ici, nous développerons le cas d’un serveur unique. ⬆️
 - Role ADDS installé
 - Ici ip via DHCP et entrer sur domaine local (192.168.0.252 / ad_ldap.sednal.lan) 
 
-- Récapitultif `AD`
+- Récapitulatif `AD`
 
 <img width="674" height="475" alt="image" src="https://github.com/user-attachments/assets/96b8e66c-41b6-4de9-b039-de41311ae4ee" />
 
@@ -56,7 +56,7 @@ Ici, nous développerons le cas d’un serveur unique. ⬆️
 
 <img width="349" height="172" alt="image" src="https://github.com/user-attachments/assets/373fc084-27b9-440c-ab4f-a8ef814ae95b" />
 
-### - Pour finir de l'installation du rôle => etre connecté en Administrateur :
+### - Pour finir de l'installation du rôle => être connecté en Administrateur :
 
 <img width="754" height="557" alt="image" src="https://github.com/user-attachments/assets/c313b3b5-d24f-4c87-9dc3-f8bf32a08ee1" />
 
@@ -84,7 +84,7 @@ Ici, nous développerons le cas d’un serveur unique. ⬆️
 
 <img width="757" height="549" alt="image" src="https://github.com/user-attachments/assets/991cf95a-5387-4264-903b-7f6b349ef5cb" />
 
-### - Validitée
+### - Validité
 
 <img width="748" height="554" alt="image" src="https://github.com/user-attachments/assets/3a35d109-8c11-4d4c-95a7-015aadfa80aa" />
 
@@ -92,7 +92,7 @@ Ici, nous développerons le cas d’un serveur unique. ⬆️
 
 <img width="760" height="558" alt="image" src="https://github.com/user-attachments/assets/acd813d8-0d60-45a2-9ed0-dfac81290a48" />
 
-### `[NOTE]` trouver la concole de gestion de certification :
+### `[NOTE]` trouver la console de gestion de certification :
 
 <img width="639" height="785" alt="image" src="https://github.com/user-attachments/assets/2188d14f-bd57-4337-8fde-b39e62b6726e" />
 
@@ -208,7 +208,7 @@ Win + R
 
 <img width="541" height="613" alt="image" src="https://github.com/user-attachments/assets/01203365-5ab7-41e1-9ba5-9b6e87b296e6" />
 
-`-7.` Onglet : Security pour respecter la politique de sédcurité du message précédent :
+`-7.` Onglet : Security pour respecter la politique de sécurité du message précédent :
 
 - garder uniquement :
    - Authenticated Users => read only 
@@ -330,7 +330,7 @@ clic droit sur le certificat, All Task => Export => Suivre l'assistant
 
 `-1.` Test sur Windows Serveur 2025
 
-⚠️ Les outils d'aministration ADDS doivent être installés ⚠️
+⚠️ Les outils d'administration ADDS doivent être installés ⚠️
 
 `[VERIFICATION]`
 

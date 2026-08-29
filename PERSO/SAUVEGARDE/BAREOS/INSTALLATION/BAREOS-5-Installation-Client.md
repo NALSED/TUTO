@@ -27,10 +27,10 @@
 
 ### Renseigner les infos demandées:
 ### 1.3)⚠️Le champs `Password` sera demandé dans le fichier de configuration => /etc/bareos/bareos-dir.d/client/<NOM-DU-FICHIER-DE-CONF.conf>
-### 📝 le champs Client Monitor Password sert à utiliser Bareos Monitor(Webui), et est stoquer sur le client
+### 📝 le champs Client Monitor Password sert à utiliser Bareos Monitor(Webui), et est stocké sur le client
 ![image](https://github.com/user-attachments/assets/11617c20-9e3b-442e-b272-2b3d402f6304)
 
-### 1.4) page suivante le Password doit etre identique à celui de la section `Parameters for Director...`
+### 1.4) page suivante le Password doit être identique à celui de la section `Parameters for Director...`
 
 
 
@@ -48,7 +48,7 @@
 <details>
 <summary>
 <h2>
-2️⃣ Instalation client Bareos Linux
+2️⃣ Installation client Bareos Linux
 </h2>
 </summary>
 
@@ -57,7 +57,7 @@
 ### Verifier la version de l'OS
            hostnamectl 
 
-### Instaler gnupg (clé)
+### Installer gnupg (clé)
           apt update && apt upgrade
           apt install -y gnupg  
 
@@ -80,7 +80,7 @@
 ![image](https://github.com/user-attachments/assets/ab149f41-33f0-43f3-b84e-46be7344a276)
 
 ### 1) bien regarder la version du script dans [current](https://download.bareos.org/current/) 
-### 2) Debian 12 et 11 ne fontionne pas malgrés :
+### 2) Debian 12 et 11 ne fonctionne pas malgré :
 ![image](https://github.com/user-attachments/assets/a6a5e6c3-eb47-4204-87a8-facadd1052d9)
 
 ### 3) Je choisi donc d'utiliser `Universal Linux Client (ULC)` [voir](https://docs.bareos.org/IntroductionAndTutorial/InstallingBareosClient.html#installing-the-bareos-universal-linux-client)
@@ -91,13 +91,13 @@
 
 ### DONC => cette [VERSION](https://download.bareos.org/current/ULC_deb_OpenSSL_3.0/)
 
-### 4) Une fois l'execution du script, nouveau probléme..
+### 4) Une fois l'exécution du script, nouveau problème..
 ![image](https://github.com/user-attachments/assets/3e9415f0-5c55-4a9b-8287-574bc62c594f)
 ### lsof (List Open Files) est un utilitaire sur les systèmes Unix/Linux.
 ### n'est pas installé donc 
 ![image](https://github.com/user-attachments/assets/921309d9-6307-43db-93e5-89245ce73bcd)
 
-### 5) Probléme avec sources.list...
+### 5) Problème avec sources.list...
 ### Voir les listes enregistrée et la surprise
 ![image](https://github.com/user-attachments/assets/beae489e-3eff-4a4f-a619-9824aacc9673)
 
@@ -106,7 +106,7 @@
             deb http://deb.debian.org/debian/ bookworm main contrib non-free
             deb-src http://deb.debian.org/debian/ bookworm main contrib non-free
 
-### 7) Instaler lsof
+### 7) Installer lsof
       apt install lsof
 
 ![image](https://github.com/user-attachments/assets/0046784d-1d09-4bf3-abb5-788c3bac52b9)
@@ -121,7 +121,7 @@
 
 </details>
 
-### Demarrer le service
+### Démarrer le service
             systemctl start bareos-fd
             systemctl status bareos-fd
 

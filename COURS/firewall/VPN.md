@@ -1,4 +1,4 @@
-# Instalation d'un VPN via pfense
+# Installation d'un VPN via pfSense
 
 ## :one: Création de l'autorité de certification
    * ### `System => Certificate` 
@@ -29,7 +29,7 @@
 ![ad1](https://github.com/user-attachments/assets/7265d6d9-ef69-46ac-a95c-1e028cb309d5)
    * ### Renseigner Certificate authority / Common Name => Save
 ![ad1](https://github.com/user-attachments/assets/525331cb-6a09-4e90-b74b-bb06c41aa11e)
-   * ### Le certificat apparait maintenant dans la création User => Save
+   * ### Le certificat apparaît maintenant dans la création User => Save
    * ### User ⬇️
 ![ad1](https://github.com/user-attachments/assets/e9b7c56b-532c-4454-892f-865dd7503116)
 ## 4️⃣ Open VPN
@@ -41,7 +41,7 @@
 #### (Pour l'interface, nous allons conserver "WAN" puisque c'est bien par cette interface que l'on va se connecter en accès distant)
 ![ad1](https://github.com/user-attachments/assets/fc53a0ea-a1d9-4d88-a58d-ea480428ffdf)
    * ### Remplir Peer Certificate Authority (bleu)
-   * ### Serveur certificate avec le serveur corespondant au PCA ⏫ (rouge)
+   * ### Serveur certificate avec le serveur correspondant au PCA ⏫ (rouge)
 ![ad1](https://github.com/user-attachments/assets/744f2715-bf90-408e-ab61-08c9fe7b378a)
    *  #### 🔵 IPv4 Tunnel Network : adresse du réseau VPN, c'est-à-dire que lorsqu'un client va se connecter en VPN il obtiendra une adresse IP dans ce réseau au niveau de la carte réseau locale du PC. 
    * #### 🔴 Redirect IPv4 Gateway : si vous cochez cette option, vous passez sur un full tunnel c'est-à-dire que tous les flux réseau du PC distant vont passer dans le VPN, sinon nous sommes en split-tunnel.
@@ -65,7 +65,7 @@
    * ### 🔴 + Install
 ![ad1](https://github.com/user-attachments/assets/d95ee0e5-bb5a-492f-bae0-3994c4e27741)
    * ### VPN => 🔵 OpenVPN => 🔴 Client Export
-   * ### Laisser par defaut => Advanced => rentrer auth-nocache => Save as default
+   * ### Laisser par défaut => Advanced => rentrer auth-nocache => Save as default
 ![ad1](https://github.com/user-attachments/assets/19ced4b5-1763-4643-904e-b08b42d13098)
    * ### Possibilité d'archiver le VPN 
 ![ad1](https://github.com/user-attachments/assets/ccdaef7c-6038-42ee-8fc9-4bc081c79525)
@@ -80,7 +80,7 @@
    * ### Dans Extra Options : Log => Save
 ![ad1](https://github.com/user-attachments/assets/aa492e67-0b4f-4e7d-b7bd-29182cc916de)
    * ### ▶️ Autoriser les flux vers les ressources :
-   * ### Par defaut => Destination
+   * ### Par défaut => Destination
    * ### 🔵 Address or Alias => adresse de l'hôte 172.16.10.10
    * ### 🔴 Destination Port Range : 3389 pour le RDP
    * ### Save 

@@ -27,7 +27,7 @@ Token -explicit-max-ttl (individuel)
 
  <img width="877" height="860" alt="image" src="https://github.com/user-attachments/assets/16ce2f76-7b33-40a8-bfaa-e72ea72e075e" />
 
-Sur le shéma (montre un service token) ci-dessus on voit que le token `A` à créé le token `B` et `C` avec des TTL différent, on peux aussi noter que `B` et `C` sont parent.
+Sur le schéma (montre un service token) ci-dessus on voit que le token `A` à créé le token `B` et `C` avec des TTL différent, on peux aussi noter que `B` et `C` sont parent.
 Par défaut c'est le Token utilisé pour la connection à Vault qui détermine le parent, mais il est possible de choisir le token parent (voir commandes ⬇️ )
 
 `A` parent => `B`
@@ -46,7 +46,7 @@ Ici, le TTL a été prolongé de 5 h ; la durée actuelle est de 4 h avec 
 
 -2.1 Renew
 
-Le TTL arrive à expiration on peux le renouveler, soit d'une valeur par defaut, soit une valeur déterminée.
+Le TTL arrive à expiration on peux le renouveler, soit d'une valeur par défaut, soit une valeur déterminée.
 
 -2.2 Revoked
 

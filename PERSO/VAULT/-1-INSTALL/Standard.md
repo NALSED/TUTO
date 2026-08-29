@@ -46,11 +46,11 @@
 
           sudo useradd --system --home /etc/vault --shell /bin/false vault
 
--3. Editer le fichier de configuation `/etc/Vault/Vault_Auto/Config/Vault_Auto.hcl`
+-3. Éditer le fichier de configuration `/etc/Vault/Vault_Auto/Config/Vault_Auto.hcl`
 
           nano /etc/Vault/Vault_Auto/Config/Vault_Auto.hcl
 
-- Editer
+- Éditer
 
           disable_mlock = true
           ui = true
@@ -83,7 +83,7 @@
 
           sudo nano /etc/systemd/system/vault.service
 
-- Editer
+- Éditer
 
           [Unit]
           Description=HashiCorp Vault - Vault Auto
@@ -99,7 +99,7 @@
           [Install]
           WantedBy=multi-user.target
 
-- Autoriser et demarrer le service
+- Autoriser et démarrer le service
 
           sudo systemctl daemon-reload
           sudo systemctl enable vault

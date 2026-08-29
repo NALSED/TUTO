@@ -8,12 +8,12 @@
 ### 1.2) Dans le page `Fleet` choisir `Add agent`
 ![image](https://github.com/user-attachments/assets/d283d01d-123c-4efd-8b9e-bfeb22134c5c)
 
-### 1.3) Dans la fenetre pour le point 1 choisir endpoints-initial
+### 1.3) Dans la fenêtre pour le point 1 choisir endpoints-initial
 
 ### Deux options :
 * ### via la page `download page` et choisir pour la bonne distribution.
 ![image](https://github.com/user-attachments/assets/a9b3fb47-106d-48f5-8d8e-b5f1bc110d38)
-* ### Execution  du scrit
+* ### Execution  du script
 ![image](https://github.com/user-attachments/assets/37990778-9ba4-4529-bced-88c5676c34c1)
 
 ### 1.4) tester l'écoute du ports 8220 sur le serveur ainsi que le client.
@@ -24,11 +24,11 @@
 
 * ### Client =>  Test-NetConnection 192.168.0.103 -Port 8220
 ![image](https://github.com/user-attachments/assets/5c37f585-d9bc-4880-92fd-e123f6a08f0d)
-### ⚠️  Probléme 2 choses à faire 
-* ### 1️⃣ Créer une régle par feu sur le client pour autoriser le port 8220
-### 1.4.1) Régle trafic entrant => Nouvelle régle / Port / TCP + 8220 / Autoriser la connection / all / Nom +terminer.
+### ⚠️  Problème 2 choses à faire 
+* ### 1️⃣ Créer une règle par feu sur le client pour autoriser le port 8220
+### 1.4.1) Règle trafic entrant => Nouvelle règle / Port / TCP + 8220 / Autoriser la connection / all / Nom +terminer.
 
-* ### 2️⃣ Autoriser sur le parfeu de `SO` l'IP du client.
+* ### 2️⃣ Autoriser sur le pare-feu de `SO` l'IP du client.
 ### 1.4.2) Se rendre dans configuration
 ![image](https://github.com/user-attachments/assets/1e0d034b-0348-4d2f-99b5-f716e687d435)
 
@@ -41,8 +41,8 @@
 ### Attendre 
 ![image](https://github.com/user-attachments/assets/298e41aa-62aa-40e0-8861-4aba4c07d08e)
 
-### 1.5) Ouvrir le fichier télécharger le elastic agentet lancer le script 
-### ⚠️ Si certificat ssl non gérer sur l'infra ajouter `--insecure` aprèes le TOKEN.
+### 1.5) Ouvrir le fichier télécharger le elastic agent et lancer le script 
+### ⚠️ Si certificat ssl non gérer sur l'infra ajouter `--insecure` après le TOKEN.
       cd C:\Users\sednal\Desktop\elastic-agent-8.17.3-windows-x86_64
       .\elastic-agent.exe install --url=https://192.168.0.103:8220 --enrollment-token=NUVydkpwY0JRZzkxV1hNYWJqVmc6ZWJlSmhfMTFSaWlxdFc2dkY3alE5UQ==
 

@@ -21,7 +21,7 @@
 #### Se rendre dans texte editor du PC de conf => copy
 ![image](https://github.com/user-attachments/assets/c81a1f9f-a3c5-45cd-8dc0-c9eb1a28d104)
 
-### 1.3) (optionel)
+### 1.3) (optionnel)
 #### Si besoin faire les modification => ICI IP et NAME
 
 #### saiph => alnilam

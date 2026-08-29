@@ -1,13 +1,13 @@
-# Installation compléte et configuration démarrage de Vault 
+# Installation complète et configuration démarrage de Vault 
 ---
-Ici Vault sera unseal et login manuellement, pour un dévérouillage via auto-unseal, voir => [AUTO-UNSEAL]()
+Ici Vault sera unseal et login manuellement, pour un déverrouillage via auto-unseal, voir => [AUTO-UNSEAL]()
 ---
 
 ## 1️⃣ Prérequis
 #### 1.1) openssl ici => raspbery-pi 192.168.0.241
 #### 1.2) kleopatra (chiffrement GPG)
 #### 1.3) DNS Resolver, Ici Pfsense.
-#### 1.4) optionelle : VSC pour créer les Docker compose et autre fichier de documentation.
+#### 1.4) optionnelle : VSC pour créer les Docker compose et autre fichier de documentation.
 
             === PATH 192.168.0.235===
             C:\Users\sednal\vault\
@@ -81,7 +81,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
       DNS.1 = vault.sednal.lan
       DNS.2 = localhost         
 
-Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évite les probléme si l'IP change.
+Ici utilisation uniquement du DNS.1, car Vault sera dans un conteneur cela évite les problème si l'IP change.
 
 <details>
 <summary>
@@ -167,7 +167,7 @@ Dans l'idéal, si tout se passait sur Linux, il faudrait réaliser le changement
 - vault.key => 600 et vault : vault (Clé privée = vault seul)
 - vault.crt => 644 et vault : vault (Certificat public = tous lisent)
           
-### 3.4) Création d'un renouvelement automatique via script + systemd
+### 3.4) Création d'un renouvellement automatique via script + systemd
 
 #### Script qui créé une clé et un certificat puis les copie dans le bon dossier sur Win 11
 
@@ -327,11 +327,11 @@ Car certificat autosigné, et Vault ne le validera pas sinon.
 
 ## 5️⃣ Configuration de Vault en CLI
 
-### 5.1) Editer dans le conteneur pour initialiser Vault
+### 5.1) Éditer dans le conteneur pour initialiser Vault
             docker exec -it vault_container /bin/sh
             vault operator init
 
-⚠️ ATTENTION ⚠️ les unseal keys et root token n'appraitrons q'une seul fois, penser à les sauvegarder.
+⚠️ ATTENTION ⚠️ les unseal keys et root token n'apparaîtront qu'une seul fois, penser à les sauvegarder.
 Ici chiffré avec Kleopatra, et stocker sur VPS et disque externe.
 
             / # vault operator init

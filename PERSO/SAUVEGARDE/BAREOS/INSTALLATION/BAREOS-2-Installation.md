@@ -42,7 +42,7 @@
 
 ## `I) Vérification des disques(Inutile sur VM)`
 
-### 1.1) Installer l'outil de vérif (smatmontools)
+### 1.1) Installer l'outil de vérif (smartmontools)
     sudo apt update && apt upgrade
     sudo apt-get install smartmontools
 
@@ -67,7 +67,7 @@
 ### 2.1) Ici utilisation de gdisk pour faire du GPT (fdisk => MBR)
     gdisk /dev/sdX
 
-### 2.2) Dans gdisk en achainement des commandes 
+### 2.2) Dans gdisk en enchaînement des commandes 
 
 * ### `o` pour créer une nouvelle table de partition GPT puis sur Entrée (confirmer avec Y et Entrée)
 
@@ -103,7 +103,7 @@
 
 * ### /dev/sd[b-c]1 : indique les disque sur lesquels réaliser le RAID ici sdb1 et sdc1
 
-### 1.3) Controler l''avancement
+### 1.3) Contrôler l''avancement
     cat /proc/mdstat
 ![image](https://github.com/user-attachments/assets/2aa527ae-7c04-4186-ad3e-e4d1a16d570e)
 
@@ -166,7 +166,7 @@
 
 [TUTO](https://shape.host/resources/comment-installer-postgresql-sur-debian-12)
 
-## I Instalation 
+## I Installation 
 ## II Configuration
 
 ---

@@ -1,10 +1,10 @@
-# Création de dossier de partage personalisé et commun 
-## ⚠️A la création des Groupes avec un un carractère dans Description' exemple 
+# Création de dossier de partage personnalisé et commun 
+## ⚠️A la création des Groupes avec un un caractère dans Description' exemple 
 ### 1️⃣ Création d'un dossier de partage à la racine.
 #### Mettre les deux serveurs sur le même réseaux
 #### Partage du dossier (En ajoutant le symbole dollar « $ »après le nom de partage, vous cachez le nom de partage sur le réseau)
 ![image](https://github.com/user-attachments/assets/03825b23-c14e-4751-8267-e984aace983d)
-#### Editer les permitions du dossier => Supprimer Everyone => Ajouter
+#### Éditer les permitions du dossier => Supprimer Everyone => Ajouter
 ![image](https://github.com/user-attachments/assets/2b30586e-2b3d-4a39-9a15-06bb1a9df291)
 #### Rentrer Administrator et Authenticated Users
 ![image](https://github.com/user-attachments/assets/037d604f-c966-40f4-921f-d10009d19204)
@@ -26,7 +26,7 @@
 ![image](https://github.com/user-attachments/assets/aa8ba2c5-ecd5-46cc-ba11-a73d180c4605)
 #### Full Control => Ok
 ![image](https://github.com/user-attachments/assets/c6e76e46-8d40-402d-8cb7-af17d47be9dd)
-#### Puis répéter l'opération précédante pour System + Authentificated Users +Administrator
+#### Puis répéter l'opération précédente pour System + Authentificated Users +Administrator
 ![image](https://github.com/user-attachments/assets/815caa49-33b9-43cb-8be6-a95369ee7fe4)
 #### Résultat attendu
 ![image](https://github.com/user-attachments/assets/05b66a3a-ab7f-4b1b-adf4-e4fc805a32c9)

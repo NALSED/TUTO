@@ -86,14 +86,14 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 
 
 ## 3️⃣ `Rules`
-### Les régles sont à éditer dans le fichier de conf de john et appeler ensuite pour le craquage.
+### Les règles sont à éditer dans le fichier de conf de john et appeler ensuite pour le craquage.
     sudo nano -c /etc/john/john.conf # _c pour avvoir la ligne => ligne 697
     EXEMPLE=[List.Rules:monTest]
 
-### Editer les régles en leurs donnant un nom qui sera appelé via la commande
+### Éditer les règles en leurs donnant un nom qui sera appelé via la commande
     john --rules=<EXEMPLE>
 
-### Utiliser les régles ci dessous
+### Utiliser les règles ci dessous
 
 <details>
 <summary>
@@ -105,24 +105,24 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 
 # Syntaxe générale + Explications et exemples des commandes
 
-## ⚠️L'ordre dans lequel apparaisse les explication est une sugestion de syntaxe global pour une création de régle dans JtR
+## ⚠️L'ordre dans lequel apparaisse les explication est une suggestion de syntaxe global pour une création de règle dans JtR
 
 ## 1️⃣ 🏴 `Reject Flag` => pour filtrer la commande qui suit
 ## 2️⃣  🧮 Opérations de Bases
-## A partir de la on peux utiliser les commandes dans l'ordre qu l'on veux en foction des besoin
+## A partir de la on peux utiliser les commandes dans l'ordre qu l'on veux en fonction des besoin
 ## 3️⃣ 🔢 Constantes Numérique et Variables => utilisées en complément des Opérations de bases ou en variable
-## 4️⃣ ⛓️ Commande de chaines(strings) => Encomplément
+## 4️⃣ ⛓️ Commande de chaînes(strings) => Encomplément
 ## 5️⃣ 🟥 Commandes d'insertion / suppression / extraction
 ## 6️⃣ ↔️ Commandes de modification de caractères
 ## utiliser 7️⃣ et 8️⃣ ensemble
 ## 7️⃣ 🔣 Classe de caractères
 
-### sous [List.Rules:monTest] écrire la régle ⬇️ 
+### sous [List.Rules:monTest] écrire la règle ⬇️ 
 
 
 ## 🏴 `Reject Flag`
 
-### Ces régles permet de trier des commandes en foctions des drapeaux
+### Ces règles permet de trier des commandes en fonctions des drapeaux
 
 ### `-:` Ne rien faire avec le mot d'entrée.
 
@@ -213,9 +213,9 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 
 ### `}` : Faire tourner le mot vers la droite.
 
-### `$X` : Ajouter le caractère X à la fin du mot. Ajoute uniquement un caractère contrairement à Az "!/*-" qui peux ajouter une chaine de caractère
+### `$X` : Ajouter le caractère X à la fin du mot. Ajoute uniquement un caractère contrairement à Az "!/*-" qui peux ajouter une chaîne de caractère
 
-### `^X` : Ajouter le caractère X au début du mot. Ajoute uniquement un caractère contrairement à A0 "!/*-" qui peux ajouter une chaine de caractère
+### `^X` : Ajouter le caractère X au début du mot. Ajoute uniquement un caractère contrairement à A0 "!/*-" qui peux ajouter une chaîne de caractère
 
  ---
  ---
@@ -251,7 +251,7 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 ---
 ---
 
-## ⛓️ Commande de chaines(strings)
+## ⛓️ Commande de chaînes(strings)
 
 ### `AN"STR"`: Insérer la chaîne "STR" dans le mot à la position N.
 ### N = 0 => début de mot
@@ -351,7 +351,7 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 ---
 ---
 
-## 🎮 Commandes classe de caractéres : 
+## 🎮 Commandes classe de caractères : 
 
 ## Trois partie 
 ## 1️⃣ 🔤 Commandes de remplacement / suppression de caractères
@@ -360,7 +360,7 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 
 ---
 
-## ⚠️ La lettre C corespond aux Classes de caractéres ( /?C + ?d => /?d)
+## ⚠️ La lettre C correspond aux Classes de caractères ( /?C + ?d => /?d)
 
 ## 1️⃣ 🔤 Commandes de remplacement / suppression de caractères
 

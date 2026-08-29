@@ -1,4 +1,4 @@
-# 📜  Régles et Astuces Python. 📜
+# 📜  Règles et Astuces Python. 📜
 [PEP 8 – Style Guide for Python Code](https://peps.python.org/pep-0008/)
 [PYTHON TUTO](https://www.w3schools.com/python/default.asp)
 [CHEAT SHEET](https://www.pythoncheatsheet.org/cheatsheet/built-in-functions)
@@ -341,7 +341,7 @@
 
 ## 3️⃣  📈  `Range` 📈
 
-#### Utile pourgénérer des suite de nombre.En générale avec boucle for
+#### Utile pour générer des suite de nombre.En générale avec boucle for
 #### range(stop) : Génère une séquence d'entiers de 0 à stop - 1.range
 #### (start, stop): Génère une séquence d'entiers de start à stop - 1.range
 #### (start, stop, step): Génère une séquence d'entiers de start à stop - 1, en avançant de step à chaque itération.
@@ -498,7 +498,7 @@
 ---
 
 ## `EXEMPLE`
-#### convertion ip en binaire
+#### conversion ip en binaire
 
       # IP à convertir
       ip ="192.168.0.1"
@@ -625,7 +625,7 @@
 </h2>
 </summary>
 
-### Opérateur de comparaion:
+### Opérateur de comparaison:
 * #### `==` égale
 * #### `!=` différent
 * #### `>` sup
@@ -817,7 +817,7 @@
       Analyse ip adresse :  192.168.0.3
 
 #### Exemple avec index et enumerate
-#### Permet la création d'un index à chque tour
+#### Permet la création d'un index à chaque tour
       ips = ["192.168.0.1", "192.168.0.2","192.168.0.3"]
       for index, ip in enumerate(ips):
           print(index+1, "=>Analyse ip adresse : ", ip )
@@ -876,7 +876,7 @@
             print(f"vérif {username} avec mdp {password}")
 
 ---
-#### Crétion d'Alerte echec ou  réussite de connection
+#### Création d'Alerte échec ou  réussite de connection
 
             security_logs =[ 
                             {"ip": "192.168.1.10", "status": "failed"},
@@ -1013,7 +1013,7 @@
       connection OK : 192.168.0.1
       Echec de la connection : ['192.168.0.2', '192.168.0.3', '192.168.0.4']
 
-####  ⚠️  A titre de comparaison même résultat aavvec  for
+####  ⚠️  A titre de comparaison même résultat avec  for
       for log in logs:
           if log["status"] == "failed":
               

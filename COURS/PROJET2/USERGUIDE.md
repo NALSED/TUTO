@@ -54,7 +54,7 @@ Il suffit de rentrer l'utilisateur pour obtenir sa dernière connection :
 Pour la partie Information, il y a deux possibilités d'affichage.<br>
 * Dans le cas d'une sélection unique, le script permet d'afficher directement la commande sélectionnée ainsi que le résultat à l'écran :
 
-![Information Unique affichée Ecran](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/blob/main/Images/Affichage%20simple.png)
+![Information Unique affichée Écran](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/blob/main/Images/Affichage%20simple.png)
 
 
 * Dans le cas d'une sélection multiple, le script va afficher les commandes sélectionnées mais les résultats seront directement sauvegardés dans un fichier texte.<br>
@@ -94,9 +94,9 @@ Le script permet de se connecter en SSH sur les parties `Information`. En effet,
   
 ![Connection SSH](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/blob/main/Images/Information%20SSH.png)  
 
-Les enregistrements dans le fichier des logs et le fichier des informations fonctionne de manière similaire aux commandes effectuées localement, à l'exeption que nous avons l'information de l'adresse IP et nom d'utilisateur de la machine distante dans le fichier Info.
+Les enregistrements dans le fichier des logs et le fichier des informations fonctionne de manière similaire aux commandes effectuées localement, à l'exception que nous avons l'information de l'adresse IP et nom d'utilisateur de la machine distante dans le fichier Info.
 
-![Fichir Infos SSH](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/blob/main/Images/fichier%20Info%20machine%20cliente%20SSH.png)
+![Fichier Infos SSH](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/blob/main/Images/fichier%20Info%20machine%20cliente%20SSH.png)
 ---
 ### :five: Arrêt du script
 
@@ -142,11 +142,11 @@ Reboot le service sshd
   Restart-Service sshd
 Les commandes ssh sont maintenant disponible sous le format :
 ssh USER@IP "powershell COMMANDE"
-Une fois cette manipulation effectué les commmandes sont effectuez en ssh sans copie de script à distance.  
+Une fois cette manipulation effectué les commandes sont effectuez en ssh sans copie de script à distance.  
  
   ---
   #### 3️⃣: Arrêt du script
-  Ecran de sortie :
+  Écran de sortie :
   ![vm 1](https://github.com/user-attachments/assets/bbb88366-6a9a-42e4-a4bf-453caf2717ed)
  
  ---

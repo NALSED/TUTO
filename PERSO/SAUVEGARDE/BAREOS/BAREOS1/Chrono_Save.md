@@ -6,7 +6,7 @@
 
 ---
 ---
-### Pour `DNS2` et `WEB` Pas de sauegarde dirrectement sur Bareos, passage sur ` DNS1` .
+### Pour `DNS2` et `WEB` Pas de sauvegarde directement sur Bareos, passage sur ` DNS1` .
 ### Ici sont noté Snapshot et Copie sur DNS1
 ### Ces Automatisation ne sont programmé que 3 fois par an:
 ## Une ` Sauvegarde ciblée`  + ` Snapshot`  le 1er du mois de ` FEVRIER`  ` JUIN`  et ` OCTOBRE`. 

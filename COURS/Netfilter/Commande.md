@@ -17,22 +17,22 @@
 
 ## table => Chain => rules
 
-### `Hook NF_IP_PRE_ROUTING` qui correspond à la chaine PREROUTING dans nftables
+### `Hook NF_IP_PRE_ROUTING` qui correspond à la chaîne PREROUTING dans nftables
 ### Dans ce crochet, les paquets sont analysés dans leur forme brute, sans traitement préalable du système. On peut alors déterminer si on autorise le paquet à entrer plus loin dans le système ou non.
 
-### `Hook NF_IP_LOCAL_IN` qui correspond à la chaine INPUT dans nftables
+### `Hook NF_IP_LOCAL_IN` qui correspond à la chaîne INPUT dans nftables
 ### Ici, les paquets sont prêt à être envoyés à la couche applicative, c’est-à-dire aux applications qui les traiteront (exemple : un serveur web ou un service FTP).
 
-### `Hook NF_IP_FOWARD` qui correspond à la chaine FORWARD dans nftables
+### `Hook NF_IP_FOWARD` qui correspond à la chaîne FORWARD dans nftables
 ### Lorsque ce hook est utilisé, c'est que les paquets n'iront pas vers la couche applicative, mais seront redirigés vers une autre interface réseau. Par exemple dans le cas où le système est un routeur.
 
-### `Hook NF_IP_LOCAL_OUT` qui correspond à la chaine OUTPUT dans nftables
-### Il s'agit ici du même fonctionnement que la chaine INPUT, mais en sortie de la couche applicative. On va donc autoriser ou non un paquet à sortir vers l'interface réseau.
+### `Hook NF_IP_LOCAL_OUT` qui correspond à la chaîne OUTPUT dans nftables
+### Il s'agit ici du même fonctionnement que la chaîne INPUT, mais en sortie de la couche applicative. On va donc autoriser ou non un paquet à sortir vers l'interface réseau.
 
-### `Hook NF_IP_POSTROUTING` qui correspond à la chaine "POSTROUTING" dans nftables
-### On retrouve ici le même principe que la chaine PREROUTING" mais pour la sortie des paquets. Les paquets analysés sont ici de nouveau dans leur forme brute.
+### `Hook NF_IP_POSTROUTING` qui correspond à la chaîne "POSTROUTING" dans nftables
+### On retrouve ici le même principe que la chaîne PREROUTING" mais pour la sortie des paquets. Les paquets analysés sont ici de nouveau dans leur forme brute.
 
-### Diff chaine/base chaine : Une base chain est une chaine qui va directement se rattacher à un hook alors qu'une simple chaine n'est par défaut pas rattachée à un hook.
+### Diff chaîne/base chaîne : Une base chain est une chaîne qui va directement se rattacher à un hook alors qu'une simple chaîne n'est par défaut pas rattachée à un hook.
 
 ## ⚠️ L'ordre des règles a une importance, il faut donc mettre les règles les plus restrictives en dernier. ⚠️
 
@@ -58,7 +58,7 @@
             }
         }
 
-#### Et voila comment la régle ci dessus est édité dans le prompt 
+#### Et voila comment la règle ci dessus est édité dans le prompt 
         
         root@debian:~# nft add rule mon_filtreIPv4 chain_in dport 80 accept
         root@debian:~# nft add rule mon_filtreIPv4 chain_in dport 443 accept
@@ -83,7 +83,7 @@
 
 ***
 
-## 2) Chaines
+## 2) Chaînes
 
         # ajouter la chaine en input piotité 0
         nft add chain ip mon_filtreIPv4 input { type filter hook input priority 0 \; }
@@ -96,7 +96,7 @@
 
 ***
 
-## 3 ) insérer un Régle
+## 3 ) insérer un Règle
 
 ### Utiliser `a`=> nft `a` list table ip mon_filtreIPv4 : pour lister les identifiants des règles. ( #handle)
  
@@ -119,7 +119,7 @@
         drop # handle 6
     }
 
-### Si on peux rajouter des régle en repectant l'ordre en fontion de la contrainte des régle :
+### Si on peux rajouter des règle en respectant l'ordre en fonction de la contrainte des règle :
 
                 nft add rule mon_filtreIPv4 input position 5 tcp dport 22 accept # ajoute une régle qui accept, sur la chaine mon_filtreIPv4 en input , en 5 eme position, concernant le protocol tcp sur le port 22
                 nft add rule mon_filtreIPv4 output position 8 tcp sport 22 accept
@@ -135,7 +135,7 @@
 </details>
 
 
-### Supprimer un régle
+### Supprimer un règle
 
                         nft -a list table ip mon_filtreIPv4 #lister les régle
                         nft delete rule mon_filtreIPv4 output handle 22 # Supprimer
@@ -145,7 +145,7 @@
                                 nft add rule mon_filtreIPv4 input ip saddr 192.168.10.1 drop
                                 nft add rule mon_filtreIPv4 output ip daddr 192.168.10.1 drop
 
-### ⚠️ préciser la chaine input ou output en fonction de celle visée puis utiliser ip suivi de `saddr` pour source address ou `daddr` pour destination addres
+### ⚠️ préciser la chaîne input ou output en fonction de celle visée puis utiliser ip suivi de `saddr` pour source address ou `daddr` pour destination addres
 ### Pour bloquer une plage d'adresse ajouter le CIDR
 
 ### Gérer [Les flag TCP et ICMP](https://www.it-connect.fr/chapitres/gerer-les-flags-tcp-et-licmp-avec-nftables/)
@@ -154,8 +154,8 @@
  
 ## 4 ) Les logs
 
-### Il est possible avec NFtables de réaliser plusieurs actions par régles
-### Ici => Bloquer les comunications avec 192.16.10.1 et au serveur DNS 8.8.8.8 => et mettre le tout dans les logs  `/var/log/kern.log`
+### Il est possible avec NFtables de réaliser plusieurs actions par règles
+### Ici => Bloquer les communications avec 192.16.10.1 et au serveur DNS 8.8.8.8 => et mettre le tout dans les logs  `/var/log/kern.log`
 
                         nft add rule mon_filtreIPv4 input ip saddr 192.168.10.1 log drop #Bloque les comunications avec 192.16.10.1
 
@@ -172,7 +172,7 @@
 
                         root@debian:~# nslookup <NOM DE DOMAIN> 8.8.8.8
 
-### Accés au Logs: 
+### Accès au Logs: 
 
                          tail -n 1 /var/log/kern.log 
 
@@ -195,7 +195,7 @@
 
 ### `Destination NAT`
 
-### Créer  du NAT avec des execption ou régles.
+### Créer  du NAT avec des exception ou règles.
 
 ![image](https://github.com/user-attachments/assets/064e0f24-35ac-405a-8771-8dac50063593)
 
@@ -208,13 +208,13 @@ Destination NAT
 </h2>
 </summary>
 
-### ↔️ Créer  du NAT avec des execption ou régles.
+### ↔️ Créer  du NAT avec des exception ou règles.
 
 ![image](https://github.com/user-attachments/assets/064e0f24-35ac-405a-8771-8dac50063593)
 
 ### Exemple :
 
-## En s'appuiyant sur le schema ci dessus créer la régle suivante :
+## En s'appuiyant sur le schema ci dessus créer la règle suivante :
 
 ### Grâce au destination NAT, les paquets arrivant sur le routeur Linux avec pour port destination le port 21 auront l'IP de destination 192.168.2.1. Nous allons donc créer une règle qui dit que quand l'IP de destination est 192.168.2.1 et que le port visé est le port 21, nous allons rediriger ces paquets vers l'IP 192.168.1.102, toujours sur le port 21
 
@@ -249,21 +249,21 @@ Destination NAT
 
 ### 2° `La méthode fichier`
 
-### La méthode fichier permet de faire lire à nftables un fichier dont le contenu contiendra nos tables, chaines et règles. Cela se peut se faire via l'option -f qui va lire le fichier
+### La méthode fichier permet de faire lire à nftables un fichier dont le contenu contiendra nos tables, chaînes et règles. Cela se peut se faire via l'option -f qui va lire le fichier
 
                         nft -f nftables.rules
 
 
 ### 3° `nano` 
 
-### Utiliser l'éditeur nano affind'éditer une régle préalablement créer.
+### Utiliser l'éditeur nano afin d'éditer une règle préalablement créer.
 
 
 ## 7) Sauvegarde/Restauration/Application
 
 ### 1° Sauvegarde
 
-### Les régles de ma table `mon_filtreIPv4` sont sauvegardées dans le fichier `nftables.rules`                        
+### Les règles de ma table `mon_filtreIPv4` sont sauvegardées dans le fichier `nftables.rules`                        
                         
                         nft list table mon_filtreIPv4 > nftables.rules
 

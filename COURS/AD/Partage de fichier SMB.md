@@ -5,8 +5,8 @@
 ---
 ## Création du dossier de partage à la racine de C:
 ![ad1](https://github.com/user-attachments/assets/05e985b3-0a4d-435b-8e08-a4e58b461024)
-### Modifier les régle pour que tout les Utilisateur du domaine est accés en lecture seul à Document_Entreprise
-### (Pour les modifications de régle dossier de référer au Document Partage AD)
+### Modifier les règle pour que tout les Utilisateur du domaine est accès en lecture seul à Document_Entreprise
+### (Pour les modifications de règle dossier de référer au Document Partage AD)
 ![ad1](https://github.com/user-attachments/assets/d8dff58f-a29b-49e3-891c-ebfef7b6ab8e)
 ---
 

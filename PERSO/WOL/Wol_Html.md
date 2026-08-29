@@ -12,7 +12,7 @@
 ### 2) Serveur Web 192.168.0.122
 ### 3) Serveur Bareos / Plex 192.168.0.141
 
-### Instalation du protocole WOL sur `Serveur Bareos / Plex`, pour implémenter le fontionement de ce protocole sur `Serveur Web`, pour pouvoir accéder à une page HTML sur `PC Admin`, pour allumer `Serveur Bareos`.
+### Installation du protocole WOL sur `Serveur Bareos / Plex`, pour implémenter le fonctionnement de ce protocole sur `Serveur Web`, pour pouvoir accéder à une page HTML sur `PC Admin`, pour allumer `Serveur Bareos`.
 
 
 
@@ -24,7 +24,7 @@
 ## SUR `Serveur Bareos / Plex 192.168.0.141`
 
 ### 1.1) Se rendre dans le BIOS de `Serveur Bareos / Plex` (F2), chercher l'option `Power On by PCI-E`, Redémarrer.
-### 1.2) Intaller ethtool sur `Serveur Bareos / Plex`
+### 1.2) Installer ethtool sur `Serveur Bareos / Plex`
       sudo apt install ethtool
 ### Test 
       ethtool enp4s0
@@ -89,7 +89,7 @@
 
 ## SUR `Serveur Web 192.168.0.122`
 
-### 2.1) Créer un fichier php, qui envérra le paquet magique au serveur
+### 2.1) Créer un fichier php, qui enverra le paquet magique au serveur
              nano /var/www/html/wol.php
 
 ### Fichier

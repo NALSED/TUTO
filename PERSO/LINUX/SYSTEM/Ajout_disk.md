@@ -9,7 +9,7 @@
 #### 3️⃣ format disk
     sudo mkfs.ext 4 /dev/<DISK CHOISI>
 
-#### 4️⃣ Créer un point de montage permanant 
+#### 4️⃣ Créer un point de montage permanent 
         blkid #monter les UUID des disk
         mkdir /media/new-part # dossier pour point de montage
         sudo nano /etc/fstab
