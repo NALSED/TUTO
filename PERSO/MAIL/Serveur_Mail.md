@@ -42,35 +42,59 @@ Ici : `nalsed.fr. IN MX 1 nalsed.fr.`
 
 ---
 
-# `-2-` Création du Docker compose
+# `-3-` Création des Docker compose 
 
+`- 3.1` Créer dossiers pour `DMS` et `SOGo`
 ````
-services:
-  mailserver:
+# Contener DMS
+mkdir -p ~/DMS/Mail_Server
+vim compose.yaml
+
+# Contener SOGO
+mkdir -p ~/DMS/SOGo/
+vim compose.yaml
+````
+
+`- 3.2` DMS
+```` 
+services: 
+  mailserver: 
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
-    container_name: mailserver
+    container_name: mailserver 
     # le nom FQDN doit corespondre à l'enregistrement MX du VPS
-    hostname: nalsed.fr
+    hostname: nalsed.fr  
     ports:
       - "25:25"
       - "465:465"
       - "587:587"
       - "993:993"
-    volumes:
-      - ./docker-data/dms/mail-data/:/var/mail/
-      - ./docker-data/dms/mail-state/:/var/mail-state/
-      - ./docker-data/dms/mail-logs/:/var/log/mail/
-      - ./docker-data/dms/config/:/tmp/docker-mailserver/
-      - /etc/localtime:/etc/localtime:ro
-    environment:
+    volumes: 
+      - ./docker-data/dms/mail-data/:/var/mail/ 
+      - ./docker-data/dms/mail-state/:/var/mail-state/ 
+      - ./docker-data/dms/mail-logs/:/var/log/mail/ 
+      - ./docker-data/dms/config/:/tmp/docker-mailserver/ 
+      - ./docker-data/nginx-proxy/certs/:/etc/letsencrypt/ 
+      - /etc/localtime:/etc/localtime:ro 
+    environment: 
+      - ENABLE_FAIL2BAN=1 
+      - SSL_TYPE=letsencrypt 
+      - PERMIT_DOCKER=network 
+      - ONE_DIR=1 
+      - ENABLE_POSTGREY=1 
+      - ENABLE_CLAMAV=1 
       - ENABLE_RSPAMD=1
-      - ENABLE_CLAMAV=1
-      - ENABLE_FAIL2BAN=1
-    cap_add:
-      - NET_ADMIN # For Fail2Ban to work
+      - ENABLE_SPAMASSASSIN=1 
+      - ENABLE_IMAP=1
+      - SPOOF_PROTECTION=1 
+    cap_add: 
+      - NET_ADMIN 
     restart: always
 ````
 
+`- 3.2 SOGo`
+````
+
+````
 
 ### `env` [ICI](https://github.com/docker-mailserver/docker-mailserver/blob/master/mailserver.env)
 
