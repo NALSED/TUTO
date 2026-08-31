@@ -42,6 +42,13 @@ Ici : `nalsed.fr. IN MX 1 nalsed.fr.`
 
 ---
 
+# `-2-` Certificat `Let's Encrypt`
+
+
+
+
+---
+
 # `-3-` Création des Docker compose 
 
 `- 3.1` Créer dossiers pour `DMS` et `SOGo`
@@ -64,10 +71,11 @@ services:
     # le nom FQDN doit corespondre à l'enregistrement MX du VPS
     hostname: nalsed.fr  
     ports:
-      - "25:25"
-      - "465:465"
-      - "587:587"
-      - "993:993"
+      - "25:25" # SMTP
+      - "143:143" # IMAP4 (explicit TLS => STARTTLS)
+      - "465:465" # ESMTP (implicit TLS)
+      - "587:587" # ESMTP (explicit TLS => STARTTLS)
+      - "993:993" # IMAP4 (implicit TLS)
     volumes: 
       - ./docker-data/dms/mail-data/:/var/mail/ 
       - ./docker-data/dms/mail-state/:/var/mail-state/ 
