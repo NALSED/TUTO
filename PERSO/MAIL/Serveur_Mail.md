@@ -44,7 +44,7 @@ Ici : `nalsed.fr. IN MX 1 nalsed.fr.`
 
 # `-2-` Création du Docker compose
 
-``
+````
 services:
   mailserver:
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
@@ -69,7 +69,7 @@ services:
     cap_add:
       - NET_ADMIN # For Fail2Ban to work
     restart: always
-``
+````
 
 
 ### `env` [ICI](https://github.com/docker-mailserver/docker-mailserver/blob/master/mailserver.env)
