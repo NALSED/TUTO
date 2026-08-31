@@ -41,8 +41,12 @@ Il est bon de lire cette partie de la documentation afin de bien comprendre le f
 
 Ici : `nalsed.fr. IN MX 1 mail.nalsed.fr.`
 
-`- 1.4` Idem pour `A`
-Ici : `mail.nalsed.fr. IN A 176.31.163.227`
+`- 1.4` Idem pour l'entrée `A` de `DMS` et `SOGo` 
+Ici 
+
+- DMS : `mail.nalsed.fr. IN A 176.31.163.227`
+
+- SOGo  : webmail.nalsed.fr. IN A 176.31.163.227
 
 ---
 
@@ -100,10 +104,12 @@ sudo certbot certonly \
 ````
 # Contener DMS
 mkdir -p ~/DMS/Mail_Server
+cd ~/DMS/Mail_Server
 vim compose.yaml
 
 # Contener SOGO
 mkdir -p ~/DMS/SOGo/
+cd ~/DMS/SOGo/
 vim compose.yaml
 ````
 
@@ -134,7 +140,7 @@ services:
       - ENABLE_POSTGREY=1 
       - ENABLE_CLAMAV=1 
       - ENABLE_RSPAMD=1
-      - ENABLE_SPAMASSASSIN=1 
+      - ENABLE_SPAMASSASSIN=0 
       - ENABLE_IMAP=1
       - SPOOF_PROTECTION=1 
     cap_add: 
@@ -144,9 +150,10 @@ services:
       test: "ss --listening --tcp | grep -P 'LISTEN.+:smtp' || exit 1"
       timeout: 3s
       retries: 0
+      start_period: 90s
 ````
 
-`- 3.2 SOGo`
+`- 3.3 SOGo`
 
 [DOC](https://sarit-r.medium.com/set-secure-email-server-with-docker-mailserver-604616c35c37)
 
@@ -163,14 +170,11 @@ services:
       - sogo-conf:/srv/etc
       - sogo-data:/srv/lib/sogo
       - /etc/letsencrypt/:/etc/letsencrypt:ro
-   environment:
+    environment:
       - SOGoDomainAllowed=nalsed.fr
       - SOGoMailingMechanism=smtp
       - SOGoSMTPServer=smtp://mail.nalsed.fr:587?tls=YES
       - SOGoIMAPServer=imaps://mail.nalsed.fr:993
-      - SOGoPasswordRecoveryEnabled=YES
-      - SOGoPasswordRecoveryFrom=landes_martin@yahoo.fr
-      - SOGoPasswordRecoveryMode=SecondaryEmail
       - WOWorkersCount=4
       - SOGoLanguage=French
       - SOGoTimeZone=Europe/Paris
@@ -210,26 +214,3 @@ volumes:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-'- 2.1' 
