@@ -25,7 +25,7 @@ Il est bon de lire cette partie de la documentation afin de bien comprendre le f
 
 [Eric O Meehan](https://www.youtube.com/watch?v=NhoSOPGk3q0)
 
-# `-1-` Créer un enregistrement `MX`, sur le VPS.
+# `-1-` Créer un enregistrement `MX` et `A` pour la section mail, sur le VPS.
 
 
 ## `- 1.1` Sur [OVH](https://manager.eu.ovhcloud.com/#/hub/) Web Cloud => Noms de domaine => nalsed.fr
@@ -38,7 +38,7 @@ Il est bon de lire cette partie de la documentation afin de bien comprendre le f
 
 `-1.3` Remplir les champs
 
-Ici : `nalsed.fr. IN MX 1 nalsed.fr.`
+Ici : `nalsed.fr. IN MX 1 mail.nalsed.fr.`
 
 ---
 
