@@ -46,7 +46,7 @@ Ici
 
 - DMS : `mail.nalsed.fr. IN A 176.31.163.227`
 
-- SOGo  : webmail.nalsed.fr. IN A 176.31.163.227
+- SOGo  : `webmail.nalsed.fr. IN A 176.31.163.227`
 
 ---
 
@@ -136,8 +136,7 @@ services:
       - /etc/localtime:/etc/localtime:ro 
     environment: 
       - ENABLE_FAIL2BAN=1 
-      - SSL_TYPE=letsencrypt 
-      - ENABLE_POSTGREY=1 
+      - SSL_TYPE=letsencrypt  
       - ENABLE_CLAMAV=1 
       - ENABLE_RSPAMD=1
       - ENABLE_SPAMASSASSIN=0 
@@ -153,7 +152,7 @@ services:
       start_period: 90s
 ````
 
-`- 3.3 SOGo`
+`- 3.3`  SOGo
 
 [DOC](https://sarit-r.medium.com/set-secure-email-server-with-docker-mailserver-604616c35c37)
 
@@ -207,6 +206,19 @@ volumes:
   postgres-data:
     driver: local
 ````
+
+`- 3.4` Création du fichier .env pour Password `PostGreSQL`
+````
+cd ~/DMS/SOGo/
+vim .env
+# Editer :
+POSTGRES_PASSWORD=PASSWORD_DB
+
+# Droits
+chmod 600 .env
+````
+
+
 
 ### `env` => [DMS](https://github.com/docker-mailserver/docker-mailserver/blob/master/mailserver.env) et [SOGo]([https://www.sogo.nu/files/docs/SOGoInstallationGuide.html](https://www.sogo.nu/files/docs/SOGoInstallationGuide.html#_general_preferences))
 
