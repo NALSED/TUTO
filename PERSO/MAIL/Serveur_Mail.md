@@ -170,19 +170,22 @@ services:
       - sogo-data:/srv/lib/sogo
       - /etc/letsencrypt/:/etc/letsencrypt:ro
     environment:
-      - SOGoDomainAllowed=nalsed.fr
-      - SOGoMailingMechanism=smtp
-      - SOGoSMTPServer=smtp://mail.nalsed.fr:587?tls=YES
-      - SOGoIMAPServer=imaps://mail.nalsed.fr:993
-      - WOWorkersCount=4
-      - SOGoLanguage=French
-      - SOGoTimeZone=Europe/Paris
+      - MAIL_DOMAIN=nalsed.fr
+      - MAIL_IMAP_SERVER=imaps://mail.nalsed.fr:993
+      - MAIL_SMTP_SERVER=smtp://mail.nalsed.fr:587
+      - MAIL_SIEVE_SERVER=sieve://mail.nalsed.fr:4190
+      - SOGO_LANGUAGE=French
+      - SOGO_TIMEZONE=Europe/Paris
+      - SOGO_PAGE_TITLE=Webmail nalsed.fr
+      - SOGO_LOGGING_LEVEL=normal
+      - SOGO_DEBUG_REQUESTS=NO
+      - SOGO_DEBUG_BASE_URL=NO
       - POSTGRESQL_HOST=db
       - POSTGRESQL_PORT=5432
       - POSTGRESQL_DATABASE=sogo
       - POSTGRESQL_USER=sogo
-      # Le password est dans un .env 
-      - POSTGRESQL_PASSWORD=${POSTGRES_PASSWORD}
+
+      - POSTGRESQL_PASSWORD=${POSTGRES_PASSWORD}}
 
     depends_on:
       - db
