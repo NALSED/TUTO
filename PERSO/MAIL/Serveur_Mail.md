@@ -25,8 +25,9 @@ Il est bon de lire cette partie de la documentation afin de bien comprendre le f
 
 [Eric O Meehan](https://www.youtube.com/watch?v=NhoSOPGk3q0)
 
-# `-1-` Créer un enregistrement `MX` et `A` pour la section mail, sur le VPS.
+### `[NOTE]` 
 
+# `-1-` Créer un enregistrement `MX` et `A` pour la section mail, sur le VPS.
 
 ## `- 1.1` Sur [OVH](https://manager.eu.ovhcloud.com/#/hub/) Web Cloud => Noms de domaine => nalsed.fr
 
@@ -36,13 +37,76 @@ Il est bon de lire cette partie de la documentation afin de bien comprendre le f
 
 <img width="597" height="715" alt="image" src="https://github.com/user-attachments/assets/1a27d56f-316e-42e2-96a4-7e9b54e1ac90" />
 
-`-1.3` Remplir les champs
+`- 1.3` Remplir les champs
 
 Ici : `nalsed.fr. IN MX 1 mail.nalsed.fr.`
+
+`- 1.4` Idem pour `A`
+Ici : `mail.nalsed.fr. IN A 176.31.163.227`
 
 ---
 
 # `-2-` Certificat `Let's Encrypt`
+
+ `- 2.1` Création des clées API sur OVH
+
+[Lien](https://auth.eu.ovhcloud.com/api/createToken)
+
+
+<img width="531" height="501" alt="image" src="https://github.com/user-attachments/assets/c2e85a0b-477d-4050-a966-915c66e2901d" />
+
+
+### `- 2.2` Sur le `VPS` => `176.31.163.227`
+````
+# Installer le plugin
+sudo apt install python3-certbot-dns-ovh
+````
+
+`- 2.3` Création du fichiers `Certificats` et édition fichier `Clées API`.
+````
+sudo mkdir -p /etc/letsencrypt
+
+sudo vim /etc/letsencrypt/ovh.ini
+# Editer
+dns_ovh_endpoint = ovh-eu
+dns_ovh_application_key = xxxxxxxx
+dns_ovh_application_secret = xxxxxxxx
+dns_ovh_consumer_key = xxxxxxxx
+````
+
+Droits
+````
+sudo chmod 600 /etc/letsencrypt/ovh.ini
+````
+
+`- 2.4` Génération Certificat
+````
+sudo certbot certonly \
+  --dns-ovh \
+  --dns-ovh-credentials /etc/letsencrypt/ovh.ini \
+  -d mail.nalsed.fr \
+  --deploy-hook "docker restart dms"
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -69,7 +133,7 @@ services:
     image: ghcr.io/docker-mailserver/docker-mailserver:latest
     container_name: mailserver 
     # le nom FQDN doit corespondre à l'enregistrement MX du VPS
-    hostname: nalsed.fr  
+    hostname: mail.nalsed.fr  
     ports:
       - "25:25" # SMTP
       - "143:143" # IMAP4 (explicit TLS => STARTTLS)
@@ -81,13 +145,11 @@ services:
       - ./docker-data/dms/mail-state/:/var/mail-state/ 
       - ./docker-data/dms/mail-logs/:/var/log/mail/ 
       - ./docker-data/dms/config/:/tmp/docker-mailserver/ 
-      - ./docker-data/nginx-proxy/certs/:/etc/letsencrypt/ 
+      - /etc/letsencrypt/:/etc/letsencrypt:ro 
       - /etc/localtime:/etc/localtime:ro 
     environment: 
       - ENABLE_FAIL2BAN=1 
       - SSL_TYPE=letsencrypt 
-      - PERMIT_DOCKER=network 
-      - ONE_DIR=1 
       - ENABLE_POSTGREY=1 
       - ENABLE_CLAMAV=1 
       - ENABLE_RSPAMD=1
@@ -97,6 +159,10 @@ services:
     cap_add: 
       - NET_ADMIN 
     restart: always
+    healthcheck:
+      test: "ss --listening --tcp | grep -P 'LISTEN.+:smtp' || exit 1"
+      timeout: 3s
+      retries: 0
 ````
 
 `- 3.2 SOGo`
