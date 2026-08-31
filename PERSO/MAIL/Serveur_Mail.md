@@ -57,6 +57,9 @@ Ici : `mail.nalsed.fr. IN A 176.31.163.227`
 
 
 ### `- 2.2` Sur le `VPS` => `176.31.163.227`
+
+Génération des certificats pour `Docker MailServer` et `SOGo`
+
 ````
 # Installer le plugin
 sudo apt install python3-certbot-dns-ovh
@@ -79,37 +82,15 @@ Droits
 sudo chmod 600 /etc/letsencrypt/ovh.ini
 ````
 
-`- 2.4` Génération Certificat
+`- 2.4` Génération Certificats `DMS` et `SOGo`
 ````
 sudo certbot certonly \
   --dns-ovh \
   --dns-ovh-credentials /etc/letsencrypt/ovh.ini \
   -d mail.nalsed.fr \
-  --deploy-hook "docker restart dms"
+  -d webmail.nalsed.fr \
+  --deploy-hook "docker restart mailserver sogo"
 ````
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ---
 
@@ -166,11 +147,64 @@ services:
 ````
 
 `- 3.2 SOGo`
-````
+
+[DOC](https://sarit-r.medium.com/set-secure-email-server-with-docker-mailserver-604616c35c37)
 
 ````
+services:
+  sogo:
+    image: pmietlicki/sogo-from-sources
+    container_name: sogo
+    ports:
+      - "80:80"       # HTTP
+      - "443:443"     # HTTPS
+      - "8800:8800"   # Port pour Apple devices
+    volumes:
+      - sogo-conf:/srv/etc
+      - sogo-data:/srv/lib/sogo
+      - /etc/letsencrypt/:/etc/letsencrypt:ro
+   environment:
+      - SOGoDomainAllowed=nalsed.fr
+      - SOGoMailingMechanism=smtp
+      - SOGoSMTPServer=smtp://mail.nalsed.fr:587?tls=YES
+      - SOGoIMAPServer=imaps://mail.nalsed.fr:993
+      - SOGoPasswordRecoveryEnabled=YES
+      - SOGoPasswordRecoveryFrom=landes_martin@yahoo.fr
+      - SOGoPasswordRecoveryMode=SecondaryEmail
+      - WOWorkersCount=4
+      - SOGoLanguage=French
+      - SOGoTimeZone=Europe/Paris
+      - POSTGRESQL_HOST=db
+      - POSTGRESQL_PORT=5432
+      - POSTGRESQL_DATABASE=sogo
+      - POSTGRESQL_USER=sogo
+      # Le password est dans un .env 
+      - POSTGRESQL_PASSWORD=${POSTGRES_PASSWORD}
 
-### `env` [ICI](https://github.com/docker-mailserver/docker-mailserver/blob/master/mailserver.env)
+    depends_on:
+      - db
+
+  db:
+    image: postgres:17
+    container_name: sogo-postgres
+    environment:
+      # Le password est dans un .env
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=sogo
+      - POSTGRES_USER=sogo
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  sogo-conf:
+    driver: local
+  sogo-data:
+    driver: local
+  postgres-data:
+    driver: local
+````
+
+### `env` => [DMS](https://github.com/docker-mailserver/docker-mailserver/blob/master/mailserver.env) et [SOGo]([https://www.sogo.nu/files/docs/SOGoInstallationGuide.html](https://www.sogo.nu/files/docs/SOGoInstallationGuide.html#_general_preferences))
 
 
 
