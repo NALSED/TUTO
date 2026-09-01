@@ -119,18 +119,6 @@ sudo chown root:root /etc/letsencrypt/ovh.ini
 
 `- 2.4` Génération Certificat 
 
-`[NOTE]`
-
-Un certificat unique couvrant les deux noms poserait trois problèmes :
-
-- Le --deploy-hook redémarre le conteneur à chaque renouvellement. D'où deux certificats distincts : ainsi le renouvellement de SOGo ne coupe pas DMS.
-
-- `SOGo` ne retrouverai pas son Certificat : il cherche un répertoire nommé `webmail.nalsed.fr`, qui n'existe pas dans ce schéma.
-
-- Renouvellement solidaire : si une validation DNS échoue pour un des deux nom (SOGo et DMS), le certificat n'est pas renouvelé.
-
-- `DNS-01` car `HTTP-01` demande le port 80 utilisé par `SOGo`, il faudrait l'arrêter temporairement.
-
 ---
 
 ### `Certificats`
@@ -399,6 +387,12 @@ for i in $ports; do
 done
 ````
 
+`[TEST]`
+````
+sudo iptables -L INPUT --line-numbers -n
+````
+
+
 - Bascule et rendre persistant
 ````
 sudo iptables -P INPUT DROP
@@ -484,6 +478,15 @@ Ici : `_dmarc.nalsed.fr. IN DMARC v=DMARC1; p=none; rua=mailto:dmarcnalsed@proto
 
 # `-5-` Administration Container.
 
+⚠️ Prérequis propre à mon infra ⚠️
+````
+# Stopper nginx 
+sudo systemctl disable --now nginx
+
+# Purger exim4
+sudo apt purge exim4 exim4-base exim4-config exim4-daemon-light
+````
+
 
 `- 5.1` Lancement Container
 
@@ -558,7 +561,7 @@ docker exec mailserver cat /tmp/docker-mailserver/rspamd/dkim/mail.public.dns.tx
 
 dig +short @1.1.1.1 mail._domainkey.nalsed.fr TXT
 
-Test de bout en bout : envoie un mail depuis ta boîte vers check-auth@verifier.port25.com. Le rapport automatique te dira si SPF, DKIM et DMARC passent tous les trois. C'est le contrôle qui valide réellement les points 4.5 et 5.3.
+Test de bout en bout : envoie un mail depuis la boîte vers check-auth@verifier.port25.com. Le rapport automatique dira si SPF, DKIM et DMARC passent tous les trois. C'est le contrôle qui valide réellement les points 4.5 et 5.3.
 
 
 
