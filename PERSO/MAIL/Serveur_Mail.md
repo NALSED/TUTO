@@ -68,6 +68,10 @@ Ici
 
 - SOGo  : `webmail.nalsed.fr. IN A 176.31.163.227`
 
+`[TEST]`
+
+<img width="543" height="114" alt="image" src="https://github.com/user-attachments/assets/5704b5f1-9c58-4d29-baf5-e60a9495e38f" />
+
 ---
 
 # `-2-` Certificat `Let's Encrypt`
@@ -77,8 +81,13 @@ Ici
 [Lien](https://auth.eu.ovhcloud.com/api/createToken)
 
 
-<img width="531" height="501" alt="image" src="https://github.com/user-attachments/assets/c2e85a0b-477d-4050-a966-915c66e2901d" />
+<img width="522" height="508" alt="image" src="https://github.com/user-attachments/assets/c1f3eba1-c945-4b3c-83f6-4a7d102c58a0" />
 
+`[NOTE]`
+
+- Utilisation des 4 lignes car certbot lit la zone(GET) , crée le TXT_acme_challenge(POST), applique les modifs(PUT), et supprime(DELETE).
+
+- Le champs doit être restrain car avec un token de type `/domain/zone/*`, le token donne accés à tous (facturation, VPS, DNS, etc...),le tout depuis un fichier en clair sur une machine exposée sur Internet.
 
 ### `- 2.2` Sur le `VPS` => `176.31.163.227`
 
@@ -104,23 +113,47 @@ dns_ovh_consumer_key = xxxxxxxx
 Droits
 ````
 sudo chmod 600 /etc/letsencrypt/ovh.ini
+sudo chown root:root /etc/letsencrypt/ovh.ini
 ````
 
-`- 2.4` Génération Certificats `DMS` et `SOGo`
+`- 2.4` Génération Certificat 
+
+`[NOTE]`
+
+Un certificat unique couvrant les deux noms poserait trois problèmes :
+
+- Le --deploy-hook redémarre le conteneur à chaque renouvellement. D'où deux certificats distincts : ainsi le renouvellement de SOGo ne coupe pas DMS.
+
+- `SOGo` ne retrouverai pas son Certificat : il cherche un répertoire nommé `webmail.nalsed.fr`, qui n'existe pas dans ce schéma.
+
+- Renouvellement solidaire : si une validation DNS échoue pour un des deux nom (SOGo et DMS), le certificat n'est pas renouvelé.
+
+- `DNS-01` car `HTTP-01` demande le port 80 utilisé par `SOGo`, il faudrait l'arrêter temporairement.
+
+- `DMS`
 ````
 sudo certbot certonly \
   --dns-ovh \
   --dns-ovh-credentials /etc/letsencrypt/ovh.ini \
   -d mail.nalsed.fr \
-  -d webmail.nalsed.fr \
-  --deploy-hook "docker restart mailserver sogo"
+  --deploy-hook "docker restart mailserver"
 ````
+
+- `SOGo` (via `Caddy`)
+````
+sudo certbot certonly \
+  --dns-ovh \
+  --dns-ovh-credentials /etc/letsencrypt/ovh.ini \
+  -d webmail.nalsed.fr \
+  --deploy-hook "docker restart caddy"
+````
+
 
 ---
 
 # `-3-` Création des Docker compose 
 
-`- 3.1` Créer dossiers pour `DMS` et `SOGo`
+`- 3.1` Créer dossiers pour `DMS`, `SOGo` et `Caddy`
 ````
 # Contener DMS
 mkdir -p ~/DMS/Mail_Server
@@ -130,6 +163,11 @@ vim compose.yaml
 # Contener SOGO
 mkdir -p ~/DMS/SOGo/
 cd ~/DMS/SOGo/
+vim compose.yaml
+
+# Contener Caddy
+mkdir -p ~/DMS/Caddy/
+cd ~/DMS/Caddy/
 vim compose.yaml
 ````
 
@@ -143,7 +181,6 @@ services:
     hostname: mail.nalsed.fr  
     ports:
       - "25:25" # SMTP
-      - "143:143" # IMAP4 (explicit TLS => STARTTLS)
       - "465:465" # ESMTP (implicit TLS)
       - "587:587" # ESMTP (explicit TLS => STARTTLS)
       - "993:993" # IMAP4 (implicit TLS)
@@ -159,7 +196,12 @@ services:
       - SSL_TYPE=letsencrypt  
       - ENABLE_CLAMAV=1 
       - ENABLE_RSPAMD=1
-      - ENABLE_SPAMASSASSIN=0 
+# Les Variable suivante sont à 0 car par défaut à 1
+      - ENABLE_SPAMASSASSIN=0
+      - ENABLE_OPENDKIM=0
+      - ENABLE_OPENDMARC=0
+      - ENABLE_POLICYD_SPF=0
+      - RSPAMD_CHECK_AUTHENTICATED=0
       - ENABLE_IMAP=1
       - SPOOF_PROTECTION=1 
     cap_add: 
@@ -181,13 +223,11 @@ services:
   sogo:
     image: pmietlicki/sogo-from-sources
     container_name: sogo
-    ports:
-      - "80:80"       # HTTP
-      - "443:443"     # HTTPS
+    expose:
+      - "80"
     volumes:
       - sogo-conf:/srv/etc
       - sogo-data:/srv/lib/sogo
-      - /etc/letsencrypt/:/etc/letsencrypt:ro
     environment:
       - MAIL_DOMAIN=nalsed.fr
       - MAIL_IMAP_SERVER=imaps://mail.nalsed.fr:993
@@ -203,11 +243,11 @@ services:
       - POSTGRESQL_PORT=5432
       - POSTGRESQL_DATABASE=sogo
       - POSTGRESQL_USER=sogo
-
+      # Le password est dans un .env
       - POSTGRESQL_PASSWORD=${POSTGRES_PASSWORD}
-
     depends_on:
       - db
+    restart: always
 
   db:
     image: postgres:17
@@ -219,6 +259,7 @@ services:
       - POSTGRES_USER=sogo
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    restart: always
 
 volumes:
   sogo-conf:
@@ -227,6 +268,10 @@ volumes:
     driver: local
   postgres-data:
     driver: local
+
+networks:
+  default:
+    name: sogo-net
 ````
 
 `- 3.4` Création du fichier .env pour Password `PostGreSQL`
@@ -240,9 +285,41 @@ POSTGRES_PASSWORD=<PASSWORD_DB>
 chmod 600 .env
 ````
 
+`- 3.5` 
+````
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - /etc/letsencrypt/:/etc/letsencrypt:ro
+      - caddy-data:/data
+    restart: always
+    networks:
+      - sogo-net
 
+volumes:
+  caddy-data:
 
-### `env` => [DMS](https://github.com/docker-mailserver/docker-mailserver/blob/master/mailserver.env) et [SOGo]([https://www.sogo.nu/files/docs/SOGoInstallationGuide.html](https://www.sogo.nu/files/docs/SOGoInstallationGuide.html#_general_preferences))
+networks:
+  sogo-net:
+    external: true
+````
+
+`- 3.6` Caddyfile
+````
+vim ~/DMS/Caddy/Caddyfile
+
+# Editer
+webmail.nalsed.fr {
+    tls /etc/letsencrypt/live/webmail.nalsed.fr/fullchain.pem /etc/letsencrypt/live/webmail.nalsed.fr/privkey.pem
+    reverse_proxy sogo:80
+}
+````
 
 
 ---
@@ -261,8 +338,9 @@ chmod 600 .env
 
 -3- Changer le nom `Reverse DNS` par `mail.nalsed.fr`
 
+`[TEST]`
 
-
+<img width="741" height="39" alt="image" src="https://github.com/user-attachments/assets/69040e67-3679-40f3-81cc-0850b7b1172e" />
 
 
 
