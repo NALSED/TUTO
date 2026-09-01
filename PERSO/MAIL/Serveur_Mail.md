@@ -131,6 +131,10 @@ Un certificat unique couvrant les deux noms poserait trois problèmes :
 
 - `DNS-01` car `HTTP-01` demande le port 80 utilisé par `SOGo`, il faudrait l'arrêter temporairement.
 
+---
+
+### `Docker Compose`
+
 - `DMS`
 ````
 sudo certbot certonly \
