@@ -26,7 +26,7 @@ Il est bon de lire cette partie de la documentation afin de bien comprendre le f
 [INTRO](https://docker-mailserver.github.io/docker-mailserver/latest/introduction/)
 
 
-- 
+--- 
 ---
 
 ### VPS
