@@ -133,7 +133,7 @@ Un certificat unique couvrant les deux noms poserait trois problèmes :
 
 ---
 
-### `Docker Compose`
+### `Certificats`
 
 - `DMS`
 ````
@@ -188,6 +188,10 @@ mkdir -p ~/DMS/Caddy/
 cd ~/DMS/Caddy/
 vim compose.yaml
 ````
+
+---
+
+### `Docker Compose`
 
 `- 3.2` DMS
 ```` 
