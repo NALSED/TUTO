@@ -484,8 +484,8 @@ Ici : `_dmarc.nalsed.fr. IN DMARC v=DMARC1; p=none; rua=mailto:dmarcnalsed@proto
 # Stopper nginx 
 sudo systemctl disable --now nginx
 
-# Purger exim4
-sudo apt purge exim4 exim4-base exim4-config exim4-daemon-light
+# Désactiver exim4
+sudo systemctl disable --now exim4
 ````
 
 
