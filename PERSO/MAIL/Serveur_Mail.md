@@ -82,13 +82,13 @@ Ici
 [Lien](https://auth.eu.ovhcloud.com/api/createToken)
 
 
-<img width="522" height="508" alt="image" src="https://github.com/user-attachments/assets/c1f3eba1-c945-4b3c-83f6-4a7d102c58a0" />
+<img width="529" height="435" alt="image" src="https://github.com/user-attachments/assets/910e1743-2765-42d1-800e-17873c1d3b33" />
+
 
 `[NOTE]`
 
 - Utilisation des 4 lignes car certbot lit la zone(GET) , crée le TXT_acme_challenge(POST), applique les modifs(PUT), et supprime(DELETE).
 
-- Le champs doit être restrain car avec un token de type `/domain/zone/*`, le token donne accés à tous (facturation, VPS, DNS, etc...),le tout depuis un fichier en clair sur une machine exposée sur Internet.
 
 ### `- 2.2` Sur le `VPS` => `176.31.163.227`
 
@@ -96,10 +96,12 @@ Génération des certificats pour `Docker MailServer` et `SOGo`
 
 ````
 # Installer le plugin
-sudo apt install python3-certbot-dns-ovh
+sudo apt install certbot python3-pip
+sudo pip install --break-system-packages certbot-dns-ovh
+certbot plugins --text | grep -i ovh
 ````
 
-`- 2.3` Création du fichiers `Certificats` et édition fichier `Clées API`.
+`- 2.3` Création du fichier `Clées API`.
 ````
 sudo mkdir -p /etc/letsencrypt
 
@@ -129,7 +131,7 @@ sudo certbot certonly \
   --dns-ovh \
   --dns-ovh-credentials /etc/letsencrypt/ovh.ini \
   -d mail.nalsed.fr \
-  --deploy-hook "docker restart mailserver"
+  --deploy-hook "/usr/bin/docker restart mailserver"
 ````
 
 - `SOGo` (via `Caddy`)
@@ -138,7 +140,7 @@ sudo certbot certonly \
   --dns-ovh \
   --dns-ovh-credentials /etc/letsencrypt/ovh.ini \
   -d webmail.nalsed.fr \
-  --deploy-hook "docker restart caddy"
+  --deploy-hook "/usr/bin/docker restart caddy"
 ````
 
 `- 2.5` Timer certbot et certbot renew dry
@@ -153,6 +155,11 @@ sudo systemctl enable --now certbot.timer
 ````
 sudo certbot renew --dry-run
 ````
+
+- Sortie attendu
+
+<img width="734" height="402" alt="image" src="https://github.com/user-attachments/assets/54b4fd73-32fb-4d7a-9339-6c7fb955c718" />
+
 
 ---
 ---
