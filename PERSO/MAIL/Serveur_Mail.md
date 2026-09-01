@@ -299,7 +299,7 @@ POSTGRES_PASSWORD=<PASSWORD_DB>
 chmod 600 .env
 ````
 
-`- 3.5` 
+`- 3.5` Caddy
 ````
 services:
   caddy:
@@ -339,6 +339,15 @@ webmail.nalsed.fr {
 ---
 
 # `-4-` Gestions de la `Sécurité` des container et Services.
+
+`[NOTE]` 
+
+- Cette partie est un peux longue, voici le récapitulatif :
+
+
+
+
+---
 
 `- 4.1` Enregistrement `PTR` sur OVH
 
@@ -383,13 +392,37 @@ sudo netfilter-persistent save
 ````
 
 
+`- 4.3` Sécuriser `SSH` et port `22`
+
+`[INFO]`
+
+- Pour se rendre compte de l'utilité de sécuriser se port et protocol :
+
+<img width="871" height="41" alt="image" src="https://github.com/user-attachments/assets/b8502fef-06cd-4fc4-a69e-82546f50ac13" />
 
 
+- Créer un fichier de configuration prioritaire sur celui de OVH (50-cloud-init.conf)
+⚠️ L'authentification par mot de pass ne sera plus possible après, pensé à gérer un mode d'authentification, ici clé ssh.
+````
+sudo vim /etc/ssh/sshd_config.d/00-HardeningSSH.conf
+
+# Editer
+PermitRootLogin no
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PubkeyAuthentication yes
+````
 
 
+- vérif
+````
+sudo sshd -t
+sudo systemctl restart ssh
+````
 
+`- 4.4` SPF, DKIM et DMARC 
 
-
+`[INFO]`
 
 
 
