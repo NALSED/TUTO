@@ -350,10 +350,15 @@ webmail.nalsed.fr {
 
 `[NOTE]` 
 
-- Cette partie est un peux longue, voici le récapitulatif :
+### - Cette partie est un peux longue, voici le récapitulatif :
 
+### `- 4.1` Enregistrement `PTR` sur OVH
 
+### `- 4.2` Parfeu et Ouverture des ports sur le VPS en `SSH`
 
+### `- 4.3` Sécuriser `SSH` et port `22`
+
+### `- 4.4` SPF, DKIM et DMARC
 
 ---
 
@@ -406,7 +411,7 @@ sudo netfilter-persistent save
 
 `[INFO]`
 
-- Pour se rendre compte de l'utilité de sécuriser se port et protocol :
+- Pour se rendre compte de l'utilité de sécuriser `SSH` :
 
 <img width="871" height="41" alt="image" src="https://github.com/user-attachments/assets/b8502fef-06cd-4fc4-a69e-82546f50ac13" />
 
@@ -431,20 +436,47 @@ sudo systemctl restart ssh
 ````
 
 ---
+---
 
-`- 4.4` SPF, DKIM et DMARC 
+`- 4.4` SPF, DKIM et DMARC
 
 `[INFO]`
+Ces protocoles ont pour but d'assurer que la personne qui envoie le mail y est autorisée, et que le message envoyé n'est pas corrompu.
+En effet, à sa création en 1982, SMTP n'a aucune notion d'authentification de l'expéditeur.
+SPF valide l'enveloppe (`MAIL FROM`), DKIM signe le message et couvre l'en-tête `From:`. DMARC vérifie que le domaine validé correspond bien à celui affiché au destinataire.
 
+Pour ce faire, mise en place de :
 
+### - `SPF`
+- Sender Policy Framework : publie dans le DNS (ici OVH) la liste des IP autorisées à émettre pour le domaine (nalsed.fr).
+- Enregistrement `TXT` listant les émetteurs autorisés. Le mécanisme `mx` autorise les IP des serveurs déclarés en MX du domaine.
 
+### - `DKIM` 
+(Sera implémenté plus tard en -5-)
+- DomainKeys Identified Mail : le serveur signe chaque message sortant avec une clé privée, et publie la clé publique dans le DNS.
+- La signature couvre le corps du message et une sélection d'en-têtes, dont `From:`. Elle survit aux transferts, contrairement à SPF.
 
+### - `DMARC`
+- Domain-based Message Authentication, Reporting and Conformance : c'est la politique qui relie le tout. SPF et DKIM produisent chacun un verdict mais ne disent pas quoi en faire.
+- Un message passe DMARC si au moins un des deux est à la fois valide et **aligné** avec le domaine du `From:`.
 
+---
 
+### SPF
 
+- Enregistrement `SPF` sur DNS OVH => Web Cloud => Noms de domaine => nalsed.fr => Zone Dns
 
+Ici : `nalsed.fr. IN TXT "v=spf1 mx ~all"` , avec Autorisation serveurs `MX`
 
+### DMARC
 
+- Enregistrement `DMARC` sur DNS OVH => Web Cloud => Noms de domaine => nalsed.fr => Zone Dns
+
+Ici : `_dmarc.nalsed.fr. IN DMARC v=DMARC1; p=none; rua=mailto:dmarcnalsed@proton.me; sp=none; aspf=r`
+
+`[TEST]`
+
+<img width="637" height="42" alt="image" src="https://github.com/user-attachments/assets/33206721-9cfd-4da7-ac7d-6868359bbfd9" />
 
 
 
