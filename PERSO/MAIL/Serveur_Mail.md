@@ -479,11 +479,95 @@ Ici : `_dmarc.nalsed.fr. IN DMARC v=DMARC1; p=none; rua=mailto:dmarcnalsed@proto
 <img width="637" height="42" alt="image" src="https://github.com/user-attachments/assets/33206721-9cfd-4da7-ac7d-6868359bbfd9" />
 
 
+---
+---
+
+# `-5-` Administration Container.
+
+
+`- 5.1` Lancement Container
+
+- Ordre important
+1 `DMS` => 2 `SOGo` => 3 `Caddy`
+````
+cd ~/DMS/Mail_Server/
+docker compose up -d
+
+cd ~/DMS/SOGo/
+docker compose up -d
+
+cd ~/DMS/Caddy/
+docker compose up -d
+````
+  
+`[TEST]`
+
+- LOGS
+````
+docker ps
+docker logs mailserver --tail 50
+docker logs sogo --tail 50
+docker logs caddy --tail 50
+````
+
+- VARIABLES
+````
+docker exec mailserver ps aux | grep -E 'opendkim|opendmarc|policyd'
+````
+
+
+`- 5.2` Création des comptes mail
+
+- Boite principale
+````
+docker exec -ti mailserver setup email add martin@nalsed.fr
+````
+
+- Alias
+````
+docker exec -ti mailserver setup alias add contact@nalsed.fr martin@nalsed.fr
+docker exec -ti mailserver setup alias add postmaster@nalsed.fr martin@nalsed.fr
+docker exec -ti mailserver setup alias add abuse@nalsed.fr martin@nalsed.fr
+````
+
+`[NOTE]`
+
+`postmaster` et `abuse` ne sont pas cosmétique plusieurs blocklist vérifient qu'ils répondent, et c'est là qu'arrivent les notification d'incidents.
+
+
+`- 5.3` DKIM
+
+- Générer la clé
+````
+docker exec -ti mailserver setup config dkim
+````
+
+- Vérifier l'implémentation
+````
+docker exec mailserver ls /tmp/docker-mailserver/rspamd/dkim/
+# La clé doit être visible, si ce n'est pas le cas les les variables du point 4 ne sont pas appliquées, une correction est nécessaire.
+````
+
+- Récupérer la valeur pub
+````
+docker exec mailserver cat /tmp/docker-mailserver/rspamd/dkim/mail.public.dns.txt
+# La sortie contient l'enregistrement complet. Ne récupèrer que la partie entre guillemets.
+````
+
+`[TEST]`
+
+dig +short @1.1.1.1 mail._domainkey.nalsed.fr TXT
+
+Test de bout en bout : envoie un mail depuis ta boîte vers check-auth@verifier.port25.com. Le rapport automatique te dira si SPF, DKIM et DMARC passent tous les trois. C'est le contrôle qui valide réellement les points 4.5 et 5.3.
 
 
 
+`- 5.4` Test des deploy-hook
+````
+sudo certbot renew --force-renewal --cert-name webmail.nalsed.fr
 
-
-
+docker ps --filter name=caddy
+# Le STATUS doit montrer un démarrage récent.
+````
 
 
