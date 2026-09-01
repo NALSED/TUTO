@@ -73,6 +73,7 @@ Ici
 <img width="543" height="114" alt="image" src="https://github.com/user-attachments/assets/5704b5f1-9c58-4d29-baf5-e60a9495e38f" />
 
 ---
+---
 
 # `-2-` Certificat `Let's Encrypt`
 
@@ -148,7 +149,20 @@ sudo certbot certonly \
   --deploy-hook "docker restart caddy"
 ````
 
+`- 2.5` Timer certbot et certbot renew dry
 
+- Vérif que le service tourne
+````
+systemctl list-timers certbot.timer
+sudo systemctl enable --now certbot.timer
+````
+
+- Test renouvellement dry des certificats
+````
+sudo certbot renew --dry-run
+````
+
+---
 ---
 
 # `-3-` Création des Docker compose 
@@ -321,7 +335,7 @@ webmail.nalsed.fr {
 }
 ````
 
-
+---
 ---
 
 # `-4-` Gestions de la `Sécurité` des container et Services.
@@ -344,11 +358,17 @@ webmail.nalsed.fr {
 
 
 
+`- 4.2` Parfeu et Ouverture des ports sur le VPS en `SSH`
+
+- `Parfeu`
+````
+sudo iptables -I INPUT 1 -i lo -j ACCEPT
+sudo iptables -I INPUT 2 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+sudo iptables -I INPUT 3 -p tcp --dport 22 -j ACCEPT
+````
 
 
-
-
-`` Ouverture des ports sur le VPS en `SSH`
+- `Ports`
 ````
 ports="80 443 25 465 587 993"
 for i in $ports; do
@@ -356,7 +376,11 @@ for i in $ports; do
 done
 ````
 
-
+- Bascule et rendre persistant
+````
+sudo iptables -P INPUT DROP
+sudo netfilter-persistent save
+````
 
 
 
