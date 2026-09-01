@@ -1,4 +1,4 @@
-# 🐋 Création d'un serveur mail via `Docker MailServer` 🐋
+# 🐋 Création d'un serveur mail avec `Docker MailServer` 🐋
 
 ---
 
@@ -8,13 +8,13 @@ Ce serveur sera accessible depuis la WAN, via l'interface proposé par `SOGo`.
 
 Pour ce faire voici la liste des étapes à réaliser pour arriver à un serveur opérationnel et sécurisé :
 
-## `-1-` Enregistrements DNS su OVH
+## `-1-` Enregistrements DNS sur OVH.
 
-## `-2-` Créations des Certificats pour `Docker MailServer` et `SOGo` 
+## `-2-` Créations des Certificats pour `Docker MailServer` et `SOGo` via `Caddy`.
 
-## `-3-` Création des Docker Compose pour les container `DMS` , `SOGo` et `PostGreSQL` 
+## `-3-` Création des Docker Compose pour les container `DMS` , `SOGo`, `PostGreSQL` et `Caddy`. 
  
-``
+## `-4-` Sécurité des container.
 
 ``
 
