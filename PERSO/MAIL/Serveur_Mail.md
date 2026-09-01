@@ -359,21 +359,22 @@ webmail.nalsed.fr {
 
 `- 4.1` Enregistrement `PTR` sur OVH
 
--1- Bare Metal Cloud => Network => IP
+- Bare Metal Cloud => Network => IP
 
 <img width="363" height="466" alt="image" src="https://github.com/user-attachments/assets/c08b802e-77a5-4ab5-9fdc-d784aa0f8216" />
 
--2- Se rendre dans Configurer reverse DNS
+- Se rendre dans Configurer reverse DNS
 
 <img width="1513" height="435" alt="image" src="https://github.com/user-attachments/assets/6f567437-01a2-4017-bf55-09699badd22d" />
 
--3- Changer le nom `Reverse DNS` par `mail.nalsed.fr`
+- Changer le nom `Reverse DNS` par `mail.nalsed.fr`
 
 `[TEST]`
 
 <img width="741" height="39" alt="image" src="https://github.com/user-attachments/assets/69040e67-3679-40f3-81cc-0850b7b1172e" />
 
 
+---
 
 `- 4.2` Parfeu et Ouverture des ports sur le VPS en `SSH`
 
@@ -399,6 +400,7 @@ sudo iptables -P INPUT DROP
 sudo netfilter-persistent save
 ````
 
+---
 
 `- 4.3` Sécuriser `SSH` et port `22`
 
@@ -427,6 +429,8 @@ PubkeyAuthentication yes
 sudo sshd -t
 sudo systemctl restart ssh
 ````
+
+---
 
 `- 4.4` SPF, DKIM et DMARC 
 
