@@ -204,7 +204,7 @@ services:
       - POSTGRESQL_DATABASE=sogo
       - POSTGRESQL_USER=sogo
 
-      - POSTGRESQL_PASSWORD=${POSTGRES_PASSWORD}}
+      - POSTGRESQL_PASSWORD=${POSTGRES_PASSWORD}
 
     depends_on:
       - db
@@ -234,7 +234,7 @@ volumes:
 cd ~/DMS/SOGo/
 vim .env
 # Editer :
-POSTGRES_PASSWORD=PASSWORD_DB
+POSTGRES_PASSWORD=<PASSWORD_DB>
 
 # Droits
 chmod 600 .env
@@ -259,7 +259,7 @@ chmod 600 .env
 
 <img width="1513" height="435" alt="image" src="https://github.com/user-attachments/assets/6f567437-01a2-4017-bf55-09699badd22d" />
 
--3- Changer le nom `Reverse DNS` par `mail.nalsed.com`
+-3- Changer le nom `Reverse DNS` par `mail.nalsed.fr`
 
 
 
@@ -272,7 +272,7 @@ chmod 600 .env
 
 `` Ouverture des ports sur le VPS en `SSH`
 ````
-ports="5432 80 443 25 143 465 587 993"
+ports="80 443 25 465 587 993"
 for i in $ports; do
     sudo iptables -A INPUT -p tcp --dport "$i" -j ACCEPT
 done
