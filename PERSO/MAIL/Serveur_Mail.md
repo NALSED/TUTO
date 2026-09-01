@@ -502,28 +502,28 @@ sudo systemctl disable --now exim4
 1 `DMS` => 2 `SOGo` => 3 `Caddy`
 ````
 cd ~/DMS/Mail_Server/
-docker compose up -d
+sudo docker compose up -d
 
 cd ~/DMS/SOGo/
-docker compose up -d
+sudo docker compose up -d
 
 cd ~/DMS/Caddy/
-docker compose up -d
+sudo docker compose up -d
 ````
   
 `[TEST]`
 
 - LOGS
 ````
-docker ps
-docker logs mailserver --tail 50
-docker logs sogo --tail 50
-docker logs caddy --tail 50
+sudo docker ps
+sudo docker logs mailserver --tail 50
+sudo docker logs sogo --tail 50
+sudo docker logs caddy --tail 50
 ````
 
 - VARIABLES
 ````
-docker exec mailserver ps aux | grep -E 'opendkim|opendmarc|policyd'
+sudo docker exec mailserver ps aux | grep -E 'opendkim|opendmarc|policyd'
 ````
 
 
@@ -531,14 +531,14 @@ docker exec mailserver ps aux | grep -E 'opendkim|opendmarc|policyd'
 
 - Boite principale
 ````
-docker exec -ti mailserver setup email add martin@nalsed.fr
+sudo docker exec -ti mailserver setup email add martin@nalsed.fr
 ````
 
 - Alias
 ````
-docker exec -ti mailserver setup alias add contact@nalsed.fr martin@nalsed.fr
-docker exec -ti mailserver setup alias add postmaster@nalsed.fr martin@nalsed.fr
-docker exec -ti mailserver setup alias add abuse@nalsed.fr martin@nalsed.fr
+sudo docker exec -ti mailserver setup alias add contact@nalsed.fr martin@nalsed.fr
+sudo docker exec -ti mailserver setup alias add postmaster@nalsed.fr martin@nalsed.fr
+sudo docker exec -ti mailserver setup alias add abuse@nalsed.fr martin@nalsed.fr
 ````
 
 `[NOTE]`
@@ -546,16 +546,36 @@ docker exec -ti mailserver setup alias add abuse@nalsed.fr martin@nalsed.fr
 `postmaster` et `abuse` ne sont pas cosmétique plusieurs blocklist vérifient qu'ils répondent, et c'est là qu'arrivent les notification d'incidents.
 
 
+
+### ⚠️ Si probleme Password  ⚠️
+
+- Tester l'authentification contre Dovecot
+````
+sudo docker exec -ti mailserver doveadm auth test martin@nalsed.fr
+````
+
+- Changer
+````
+sudo docker exec -ti mailserver setup email update martin@nalsed.f
+
+# Test
+docker exec mailserver setup email list
+
+# Restart
+docker restart mailserver
+````
+
+
 `- 5.3` DKIM
 
 - Générer la clé
 ````
-docker exec -ti mailserver setup config dkim
+sudo docker exec -ti mailserver setup config dkim
 ````
 
 - Vérifier l'implémentation
 ````
-docker exec mailserver ls /tmp/docker-mailserver/rspamd/dkim/
+sudo docker exec mailserver ls /tmp/docker-mailserver/rspamd/dkim/
 # La clé doit être visible, si ce n'est pas le cas les les variables du point 4 ne sont pas appliquées, une correction est nécessaire.
 ````
 
@@ -565,9 +585,17 @@ docker exec mailserver cat /tmp/docker-mailserver/rspamd/dkim/mail.public.dns.tx
 # La sortie contient l'enregistrement complet. Ne récupèrer que la partie entre guillemets.
 ````
 
+- Dans OVH créer un enregistrement TXT avec Sous-domaine : `mail._domainkey` et valeur : `v=DKIM1; k=rsa; p=<clé>`
+
+
 `[TEST]`
 
+````
 dig +short @1.1.1.1 mail._domainkey.nalsed.fr TXT
+# Le résultat attendu est le même enregistrement que celui de OVH.  
+````
+
+- A present https://webmail.nalsed.fr/ fonction
 
 Test de bout en bout : envoie un mail depuis la boîte vers check-auth@verifier.port25.com. Le rapport automatique dira si SPF, DKIM et DMARC passent tous les trois. C'est le contrôle qui valide réellement les points 4.5 et 5.3.
 
