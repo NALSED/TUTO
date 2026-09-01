@@ -435,11 +435,12 @@ sudo systemctl restart ssh
 `- 4.4` SPF, DKIM et DMARC
 
 `[INFO]`
-Ces protocoles ont pour but d'assurer que la personne qui envoie le mail y est autorisée, et que le message envoyé n'est pas corrompu.
+
+- Ces protocoles ont pour but d'assurer que la personne qui envoie le mail y est autorisée, et que le message envoyé n'est pas corrompu.
 En effet, à sa création en 1982, SMTP n'a aucune notion d'authentification de l'expéditeur.
 SPF valide l'enveloppe (`MAIL FROM`), DKIM signe le message et couvre l'en-tête `From:`. DMARC vérifie que le domaine validé correspond bien à celui affiché au destinataire.
 
-Pour ce faire, mise en place de :
+- Pour ce faire, mise en place de :
 
 ### - `SPF`
 - Sender Policy Framework : publie dans le DNS (ici OVH) la liste des IP autorisées à émettre pour le domaine (nalsed.fr).
