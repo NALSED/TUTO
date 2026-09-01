@@ -4,9 +4,29 @@
 
 Ici utilisation de `Docker MailServer`, pour créer un serveur de messagerie, sur un `VPS`.
 
+Ce serveur sera accessible depuis la WAN, via l'interface proposé par `SOGo`.
+
+Pour ce faire voici la liste des étapes à réaliser pour arriver à un serveur opérationnel et sécurisé :
+
+## `-1-` Enregistrements DNS su OVH
+
+## `-2-` Créations des Certificats pour `Docker MailServer` et `SOGo` 
+
+## `-3-` Création des Docker Compose pour les container `DMS` , `SOGo` et `PostGreSQL` 
+ 
+``
+
+``
+
+``
+
+### `[RAPPEL]`
+
 Il est bon de lire cette partie de la documentation afin de bien comprendre le fonctionnement de la messagerie.
 [INTRO](https://docker-mailserver.github.io/docker-mailserver/latest/introduction/)
 
+
+- 
 ---
 
 ### VPS
@@ -164,7 +184,6 @@ services:
     ports:
       - "80:80"       # HTTP
       - "443:443"     # HTTPS
-      - "8800:8800"   # Port pour Apple devices
     volumes:
       - sogo-conf:/srv/etc
       - sogo-data:/srv/lib/sogo
@@ -224,6 +243,66 @@ chmod 600 .env
 
 
 ### `env` => [DMS](https://github.com/docker-mailserver/docker-mailserver/blob/master/mailserver.env) et [SOGo]([https://www.sogo.nu/files/docs/SOGoInstallationGuide.html](https://www.sogo.nu/files/docs/SOGoInstallationGuide.html#_general_preferences))
+
+
+---
+
+# `-4-` Gestions de la `Sécurité` des container et Services.
+
+`- 4.1` Enregistrement `PTR` sur OVH
+
+-1- Bare Metal Cloud => Network => IP
+
+<img width="363" height="466" alt="image" src="https://github.com/user-attachments/assets/c08b802e-77a5-4ab5-9fdc-d784aa0f8216" />
+
+-2- Se rendre dans Configurer reverse DNS
+
+<img width="1513" height="435" alt="image" src="https://github.com/user-attachments/assets/6f567437-01a2-4017-bf55-09699badd22d" />
+
+-3- Changer le nom `Reverse DNS` par `mail.nalsed.com`
+
+
+
+
+
+
+
+
+
+
+`` Ouverture des ports sur le VPS en `SSH`
+````
+ports="5432 80 443 25 143 465 587 993"
+for i in $ports; do
+    sudo iptables -A INPUT -p tcp --dport "$i" -j ACCEPT
+done
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
