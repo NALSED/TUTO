@@ -441,23 +441,22 @@ sudo docker exec mailserver postconf inet_protocols smtp_address_preference
 
 - Changer le nom `Reverse DNS` par `mail.nalsed.fr`
 
-`[NOTE]` L'enregistrement `A` du point `- 1.4` doit être propagé avant : OVH refuse un reverse dont le forward ne résout pas.
+`[NOTE]` 
+
+L'enregistrement `A` du point `- 1.4` doit être propagé avant : OVH refuse un reverse dont le forward ne résout pas.
 
 `[TEST]`
-
-<img width="741" height="39" alt="image" src="https://github.com/user-attachments/assets/69040e67-3679-40f3-81cc-0850b7b1172e" />
-
 ````
 # Toujours interroger un résolveur public : le DNS local (pfSense) répond avant et masque le résultat réel
 dig +short -x 176.31.163.227 @1.1.1.1
 dig +short mail.nalsed.fr A @1.1.1.1
 ````
 
+
+
 ---
 
 ### `- 4.2` Pare-feu et ouverture des ports sur le VPS
-
-`[NOTE]` Debian 13 utilise `nftables`, mais la commande `iptables` passe par la couche de compatibilité `iptables-nft`. Ne pas mélanger les deux syntaxes sur la même machine : deux jeux de règles dans des tables différentes s'évaluent en parallèle et le `DROP` le plus restrictif l'emporte.
 
 - Ports volontairement **non** ouverts :
   - `5432` : le service `db` n'a aucun mapping `ports:`, il n'écoute que sur le réseau Docker interne.
@@ -490,15 +489,13 @@ sudo iptables -P INPUT DROP
 sudo netfilter-persistent save
 ````
 
-`[NOTE]` Le tunnel Bareos (`-L 9103:localhost:9103`) continue de fonctionner : le trafic arrive par le port 22 et ressort en loopback, couvert par la règle `-i lo`.
-
 ---
 
 ### `- 4.3` Sécuriser `SSH` et port `22`
 
 `[INFO]`
 
-- Pour se rendre compte de l'utilité de sécuriser `SSH` :
+- Pour se rendre compte de l'utilité de sécuriser `SSH` (4406 tentative d'entrée en 24h !) :
 
 <img width="871" height="41" alt="image" src="https://github.com/user-attachments/assets/b8502fef-06cd-4fc4-a69e-82546f50ac13" />
 
@@ -508,14 +505,8 @@ sudo journalctl -u ssh --since "24 hours ago" | grep -c "Failed password"
 
 - Créer un fichier de configuration prioritaire sur celui d'OVH (`50-cloud-init.conf`, qui contient `PasswordAuthentication yes`).
 
-`[NOTE]` Les fichiers de `sshd_config.d/` sont inclus en tête et la **première** valeur lue l'emporte. Le préfixe `00-` garantit la priorité, et le fichier survit à un rebuild du VPS contrairement à une édition de `50-cloud-init.conf`.
 
-⚠️ L'authentification par mot de passe ne sera plus possible après, penser à gérer un mode d'authentification, ici clé SSH. Vérifier au préalable que la connexion par clé fonctionne :
-````
-sudo journalctl -u ssh | grep Accepted | tail -5
-# Doit afficher "Accepted publickey", pas "Accepted password"
-````
-
+⚠️ L'authentification par mot de passe ne sera plus possible après, penser à gérer un mode d'authentification, ici clé SSH. Vérifier au préalable que la connexion par clé fonctionne
 ````
 sudo vim /etc/ssh/sshd_config.d/00-HardeningSSH.conf
 
@@ -530,14 +521,8 @@ PubkeyAuthentication yes
 ````
 sudo sshd -t
 sudo systemctl restart ssh
-
-# Config effective (et non le contenu du fichier)
-sudo sshd -T | grep -iE 'passwordauth|permitroot'
 ````
 
-Garder la session courante ouverte et en ouvrir une seconde pour tester avant de fermer.
-
----
 ---
 
 ### `- 4.4` SPF, DKIM et DMARC
@@ -553,7 +538,6 @@ SPF valide l'enveloppe (`MAIL FROM`), DKIM signe le message et couvre l'en-tête
 ### - `SPF`
 - Sender Policy Framework : publie dans le DNS (ici OVH) la liste des IP autorisées à émettre pour le domaine (nalsed.fr).
 - Enregistrement `TXT` listant les émetteurs autorisés. Le mécanisme `mx` autorise les IP des serveurs déclarés en MX du domaine.
-- Le qualificateur `~all` (softfail) marque les autres émetteurs comme suspects sans les rejeter. On durcira en `-all` (hardfail) une fois la configuration validée.
 
 ### - `DKIM`
 (Sera implémenté plus tard en `-5-`, la clé étant générée par rspamd dans le conteneur)
@@ -563,7 +547,6 @@ SPF valide l'enveloppe (`MAIL FROM`), DKIM signe le message et couvre l'en-tête
 ### - `DMARC`
 - Domain-based Message Authentication, Reporting and Conformance : c'est la politique qui relie le tout. SPF et DKIM produisent chacun un verdict mais ne disent pas quoi en faire.
 - Un message passe DMARC si au moins un des deux est à la fois valide et **aligné** avec le domaine du `From:`.
-- On démarre en `p=none` (observation seule) : rien n'est bloqué, mais les rapports agrégés permettent de vérifier que tout le trafic légitime passe avant de durcir.
 
 ---
 
@@ -579,20 +562,14 @@ Ici : `nalsed.fr. IN TXT "v=spf1 mx ~all"`, avec autorisation des serveurs `MX` 
 
 Ici : `_dmarc.nalsed.fr. IN TXT "v=DMARC1; p=none; rua=mailto:dmarcnalsed@proton.me; sp=none; aspf=r"`
 
-`[NOTE]`
-
-- L'aperçu OVH affiche `IN DMARC`, ce type n'existe pas : l'enregistrement réel est un `TXT`.
-- `aspf=r` (relaxed) et non `s` (strict) au démarrage : l'alignement strict exigerait un `MAIL FROM` exactement sur `nalsed.fr`.
-- Le `rua` pointe sur une adresse externe pour éviter la dépendance circulaire (si le serveur mail tombe, les rapports qui expliqueraient la panne n'arriveraient pas). Contrepartie : sans contrôle de la zone `proton.me`, l'autorisation croisée `nalsed.fr._report._dmarc.proton.me` ne peut pas exister et certains émetteurs (Google, Microsoft) n'enverront pas leurs rapports.
 
 `[TEST]`
-
-<img width="637" height="42" alt="image" src="https://github.com/user-attachments/assets/33206721-9cfd-4da7-ac7d-6868359bbfd9" />
-
 ````
-dig +short @1.1.1.1 nalsed.fr TXT
 dig +short @1.1.1.1 _dmarc.nalsed.fr TXT
 ````
+<img width="637" height="42" alt="image" src="https://github.com/user-attachments/assets/33206721-9cfd-4da7-ac7d-6868359bbfd9" />
+
+
 
 ---
 ---
@@ -631,7 +608,7 @@ sudo systemctl disable --now nginx
 sudo systemctl disable --now exim4
 ````
 
-⚠️ Ne **pas** purger exim4 : `bareos-director` dépend de `bsd-mailx`, qui dépend d'un MTA. Un `apt purge exim4` entraînerait la suppression de toute la chaîne Bareos. Un simple `disable` suffit.
+⚠️ Ne **pas** purger exim4 : `bareos-director` dépend de `bsd-mailx`, qui dépend d'un MTA. Un `apt purge exim4` entraînerait la suppression de toute la chaîne Bareos.
 
 ---
 
@@ -650,7 +627,6 @@ cd ~/DMS/Caddy/
 sudo docker compose up -d
 ````
 
-`[NOTE]` En cas de changement de réseau sur une stack déjà lancée, un `docker compose up -d` échoue avec `network ... not found`. Faire `docker compose down` puis `up -d` : les données sont dans des bind mounts, rien n'est perdu.
 
 `[TEST]`
 
@@ -661,8 +637,6 @@ sudo docker logs mailserver --tail 50
 sudo docker logs sogo --tail 50
 sudo docker logs caddy --tail 50
 ````
-
-`[NOTE]` Le healthcheck DMS a un `start_period` de 90 s, le temps que ClamAV charge ses signatures. Un `health: starting` pendant deux minutes est normal.
 
 - VARIABLES
 ````
@@ -684,7 +658,7 @@ sudo docker network inspect sogo-net --format '{{range .Containers}}{{.Name}} {{
 sudo docker exec -ti mailserver setup email add martin@nalsed.fr
 ````
 
-⚠️ Le `-ti` est indispensable sur toute commande qui demande une saisie. Sans lui, la saisie du mot de passe n'est pas captée et l'échec est **silencieux** : le compte apparaît normal dans `setup email list` mais aucune authentification ne fonctionne.
+⚠️ Le `-ti` est indispensable sur toute commande qui demande une saisie. Sans lui, la saisie du mot de passe n'est pas captée et l'échec est*silencieux. 
 
 - Alias
 ````
@@ -699,7 +673,15 @@ sudo docker exec -ti mailserver setup alias add abuse@nalsed.fr martin@nalsed.fr
 
 
 
-### ⚠️ Si problème de mot de passe ⚠️
+
+
+<details>
+<summary>
+<h2>
+ ⚠️ Si problème de mot de passe ⚠️
+
+</h2>
+</summary>
 
 - Tester l'authentification contre Dovecot
 ````
@@ -733,13 +715,18 @@ UPDATE sogo_users SET c_password = MD5('nouveau') WHERE c_uid = 'martin';
 sudo docker restart sogo
 ````
 
+</details>
+
 
 ### `- 5.3` Création de la table et de l'utilisateur SQL
 
 `[NOTE]`
-Sans cette table, le compte créé précédemment n'aura pas d'utilisateur, donc la connexion sur le WebUI de SOGo est impossible. SOGo ne supporte que deux types de sources utilisateurs, `sql` et `ldap` : il n'existe pas de source `imap`, la duplication du mot de passe est donc inévitable.
 
-⚠️ Le mot de passe de l'utilisateur doit être le même que celui du compte mail. En cas de changement ou de révocation, penser à gérer les deux.
+Sans cette table, le compte créé précédemment n'aura pas d'utilisateur, donc la connexion sur le WebUI de SOGo est impossible. 
+
+SOGo ne supporte que deux types de sources utilisateurs, `sql` et `ldap` : il n'existe pas de source `imap`, la duplication du mot de passe est donc inévitable.
+
+### ⚠️ Le mot de passe de l'utilisateur doit être le même que celui du compte mail. En cas de changement ou de révocation, penser à gérer les deux.
 
 - Connexion à la `DB`
 ````
@@ -761,13 +748,16 @@ CREATE TABLE sogo_users (
 
 - Ajout d'un compte utilisateur
 ````
-# !!! Le mot de passe doit être identique à celui de DMS, sinon SOGo authentifie via SQL
-# mais échoue à ouvrir la session IMAP derrière (page blanche, sans message d'erreur visible). !!!
+# !!! Le mot de passe doit être identique à celui de DMS !!!
 INSERT INTO sogo_users (c_uid, c_name, c_password, c_cn, mail, aliases)
 VALUES ('martin', 'martin@nalsed.fr', MD5('MOT_DE_PASSE_DMS'), 'Martin', 'martin@nalsed.fr', 'contact@nalsed.fr');
 ````
 
-`[NOTE]` L'algorithme `md5` est celui configuré par défaut dans `sogo.conf` (`userPasswordAlgorithm = md5;`). Il n'est pas salé, à durcir en `ssha512` lors du passage sous gestionnaire de mots de passe.
+`[NOTE]`
+
+⚠️ Propre à mon Infra ⚠️
+
+L'algorithme `md5` est celui configuré par défaut dans `sogo.conf` (`userPasswordAlgorithm = md5;`). Il n'est pas salé, à durcir en `ssha512` lors du passage sous gestionnaire de mots de passe.
 
 - Redémarrer SOGo
 ````
@@ -777,14 +767,16 @@ sudo docker restart sogo
 
 ### `- 5.4` Configuration de `sogo.conf`
 
-`[NOTE]` Deux paramètres manquants empêchent le webmail de fonctionner correctement, même une fois la table créée.
+`[NOTE]` 
+
+⚠️ Deux paramètres manquants empêchent le webmail de fonctionner correctement, même une fois la table créée. ⚠️
 
 - Fichier côté hôte :
 ````
 sudo vim /var/lib/docker/volumes/sogo_sogo-conf/_data/sogo.conf
 ````
 
-- Ajouter dans le bloc principal (attention aux points-virgules, syntaxe OpenStep) :
+- Ajouter dans le bloc principal :
 ````
     SOGoForceExternalLoginWithEmail = YES;
     WOWorkersCount = 5;
@@ -799,14 +791,6 @@ sudo vim /var/lib/docker/volumes/sogo_sogo-conf/_data/sogo.conf
 sudo docker restart sogo
 ````
 
-`[TEST]`
-````
-sudo docker exec sogo tail -50 /var/log/sogo/sogo.log
-````
-
-`[NOTE]` L'erreur `'OCSAdminURL' is not set` au démarrage est bénigne (administration multi-domaines, non utilisée ici).
-
-
 ### `- 5.5` DKIM
 
 - Générer la clé
@@ -817,9 +801,7 @@ sudo docker exec -ti mailserver setup config dkim
 - Vérifier l'implémentation
 ````
 sudo docker exec mailserver ls /tmp/docker-mailserver/rspamd/dkim/
-# La clé doit être visible. Si le répertoire n'existe pas et que la clé se trouve sous
-# opendkim/, les variables du point 3.2 ne sont pas appliquées : corriger AVANT de publier
-# quoi que ce soit dans le DNS.
+# La clé doit être visible. 
 ````
 
 - Récupérer la valeur publique
@@ -856,7 +838,9 @@ DKIM check:         pass
 
 `- 5.5.1` Signature DKIM du trafic interne
 
-`[NOTE]` Rspamd ne signe que les messages authentifiés (`sign_local = false` par défaut). Le courrier venant de SOGo par le port 25 n'est donc pas signé.
+`[NOTE]` 
+
+Rspamd ne signe que les messages authentifiés (`sign_local = false` par défaut). Le courrier venant de SOGo par le port 25 n'est donc pas signé.
 
 ````
 mkdir -p ~/DMS/Mail_Server/docker-data/dms/config/rspamd/override.d/
@@ -866,17 +850,16 @@ vim ~/DMS/Mail_Server/docker-data/dms/config/rspamd/override.d/dkim_signing.conf
 sign_local = true;
 ````
 
-⚠️ Ne pas ajouter `sign_networks` en chaîne : rspamd attend une liste (`invalid map fetching protocol`).
-
-`[TEST]`
+- redemarrage
 ````
 sudo docker restart mailserver
-sudo docker exec mailserver rspamadm configdump dkim_signing | grep sign_local
 ````
 
 ### `- 5.6` Test des deploy-hooks
 
-`[NOTE]` Le `--dry-run` seul n'exécute **pas** les deploy-hooks. L'option `--run-deploy-hooks` les déclenche sans consommer de quota Let's Encrypt.
+`[NOTE]` 
+
+Le `--dry-run` seul n'exécute **pas** les deploy-hooks. L'option `--run-deploy-hooks` les déclenche sans consommer de quota Let's Encrypt.
 
 ````
 sudo certbot renew --dry-run --run-deploy-hooks
@@ -892,7 +875,11 @@ sudo grep -r renew_hook /etc/letsencrypt/renewal/
 
 ### `- 5.7` Test Open Relay
 
-`[NOTE]` Un serveur qui relaie pour des domaines qui ne lui appartiennent pas est repéré en quelques heures par les scanners, et l'IP est blacklistée pour plusieurs semaines. À retester après toute modification de `mynetworks` ou `PERMIT_DOCKER`.
+`[NOTE]` 
+
+Un serveur qui relaie pour des domaines qui ne lui appartiennent pas est repéré en quelques heures par les scanners, et l'IP est blacklistée pour plusieurs semaines. 
+
+À retester après toute modification de `mynetworks` ou `PERMIT_DOCKER`.
 
 - Depuis une machine extérieure au VPS
 ````
@@ -913,12 +900,11 @@ QUIT
 
 ⚠️ Un `250 Ok` sur le `RCPT TO` signifie que le serveur est un open relay. Corriger avant toute mise en production.
 
-`[NOTE]` La réponse au `EHLO` ne doit pas contenir de ligne `250-AUTH` avant `STARTTLS`. Voir `- 5.8`.
-
-
 ### `- 5.8` Durcissement TLS
 
-`[NOTE]` `smtpd_tls_auth_only` n'est pas activé par défaut. Il interdit l'annonce de `AUTH` avant `STARTTLS`.
+`[NOTE]` 
+
+`smtpd_tls_auth_only` n'est pas activé par défaut. Il interdit l'annonce de `AUTH` avant `STARTTLS`.
 
 ````
 sudo vim ~/DMS/Mail_Server/docker-data/dms/config/user-patches.sh
@@ -984,4 +970,3 @@ ignoreip = 127.0.0.1/8 172.16.0.0/12
 ````
 sudo docker exec mailserver fail2ban-client set dovecot unbanip <IP>
 ````
-- Le webmail peut aussi être ajouté à l'écran d'accueil (PWA) : Chrome => ⋮ => Ajouter à l'écran d'accueil, ou Safari => Partager => Sur l'écran d'accueil.
