@@ -1,4 +1,6 @@
-# 🏠 Hébergement site Web en Local 🏠
+#⚠️ Phase de test terminé, nginx arrêté sur le VPS, afin de libérer le port 80 pour Caddy et son implémentation avec SOGo et DMS⚠️
+
+### 🏠 Hébergement site Web en Local 🏠
 [AIDE 1](https://coder.com/docs/tutorials/reverse-proxy-nginx) // [AIDE 2](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
 ---
 
