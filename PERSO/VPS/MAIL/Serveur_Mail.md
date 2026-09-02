@@ -566,7 +566,35 @@ docker restart mailserver
 ````
 
 
-`- 5.3` DKIM
+`- 5.3` Création Table et User SQL
+
+`[NOTE]`
+Sans cette table le compte créé précedemment n'aura pas d'utilisateur donc connection sur le WEBUI se SOGo impossible.
+⚠️ Le password de l'utilisateur, doit être le même que celui du compte mail, et en cas de changement ou révocation, penser à gérer les deux.
+
+
+- Connection à la `DB`
+````
+sudo docker exec -it sogo-postgres psql -U sogo -d sogo
+````
+
+- Création de la Table `sogo_users` dans PostgreSQL
+````
+CREATE TABLE sogo_users (
+    c_uid VARCHAR(255) PRIMARY KEY,                -- Identifiant unique (nom d'utilisateur)
+    c_name VARCHAR(255) NOT NULL,                  -- Nom unique ou adresse email
+    c_password VARCHAR(255) NOT NULL,              -- Mot de passe haché
+    mail VARCHAR(255) NOT NULL,                    -- Adresse email principale
+    aliases TEXT,                                  -- Autres adresses email ou alias
+    c_cn VARCHAR(255),                             -- Nom complet (Common Name)
+    last_login TIMESTAMP                           -- Dernière date de connexion (facultatif)
+);````
+
+- Ajout d'un compte Utilisateur
+
+
+
+`- 5.4` DKIM
 
 - Générer la clé
 ````
@@ -595,13 +623,13 @@ dig +short @1.1.1.1 mail._domainkey.nalsed.fr TXT
 # Le résultat attendu est le même enregistrement que celui de OVH.  
 ````
 
-- A present https://webmail.nalsed.fr/ fonction
+- A present https://webmail.nalsed.fr/SOGo/ fonctione
 
 Test de bout en bout : envoie un mail depuis la boîte vers check-auth@verifier.port25.com. Le rapport automatique dira si SPF, DKIM et DMARC passent tous les trois. C'est le contrôle qui valide réellement les points 4.5 et 5.3.
 
 
 
-`- 5.4` Test des deploy-hook
+`- 5.5` Test des deploy-hook
 ````
 sudo certbot renew --force-renewal --cert-name webmail.nalsed.fr
 
