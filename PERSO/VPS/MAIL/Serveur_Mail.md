@@ -417,7 +417,7 @@ sudo docker exec mailserver postconf inet_protocols smtp_address_preference
 
 `[NOTE]`
 
-### - Cette partie est un peu longue, voici le récapitulatif :
+## - `SOMMAIRE`
 
 ### `- 4.1` Enregistrement `PTR` sur OVH
 
@@ -598,6 +598,27 @@ dig +short @1.1.1.1 _dmarc.nalsed.fr TXT
 ---
 
 # `-5-` Administration Conteneurs.
+
+
+## - `SOMMAIRE`
+
+### `- 5.1` Lancement des conteneurs
+
+### `- 5.2` Création des comptes mail
+
+### `- 5.3` Création de la table et de l'utilisateur SQL
+
+### `- 5.4` Configuration de `sogo.conf`
+
+### `- 5.5` DKIM
+
+### `- 5.6` Test des deploy-hooks
+
+### `- 5.7` Test Open Relay
+
+### `- 5.8` Durcissement TLS
+
+### `- 5.9` Vérification fail2ban
 
 ⚠️ Prérequis propre à mon infra ⚠️
 ````
@@ -865,14 +886,100 @@ sudo docker ps --filter name=caddy
 sudo grep -r renew_hook /etc/letsencrypt/renewal/
 ````
 
+`- 5.7` Test Open Relay
 
-`- 5.7` Accès depuis un client mobile
+`[NOTE]` Un serveur qui relaie pour des domaines qui ne lui appartiennent pas est repéré en quelques heures par les scanners, et l'IP est blacklistée pour plusieurs semaines. À retester après toute modification de `mynetworks` ou `PERMIT_DOCKER`.
 
-| | Réception | Envoi |
-|---|---|---|
-| Serveur | mail.nalsed.fr | mail.nalsed.fr |
-| Port | 993 | 587 |
-| Sécurité | SSL/TLS | STARTTLS |
-| Identifiant | martin@nalsed.fr | martin@nalsed.fr |
+- Depuis une machine extérieure au VPS
+````
+telnet mail.nalsed.fr 25
 
+EHLO test.example.com
+MAIL FROM:<test@example.com>
+RCPT TO:<test@gmail.com>
+QUIT
+````
+
+`[TEST]`
+
+- Sortie attendue sur le `RCPT TO`
+````
+554 5.7.1 <test@gmail.com>: Relay access denied
+````
+
+⚠️ Un `250 Ok` sur le `RCPT TO` signifie que le serveur est un open relay. Corriger avant toute mise en production.
+
+`[NOTE]` La réponse au `EHLO` ne doit pas contenir de ligne `250-AUTH` avant `STARTTLS`. Voir `- 5.8`.
+
+---
+
+`- 5.8` Durcissement TLS
+
+`[NOTE]` `smtpd_tls_auth_only` n'est pas activé par défaut. Il interdit l'annonce de `AUTH` avant `STARTTLS`.
+
+````
+sudo vim ~/DMS/Mail_Server/docker-data/dms/config/user-patches.sh
+
+# Editer
+#!/bin/bash
+postconf -e "smtpd_tls_auth_only = yes"
+````
+
+- Droits
+````
+sudo chmod +x ~/DMS/Mail_Server/docker-data/dms/config/user-patches.sh
+````
+
+- Recréer le conteneur
+````
+cd ~/DMS/Mail_Server/
+sudo docker compose down
+sudo docker compose up -d
+````
+
+⚠️ Un `docker restart` n'applique pas le script : DMS affiche `Container was restarted. Skipping most setup routines.` et saute la phase de configuration.
+
+`[TEST]`
+````
+sudo docker exec mailserver postconf smtpd_tls_auth_only
+sudo docker exec mailserver doveconf disable_plaintext_auth ssl
+# Attendu : yes  et  ssl = required
+````
+
+---
+
+`- 5.9` Vérification fail2ban
+
+- Prisons actives
+````
+sudo docker exec mailserver fail2ban-client status
+sudo docker exec mailserver fail2ban-client status dovecot
+````
+
+- Mécanisme de bannissement
+````
+sudo docker exec mailserver grep -r banaction /etc/fail2ban/jail.local
+````
+
+`[NOTE]` DMS v16 utilise `nftables-allports`. Le binaire `iptables` n'existe pas dans le conteneur, les règles se consultent avec `nft`.
+
+````
+sudo docker exec mailserver nft list ruleset | grep -A5 f2b
+````
+
+- Liste blanche des réseaux Docker
+
+⚠️ Sans elle, plusieurs échecs d'authentification légitimes depuis SOGo font bannir le webmail entier.
+````
+sudo vim ~/DMS/Mail_Server/docker-data/dms/config/fail2ban-jail.cf
+
+# Editer
+[DEFAULT]
+ignoreip = 127.0.0.1/8 172.16.0.0/12
+````
+
+- Débannir une IP
+````
+sudo docker exec mailserver fail2ban-client set dovecot unbanip <IP>
+````
 - Le webmail peut aussi être ajouté à l'écran d'accueil (PWA) : Chrome => ⋮ => Ajouter à l'écran d'accueil, ou Safari => Partager => Sur l'écran d'accueil.
