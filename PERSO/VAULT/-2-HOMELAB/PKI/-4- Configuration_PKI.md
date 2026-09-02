@@ -120,7 +120,7 @@ sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal_Root_R-1.crt
 ```
 vault write PKI_Sednal_Root_RSA/config/urls \
     issuing_certificates="https://vault.sednal.lan/v1/PKI_Sednal_Root_RSA/ca" \
-    crl_distribution_points="http://pihole.sednal.lan/crl/root_r"
+    crl_distribution_points="http://infra.sednal.lan/crl/root_r"
 ```    
 
 - issuing_certificates : URL encodée dans le certificat qui permettre aux clients de télécharger le certificat de la CA et reconstituer la chaîne de confiance.
@@ -180,7 +180,7 @@ sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal_Root_E-1.crt
 ```
  vault write PKI_Sednal_Root_ECDSA/config/urls \
      issuing_certificates="https://vault.sednal.lan/v1/PKI_Sednal_Root_ECDSA/ca" \
-     crl_distribution_points="http://pihole.sednal.lan/crl/root_e"
+     crl_distribution_points="http://infra.sednal.lan/crl/root_e"
 ```    
 
 - issuing_certificates : URL encodée dans le certificat qui permettre aux clients de télécharger le certificat de la CA et reconstituer la chaîne de confiance.
