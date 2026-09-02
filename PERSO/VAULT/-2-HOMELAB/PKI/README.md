@@ -2,15 +2,21 @@
 
 ---
 
-La première implémentation de Vault présente dans : TUTO/PERSO/VAULT/-2-HOMELAB/PKI/ARCHIVE/ présente beaucoup de problémes.
+La première implémentation, archivée dans `TUTO/PERSO/VAULT/ARCHIVE_V1/`,
+présente beaucoup de problèmes.
 
-En effet, ma decouverte d'un nouvel outil et de nouveau concept on eu pour effet de complexifier la mise en place et la documentation.
+La découverte simultanée d'un nouvel outil et de nouveaux concepts a eu pour
+effet de complexifier à la fois la mise en place et la documentation. En
+l'état, son maintien est quasiment impossible, ou en tout cas beaucoup trop
+chronophage.
 
-Son maintient est quasiment impossible ou très chronophage en l'état, je vais donc produire une V2 de l'inplémentation de Vault.
+Je produis donc une **V2** de l'implémentation de Vault : mêmes objectifs
+— PKI interne et auto-unseal — mais une mise en œuvre plus simple et
+réellement maintenable.
 
-Je met à disposition un audit de mon repo, réalisé par Claude, il pointe en effet beaucoup de probléme, incohérence et autres, je vais me servire de se retour ainsi que de la V1 pour proposer un implémentation plus simple, et facile à maintenir.
-
-ci dessous l'audit réalisé sur la documentation :
+Je m'appuie pour cela sur la V1 et sur un audit du dépôt réalisé par Claude,
+qui pointe un certain nombre de problèmes, d'incohérences et de fragilités.
+Cet audit est reproduit ci-dessous.
 
 
 <details>
