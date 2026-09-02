@@ -419,13 +419,13 @@ sudo docker exec mailserver postconf inet_protocols smtp_address_preference
 
 ## - `SOMMAIRE`
 
-### `- 4.1` Enregistrement `PTR` sur OVH
+### `- 4.1` Enregistrement `PTR` sur OVH [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--41-enregistrement-ptr-sur-ovh-1)
 
-### `- 4.2` Pare-feu et ouverture des ports sur le VPS
+### `- 4.2` Pare-feu et ouverture des ports sur le VPS [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--42-pare-feu-et-ouverture-des-ports-sur-le-vps-1)
 
-### `- 4.3` Sécuriser `SSH` et port `22`
+### `- 4.3` Sécuriser `SSH` et port `22` [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--43-s%C3%A9curiser-ssh-et-port-22-1)
 
-### `- 4.4` SPF, DKIM et DMARC
+### `- 4.4` SPF, DKIM et DMARC [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--44-spf-dkim-et-dmarc-1)
 
 ---
 
@@ -602,23 +602,23 @@ dig +short @1.1.1.1 _dmarc.nalsed.fr TXT
 
 ## - `SOMMAIRE`
 
-### `- 5.1` Lancement des conteneurs
+### `- 5.1` Lancement des conteneurs [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--51-lancement-des-conteneurs-1)
 
-### `- 5.2` Création des comptes mail
+### `- 5.2` Création des comptes mail [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--52-cr%C3%A9ation-des-comptes-mail-1)
 
-### `- 5.3` Création de la table et de l'utilisateur SQL
+### `- 5.3` Création de la table et de l'utilisateur SQL [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--53-cr%C3%A9ation-de-la-table-et-de-lutilisateur-sql-1)
 
-### `- 5.4` Configuration de `sogo.conf`
+### `- 5.4` Configuration de `sogo.conf` [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--54-configuration-de-sogoconf-1)
 
-### `- 5.5` DKIM
+### `- 5.5` DKIM [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--55-dkim-1)
 
-### `- 5.6` Test des deploy-hooks
+### `- 5.6` Test des deploy-hooks [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--56-test-des-deploy-hooks-1)
+ 
+### `- 5.7` Test Open Relay [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--57-test-open-relay-1)
 
-### `- 5.7` Test Open Relay
+### `- 5.8` Durcissement TLS [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--58-durcissement-tls-1)
 
-### `- 5.8` Durcissement TLS
-
-### `- 5.9` Vérification fail2ban
+### `- 5.9` Vérification fail2ban [Accès Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/Serveur_Mail.md#--59-v%C3%A9rification-fail2ban-)
 
 ---
 
@@ -915,7 +915,6 @@ QUIT
 
 `[NOTE]` La réponse au `EHLO` ne doit pas contenir de ligne `250-AUTH` avant `STARTTLS`. Voir `- 5.8`.
 
----
 
 ### `- 5.8` Durcissement TLS
 
@@ -950,7 +949,6 @@ sudo docker exec mailserver doveconf disable_plaintext_auth ssl
 # Attendu : yes  et  ssl = required
 ````
 
----
 
 ### `- 5.9` Vérification fail2ban
 
