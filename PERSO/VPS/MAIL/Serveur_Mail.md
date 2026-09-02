@@ -287,7 +287,6 @@ services:
     environment:
       - MAIL_DOMAIN=nalsed.fr
       - MAIL_IMAP_SERVER=imap://mailserver:143
-      - MAIL_SMTP_SERVER=smtp://mailserver:587
       - MAIL_SIEVE_SERVER=sieve://mailserver:4190
       - SOGO_LANGUAGE=French
       - SOGO_TIMEZONE=Europe/Paris
@@ -495,7 +494,7 @@ sudo netfilter-persistent save
 
 `[INFO]`
 
-- Pour se rendre compte de l'utilité de sécuriser `SSH` (4406 tentative d'entrée en 24h !) :
+- Pour se rendre compte de l'utilité de sécuriser `SSH` (4490 tentatives d'entrée en 24h !) :
 
 <img width="871" height="41" alt="image" src="https://github.com/user-attachments/assets/b8502fef-06cd-4fc4-a69e-82546f50ac13" />
 
@@ -658,7 +657,7 @@ sudo docker network inspect sogo-net --format '{{range .Containers}}{{.Name}} {{
 sudo docker exec -ti mailserver setup email add martin@nalsed.fr
 ````
 
-⚠️ Le `-ti` est indispensable sur toute commande qui demande une saisie. Sans lui, la saisie du mot de passe n'est pas captée et l'échec est*silencieux. 
+⚠️ Le `-ti` est indispensable sur toute commande qui demande une saisie. Sans lui, la saisie du mot de passe n'est pas captée et l'échec est silencieux. 
 
 - Alias
 ````
@@ -793,6 +792,25 @@ sudo docker restart sogo
 
 ### `- 5.5` DKIM
 
+`[NOTE]` 
+
+Rspamd ne signe que les messages authentifiés (`sign_local = false` par défaut). Le courrier venant de SOGo par le port 25 n'est donc pas signé.
+
+````
+mkdir -p ~/DMS/Mail_Server/docker-data/dms/config/rspamd/override.d/
+vim ~/DMS/Mail_Server/docker-data/dms/config/rspamd/override.d/dkim_signing.conf
+
+# Editer
+sign_local = true;
+````
+
+- redemarrage
+````
+cd ~/DMS/Mail_Server/
+sudo docker compose down
+sudo docker compose up -d
+````
+
 - Générer la clé
 ````
 sudo docker exec -ti mailserver setup config dkim
@@ -836,24 +854,6 @@ DKIM check:         pass
 ==========================================================
 ````
 
-`- 5.5.1` Signature DKIM du trafic interne
-
-`[NOTE]` 
-
-Rspamd ne signe que les messages authentifiés (`sign_local = false` par défaut). Le courrier venant de SOGo par le port 25 n'est donc pas signé.
-
-````
-mkdir -p ~/DMS/Mail_Server/docker-data/dms/config/rspamd/override.d/
-vim ~/DMS/Mail_Server/docker-data/dms/config/rspamd/override.d/dkim_signing.conf
-
-# Editer
-sign_local = true;
-````
-
-- redemarrage
-````
-sudo docker restart mailserver
-````
 
 ### `- 5.6` Test des deploy-hooks
 
