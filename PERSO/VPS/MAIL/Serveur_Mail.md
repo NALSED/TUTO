@@ -554,15 +554,26 @@ sudo docker exec -ti mailserver setup alias add abuse@nalsed.fr martin@nalsed.fr
 sudo docker exec -ti mailserver doveadm auth test martin@nalsed.fr
 ````
 
-- Changer
+⚠️ Les deux Mot de passe doivent être identique⚠️
+- Changer Mot de passe DMS
 ````
-sudo docker exec -ti mailserver setup email update martin@nalsed.f
+sudo docker exec -ti mailserver setup email update martin@nalsed.fr
 
 # Test
 docker exec mailserver setup email list
 
 # Restart
 docker restart mailserver
+````
+
+-Changer Mot de passe SOGo
+````
+UPDATE sogo_users SET c_password = MD5('nouveau') WHERE c_uid = 'martin';
+# Quitter
+\q
+
+# Restart
+sudo docker restart sogo
 ````
 
 
@@ -588,11 +599,20 @@ CREATE TABLE sogo_users (
     aliases TEXT,                                  -- Autres adresses email ou alias
     c_cn VARCHAR(255),                             -- Nom complet (Common Name)
     last_login TIMESTAMP                           -- Dernière date de connexion (facultatif)
-);````
+);
+````
 
 - Ajout d'un compte Utilisateur
+````
+# !!! Le mot de passe doit être identique à celui de DMS, sinon SOGo t'authentifie mais échoue à ouvrir la session IMAP derrière. !!!
+INSERT INTO sogo_users (c_uid, c_name, c_password, c_cn, mail, aliases)
+VALUES ('martin', 'martin@nalsed.fr', MD5('MOT_DE_PASSE_DMS'), 'Martin', 'martin@nalsed.fr', 'contact@nalsed.fr');
+````
 
-
+- Redemarrer SOGo
+````
+sudo docker restart sogo
+````
 
 `- 5.4` DKIM
 
