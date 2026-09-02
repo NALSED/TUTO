@@ -388,8 +388,6 @@ webmail.nalsed.fr {
 
 `- 3.7` Forcer la sortie SMTP en IPv4
 
-⚠️ Non fonctionnel sur DMS v16 : le fichier est monté mais ses directives ne sont pas appliquées.
-
 ````
 mkdir -p ~/DMS/Mail_Server/docker-data/dms/config/
 vim ~/DMS/Mail_Server/docker-data/dms/config/postfix-main.cf
@@ -401,11 +399,17 @@ smtp_address_preference = ipv4
 
 `[NOTE]` Le VPS sort en IPv6 par défaut vers les destinations qui le supportent. Aucun `AAAA` n'étant publié pour `mail.nalsed.fr` et le PTR IPv6 restant générique, le FCrDNS échouerait côté IPv6 et Gmail rejetterait.
 
+
+````
+cd ~/DMS/Mail_Server/
+sudo docker compose down
+sudo docker compose up -d
+````
+
 `[TEST]`
 ````
 sudo docker exec mailserver postconf inet_protocols smtp_address_preference
 ````
-
 ---
 ---
 
