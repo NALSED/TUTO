@@ -251,6 +251,7 @@ services:
       - RSPAMD_CHECK_AUTHENTICATED=0
       - ENABLE_IMAP=1
       - SPOOF_PROTECTION=1
+      - PERMIT_DOCKER=connected-networks
     cap_add:
       - NET_ADMIN
     restart: always
@@ -264,6 +265,8 @@ networks:
   default:
     name: sogo-net
 ````
+
+⚠️ Sans `PERMIT_DOCKER=connected-networks`, `mynetworks` reste vide et Postfix refuse de relayer les mails envoyés depuis SOGo (`5.7.1 Relay access denied`). La surcharge manuelle via `postfix-main.cf` n'est pas appliquée sur DMS v16.
 
 ⚠️ Le bloc `networks` est au **niveau racine** du fichier, pas dans le service. Il place DMS sur le même réseau que SOGo, ce qui permet à ce dernier de le joindre par son nom de conteneur (voir `- 3.3`).
 
@@ -384,6 +387,9 @@ webmail.nalsed.fr {
 `[NOTE]` L'image SOGo embarque Apache, qui sert sa page d'accueil par défaut à la racine. Sans le `redir`, `https://webmail.nalsed.fr` affiche la page Apache au lieu du webmail. La redirection ne cible que la racine exacte, les autres chemins passent normalement au proxy.
 
 `- 3.7` Forcer la sortie SMTP en IPv4
+
+⚠️ Non fonctionnel sur DMS v16. Le fichier est bien monté dans `/tmp/docker-mailserver/` mais ses directives ne sont pas appliquées. Mécanisme de surcharge à identifier (piste : `user-patches.sh`). En attendant, la sortie SMTP reste en IPv6 quand la destination le permet.
+
 ````
 mkdir -p ~/DMS/Mail_Server/docker-data/dms/config/
 vim ~/DMS/Mail_Server/docker-data/dms/config/postfix-main.cf
@@ -753,10 +759,12 @@ sudo vim /var/lib/docker/volumes/sogo_sogo-conf/_data/sogo.conf
 ````
     SOGoForceExternalLoginWithEmail = YES;
     WOWorkersCount = 5;
+    SOGoSMTPServer = "smtp://mailserver:25";
 ````
 
 - `SOGoForceExternalLoginWithEmail` : sans lui, SOGo se connecte en IMAP avec le seul `c_uid` (`martin`) alors que DMS attend l'adresse complète (`martin@nalsed.fr`). Symptôme : connexion au webmail réussie mais page blanche, et `IMAP4 login failed ... user=martin` dans les logs.
 - `WOWorkersCount` : sans lui, `No child available to handle incoming request!` sature les logs et l'interface reste instable.
+- `SOGoSMTPServer` : remplacer la ligne existante, ne pas en ajouter une seconde — le paramètre déclaré deux fois voit la dernière valeur écraser la première. Le port 587 échoue en `5.7.0 Must issue a STARTTLS command first`, puis en `not allowed in state 1` avec `?tls=YES`. Le port 25 en interne fonctionne sans authentification, le trafic ne quittant jamais le réseau Docker.
 
 ````
 sudo docker restart sogo
