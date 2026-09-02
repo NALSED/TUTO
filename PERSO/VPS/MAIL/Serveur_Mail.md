@@ -429,7 +429,7 @@ sudo docker exec mailserver postconf inet_protocols smtp_address_preference
 
 ---
 
-`- 4.1` Enregistrement `PTR` sur OVH
+#### `- 4.1` Enregistrement `PTR` sur OVH
 
 - Bare Metal Cloud => Network => IP
 
@@ -455,7 +455,7 @@ dig +short mail.nalsed.fr A @1.1.1.1
 
 ---
 
-`- 4.2` Pare-feu et ouverture des ports sur le VPS
+#### `- 4.2` Pare-feu et ouverture des ports sur le VPS
 
 `[NOTE]` Debian 13 utilise `nftables`, mais la commande `iptables` passe par la couche de compatibilité `iptables-nft`. Ne pas mélanger les deux syntaxes sur la même machine : deux jeux de règles dans des tables différentes s'évaluent en parallèle et le `DROP` le plus restrictif l'emporte.
 
@@ -494,7 +494,7 @@ sudo netfilter-persistent save
 
 ---
 
-`- 4.3` Sécuriser `SSH` et port `22`
+#### `- 4.3` Sécuriser `SSH` et port `22`
 
 `[INFO]`
 
@@ -540,7 +540,7 @@ Garder la session courante ouverte et en ouvrir une seconde pour tester avant de
 ---
 ---
 
-`- 4.4` SPF, DKIM et DMARC
+#### `- 4.4` SPF, DKIM et DMARC
 
 `[INFO]`
 
@@ -620,7 +620,9 @@ dig +short @1.1.1.1 _dmarc.nalsed.fr TXT
 
 ### `- 5.9` Vérification fail2ban
 
-⚠️ Prérequis propre à mon infra ⚠️
+---
+
+####  ⚠️ Prérequis propre à mon infra ⚠️
 ````
 # Stopper nginx (occupe le port 80, empêche Caddy de démarrer)
 sudo systemctl disable --now nginx
@@ -631,7 +633,9 @@ sudo systemctl disable --now exim4
 
 ⚠️ Ne **pas** purger exim4 : `bareos-director` dépend de `bsd-mailx`, qui dépend d'un MTA. Un `apt purge exim4` entraînerait la suppression de toute la chaîne Bareos. Un simple `disable` suffit.
 
-`- 5.1` Lancement des conteneurs
+---
+
+####  `- 5.1` Lancement des conteneurs
 
 - Ordre important
 1 `DMS` => 2 `SOGo` => 3 `Caddy`
@@ -673,7 +677,7 @@ sudo docker network inspect sogo-net --format '{{range .Containers}}{{.Name}} {{
 ````
 
 
-`- 5.2` Création des comptes mail
+#### `- 5.2` Création des comptes mail
 
 - Boîte principale
 ````
@@ -730,7 +734,7 @@ sudo docker restart sogo
 ````
 
 
-`- 5.3` Création de la table et de l'utilisateur SQL
+#### `- 5.3` Création de la table et de l'utilisateur SQL
 
 `[NOTE]`
 Sans cette table, le compte créé précédemment n'aura pas d'utilisateur, donc la connexion sur le WebUI de SOGo est impossible. SOGo ne supporte que deux types de sources utilisateurs, `sql` et `ldap` : il n'existe pas de source `imap`, la duplication du mot de passe est donc inévitable.
@@ -771,7 +775,7 @@ sudo docker restart sogo
 ````
 
 
-`- 5.4` Configuration de `sogo.conf`
+#### `- 5.4` Configuration de `sogo.conf`
 
 `[NOTE]` Deux paramètres manquants empêchent le webmail de fonctionner correctement, même une fois la table créée.
 
@@ -803,7 +807,7 @@ sudo docker exec sogo tail -50 /var/log/sogo/sogo.log
 `[NOTE]` L'erreur `'OCSAdminURL' is not set` au démarrage est bénigne (administration multi-domaines, non utilisée ici).
 
 
-`- 5.5` DKIM
+#### `- 5.5` DKIM
 
 - Générer la clé
 ````
@@ -870,7 +874,7 @@ sudo docker restart mailserver
 sudo docker exec mailserver rspamadm configdump dkim_signing | grep sign_local
 ````
 
-`- 5.6` Test des deploy-hooks
+#### `- 5.6` Test des deploy-hooks
 
 `[NOTE]` Le `--dry-run` seul n'exécute **pas** les deploy-hooks. L'option `--run-deploy-hooks` les déclenche sans consommer de quota Let's Encrypt.
 
@@ -886,7 +890,7 @@ sudo docker ps --filter name=caddy
 sudo grep -r renew_hook /etc/letsencrypt/renewal/
 ````
 
-`- 5.7` Test Open Relay
+#### `- 5.7` Test Open Relay
 
 `[NOTE]` Un serveur qui relaie pour des domaines qui ne lui appartiennent pas est repéré en quelques heures par les scanners, et l'IP est blacklistée pour plusieurs semaines. À retester après toute modification de `mynetworks` ou `PERMIT_DOCKER`.
 
@@ -913,7 +917,7 @@ QUIT
 
 ---
 
-`- 5.8` Durcissement TLS
+#### `- 5.8` Durcissement TLS
 
 `[NOTE]` `smtpd_tls_auth_only` n'est pas activé par défaut. Il interdit l'annonce de `AUTH` avant `STARTTLS`.
 
@@ -948,7 +952,7 @@ sudo docker exec mailserver doveconf disable_plaintext_auth ssl
 
 ---
 
-`- 5.9` Vérification fail2ban
+#### `- 5.9` Vérification fail2ban
 
 - Prisons actives
 ````
