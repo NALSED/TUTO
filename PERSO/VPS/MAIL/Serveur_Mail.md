@@ -810,8 +810,20 @@ dig +short @1.1.1.1 mail._domainkey.nalsed.fr TXT
 
 - À présent https://webmail.nalsed.fr/SOGo/ fonctionne.
 
-- Test de bout en bout : envoyer un mail depuis la boîte vers `check-auth@verifier.port25.com`. Le rapport automatique dira si SPF, DKIM et DMARC passent tous les trois. C'est le contrôle qui valide réellement les points `- 4.4` et `- 5.5`.
+- Test de bout en bout : envoyer un mail depuis la boîte vers `check-auth@verifier.port25.com`. Le rapport automatique dira si SPF, DKIM et DMARC passent tous les trois. 
+````
+# Resultat
+The Port25 Solutions, Inc. team
 
+==========================================================
+Summary of Results
+==========================================================
+SPF check:          permerror <=== Erreur OVH, reste OK 
+"iprev" check:      pass
+DKIM check:         pass
+
+==========================================================
+````
 
 `- 5.6` Test des deploy-hooks
 
