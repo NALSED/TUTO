@@ -266,7 +266,7 @@ networks:
     name: sogo-net
 ````
 
-⚠️ Sans `PERMIT_DOCKER=connected-networks`, `mynetworks` reste vide et Postfix refuse de relayer les mails envoyés depuis SOGo (`5.7.1 Relay access denied`). La surcharge manuelle via `postfix-main.cf` n'est pas appliquée sur DMS v16.
+`[NOTE]` Sans cette variable, `mynetworks` reste vide et Postfix refuse de relayer depuis SOGo (`5.7.1 Relay access denied`).
 
 ⚠️ Le bloc `networks` est au **niveau racine** du fichier, pas dans le service. Il place DMS sur le même réseau que SOGo, ce qui permet à ce dernier de le joindre par son nom de conteneur (voir `- 3.3`).
 
@@ -388,7 +388,7 @@ webmail.nalsed.fr {
 
 `- 3.7` Forcer la sortie SMTP en IPv4
 
-⚠️ Non fonctionnel sur DMS v16. Le fichier est bien monté dans `/tmp/docker-mailserver/` mais ses directives ne sont pas appliquées. Mécanisme de surcharge à identifier (piste : `user-patches.sh`). En attendant, la sortie SMTP reste en IPv6 quand la destination le permet.
+⚠️ Non fonctionnel sur DMS v16 : le fichier est monté mais ses directives ne sont pas appliquées.
 
 ````
 mkdir -p ~/DMS/Mail_Server/docker-data/dms/config/
@@ -764,7 +764,7 @@ sudo vim /var/lib/docker/volumes/sogo_sogo-conf/_data/sogo.conf
 
 - `SOGoForceExternalLoginWithEmail` : sans lui, SOGo se connecte en IMAP avec le seul `c_uid` (`martin`) alors que DMS attend l'adresse complète (`martin@nalsed.fr`). Symptôme : connexion au webmail réussie mais page blanche, et `IMAP4 login failed ... user=martin` dans les logs.
 - `WOWorkersCount` : sans lui, `No child available to handle incoming request!` sature les logs et l'interface reste instable.
-- `SOGoSMTPServer` : remplacer la ligne existante, ne pas en ajouter une seconde — le paramètre déclaré deux fois voit la dernière valeur écraser la première. Le port 587 échoue en `5.7.0 Must issue a STARTTLS command first`, puis en `not allowed in state 1` avec `?tls=YES`. Le port 25 en interne fonctionne sans authentification, le trafic ne quittant jamais le réseau Docker.
+- `SOGoSMTPServer` : remplacer la ligne existante, pas en ajouter une seconde. Le port 587 échoue (`Must issue a STARTTLS command first`). Le port 25 en interne fonctionne sans authentification.
 
 ````
 sudo docker restart sogo
@@ -823,6 +823,26 @@ SPF check:          permerror <=== Erreur OVH, reste OK
 DKIM check:         pass
 
 ==========================================================
+````
+
+`- 5.5.1` Signature DKIM du trafic interne
+
+`[NOTE]` Rspamd ne signe que les messages authentifiés (`sign_local = false` par défaut). Le courrier venant de SOGo par le port 25 n'est donc pas signé.
+
+````
+mkdir -p ~/DMS/Mail_Server/docker-data/dms/config/rspamd/override.d/
+vim ~/DMS/Mail_Server/docker-data/dms/config/rspamd/override.d/dkim_signing.conf
+
+# Editer
+sign_local = true;
+````
+
+⚠️ Ne pas ajouter `sign_networks` en chaîne : rspamd attend une liste (`invalid map fetching protocol`).
+
+`[TEST]`
+````
+sudo docker restart mailserver
+sudo docker exec mailserver rspamadm configdump dkim_signing | grep sign_local
 ````
 
 `- 5.6` Test des deploy-hooks
