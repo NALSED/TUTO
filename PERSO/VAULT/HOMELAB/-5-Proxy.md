@@ -61,7 +61,7 @@ Un changement de paramètre se fait alors à un seul endroit.
 
 - Création du fichier de configuration
 ````
-/etc/nginx/snippets/ssl-nalsed.conf`
+vim /etc/nginx/snippets/ssl-nalsed.conf`
 ````
 
 - Edition
