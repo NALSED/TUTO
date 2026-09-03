@@ -31,13 +31,25 @@ déjà faire confiance au certificat que Vault présente. La première émission
 ## `-1-` Bascule du certificat de Vault
 
 ### `- 1.1` Export de la `CA ROOT`
+
+- Créer le dossier
 ````
 sudo mkdir -p /etc/ssl/nalsed
+````
 
+- Exporter le certificat
+````
 vault read -field=certificate PKI-Sednal-Root-RSA/cert/ca \
 | sudo tee /etc/ssl/nalsed/ca.crt > /dev/null
+````
 
+- Copie du certificat dans stockage de certificats système Rhel
+````
 sudo cp /etc/ssl/nalsed/ca.crt /etc/pki/ca-trust/source/anchors/Sednal-Root-RSA-1.crt
+````
+
+- MAJ
+````
 sudo update-ca-trust
 ````
 
@@ -50,6 +62,7 @@ sudo update-ca-trust
 Filet de sécurité : si Vault ne répond plus, on restaure ces deux fichiers et un `reload` suffit.
 Le sceau n'est pas concerné.
 
+- Création des "BackUp" clés et certificats.
 ````
 sudo cp /opt/vault/tls/vault.crt /opt/vault/tls/vault.crt.selfsigned
 sudo cp /opt/vault/tls/vault.key /opt/vault/tls/vault.key.selfsigned
@@ -58,18 +71,30 @@ sudo cp /opt/vault/tls/vault.key /opt/vault/tls/vault.key.selfsigned
 ---
 
 ### `- 1.3` Émission et bascule
+
+- Edition du certificat final pour `192.168.0.238`
 ````
 vault write -format=json PKI-Sednal-Inter-RSA/issue/infra \
      common_name="vault.sednal.lan" \
      ip_sans="192.168.0.238,127.0.0.1" \
      "ttl=8760h" > /tmp/cert.json
+````
 
+- Extraction certificats
+````
 jq -r '.data.certificate, .data.issuing_ca' /tmp/cert.json | sudo tee /opt/vault/tls/vault.crt > /dev/null
 jq -r '.data.private_key'                   /tmp/cert.json | sudo tee /opt/vault/tls/vault.key > /dev/null
+````
 
+
+- Droits et propriétaire
+````
 sudo chown vault:vault /opt/vault/tls/vault.crt /opt/vault/tls/vault.key
 sudo chmod 644 /opt/vault/tls/vault.crt
 sudo chmod 640 /opt/vault/tls/vault.key
+````
+
+
 
 shred -u /tmp/cert.json
 sudo systemctl reload vault
