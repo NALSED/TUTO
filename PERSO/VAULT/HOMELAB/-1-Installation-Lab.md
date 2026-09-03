@@ -156,32 +156,4 @@ export VAULT_CACERT=/etc/ssl/nalsed/vault-bootstrap.crt
 - Raffréchir
 ````
 source ~/.bashrc
-vault status
 ````
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
