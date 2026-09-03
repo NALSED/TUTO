@@ -1,0 +1,1 @@
+Ce fichier Archive regroupe des configurations qui ne sont plus opérationnelles. Elles témoignent du travail effectué au fil du temps. Beaucoup de choses restent pertinentes, mais certaines configurations sont devenues trop complexes à mettre en place et à maintenir, et ne répondent plus aux besoins actuels de mon infrastructure.
