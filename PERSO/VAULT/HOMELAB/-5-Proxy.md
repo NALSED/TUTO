@@ -52,8 +52,6 @@ getent hosts pihole.sednal.lan proxmox.sednal.lan
 
 ### `- 2.1` Snippet TLS
 
-[DOC_OFFICIELLE](https://docs.nginx.com/nginx-gateway-fabric/traffic-management/snippets/#overview)
-
 `[NOTE]`
 
 Un `snippet` est un fragment de configuration nginx isolé dans un fichier, inséré dans un
