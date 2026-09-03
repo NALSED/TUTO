@@ -124,8 +124,12 @@ server {
 
     include snippets/ssl-nalsed.conf;
 
+    location = / {
+        return 301 /admin/;
+    }
+
     location / {
-        proxy_pass http://192.168.0.241/admin/;
+        proxy_pass http://192.168.0.241;
         proxy_set_header Host              $host;
         proxy_set_header X-Real-IP         $remote_addr;
         proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
@@ -205,59 +209,130 @@ sudo systemctl restart cockpit.socket
 
 ---
 
-### `- 2.5` Activation nginx
+### `- 2.5` Vhost du portail
+
+`[NOTE]`
+
+Le portail HTML des services est servi directement par nginx depuis `/var/www/html`
+sur `192.168.0.239` : pas de `proxy_pass`, la machine héberge les fichiers.
+
+- Création
+````
+sudo vim /etc/nginx/sites-available/infra.conf
+````
+
+- Edition
+````
+server {
+    listen 80;
+    server_name infra.sednal.lan;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name infra.sednal.lan;
+
+    include snippets/ssl-nalsed.conf;
+
+    root  /var/www/html;
+    index index.html;
+}
+````
+
+---
+
+### `- 2.6` Vhost par défaut
+
+`[NOTE]`
+
+Sans vhost par défaut, nginx sert le **premier vhost déclaré** pour tout nom inconnu :
+`https://192.168.0.239` ouvrait alors l'interface Pihole. Le code `444` ferme la connexion
+sans réponse.
+
+`[NOTE]`
+
+Un seul `default_server` par port est autorisé : ne pas ajouter ce mot-clé dans un autre vhost.
+
+- Création
+````
+sudo vim /etc/nginx/sites-available/default-ssl.conf
+````
+
+- Edition
+````
+server {
+    listen 443 ssl default_server;
+    server_name _;
+
+    include snippets/ssl-nalsed.conf;
+
+    return 444;
+}
+````
+
+---
+
+### `- 2.7` Activation
+
+`[NOTE]`
+
+Le `default` de Debian est désactivé : il capte le port 80 en `default_server`
+et n'a plus d'utilité, le portail étant servi par `infra.conf`.
+
+- Désactivation du vhost Debian
+````
+sudo rm /etc/nginx/sites-enabled/default
+````
+
+- Liens symboliques
 ````
 cd /etc/nginx/sites-enabled
-sudo ln -s /etc/nginx/sites-available/pihole.conf  pihole.conf
-sudo ln -s /etc/nginx/sites-available/proxmox.conf proxmox.conf
+sudo ln -s /etc/nginx/sites-available/default-ssl.conf default-ssl.conf
+sudo ln -s /etc/nginx/sites-available/infra.conf        infra.conf
+sudo ln -s /etc/nginx/sites-available/pihole.conf       pihole.conf
+sudo ln -s /etc/nginx/sites-available/proxmox.conf      proxmox.conf
+````
 
+- Contrôle et rechargement
+````
 sudo nginx -t
 sudo systemctl enable --now nginx
 sudo systemctl reload nginx
 ````
 
 ---
----
 
-## `-3-` Vérification
+### `- 2.8` Vérification
 
-### `- 3.1` Chaîne servie
+`[NOTE]`
+
+L'accès par IP doit échouer sans réponse — `curl: (52) Empty reply from server`
+ou `curl: (92) HTTP/2 stream 1 was not closed cleanly` selon le protocole négocié.
+C'est le comportement attendu du code `444`.
+
+- Portail
 ````
-openssl s_client -connect pihole.sednal.lan:443 -servername pihole.sednal.lan \
-  -CAfile /etc/ssl/nalsed/ca.crt </dev/null 2>/dev/null | grep "Verify return code"
+curl -Ik https://infra.sednal.lan
 ````
 
 - Attendu
 ````
-Verify return code: 0 (ok)
+HTTP/2 200
 ````
 
----
-
-### `- 3.2` Chaîne complète
+- Service derrière le proxy
 ````
-openssl s_client -connect pihole.sednal.lan:443 -showcerts </dev/null 2>/dev/null \
-| grep -c "BEGIN CERTIFICATE"
+curl -kL -o /dev/null -w '%{num_redirects} redirections, code final %{http_code}\n' \
+  https://pihole.sednal.lan/admin/
 ````
 
-`[NOTE]`
-
-Doit valoir au moins `2` : certificat + intermédiaire. Si le compte est de 1,
-le template ne concatène pas `.Data.issuing_ca`.
-
----
-
-### `- 3.3` Depuis un poste client
-
-`[NOTE]`
-
-Cadenas valide **après** import de la Root
-(cf. `CERTIFICAT_SSL/Déploiement_win11.md`).
-
+- Attendu
 ````
-https://pihole.sednal.lan
-https://proxmox.sednal.lan
+1 redirections, code final 200
 ````
 
----
----
+- Accès par IP
+````
+curl -Ik https://192.168.0.239
+````
