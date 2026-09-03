@@ -132,7 +132,10 @@ sudo install -m 644 /opt/vault/tls/vault.crt /etc/ssl/nalsed/vault-bootstrap.crt
 
 - `3.5 Initialisation`
 ````
-
+export VAULT_ADDR=https://vault.sednal.lan:8100
+export VAULT_CACERT=/etc/ssl/nalsed/vault-bootstrap.crt
+vault operator init
+vault operator unseal # 3 fois
 ````
 
 `[NOTE]`
