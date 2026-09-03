@@ -150,7 +150,7 @@ sudo vim $HOME/.bashrc
 - Inscrire
 ````
 export VAULT_ADDR=https://vault.sednal.lan:8100
-export VAULT_CACERT=/opt/vault/tls/vault.crt
+export VAULT_CACERT=/etc/ssl/nalsed/vault-bootstrap.crt
 ```` 
 
 - Raffréchir
