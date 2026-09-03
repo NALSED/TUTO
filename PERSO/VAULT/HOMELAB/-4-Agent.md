@@ -265,15 +265,16 @@ template {
 }
 ````
 
-`[NOTE]`
-
-`command` uniquement sur le **second** template : on ne recharge qu'une fois les deux fichiers écrits.
-
 ---
 
 ### `- 3.5` Service
 
-- `/etc/systemd/system/vault-agent.service`
+- Création du service
+````
+vim /etc/systemd/system/vault-agent.service
+````
+
+- Edition service
 ````
 [Unit]
 Description=Vault Agent
@@ -291,15 +292,11 @@ RestartSec=30
 WantedBy=multi-user.target
 ````
 
+- Rechargement et démarrage du service `vault-agent.service`
 ````
 sudo systemctl daemon-reload
 sudo systemctl enable --now vault-agent
 ````
-
-`[NOTE]`
-
-Vault étant en descellement manuel, l'agent échoue après un redémarrage tant que Vault est scellé.
-`Restart=on-failure` le fait repartir seul.
 
 ---
 
@@ -320,6 +317,7 @@ Verify return code: 0 (ok)
 `[RAPPEL]`
 
 Le renouvellement automatique intervient aux deux tiers du bail, soit **~8 mois** pour 1 an.
+
 ---
 ---
 
