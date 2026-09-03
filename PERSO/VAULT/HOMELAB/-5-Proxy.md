@@ -29,7 +29,7 @@ Le trafic proxy → backend reste **en clair** sur le LAN : limitation assumée.
 
 `[NOTE]`
 
-Tous les noms du certificat doivent pointer sur **192.168.0.239** dans pfSense,
+Tous les noms du certificat doivent pointer sur `192.168.0.239` dans pfSense,
 et non plus sur les machines d'origine : c'est le proxy qui répond.
 
 | Nom | Cible |
@@ -52,7 +52,20 @@ getent hosts pihole.sednal.lan proxmox.sednal.lan
 
 ### `- 2.1` Snippet TLS
 
-- `/etc/nginx/snippets/ssl-nalsed.conf`
+[DOC_OFFICIELLE](https://docs.nginx.com/nginx-gateway-fabric/traffic-management/snippets/#overview)
+
+`[NOTE]`
+
+Un `snippet` est un fragment de configuration nginx isolé dans un fichier, inséré dans un
+vhost avec `include`. Il évite de recopier les mêmes directives dans chaque site : le bloc
+TLS est écrit une fois dans `/etc/nginx/snippets/ssl-nalsed.conf`, puis appelé par tous les vhosts.
+Un changement de paramètre se fait alors à un seul endroit.
+
+- Création du fichier de configuration
+````
+/etc/nginx/snippets/ssl-nalsed.conf`
+
+- Edition
 ````
 ssl_certificate     /etc/ssl/nalsed/infra.crt;
 ssl_certificate_key /etc/ssl/nalsed/infra.key;
@@ -66,20 +79,22 @@ add_header X-Content-Type-Options nosniff;
 add_header X-Frame-Options SAMEORIGIN;
 ````
 
-`[NOTE]`
-
-`TLSv1.2` conservé volontairement : le TLS 1.3 seul casse l'iLO4 du Gen8 et les vieilles
-piles OpenSSL. Pas de `ssl_stapling` ni de `ssl_dhparam` : sans objet ici.
-
 ---
 
 ### `- 2.2` Support des websockets
+
+[DOC_OFFICIELLE](https://nginx.org/en/docs/http/websocket.html)
 
 `[NOTE]`
 
 Indispensable pour la console noVNC de Proxmox et le terminal de Cockpit.
 
-- `/etc/nginx/conf.d/websocket.conf`
+- Création fichier
+````
+/etc/nginx/conf.d/websocket.conf`
+````
+
+- Edition
 ````
 map $http_upgrade $connection_upgrade {
     default upgrade;
@@ -91,7 +106,12 @@ map $http_upgrade $connection_upgrade {
 
 ### `- 2.3` Vhost simple — exemple `pihole`
 
-- `/etc/nginx/sites-available/pihole.conf`
+- Création fichier de configuration 
+````
+/etc/nginx/sites-available/pihole.conf`
+````
+
+- Edition fichier
 ````
 server {
     listen 80;
@@ -125,7 +145,12 @@ server {
 Proxmox parle **HTTPS** sur 8006 avec son propre certificat auto-signé :
 `proxy_ssl_verify off` est nécessaire tant qu'il n'est pas remplacé.
 
-- `/etc/nginx/sites-available/proxmox.conf`
+- Création fichier
+````
+/etc/nginx/sites-available/proxmox.conf`
+````
+
+- Edition fichier
 ````
 server {
     listen 80;
@@ -163,19 +188,29 @@ server {
 
 `[NOTE]`
 
+`[NOTE]`
 Pour Cockpit, ajouter en plus sur `192.168.0.241` dans `/etc/cockpit/cockpit.conf` :
 
+- Fichier
+````
+vim /etc/cockpit/cockpit.conf
+````
+
+- Editer dans la configuration de Cockpit
 ````
 [WebService]
 Origins = https://cockpit.sednal.lan https://192.168.0.241:9090
 ProtocolHeader = X-Forwarded-Proto
 ````
 
-puis `sudo systemctl restart cockpit.socket`.
+- Redemarrer Service
+````
+sudo systemctl restart cockpit.socket`.
+````
 
 ---
 
-### `- 2.5` Activation
+### `- 2.5` Activation nginx
 ````
 cd /etc/nginx/sites-enabled
 sudo ln -s /etc/nginx/sites-available/pihole.conf  pihole.conf
@@ -207,7 +242,7 @@ openssl s_client -connect pihole.sednal.lan:443 -showcerts </dev/null 2>/dev/nul
 
 `[NOTE]`
 
-Doit valoir au moins **2** : certificat + intermédiaire. Si le compte est de 1,
+Doit valoir au moins `2` : certificat + intermédiaire. Si le compte est de 1,
 le template ne concatène pas `.Data.issuing_ca`.
 
 ---
