@@ -13,7 +13,9 @@ Le certificat est déjà livré par l'agent (`-4-`), il ne reste que la configur
 
 ### `-2-` Configuration `nginx`
 
-### `-3-` Vérification
+### `-3-` Cockpit
+
+### `-4-` Bareos WebUI
 
 ---
 
