@@ -108,7 +108,7 @@ Durée lease Certificats
 
 - `Intermediate` CA	RSA 4096	`5 ans`
 
-- `Finaux`	RSA 2048	`30 jours`
+- `Finaux`	RSA 2048	`1 ans`
 
 `[RAPPEL]`
 
@@ -290,8 +290,8 @@ vault write PKI-Sednal-Inter-RSA/roles/infra \
      allow_localhost=true \
      allow_ip_sans=true \
      key_type=rsa key_bits=2048 \
-     ttl="720h" \
-     max_ttl="2160h" \
+     ttl="8760h" \
+     max_ttl="8760h" \
      no_store=false
 ````
 
