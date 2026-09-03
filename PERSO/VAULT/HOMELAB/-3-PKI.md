@@ -278,7 +278,7 @@ vault read -field=certificate PKI-Sednal-Inter-RSA/cert/ca_chain
 
 `[RAPPEL]`
 
-- `infra` → `30 jours`, pour les machines allumées en permanence
+- `infra` → `1 ans`, pour les machines allumées en permanence
 
 ---
 
