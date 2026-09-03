@@ -229,20 +229,7 @@ avant le certificat qu'il remplace.
 
 ---
 
-### `- 3.2` La clé ne correspond pas au certificat
-````
-openssl x509 -noout -modulus -in /etc/ssl/nalsed/infra.crt | openssl md5
-openssl rsa  -noout -modulus -in /etc/ssl/nalsed/infra.key | openssl md5
-````
-
-`[NOTE]`
-
-Deux empreintes différentes = les arguments de `cert.tpl` et `key.tpl` ne sont pas identiques.
-Corriger puis `systemctl restart vault-agent`.
-
----
-
-### `- 3.3` L'agent ne rend pas les templates
+### `- 3.2` L'agent ne rend pas les templates
 ````
 sudo journalctl -u vault-agent -f
 ````
@@ -256,7 +243,7 @@ sudo journalctl -u vault-agent -f
 
 ---
 
-### `- 3.4` Purge des certificats émis
+### `- 3.3` Purge des certificats émis
 
 `[NOTE]`
 
@@ -274,7 +261,7 @@ vault write PKI-Sednal-Inter-RSA/config/auto-tidy \
 
 ---
 
-### `- 3.5` Révocation
+### `- 3.4` Révocation
 ````
 vault list  PKI-Sednal-Inter-RSA/certs
 vault write PKI-Sednal-Inter-RSA/revoke serial_number="[SERIAL]"

@@ -59,6 +59,11 @@ vhost avec `include`. Il évite de recopier les mêmes directives dans chaque si
 TLS est écrit une fois dans `/etc/nginx/snippets/ssl-nalsed.conf`, puis appelé par tous les vhosts.
 Un changement de paramètre se fait alors à un seul endroit.
 
+`[NOTE]`
+
+nginx 1.22.1 sur `192.168.0.239` : la directive `http2 on;` n'existe qu'à partir de la 1.25.1.
+HTTP/2 s'active donc via `listen 443 ssl http2;`.
+
 - Création du fichier de configuration
 ````
 sudo vim /etc/nginx/snippets/ssl-nalsed.conf
@@ -104,6 +109,12 @@ map $http_upgrade $connection_upgrade {
 ---
 
 ### `- 2.3` Vhost simple — exemple `pihole`
+
+`[NOTE]`
+
+`proxy_pass` sans `/admin/` : Pihole gère lui-même ses chemins et redirige vers `/admin/login`.
+Avec `/admin/` dans le `proxy_pass`, nginx transmet `/admin/admin/` et le navigateur boucle
+(`ERR_TOO_MANY_REDIRECTS`).
 
 - Création fichier de configuration 
 ````
@@ -185,26 +196,6 @@ server {
         send_timeout       3600s;
     }
 }
-````
-
-`[NOTE]`
-Pour Cockpit, ajouter en plus sur `192.168.0.241` dans `/etc/cockpit/cockpit.conf` :
-
-- Fichier
-````
-sudo vim /etc/cockpit/cockpit.conf
-````
-
-- Editer dans la configuration de Cockpit
-````
-[WebService]
-Origins = https://cockpit.sednal.lan https://192.168.0.241:9090
-ProtocolHeader = X-Forwarded-Proto
-````
-
-- Redemarrer Service
-````
-sudo systemctl restart cockpit.socket
 ````
 
 ---
@@ -332,7 +323,201 @@ curl -kL -o /dev/null -w '%{num_redirects} redirections, code final %{http_code}
 1 redirections, code final 200
 ````
 
+- Proxmox
+
+`[NOTE]`
+
+`curl -I` renvoie un `501` sur Proxmox : son serveur n'implémente pas la méthode `HEAD`.
+Ce n'est pas une erreur de configuration, il faut tester en GET.
+
+````
+curl -k -o /dev/null -w '%{http_code}\n' https://proxmox.sednal.lan
+````
+
 - Accès par IP
 ````
 curl -Ik https://192.168.0.239
 ````
+
+`[RAPPEL]`
+
+Le test décisif pour Proxmox est l'ouverture d'une console noVNC ou du shell d'un nœud
+depuis un navigateur : c'est ce qui valide le passage des websockets.
+
+---
+---
+
+## `-3-` Cockpit
+
+`[NOTE]`
+
+⚠️ SECTION À DÉROULER — non testée à ce jour. `cockpit.sednal.lan` figure dans les SAN du
+certificat mais n'a pas encore de vhost : l'accès tombe sur le `default_server` et renvoie
+un `444`.
+
+---
+
+### `- 3.1` Vhost sur `192.168.0.239`
+
+- Création
+````
+sudo vim /etc/nginx/sites-available/cockpit.conf
+````
+
+- Edition
+````
+server {
+    listen 80;
+    server_name cockpit.sednal.lan;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name cockpit.sednal.lan;
+
+    include snippets/ssl-nalsed.conf;
+
+    location / {
+        proxy_pass https://192.168.0.241:9090;
+        proxy_ssl_verify off;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade    $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+
+        proxy_set_header Host              $host;
+        proxy_set_header X-Real-IP         $remote_addr;
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_buffering off;
+        proxy_read_timeout 3600s;
+        send_timeout       3600s;
+    }
+}
+````
+
+`[NOTE]`
+
+Cockpit écoute en HTTPS avec son propre certificat auto-signé, d'où `proxy_ssl_verify off`.
+
+- Activation
+````
+cd /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/cockpit.conf cockpit.conf
+sudo nginx -t && sudo systemctl reload nginx
+````
+
+---
+
+### `- 3.2` Configuration sur `192.168.0.241`
+
+`[NOTE]`
+
+Sans `Origins`, Cockpit refuse les requêtes venant du proxy : page blanche ou erreur de
+websocket à la connexion. Le fichier n'existe pas par défaut, il est à créer.
+
+- Création
+````
+sudo mkdir -p /etc/cockpit
+sudo vim /etc/cockpit/cockpit.conf
+````
+
+- Edition
+````
+[WebService]
+Origins = https://cockpit.sednal.lan https://192.168.0.241:9090
+ProtocolHeader = X-Forwarded-Proto
+````
+
+- Redémarrage
+````
+sudo systemctl restart cockpit.socket
+````
+
+---
+
+### `- 3.3` Vérification
+````
+curl -k -o /dev/null -w '%{http_code}\n' https://cockpit.sednal.lan
+````
+
+`[RAPPEL]`
+
+Le test décisif est l'ouverture du terminal dans l'interface : c'est ce qui valide le passage
+des websockets.
+
+---
+---
+
+## `-4-` Bareos WebUI
+
+`[NOTE]`
+
+⚠️ SECTION À DÉROULER — non testée à ce jour. `192.168.0.240` n'est allumée que quelques
+heures par semaine, et Bareos est en cours de réparation. Ce vhost ne concerne que la WebUI :
+les démons `bareos-dir`, `bareos-sd` et `bareos-fd` ne passent pas par le proxy et restent
+hors périmètre V2.
+
+---
+
+### `- 4.1` Vhost sur `192.168.0.239`
+
+- Création
+````
+sudo vim /etc/nginx/sites-available/bareos.conf
+````
+
+- Edition
+````
+server {
+    listen 80;
+    server_name bareos.sednal.lan;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name bareos.sednal.lan;
+
+    include snippets/ssl-nalsed.conf;
+
+    location / {
+        proxy_pass http://192.168.0.240/bareos-webui/;
+        proxy_set_header Host              $host;
+        proxy_set_header X-Real-IP         $remote_addr;
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+````
+
+`[NOTE]`
+
+Le chemin `/bareos-webui/` est à confirmer selon l'installation. Si la WebUI boucle en
+redirections, retirer ce chemin du `proxy_pass` comme pour Pihole.
+
+- Activation
+````
+cd /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/bareos.conf bareos.conf
+sudo nginx -t && sudo systemctl reload nginx
+````
+
+---
+
+### `- 4.2` Vérification
+
+`[NOTE]`
+
+La machine `192.168.0.240` doit être allumée et la WebUI fonctionnelle en HTTP local
+avant de tester le proxy.
+
+````
+curl -kL -o /dev/null -w '%{num_redirects} redirections, code final %{http_code}\n' \
+  https://bareos.sednal.lan
+````
+
+---
+---

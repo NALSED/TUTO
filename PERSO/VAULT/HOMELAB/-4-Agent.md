@@ -114,6 +114,12 @@ vault status
 
 Pour rendre permanant inscription dans : `~/.bashrc`.
 
+`[NOTE]`
+
+⚠️ Après la bascule, mettre à jour `~/.bashrc` : `VAULT_CACERT` doit pointer sur
+`/etc/ssl/nalsed/ca.crt` et non plus sur `vault-bootstrap.crt`. Sinon toutes les
+commandes échouent avec `certificate signed by unknown authority`.
+
 ---
 ---
 
@@ -387,12 +393,11 @@ sudo apt install -y jq curl unzip
 
 `[NOTE]`
 
-`192.168.0.239` est un Raspberry Pi 2 en `armhf` (ARM 32 bits) : le dépôt APT HashiCorp
-ne sert pas cette architecture. Installation par le binaire, mais la build `linux_arm` n'existe pas pour la 2.1.0 (Version de 192.168.0.238), donc installation de `Vault v1.20.4`
+`192.168.0.239` est un Raspberry Pi 2 en `armhf` (ARM 32 bits). Le dépôt APT HashiCorp ne sert
+pas cette architecture, et les versions 2.x ne publient plus de build `linux_arm` : la dernière
+disponible est la `1.20.4`. L'écart avec le serveur en `2.1.0` est sans effet, l'agent
+n'utilisant que l'authentification AppRole et l'émission PKI.
 
-
-
-- Télécharger et installer sur `192.168.0.239`
 ````
 VER=1.20.4
 
@@ -409,8 +414,8 @@ vault version
 
 `[NOTE]`
 
-Pas de mise à jour par `apt` : refaire ce téléchargement à la main pour suivre
-la version de `192.168.0.238`.
+Pas de mise à jour par `apt`. Le binaire n'installe aucun service `vault`, ce qui est
+le comportement voulu ici.
 
 - Créer le dossier
 ````
@@ -598,6 +603,10 @@ sudo vim /etc/systemd/system/vault-agent.service
 
 `[NOTE]`
 Il lance le processus vault agent et le maintient démarré, s'authentifie avec le role_id/secret_id, demande un certificat, l'écrit sur disque, lance le script de reload.
+
+`[NOTE]`
+`/usr/local/bin/vault` et non `/usr/bin/vault` : sur `192.168.0.239` le binaire est installé
+à la main, pas par `apt`.
 
 ````
 [Unit]
