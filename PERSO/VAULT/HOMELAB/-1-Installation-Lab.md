@@ -64,7 +64,7 @@ sudo mkdir -p /opt/vault/tls /opt/vault/data
 
 - Création certificats
 ````
-sudo openssl req -x509 -newkey rsa:4096 -sha256 -days 90 -nodes \
+sudo openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
   -keyout /opt/vault/tls/vault.key \
   -out    /opt/vault/tls/vault.crt \
   -subj "/CN=vault.sednal.lan" \
