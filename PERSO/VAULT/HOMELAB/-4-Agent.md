@@ -631,6 +631,47 @@ sudo systemctl enable --now vault-agent
 sudo journalctl -u vault-agent -n 30 --no-pager
 ````
 
+<details>
+<summary>
+<h2>
+=== Sortie attendu ===
+</h2>
+</summary>
+
+Sep 03 22:18:35 infra vault[13001]: ==> Note: Vault Agent version does not match Vault server version. Vault Agent version: 1.20.4, Vault server version: 2.1.0
+Sep 03 22:18:35 infra vault[13001]: ==> Vault Agent started! Log data will stream in below:
+Sep 03 22:18:35 infra vault[13001]: ==> Vault Agent configuration:
+Sep 03 22:18:35 infra vault[13001]:            Api Address 1: http://bufconn
+Sep 03 22:18:35 infra vault[13001]:                      Cgo: disabled
+Sep 03 22:18:35 infra vault[13001]:                Log Level:
+Sep 03 22:18:35 infra vault[13001]:                  Version: Vault v1.20.4, built 2025-09-23T13:22:38Z
+Sep 03 22:18:35 infra vault[13001]:              Version Sha: 55bd8f18c6c84aa89fdede4850a622c57f03bd7e
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.099+0400 [INFO]  agent.auth.handler: starting auth handler
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.100+0400 [INFO]  agent.auth.handler: authenticating
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.099+0400 [INFO]  agent.exec.server: starting exec server
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.100+0400 [INFO]  agent.exec.server: no env templates or exec config, exiting
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.099+0400 [INFO]  agent.sink.server: starting sink server
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.099+0400 [INFO]  agent.template.server: starting template server
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.100+0400 [INFO]  agent: (runner) creating new runner (dry: false, once: false)
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.107+0400 [INFO]  agent: (runner) creating watcher
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.138+0400 [INFO]  agent.auth.handler: authentication successful, sending token to sinks
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.139+0400 [INFO]  agent.auth.handler: starting renewal process
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.140+0400 [INFO]  agent.template.server: template server received new token
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.140+0400 [INFO]  agent: (runner) stopping
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.141+0400 [INFO]  agent: (runner) creating new runner (dry: false, once: false)
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.143+0400 [INFO]  agent: (runner) creating watcher
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.144+0400 [INFO]  agent: (runner) starting
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.147+0400 [INFO]  agent.auth.handler: renewed auth token
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.289+0400 [INFO]  agent: (runner) rendered "/etc/vault-agent/templates/cert.tpl" => "/etc/ssl/nalsed/infra.crt"
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.298+0400 [INFO]  agent: (runner) rendered "/etc/vault-agent/templates/key.tpl" => "/etc/ssl/nalsed/infra.key"
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.299+0400 [INFO]  agent: (runner) executing command "[\"/usr/local/bin/reload-nginx.sh\"]" from "/etc/vault-agent/templates/key.tpl" => "/etc/ssl/nalsed/infra.key"
+Sep 03 22:18:35 infra vault[13001]: 2026-09-03T22:18:35.299+0400 [INFO]  agent: (child) spawning: /usr/local/bin/reload-nginx.sh
+Sep 03 22:18:35 infra vault[13015]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+Sep 03 22:18:35 infra vault[13015]: nginx: configuration file /etc/nginx/nginx.conf test is successful
+
+</details>
+
+
 - Certificat livré
 ````
 openssl x509 -in /etc/ssl/nalsed/infra.crt -noout -subject -dates -ext subjectAltName
