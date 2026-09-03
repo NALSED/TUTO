@@ -184,7 +184,50 @@ Ils repartent seuls en moins d'une minute après le descellement.
 
 ## `-3-` Dépannage
 
-### `- 3.1` Vault injoignable après renouvellement
+### `- 3.1` Reprise après un arrêt prolongé
+
+`[NOTE]`
+
+Si l'arrêt dépasse la durée de vie du certificat, Vault redémarre avec un certificat expiré.
+L'agent refuse alors de s'y connecter (`certificate has expired`) et ne peut pas le renouveler :
+Vault sert un certificat qu'il est incapable de remplacer seul.
+
+- Diagnostic
+````
+openssl x509 -in /opt/vault/tls/vault.crt -noout -enddate
+sudo journalctl -u vault-agent -n 20 --no-pager
+````
+
+- Retour sur l'auto-signé
+````
+sudo systemctl stop vault-agent
+
+sudo cp /opt/vault/tls/vault.crt.selfsigned /opt/vault/tls/vault.crt
+sudo cp /opt/vault/tls/vault.key.selfsigned /opt/vault/tls/vault.key
+sudo chown vault:vault /opt/vault/tls/vault.crt /opt/vault/tls/vault.key
+sudo systemctl reload vault
+````
+
+- Réémission
+````
+export VAULT_ADDR=https://vault.sednal.lan:8100
+export VAULT_CACERT=/opt/vault/tls/vault.crt
+
+sudo systemctl start vault-agent
+````
+
+`[NOTE]`
+
+L'auto-signé étant lui aussi à durée limitée, le régénérer si nécessaire avec la commande
+`openssl` de `-1-Installation-Lab.md` § 3.1 avant de relancer l'agent.
+
+`[RAPPEL]`
+
+L'infra étant éteinte environ un mois tous les quatre mois, l'auto-signé doit être généré
+avec `-days 3650` et non `-days 90` : c'est le filet de sécurité, il ne doit jamais expirer
+avant le certificat qu'il remplace.
+
+### `- 3.2` Vault injoignable après renouvellement
 ````
 sudo systemctl stop vault-agent
 
@@ -200,7 +243,7 @@ Arrêter l'agent d'abord, sinon il réécrit les fichiers. `reload` ne scelle pa
 
 ---
 
-### `- 3.2` La clé ne correspond pas au certificat
+### `- 3.3` La clé ne correspond pas au certificat
 ````
 openssl x509 -noout -modulus -in /etc/ssl/nalsed/infra.crt | openssl md5
 openssl rsa  -noout -modulus -in /etc/ssl/nalsed/infra.key | openssl md5
@@ -213,7 +256,7 @@ Corriger puis `systemctl restart vault-agent`.
 
 ---
 
-### `- 3.3` L'agent ne rend pas les templates
+### `- 3.4` L'agent ne rend pas les templates
 ````
 sudo journalctl -u vault-agent -f
 ````
@@ -227,7 +270,7 @@ sudo journalctl -u vault-agent -f
 
 ---
 
-### `- 3.4` Purge des certificats émis
+### `- 3.5` Purge des certificats émis
 
 `[NOTE]`
 
@@ -245,7 +288,7 @@ vault write PKI-Sednal-Inter-RSA/config/auto-tidy \
 
 ---
 
-### `- 3.5` Révocation
+### `- 3.6` Révocation
 ````
 vault list  PKI-Sednal-Inter-RSA/certs
 vault write PKI-Sednal-Inter-RSA/revoke serial_number="[SERIAL]"
