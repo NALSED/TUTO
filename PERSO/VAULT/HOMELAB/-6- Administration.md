@@ -227,23 +227,9 @@ L'infra étant éteinte environ un mois tous les quatre mois, l'auto-signé doit
 avec `-days 3650` et non `-days 90` : c'est le filet de sécurité, il ne doit jamais expirer
 avant le certificat qu'il remplace.
 
-### `- 3.2` Vault injoignable après renouvellement
-````
-sudo systemctl stop vault-agent
-
-sudo cp /opt/vault/tls/vault.crt.selfsigned /opt/vault/tls/vault.crt
-sudo cp /opt/vault/tls/vault.key.selfsigned /opt/vault/tls/vault.key
-sudo chown vault:vault /opt/vault/tls/vault.crt /opt/vault/tls/vault.key
-sudo systemctl reload vault
-````
-
-`[NOTE]`
-
-Arrêter l'agent d'abord, sinon il réécrit les fichiers. `reload` ne scelle pas Vault.
-
 ---
 
-### `- 3.3` La clé ne correspond pas au certificat
+### `- 3.2` La clé ne correspond pas au certificat
 ````
 openssl x509 -noout -modulus -in /etc/ssl/nalsed/infra.crt | openssl md5
 openssl rsa  -noout -modulus -in /etc/ssl/nalsed/infra.key | openssl md5
@@ -256,7 +242,7 @@ Corriger puis `systemctl restart vault-agent`.
 
 ---
 
-### `- 3.4` L'agent ne rend pas les templates
+### `- 3.3` L'agent ne rend pas les templates
 ````
 sudo journalctl -u vault-agent -f
 ````
@@ -270,7 +256,7 @@ sudo journalctl -u vault-agent -f
 
 ---
 
-### `- 3.5` Purge des certificats émis
+### `- 3.4` Purge des certificats émis
 
 `[NOTE]`
 
@@ -288,7 +274,7 @@ vault write PKI-Sednal-Inter-RSA/config/auto-tidy \
 
 ---
 
-### `- 3.6` Révocation
+### `- 3.5` Révocation
 ````
 vault list  PKI-Sednal-Inter-RSA/certs
 vault write PKI-Sednal-Inter-RSA/revoke serial_number="[SERIAL]"
