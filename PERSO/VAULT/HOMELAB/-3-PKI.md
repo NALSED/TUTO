@@ -93,7 +93,7 @@ vault policy read sednal-pki
 À ce stade la policy `sednal-pki` existe mais n'est rattachée à **aucune méthode d'authentification** :
 elle ne s'applique donc à personne. Les commandes qui suivent utilisent le `Root Token`.
 
-Le rattachement (AppRole pour le Vault Agent) est traité dans `2-agent.md`.
+Le rattachement (AppRole pour le Vault Agent) est traité dans `-4-Agent.md`.
 
 ---
 ---
@@ -108,7 +108,7 @@ Durée lease Certificats
 
 - `Intermediate` CA	RSA 4096	`5 ans`
 
-- `Finaux`	RSA 2048	`30 jours` (infra) / `90 jours` (Bareos)
+- `Finaux`	RSA 2048	`30 jours`
 
 `[RAPPEL]`
 
@@ -297,7 +297,7 @@ vault write PKI-Sednal-Inter-RSA/roles/infra \
 
 ---
 
-### `- 3.3` Vérification des rôles
+### `- 3.2` Vérification des rôles
 ````
 vault list PKI-Sednal-Inter-RSA/roles
 vault read PKI-Sednal-Inter-RSA/roles/infra
@@ -305,7 +305,7 @@ vault read PKI-Sednal-Inter-RSA/roles/infra
 
 ---
 
-### `- 3.4` Test d'émission
+### `- 3.3` Test d'émission
 ````
 vault write PKI-Sednal-Inter-RSA/issue/infra \
      common_name="test.sednal.lan" \

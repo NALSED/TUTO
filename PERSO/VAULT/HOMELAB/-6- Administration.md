@@ -41,7 +41,32 @@ vault operator raft snapshot save /tmp/vault-$(date +%F).snap
 
 ---
 
-### `- 1.2` Snapshot automatique
+### `- 1.2` Token de sauvegarde
+
+- Policy
+````
+sudo vim /etc/vault/pki/config/policy/Policy_Snapshot.hcl
+````
+
+- Edition
+````
+path "sys/storage/raft/snapshot" {
+  capabilities = [ "read" ]
+}
+````
+
+- Création du token
+````
+vault policy write pki-snapshot /etc/vault/pki/config/policy/Policy_Snapshot.hcl
+sudo mkdir -p /etc/vault-snapshot && sudo chmod 700 /etc/vault-snapshot
+vault token create -policy=pki-snapshot -period=768h -field=token \
+| sudo tee /etc/vault-snapshot/token > /dev/null
+sudo chmod 600 /etc/vault-snapshot/token
+````
+
+---
+
+### `- 1.3` Snapshot automatique
 
 - `/usr/local/bin/vault-snapshot.sh`
 ````
@@ -50,7 +75,7 @@ set -euo pipefail
 
 export VAULT_ADDR=https://vault.sednal.lan:8100
 export VAULT_CACERT=/etc/ssl/nalsed/ca.crt
-export VAULT_TOKEN=$(cat /etc/vault-agent/token)
+export VAULT_TOKEN=$(cat /etc/vault-snapshot/token)
 
 DEST="/var/backups/vault"
 mkdir -p "$DEST"
@@ -63,14 +88,9 @@ find "$DEST" -name 'vault-*.snap' -mtime +56 -delete
 sudo chmod 700 /usr/local/bin/vault-snapshot.sh
 ````
 
-`[NOTE]`
-
-Le token doit autoriser `sys/storage/raft/snapshot` en lecture.
-Créer un token périodique dédié plutôt que d'utiliser le Root Token.
-
 ---
 
-### `- 1.3` Timer hebdomadaire
+### `- 1.4` Timer hebdomadaire
 
 - `/etc/systemd/system/vault-snapshot.service`
 ````
@@ -106,7 +126,7 @@ Dimanche 20 h : après la fenêtre de sauvegarde Bareos, la VM étant déjà all
 
 ---
 
-### `- 1.4` Sortie de la machine
+### `- 1.5` Sortie de la machine
 
 `[RAPPEL]`
 
@@ -122,7 +142,7 @@ stockés sur la VM. Support hors ligne. Sans elles, un snapshot restauré est in
 
 ---
 
-### `- 1.5` Restauration
+### `- 1.6` Restauration
 ````
 vault operator raft snapshot restore -force /var/backups/vault/vault-[DATE].snap
 ````
