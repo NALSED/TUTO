@@ -240,7 +240,7 @@ L'agent ne sait poser que les droits, pas le propriétaire : donc script.
 
 - Création du script
 ````
-vim /usr/local/bin/reload-vault.sh`
+sudo vim /usr/local/bin/reload-vault.sh
 ````
 
 - Editer
@@ -266,7 +266,7 @@ sudo chmod 700 /usr/local/bin/reload-vault.sh
 
 - Création fichier
 ````
-/etc/vault-agent/agent.hcl
+sudo vim /etc/vault-agent/agent.hcl
 ````
 
 - Edition fichier de configuration agent
@@ -313,7 +313,7 @@ template {
 
 - Création du service
 ````
-vim /etc/systemd/system/vault-agent.service
+sudo vim /etc/systemd/system/vault-agent.service
 ````
 
 - Edition service
@@ -380,32 +380,42 @@ le script de rechargement et les destinations.
 
 - Paquets
 ````
-sudo apt install -y jq curl
-````
-
-- Ajout de la clé du dépôt HashiCorp
-````
-wget -O- https://apt.releases.hashicorp.com/gpg \
-| sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-````
-
-- Ajout du dépôt
-````
-echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
-https://apt.releases.hashicorp.com $(lsb_release -cs) main" \
-| sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt install -y jq curl unzip
 ````
 
 - Installation du binaire `vault`
 
 `[NOTE]`
 
-Le paquet installe aussi un service `vault` : c'est normal, il n'est pas activé.
-Seul le mode `agent` du binaire est utilisé ici.
+`192.168.0.239` est un Raspberry Pi 2 en `armhf` (ARM 32 bits) : le dépôt APT HashiCorp
+ne sert pas cette architecture. Installation par le binaire, en alignant la version
+sur celle de `192.168.0.238`.
 
+- Relever la version sur `192.168.0.238`
 ````
-sudo apt update && sudo apt install -y vault
+vault version
 ````
+
+- Télécharger et installer sur `192.168.0.239`
+````
+VER=[VERSION]
+
+curl -O https://releases.hashicorp.com/vault/${VER}/vault_${VER}_linux_arm.zip
+unzip vault_${VER}_linux_arm.zip
+sudo install -m 755 vault /usr/local/bin/vault
+rm vault vault_${VER}_linux_arm.zip
+````
+
+- Vérification
+````
+vault version
+````
+
+`[NOTE]`
+
+Pas de mise à jour par `apt` : refaire ce téléchargement à la main pour suivre
+la version de `192.168.0.238`. Le binaire n'installe aucun service `vault`,
+ce qui est le comportement voulu ici.
 
 - Créer le dossier
 ````
@@ -433,7 +443,6 @@ sudo cp /etc/ssl/nalsed/ca.crt /usr/local/share/ca-certificates/Sednal-Root-RSA-
 ````
 sudo update-ca-certificates
 ````
-
 ---
 
 ### `- 4.2` Identifiants
