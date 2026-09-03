@@ -116,12 +116,23 @@ sudo firewall-cmd --reload
 sudo systemctl enable --now vault
 ````
 
-- `3.4 Initialisation`
+- `3.4 Certificat lisible par l'utilisateur courant`
+
+`[NOTE]`
+
+`/opt/vault/tls` est en 700 vault:vault : le client Vault lancé en utilisateur normal
+ne peut pas lire le certificat. Passer par `sudo` ne fonctionne pas non plus,
+les variables d'environnement étant perdues.
+
 ````
-export VAULT_ADDR=https://vault.sednal.lan:8100
-export VAULT_CACERT=/opt/vault/tls/vault.crt
-vault operator init
-vault operator unseal   # 3 fois
+sudo mkdir -p /etc/ssl/nalsed
+sudo install -m 644 /opt/vault/tls/vault.crt /etc/ssl/nalsed/vault-bootstrap.crt
+````
+
+
+- `3.5 Initialisation`
+````
+
 ````
 
 `[NOTE]`
