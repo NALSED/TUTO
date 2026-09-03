@@ -608,7 +608,7 @@ Wants=network-online.target
 [Service]
 Type=simple
 User=root
-ExecStart=/usr/bin/vault agent -config=/etc/vault-agent/agent.hcl
+ExecStart=/usr/local/bin/vault agent -config=/etc/vault-agent/agent.hcl
 Restart=on-failure
 RestartSec=30
 
