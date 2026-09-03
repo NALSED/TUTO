@@ -94,16 +94,11 @@ sudo chmod 644 /opt/vault/tls/vault.crt
 sudo chmod 640 /opt/vault/tls/vault.key
 ````
 
-
-
+-
+````
 shred -u /tmp/cert.json
 sudo systemctl reload vault
 ````
-
-`[NOTE]`
-
-Le `.crt` contient le certificat **suivi de l'intermédiaire** : sans cette concaténation,
-les clients ne peuvent pas reconstruire la chaîne.
 
 - Bascule du client sur la Root
 ````
@@ -112,7 +107,7 @@ export VAULT_CACERT=/etc/ssl/nalsed/ca.crt
 vault status
 ````
 
-À rendre permanent dans `~/.bashrc`.
+Pour rendre permanant inscription dans : `~/.bashrc`.
 
 ---
 ---
@@ -120,6 +115,8 @@ vault status
 ## `-2-` `AppRole`
 
 ### `- 2.1` Activation et policy
+
+- Autorisation et édition fichier policy
 ````
 vault auth enable approle
 
@@ -208,11 +205,16 @@ sudo chmod 600 /etc/vault-agent/role_id /etc/vault-agent/secret_id
 
 `[NOTE]`
 
-L'agent ne sait poser que le mode, pas le propriétaire : d'où ce script.
+L'agent ne sait poser que les droits, pas le propriétaire : donc script.
 
-- `/usr/local/bin/reload-vault.sh`
+- Création du script
 ````
-#!/usr/bin/env bash
+vim /usr/local/bin/reload-vault.sh`
+````
+
+- Editer
+````
+#!/bin/bash
 set -euo pipefail
 
 chown vault:vault /opt/vault/tls/vault.crt /opt/vault/tls/vault.key
