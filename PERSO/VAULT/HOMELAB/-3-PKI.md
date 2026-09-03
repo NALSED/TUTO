@@ -73,7 +73,7 @@ path "PKI-Sednal-Inter-RSA*" {
 ### `- 1.3` Droits
 ````
 sudo chown vault:vault /etc/vault/pki/config/policy/Policy_PKI.hcl
-sudo chmod 640 /etc/vault/pki/config/policy/Policy_PKI.hcl
+sudo chmod 644 /etc/vault/pki/config/policy/Policy_PKI.hcl
 ````
 
 ---
