@@ -374,38 +374,94 @@ Le renouvellement automatique intervient aux deux tiers du bail, soit **~8 mois*
 Même mécanique qu'en `-3-`. Seuls changent : les identifiants, le contenu des templates,
 le script de rechargement et les destinations.
 
+---
+
 ### `- 4.1` Prérequis
+
+- Paquets
 ````
 sudo apt install -y jq curl
+````
 
+- Ajout de la clé du dépôt HashiCorp
+````
 wget -O- https://apt.releases.hashicorp.com/gpg \
 | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+````
 
+- Ajout du dépôt
+````
 echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
 https://apt.releases.hashicorp.com $(lsb_release -cs) main" \
 | sudo tee /etc/apt/sources.list.d/hashicorp.list
+````
 
+- Installation du binaire `vault`
+
+`[NOTE]`
+
+Le paquet installe aussi un service `vault` : c'est normal, il n'est pas activé.
+Seul le mode `agent` du binaire est utilisé ici.
+
+````
 sudo apt update && sudo apt install -y vault
 ````
 
-- `CA ROOT` depuis 238
+- Créer le dossier
 ````
 sudo mkdir -p /etc/ssl/nalsed
+````
+
+- Récupérer la `CA ROOT` depuis `192.168.0.238`
+
+`[NOTE]`
+
+⚠️ Pas de `sudo scp` : la commande s'exécuterait en root, donc avec les clés SSH de root
+et non celles de `sednal`.
+
+````
 scp sednal@192.168.0.238:/etc/ssl/nalsed/ca.crt /tmp/ca.crt
 sudo mv /tmp/ca.crt /etc/ssl/nalsed/ca.crt
+````
+
+- Copie du certificat dans le stockage de certificats système Debian
+````
 sudo cp /etc/ssl/nalsed/ca.crt /usr/local/share/ca-certificates/Sednal-Root-RSA-1.crt
+````
+
+- MAJ
+````
 sudo update-ca-certificates
 ````
 
 ---
 
 ### `- 4.2` Identifiants
-````
-sudo mkdir -p /etc/vault-agent/templates && sudo chmod 700 /etc/vault-agent
 
-echo "[ROLE_ID]"   | sudo tee /etc/vault-agent/role_id   > /dev/null
-echo "[SECRET_ID]" | sudo tee /etc/vault-agent/secret_id > /dev/null
-sudo chmod 600 /etc/vault-agent/role_id /etc/vault-agent/secret_id
+`[RAPPEL]`
+
+Le `role_id` et le `secret_id` sont ceux du rôle `vault-239`, relevés en `-2.2`.
+
+- Création dossier template Agents
+````
+sudo mkdir -p /etc/vault-agent/templates
+````
+
+- Droit Dossier
+````
+sudo chmod 700 /etc/vault-agent
+````
+
+- Création / Edition fichier `role_id` et `secret_id`
+````
+sudo vim /etc/vault-agent/role_id
+sudo vim /etc/vault-agent/secret_id
+````
+
+- Droits
+````
+sudo chmod 600 /etc/vault-agent/secret_id
+sudo chmod 600 /etc/vault-agent/role_id
 ````
 
 ---
@@ -414,11 +470,21 @@ sudo chmod 600 /etc/vault-agent/role_id /etc/vault-agent/secret_id
 
 `[NOTE]`
 
+⚠️ Les arguments doivent être `strictement identiques` dans les deux templates.
+À la moindre différence, l'agent émet deux certificats et la clé ne correspond plus.
+
+`[NOTE]`
+
 Un seul certificat multi-SAN pour tous les services du proxy.
 Ajouter un service = ajouter son nom dans `alt_names` des **deux** templates,
 puis `systemctl restart vault-agent`.
 
-- `/etc/vault-agent/templates/cert.tpl`
+- Création fichier
+````
+sudo vim /etc/vault-agent/templates/cert.tpl
+````
+
+- Edition
 ````
 {{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=infra.sednal.lan" "alt_names=pihole.sednal.lan,bareos.sednal.lan,cockpit.sednal.lan,proxmox.sednal.lan" "ip_sans=192.168.0.239" "ttl=8760h" -}}
 {{ .Data.certificate }}
@@ -426,7 +492,12 @@ puis `systemctl restart vault-agent`.
 {{- end -}}
 ````
 
-- `/etc/vault-agent/templates/key.tpl`
+- Création fichier
+````
+sudo vim /etc/vault-agent/templates/key.tpl
+````
+
+- Edition
 ````
 {{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=infra.sednal.lan" "alt_names=pihole.sednal.lan,bareos.sednal.lan,cockpit.sednal.lan,proxmox.sednal.lan" "ip_sans=192.168.0.239" "ttl=8760h" -}}
 {{ .Data.private_key }}
@@ -437,9 +508,18 @@ puis `systemctl restart vault-agent`.
 
 ### `- 4.4` Script de rechargement
 
-- `/usr/local/bin/reload-nginx.sh`
+`[NOTE]`
+
+L'agent ne sait poser que les droits, pas le propriétaire : donc script.
+
+- Création du script
 ````
-#!/usr/bin/env bash
+sudo vim /usr/local/bin/reload-nginx.sh
+````
+
+- Editer
+````
+#!/bin/bash
 set -euo pipefail
 
 chown root:www-data /etc/ssl/nalsed/infra.crt /etc/ssl/nalsed/infra.key
@@ -449,36 +529,124 @@ chmod 640 /etc/ssl/nalsed/infra.key
 nginx -t && systemctl reload nginx
 ````
 
+- Droit script
 ````
 sudo chmod 700 /usr/local/bin/reload-nginx.sh
 ````
 
-`[NOTE]`
+---
 
-`nginx -t` avant le `reload` : un certificat mal écrit ne doit pas faire tomber le proxy.
+### `- 4.5` Configuration
+
+- Création fichier
+````
+sudo vim /etc/vault-agent/agent.hcl
+````
+
+- Edition fichier de configuration agent
+````
+pid_file = "/run/vault-agent.pid"
+
+# A quelle CA faire confiance
+vault {
+  address = "https://vault.sednal.lan:8100"
+  ca_cert = "/etc/ssl/nalsed/ca.crt"
+}
+
+# Comment l'agent s'authentifie aupres de Vault
+# Ici Approle via role_id et secret_id
+auto_auth {
+  method "approle" {
+    config = {
+      role_id_file_path                   = "/etc/vault-agent/role_id"
+      secret_id_file_path                 = "/etc/vault-agent/secret_id"
+      remove_secret_id_file_after_reading = false
+    }
+  }
+}
+
+# Certificat
+template {
+  source      = "/etc/vault-agent/templates/cert.tpl"
+  destination = "/etc/ssl/nalsed/infra.crt"
+  perms       = "0644"
+}
+
+# Cle privee, puis rechargement de nginx
+template {
+  source      = "/etc/vault-agent/templates/key.tpl"
+  destination = "/etc/ssl/nalsed/infra.key"
+  perms       = "0640"
+  command     = "/usr/local/bin/reload-nginx.sh"
+}
+````
 
 ---
 
-### `- 4.5` Configuration et service
+### `- 4.6` Service
+
+- Création du service
+````
+sudo vim /etc/systemd/system/vault-agent.service
+````
+
+- Edition service
 
 `[NOTE]`
+Il lance le processus vault agent et le maintient démarré, s'authentifie avec le role_id/secret_id, demande un certificat, l'écrit sur disque, lance le script de reload.
 
-Reprendre l'`agent.hcl` de `-3.4` en changeant uniquement les destinations
-(`/etc/ssl/nalsed/infra.crt` et `.key`) et le `command` (`/usr/local/bin/reload-nginx.sh`).
-L'unité systemd de `-3.5` est identique, sans `vault.service` dans `After`.
+````
+[Unit]
+Description=Vault Agent
+After=network-online.target
+Wants=network-online.target
 
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/vault agent -config=/etc/vault-agent/agent.hcl
+Restart=on-failure
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
+````
+
+- Rechargement et démarrage du service `vault-agent.service`
 ````
 sudo systemctl daemon-reload
 sudo systemctl enable --now vault-agent
-sudo journalctl -u vault-agent -n 30 --no-pager
 ````
 
 ---
 
-### `- 4.6` Vérification
+### `- 4.7` Vérification
+
+- Journal de l'agent
+````
+sudo journalctl -u vault-agent -n 30 --no-pager
+````
+
+- Certificat livré
 ````
 openssl x509 -in /etc/ssl/nalsed/infra.crt -noout -subject -dates -ext subjectAltName
 ````
+
+- Correspondance clé / certificat
+
+`[NOTE]`
+
+Les deux empreintes doivent être identiques. Si elles diffèrent, les arguments des templates
+`cert.tpl` et `key.tpl` ne sont pas strictement identiques.
+
+````
+openssl x509 -noout -modulus -in /etc/ssl/nalsed/infra.crt | openssl md5
+openssl rsa  -noout -modulus -in /etc/ssl/nalsed/infra.key | openssl md5
+````
+
+`[RAPPEL]`
+
+Le renouvellement automatique intervient aux deux tiers du bail, soit **~8 mois** pour 1 an.
 
 ---
 ---
