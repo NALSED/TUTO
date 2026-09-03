@@ -261,15 +261,32 @@ vault write PKI-Sednal-Inter-RSA/config/crl \
 vault secrets list | grep PKI-Sednal
 ````
 
+- `Sortie Attendu`
+````
+PKI-Sednal-Inter-RSA/    pki               pki_09716ad0               n/a
+PKI-Sednal-Root-RSA/     pki               pki_e8ac580a               n/a
+````
+
 - Certificat de l'intermédiaire
 ````
 vault read -field=certificate PKI-Sednal-Inter-RSA/cert/ca | openssl x509 -noout -subject -issuer -dates
+````
+
+- `Sortie Attendu`
+````
+subject=CN=sednal.lan Intermediate Authority
+issuer=CN=sednal.lan
+notBefore=Sep  3 13:16:07 2026 GMT
+notAfter=Sep  2 13:16:37 2031 GMT
 ````
 
 - Chaîne complète
 ````
 vault read -field=certificate PKI-Sednal-Inter-RSA/cert/ca_chain
 ````
+
+- `Sortie Attendu` => Les 2 certificats à la suite
+
 
 ---
 ---
