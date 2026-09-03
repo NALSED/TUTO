@@ -280,8 +280,6 @@ vault read -field=certificate PKI-Sednal-Inter-RSA/cert/ca_chain
 
 - `infra` → `30 jours`, pour les machines allumées en permanence
 
-- `bareos` → `90 jours`, le serveur n'étant allumé que 4 h par semaine
-
 ---
 
 ### `- 3.1` Rôle `infra`
@@ -293,20 +291,6 @@ vault write PKI-Sednal-Inter-RSA/roles/infra \
      allow_ip_sans=true \
      key_type=rsa key_bits=2048 \
      ttl="720h" \
-     max_ttl="2160h" \
-     no_store=false
-````
-
----
-
-### `- 3.2` Rôle `bareos`
-````
-vault write PKI-Sednal-Inter-RSA/roles/bareos \
-     allowed_domains="sednal.lan" \
-     allow_subdomains=true \
-     allow_ip_sans=true \
-     key_type=rsa key_bits=2048 \
-     ttl="2160h" \
      max_ttl="2160h" \
      no_store=false
 ````
