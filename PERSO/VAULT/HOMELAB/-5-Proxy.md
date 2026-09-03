@@ -61,7 +61,7 @@ Un changement de paramètre se fait alors à un seul endroit.
 
 - Création du fichier de configuration
 ````
-vim /etc/nginx/snippets/ssl-nalsed.conf`
+sudo vim /etc/nginx/snippets/ssl-nalsed.conf
 ````
 
 - Edition
@@ -90,7 +90,7 @@ Indispensable pour la console noVNC de Proxmox et le terminal de Cockpit.
 
 - Création fichier
 ````
-/etc/nginx/conf.d/websocket.conf`
+sudo vim /etc/nginx/conf.d/websocket.conf
 ````
 
 - Edition
@@ -107,7 +107,7 @@ map $http_upgrade $connection_upgrade {
 
 - Création fichier de configuration 
 ````
-/etc/nginx/sites-available/pihole.conf`
+sudo vim /etc/nginx/sites-available/pihole.conf
 ````
 
 - Edition fichier
@@ -119,8 +119,7 @@ server {
 }
 
 server {
-    listen 443 ssl;
-    http2 on;
+    listen 443 ssl http2;
     server_name pihole.sednal.lan;
 
     include snippets/ssl-nalsed.conf;
@@ -146,7 +145,7 @@ Proxmox parle **HTTPS** sur 8006 avec son propre certificat auto-signé :
 
 - Création fichier
 ````
-/etc/nginx/sites-available/proxmox.conf`
+sudo vim /etc/nginx/sites-available/proxmox.conf
 ````
 
 - Edition fichier
@@ -158,8 +157,7 @@ server {
 }
 
 server {
-    listen 443 ssl;
-    http2 on;
+    listen 443 ssl http2;
     server_name proxmox.sednal.lan;
     client_max_body_size 0;
 
@@ -186,13 +184,11 @@ server {
 ````
 
 `[NOTE]`
-
-`[NOTE]`
 Pour Cockpit, ajouter en plus sur `192.168.0.241` dans `/etc/cockpit/cockpit.conf` :
 
 - Fichier
 ````
-vim /etc/cockpit/cockpit.conf
+sudo vim /etc/cockpit/cockpit.conf
 ````
 
 - Editer dans la configuration de Cockpit
@@ -204,7 +200,7 @@ ProtocolHeader = X-Forwarded-Proto
 
 - Redemarrer Service
 ````
-sudo systemctl restart cockpit.socket`.
+sudo systemctl restart cockpit.socket
 ````
 
 ---
