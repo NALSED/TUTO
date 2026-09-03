@@ -398,12 +398,14 @@ vault version
 
 - Télécharger et installer sur `192.168.0.239`
 ````
-VER=[VERSION]
+VER=2.1.0
 
 curl -O https://releases.hashicorp.com/vault/${VER}/vault_${VER}_linux_arm.zip
 unzip vault_${VER}_linux_arm.zip
 sudo install -m 755 vault /usr/local/bin/vault
 rm vault vault_${VER}_linux_arm.zip
+
+vault version
 ````
 
 - Vérification
