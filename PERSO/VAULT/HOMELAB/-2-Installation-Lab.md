@@ -82,7 +82,7 @@ sudo chmod 644 /opt/vault/tls/vault.crt
 sudo restorecon -Rv /opt/vault
 ````
 
-- 3.2 Editer fichier de configuration `Vault`
+- 3.2 `Editer fichier de configuration Vault`
 ````
 vim /etc/vault.d/vault.hcl
 ````
@@ -109,14 +109,14 @@ api_addr     = "https://vault.sednal.lan:8100"
 cluster_addr = "https://vault.sednal.lan:8101"
 ````
 
-- 3.3 Firewall et Service
+- 3.3 `Firewall et Service`
 ````
 sudo firewall-cmd --permanent --add-port=8100/tcp --add-port=8101/tcp
 sudo firewall-cmd --reload
 sudo systemctl enable --now vault
 ````
 
-- 3.4 Initialisation
+- `3.4 Initialisation`
 ````
 export VAULT_ADDR=https://vault.sednal.lan:8100
 export VAULT_CACERT=/opt/vault/tls/vault.crt
