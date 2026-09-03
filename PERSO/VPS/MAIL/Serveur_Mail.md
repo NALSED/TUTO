@@ -847,7 +847,7 @@ The Port25 Solutions, Inc. team
 ==========================================================
 Summary of Results
 ==========================================================
-SPF check:          permerror <=== Erreur OVH, reste OK 
+SPF check:          pass
 "iprev" check:      pass
 DKIM check:         pass
 
