@@ -94,16 +94,21 @@ sudo chmod 644 /opt/vault/tls/vault.crt
 sudo chmod 640 /opt/vault/tls/vault.key
 ````
 
--
+- Suppression fichier
 ````
-shred -u /tmp/cert.json
+rm /tmp/cert.json
+````
+
+- Redémarrage Vault
+````
 sudo systemctl reload vault
 ````
 
-- Bascule du client sur la Root
+- Connection
 ````
 export VAULT_ADDR=https://vault.sednal.lan:8100
 export VAULT_CACERT=/etc/ssl/nalsed/ca.crt
+vault login
 vault status
 ````
 
@@ -116,14 +121,14 @@ Pour rendre permanant inscription dans : `~/.bashrc`.
 
 ### `- 2.1` Activation et policy
 
-- Autorisation et édition fichier policy
+- Autorisation et création fichier policy
 ````
 vault auth enable approle
 
 sudo vim /etc/vault/pki/config/policy/Policy_Issue.hcl
 ````
 
-- Edition
+- Edition policy
 ````
 path "PKI-Sednal-Inter-RSA/issue/infra" {
   capabilities = [ "create", "update" ]
@@ -143,6 +148,7 @@ vault policy write pki-issue /etc/vault/pki/config/policy/Policy_Issue.hcl
 
 `secret_id_ttl=0` : le secret n'expire jamais. Simplification assumée en homelab.
 
+- Création de rôle pour .238 et .239
 ````
 for M in 238 239; do
   vault write auth/approle/role/vault-$M \
@@ -152,7 +158,7 @@ for M in 238 239; do
 done
 ````
 
-- Identifiants (à noter, ils servent en `-3-` et `-4-`)
+- Identifiants (à noter, ils servent en `-3-` et `-4-`) pour .238 et .239
 ````
 for M in 238 239; do
   echo "=== $M ==="
@@ -167,12 +173,27 @@ done
 ## `-3-` Agent sur `192.168.0.238`
 
 ### `- 3.1` Identifiants
-````
-sudo mkdir -p /etc/vault-agent/templates && sudo chmod 700 /etc/vault-agent
 
-echo "[ROLE_ID]"   | sudo tee /etc/vault-agent/role_id   > /dev/null
-echo "[SECRET_ID]" | sudo tee /etc/vault-agent/secret_id > /dev/null
-sudo chmod 600 /etc/vault-agent/role_id /etc/vault-agent/secret_id
+- Création dossier template Agents
+````
+sudo mkdir -p /etc/vault-agent/templates
+````
+
+- Droit Dossier
+````
+sudo chmod 700 /etc/vault-agent
+````
+
+- Création / Edition fichier `role_id` et `secret_id`
+````
+sudo vim /etc/vault-agent/role_id
+sudo vim /etc/vault-agent/secret_id
+````
+
+- Droits
+````
+sudo chmod 600 /etc/vault-agent/secret_id
+sudo chmod 600 /etc/vault-agent/role_id
 ````
 
 ---
@@ -181,10 +202,15 @@ sudo chmod 600 /etc/vault-agent/role_id /etc/vault-agent/secret_id
 
 `[NOTE]`
 
-**Piège** : les arguments doivent être **strictement identiques** dans les deux templates.
+⚠️ Les arguments doivent être `strictement identiques` dans les deux templates.
 À la moindre différence, l'agent émet deux certificats et la clé ne correspond plus.
 
-- `/etc/vault-agent/templates/cert.tpl`
+- Création fichier
+````
+  /etc/vault-agent/templates/cert.tpl
+````
+
+- Edition
 ````
 {{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=vault.sednal.lan" "ip_sans=192.168.0.238,127.0.0.1" "ttl=8760h" -}}
 {{ .Data.certificate }}
@@ -192,7 +218,12 @@ sudo chmod 600 /etc/vault-agent/role_id /etc/vault-agent/secret_id
 {{- end -}}
 ````
 
-- `/etc/vault-agent/templates/key.tpl`
+- Création fichier
+````
+/etc/vault-agent/templates/key.tpl`
+````
+
+- Edition
 ````
 {{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=vault.sednal.lan" "ip_sans=192.168.0.238,127.0.0.1" "ttl=8760h" -}}
 {{ .Data.private_key }}
@@ -224,6 +255,7 @@ chmod 640 /opt/vault/tls/vault.key
 systemctl reload vault
 ````
 
+- Droit script
 ````
 sudo chmod 700 /usr/local/bin/reload-vault.sh
 ````
@@ -232,15 +264,23 @@ sudo chmod 700 /usr/local/bin/reload-vault.sh
 
 ### `- 3.4` Configuration
 
-- `/etc/vault-agent/agent.hcl`
+- Création fichier
+````
+/etc/vault-agent/agent.hcl
+````
+
+- Edition fichier de configuration agent
 ````
 pid_file = "/run/vault-agent.pid"
 
+# A quelle CA faire confiance
 vault {
   address = "https://vault.sednal.lan:8100"
   ca_cert = "/etc/ssl/nalsed/ca.crt"
 }
 
+# Comment l'agent s'authentifie aupres de Vault
+# Ici Approle via role_id et secret_id
 auto_auth {
   method "approle" {
     config = {
@@ -251,12 +291,14 @@ auto_auth {
   }
 }
 
+# Certificat
 template {
   source      = "/etc/vault-agent/templates/cert.tpl"
   destination = "/opt/vault/tls/vault.crt"
   perms       = "0644"
 }
 
+# Cle privee, puis rechargement de Vault
 template {
   source      = "/etc/vault-agent/templates/key.tpl"
   destination = "/opt/vault/tls/vault.key"
@@ -275,6 +317,10 @@ vim /etc/systemd/system/vault-agent.service
 ````
 
 - Edition service
+
+`[NOTE]`
+Il lance le processus vault agent et le maintient démarré, s'authentifie avec le role_id/secret_id, demande un certificat, l'écrit sur disque, lance le script de reload.
+
 ````
 [Unit]
 Description=Vault Agent
