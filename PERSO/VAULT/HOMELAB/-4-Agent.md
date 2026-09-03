@@ -62,7 +62,7 @@ sudo cp /opt/vault/tls/vault.key /opt/vault/tls/vault.key.selfsigned
 vault write -format=json PKI-Sednal-Inter-RSA/issue/infra \
      common_name="vault.sednal.lan" \
      ip_sans="192.168.0.238,127.0.0.1" \
-     ttl="720h" > /tmp/cert.json
+     "ttl=8760h" > /tmp/cert.json
 
 jq -r '.data.certificate, .data.issuing_ca' /tmp/cert.json | sudo tee /opt/vault/tls/vault.crt > /dev/null
 jq -r '.data.private_key'                   /tmp/cert.json | sudo tee /opt/vault/tls/vault.key > /dev/null
@@ -164,7 +164,7 @@ sudo chmod 600 /etc/vault-agent/role_id /etc/vault-agent/secret_id
 
 - `/etc/vault-agent/templates/cert.tpl`
 ````
-{{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=vault.sednal.lan" "ip_sans=192.168.0.238,127.0.0.1" "ttl=720h" -}}
+{{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=vault.sednal.lan" "ip_sans=192.168.0.238,127.0.0.1" "ttl=8760h" -}}
 {{ .Data.certificate }}
 {{ .Data.issuing_ca }}
 {{- end -}}
@@ -172,7 +172,7 @@ sudo chmod 600 /etc/vault-agent/role_id /etc/vault-agent/secret_id
 
 - `/etc/vault-agent/templates/key.tpl`
 ````
-{{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=vault.sednal.lan" "ip_sans=192.168.0.238,127.0.0.1" "ttl=720h" -}}
+{{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=vault.sednal.lan" "ip_sans=192.168.0.238,127.0.0.1" "ttl=8760h" -}}
 {{ .Data.private_key }}
 {{- end -}}
 ````
@@ -292,8 +292,7 @@ Verify return code: 0 (ok)
 
 `[RAPPEL]`
 
-Le renouvellement automatique intervient aux deux tiers du bail, soit **~20 jours** pour 30 jours.
-
+Le renouvellement automatique intervient aux deux tiers du bail, soit **~8 mois** pour 1 an.
 ---
 ---
 
@@ -350,7 +349,7 @@ puis `systemctl restart vault-agent`.
 
 - `/etc/vault-agent/templates/cert.tpl`
 ````
-{{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=infra.sednal.lan" "alt_names=pihole.sednal.lan,bareos.sednal.lan,cockpit.sednal.lan,proxmox.sednal.lan" "ip_sans=192.168.0.239" "ttl=720h" -}}
+{{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=infra.sednal.lan" "alt_names=pihole.sednal.lan,bareos.sednal.lan,cockpit.sednal.lan,proxmox.sednal.lan" "ip_sans=192.168.0.239" "ttl=8760h" -}}
 {{ .Data.certificate }}
 {{ .Data.issuing_ca }}
 {{- end -}}
@@ -358,7 +357,7 @@ puis `systemctl restart vault-agent`.
 
 - `/etc/vault-agent/templates/key.tpl`
 ````
-{{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=infra.sednal.lan" "alt_names=pihole.sednal.lan,bareos.sednal.lan,cockpit.sednal.lan,proxmox.sednal.lan" "ip_sans=192.168.0.239" "ttl=720h" -}}
+{{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=infra.sednal.lan" "alt_names=pihole.sednal.lan,bareos.sednal.lan,cockpit.sednal.lan,proxmox.sednal.lan" "ip_sans=192.168.0.239" "ttl=8760h" -}}
 {{ .Data.private_key }}
 {{- end -}}
 ````
