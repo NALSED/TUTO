@@ -227,6 +227,11 @@ openssl s_client -connect pihole.sednal.lan:443 -servername pihole.sednal.lan \
   -CAfile /etc/ssl/nalsed/ca.crt </dev/null 2>/dev/null | grep "Verify return code"
 ````
 
+- Attendu
+````
+Verify return code: 0 (ok)
+````
+
 ---
 
 ### `- 3.2` Chaîne complète
