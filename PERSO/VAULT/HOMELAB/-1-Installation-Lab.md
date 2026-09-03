@@ -124,6 +124,26 @@ vault operator init
 vault operator unseal   # 3 fois
 ````
 
+`[NOTE]`
+
+Inscrire les variable `VAULT_ADDR` et `VAULT_CACERT` à .bashrc pour le pas avoir à les retapper à chaque connection.
+
+- Editer
+````
+sudo vim $HOME/.bashrc
+````
+
+- Inscrire
+````
+export VAULT_ADDR=https://vault.sednal.lan:8100
+export VAULT_CACERT=/opt/vault/tls/vault.crt
+```` 
+
+- Raffréchir
+````
+source ~/.bashrc
+vault status
+````
 
 
 
