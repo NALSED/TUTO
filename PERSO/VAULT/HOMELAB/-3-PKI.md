@@ -10,9 +10,9 @@ Dans cette section, sera abordé le montage et configuration de la PKI, crations
 
 ### `-1-`**Création de la PKI**
 
-### `Génération Certifiacts RSA`
+### `-2-` Génération Certifiacts RSA
 
-### ``
+### `-3-` Role PKI
 
 ---
 
@@ -24,7 +24,7 @@ Il doit ensuite être `révoqué`, et remplacé par des accès configurés selon
 Dans le cadre de cette présentation, et pour des raisons `pédagogiques`, nous utiliserons toutefois ce Root Token.
 
 
-### `-1-`  Création de la PKI
+## `-1-`  Création de la PKI
 
 ### `- 1.1` Création du fichier Policies
 
@@ -78,7 +78,7 @@ vault policy write sednal-pki /etc/vault/pki/config/policy/Policy_PKI.hcl
 ---
 ---
 
-### `-2-` **Génération Certificats RSA**
+## `-2-` **Génération Certificats RSA**
 
 `[RAPPEL]`
 
@@ -106,11 +106,18 @@ vault write -field=certificate PKI-Sednal-Root-RSA/root/generate/internal \
   ttl=9132d \
   key_type=rsa key_bits=4096 \
   exclude_cn_from_sans=true \
-| sudo tee /etc/vault/pki/cert_ca/root/Sednal_Root_R-1.crt > /dev/null
+| sudo tee /etc/vault/pki/cert_ca/root/Sednal-Root-R-1.crt > /dev/null
 ````
 ### `- 2.3` Droit `CA ROOT`
+
+- Propiétaire et Groupes
 ````
 sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal-Root-R-1.crt
+````
+
+- Autorisations
+````
+sudo chmod 644 /etc/vault/pki/cert_ca/csr/Sednal-Root-R-1.crt
 ````
 
 ### `- 2.4` Génération et distibution de la CRL `CA ROOT`
@@ -124,28 +131,68 @@ vault write PKI-Sednal-Root-RSA/config/urls \
 
 ### `- 2.5` Activation du moteur PKI `CA INTER`
 ````
+vault secrets enable -path=PKI-Sednal-Inter-RSA -max-lease-ttl=1825d pki
 ````
 
 
-### `- 2.6` Génération de l'autorité du certification racine `CA INTER`
+### `- 2.6` Génération et distibution de la CSR `CA INTER`
 ````
-
-````
-### `- 2.7` Droit `CA INTER`
-````
-````
-
-### `- 2.8` Génération et distibution de la CRL `CA INTER`
-````
-
+vault write -format=json PKI_Sednal-Inter-RSA/intermediate/generate/internal \
+     common_name="sednal.lan Intermediate Authority" \
+     issuer_name="Sednal-Inter-R-1" \
+| jq -r '.data.csr' \
+| sudo tee /etc/vault/pki/cert_ca/csr/Sednal-Inter-R-1.csr > /dev/null
 ````
 
 
 
+### `- 2.7` Droit CSR `CA INTER`
 
+- Propiétaire et Groupes
+````
+sudo chown vault:vault /etc/vault/pki/cert_ca/csr/Sednal-Inter-R-1.csr
+````
 
+- Autorisations
+````
+sudo chmod 644 /etc/vault/pki/cert_ca/csr/Sednal-Inter-R-1.csr
+````
 
+### `- 2.8` Signature de `CA INTER` avec `CA ROOT`
+````
+vault write -format=json PKI-Sednal-Root-RSA/root/sign-intermediate \
+     issuer_ref="Sednal-Root-R-1" \
+     csr=@/etc/vault/pki/cert_ca/csr/Sednal-Inter-R-1.csr \
+     format=pem_bundle \
+     ttl="1825d" \
+| jq -r '.data.certificate' \
+| sudo tee /etc/vault/pki/cert_ca/inter/Sednal-Inter-R-1.cert.pem > /dev/null
+````
 
+### `- 2.9` Génération de la CRL `CA INTER`
+````
+vault write PKI-Sednal-INTER-RSA/config/urls \
+    issuing_certificates="https://vault.sednal.lan/v1/PKI-Sednal-Root-RSA/ca" \
+    crl_distribution_points="http://infra.sednal.lan/crl/root-r"
+````
+
+---
+---
+
+## `-3-` **Role PKI**
+
+````
+vault write PKI-Sednal-Inter-RSA/roles/Cert-Inter-RSA
+issuer_ref="$(vault read -field=default PKI-Sednal-Inter-RSA/config/issuers)"
+allowed_domains="sednal.lan"
+allow_subdomains=true
+allow_localhost=true
+key_type=rsa
+key_bits=4096
+max_ttl="365d"
+ttl="90d"
+no_store=false
+````
 
 
 
