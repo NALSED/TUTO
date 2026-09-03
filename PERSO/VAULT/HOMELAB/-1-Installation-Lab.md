@@ -84,7 +84,7 @@ sudo restorecon -Rv /opt/vault
 
 - 3.2 `Editer fichier de configuration Vault`
 ````
-vim /etc/vault.d/vault.hcl
+sudo vim /etc/vault.d/vault.hcl
 ````
 
 - Editer

@@ -321,7 +321,8 @@ sudo apt update && sudo apt install -y vault
 - `CA ROOT` depuis 238
 ````
 sudo mkdir -p /etc/ssl/nalsed
-sudo scp sednal@192.168.0.238:/etc/ssl/nalsed/ca.crt /etc/ssl/nalsed/ca.crt
+scp sednal@192.168.0.238:/etc/ssl/nalsed/ca.crt /tmp/ca.crt
+sudo mv /tmp/ca.crt /etc/ssl/nalsed/ca.crt
 sudo cp /etc/ssl/nalsed/ca.crt /usr/local/share/ca-certificates/Sednal-Root-RSA-1.crt
 sudo update-ca-certificates
 ````
