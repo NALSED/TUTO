@@ -207,7 +207,7 @@ sudo chmod 600 /etc/vault-agent/role_id
 
 - Création fichier
 ````
-  /etc/vault-agent/templates/cert.tpl
+sudo vim  /etc/vault-agent/templates/cert.tpl
 ````
 
 - Edition
@@ -220,7 +220,7 @@ sudo chmod 600 /etc/vault-agent/role_id
 
 - Création fichier
 ````
-/etc/vault-agent/templates/key.tpl`
+sudo vim /etc/vault-agent/templates/key.tpl
 ````
 
 - Edition
