@@ -30,7 +30,7 @@ Sednal-Root-RSA-1
 
 - `Intermediate` CA	RSA 4096	`5 ans`
 
-- `Finaux`	RSA 2048	`30 jours`
+- `Finaux`	RSA 2048	`1 ans`
 
 ---
 ---
