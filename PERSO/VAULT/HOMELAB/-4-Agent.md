@@ -388,24 +388,18 @@ sudo apt install -y jq curl unzip
 `[NOTE]`
 
 `192.168.0.239` est un Raspberry Pi 2 en `armhf` (ARM 32 bits) : le dépôt APT HashiCorp
-ne sert pas cette architecture. Installation par le binaire, en alignant la version
-sur celle de `192.168.0.238`.
+ne sert pas cette architecture. Installation par le binaire, mais la build `linux_arm` n'existe pas pour la 2.1.0 (Version de 192.168.0.238), donc installation de `Vault v1.20.4`
 
-- Relever la version sur `192.168.0.238`
-````
-vault version
-````
+
 
 - Télécharger et installer sur `192.168.0.239`
 ````
-VER=2.1.0
+VER=1.20.4
 
 curl -O https://releases.hashicorp.com/vault/${VER}/vault_${VER}_linux_arm.zip
 unzip vault_${VER}_linux_arm.zip
 sudo install -m 755 vault /usr/local/bin/vault
 rm vault vault_${VER}_linux_arm.zip
-
-vault version
 ````
 
 - Vérification
@@ -416,8 +410,7 @@ vault version
 `[NOTE]`
 
 Pas de mise à jour par `apt` : refaire ce téléchargement à la main pour suivre
-la version de `192.168.0.238`. Le binaire n'installe aucun service `vault`,
-ce qui est le comportement voulu ici.
+la version de `192.168.0.238`.
 
 - Créer le dossier
 ````
