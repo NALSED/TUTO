@@ -34,13 +34,13 @@ cat /home/sednal/logs/pull_mail.log
 
 `- 5.4` Modifier le fichier
 ````
-/etc/bareos/bareos-dir.d/fileset/Lin_BackUp_FileSet_LAN.conf
+vim /etc/bareos/bareos-dir.d/fileset/Lin_BackUp_FileSet_LAN.conf
 ````
 
 
 `- 5.5` Création du fichier
 ````
-/etc/bareos/bareos-dir.d/fileset/`Lin_BackUp_FileSet_WAN.conf`
+vim /etc/bareos/bareos-dir.d/fileset/Lin_BackUp_FileSet_WAN.conf
 ````
 
 ⚠️ `[ATTENTION]` ⚠️
@@ -51,13 +51,5 @@ Sans ce FileSet dédié, `Lin_BackUp_Job_WAN` renverrait les sauvegardes du VPS
 `- 5.6` Création du fichier
 
 ````
-/etc/bareos/bareos-dir.d/job/`Lin_BackUp_Job_LAN.conf`
-````
-
-
-`- 5.7` Contrôle et rechargement
-
-````
-sudo bareos-dir -t -f
-printf "reload\nshow job=Lin_BackUp_Job_LAN\nquit\n" | sudo bconsole
+vim /etc/bareos/bareos-dir.d/job/Lin_BackUp_Job_LAN.conf
 ````
