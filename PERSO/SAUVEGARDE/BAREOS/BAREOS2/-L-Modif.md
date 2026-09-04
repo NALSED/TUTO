@@ -120,7 +120,9 @@ MAJ de la PKI (la V1 ci dessus n'est plus d'actualité voir), la V2 à un impact
 ### `=== DATE : 04/09/2026 ===`
 
       Materiel — HP ProLiant Gen8
-      === AJOUT === Recablage SATA data + alimentation du disque sur le port ata5
+      === AJOUT === 
+      
+      Recablage SATA data + alimentation du disque sur le port ata5
 
       Aucune modification de fichier de configuration.
 
