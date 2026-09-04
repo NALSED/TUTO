@@ -29,7 +29,7 @@
 
 - bareos-sd démarre puis s'arrête seul au bout de ~15s, sans erreur systemd [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--bareos-sd-d%C3%A9marre-puis-sarr%C3%AAte-seul-au-bout-de-15s-sans-erreur-systemd)
 
-- Probleme de connection Sata [Lien_Rapide]() 
+- Probleme de connection Sata [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--varlibbareosstorage-vide-et-mont%C3%A9-sur-la-racine--au-lieu-du-raid10) 
 
 ---
 ---
