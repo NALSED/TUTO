@@ -78,11 +78,13 @@ FileSet {
 ````
 vim /etc/bareos/bareos-dir.d/fileset/Lin_BackUp_FileSet_LAN.conf
 ````
+
+````
 FileSet {
   Name = Win_BackUp_FileSet_LAN
   Enable VSS = yes
 
-````
+
   Include {
     Options {
       noatime = yes
