@@ -25,11 +25,14 @@
 
 ## `Résumés Pannes`
 
-### - Probléme de connection entre `bareos-dir` et `bareos-sd`  [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--impossible-pour-bareos-dir-et-bareos-sd-de-se-connecter-ensemble)
+### - Probléme de connection entre `bareos-dir` et `bareos-sd`  [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--impossible-pour-bareos-dir-et-bareos-sd-de-se-connecter-ensemble)
 
-### - bareos-sd démarre puis s'arrête seul au bout de ~15s, sans erreur systemd [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--bareos-sd-d%C3%A9marre-puis-sarr%C3%AAte-seul-au-bout-de-15s-sans-erreur-systemd)
+### - bareos-sd démarre puis s'arrête seul au bout de ~15s, sans erreur systemd [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--bareos-sd-d%C3%A9marre-puis-sarr%C3%AAte-seul-au-bout-de-15s-sans-erreur-systemd)
 
-### - Probleme de connection Sata [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--varlibbareosstorage-vide-et-mont%C3%A9-sur-la-racine--au-lieu-du-raid10) 
+### - Probleme de connection Sata [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--varlibbareosstorage-vide-et-mont%C3%A9-sur-la-racine--au-lieu-du-raid10) 
+
+
+### - Désynchronisation en PostGreSQL et Bareos [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--le-catalogue-reference-des-volumes-qui-nexistent-plus-sur-le-storage)
 
 ---
 ---
