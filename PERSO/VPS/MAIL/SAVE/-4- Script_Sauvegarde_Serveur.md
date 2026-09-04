@@ -1,19 +1,22 @@
 ## `-4-` Script de rapatriement sur Bareos `192.168.0.240`
 
-- `- 4.1` Créer les dossiers et le fichier
+---
+
+### `- 4.1` Créer les dossiers et le fichier
+
 ````
 mkdir -p /home/sednal/VPS_Mail_BackUp /home/sednal/logs
 vim /home/sednal/pull_mail.sh
 ````
 
-- `- 4.2` Éditer
+### `- 4.2` Éditer
 
 ````bash
 #!/bin/bash
 # ==========================================================
 # Rapatriement des sauvegardes mail depuis le VPS
-# Lancé par RunBeforeJob de Lin_BackUp_Job_LAN
-# Sortie toujours 0 : un échec ne doit pas annuler la sauvegarde
+# Lance par RunBeforeJob de Lin_BackUp_Job_LAN
+# Sortie toujours 0 : un echec ne doit pas annuler la sauvegarde
 # ==========================================================
 
 SRC="debian@176.31.163.227:/home/debian/backup/"
@@ -36,7 +39,8 @@ fi
 exit 0
 ````
 
-- `- 4.3` Droits
+### `- 4.3` Droits
+
 ````
 chmod +x /home/sednal/pull_mail.sh
 sudo chown root:root /home/sednal/pull_mail.sh
@@ -53,5 +57,3 @@ dans le journal du job.
 
 Le journal `pull_mail.log` est placé **hors** du dossier synchronisé, sinon
 `rsync --delete` l'effacerait à chaque passage.
-
----

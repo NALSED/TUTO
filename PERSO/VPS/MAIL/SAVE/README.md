@@ -1,22 +1,23 @@
-## Implementation et Gestion Backup `DMS` et `PostGreSQL`
+## Implémentation et gestion du backup `DMS` et `PostGreSQL`
 
 ---
-Cette Partie montre la sauvegarde de la base de donnée ainsi que les mails de `DMS`.
+
+Cette partie montre la sauvegarde de la base de données ainsi que les mails de `DMS`.
 
 ````
 ┌──────────────────────────────────────────────────────────────────┐
 │  VPS  176.31.163.227                            (allumé 24/7)    │
 ├──────────────────────────────────────────────────────────────────┤
-│  02:30 UTC quotidien — backup_mail.sh                            │
-│    ├─ pg_dumpall du conteneur sogo-postgres                      │
-│    ├─ tar.gz de ~/DMS                          (~174 Mo)         │
+│  02:30 UTC quotidien — backup_mail.sh   (cron root)              │
+│    ├─ pg_dumpall -U sogo du conteneur sogo-postgres              │
+│    ├─ tar.gz de ~/DMS                          (~117 Mo)         │
 │    ├─ dépôt dans /home/debian/backup/                            │
 │    └─ purge des archives de plus de 7 jours                      │
 └─────────────────────────────▲────────────────────────────────────┘
                               │ rsync over SSH (240 tire)
                               │ sortant, port 22, aucune ouverture
 ┌─────────────────────────────┴────────────────────────────────────┐
-│  Bareos  192.168.0.240                        (WOL 11:00)        │
+│  Bareos  192.168.0.240                        (WOL 12:00)        │
 ├──────────────────────────────────────────────────────────────────┤
 │  12:00  Lin_BackUp_Job_LAN                                       │
 │    ├─ RunBeforeJob : pull_mail.sh                                │
@@ -27,15 +28,16 @@ Cette Partie montre la sauvegarde de la base de donnée ainsi que les mails de `
 │         -> RAID10  /var/lib/bareos/storage                       │
 └──────────────────────────────────────────────────────────────────┘
 ````
+
 ---
 
 `SOMMAIRE`
 
 -1- `Principes` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-1-%20Principes.md)
 
--2- `Prérequis` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-2-%20Pr%C3%A9requis.md) 
+-2- `Prérequis` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-2-%20Pr%C3%A9requis.md)
 
--3- `Script sauvegarde sur VPS` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-3-%20Script_sauvegarde_sur_VPS)
+-3- `Script sauvegarde sur VPS` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-3-%20Script_sauvegarde_sur_VPS.md)
 
 -4- `Script rapatriement sur serveur de sauvegarde` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-4-%20Script_Sauvegarde_Serveur.md)
 
@@ -44,4 +46,3 @@ Cette Partie montre la sauvegarde de la base de donnée ainsi que les mails de `
 -6- `Vérification` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-6-%20V%C3%A9rification.md)
 
 -7- `Restauration` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-7-%20Restauration.md)
-

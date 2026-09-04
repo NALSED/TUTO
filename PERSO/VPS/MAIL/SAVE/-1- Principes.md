@@ -1,12 +1,19 @@
-## `-1-` Principe
+## `-1-` Principes
 
-- Le VPS produit ses propres sauvegardes localement, chaque nuit.
+---
+
+### `- 1.1` Chaîne de sauvegarde
+
+- Le VPS produit ses propres sauvegardes localement, chaque nuit à 02:30 UTC,
+  dans `/home/debian/backup/` avec 7 jours de rétention.
 
 - Le serveur Bareos les rapatrie juste avant sa sauvegarde du dimanche, via un
-`RunBeforeJob` du job `Lin_BackUp_Job_LAN`.
+  `RunBeforeJob` du job `Lin_BackUp_Job_LAN`.
 
 - Le dossier de dépôt `/home/sednal/VPS_Mail_BackUp` est inclus dans
-`Lin_BackUp_FileSet_LAN`, il part donc sur le RAID10 dans la foulée.
+  `Lin_BackUp_FileSet_LAN`, il part donc sur le RAID10 dans la foulée.
+
+### `- 1.2` Sens du transfert
 
 ⚠️ `[ATTENTION]` ⚠️
 
