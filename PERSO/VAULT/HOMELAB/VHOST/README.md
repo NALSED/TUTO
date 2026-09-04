@@ -20,6 +20,6 @@ Pour plus de clareté, et conservé l'ordre de déploiment, le ficher -6- vHost 
 
 `-6-` [Proxmox](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/VHOST/-6-%20Proxmox.md)
 
-- [Activation + Vérification état](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/VHOST/Activation-Verification.md)
+- [Activation](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/VHOST/Activation.md)
 
 
