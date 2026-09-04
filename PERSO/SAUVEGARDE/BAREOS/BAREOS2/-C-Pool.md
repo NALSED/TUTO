@@ -66,21 +66,22 @@
       }
 
 
-#### 2.3) BackUp Lin /etc/bareos/bareos-dir.d/pool/`Lin_BackUp_Pool_WAN`
+#### 2.2) BackUp Lin /etc/bareos/bareos-dir.d/pool/`Lin_BackUp_Pool_WAN`
 
-                  
             Pool {
                   Name = Lin_BackUp_Pool_WAN
                   Label Format = "Lin_Remote_BackUp_Vol-"
                   Pool Type = Backup
-                  Storage = Storage_Local
+                  Storage = Storage_Remote
                   Recycle = yes
                   AutoPrune = yes
                   Purge Oldest Volume = yes
                   Volume Retention = 6 days
                   Maximum Volumes = 2
-                  }                  
+                  }
 
+`[NOTE]` `Storage_Remote` et non `Storage_Local` : les pools WAN sont les
+sauvegardes hors site, elles doivent ecrire sur le VPS.
 
 
 
