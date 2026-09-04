@@ -12,11 +12,11 @@
 
 `=== RESOLUTION ===`
 
----
+
 
 # `=== DATE // ===`
 
----
+
 
 ### - [Lien_Rapide]()
 
