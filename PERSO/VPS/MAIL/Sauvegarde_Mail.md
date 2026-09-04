@@ -120,7 +120,9 @@ Rendre executable :
 chmod +x /home/debian/backup_mail.sh
 ````
 
-`[NOTE]` `pg_dumpall` evite d'avoir a connaitre le nom exact de la base SoGo et sauvegarde également les rôles et les mots de passe PostgreSQL.
+`[NOTE]` 
+
+`pg_dumpall` evite d'avoir a connaitre le nom exact de la base SoGo et sauvegarde également les rôles et les mots de passe PostgreSQL.
 
 ---
 
@@ -217,7 +219,7 @@ tail -40 /home/debian/backup/cron.log
 
 ---
 
-## 8️⃣ Restauration
+## `-8-` Restauration
 
 ### 8.1) Recuperer les archives depuis Bareos `192.168.0.240` 
 
