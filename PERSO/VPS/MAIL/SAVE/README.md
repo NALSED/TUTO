@@ -35,7 +35,7 @@ Cette Partie montre la sauvegarde de la base de donnée ainsi que les mails de `
 
 -2- `Prérequis` => [Lien]() 
 
--3- `Script sauvegarde su VPS` => [Lien]()
+-3- `Script sauvegarde sur VPS` => [Lien]()
 
 -4- `Script rapatriment sur serveur de sauvegarde` => [Lien]()
 
