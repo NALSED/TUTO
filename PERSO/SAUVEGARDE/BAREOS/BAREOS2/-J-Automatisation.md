@@ -9,7 +9,7 @@
 ### 1️⃣ Wol via cron sur `192.168.0.241`
 
 #### 1.1) Installer wakeonlan
-      sudo apt install wakeonlane
+      sudo apt install wakeonlan
 
 #### 1.2)   Installer cron    
       sudo apt install cron
@@ -45,7 +45,7 @@ Une extinction trop tot coupe la sauvegarde en cours.
 #### Éditer serveur Bareos `192.168.0.240`
 
       # Extinction
-      05 16 * * 0 /sbin/powerofff
+      00 19 * * 0 /sbin/poweroff
 
 
 
