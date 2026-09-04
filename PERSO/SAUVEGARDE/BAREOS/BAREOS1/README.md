@@ -1,5 +1,33 @@
-# `Centralisation Des Sauvegardes`
-# ⚠️MAJ DNS2 à été supprimé de l'infra, fichier de conf nettoyé de bareos, il reste dans la doc à titre d'exemple.
+
+##########################################################################################################################################################################################################################################################################################################################################################################################################################
+
+# V1 de la mise en place de Bareos, pour la version mise à jour voir [ICI](https://github.com/NALSED/TUTO/tree/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2)
+
+#############################################################################################################################################################################################################
+#############################################################################################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### `Centralisation Des Sauvegardes`
+### ⚠️MAJ DNS2 à été supprimé de l'infra, fichier de conf nettoyé de bareos, il reste dans la doc à titre d'exemple.
 ---
 
 ### Ce Tuto à pour but de créer une solution de sauvegarde et snapshot, centralisées pour windows et linux.
