@@ -95,64 +95,128 @@
     
 #### Accès => `http://192.168.0.240/bareos-webui/`
 
-### III) `Tunnel SSH` 
+### III) `Tunnel SSH`
 
-#### 📝 ICI un tunnel SSH simple suffit, car:
-* #### Le Director (DIR) initie toujours la connexion vers le Storage Daemon (SD) ou le File Daemon (FD).
-* #### Le Director se connecte à localhost:9103 (qui est redirigé via le tunnel vers le SD distant).
-* #### Le SD envoie les données à travers ce tunnel vers le Director.
-#### En résumé => le SD “pousse” les données au Director, mais le flux est déclenché et encapsulé dans la connexion TCP que le Director a ouverte via le tunnel local.
+#### 📝 ICI un tunnel SSH est necessaire, car:
+* #### Le port 9103 du SD distant n'est pas expose sur Internet.
+* #### Le Director (DIR) initie toujours la connexion vers le Storage Daemon (SD).
+* #### Le SD envoie ensuite les donnees a travers cette connexion.
+
+#### ⚠️ Deux contraintes a respecter imperativement :
+* #### Le port local du tunnel doit etre **different de 9103**, deja occupe par le SD local.
+* #### Le tunnel doit se binder sur l'**IP LAN** et non sur `localhost` : le Director transmet l'adresse du Storage au File Daemon, et les autres clients du LAN (ex. 192.168.0.235) doivent pouvoir la joindre.
 
 ---
 
-### 3.1) Afin que le Bareo.SD du VPS puisse communiquer avec le  bareos.DIR du serveur local mise en  place d'un tunnel SSH.
-#### Ce tunnel sera configuré dans systemd afin que, à chaque démarrage du serveur, le tunnel soit recréé automatiquement.
+### 3.1) Installer AutoSSH
 
-#### 3.2) Installer Auto SSH
-        sudo apt install autossh
-#### 3.3) Copier la clé ssh sur serveur  distant
-        ssh-copy-id -i /home/sednal/.ssh/id_ecdsa.pub debian@176.31.163.227
+````
+sudo apt install autossh
+````
 
-#### 3.4) Créer une règle Iptable  sur le  serveur distant(VPS), pour autoriser  uniquement les  connection  depuis le serveur local sur le port 9103(port  Bareos.SD).
-        # Autoriser le serveur local à se connecter au SD distant
-        sudo iptables -A INPUT -p tcp -s 192.168.0.240 --dport 9103 -m state --state NEW,ESTABLISHED -j ACCEPT
-        # Autoriser les paquets liés aux connexions existantes
-        sudo iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+### 3.2) Copier la cle SSH sur le serveur distant
 
-#### 3.5) Rendre la règle permanente (sinon elle disparaît au reboot)
-          sudo apt install iptables-persistent -y
-          sudo netfilter-persistent save
+````
+ssh-copy-id -i /home/sednal/.ssh/id_ecdsa.pub debian@176.31.163.227
+````
 
-#### 3.6) Créer le  tunnel SSH  via systemd:
-          
-          sudo  nano /etc/systemd/system/tunnel-bareos.service
-          #  EDITER
-          [Unit]
-          Description=Tunnel SSH persistant vers VPS pour BAREOS.Dir
-          After=network.target
-          
-          [Service]
-          User=sednal
-          ExecStart=/usr/bin/autossh -M 0 -N -L 9103:localhost:9103 debian@172.31.163.227 \
-            -o "ServerAliveInterval=30" -o "ServerAliveCountMax=3"
-          Restart=always
-          RestartSec=10
-          
-          [Install]
-          WantedBy=multi-user.target
+### 3.3) Enregistrer la cle d'hote du VPS
 
-####  3.7)  Activation du service
-          sudo systemctl daemon-reload
-          sudo systemctl enable --now tunnel-bareos.service
-          sudo systemctl  status tunnel-bareos.service
+Indispensable : sous systemd il n'y a pas de TTY, `ssh` ne peut donc pas demander
+de confirmation interactive. Un `known_hosts` vide fait echouer le tunnel avec
+`Host key verification failed`.
 
-#### Vérification du service
+Verifier l'empreinte **sur le VPS** :
 
-<img width="1254" height="237" alt="image" src="https://github.com/user-attachments/assets/cff617ca-c531-4ccd-894a-c40212bfaf75" />
+````
+ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub
+````
 
-#### Vérification du tunnel
-        nc -vz localhost 9103
+Puis l'enregistrer sur le serveur local apres comparaison :
 
-#### Cela signifie que le tunnel SSH est opérationnel et que le Director local peut communiquer avec le SD distant via localhost:9103.
+````
+ssh-keyscan -t ed25519 176.31.163.227 >> /home/sednal/.ssh/known_hosts
+ssh-keygen -F 176.31.163.227 -f /home/sednal/.ssh/known_hosts
+````
 
-<img width="413" height="38" alt="image" src="https://github.com/user-attachments/assets/eb20dcbd-28d6-4b93-806c-f889c3061a6a" />
+### 3.4) Autoriser le bind sur l'IP LAN
+
+Editer `/etc/ssh/sshd_config` sur `192.168.0.240` :
+
+````
+GatewayPorts clientspecified
+````
+
+Puis tester et recharger :
+
+````
+sudo sshd -t && sudo systemctl reload sshd
+````
+
+### 3.5) Creer le tunnel SSH via systemd
+
+````
+sudo nano /etc/systemd/system/tunnel-bareos.service
+````
+
+Editer :
+
+````
+[Unit]
+Description=Tunnel SSH persistant vers VPS pour BAREOS.Dir
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=sednal
+ExecStart=/usr/bin/autossh -M 0 -N -L 192.168.0.240:9203:localhost:9103 debian@176.31.163.227 \
+  -o "ServerAliveInterval=30" -o "ServerAliveCountMax=3" \
+  -o "ExitOnForwardFailure=yes" -o "StrictHostKeyChecking=yes"
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+````
+
+`[NOTE]` `ExitOnForwardFailure=yes` evite que le service se declare actif alors
+que le forward a echoue.
+
+### 3.6) Activation du service
+
+````
+sudo systemctl daemon-reload
+sudo systemctl enable --now tunnel-bareos.service
+sudo systemctl status tunnel-bareos.service
+````
+
+### 3.7) Verification du tunnel
+
+````
+ss -lntp | grep 9203
+nc -vz 192.168.0.240 9203
+````
+
+**RESULTAT ATTENDU**
+
+````
+LISTEN 0  128  192.168.0.240:9203  0.0.0.0:*  users:(("ssh",...))
+192.168.0.240 9203 open
+````
+
+Et cote Bareos :
+
+````
+printf "status storage=Storage_Remote\nquit\n" | sudo bconsole
+````
+
+````
+Connecting to Storage daemon Storage_Remote at 192.168.0.240:9203
+ Encryption: TLS_CHACHA20_POLY1305_SHA256 TLSv1.3
+
+Remote_Sd Version: 24.0.7~pre3.0e656b287 (16 October 2025) Debian GNU/Linux 13 (trixie)
+Device "Remote_Device" (/var/lib/bareos/storage) is not open.
+````
+
+`[NOTE]` Aucune regle firewall n'est a ajouter sur le VPS : tout le trafic Bareos
+transite dans la connexion SSH sur le port 22, deja ouvert.
