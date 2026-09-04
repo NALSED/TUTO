@@ -1,16 +1,43 @@
 # Liste des Problèmes réglé sur Bareos
 
 ---
+
 => Format
 
 `=== DATE ===`
+
 `=== PROBLEME ===`
+
 `=== CAUSE ===`
+
 `=== RESOLUTION ===`
 
 ---
 
-### `=== DATE 26/01/2026 ===`
+# `=== DATE // ===`
+
+---
+
+[Lien_Rapide]()
+
+---
+---
+
+### `Résumé`
+
+- Probléme de connection entre `bareos-dir` et `bareos-sd`  [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--impossible-pour-bareos-dir-et-bareos-sd-de-se-connecter-ensemble)
+
+- bareos-sd démarre puis s'arrête seul au bout de ~15s, sans erreur systemd [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--bareos-sd-d%C3%A9marre-puis-sarr%C3%AAte-seul-au-bout-de-15s-sans-erreur-systemd)
+
+- Probleme de connection Sata [Lien_Rapide]() 
+
+---
+---
+
+
+
+
+# `=== DATE 26/01/2026 ===`
 
 ---
 ---
@@ -153,10 +180,9 @@ Suppression de => `Address = 192.168.0.240`
 
 ---
 ---
-
 ---
 
-### `=== DATE 04/09/2026 ===`
+# `=== DATE 04/09/2026 ===`
 
 ---
 ---
@@ -250,7 +276,127 @@ requested address` → arrêt du démon.
       LISTEN 0  50  192.168.0.240:9103  0.0.0.0:*  users:(("bareos-sd",...))
 
 
+---
+---
+---
 
+### `=== DATE 04/09/2026 ===`
+
+---
+---
+
+### `=== PROBLEME ===`
+
+#### - `/var/lib/bareos/storage` vide et monté sur la racine `/` au lieu du RAID10.
+
+      Filesystem      Size  Used Avail Use% Mounted on
+      /dev/sda1       109G  5.1G   98G   5% /
+
+#### - Le volume group `vg_bareos` est incomplet, un PV est absent...
+
+`sudo pvs -a :`
+
+      WARNING: Couldn't find device with uuid fXzPHv-2jBN-p33g-LYlo-G1dy-JL5q-FXLR9Y.
+      WARNING: VG vg_bareos is missing PV fXzPHv-2jBN-p33g-LYlo-G1dy-JL5q-FXLR9Y
+      /dev/sdb   vg_bareos lvm2 a--  931.51g    0
+      /dev/sdc   vg_bareos lvm2 a--  931.51g    0
+      /dev/sdd   vg_bareos lvm2 a--  931.51g    0
+      [unknown]  vg_bareos lvm2 a-m  931.51g    0
+
+#### - Le LV `lv_Bareos` est en mode partiel et n'est pas activé au boot.
+
+`sudo lvs -a :`
+
+      lv_Bareos            vg_bareos rwi---r-p-   <1.82t
+      [lv_Bareos_rimage_2] vg_bareos Iwi---r-p- <931.51g   [unknown](1)   partial <====
+
+#### - Seuls 3 disques sur 4 sont énumérés par le noyau : `sde` est absent.
+
+---
+
+1) Identifier le port SATA en défaut :
+
+      sudo dmesg | grep -iE "ata[0-9]+:" | tail -30
+
+**Sortie :**
+
+      ata3: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+      ata4: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+      ata6: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+      ata5: link is slow to respond, please be patient (ready=0)
+      ata5: found unknown device (class 0)
+      ata5: link online but 1 devices misclassified, retrying
+      ata5: softreset failed (1st FIS failed)
+      ata5: limiting SATA link speed to 1.5 Gbps
+      ata5: link online but 1 devices misclassified, device detection might fail
+
+Les 3 ports sains montent en 0,5 s. `ata5` met 63 s et n'aboutit jamais.
+
+2) Activer le VG en mode dégradé pour vérifier l'intégrité des données :
+
+      sudo vgchange -ay --activationmode degraded vg_bareos
+      sudo mount -o ro /dev/vg_bareos/lv_Bareos /mnt
+      ls -la /mnt
+
+Les données sont intactes : en RAID10, la perte d'un leg sur quatre est tolérée.
+
+3) Le rescan à chaud du contrôleur reste bloqué, confirmant un défaut physique :
+
+      echo "- - -" | sudo tee /sys/class/scsi_host/host4/scan
+
+---
+---
+
+### `=== CAUSE ===`
+
+Contact SATA défectueux sur le port `ata5`.
+
+Le lien électrique s'établissait bien (`SATA link up 3.0 Gbps`), mais le disque ne
+répondait jamais correctement au protocole ATA (`found unknown device (class 0)`,
+`softreset failed`). Aucun périphérique `sdX` n'était donc créé.
+
+
+---
+---
+
+### `=== RESOLUTION ===`
+
+1) Arrêt propre avant intervention physique
+
+           sudo umount /var/lib/bareos/storage
+           sudo vgchange -an vg_bareos
+           sudo systemctl stop bareos-sd bareos-dir
+           sudo shutdown -h now
+
+2) Machine hors tension et alimentation débranchée :
+   débrancher puis rebrancher fermement le câble SATA data **et** le câble
+   d'alimentation du disque sur `ata5`, des deux côtés.
+
+3) Redémarrage et vérification
+
+           sudo dmesg | grep -iE "ata5|sde"
+           sudo pvs -a
+           df -h /var/lib/bareos/storage
+
+**RESULTAT ATTENDU**
+
+      ata5: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+      ata5.00: ATA-8: ST1000DM010-2EP102, CC43, max UDMA/133
+      ata5.00: configured for UDMA/133
+      sd 5:0:0:0: [sde] Attached SCSI disk
+
+      /dev/sdb   vg_bareos lvm2 a--  931.51g    0
+      /dev/sdc   vg_bareos lvm2 a--  931.51g    0
+      /dev/sdd   vg_bareos lvm2 a--  931.51g    0
+      /dev/sde   vg_bareos lvm2 a--  931.51g    0
+
+      /dev/mapper/vg_bareos-lv_Bareos  1.8T   37G  1.7T   3% /var/lib/bareos/storage
+
+4) Surveiller les erreurs CRC du lien SATA. Si le compteur augmente, remplacer
+   le câble même si le disque fonctionne.
+
+      
+           sudo smartctl -A /dev/sde | grep -i UDMA_CRC_Error_Count
 
 
 
