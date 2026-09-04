@@ -76,7 +76,7 @@ Le job LAN peut durer jusqu'à 3h30 en incrémental.
               Name = Lin_BackUp_Job_WAN
               Type = Backup
               Client = lin
-              FileSet = Lin_BackUp_FileSet_LAN
+              FileSet = Lin_BackUp_FileSet_WAN
               Schedule = Lin_Schedule_WAN
               Storage = Storage_Remote
               Pool = Lin_BackUp_Pool_WAN
@@ -84,3 +84,17 @@ Le job LAN peut durer jusqu'à 3h30 en incrémental.
               Priority = 10
               }
 
+---
+
+Job {
+      Name = Lin_BackUp_Job_LAN
+      Type = Backup
+      Client = lin
+      FileSet = Lin_BackUp_FileSet_LAN
+      Schedule = Lin_Schedule_LAN
+      Storage = Storage_Local
+      Pool = Lin_BackUp_Pool_LAN
+      Messages = Standard
+      Priority = 10
+      RunBeforeJob = "/usr/bin/sudo -u sednal /home/sednal/pull_mail.sh"
+      }
