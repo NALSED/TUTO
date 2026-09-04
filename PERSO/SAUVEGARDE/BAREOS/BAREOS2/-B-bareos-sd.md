@@ -241,12 +241,17 @@ I) Règles à respecter
       }
 
 
-### 1.2) /etc/bareos/bareos-sd.d/storage/`Local_Sd.conf`
+### 1.2) /etc/bareos/bareos-sd.d/storage/`Local-Sd.conf`
 
       Storage {
           Name = Local-Sd
           SDPort = 9103
+          Address = bareos-sd.sednal.lan
       }
+
+`[NOTE]` La directive `Address` indique au démon `sur quelle adresse locale se
+binder`. Elle doit résoudre vers une IP de la machine 192.168.0.240.
+Ne jamais y mettre `bareos.sednal.lan`, qui pointe vers le reverse proxy 192.168.0.239.
 
 ### 1.3 /etc/bareos/bareos-sd.d/director/`bareos-dir.conf`
 
