@@ -5,10 +5,10 @@
       
       Storage {
               Name = Storage_Local
-              Address = 192.168.0.240
+              Address = bareos-sd.sednal.lan
               SDPort = 9103
               Password = "fCQqLZbkIZ+IBMpXOWtCZWOjrnxuJWt9ApbKT6PW8U8n"
-              Device = Locale_Device
+              Device = Local_Device
               Media Type = File
               }
 
