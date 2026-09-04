@@ -86,6 +86,11 @@ Le job LAN peut durer jusqu'à 3h30 en incrémental.
 
 ---
 
+````
+vim /etc/bareos/bareos-dir.d/job/Lin_BackUp_Job_LAN.conf
+````
+
+````
 Job {
       Name = Lin_BackUp_Job_LAN
       Type = Backup
@@ -98,3 +103,4 @@ Job {
       Priority = 10
       RunBeforeJob = "/usr/bin/sudo -u sednal /home/sednal/pull_mail.sh"
       }
+````
