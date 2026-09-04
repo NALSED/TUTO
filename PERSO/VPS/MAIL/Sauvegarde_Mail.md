@@ -2,6 +2,10 @@
 
 ---
 
+Procédure compléte de sauvegarde de la base de données et des mail depuis le `VPS 176.31.163.227`, via `PC ADMIN 192.168.0.235` sur le serveur de sauvegarde `BAREOS 192.168.0.240`
+
+---
+
 ## `-1-` Principe
 
 - Le Serveur DMS produit ses propres sauvegardes localement, puis les dépose sur `A:/save` du
@@ -12,7 +16,7 @@ automatiquement vers le RAID10 du serveur `192.168.0.240`.
 
 ---
 
-## -2- Schema
+## `-2-` Schema
 
 ````
 ┌─────────────────────────────────────────────────────────────────┐
@@ -47,7 +51,7 @@ automatiquement vers le RAID10 du serveur `192.168.0.240`.
 
 ---
 
-## `-3-` Prérequis — clé SSH du VPS sur le PC Windows
+## `-3-` Prérequis — clé SSH du VPS sur le PC Admin `192.168.0.235`
 
 ### 3.1) Recuperer la cle publique du VPS
 
@@ -55,19 +59,12 @@ automatiquement vers le RAID10 du serveur `192.168.0.240`.
 ssh debian@176.31.163.227 'cat ~/.ssh/id_ecdsa.pub'
 ````
 
-### 3.2) L'autoriser sur Windows
+### 3.2) L'autoriser sur Pc Admin `192.168.0.235`
 
-PowerShell en administrateur sur `192.168.0.235` :
+- PowerShell en admin :
 
 ````
 notepad C:\Users\sednal\.ssh\authorized_keys
-````
-
-Ajouter la cle sur une nouvelle ligne :
-
-````
-# === VPS 176.31.163.227 ===
-ecdsa-sha2-nistp256 AAAA... debian@vps-sednal
 ````
 
 ### 3.3) Creer le dossier de depot
@@ -78,10 +75,14 @@ mkdir A:\save\VPS_Mail_BackUp
 
 ---
 
-## `-4-` Script de sauvegarde quotidienne
+## `-4-` Script de sauvegarde quotidienne sur le VPS  `176.31.163.227`
 
-Fichier `/home/debian/backup_mail.sh` sur le VPS :
+- Créer le fichier
+````
+vim /home/debian/script_dms/backup_mail.sh
+````
 
+- Editer le fichier
 ````bash
 #!/bin/bash
 # ==========================================================
@@ -98,18 +99,18 @@ RETENTION=7
 
 mkdir -p "$DEST"
 
-# --- 1) Dump de toutes les bases PostgreSQL de SoGo ---
+# === Dump de toutes les bases PostgreSQL de SoGo ===
 docker exec sogo-postgres pg_dumpall -U postgres \
     | gzip > "$DEST/sogo_pgdump_${DATE}.sql.gz"
 
-# --- 2) Archive du dossier DMS (mails + configuration) ---
-tar czf "$DEST/dms_${DATE}.tar.gz" -C /home/debian DMS
+# === Archive du dossier DMS (mails + configuration) ===
+tar czf "$DEST/dms_${DATE}.tar.gz" -C /home/debian/DMS
 
-# --- 3) Purge des archives trop anciennes ---
+#Purge des archives trop anciennes ---
 find "$DEST" -name "sogo_pgdump_*.sql.gz" -mtime +$RETENTION -delete
 find "$DEST" -name "dms_*.tar.gz"         -mtime +$RETENTION -delete
 
-# --- 4) Journal ---
+# === 4) Journal ===
 echo "$(date '+%F %T') sauvegarde OK" >> "$DEST/backup.log"
 ````
 
@@ -119,15 +120,18 @@ Rendre executable :
 chmod +x /home/debian/backup_mail.sh
 ````
 
-`[NOTE]` `pg_dumpall` evite d'avoir a connaitre le nom exact de la base SoGo et
-sauvegarde egalement les roles et les mots de passe PostgreSQL.
+`[NOTE]` `pg_dumpall` evite d'avoir a connaitre le nom exact de la base SoGo et sauvegarde également les rôles et les mots de passe PostgreSQL.
 
 ---
 
-## `-5-` Script de push vers le PC Windows
+## `-5-` Script de push depuis le VPS `176.31.163.227` => PC Admin `192.168.0.235`
 
-Fichier `/home/debian/push_mail.sh` sur le VPS :
+Créer le fichier 
+````
+vim /home/debian/script_dms/push_mail.sh
+````
 
+- Editer
 ````bash
 #!/bin/bash
 # ==========================================================
@@ -154,23 +158,14 @@ rsync -az --delete -e "ssh -o BatchMode=yes" "$SRC" "$CIBLE:$DEST"
 echo "$(date '+%F %T') push OK" >> /home/debian/backup/backup.log
 ````
 
-Rendre executable :
-
+- Rendre executable :
 ````
 chmod +x /home/debian/push_mail.sh
 ````
 
-`[NOTE]` La boucle d'attente couvre le delai de demarrage de Windows apres le WOL.
-
-`[NOTE]` Si `rsync` n'est pas disponible cote Windows, remplacer la ligne `rsync` par :
-
-````bash
-scp -o BatchMode=yes "$SRC"* "$CIBLE:$DEST"
-````
-
 ---
 
-## `-6-` Taches cron sur le VPS
+## `-6-` Taches cron sur le VPS `176.31.163.227`
 
 ````
 crontab -e
@@ -184,12 +179,12 @@ crontab -e
 5 7 * * 0 /home/debian/push_mail.sh >> /home/debian/backup/cron.log 2>&1
 ````
 
-`[ATTENTION]` Le VPS est en `Etc/UTC` alors que `192.168.0.240` et `192.168.0.241`
-sont en `Asia/Yerevan` (UTC+4). Les horaires du cron sont exprimes en **heure du
+⚠️ `[ATTENTION]` ⚠️ 
+
+Le VPS est en `Etc/UTC` alors que `192.168.0.240` et `192.168.0.241` sont en `Asia/Yerevan` (UTC+4). Les horaires du cron sont exprimes en **heure du
 VPS** : `07:05 UTC` correspond a `11:05` heure Yerevan.
 
-Verifier la correspondance :
-
+- Verifier la correspondance :
 ````
 date; TZ=Asia/Yerevan date
 ````
@@ -201,11 +196,11 @@ date; TZ=Asia/Yerevan date
 ### 7.1) Test manuel du dump
 
 ````
-/home/debian/backup_mail.sh
+./backup_mail.sh
 ls -lh /home/debian/backup/
 ````
 
-### 7.2) Apres le premier dimanche, cote Bareos
+### 7.2) Apres le premier dimanche, cote Bareos `192.168.0.240`
 
 ````
 printf "list jobs\nquit\n" | sudo bconsole
@@ -213,7 +208,7 @@ printf "list jobs\nquit\n" | sudo bconsole
 
 Le `jobbytes` de `Win_BackUp_Job_LAN` doit avoir augmente d'environ 200 Mo.
 
-### 7.3) Journaux du VPS
+### 7.3) Journaux du VPS `176.31.163.227`
 
 ````
 tail -20 /home/debian/backup/backup.log
@@ -224,7 +219,7 @@ tail -40 /home/debian/backup/cron.log
 
 ## 8️⃣ Restauration
 
-### 8.1) Recuperer les archives depuis Bareos
+### 8.1) Recuperer les archives depuis Bareos `192.168.0.240` 
 
 ````
 printf "restore client=win\nquit\n" | sudo bconsole
@@ -232,13 +227,13 @@ printf "restore client=win\nquit\n" | sudo bconsole
 
 Selectionner les fichiers sous `A:/save/VPS_Mail/`.
 
-### 8.2) Restaurer les bases SoGo
+### 8.2) Restaurer les bases SoGo `176.31.163.227`
 
 ````
 gunzip -c sogo_pgdump_AAAA-MM-JJ.sql.gz | docker exec -i sogo-postgres psql -U postgres
 ````
 
-### 8.3) Restaurer le dossier DMS
+### 8.3) Restaurer le dossier DMS `176.31.163.227`
 
 ````
 docker compose -f /home/debian/DMS/compose.yml down
