@@ -20,6 +20,6 @@ Pour plus de clareté, et conservé l'ordre de déploiment, le ficher -6- vHost 
 
 `-6-` [Proxmox]()
 
-`-7-` [Activation + Vérification état]()
+- [Activation + Vérification état]()
 
 
