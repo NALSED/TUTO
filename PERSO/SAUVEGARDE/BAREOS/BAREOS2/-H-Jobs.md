@@ -32,18 +32,18 @@
               }
 
 #### 1.3 BackUp Lin => /etc/bareos/bareos-dir.d/job/`Lin_BackUp_Job_LAN.conf`
-            
+
             Job {
               Name = Lin_BackUp_Job_LAN
               Type = Backup
-              Client = Lin
+              Client = lin
               FileSet = Lin_BackUp_FileSet_LAN
+              Schedule = Lin_Schedule_LAN
               Storage = Storage_Local
               Pool = Lin_BackUp_Pool_LAN
               Messages = Standard
               Priority = 10
               }
-
 
 
 ---
