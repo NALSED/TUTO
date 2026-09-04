@@ -2,7 +2,7 @@
 
 ---
 
-## `-1-` Ajouter un compte
+# `-1-` Ajouter un compte
 
 ### `- 1.1` Compte mail (DMS)
 ````
@@ -28,14 +28,14 @@ sudo docker restart sogo
 
 ---
 
-## `-2-` Ajouter un alias
+# `-2-` Ajouter un alias
 ````
 sudo docker exec -ti mailserver setup alias add <alias>@nalsed.fr <user>@nalsed.fr
 ````
 
 ---
 
-## `-3-` Changer un mot de passe
+# `-3-` Changer un mot de passe
 
 ### `- 3.1` Côté DMS
 ````
@@ -59,7 +59,7 @@ sudo docker restart sogo
 
 ---
 
-## `-4-` Supprimer un compte
+# `-4-` Supprimer un compte
 
 ### `- 4.1` Côté DMS
 ````
@@ -82,7 +82,7 @@ sudo docker exec -ti mailserver setup alias del <alias>@nalsed.fr <user>@nalsed.
 
 ---
 
-## `-5-` Lister
+# `-5-` Lister
 
 ````
 # Comptes
@@ -97,7 +97,7 @@ sudo docker exec -ti sogo-postgres psql -U sogo -d sogo -c "SELECT c_uid, mail F
 
 ---
 
-## `-6-` Vérifier
+# `-6-` Vérifier
 
 ````
 # Authentification
@@ -115,9 +115,3 @@ sudo docker exec mailserver postqueue -p
 ````
 
 ---
-
-## `-7-` Rappels
-
-- `-ti` obligatoire sur toute commande interactive
-- `docker restart` n'applique pas les surcharges (`postfix-main.cf`, `user-patches.sh`, `rspamd/override.d/`) → `docker compose down && up -d`
-- Mots de passe DMS et SOGo toujours identiques
