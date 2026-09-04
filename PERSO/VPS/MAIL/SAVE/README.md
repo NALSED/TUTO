@@ -37,9 +37,9 @@ Cette Partie montre la sauvegarde de la base de donnée ainsi que les mails de `
 
 -3- `Script sauvegarde sur VPS` => [Lien]()
 
--4- `Script rapatriment sur serveur de sauvegarde` => [Lien]()
+-4- `Script rapatriement sur serveur de sauvegarde` => [Lien]()
 
--5- `Configuration suplémentaire de Bareos` => [Lien]()
+-5- `Configuration supplémentaire de Bareos` => [Lien]()
 
 -6- `Vérification` => [Lien]()
 
