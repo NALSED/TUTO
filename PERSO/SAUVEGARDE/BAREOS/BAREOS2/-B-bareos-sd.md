@@ -30,6 +30,8 @@ Le **Device** définit le **périphérique physique ou logique** utilisé par le
                   
 ### 🧭 Plan Synoptique Bareos LAN/WAN
 
+### 🧭 Plan Synoptique Bareos LAN/WAN
+
                              ┌──────────────────────────┐
                              │        Director          │
                              +--------------------------+
@@ -38,30 +40,55 @@ Le **Device** définit le **périphérique physique ou logique** utilisé par le
                                           │
                           ┌───────────────┼────────────────┐
                           │                                │
-                  Connexion réseau WAN          Connexion réseau LAN
+                  Connexion via tunnel SSH      Connexion réseau LAN
                           │                                │
                           ▼                                ▼
-                      Tunnel SSH
               ┌──────────────────────────┐      ┌──────────────────────────┐
               │      Storage_Remote      │      │      Storage_Local       │
-              │      176.31.163.227      │      │      192.168.0.240       │
+              │   192.168.0.240 : 9203   │      │   bareos-sd.sednal.lan   │
+              │   (entrée du tunnel)     │      │        : 9103            │
               ├──────────────────────────┤      ├──────────────────────────┤
-              │  Nom : Remote_Sd         │      │  Nom : Local_Sd          │
-              │  Port : 9103             │      │  Port : 9103             │
               │  Device = Remote_Device  │      │  Device = Local_Device   │
+              │  Media Type = File       │      │  Media Type = File       │
               └────────────┬─────────────┘      └────────────┬─────────────┘
                            │                                 │
-                     Référence externe                 Référence interne
+                    Tunnel autossh                     Connexion directe
                            │                                 │
                            ▼                                 ▼
               ┌──────────────────────────┐      ┌──────────────────────────┐
+              │   bareos-sd DISTANT      │      │   bareos-sd LOCAL        │
+              │   176.31.163.227         │      │   192.168.0.240          │
+              │   Nom : Remote_Sd        │      │   Nom : Local-Sd         │
+              │   écoute 9103            │      │   écoute 9103            │
+              ├──────────────────────────┤      ├──────────────────────────┤
               │         DEVICE           │      │         DEVICE           │
               │   Name = Remote_Device   │      │   Name = Local_Device    │
               │   Media = File           │      │   Media = File           │
               │   Stockage :             │      │   Stockage :             │
-              │   Disque sda – 200 Go    │      │   RAID10 – LVM RAID 10   │
-              │      (VPS distant)       │      │     (Serveur local)      │
+              │   sdb1 – 200 Go          │      │   RAID10 – LVM 1.8 To    │
+              │   (VPS distant)          │      │   (Serveur local)        │
               └──────────────────────────┘      └──────────────────────────┘
+
+
+### 🔀 Detail du chemin WAN
+
+      Director (240)                                    VPS (176.31.163.227)
+           │                                                     │
+           │  se connecte a 192.168.0.240:9203                    │
+           ▼                                                     │
+      ┌─────────────────────┐                          ┌────────────────┐
+      │  Tunnel autossh     │═══ SSH port 22 ═════════▶│  bareos-sd     │
+      │  ecoute :9203       │        chiffre           │  ecoute :9103  │
+      │  sur 192.168.0.240  │                          │  0.0.0.0       │
+      └─────────────────────┘                          └────────────────┘
+
+`[NOTE]` `Storage_Remote` porte l'adresse **192.168.0.240** et non celle du VPS :
+le Director se connecte a l'entree locale du tunnel SSH, pas au VPS en direct.
+Le port 9203 est tenu par `ssh`, et tout ce qui y entre ressort sur le 9103 du VPS.
+
+`[NOTE]` Le bind est sur l'IP LAN et non sur `localhost` : le Director transmet
+cette adresse au File Daemon, et le client Windows 192.168.0.235 doit pouvoir la
+joindre depuis le LAN.
 
 ---
 <details>
