@@ -115,3 +115,15 @@ MAJ de la PKI (la V1 ci dessus n'est plus d'actualité voir), la V2 à un impact
 ==============================================================================================
 
 ==============================================================================================
+
+
+### `=== DATE : 04/09/2026 ===`
+
+      Materiel — HP ProLiant Gen8
+      === AJOUT === Recablage SATA data + alimentation du disque sur le port ata5
+
+      Aucune modification de fichier de configuration.
+
+      Motif : contact SATA defectueux sur ata5, disque non enumere par le noyau,
+      PV fXzPHv-2jBN-p33g-LYlo-G1dy-JL5q-FXLR9Y manquant dans vg_bareos,
+      lv_Bareos non active au boot et /var/lib/bareos/storage monte sur la racine.
