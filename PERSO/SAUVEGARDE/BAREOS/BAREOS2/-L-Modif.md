@@ -74,8 +74,40 @@
 
 ### `=== DATE === : 20/10/2026`
 
+========== VERSION VAULT OBSOLETE (04/09/2026) ==========
 
 **Congiguration PKI Vault** 
 ```
 https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#serveur-bareos--1921680240
 ```
+========== VERSION VAULT OBSOLETE (04/09/2026) ==========
+
+==============================================================================================
+
+
+### ### `=== DATE === : 04/09/2026`
+
+MAJ de la PKI (la V1 ci dessus n'est plus d'actualité voir), la V2 à un impact sur Bareos. [Vault_V2](https://github.com/NALSED/TUTO/tree/main/PERSO/VAULT/HOMELAB)
+
+==============================================================================================
+
+==============================================================================================
+
+
+### `=== DATE : 04/09/2026 ===`
+
+      /etc/bareos/bareos-sd.d/storage/Local-Sd.conf
+      === RETRAIT ===  Address = bareos.sednal.lan
+      === AJOUT   ===  Address = bareos-sd.sednal.lan
+
+      /etc/bareos/bareos-dir.d/storage/Storage_Local.conf
+      === RETRAIT ===  SD Address = bareos.sednal.lan
+      === AJOUT   ===  SD Address = bareos-sd.sednal.lan
+
+      DNS pfSense
+      === AJOUT   ===  bareos-sd.sednal.lan -> 192.168.0.240
+
+      Motif : bareos.sednal.lan est désormais le vhost nginx du reverse proxy
+      192.168.0.239 (WebUI Bareos, PKI V2). Ce nom ne peut plus servir de
+      Address au démon bareos-sd.
+
