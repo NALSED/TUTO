@@ -186,44 +186,41 @@ I) Règles à respecter
 </h2>
 </summary>
 
-        NAME                      MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
-        sda                         8:0    0 111.8G  0 disk
-        ├─sda1                      8:1    0 110.8G  0 part /
-        ├─sda2                      8:2    0     1K  0 part
-        └─sda5                      8:5    0   975M  0 part [SWAP]
-        sdb                         8:16   0 931.5G  0 disk
-        ├─Serveur-Bareos_rmeta_0  254:0    0     4M  0 lvm
-        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
-        ├─Serveur-Bareos_rimage_0 254:1    0   350G  0 lvm
-        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
-        └─Serveur-Plex_rimage_0   254:9    0    75G  0 lvm
-          └─Serveur-Plex          254:11   0   150G  0 lvm
-        sdc                         8:32   0 931.5G  0 disk
-        ├─Serveur-Bareos_rmeta_1  254:2    0     4M  0 lvm
-        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
-        ├─Serveur-Bareos_rimage_1 254:3    0   350G  0 lvm
-        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
-        └─Serveur-Plex_rimage_1   254:10   0    75G  0 lvm
-          └─Serveur-Plex          254:11   0   150G  0 lvm
-        sdd                         8:48   0 931.5G  0 disk
-        ├─Serveur-Bareos_rmeta_2  254:4    0     4M  0 lvm
-        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
-        └─Serveur-Bareos_rimage_2 254:5    0   350G  0 lvm
-          └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
-        sde                         8:64   0 931.5G  0 disk
-        ├─Serveur-Bareos_rmeta_3  254:6    0     4M  0 lvm
-        │ └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
-        └─Serveur-Bareos_rimage_3 254:7    0   350G  0 lvm
-          └─Serveur-Bareos        254:8    0   700G  0 lvm  /var/lib/bareos/storage
+        NAME                             SIZE FSTYPE      MOUNTPOINTS
+        sda                            111.8G
+        ├─sda1                         110.8G ext4        /
+        ├─sda2                             1K
+        └─sda5                           975M swap        [SWAP]
+        sdb                            931.5G LVM2_member
+        ├─vg_bareos-lv_Bareos_rmeta_0      4M
+        │ └─vg_bareos-lv_Bareos          1.8T ext4        /var/lib/bareos/storage
+        └─vg_bareos-lv_Bareos_rimage_0 931.5G
+          └─vg_bareos-lv_Bareos          1.8T ext4        /var/lib/bareos/storage
+        sdc                            931.5G LVM2_member
+        ├─vg_bareos-lv_Bareos_rmeta_1      4M
+        └─vg_bareos-lv_Bareos_rimage_1 931.5G
+        sdd                            931.5G LVM2_member
+        ├─vg_bareos-lv_Bareos_rmeta_2      4M
+        └─vg_bareos-lv_Bareos_rimage_2 931.5G
+        sde                            931.5G LVM2_member
+        ├─vg_bareos-lv_Bareos_rmeta_3      4M
+        └─vg_bareos-lv_Bareos_rimage_3 931.5G
+
+#### VG / LV
+
+      VG : vg_bareos   —  4 PV  —  <3.64 To
+      LV : lv_Bareos   —  RAID10  —  <1.82 To  —  ext4
 
 #### Droit sur /var/lib/bareos/storage
-      total 16
-      drwxr-x--- 2 bareos bareos 16384 Oct 17 10:54 lost+found
+      drwxr-xr-x 3 bareos bareos 4096 /var/lib/bareos/storage
 
 #### /etc/fstab
     #Point de montage Bareos
-    UUID=ef12d012-9b37-44e4-9058-5a1995567243  /var/lib/bareos/storage  ext4  defaults  0  2
-    
+    UUID="1e901629-aaa9-4204-aaab-a7f95e732275" /var/lib/bareos/storage ext4 defaults,nofail 0 2
+
+`[NOTE]` Le `nofail` evite le boot loop si un disque tarde a repondre, mais il masque
+aussi un RAID degrade : le boot reussit et le point de montage pointe alors sur `/`.
+Verifier `df -h /var/lib/bareos/storage` apres chaque redemarrage.
 </details>
 
 ### 1.1) /etc/bareos/bareos-sd.d/device/`Local_Device.conf`
