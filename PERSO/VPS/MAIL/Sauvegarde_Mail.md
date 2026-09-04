@@ -413,20 +413,3 @@ docker compose -f /home/debian/DMS/compose.yml up -d
 
 L'archive contient le dossier `DMS` lui-même : l'extraire dans `/home/debian`
 recrée `/home/debian/DMS`.
-
----
-
-## `-11-` Limites connues
-
-- Le dossier `/home/sednal/VPS_Mail_BackUp` n'est **pas** envoyé en hors-site :
-l'envoyer sur le VPS, d'où il provient, n'apporterait aucune protection. Le RAID10
-de `192.168.0.240` est le seul dépôt.
-
-- Les archives sont en clair sur les deux disques. Le transfert est chiffré par SSH,
-mais `sogo_pgdump_*.sql.gz` contient les hachages de mots de passe PostgreSQL et
-`dms_*.tar.gz` contient les mails.
-
-- Les archives rapatriées datent au plus du matin même (cron VPS à 02:30 UTC).
-
-- Volume : 7 jours de rétention à ~180 Mo par jeu, soit ~1,3 Go rapatriés chaque
-dimanche.
