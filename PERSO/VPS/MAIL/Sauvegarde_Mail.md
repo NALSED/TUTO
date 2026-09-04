@@ -70,7 +70,7 @@ notepad C:\Users\sednal\.ssh\authorized_keys
 ### 3.3) Creer le dossier de depot
 
 ````
-mkdir A:\save\VPS_Mail_BackUp
+mkdir F:\save\VPS_Mail_BackUp
 ````
 
 ---
@@ -145,7 +145,7 @@ set -eu
 
 SRC="/home/debian/backup/"
 CIBLE="sednal@192.168.0.235"
-DEST="A:/save/VPS_Mail/"
+DEST="F:/save/VPS_Mail_BackUp/"
 
 # Attendre que le PC soit joignable (WOL a 11:00, marge de 20 min)
 for i in $(seq 1 40); do
