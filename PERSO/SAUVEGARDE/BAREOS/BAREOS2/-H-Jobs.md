@@ -69,15 +69,16 @@ du job LAN sur le meme client Windows au lieu d'entrer en concurrence avec lui.
 Le job LAN peut durer jusqu'a 3h30 en incremental.
 
 #### 2.2 BackUp Lin => /etc/bareos/bareos-dir.d/job/`Lin_BackUp_Job_WAN.conf`
+
             Job {
               Name = Lin_BackUp_Job_WAN
-              Type = BackUp
+              Type = Backup
               Client = lin
               FileSet = Lin_BackUp_FileSet_LAN
+              Schedule = Lin_Schedule_WAN
               Storage = Storage_Remote
               Pool = Lin_BackUp_Pool_WAN
               Messages = Standard
               Priority = 10
               }
-
 
