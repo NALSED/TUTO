@@ -69,7 +69,7 @@ J'attend le soir que tout le monde est sauvegardé son travail.
 
 #### `Dans votre entreprise, les utilisateurs se plaignent de ne pas retrouver leurs fichiers et dossiers sur les “bureaux” des ordinateurs sur lesquels ils se connectent. Ils sont obligés de s’envoyer leurs documents par mail. Comment pouvez-vous faire évoluer cette situation ?`
 
-Créer un dossier individuel qui sera chargé à la connection de l'utilisateur, via son login et MDP
+Créer un dossier individuel qui sera chargé à la connexion de l'utilisateur, via son login et MDP
 
 ***
 
@@ -85,7 +85,7 @@ Créer un dossier individuel qui sera chargé à la connection de l'utilisateur,
 Une GPO est une règle,qui permet au SI de gérer le parc informatique, administrer les utilisateur, gérer les accès, autoriser ou interdire des actions sur un PC.
 
 #### `Est-ce une bonne pratique de partager des fichiers ou des dossiers sur un partage réseau, en mettant des permissions NTFS sur des utilisateurs ?`
-Oui c'est une bonne pratique, car elle permet une gestion plus fine des droits d'accées.
+Oui c'est une bonne pratique, car elle permet une gestion plus fine des droits d'accès.
 
 
 #### `Si l'utilisateur jdoe existe sur un domaine Active Directory, sur une machine spécifique, utilisera-t-il le même bureau que l'utilisateur local jdoe ?`
@@ -95,7 +95,7 @@ Oui si l'AD est configuré correctement
 
 
 #### `Active Directory contient-il une base de données hiérarchique ou relationnelle ? Explique avec au moins un exemple.`
-Une base de donnée Hiérarchique, avec la foret, et les différents domains,OU,Groups,Users 
+Une base de données hiérarchique, avec la foret, et les différents domains,OU,Groups,Users 
 
 #### `Comment mettre en place une politique de mots de passe sur un domaine Active Directory ?`
 En appliquant à une OU, des GPO en liens avec: 

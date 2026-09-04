@@ -1,4 +1,4 @@
-## ⚠️ CE TUTORIEL PRESENTE DES PROBLEMES DE DOSSIERS/FICHIERS ET CERTIFICATS, UNE SECONDE EDITION SIMPLIFIEE EST DISPONIBLE. ⚠️
+## ⚠️ CE TUTORIEL PRÉSENTE DES PROBLÈMES DE DOSSIERS/FICHIERS ET CERTIFICATS, UNE SECONDE ÉDITION SIMPLIFIÉE EST DISPONIBLE. ⚠️
 
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
           +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++          
@@ -27,7 +27,7 @@
 
 ---
 
-## === SCHEMA ===
+## === SCHÉMA ===
 ```
      === 192.168.0.241 ===                              === 192.168.0.242 ===
 ┌─────────────────────────────┐                    ┌─────────────────────────────┐
@@ -345,7 +345,7 @@ ServicesDNS => ResolverGeneral => Settings => Host Overrides
 
 #### Le script génère une clé et un certificat, supprime les anciens sur 192.168.0.243, puis copie les nouveaux dans les dossiers appropriés sur cette machine.
 
-⚠️ Des commandes ssh sont présente dans le script, penser à créer des connections sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
+⚠️ Des commandes ssh sont présente dans le script, penser à créer des connexions sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
 
 -1. `Edition Script`
       

@@ -30,7 +30,7 @@
 
 ## 1️⃣  🖥️ `Connection`
 
-###  La connection se fera via l'IP et le num de port. 
+###  La connexion se fera via l'IP et le num de port. 
 
 ![image](https://github.com/user-attachments/assets/1507e202-f17f-4cd9-bcf2-a8fe47431295)
 

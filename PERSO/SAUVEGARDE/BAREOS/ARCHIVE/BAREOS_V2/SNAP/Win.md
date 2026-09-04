@@ -4,7 +4,7 @@
 ---
 ## 1) Créer un point de restauration
 
-## 2) Atomatiser la création d'un point de montage
+## 2) Automatiser la création d'un point de montage
 
 ---
 ---
@@ -37,7 +37,7 @@
 
 ---
 
-# 2) Atomatiser la création d'un point de restauration
+# 2) Automatiser la création d'un point de restauration
 
 
 ## "Script" C:\Users\sednal\Resto.ps1
@@ -50,7 +50,7 @@
           taskschd.msc
 
 ### 2.2.2) En haut à gauche => Action => Créer un tache ...
-### 2.2.3) Donner un  nom à la tache, cocher Executer avec les autorisations maximales 
+### 2.2.3) Donner un  nom à la tache, cocher Exécuter avec les autorisations maximales 
           RESTO_POINT
 ## 2.3) `Déclencheurs` 
 

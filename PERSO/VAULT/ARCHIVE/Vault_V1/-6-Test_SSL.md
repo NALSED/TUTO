@@ -11,7 +11,7 @@
 
 ---
 
-- Utilisation de openssl pour tester la connection SSL
+- Utilisation de openssl pour tester la connexion SSL
 
 ---
 

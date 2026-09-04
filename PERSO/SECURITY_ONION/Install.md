@@ -31,7 +31,7 @@
 
 ![image](https://github.com/user-attachments/assets/3383be53-de43-4b3e-9f81-166a32e9c521)
 
-### Lors de la connection aucun traffic sur le réseau
+### Lors de la connexion aucun traffic sur le réseau
 
 ### WebUi
 ![image](https://github.com/user-attachments/assets/7dc21442-8c65-44ae-bd6e-ad71b149ded1)

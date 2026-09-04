@@ -48,7 +48,7 @@
 
 **recon/domains-hosts/brute_hosts** Brute-force pour trouver les sous domaines
 
-**recon/domains-hosts/builtwith** Permet d'afficher des informations relatives aux domaines, technologie, serveur s.... mais attention ne stocke rien en base de donnée.
+**recon/domains-hosts/builtwith** Permet d'afficher des informations relatives aux domaines, technologie, serveur s.... mais attention ne stocke rien en base de données.
 
 **recon/domains-hosts/censys_domain** API censys pour récupérer informations sur les ports et hosts d un domaine
 

@@ -1,4 +1,4 @@
-# Liste des modification aporté sur bareos
+# Liste des modifications apportées sur bareos
 
 ---
 
@@ -44,7 +44,7 @@
               }
       
       === SUPPRESSION ===
-      Seppression des deux fichiers suivant :
+      Suppression des deux fichiers suivant :
       
       /etc/bareos/bareos-dir.d/backup
       File.conf  File.conf.example
@@ -77,7 +77,7 @@
 
 ========== VERSION VAULT OBSOLETE (04/09/2026) ==========
 
-**Congiguration PKI Vault** 
+**Configuration PKI Vault** 
 ```
 https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/-2-HOMELAB/PKI/-3-%20Configuration_Client.md#serveur-bareos--1921680240
 ```
@@ -119,13 +119,13 @@ MAJ de la PKI (la V1 ci dessus n'est plus d'actualité voir), la V2 à un impact
 
 ### `=== DATE : 04/09/2026 ===`
 
-      Materiel — HP ProLiant Gen8
+      Matériel — HP ProLiant Gen8
       === AJOUT === 
       
       Recablage SATA data + alimentation du disque sur le port ata5
 
       Aucune modification de fichier de configuration.
 
-      Motif : contact SATA defectueux sur ata5, disque non enumere par le noyau,
+      Motif : contact SATA défectueux sur ata5, disque non énuméré par le noyau,
       PV fXzPHv-2jBN-p33g-LYlo-G1dy-JL5q-FXLR9Y manquant dans vg_bareos,
       lv_Bareos non active au boot et /var/lib/bareos/storage monte sur la racine.

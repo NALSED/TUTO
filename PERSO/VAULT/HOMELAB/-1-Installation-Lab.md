@@ -87,7 +87,7 @@ sudo restorecon -Rv /opt/vault
 sudo vim /etc/vault.d/vault.hcl
 ````
 
-- Editer
+- Éditer
 ````
 ui            = true
 disable_mlock = true
@@ -141,9 +141,9 @@ vault login
 
 `[NOTE]`
 
-Inscrire les variable `VAULT_ADDR` et `VAULT_CACERT` à .bashrc pour le pas avoir à les retapper à chaque connection.
+Inscrire les variable `VAULT_ADDR` et `VAULT_CACERT` à .bashrc pour le pas avoir à les retaper à chaque connexion.
 
-- Editer
+- Éditer
 ````
 sudo vim $HOME/.bashrc
 ````

@@ -122,8 +122,8 @@ Taux de réalisation en pourcentage des commandes :
 |Information|Ordinateur client|Mémoire RAM totale (SSH)|:white_check_mark:|:x:|
 |Information|Ordinateur client|Utilisation de la RAM (local)|:white_check_mark:|:x:|
 |Information|Ordinateur client|Utilisation de la RAM (SSH)|:white_check_mark:|:x:|
-|Information|Script|Recherche des evenements dans le fichier log_evt.log pour un utilisateur|:white_check_mark:|:x:|
-|Information|Script|Recherche des evenements dans le fichier log_evt.log pour un ordinateur|:white_check_mark:|:x:|
+|Information|Script|Recherche des événements dans le fichier log_evt.log pour un utilisateur|:white_check_mark:|:x:|
+|Information|Script|Recherche des événements dans le fichier log_evt.log pour un ordinateur|:white_check_mark:|:x:|
 
 
 ### 4 Difficultés / Solutions / Améliorations

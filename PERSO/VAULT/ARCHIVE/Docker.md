@@ -255,7 +255,7 @@ Dans l'idéal, si tout se passait sur Linux, il faudrait réaliser le changement
 
 [DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab) // [GITHUB-OFFICIEL](https://github.com/hashicorp/vault-action/blob/main/docker-compose.yml)
 
-Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\config\docker-compose.yml
+Ici dans vsc édition de C:\Users\sednal\DOCKER\Vault\config\docker-compose.yml
 
             version: "3.8"
             services:
@@ -292,7 +292,7 @@ Car certificat autosigné, et Vault ne le validera pas sinon.
 
 [DOC](https://ambar-thecloudgarage.medium.com/hashicorp-vault-with-docker-compose-0ea2ce1ca5ab)
 
-Ici dans vsc edition de C:\Users\sednal\DOCKER\Vault\config\vault.hcl
+Ici dans vsc édition de C:\Users\sednal\DOCKER\Vault\config\vault.hcl
             ui = true
 
 

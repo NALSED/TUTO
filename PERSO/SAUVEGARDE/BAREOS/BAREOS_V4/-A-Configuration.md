@@ -45,7 +45,7 @@
                                          +----------------+
                                                   |
                            -----------------------/--------------------------
-                           |                      ^   Tunel autoSSH +cron   |
+                           |                      ^   Tunnel autoSSH +cron   |
                            v                      |                         v
                   +----------------+              |               +-------------------+
                   | Local Backup   |              |               |   Remote Backup   |
@@ -56,7 +56,7 @@
                            ^                      |                          ^
                            |                      |                          |
                            |                      ----------------------------
-          +----------------+----------------+         Tunel autoSSH + cron   |                           
+          +----------------+----------------+         Tunnel autoSSH + cron   |                           
           |      Clients à sauvegarder      |                                |                   
           +---------------------------------+                                |
           | 192.168.0.235 PC Admin          |                        +----------------+
@@ -97,13 +97,13 @@
 
 ### III) `Tunnel SSH`
 
-#### 📝 ICI un tunnel SSH est necessaire, car:
+#### 📝 ICI un tunnel SSH est nécessaire, car:
 * #### Le port 9103 du SD distant n'est pas expose sur Internet.
 * #### Le Director (DIR) initie toujours la connexion vers le Storage Daemon (SD).
-* #### Le SD envoie ensuite les donnees a travers cette connexion.
+* #### Le SD envoie ensuite les données à travers cette connexion.
 
-#### ⚠️ Deux contraintes a respecter imperativement :
-* #### Le port local du tunnel doit etre **different de 9103**, deja occupe par le SD local.
+#### ⚠️ Deux contraintes à respecter impérativement :
+* #### Le port local du tunnel doit être **différent de 9103**, déjà occupé par le SD local.
 * #### Le tunnel doit se binder sur l'**IP LAN** et non sur `localhost` : le Director transmet l'adresse du Storage au File Daemon, et les autres clients du LAN (ex. 192.168.0.235) doivent pouvoir la joindre.
 
 ---
@@ -114,25 +114,25 @@
 sudo apt install autossh
 ````
 
-### 3.2) Copier la cle SSH sur le serveur distant
+### 3.2) Copier la clé SSH sur le serveur distant
 
 ````
 ssh-copy-id -i /home/sednal/.ssh/id_ecdsa.pub debian@176.31.163.227
 ````
 
-### 3.3) Enregistrer la cle d'hote du VPS
+### 3.3) Enregistrer la clé d'hôte du VPS
 
 Indispensable : sous systemd il n'y a pas de TTY, `ssh` ne peut donc pas demander
-de confirmation interactive. Un `known_hosts` vide fait echouer le tunnel avec
+de confirmation interactive. Un `known_hosts` vide fait échouer le tunnel avec
 `Host key verification failed`.
 
-Verifier l'empreinte **sur le VPS** :
+Vérifier l'empreinte **sur le VPS** :
 
 ````
 ssh-keygen -lf /etc/ssh/ssh_host_ed25519_key.pub
 ````
 
-Puis l'enregistrer sur le serveur local apres comparaison :
+Puis l'enregistrer sur le serveur local après comparaison :
 
 ````
 ssh-keyscan -t ed25519 176.31.163.227 >> /home/sednal/.ssh/known_hosts
@@ -141,7 +141,7 @@ ssh-keygen -F 176.31.163.227 -f /home/sednal/.ssh/known_hosts
 
 ### 3.4) Autoriser le bind sur l'IP LAN
 
-Editer `/etc/ssh/sshd_config` sur `192.168.0.240` :
+Éditer `/etc/ssh/sshd_config` sur `192.168.0.240` :
 
 ````
 GatewayPorts clientspecified
@@ -153,13 +153,13 @@ Puis tester et recharger :
 sudo sshd -t && sudo systemctl reload sshd
 ````
 
-### 3.5) Creer le tunnel SSH via systemd
+### 3.5) Créer le tunnel SSH via systemd
 
 ````
 sudo nano /etc/systemd/system/tunnel-bareos.service
 ````
 
-Editer :
+Éditer :
 
 ````
 [Unit]
@@ -179,8 +179,8 @@ RestartSec=10
 WantedBy=multi-user.target
 ````
 
-`[NOTE]` `ExitOnForwardFailure=yes` evite que le service se declare actif alors
-que le forward a echoue.
+`[NOTE]` `ExitOnForwardFailure=yes` évite que le service se déclare actif alors
+que le forward a échoué.
 
 ### 3.6) Activation du service
 
@@ -190,21 +190,21 @@ sudo systemctl enable --now tunnel-bareos.service
 sudo systemctl status tunnel-bareos.service
 ````
 
-### 3.7) Verification du tunnel
+### 3.7) Vérification du tunnel
 
 ````
 ss -lntp | grep 9203
 nc -vz 192.168.0.240 9203
 ````
 
-**RESULTAT ATTENDU**
+**RÉSULTAT ATTENDU**
 
 ````
 LISTEN 0  128  192.168.0.240:9203  0.0.0.0:*  users:(("ssh",...))
 192.168.0.240 9203 open
 ````
 
-Et cote Bareos :
+Et côté Bareos :
 
 ````
 printf "status storage=Storage_Remote\nquit\n" | sudo bconsole
@@ -218,5 +218,5 @@ Remote_Sd Version: 24.0.7~pre3.0e656b287 (16 October 2025) Debian GNU/Linux 13 (
 Device "Remote_Device" (/var/lib/bareos/storage) is not open.
 ````
 
-`[NOTE]` Aucune regle firewall n'est a ajouter sur le VPS : tout le trafic Bareos
-transite dans la connexion SSH sur le port 22, deja ouvert.
+`[NOTE]` Aucune règle firewall n'est à ajouter sur le VPS : tout le trafic Bareos
+transite dans la connexion SSH sur le port 22, déjà ouvert.

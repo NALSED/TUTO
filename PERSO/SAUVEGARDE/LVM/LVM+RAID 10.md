@@ -1,4 +1,4 @@
-### Utilisation de LVM pour patitionner une grapper RAID, entre un LV pour les Backups Bareos en RAID 10 et un LV pour PLex en RAID 0.
+### Utilisation de LVM pour partitionner une grappe RAID, entre un LV pour les Backups Bareos en RAID 10 et un LV pour PLex en RAID 0.
 
 ---
 
@@ -104,7 +104,7 @@
       sudo mkfs.ext4 /dev/CHEMIN STOCKAGE
       
 #### Montage
-      # ICI pour Bareos mais le principe sudo mount SOURCE => DESTiNATION
+      # ICI pour Bareos mais le principe sudo mount SOURCE => DESTINATION
       sudo mount /dev/Serveur/Bareos /var/lib/bareos/storage
 
 #### Inscription à /etc/fstab

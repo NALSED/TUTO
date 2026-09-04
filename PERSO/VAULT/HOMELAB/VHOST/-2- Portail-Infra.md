@@ -10,7 +10,7 @@ sur `192.168.0.239` : pas de `proxy_pass`, la machine héberge les fichiers.
 sudo vim /etc/nginx/sites-available/infra.conf
 ````
 
-- Edition
+- Édition
 ````
 server {
     listen 80;

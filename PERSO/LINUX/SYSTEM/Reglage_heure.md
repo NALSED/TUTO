@@ -36,7 +36,7 @@
 
 
 
-         sudo systemctl restart chronyd # Ici pour Oracle si debian renplacer chronyd par ntpd ou systemd-timesyncd
+         sudo systemctl restart chronyd # Ici pour Oracle si debian remplacer chronyd par ntpd ou systemd-timesyncd
 
 
 

@@ -10,7 +10,7 @@ Proxmox parle `HTTPS` sur 8006 avec son propre certificat auto-signé :
 sudo vim /etc/nginx/sites-available/proxmox.conf
 ````
 
-- Edition fichier
+- Édition fichier
 ````
 server {
     listen 80;

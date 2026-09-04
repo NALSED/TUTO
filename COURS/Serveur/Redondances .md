@@ -73,7 +73,7 @@
 ### Puis Promote ths server to a domain controller
 ### Cocher la case Add a domain contrôler to an existing domain 
 ### Puis renseigner le nom du domaine maître(bleu)
-### Cliquer change sur puis renseigner le nom(comme présent sur l'écran de connection) et MDT du serveur maître.(rouge)
+### Cliquer change sur puis renseigner le nom(comme présent sur l'écran de connexion) et MDT du serveur maître.(rouge)
 ![ad1](https://github.com/user-attachments/assets/883eb080-4c21-4cdf-a780-1b6627d273ba)
 ### Laisser par défaut (ou voir avec reda notamment RODC), puis rentrer MDT 
 ![ad1](https://github.com/user-attachments/assets/90313b3b-ceda-450a-a00e-2cce26d6fd9e)

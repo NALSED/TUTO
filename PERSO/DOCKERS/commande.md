@@ -84,7 +84,7 @@
                     "CreatedAt": "2025-09-24T19:08:11+01:00",
                     "Driver": "local",
                     "Labels": null,
-                    "Mountpoint": "/var/lib/docker/volumes/mynginx/_data",#chemin dans le  host qui corespond à /usr/share/nginx/html/ dans le contener docker
+                    "Mountpoint": "/var/lib/docker/volumes/mynginx/_data",#chemin dans le  host qui correspond à /usr/share/nginx/html/ dans le conteneur docker
                     "Name": "mynginx",
                     "Options": null,
                     "Scope": "local"
@@ -103,7 +103,7 @@
 * #### Choisir/utiliser le type de volume => /bind/volume/tmpfs
 #### Syntaxe :      
 #### 1) `Bind`      
-      docker run -d  --name c1 --mount type=bind,source=[CHEMIN SOURCE],target=[CHEMIN CONTENER] nginx:latest 
+      docker run -d  --name c1 --mount type=bind,source=[CHEMIN SOURCE],target=[CHEMIN CONTENEUR] nginx:latest 
       docker run -d  --name c1 --mount type=bind,source=/data/,destination=/usr/share/ngnix/html nginx:latest
 
 #### 2) `Volume`

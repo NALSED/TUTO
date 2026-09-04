@@ -20,6 +20,6 @@ sudo apt install rsync -y
 ```
 -2. Avoir un serveur Web opérationnel, et en ligne 24/24.
 
--3. Vault doit pouvoir établir des connection ssh sans mot de passe vers tout les services.
+-3. Vault doit pouvoir établir des connexions ssh sans mot de passe vers tout les services.
 
 -4. Disposer d'un compte Root su Vault.   

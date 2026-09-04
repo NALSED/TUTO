@@ -4,7 +4,7 @@
 - apt install php-xml php-common php-json php-mysql php-mbstring php-curl php-gd php-intl php-zip php-bz2 php-imap php-apcu -y
 - apt install php-ldap -y
 
-## 2. PREPARATION DE LA BASE DONNEE
+## 2. PRÉPARATION DE LA BASE DONNÉES
 
 - mysql_secure_installation
 	- n

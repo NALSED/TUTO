@@ -2,7 +2,7 @@
 
 ---
 
-### Ce Tuto commence, avec RAID, PostGreSQL, Baros opérationnel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
+### Ce Tuto commence, avec RAID, PostGreSQL, Bareos opérationnel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
 
 ---
 
@@ -297,7 +297,7 @@ I) DNS1
 		Schedule {
         		Name = schdns1back
 
-        		# Full chaque 1er dimanche du mois de fevrier juin et octobre
+        		# Full chaque 1er dimanche du mois de février juin et octobre
        			 Run = Full 1st sun at 12:30 feb
         		 Run = Full 1st sun at 12:30 jun
         		 Run = Full 1st sun at 12:30 oct
@@ -428,7 +428,7 @@ II) WEB
 		Schedule {
         		Name = schwebback
 
-        		# Full chaque 1er dimanche du mois de fevrier juin et octobre
+        		# Full chaque 1er dimanche du mois de février juin et octobre
         		Run = Full 1st sun at 12:40 feb
         		Run = Full 1st sun at 12:40 jun
 		        Run = Full 1st sun at 12:40 oct
@@ -545,7 +545,7 @@ II) WEB
 		Schedule {
         		Name = schwebsnap
 
-       		 	# Full chaque 1er dimanche du mois de fevrier juin et octobre
+       		 	# Full chaque 1er dimanche du mois de février juin et octobre
         		Run = Full 1st sun at 12:40 feb
         		Run = Full 1st sun at 12:40 jun
         		Run = Full 1st sun at 12:40 oct
@@ -627,7 +627,7 @@ II) WEB
 
 
 
-### ⚠️ UN DOSSIER IDENTIQUE A CELUI DE DNS2 DOIT ETRE CREER SUR DNS1
+### ⚠️ UN DOSSIER IDENTIQUE À CELUI DE DNS2 DOIT ÊTRE CRÉÉ SUR DNS1
 ### Sur DNS1
      chown -R sednal:sednal /home/sednal/TotalDNS2
      chmod -R u+rwX /home/sednal/TotalDNS2

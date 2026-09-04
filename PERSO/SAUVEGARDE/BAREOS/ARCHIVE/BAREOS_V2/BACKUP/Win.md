@@ -2,7 +2,7 @@
 
 ---
 
-### Ce Tuto commence, avec RAID, PostGreSQL, Baros opérationnel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
+### Ce Tuto commence, avec RAID, PostGreSQL, Bareos opérationnel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
 
 ---
 
@@ -62,7 +62,7 @@
  		# Nom du FileSet
 		 Name = winbackup
 
-		 # Specifique à windows, copie les fichier cachés
+		 # Spécifique à windows, copie les fichier cachés
  		Enable VSS = yes
 
   		# A inclure pour la sauvegarde

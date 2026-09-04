@@ -67,7 +67,7 @@ HTTP/2 s'active donc via `listen 443 ssl http2;`.
 sudo vim /etc/nginx/snippets/ssl-nalsed.conf
 ````
 
-- Edition
+- Édition
 ````
 ssl_certificate     /etc/ssl/nalsed/infra.crt;
 ssl_certificate_key /etc/ssl/nalsed/infra.key;
@@ -96,7 +96,7 @@ Indispensable pour la console noVNC de Proxmox et le terminal de Cockpit.
 sudo vim /etc/nginx/conf.d/websocket.conf
 ````
 
-- Edition
+- Édition
 ````
 map $http_upgrade $connection_upgrade {
     default upgrade;

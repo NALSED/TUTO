@@ -16,7 +16,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
  * #### 1.3 Rôles et Définitions.
  ## 2) [`Git/Git-Hub`](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#2-gitgit-hub--1) : 
    * ### 2.1 Git :
-     * #### 2.1.1 Dépot Distant.
+     * #### 2.1.1 Dépôt Distant.
      * #### 2.1.2 Branche et Flow. 
      * #### 2.1.3 Conflit Merge.
      * #### 2.1.4 Clé SSH.
@@ -29,7 +29,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
  * ### 3.1 [`Principes des réseaux`](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#3-r%C3%A9seau--1) :  
     * #### 3.1.1 [Introduction](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#311-introduction-1).
     * #### 3.1.2 [protocole réseau.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#312-protocole-r%C3%A9seau-1)
-    * #### 3.1.3 [Modéle en couche.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#313-mod%C3%A9le-en-couche-1)
+    * #### 3.1.3 [Modèle en couche.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#313-mod%C3%A9le-en-couche-1)
     * #### 3.1.4 [Modèle OSI.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#314-mod%C3%A8le-osi-1)
     * #### 3.1.5 [Modèle TCP\IP.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#315-mod%C3%A8le-tcpip-1)
     * #### 3.1.6 [Matériel d'interconnection.](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#316-mat%C3%A9riel-dinterconnection-1)
@@ -78,7 +78,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
   * #### 3.6.2 [Arborescence](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#362-arbor%C3%A9cence-1)
   * #### 3.6.3 [Composants](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#363-composants-1)
   * #### 3.6.4 [Protocoles](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#364-protocoles-1)
-  * #### 3.6.5[(Fontionalitées)](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#365fontionalit%C3%A9es-1)
+  * #### 3.6.5[(Fonctionnalités)](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#365fontionalit%C3%A9es-1)
   * #### 3.6.6 [Objets](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#366-objets-1)
   * #### 3.6.7 [Bonne Pratiques](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#367-1bonne-pratiques-)
   * #### 3.6.8 [Créer un ADDS](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#368-cr%C3%A9er-un-adds-)
@@ -95,7 +95,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
 
   * ### 4.1 [`DNS`](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#41-dns-1)
     * #### 4.1.1 [Deffinitions et Fonctionnements](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#411-d%C3%A9finitions-et-fonctionement)
-    * #### 4.1.2 [DNS récurcifs/DNS faisant autorités](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#412-closed_book-dns-r%C3%A9curcif--blue_book-dns-faisant-autorit%C3%A9)
+    * #### 4.1.2 [DNS récursifs/DNS faisant autorités](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#412-closed_book-dns-r%C3%A9curcif--blue_book-dns-faisant-autorit%C3%A9)
     * #### 4.1.3 [Serveurs racines et résolveurs](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#413-serveurs-racines-et-r%C3%A9solveurs-1)
     * #### 4.1.4 [Windows](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#414-windows-1)
     * #### 4.1.5 [Linux](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#trident-labo-dns-sous-bind9)
@@ -147,7 +147,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
 ---
    * ## 2.1 [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)`Git`
 ---
-     * #### 2.1.1 Dépot Distant
+     * #### 2.1.1 Dépôt Distant
      ##### ((penser à passer en "main" pour pouvoir faire certaine action ( rendre la destination C:, safe aux yeux de git):)) 
     git config --global --add safe.directory C:/
 ##### Effacer tout dépôt précédant 
@@ -155,13 +155,13 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
     git remote rm origin.
 
 
- ##### **TOUJOURS ECRIRE APRES /c:**
+ ##### **TOUJOURS ÉCRIRE APRÈS /c:**
 
 
   1) ##### lande@Admin MINGW64 /c (main) git remote add origin  [REMOTE_URL] : faire le liens entre le dépôt distant aux dépôt local  
   2) ##### lande@Admin MINGW64 /c (main)  : git remote -v ((vérifier le lien le dépôt local et à distance)) 
  3) ##### lande@Admin MINGW64 /c (main)  git clone [REMOTE FILE NAME] : ((clone le fichier depuis GuitHub à Git))
- 4) ##### lande@Admin MINGW64 /c/my-awesome-project (main) git pull origin main ((ECRIRE DANS LE FICHIER SOURCE!!!))  clone les modifs
+ 4) ##### lande@Admin MINGW64 /c/my-awesome-project (main) git pull origin main ((ÉCRIRE DANS LE FICHIER SOURCE!!!))  clone les modifs
  5) ##### lande@Admin MINGW64 /c/my-awesome-project (main) nano ou echo ["MESSAGE"] > [FILE]
  6) ##### lande@Admin MINGW64 /c/my-awesome-project (main) git add [FILE]
  7) ##### lande@Admin MINGW64 /c/my-awesome-project (main) git commit -m <"NEW MESSAGE">
@@ -172,7 +172,7 @@ djqj![j](https://github.com/user-attachments/assets/11c5c342-b7c&&qssssddhhshsy5
    intro: 	après création de différentes branches, on peux visionner l'avancement via Insights puis 	Network en bas à Gauche.
 
 
-##### ((TOUJOURS ECRIRE DANS LE FICHIER CIBLE!!!!))
+##### ((TOUJOURS ÉCRIRE DANS LE FICHIER CIBLE!!!!))
 
 ##### après avoir clone le commit:
 1) ##### lande@Admin MINGW64 ~/git/website-flow (main)  git branch ((donne la branche ou l'on se trouve)) 					2) lande@Admin MINGW64 ~/git/website-flow (main) git branch [NEWBRANCH]
@@ -195,7 +195,7 @@ Auto-merging README.md
 CONFLICT (content): Merge conflict in README.md
 Automatic merge failed; fix conflicts and then commit the result.
 
-##### Edition
+##### Édition
     nano README.md
 
 > "<<<<<<< HEAD"
@@ -750,7 +750,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
   ##### différentes normes :PHY, MAC, IEEE
    * ### 3.2.2 [⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-)`Cablage et équipement.`
 ---
-* ##### Cable ethernet avec connecteurs RJ45 ( droit ou croisée)
+* ##### Câble ethernet avec connecteurs RJ45 ( droit ou croisée)
 * ##### Fibre optique (MMF -- ou SMF ++)
 * ##### Carte Réseau 
 * ##### Émetteur-récepteurs (GBIC,SFP,QSFP,CFP,XFP)
@@ -759,7 +759,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
    * ### 3.2.3[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Adresse **Mac.**`
 ---
 ##### Permet de connaître l'hôtes et le destinataire. Censées être unique
-##### **Format :** En 48 bits (6 octets) noté en Héxa
+##### **Format :** En 48 bits (6 octets) noté en hexa
 ![image](https://upload.wikimedia.org/wikipedia/commons/9/94/MAC-48_Address.svg)
 
    * ### 3.2.4[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Trame **ethernet.**`
@@ -816,7 +816,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 * ##### Chaque octet est converti en base 10 => 4 octets => 4 nombres
 * ##### Chaque adresses à des plages réservées : la première adresse => **l'adresse réseau** et la dernière adresse => **adresse de diffusion (broadcast)**
 * #####  Utilisation de masque de sous réseau qui correspond au CIDR
-* ##### Calcule nombre hôte: 32((ipv4))-21 CIDR  ==> 2^11=2048-2  ((Broadcast et reseau)).
+* ##### Calcule nombre hôte: 32((ipv4))-21 CIDR  ==> 2^11=2048-2  ((Broadcast et réseau)).
 
      * ### 3.3.2.2[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `CIDR.`
 ---
@@ -861,7 +861,7 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 ##### On cherche donc un CIDR capable de le faire :
 
 ##### Trouver un réseau qui comprend ces trois réseaux 10.0.1.0/24 // 10.0.2.0/24 // 10.0.3.0/24
-##### Recherche de l'étendu rotal des trois réseaux :
+##### Recherche de l'étendu total des trois réseaux :
 
 
 | **Réseau 1**                 | **Réseau 2**          | **Réseau 3**        |
@@ -947,15 +947,15 @@ g Basic-gitGithub-manip-pour-TSSR.md…]()
 Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac1f:8001
 ##### 🔷Tout comme IPv4, IPv6 se compose d'un netID et d'un hostID, en fonction du CIDR.
 ##### * IPv6 comprend aussi des adresses particulières :
- * #####  **::1** => Boucle locale (loopback) Equivalent à 127.0.0.1 en IPv4, utilisée pour des tests et des services locaux sur la même machine
- * ##### **::** => Adresse indéfinie, Equivalent à 0.0.0.0 en IPv4, utilisée pour signifier qu'une adresse n'est pas spécifiée.
+ * #####  **::1** => Boucle locale (loopback) Équivalent à 127.0.0.1 en IPv4, utilisée pour des tests et des services locaux sur la même machine
+ * ##### **::** => Adresse indéfinie, Équivalent à 0.0.0.0 en IPv4, utilisée pour signifier qu'une adresse n'est pas spécifiée.
  * ##### **ff00::/8** => Adresses multicast, utilisées pour communiquer avec plusieurs hôtes en une seule transmission, utilisées dans le routage, la découverte de voisins, etc
  * ##### **fe80::/64** => Adresses unicast lien local, adressage propre à un réseau physique, communication avec les interfaces du même lien et passage routeur impossible, configuration manuelle ou automatique (en général automatique) 
  * ##### **fc00::/7** => Adresses unicast locales uniques (RFC 4193) Réservées à des usages privés (réseaux internes), similaire aux adresses privées IPv4, non routable sur internet, facilement identifiable, globalement unique, elle permet l'interconnection de site, pas de conflits si routage par erreur
     
 ![unicast local](https://github.com/user-attachments/assets/e8387d59-e025-43b5-83aa-f34bb930961c)
  * ##### **reste** => Adresses unicast globales (Internet/publiques)
-  ##### SYNTHESE :
+  ##### SYNTHÈSE :
   ![sd](https://github.com/user-attachments/assets/362e2508-4086-4e28-b218-faf166ddfadc)
 
   
@@ -966,7 +966,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ##### :large_blue_diamond: avec état via un DHCPv6
   * ### 3.4.4[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Entêtes`
  ---
-  ![ENTËTE IPv6](https://github.com/user-attachments/assets/4c3d9910-2784-4cd6-9483-cb091f7716a1)
+  ![ENTÊTE IPv6](https://github.com/user-attachments/assets/4c3d9910-2784-4cd6-9483-cb091f7716a1)
 ##### La fragmentation devient optionnelle, en utilisant le PMUTUd, le paquet est rejeté jusqu'à que l'émetteur adapte la taille du paquet.
   * #### 3.4.5[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Protocoles associés.`
 ---
@@ -1003,7 +1003,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
    * ### 3.5.4[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Routage dynamique`
 ---
 ##### -Définitions- : 
-##### Le routage dynamique est utilisé sur de grand réseau, étant amené à des modifications constantes, les routeur communique entre eux et échange sur leurs table de routages pour s'addapter aux modifications, aux pannes ou aux coupures.
+##### Le routage dynamique est utilisé sur de grand réseau, étant amené à des modifications constantes, les routeur communique entre eux et échange sur leurs table de routages pour s'adapter aux modifications, aux pannes ou aux coupures.
    * ### 3.5.4.1[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Protocoles dynamiques`
 ---
 ![wdfg](https://github.com/user-attachments/assets/3bfa004d-7e7b-4d6d-834e-e557d010c07f)
@@ -1035,7 +1035,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
     ##### 4️⃣ À réception de l'acquittement par la source => suppression du segment et du compte à rebours
     ##### 5️⃣ À la fin d'un compte à rebours
     ##### 6️⃣ OU => ré-émission du segment
-     ##### -ENTETE TCP- :
+     ##### -ENTÊTE TCP- :
   ![sddv](https://github.com/user-attachments/assets/898df453-1def-4df6-b5f2-67ac38afc47c)
      ##### -SEGMENT TCP- :
   ![sertg](https://github.com/user-attachments/assets/a1c7db57-269f-41c6-9cbb-3b93a6781700)
@@ -1047,7 +1047,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
    ##### 🔹SSH Telnet gestion à distance des équipements.
    ##### 🔹RDP administration via bureau à distance.
    ##### 🔹LDAP intéroge l'AD.
-##### Principe de connection et fin de connection
+##### Principe de connexion et fin de connexion
 ![1](https://github.com/user-attachments/assets/edcf330a-79b6-4f37-baf3-6f1bba4d245d)
 ![2](https://github.com/user-attachments/assets/528629b8-f626-4ad3-92db-c83127d76b5d)
 ##### TCP n'attend pas pour émettre cela nuit trop au débit, mais IP ne garantit pas l'ordre des paquets, donc utilisation de La fenêtre TCP (champs Window) sert au destinataire à indiquer combien d'octets il est prêt à recevoir.
@@ -1093,7 +1093,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 * #####  Il transmet donc sur le réseau interne le paquet en remplaçant l'adresse de destination (la sienne) par 10.0.0.1
    * ### 3.5.5.[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `NAPT`
 ---
-  ##### Utilisé quand il y à moins d'adresse privé que d'adresse publiques, exemple box inernet. Ne pas considérer juste l'adresse comme identifiant mais le couple adresse IP/port (couche 4).
+  ##### Utilisé quand il y à moins d'adresse privé que d'adresse publiques, exemple box internet. Ne pas considérer juste l'adresse comme identifiant mais le couple adresse IP/port (couche 4).
   ##### Le NAPT dynamique a de nombreux inconvénients :
  ##### 🔹 La table étant remplie lors de la requête de l'intérieur vers l'extérieur
  ##### 🔹 Le client doit être derrière le NAT
@@ -1118,7 +1118,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ##### :large_blue_diamond: Est administrable en GUI ou en CLI.
 ##### :large_blue_diamond: Utilise LDAP pour accéder à l’annuaire
 
-##### :arrow_forward: LADP est un protocole standardisé et ouvert pour accéder et gérer les services d'annuaire, de rechercher et de manipuler des données dans l'annuaire AD de manière structurée, tout en offrant une grande compatibilités avec de nombreux services, applications, OS.
+##### :arrow_forward: LDAP est un protocole standardisé et ouvert pour accéder et gérer les services d'annuaire, de rechercher et de manipuler des données dans l'annuaire AD de manière structurée, tout en offrant une grande compatibilités avec de nombreux services, applications, OS.
 
 ##### :arrow_forward: Rôle AD :
 
@@ -1329,7 +1329,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![vm 1](https://github.com/user-attachments/assets/29d472fa-6fa3-4007-94fb-395c71a7a008)
 ##### Dans cette fenêtre toutes les règle User et Computer son réalisable :
 ![vm 1](https://github.com/user-attachments/assets/59942eaa-1e84-44f2-b43e-656c6b4e5c71)
-#### :arrow_forward: exemple edition de GPO
+#### :arrow_forward: exemple édition de GPO
 ##### Restriction d'un groupe d'utilisateur
 ##### Dans "Group Policy Management" => dérouler jusqu'au groupe souhaitez => Wilder_student => clic droit => Première option
 ![vm 1](https://github.com/user-attachments/assets/b2bdc3f9-2b41-4eba-b8c7-b79858f73818)
@@ -1353,7 +1353,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![vm 1](https://github.com/user-attachments/assets/5accd1aa-8048-4c96-9526-538866c74e59)
  * ### 3.6.8.3[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `Gestion client`
 ---
-1) #### **INSTALATION DU SERVEUR ADDS**
+1) #### **INSTALLATION DU SERVEUR ADDS**
 * ##### Au sein du **Serveur manager**, cliquez sur **Manage** et **add roles and feature** .
   * ##### Choisissez l'option **Role-based or feature-based installation** et poursuivez.
   * ##### Choisir Active Directory Domain Services
@@ -1374,7 +1374,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
  ![adds 4](https://github.com/user-attachments/assets/48233b21-c883-4eeb-b95a-8b5e209e27ec)
  * ##### **Install**
  * ##### L'opération peux durer et un redémarrage est nécessaire.
- *  #### Au redémarrage la **connection** se fait avec **DOMAINE** créer précédemment et via le **Password** de Administrator
+ *  #### Au redémarrage la **connexion** se fait avec **DOMAINE** créer précédemment et via le **Password** de Administrator
 ![adds5](https://github.com/user-attachments/assets/1e75b322-17d4-4822-a698-2cbf8d84b234)
 
 
@@ -1390,7 +1390,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 
 ### Faire entrer un client dans un domain
 
-#### ⚠️ Prérequis machine sur le même réseau et serveur DNS renseigner sur le/les client(s), les Différent cliens renommé avec des nom différent ⚠️
+#### ⚠️ Prérequis machine sur le même réseau et serveur DNS renseigner sur le/les client(s), les Différent clients renommé avec des nom différent ⚠️
 
 ##### :arrow_forward: AD GPO sur le clients:
 ##### clic sur "View" :arrow_down:
@@ -1483,7 +1483,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ### Puis Promote ths server to a domain controller
 ### Cocher la case Add a domain contrôler to an existing domain 
 ### Puis renseigner le nom du domaine maître(bleu)
-### Cliquer change sur puis renseigner le nom(comme présent sur l'écran de connection) et MDT du serveur maître.(rouge)
+### Cliquer change sur puis renseigner le nom(comme présent sur l'écran de connexion) et MDT du serveur maître.(rouge)
 ![ad1](https://github.com/user-attachments/assets/883eb080-4c21-4cdf-a780-1b6627d273ba)
 ### Laisser par défaut (ou voir avec reda notamment RODC), puis rentrer MDT 
 ![ad1](https://github.com/user-attachments/assets/90313b3b-ceda-450a-a00e-2cce26d6fd9e)
@@ -1512,7 +1512,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![ad1](https://github.com/user-attachments/assets/d4a91ed0-ed1b-40c1-9980-b8774787dfb6)
 ![ad1](https://github.com/user-attachments/assets/04ac1757-a6ec-44a5-b26c-6f67683ee6b0)
 #### Puis Advanced ⬆️
-#### Pour finir Find now => touver le/les groupes concerné(s) => OK
+#### Pour finir Find now => trouver le/les groupes concerné(s) => OK
 ![ad1](https://github.com/user-attachments/assets/64837a7a-12e3-4b89-bd9b-7aedf49ca084)
 #### Choisir les programme ou autre à partager.
 #### Les déposer dans le fichier Créer à la racine de This PC
@@ -1562,7 +1562,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![ad1](https://github.com/user-attachments/assets/d4a91ed0-ed1b-40c1-9980-b8774787dfb6)
 ![ad1](https://github.com/user-attachments/assets/04ac1757-a6ec-44a5-b26c-6f67683ee6b0)
 #### Puis Advanced ⬆️
-#### Pour finir Find now => touver le/les groupes concerné(s) => OK
+#### Pour finir Find now => trouver le/les groupes concerné(s) => OK
 ![ad1](https://github.com/user-attachments/assets/64837a7a-12e3-4b89-bd9b-7aedf49ca084)
 #### Choisir les programme ou autre à partager.
 #### Les déposer dans le fichier Créer à la racine de This PC
@@ -1608,7 +1608,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![ad1](https://github.com/user-attachments/assets/082b6bfb-c7dc-45fb-bfe1-086ebe787f25)
 ### Rentrer le nom du dossier de partage créer à la racine ⬇️
 ![ad1](https://github.com/user-attachments/assets/fa0163f0-a99c-4f12-890e-204978038735)
-### Configuration d'un partage Docs dans le deossier à la racine :
+### Configuration d'un partage Docs dans le dossier à la racine :
 ![ad1](https://github.com/user-attachments/assets/be4e42a9-704f-4514-827e-097b83021cfe)
 ### Choisir l'option voulu
 ### Créer le partage.
@@ -1631,7 +1631,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ### Résultat 
 ![ad1](https://github.com/user-attachments/assets/aca750f6-f644-4683-8752-b28af9620e47)
 
-## Configuration de la connection client serveur au partage :
+## Configuration de la connexion client serveur au partage :
     New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\NOM_DU_SERVEUR\NOM_DU_PARTAGE" -Persist
   
     New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\WIN-35VEAKCKMFU\Docs" -Persist
@@ -1642,7 +1642,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
   * ### `3.7.1) Instalation configuration WinRM` 
 ## Configuration de WinRM par GPO
 ### 1️⃣ `Edition GPO`
-#### Computer Configuration => Polities Administrative Templates => Windows Composents => windows Remote Management => WinRM Service
+#### Computer Configuration => Polities Administrative Templates => Windows Components => windows Remote Management => WinRM Service
 ![image](https://github.com/user-attachments/assets/ffaf09db-9622-40be-aafb-25832f072e72)
 #### Allow remote server management through WinRM
 ![image](https://github.com/user-attachments/assets/966e873b-8f8e-4ed2-b855-0d53e01385f1)
@@ -1657,10 +1657,10 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![image](https://github.com/user-attachments/assets/d10bddad-6dd2-49b7-a52b-84ba5f389711)
 #### Cocher Predefined => Windows Remote Management
 ![image](https://github.com/user-attachments/assets/58edd5e1-7735-46f4-a2cc-6db7c8ffd39f)
-#### Puis Profile => Domain, Pivate
+#### Puis Profile => Domain, Private
 ![image](https://github.com/user-attachments/assets/76f7488e-ccff-435e-ade2-fa8adb10d025)
 #### Allow Connection
-### 4️⃣ Edition de la Règle Firewall
+### 4️⃣ Édition de la Règle Firewall
 #### Clic droit sur Windows Remote Management (HTTP-In) => Properties
 ![image](https://github.com/user-attachments/assets/7be50976-2c66-47f2-97e9-28dd08801eba)
 #### Advanced => Cocher Domain
@@ -1683,7 +1683,7 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![image](https://github.com/user-attachments/assets/d10bddad-6dd2-49b7-a52b-84ba5f389711)
 #### Cocher Predefined => Windows Remote Management et par la suite Remote Management(compatibility
 ![image](https://github.com/user-attachments/assets/58edd5e1-7735-46f4-a2cc-6db7c8ffd39f)
-#### Puis Profile => Domain, Pivate
+#### Puis Profile => Domain, Private
 ![image](https://github.com/user-attachments/assets/76f7488e-ccff-435e-ade2-fa8adb10d025)
 #### Allow Connection
 #### Clic droit sur Windows Remote Management (HTTP-In) => Properties
@@ -1729,9 +1729,9 @@ Simplification : 2001:0db8:0000:85a3:0000:0000:ac1f:8001 ==> 2001:db8:0:85a3::ac
 ![image](https://github.com/user-attachments/assets/d81c7eac-4ab0-4632-808e-7db5ca8e13c3)
 #### 🔵 Renseigner le Nom du serveur collecteur et une description.
 #### 🔴 Ici le nom du journal dans lequel l'abonnement sera collecté.
-#### 🟢 Ici c'est le serveur collecteur qui est à l'initiative de la collecte, renseiger sont FQDN.
+#### 🟢 Ici c'est le serveur collecteur qui est à l'initiative de la collecte, renseigner son FQDN.
 ![image](https://github.com/user-attachments/assets/7a807ef6-f053-4f18-9adb-1f1c971a05d1)
-#### 🔵 Select Events... => Filtrages des Evenements
+#### 🔵 Select Events... => Filtrages des Événements
 #### 🔴 Event Level => Critical + Warning
 #### 🟢 By log(filtres) Secutity + System
 ![image](https://github.com/user-attachments/assets/d212babd-3845-4e77-8818-c4aefe5a830c)
@@ -1930,7 +1930,7 @@ Tout d'abord il faut copier le fichier "*db.127*" vers "*reverse.wilders.lan*"
 
 * ## 4.2[⏫](https://github.com/NALSED/R-vision/blob/main/Fichier%20de%20r%C3%A9vision.md#sommaire-) `PROXMOX`
    
-   #### Connection à PROXMOX https://@IP:8006/
+   #### Connexion à PROXMOX https://@IP:8006/
    
    * #### 4.2.1 Ajout/Gestion disque
    ##### :arrow_forward: 
@@ -1978,7 +1978,7 @@ Tout d'abord il faut copier le fichier "*db.127*" vers "*reverse.wilders.lan*"
 ## UBUNTU -> UBUNTU
 
 
-ON EXECUTE TERMINAL SUR LES DEUX MACHINES
+ON EXÉCUTE TERMINAL SUR LES DEUX MACHINES
 
 - On vérifie qu'on a openssh serveur sur le client:
 `sshd -V`                                  (*Pour vérifier si installé, si pas installer:*)
@@ -2038,7 +2038,7 @@ ON EXECUTE TERMINAL SUR LES DEUX MACHINES
 ## WINDOWS -> WINDOWS
 
 
-ON EXECUTE POWERSHELL EN ADMIN SUR LES DEUX MACHINES =`toujours un mdp sur le client pour ssh ok sur windows
+ON EXÉCUTE POWERSHELL EN ADMIN SUR LES DEUX MACHINES =`toujours un mdp sur le client pour ssh ok sur windows
 
 
 - On vérifie les services clients: 
@@ -2070,7 +2070,7 @@ ON EXECUTE POWERSHELL EN ADMIN SUR LES DEUX MACHINES =`toujours un mdp sur le cl
 `ipconfig`								(*On récupère l'IP du client*)
 
 
-- On test la connection SSH depuis le serveur:
+- On test la connexion SSH depuis le serveur:
 `ssh client@ip powershell`					(*Si tout est bon on entre le MDP =>on précise PowerShell*)
 
 `exit`
@@ -2127,7 +2127,7 @@ ON EXCECUTE TERMINAL ET POWERSHELL EN ADMIN SUR LES MACHINES RESPECTIVES
 
 
 - On va dans programme data sur le client:
-`C:\ProgramData\ssh\sshd_config`					(*Elément masqué dans affichage classique*)
+`C:\ProgramData\ssh\sshd_config`					(*Élément masqué dans affichage classique*)
 
 `On commente la ligne MATCH group administrator`			(*On save et on redémarre le service:*)
 
@@ -2205,8 +2205,8 @@ ON EXCECUTE TERMINAL ET POWERSHELL EN ADMIN SUR LES MACHINES RESPECTIVES
 >			hardware ethernet [ADRESS MAC]
 >			fixed-adress [IP] }
 >##### reboot DHCP
->	systemctl resart isc-dhcp-server.service
->##### chek le statut
+>	systemctl restart isc-dhcp-server.service
+>##### check le statut
 >	systemctl status isc-dhcp-server.service
 >###### [vidéo](https://www.youtube.com/watch?v=hdaHQR-7uAM&ab_channel=AlexDavantTech)
 ________________________________________________
@@ -2225,7 +2225,7 @@ ________________________________________________
 > * ##### Dans Router rentrer un IP éloigné de la plage pour plus de visibilité là 172.20.0.254
 > * ##### Faire **next** jusqu'à la page suivante : **Configure DHCP Options** : cocher **Yes, i want to configure these options now** 
 > * ##### On peux ne pas remplir les Options **Router et DNS** car nous ne sortirons pas du réseau privé.
-> *  #### **Machine cliens :**
+> *  #### **Machine clients :**
 >   * ##### Ouvrir Powershell : **ipconfig**, pour vérifier l'adresse ip, si elle ne correspond pas à la plage définie **ipconfig /renew**
 >   * ##### Si le problème persiste, dans la fenêtre de configuration du serveur DHCP, dérouler IPv4 et regarder dans **Scope [172.20.0.0]**, l'option **Activate/Desactivate** est bien sur **Activate**.
 > * #### Créer une **Réservation** :
@@ -2321,10 +2321,10 @@ IPv6
 R0> enable
 R0# configure terminal
 
-* ##### IPv4	R0(config)# ip route IPv4 RESEAU + MASQUE + IPv4 PASSERELLE  ➡️  R0(config)# ip route 192.168.3.0 255.255.255.0 192.168.4.2 		
+* ##### IPv4	R0(config)# ip route IPv4 RÉSEAU + MASQUE + IPv4 PASSERELLE  ➡️  R0(config)# ip route 192.168.3.0 255.255.255.0 192.168.4.2 		
 	
 
-  * #####  IPv6	ipv6 route IPv6 RESEAU/CIDR + INTERFACE +  IPv6 PASSERELLE   ➡️  ipv6 route 2001:db8:f3c1:3::/64 GigabitEthernet0/2 FE80::20C:85FF:FE83:1D01
+  * #####  IPv6	ipv6 route IPv6 RÉSEAU/CIDR + INTERFACE +  IPv6 PASSERELLE   ➡️  ipv6 route 2001:db8:f3c1:3::/64 GigabitEthernet0/2 FE80::20C:85FF:FE83:1D01
 
 	
 

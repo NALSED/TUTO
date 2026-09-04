@@ -28,7 +28,7 @@ Token -explicit-max-ttl (individuel)
  <img width="877" height="860" alt="image" src="https://github.com/user-attachments/assets/16ce2f76-7b33-40a8-bfaa-e72ea72e075e" />
 
 Sur le schéma (montre un service token) ci-dessus on voit que le token `A` à créé le token `B` et `C` avec des TTL différent, on peux aussi noter que `B` et `C` sont parent.
-Par défaut c'est le Token utilisé pour la connection à Vault qui détermine le parent, mais il est possible de choisir le token parent (voir commandes ⬇️ )
+Par défaut c'est le Token utilisé pour la connexion à Vault qui détermine le parent, mais il est possible de choisir le token parent (voir commandes ⬇️ )
 
 `A` parent => `B`
 `B` enfant => `A` et Le token `G` est quand à lui orphelin.

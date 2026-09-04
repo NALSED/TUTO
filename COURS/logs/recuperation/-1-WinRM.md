@@ -1,6 +1,6 @@
 ## Configuration de WinRM par GPO
 ### 1️⃣ `Edition GPO`
-#### Computer Configuration => Polities Administrative Templates => Windows Composents => windows Remote Management => WinRM Service
+#### Computer Configuration => Polities Administrative Templates => Windows Components => windows Remote Management => WinRM Service
 ![image](https://github.com/user-attachments/assets/ffaf09db-9622-40be-aafb-25832f072e72)
 #### Allow remote server management through WinRM
 ![image](https://github.com/user-attachments/assets/966e873b-8f8e-4ed2-b855-0d53e01385f1)
@@ -15,10 +15,10 @@
 ![image](https://github.com/user-attachments/assets/d10bddad-6dd2-49b7-a52b-84ba5f389711)
 #### Cocher Predefined => Windows Remote Management
 ![image](https://github.com/user-attachments/assets/58edd5e1-7735-46f4-a2cc-6db7c8ffd39f)
-#### Puis Profile => Domain, Pivate
+#### Puis Profile => Domain, Private
 ![image](https://github.com/user-attachments/assets/76f7488e-ccff-435e-ade2-fa8adb10d025)
 #### Allow Connection
-### 4️⃣ Edition de la Règle Firewall
+### 4️⃣ Édition de la Règle Firewall
 #### Clic droit sur Windows Remote Management (HTTP-In) => Properties
 ![image](https://github.com/user-attachments/assets/7be50976-2c66-47f2-97e9-28dd08801eba)
 #### Advanced => Cocher Domain

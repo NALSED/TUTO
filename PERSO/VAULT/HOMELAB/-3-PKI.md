@@ -43,7 +43,7 @@ sudo vim /etc/vault/pki/config/policy/Policy_PKI.hcl
 
 ---
 
-### `- 1.2` Edition du fichier Policies
+### `- 1.2` Édition du fichier Policies
 ````
 # Autoriser la gestion des moteurs de secrets (activation, suppression...)
 # Nécessaire pour faire vault secrets enable/disable
@@ -78,7 +78,7 @@ sudo chmod 644 /etc/vault/pki/config/policy/Policy_PKI.hcl
 
 ---
 
-### `- 1.4` Editer dans Vault
+### `- 1.4` Éditer dans Vault
 ````
 vault policy write sednal-pki /etc/vault/pki/config/policy/Policy_PKI.hcl
 ````

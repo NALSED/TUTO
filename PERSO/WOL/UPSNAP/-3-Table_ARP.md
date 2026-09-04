@@ -5,7 +5,7 @@
 
 ---
 
-### 1) Edition script
+### 1) Édition script
 
      sudo vim /usr/local/bin/arp-wol.sh
 

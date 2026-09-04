@@ -7,12 +7,12 @@
   #### :one: [Présentation du menu](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/edit/main/USER_GUIDE.md#arrow_forward-fonctionnalit%C3%A9s-de-base-et-avanc%C3%A9es)  
    #### :two: [Affichage et enregistrement des résultats dans fichier info](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/edit/main/USER_GUIDE.md#arrow_forward-affichage-et-enregistrementdes-r%C3%A9sultats-dans-fichier-info)
   #### :three: [Fichier Log](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/edit/main/USER_GUIDE.md#arrow_forward-fichier-log)
-  #### :four: [Connection SSH](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/edit/main/USER_GUIDE.md#four-connection-ssh)
+  #### :four: [Connexion SSH](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/edit/main/USER_GUIDE.md#four-connection-ssh)
   #### :five: [Arrêt du script](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/edit/main/USER_GUIDE.md#arrow_forward-arr%C3%AAt-du-script)
   #### :six: [FAQ](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/edit/main/USER_GUIDE.md#interrobang-faq)
 ### :b: POWERSHELL
   #### :one: Présentation du menu
-  #### :two: Connection SSH
+  #### :two: Connexion SSH
   #### :five: Arrêt du script
   #### :six: FAQ
   ---
@@ -41,7 +41,7 @@ Le résultat de la sélection ou les sélections s'affiche en dessous dans l'ord
 
 - Exemple : `Menu principal` :arrow_right: `[1] Utilisateur` :arrow_right: `[8] Date de dernière connection de l'utilisateur`.
 
-Il suffit de rentrer l'utilisateur pour obtenir sa dernière connection :  
+Il suffit de rentrer l'utilisateur pour obtenir sa dernière connexion :  
 
 
 
@@ -85,14 +85,14 @@ Il affiche également les débuts et fin de script. L'affichage se présente sou
 ![Logs](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/blob/main/Images/Logs.png)
 
 ---
-### :four: Connection SSH
+### :four: Connexion SSH
 
 Le script permet de se connecter en SSH sur les parties `Information`. En effet, lorsque l'on clique sur une demande d'Information, le script nous propose de rester sur la machine locale ou de nous connecter en SSH sur une machine cliente du même réseau afin d'en collecter les informations souhaitées.  
 * Exemple :
  >##### [Menu Principal] :arrow_right: [2] Ordinateur Client :arrow_right: [6] Version de l'OS :arrow_right: [2] Machine distante :  
-  Le script nous invite à renseigner l'adresse IP cible, puis l'utilisateur et la connection se fait automatiquement sans renseigner de mot de passe car les machines sont connectées en SSH avec une paire de clés SSH.
+  Le script nous invite à renseigner l'adresse IP cible, puis l'utilisateur et la connexion se fait automatiquement sans renseigner de mot de passe car les machines sont connectées en SSH avec une paire de clés SSH.
   
-![Connection SSH](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/blob/main/Images/Information%20SSH.png)  
+![Connexion SSH](https://github.com/WildCodeSchool/TSSR-2409-VERT-P2-G1-TheScriptingProject/blob/main/Images/Information%20SSH.png)  
 
 Les enregistrements dans le fichier des logs et le fichier des informations fonctionne de manière similaire aux commandes effectuées localement, à l'exception que nous avons l'information de l'adresse IP et nom d'utilisateur de la machine distante dans le fichier Info.
 
@@ -128,7 +128,7 @@ L'historique des commandes tapées avec `history` est par défaut désactivé da
   ![image](https://github.com/user-attachments/assets/7618adb2-de5e-4b15-b04a-ab354d769f6c)
  
   ---
-  #### :two: Connection SSH
+  #### :two: Connexion SSH
  * #### Configurer l'envoie de script via SSH avec Powershell :
    Dans Program Data
   ![vm 1](https://github.com/user-attachments/assets/6bc77c20-4ddd-492c-80f3-fc6baf86e4f1)

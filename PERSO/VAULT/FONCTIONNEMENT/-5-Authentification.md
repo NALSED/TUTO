@@ -135,7 +135,7 @@ vault-config/
 
 <img width="1529" height="658" alt="image" src="https://github.com/user-attachments/assets/e104dfaa-2d77-4d9b-9d42-36af3906fff9" />
 
-### **[DEMONSTRATION]**
+### **[DÉMONSTRATION]**
 
 ⚠️ Le serveur utilisé pour la démo, n'est pas en dev mode, donc vault secrets non actif
 
@@ -164,7 +164,7 @@ mkdir -p vault-config/{policies/{user,apps},scripts}
 nano vault-config/policies/user/policy_user_auth.hcl
 ```
 
--Editer 
+-Éditer 
 ```
 path "secret/data/users" {
   capabilities = ["read", "create", "update", "delete"]
@@ -214,7 +214,7 @@ Tout est OK.
 
 #### `-4.` autoriser l'authentification via Userpass 
 - par défaut le chemin sera auth/userpass quand activation userpass
-Si besoin de chemin different : `vault auth enable -path="test" userpass`
+Si besoin de chemin différent : `vault auth enable -path="test" userpass`
 Ici le chemin sera auth/test
 
 - Mais pour cette démonstrations nous utiliserons
@@ -290,7 +290,7 @@ Maintenant l'utilisateur peux se connecter via userpass ou token.
 
 <img width="1531" height="647" alt="image" src="https://github.com/user-attachments/assets/35657fb7-cb67-4153-88ec-225d7cc51faf" />
 
-### **[DEMONSTRATION]**
+### **[DÉMONSTRATION]**
 
 `[RAPPEL]`
 ```
@@ -526,7 +526,7 @@ $env:VAULT_ADDR = "http://192.168.0.250:8200"
 vault login -method=ldap username=a.testos
 ```
 
--Resultat 
+-Résultat 
 
 <img width="837" height="415" alt="image" src="https://github.com/user-attachments/assets/0d98ae52-a409-4aeb-85f7-d04214e62209" />
 

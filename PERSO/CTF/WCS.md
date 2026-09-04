@@ -190,7 +190,7 @@
 
 ### Copier le fichier du debian challenge => kali perso
       sudo ufw allow 22 # autorise le port 22 ufw (kali)
-      sudo service ssh start # démare le ssh
+      sudo service ssh start # démarre le ssh
       scp challenge1.zip practoxx@192.168.0.131:/home/practoxx/Documents
       
 ### Dézipper le fichier avec le MDP `Azerty1*43` 

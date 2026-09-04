@@ -36,14 +36,14 @@
 #### SORTIE
       sednal@serveur:~$ sudo ethtool enp2s0 | grep "Wake-on"
         Supports Wake-on: pumbg
-        Wake-on: d <=== DESACTIVE...
+        Wake-on: d <=== DÉSACTIVÉ...
 
 ---
 
 #### 3) Activation de WOL via `systemd` : 
       sudo nano /etc/systemd/system/wol.service
 
-#### EDITER
+#### ÉDITER
       [Unit]
       Description=Activer Wake-on-LAN pour enp2s0 # Description du service
       After=network.target # Ce service doit démarrer après que le réseau soit opérationnel

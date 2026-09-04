@@ -38,7 +38,7 @@
 
 ---
 
-### Installer dépendence Python  => Linux
+### Installer dépendance Python  => Linux
 #### Utiliser => path/to/venv/bin/python and path/to/venv/bin/pip
           ICI
           /home/sednal/CODE/venv/bin/python3 /home/sednal/CODE/venv/bin/pip install pyOpenSSL

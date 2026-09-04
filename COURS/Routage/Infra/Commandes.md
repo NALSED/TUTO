@@ -165,7 +165,7 @@
 ### Line concernée      
         saiph(config)# line console 0
 
- ### Utilisation d'un compte local pour la connection       
+ ### Utilisation d'un compte local pour la connexion       
         saiph(config-line)# login local
         
 ### Time Out en Minutes ⚠️        

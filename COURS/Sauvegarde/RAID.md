@@ -56,7 +56,7 @@
 ##### Ici le statut du RAID est clean et les partitions concernées sont bien /dev/sdb1 et /dev/sdc1.De plus, /dev/sdb1 et /dev/sdc1 sont bien synchronisés.
 ### 3️⃣ `Formatage du disk md0`
       sudo mkfs.ext4 /dev/md0 -L "PersonalData"
-##### Les disque md0 s'appelent maintenant "PersonalData".
+##### Les disque md0 s'appellent maintenant "PersonalData".
 ### 4️⃣ `Montage du RAID :`
 ##### Ajoute d'un dossier Data-Raid1 sous /home/wilder, pour monter la partition md0 :     
       sudo mkdir /home/sednal/Data-RAID1 -p
@@ -75,7 +75,7 @@
       sudo mdadm --detail --scan
 ![ad1](https://github.com/user-attachments/assets/03fa3b35-e4aa-402d-a395-f7b5c485f2ea)
 ##### Utiliser l'UUID pour fixer le nom.
-##### Pour ce faire rajouter le ligne => ARRAY /dev/md0 metadata=1.2 name=sednal-VirtualBox:0 UUID=UUID RECUPERE AVEC LA COMMANDE PRECEDANTE.
+##### Pour ce faire rajouter le ligne => ARRAY /dev/md0 metadata=1.2 name=sednal-VirtualBox:0 UUID=UUID RÉCUPÉRÉ AVEC LA COMMANDE PRÉCÉDENTE.
 ##### Et le nom avec lsblk -l
 ##### Dans le fichier /etc/mdadm/mdadm.conf
 ![ad1](https://github.com/user-attachments/assets/e46bcd6f-9587-4467-b93b-7aa6d9ac3d8c)

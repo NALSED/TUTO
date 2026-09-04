@@ -16,7 +16,7 @@
 #### Pour fixer [Problèmes](https://code.visualstudio.com/docs/remote/troubleshooting#_wsl-tips) 
 #### Redémarrer
 
-#### établir la connection WSL2  depuis VSC
+#### établir la connexion WSL2  depuis VSC
 #### ⚠️ DEBIAN ⚠️
 * ####  installer python
           sudo apt install python3 python3-pip

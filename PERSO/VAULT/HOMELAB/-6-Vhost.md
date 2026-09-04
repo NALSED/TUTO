@@ -2,7 +2,7 @@
 
 ---
 
-Afin d'éviter des fichier de configuration trop long, l'implémentation des certificat SSL, via Vhost, est découpé par service, et les liens sont disponible ci-dessous, l'intégralité de la documentaion `Vhost`, est dans `TUTO/PERSO/VAULT/HOMELAB/VHOST`.
+Afin d'éviter des fichier de configuration trop long, l'implémentation des certificat SSL, via Vhost, est découpé par service, et les liens sont disponible ci-dessous, l'intégralité de la documentation `Vhost`, est dans `TUTO/PERSO/VAULT/HOMELAB/VHOST`.
 
 ---
 

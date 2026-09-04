@@ -51,7 +51,7 @@
 
       [Service]
       Type=oneshot # Ce service exécute une seule commande et se termine. Il ne reste pas en arrière-plan.
-      ExecStart=/usr/sbin/ethtool -s enp4s0 wol g # Execution de la commande
+      ExecStart=/usr/sbin/ethtool -s enp4s0 wol g # Exécution de la commande
       RemainAfterExit=yes # indique à systemd que, même si le service se termine rapidement, il doit être considéré comme "actif"
 
       [Install]

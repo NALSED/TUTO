@@ -48,7 +48,7 @@ vault operator raft snapshot save /tmp/vault-$(date +%F).snap
 sudo vim /etc/vault/pki/config/policy/Policy_Snapshot.hcl
 ````
 
-- Edition
+- Édition
 ````
 path "sys/storage/raft/snapshot" {
   capabilities = [ "read" ]

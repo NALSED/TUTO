@@ -92,7 +92,7 @@ Dès le début après (vault operator init et vault login), créer une arboresce
 
 ### `II`
 - Modifier les options lors ou après la création avec `write`.
-- Avec l’option `read`, on a accès à toutes les options les paramètrables.
+- Avec l’option `read`, on a accès à toutes les options les paramétrables.
 
 [EXEMPLE]
 

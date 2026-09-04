@@ -16,7 +16,7 @@
       Pylance
       Python
       PythonDebugger
-      Python Environements
+      Python Environments
 
 
 ## REMOTE => WSL
@@ -27,7 +27,7 @@
       Pylance
       Python
       PythonDebugger
-      Python Environements
+      Python Environments
       Bash Debug
       Bash IDE
-      Code Spelle Checker
+      Code Spell Checker

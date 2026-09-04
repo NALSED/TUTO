@@ -2,7 +2,7 @@
 
 ---
 
-### Ce Tuto commence, avec RAID, PostGreSQL, Baros opérationnel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
+### Ce Tuto commence, avec RAID, PostGreSQL, Bareos opérationnel sur Serveur et Client  => [TUTO/Install et Conf](https://github.com/NALSED/TUTO/tree/main/PERSO/Bareos)
 
 ---
 
@@ -67,7 +67,7 @@
 ### Il traitera de l'installation des différents paquets nécessaire à la programmation ainsi que la réalisation de snapshot système du serveur de sauvegarde. 
 
 
-## ⚠️Syncronisation des montres!!
+## ⚠️Synchronisation des montres!!
  	timedatectl set-timezone Asia/Yerevan
  
 ### 1.1) Installation Logiciel
@@ -99,7 +99,7 @@
     chmod +x ScriptSnapshot.sh
     timeshift --rsync
 
-### 2.4) Executer le Script
+### 2.4) Exécuter le Script
     ./ScriptSnapshot.sh
 
 ### 2.5) Dans l'utilisateur sednal créer le dossier du transfert vers Bareos
@@ -113,7 +113,7 @@
 ### si erreur
       select-editor # et changer
 
-### 2.6.2) Execution script => snapshot
+### 2.6.2) Exécution script => snapshot
 
 		10 2 1 2,6,10 * /root/ScriptSnapshot.sh
 
@@ -284,7 +284,7 @@
 ## `I) Programation et Réalisation du Snapshot`
 
 ### Ce Tuto commence après l'installation du client sur le rasberry-pi voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/Bareos/-5-Installation-Client.md#2%EF%B8%8F%E2%83%A3-instalation-client-bareos-linux-1)
-## ⚠️Syncronisation des montres!!
+## ⚠️Synchronisation des montres!!
  	timedatectl set-timezone Asia/Yerevan
  
 ### 1.1) Installation Logiciel
@@ -315,7 +315,7 @@
 ### 2.3) Droit
     chmod +x ScriptSnapshot.sh
 
-### 2.4) Executer le Script
+### 2.4) Exécuter le Script
     ./ScriptSnapshot.sh
 
 ### 2.5) Dans l'utilisateur sednal créer le dossier du transfert vers Bareos
@@ -430,7 +430,7 @@
 		Schedule {
         		Name = schdns1snap
 
-        		# Full chaque 1er dimanche du mois de fevrier juin et octobre
+        		# Full chaque 1er dimanche du mois de février juin et octobre
        			 Run = Full 1st sun at 10:00 feb
         		 Run = Full 1st sun at 10:00 jun
         		 Run = Full 1st sun at 10:00 oct
@@ -520,7 +520,7 @@
 ### 2.3) Droit
     chmod +x ScriptSnapshot.sh
 
-### 2.4) Executer le Script
+### 2.4) Exécuter le Script
     ./ScriptSnapshot.sh
 
 ### 2.5) Dans l'utilisateur sednal créer les dossier du transfert
@@ -555,7 +555,7 @@
 
 ### La copie des dossier Snapshot et Backup sont réalisé [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BACKUP/Linux.md#copier-sur-dns1)
 
-### ⚠️ UN DOSSIER IDENTIQUE A CELUI DE DNS2 DOIT ETRE CREER SUR DNS1
+### ⚠️ UN DOSSIER IDENTIQUE À CELUI DE DNS2 DOIT ÊTRE CRÉÉ SUR DNS1
 ### Sur DNS1
      chown -R sednal:sednal /home/sednal/TotalDNS2
      chmod -R u+rwX /home/sednal/TotalDNS2
@@ -610,7 +610,7 @@
 ### 2.3) Droit
     chmod +x ScriptSnapshot.sh
 
-### 2.4) Executer le Script
+### 2.4) Exécuter le Script
     ./ScriptSnapshot.sh
 
 ### 2.5) Dans l'utilisateur sednal créer les dossier du transfert
@@ -640,7 +640,7 @@
 
 ### La copie des dossier Snapshot et Backup sont réalisé [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BACKUP/Linux.md#copier-sur-dns1)
 
-### ⚠️ UN DOSSIER IDENTIQUE A CELUI DE WEB DOIT ETRE CREER SUR DNS1
+### ⚠️ UN DOSSIER IDENTIQUE À CELUI DE WEB DOIT ÊTRE CRÉÉ SUR DNS1
 ### Sur DNS1
      chown -R sednal:sednal /home/sednal/TotalWeb
      chmod -R u+rwX /home/sednal/TotalWeb

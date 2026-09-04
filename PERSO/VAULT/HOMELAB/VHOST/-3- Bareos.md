@@ -5,7 +5,7 @@
 sudo vim /etc/nginx/sites-available/bareos.conf
 ````
 
-- Edition
+- Édition
 ````
 server {
     listen 80;

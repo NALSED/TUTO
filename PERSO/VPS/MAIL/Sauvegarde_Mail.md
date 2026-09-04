@@ -2,7 +2,7 @@
 
 ---
 
-Procédure compléte de sauvegarde de la base de données et des mail depuis le `VPS 176.31.163.227`, via `PC ADMIN 192.168.0.235` sur le serveur de sauvegarde `BAREOS 192.168.0.240`
+Procédure complète de sauvegarde de la base de données et des mail depuis le `VPS 176.31.163.227`, via `PC ADMIN 192.168.0.235` sur le serveur de sauvegarde `BAREOS 192.168.0.240`
 
 ---
 
@@ -16,7 +16,7 @@ automatiquement vers le RAID10 du serveur `192.168.0.240`.
 
 ---
 
-## `-2-` === Schema ===
+## `-2-` === Schéma ===
 
 ````
 ┌─────────────────────────────────────────────────────────────────┐
@@ -53,7 +53,7 @@ automatiquement vers le RAID10 du serveur `192.168.0.240`.
 
 ## `-3-` Prérequis — clé SSH du VPS sur le PC Admin `192.168.0.235`
 
-### 3.1) Recuperer la cle publique du VPS
+### 3.1) Récupérer la clé publique du VPS
 
 ````
 ssh debian@176.31.163.227 'cat ~/.ssh/id_ecdsa.pub'
@@ -67,7 +67,7 @@ ssh debian@176.31.163.227 'cat ~/.ssh/id_ecdsa.pub'
 notepad C:\Users\sednal\.ssh\authorized_keys
 ````
 
-### 3.3) Creer le dossier de depot
+### 3.3) Créer le dossier de dépôt
 
 ````
 mkdir F:\save\VPS_Mail_BackUp
@@ -82,7 +82,7 @@ mkdir F:\save\VPS_Mail_BackUp
 vim /home/debian/script_dms/backup_mail.sh
 ````
 
-- Editer le fichier
+- Éditer le fichier
 ````bash
 #!/bin/bash
 # ==========================================================
@@ -114,7 +114,7 @@ find "$DEST" -name "dms_*.tar.gz"         -mtime +$RETENTION -delete
 echo "$(date '+%F %T') sauvegarde OK" >> "$DEST/backup.log"
 ````
 
-Rendre executable :
+Rendre exécutable :
 
 ````
 chmod +x /home/debian/backup_mail.sh
@@ -122,7 +122,7 @@ chmod +x /home/debian/backup_mail.sh
 
 `[NOTE]` 
 
-`pg_dumpall` evite d'avoir a connaitre le nom exact de la base SoGo et sauvegarde également les rôles et les mots de passe PostgreSQL.
+`pg_dumpall` évite d'avoir à connaître le nom exact de la base SoGo et sauvegarde également les rôles et les mots de passe PostgreSQL.
 
 ---
 
@@ -133,7 +133,7 @@ Créer le fichier
 vim /home/debian/script_dms/push_mail.sh
 ````
 
-- Editer
+- Éditer
 ````bash
 #!/bin/bash
 # ==========================================================
@@ -160,14 +160,14 @@ rsync -az --delete -e "ssh -o BatchMode=yes" "$SRC" "$CIBLE:$DEST"
 echo "$(date '+%F %T') push OK" >> /home/debian/backup/backup.log
 ````
 
-- Rendre executable :
+- Rendre exécutable :
 ````
 chmod +x /home/debian/push_mail.sh
 ````
 
 ---
 
-## `-6-` Taches cron sur le VPS `176.31.163.227`
+## `-6-` Tâches cron sur le VPS `176.31.163.227`
 
 ````
 crontab -e
@@ -183,17 +183,17 @@ crontab -e
 
 ⚠️ `[ATTENTION]` ⚠️ 
 
-Le VPS est en `Etc/UTC` alors que `192.168.0.240` et `192.168.0.241` sont en `Asia/Yerevan` (UTC+4). Les horaires du cron sont exprimes en **heure du
-VPS** : `07:05 UTC` correspond a `11:05` heure Yerevan.
+Le VPS est en `Etc/UTC` alors que `192.168.0.240` et `192.168.0.241` sont en `Asia/Yerevan` (UTC+4). Les horaires du cron sont exprimés en **heure du
+VPS** : `07:05 UTC` correspond à `11:05` heure Yerevan.
 
-- Verifier la correspondance :
+- Vérifier la correspondance :
 ````
 date; TZ=Asia/Yerevan date
 ````
 
 ---
 
-## `-7-` Verification
+## `-7-` Vérification
 
 ### 7.1) Test manuel du dump
 
@@ -202,13 +202,13 @@ date; TZ=Asia/Yerevan date
 ls -lh /home/debian/backup/
 ````
 
-### 7.2) Apres le premier dimanche, cote Bareos `192.168.0.240`
+### 7.2) Après le premier dimanche, côté Bareos `192.168.0.240`
 
 ````
 printf "list jobs\nquit\n" | sudo bconsole
 ````
 
-Le `jobbytes` de `Win_BackUp_Job_LAN` doit avoir augmente d'environ 200 Mo.
+Le `jobbytes` de `Win_BackUp_Job_LAN` doit avoir augmenté d'environ 200 Mo.
 
 ### 7.3) Journaux du VPS `176.31.163.227`
 
@@ -221,13 +221,13 @@ tail -40 /home/debian/backup/cron.log
 
 ## `-8-` Restauration
 
-### 8.1) Recuperer les archives depuis Bareos `192.168.0.240` 
+### 8.1) Récupérer les archives depuis Bareos `192.168.0.240` 
 
 ````
 printf "restore client=win\nquit\n" | sudo bconsole
 ````
 
-Selectionner les fichiers sous `A:/save/VPS_Mail/`.
+Sélectionner les fichiers sous `A:/save/VPS_Mail/`.
 
 ### 8.2) Restaurer les bases SoGo `176.31.163.227`
 

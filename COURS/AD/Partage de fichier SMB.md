@@ -28,7 +28,7 @@
 ![ad1](https://github.com/user-attachments/assets/082b6bfb-c7dc-45fb-bfe1-086ebe787f25)
 ### Rentrer le nom du dossier de partage créer à la racine ⬇️
 ![ad1](https://github.com/user-attachments/assets/fa0163f0-a99c-4f12-890e-204978038735)
-### Configuration d'un partage Docs dans le deossier à la racine :
+### Configuration d'un partage Docs dans le dossier à la racine :
 ![ad1](https://github.com/user-attachments/assets/be4e42a9-704f-4514-827e-097b83021cfe)
 ### Choisir l'option voulu
 ### Créer le partage.
@@ -51,7 +51,7 @@
 ### Résultat 
 ![ad1](https://github.com/user-attachments/assets/aca750f6-f644-4683-8752-b28af9620e47)
 
-## Configuration de la connection client serveur au partage :
+## Configuration de la connexion client serveur au partage :
     New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\NOM_DU_SERVEUR\NOM_DU_PARTAGE" -Persist
   
     New-PSDrive -Name "Z" -PSProvider FileSystem -Root "\\WIN-35VEAKCKMFU\Docs" -Persist

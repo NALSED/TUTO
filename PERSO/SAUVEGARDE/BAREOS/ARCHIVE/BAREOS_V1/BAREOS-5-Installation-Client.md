@@ -21,7 +21,7 @@
 </summary>
 
 ### 1.1) Télécharger le .exe [ici](https://download.bareos.org/current/windows/)
-### Executer le programme
+### Exécuter le programme
 ### 1.2) Choisir Minimal 
 ![image](https://github.com/user-attachments/assets/65dfa420-578a-40fe-a7a3-f21befa8404b)
 
@@ -54,7 +54,7 @@
 
 [TUTO](https://docs.bareos.org/IntroductionAndTutorial/InstallingBareosClient.html#installing-the-bareos-universal-linux-client)
 
-### Verifier la version de l'OS
+### Vérifier la version de l'OS
            hostnamectl 
 
 ### Installer gnupg (clé)
@@ -62,7 +62,7 @@
           apt install -y gnupg  
 
 ### Télécharger le script et l'exécuter
-      wget https://download.bareos.org/current/VERIFIER LA VERSION VOIR ⚠️PROLEME RENCONTE ⚠️
+      wget https://download.bareos.org/current/VERIFIER LA VERSION VOIR ⚠️PROBLÈME RENCONTRÉ ⚠️
       chmod +x add_bareos_repositories.sh
       ./add_bareos_repositories.sh
       apt update
@@ -70,12 +70,12 @@
 <details>
 <summary>
 <h2>
-⚠️PROLEME RENCONTE ⚠️
+⚠️PROBLÈME RENCONTRÉ ⚠️
 </h2>
 </summary>
 
 ### Impossible d'installer bareos-fd sur un rasberrypi sous debian
-### Chapitre APRES Télécharger le script et l'exécuter ⬆️
+### Chapitre APRÈS Télécharger le script et l'exécuter ⬆️
 ### Message
 ![image](https://github.com/user-attachments/assets/ab149f41-33f0-43f3-b84e-46be7344a276)
 
@@ -85,7 +85,7 @@
 
 ### 3) Je choisi donc d'utiliser `Universal Linux Client (ULC)` [voir](https://docs.bareos.org/IntroductionAndTutorial/InstallingBareosClient.html#installing-the-bareos-universal-linux-client)
 
-### Bien verifier l'architecture,avec `hostnamectl` 
+### Bien vérifier l'architecture,avec `hostnamectl` 
 
 ### Et aussi la version de `Openssl` ici OpenSSL 3.0.15 3 Sep 2024
 

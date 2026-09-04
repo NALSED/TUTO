@@ -2,7 +2,7 @@
 
 Chaque dossier contient les liens vers la documentation section `-6- Vhost`, qui montre l'implémentation des certificats `SSL`, via `Vhost` sur chaque service.
 
-Pour plus de clareté, et conservé l'ordre de déploiment, le ficher -6- vHost regroupe les liens de chaque services qui sont regroupé ici.
+Pour plus de clarté, et conservé l'ordre de déploiement, le fichier -6- vHost regroupe les liens de chaque services qui sont regroupé ici.
 
 ---
 

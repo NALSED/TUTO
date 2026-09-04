@@ -7,7 +7,7 @@
 
 # Pas internet
 
-1) Cable
+1) Câble
 
 2) Cartes Réseaux // Vlan
 

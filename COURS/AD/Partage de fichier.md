@@ -17,7 +17,7 @@
 ![ad1](https://github.com/user-attachments/assets/d4a91ed0-ed1b-40c1-9980-b8774787dfb6)
 ![ad1](https://github.com/user-attachments/assets/04ac1757-a6ec-44a5-b26c-6f67683ee6b0)
 #### Puis Advanced ⬆️
-#### Pour finir Find now => touver le/les groupes concerné(s) => OK
+#### Pour finir Find now => trouver le/les groupes concerné(s) => OK
 ![ad1](https://github.com/user-attachments/assets/64837a7a-12e3-4b89-bd9b-7aedf49ca084)
 #### Choisir les programme ou autre à partager.
 #### Les déposer dans le fichier Créer à la racine de This PC

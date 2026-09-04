@@ -74,16 +74,16 @@ Le **Device** définit le **périphérique physique ou logique** utilisé par le
 
       Director (240)                                    VPS (176.31.163.227)
            │                                                     │
-           │  se connecte a 192.168.0.240:9203                    │
+           │  se connecte à 192.168.0.240:9203                    │
            ▼                                                     │
       ┌─────────────────────┐                          ┌────────────────┐
       │  Tunnel autossh     │═══ SSH port 22 ═════════▶│  bareos-sd     │
-      │  ecoute :9203       │        chiffre           │  ecoute :9103  │
+      │  écoute :9203       │        chiffre           │  écoute :9103  │
       │  sur 192.168.0.240  │                          │  0.0.0.0       │
       └─────────────────────┘                          └────────────────┘
 
 `[NOTE]` `Storage_Remote` porte l'adresse **192.168.0.240** et non celle du VPS :
-le Director se connecte a l'entree locale du tunnel SSH, pas au VPS en direct.
+le Director se connecte à l'entrée locale du tunnel SSH, pas au VPS en direct.
 Le port 9203 est tenu par `ssh`, et tout ce qui y entre ressort sur le 9103 du VPS.
 
 `[NOTE]` Le bind est sur l'IP LAN et non sur `localhost` : le Director transmet
@@ -107,7 +107,7 @@ I) Règles à respecter
             }
 
 * #### 1.3) Chaque SD définit ses Devices
-* #### 1.4) Il faut que le nombre de storage créé corespondent au  nom de storage déclaré dans le bareos-dir dans /etc/bareos/bareos-dir.d/storage. Sinon conflit!
+* #### 1.4) Il faut que le nombre de storage créé correspondent au  nom de storage déclaré dans le bareos-dir dans /etc/bareos/bareos-dir.d/storage. Sinon conflit!
 
 
 ## II) Arborescence de fichier pour bareos-SD(avec un SD  local et un distant)
@@ -245,9 +245,9 @@ I) Règles à respecter
     #Point de montage Bareos
     UUID="1e901629-aaa9-4204-aaab-a7f95e732275" /var/lib/bareos/storage ext4 defaults,nofail 0 2
 
-`[NOTE]` Le `nofail` evite le boot loop si un disque tarde a repondre, mais il masque
-aussi un RAID degrade : le boot reussit et le point de montage pointe alors sur `/`.
-Verifier `df -h /var/lib/bareos/storage` apres chaque redemarrage.
+`[NOTE]` Le `nofail` évite le boot loop si un disque tarde à répondre, mais il masque
+aussi un RAID dégradé : le boot réussit et le point de montage pointe alors sur `/`.
+Vérifier `df -h /var/lib/bareos/storage` après chaque redémarrage.
 </details>
 
 ### 1.1) /etc/bareos/bareos-sd.d/device/`Local_Device.conf`

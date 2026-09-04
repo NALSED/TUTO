@@ -21,7 +21,7 @@
       sysctl net.ipv4.ip_forward
 #### = > net.ipv4.ip_forward = 0 Donc désactivé
 ##### (L'activation et la désactivation de l'IP forwarding, en IPv4 comme en IPv6, s'effectue dans les fichiers "/proc" du système. Il s'agit de "/proc/sys/net/ipv4/ip_forward" pour l'IPv4 et "/proc/sys/net/ipv6/conf/all/forwarding" pour IPv6.)
-### 3️⃣ `Activation permanante de l'IP forwarding`
+### 3️⃣ `Activation permanente de l'IP forwarding`
      nano /etc/sysctl.conf     
 #### Décomenter les deux lignes :
 `net.ipv4.ip_forward=1`

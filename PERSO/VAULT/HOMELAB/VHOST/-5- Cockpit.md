@@ -9,7 +9,7 @@
 sudo vim /etc/nginx/sites-available/cockpit.conf
 ````
 
-- Edition
+- Édition
 ````
 server {
     listen 80;
@@ -69,7 +69,7 @@ sudo mkdir -p /etc/cockpit
 sudo vim /etc/cockpit/cockpit.conf
 ````
 
-- Edition
+- Édition
 ````
 [WebService]
 Origins = https://cockpit.sednal.lan https://192.168.0.241:9090

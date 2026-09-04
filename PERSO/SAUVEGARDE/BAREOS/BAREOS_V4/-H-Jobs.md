@@ -64,9 +64,9 @@
               Priority = 20
               }
 
-`[NOTE]` `Priority = 20` (superieure au 10 des jobs LAN) : le job WAN attend la fin
-du job LAN sur le meme client Windows au lieu d'entrer en concurrence avec lui.
-Le job LAN peut durer jusqu'a 3h30 en incremental.
+`[NOTE]` `Priority = 20` (supérieure au 10 des jobs LAN) : le job WAN attend la fin
+du job LAN sur le même client Windows au lieu d'entrer en concurrence avec lui.
+Le job LAN peut durer jusqu'à 3h30 en incrémental.
 
 #### 2.2 BackUp Lin => /etc/bareos/bareos-dir.d/job/`Lin_BackUp_Job_WAN.conf`
 

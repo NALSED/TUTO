@@ -204,14 +204,14 @@ ICI je fait un enregistrement CNAME pour pointer via les cous domain indiqué da
 
 ### Ici nous allons configuré une recherche inversée pour le réseau 192.168.0.0/24 pour obtenir un nom d'hôte à partir d'une adresse IP.
 
-### Edition de la zone inverse
+### Édition de la zone inverse
 
         zone "0.168.192.in-addr.arpa" {
             type master;
             file "/etc/bind/db.reverse.sednal.lan";
             allow-update { none; };
 
-### Edition du fichier db.reverse.sednal.lan depuis db.sednal.lan
+### Édition du fichier db.reverse.sednal.lan depuis db.sednal.lan
         sudo cp /etc/bind/db.sednal.lan /etc/bind/db.reverse.sednal.lan
         sudo nano /etc/bind/db.reverse.sednal.lan
 

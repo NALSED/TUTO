@@ -25,11 +25,11 @@
 
 ## `Résumés Pannes`
 
-### - Probléme de connection entre `bareos-dir` et `bareos-sd`  [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--impossible-pour-bareos-dir-et-bareos-sd-de-se-connecter-ensemble)
+### - Problème de connexion entre `bareos-dir` et `bareos-sd`  [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--impossible-pour-bareos-dir-et-bareos-sd-de-se-connecter-ensemble)
 
 ### - bareos-sd démarre puis s'arrête seul au bout de ~15s, sans erreur systemd [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--bareos-sd-d%C3%A9marre-puis-sarr%C3%AAte-seul-au-bout-de-15s-sans-erreur-systemd)
 
-### - Probleme de connection Sata [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--varlibbareosstorage-vide-et-mont%C3%A9-sur-la-racine--au-lieu-du-raid10) 
+### - Problème de connexion Sata [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--varlibbareosstorage-vide-et-mont%C3%A9-sur-la-racine--au-lieu-du-raid10) 
 
 
 ### - Désynchronisation en PostGreSQL et Bareos [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS_V4/-K-Troubleshooting.md#--le-catalogue-reference-des-volumes-qui-nexistent-plus-sur-le-storage)
@@ -57,7 +57,7 @@ Failed to connect to Storage daemon File.
 ````
 
 
-#### - Échec de connection TLS 
+#### - Échec de connexion TLS 
 
 
 `message erreur:`
@@ -202,7 +202,7 @@ test -e /proc/sys/kernel/yama/ptrace_scope && echo 1 > /proc/sys/kernel/yama/ptr
 
 ---
 
-**RESULTAT**
+**RÉSULTAT**
 
 ````
 Connecting to Storage daemon Storage_Local at bareos.sednal.lan:9103
@@ -325,7 +325,7 @@ sudo systemctl restart bareos-sd bareos-dir
 ss -lntp | grep 9103
 ````
 
-**RESULTAT ATTENDU**
+**RÉSULTAT ATTENDU**
 
 ````
 LISTEN 0  50  192.168.0.240:9103  0.0.0.0:*  users:(("bareos-sd",...))
@@ -452,7 +452,7 @@ sudo pvs -a
 df -h /var/lib/bareos/storage
 ````
 
-**RESULTAT ATTENDU**
+**RÉSULTAT ATTENDU**
 
 ````
 ata5: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
@@ -486,9 +486,9 @@ sudo smartctl -A /dev/sde | grep -i UDMA_CRC_Error_Count
 
 ### `=== PROBLEME ===`
 
-#### - Le catalogue reference des volumes qui n'existent plus sur le storage.
+#### - Le catalogue référence des volumes qui n'existent plus sur le storage.
 
-`list media` annonce 6 volumes cote LAN :
+`list media` annonce 6 volumes côté LAN :
 
 ````
 | mediaid | volumename                 | volstatus | volbytes        | storage       |
@@ -511,7 +511,7 @@ drwx------ 2 root   root         16384 lost+found
 -rw-r----- 1 bareos bareos 39171254650 Win_BackUp_Vol_001
 ````
 
-#### - Deux volumes sont en statut `Error`, trois autres en `Append` sur des pools limites a `Maximum Volumes = 2`.
+#### - Deux volumes sont en statut `Error`, trois autres en `Append` sur des pools limités à `Maximum Volumes = 2`.
 
 ---
 
@@ -522,7 +522,7 @@ printf "list media\nquit\n" | sudo bconsole
 ls -la /var/lib/bareos/storage/
 ````
 
-2) Verifier quels jobs dependent de ces volumes :
+2) Vérifier quels jobs dépendent de ces volumes :
 
 ````
 printf "list jobs\nquit\n" | sudo bconsole
@@ -533,26 +533,26 @@ printf "list jobs\nquit\n" | sudo bconsole
 
 ### `=== CAUSE ===`
 
-Desynchronisation entre le **catalogue PostgreSQL** (l'index) et le **storage**
+Désynchronisation entre le **catalogue PostgreSQL** (l'index) et le **storage**
 (les fichiers de volumes).
 
 Les volumes ont disparu lors de la recreation du volume group `vg_bareos`
-le 17/05/2026, mais leurs enregistrements sont restes dans le catalogue.
+le 17/05/2026, mais leurs enregistrements sont restés dans le catalogue.
 
 ⚠️ Consequence si rien n'est fait : les pools `Lin_BackUp_Pool_LAN` et
-`Lin_BackUp_Pool_WAN` ont `Maximum Volumes = 2` et un slot occupe par un volume
-fantome en statut `Append`. Au prochain job planifie, Bareos tente d'ecrire dans
-un fichier inexistant et le job echoue. Meme blocage cote Windows LAN avec les
+`Lin_BackUp_Pool_WAN` ont `Maximum Volumes = 2` et un slot occupé par un volume
+fantôme en statut `Append`. Au prochain job planifié, Bareos tente d'écrire dans
+un fichier inexistant et le job échoue. Même blocage côté Windows LAN avec les
 deux volumes en `Error`.
 
 ⚠️ `Win_BackUp_Vol_001` est le seul volume local restant, mais il contient un job
-**Incremental** (JobId 33) dont le Full de reference etait `Local_BackUp_Vol-0003`,
+**Incremental** (JobId 33) dont le Full de référence était `Local_BackUp_Vol-0003`,
 disparu. Une chaine incrementale sans son Full n'est pas restaurable : il n'existe
 donc plus aucune restauration possible en LAN. Seul le jeu du VPS
 (`VPS_Backup_Vol-0004`, JobId 34 = Full) reste exploitable.
 
-`[NOTE]` Ces volumes etaient deja irrecuperables avant la purge. Supprimer leur
-enregistrement ne detruit aucune donnee : cela retire seulement une reference morte.
+`[NOTE]` Ces volumes étaient déjà irrécupérables avant la purge. Supprimer leur
+enregistrement ne détruit aucune donnée : cela retire seulement une référence morte.
 
 ---
 ---
@@ -561,7 +561,7 @@ enregistrement ne detruit aucune donnee : cela retire seulement une reference mo
 
 1) Supprimer du catalogue les volumes absents du storage
 
-`delete volume` supprime egalement les enregistrements de jobs associes.
+`delete volume` supprime également les enregistrements de jobs associés.
 
 ````
 printf "delete volume=Local_BackUp_Vol-0003 yes\n\
@@ -586,15 +586,15 @@ Deleted 2 jobs and associated records deleted from the catalog (jobids: 7,11).
 Volume Lin_Remote_BackUp_Vol-0002 deleted.
 ````
 
-2) Verification
+2) Vérification
 
 ````
 printf "list media\nquit\n" | sudo bconsole
 ````
 
-**RESULTAT ATTENDU**
+**RÉSULTAT ATTENDU**
 
-Seuls subsistent les volumes reellement presents sur disque, et les pools Linux
+Seuls subsistent les volumes réellement présents sur disque, et les pools Linux
 et Archive sont vides — leurs slots sont donc de nouveau disponibles.
 
 ````
@@ -609,9 +609,9 @@ Pool: Lin_BackUp_Pool_WAN      No results to list.
 Pool: Lin_BackUp_Pool_LAN      No results to list.
 ````
 
-3) Reconstruire une chaine de sauvegarde saine
+3) Reconstruire une chaîne de sauvegarde saine
 
-La chaine LAN n'ayant plus de Full de reference, un Full complet est necessaire.
+La chaîne LAN n'ayant plus de Full de référence, un Full complet est nécessaire.
 Il est lance automatiquement par le schedule du 1er dimanche du mois, ou
 manuellement :
 
@@ -619,7 +619,7 @@ manuellement :
 printf "run job=Win_BackUp_Job_LAN level=Full yes\nquit\n" | sudo bconsole
 ````
 
-4) Optionnel — nettoyer les jobs en echec restes au catalogue
+4) Optionnel — nettoyer les jobs en échec restés au catalogue
 
 ````
 printf "delete jobid=1,2,3,4,5,24,31,32\nquit\n" | sudo bconsole

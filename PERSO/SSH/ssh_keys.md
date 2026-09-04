@@ -1,10 +1,10 @@
-# Connection SSH sans clés
+# Connexion SSH sans clés
 
 ## Win => debian
 
 ### 1️⃣ Générer clé sur `WINDOWS` 
 
-### executer powershell en admin
+### exécuter powershell en admin
 ### vérifier l'état de sshd // créer la clé
     get-service sshd | Set-Service -StartupType automatic
     get-service sshd

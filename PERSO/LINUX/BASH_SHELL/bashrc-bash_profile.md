@@ -1,7 +1,7 @@
 # .bascrc
 
 ---
-- Executer au démarrage d'un shell
+- Exécuter au démarrage d'un shell
 - Permet de personnaliser le shell, avec un script.
 
 Pour plus de détail [Malekal](https://www.malekal.com/bashrc-bash-profile-differences-linux/)
@@ -10,7 +10,7 @@ Pour plus de détail [Malekal](https://www.malekal.com/bashrc-bash-profile-diffe
 ---
 
 # bash_profile
-- Executer pour les login shell
+- Exécuter pour les login shell
 
 
 Pour plus de détail [ICI](https://www.it-connect.fr/bashrc-et-bash_profile-quelle-difference/)

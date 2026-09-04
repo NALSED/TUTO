@@ -127,11 +127,11 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
                     Utilisateur.nombre_utilisateur +=1
             
                 # fonction 2 action
-                #  Methode d'instance
+                #  Méthode d'instance
                 def afficher_details(self):
                     print(f"Utilisateur : {self.nom}, IP : {self.ip}, Status : {self.statut_connexion}")
             
-                #  Methode  de class
+                #  Méthode  de class
                 @classmethod
                 def afficher_nombre_user(cls):
             
@@ -139,13 +139,13 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
             
                 @staticmethod
                 def afficher_bienvenue():
-                    print("\nBienvenue dans le systeme de gestion des utilisateurs.\n")
+                    print("\nBienvenue dans le système de gestion des utilisateurs.\n")
             
             # variables données utilisateurs (instance)
             alice =  Utilisateur("Alice", "192.168.0.102", True)        
             bob = Utilisateur ("bob", "19.168.0.103", False)
             
-            # Afficher les résulats
+            # Afficher les résultats
             
             Utilisateur.afficher_bienvenue()
             alice.afficher_details()
@@ -153,7 +153,7 @@ La **Programmation Orientée Objet (POO)** est un paradigme qui organise le code
             Utilisateur.afficher_nombre_user()
 
             ##SORTIE##
-            Bienvenue dans le systeme de gestion des utilisateurs.
+            Bienvenue dans le système de gestion des utilisateurs.
 
             Utilisateur : Alice, IP : 192.168.0.102, Status : True
             Utilisateur : bob, IP : 19.168.0.103, Status : False
@@ -305,7 +305,7 @@ L’**héritage** est un mécanisme de la programmation orientée objet qui perm
          def afficher_details(self):
              print(f"Nom : {self.nom}, Ip :{self.ip}")
 
-     # Classse enfant
+     # Classe enfant
      class Routeur(Dispositif_reseaux):  
          def __init__(self, nom, ip, version_os):
              # Permet d'hériter des attributs de la classe parent(avec le constructeur parent _init_)
@@ -492,7 +492,7 @@ L’**héritage** est un mécanisme de la programmation orientée objet qui perm
 <details>
 <summary>
 <h2>
- LISTE METHODES MAGIQUES
+ LISTE MÉTHODES MAGIQUES
 </h2>
 </summary>
 
@@ -612,7 +612,7 @@ L’**héritage** est un mécanisme de la programmation orientée objet qui perm
     
         def afficher_nom(self):
             # Méthode concrète partagée par toutes les sous-classes
-            print(f"Disposotif de Sécurité : {self.nom}")
+            print(f"Dispositif de Sécurité : {self.nom}")
     
     # Classe concrète qui hérite de Dispositif_secu
     class Parefeu(Dispositif_secu):
@@ -657,7 +657,7 @@ L’**héritage** est un mécanisme de la programmation orientée objet qui perm
 
 #### EXEMPLE :
 
-     # Décorateur  qui rend imposible les arguments négatifs
+     # Décorateur  qui rend impossible les arguments négatifs
      def valider_entrees(fonction):
      
          def nouvelle_fonction(self, *args):
@@ -673,7 +673,7 @@ L’**héritage** est un mécanisme de la programmation orientée objet qui perm
      
      class Calcule:
      
-         # Décorateur + méthode d'additioner
+         # Décorateur + méthode d'additionner
          @valider_entrees
          def additionner(self,a,b):
              return a+b    

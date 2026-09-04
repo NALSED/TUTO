@@ -4,7 +4,7 @@
 
 ## Ce Tuto à pour but de montrer la mise en place, d'une administration de docker, sur PC `Windows 11 => 192.168.0.111`.
 ## Pour un logiciel installé sur VM `Ubuntu_Serveur => 192.168.0.103`.
-## Ainsi que la connection avec `VSC`, pour l'édition des `Docker File` et `Docker Compose` 
+## Ainsi que la connexion avec `VSC`, pour l'édition des `Docker File` et `Docker Compose` 
 
 ### `Labo`
 * ### PC admin
@@ -14,15 +14,15 @@
 
 ### Ce tuto démarre avec Docker installé et a jour voir [ici](https://github.com/NALSED/TUTO/blob/main/PERSO/DOCKERS/Install.md)
 
-## 1️⃣ Connection Serveur / VSC.
-## 2️⃣ Connection Docker Desktop sur Windows / Docker Engine sur Ubuntu SANS TLS
-## 3️⃣ Connection Docker Desktop sur Windows / Docker Engine sur Ubuntu AVEC TLS
+## 1️⃣ Connexion Serveur / VSC.
+## 2️⃣ Connexion Docker Desktop sur Windows / Docker Engine sur Ubuntu SANS TLS
+## 3️⃣ Connexion Docker Desktop sur Windows / Docker Engine sur Ubuntu AVEC TLS
 ## 4️⃣ Changer le client distant
 
 ---
 ---
 
-## 1️⃣ Connection Serveur / VSC.
+## 1️⃣ Connexion Serveur / VSC.
 
 ### 1.1) Installer  l'extension Remote - SSH sur VSC
 ![image](https://github.com/user-attachments/assets/d435f3f0-81ef-444d-be27-eda72e1bc165)
@@ -85,7 +85,7 @@
         "hosts": ["tcp://192.168.0.103:2375"]
       }
 
-### 2.6) tester  la connection
+### 2.6) tester  la connexion
       docker -H tcp://192.168.0.103:2375 ps
 
 </details>

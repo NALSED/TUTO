@@ -20,12 +20,12 @@
 
 ---
 
-### 📘Voici l'ordre que j'ai suivi pour la mise en place de la solution baréos:
+### 📘Voici l'ordre que j'ai suivi pour la mise en place de la solution Bareos:
 
 ### 1️⃣ Création du `RAID` (ici RAID1) => voir -2-Instalation.md => Chapitre 1
 ### 2️⃣	Installation et configuration de `PostgreSQL` => voir -2-Instalation.md => Chapitre 2
 ### 3️⃣ Installation et configuration de `Bareos CLI` et `Bareos WebUI` => voir -2-Instalation.md => Chapitre 3 et => voir -3-WebUi.md
-### 4️⃣ 	`Ajout du RAID1` à la soulution `Bareos` via CLI => voir -4-Ajout-RAID1et ROLES.md => Chapitre 1
+### 4️⃣ 	`Ajout du RAID1` à la solution `Bareos` via CLI => voir -4-Ajout-RAID1et ROLES.md => Chapitre 1
 ### 5️⃣ `Instalation` de la solution `Bareos` sur le `client` => voir -5-Instalation-ClientWIN.md 
 ### 6️⃣ `Ajout` du `Client` sur le serveur `Bareos` => voir -6-Ajout-Client->Serveur.md 
 ### 7️⃣ Configuration `Pool` => voir -4-Ajout-RAID1et ROLES.md => Chapitre 3

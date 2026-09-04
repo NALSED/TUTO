@@ -13,7 +13,7 @@
 
 `-1. Intoduction`
 
-- Les `Policies` définissent qui peut faire quoi dans Vault (contrôle d'accès), le format est du hcl (HarchiCorp language)
+- Les `Policies` définissent qui peut faire quoi dans Vault (contrôle d'accès), le format est du hcl (HashiCorp language)
 
 - Syntaxe de base
 
@@ -93,7 +93,7 @@
 
 - Ici le politique appliquées aux path :
 
-    - secret/ : uniquement lister les secret commencant par `secret/`
+    - secret/ : uniquement lister les secret commençant par `secret/`
 
     - secret/database : quasiment tous les droit
     

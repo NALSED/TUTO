@@ -18,7 +18,7 @@
       crontab -e => 1
 
 #### Éditer Wol pour linux Et wol et shutdown pour Win 11
-#### Pour que la commande `shutdown /s /t 0 /f` puisse fonctionner, creer une connexion ssh sans mot de passe de linux => win 11 [voir](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---windows)
+#### Pour que la commande `shutdown /s /t 0 /f` puisse fonctionner, créer une connexion ssh sans mot de passe de linux => win 11 [voir](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---windows)
 
 ````
 # ADMIN
@@ -32,9 +32,9 @@
 #0 11 * * 0 /usr/bin/wakeonlan 34:5a:60:e0:1c:72
 ````
       
-`[NOTE]` L'extinction du PC Windows est a 18h45 et non 16h00 : le job Windows LAN
-peut durer jusqu'a 3h30 en incremental, suivi du job WAN. 
-Une extinction trop tot coupe la sauvegarde en cours.
+`[NOTE]` L'extinction du PC Windows est à 18h45 et non 16h00 : le job Windows LAN
+peut durer jusqu'à 3h30 en incrémental, suivi du job WAN. 
+Une extinction trop tôt coupe la sauvegarde en cours.
 
 ### 2️⃣ Poweroff
 

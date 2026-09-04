@@ -58,7 +58,7 @@
 
 ### 3.1) Création
 
-        adduser <USER> # Créer utilisateur , j'utilisea un user déjà présent
+        adduser <USER> # Créer utilisateur , j'utilise un user déjà présent
 
 >Pour que l'utilisateur puisse se connecter au partage, il faut l'autoriser dans Samba, en plus de la création au sein du système Linux.
 >
@@ -66,7 +66,7 @@
 
         smbpasswd -a <USER> ⬆️
 
-        groupadd <GROUPE> #Créer le groupe partage et ajouter l'utilisateur créer précédement
+        groupadd <GROUPE> #Créer le groupe partage et ajouter l'utilisateur créer précédemment
         gpasswd -a <USER><GROUPE>
 
 
@@ -77,7 +77,7 @@
 ## 4️⃣ Créer dossier de partage
 
 #### TUTO [BELGINUX](https://belginux.com/creer-un-partage-samba/)
-    mkdir <CHEMIN DECLARER DANS LE FICHIER DE CONF DE SAMBA> # Ici /home/<USER>/Documents/partage2
+    mkdir <CHEMIN DÉCLARÉ DANS LE FICHIER DE CONF DE SAMBA> # Ici /home/<USER>/Documents/partage2
     sudo chmod -R 777 <CHEMIN>
 
 #### TUTO [IT](https://www.it-connect.fr/serveur-de-fichiers-debian-installer-et-configurer-samba-4/)
@@ -111,7 +111,7 @@
 
         #!/bin/bash
 
-        # Variable en fontion des besoins
+        # Variable en fonction des besoins
         MOTDEPASSE=""
         UTILISATEUR=""
         
@@ -121,13 +121,13 @@
         # Instal samba
         sudo apt-get install -y samba
 
-        # Démarre samba au démarage
+        # Démarre samba au démarrage
         sudo systemctl enable smbd
 
         # Créer le partage dans le fichier de conf de samba ? SI PBM remplacer users = $UTILISATEUR => users = nom d'utilisateur sans la variable
         sudo echo -e "[partage] \ncomment = Partage de données\npath = /home/$UTILISATEUR/Documents/Partage\nguest ok = no\nread only = no\nbrowseable = yes\nvalid users = $UTILISATEUR" | sudo tee -a /etc/samba/smb.conf 
 
-        # Redémare SMB
+        # Redémarre SMB
         sudo systemctl restart smbd
 
         # Créer un MDP pour l'utilisateur 

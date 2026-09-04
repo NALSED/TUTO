@@ -14,7 +14,7 @@
 Sednal-Root-RSA-1
 ````
 
-- Emetteur : `Sednal`
+- Émetteur : `Sednal`
 
 - Role : Root, Inter, 
 

@@ -25,11 +25,11 @@
 
 ## `Résumés Pannes`
 
-### - Probléme de connection entre `bareos-dir` et `bareos-sd`  [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--impossible-pour-bareos-dir-et-bareos-sd-de-se-connecter-ensemble)
+### - Problème de connexion entre `bareos-dir` et `bareos-sd`  [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--impossible-pour-bareos-dir-et-bareos-sd-de-se-connecter-ensemble)
 
 ### - bareos-sd démarre puis s'arrête seul au bout de ~15s, sans erreur systemd [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--bareos-sd-d%C3%A9marre-puis-sarr%C3%AAte-seul-au-bout-de-15s-sans-erreur-systemd)
 
-### - Probleme de connection Sata [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--varlibbareosstorage-vide-et-mont%C3%A9-sur-la-racine--au-lieu-du-raid10) 
+### - Problème de connexion Sata [Lien_Rapide](https://github.com/NALSED/TUTO/blob/main/PERSO/SAUVEGARDE/BAREOS/BAREOS2/-K-Troubleshooting.md#--varlibbareosstorage-vide-et-mont%C3%A9-sur-la-racine--au-lieu-du-raid10) 
 
 ---
 ---
@@ -54,7 +54,7 @@ Failed to connect to Storage daemon File.
 ````
 
 
-#### - Échec de connection TLS 
+#### - Échec de connexion TLS 
 
 
 `message erreur:`
@@ -199,7 +199,7 @@ test -e /proc/sys/kernel/yama/ptrace_scope && echo 1 > /proc/sys/kernel/yama/ptr
 
 ---
 
-**RESULTAT**
+**RÉSULTAT**
 
 ````
 Connecting to Storage daemon Storage_Local at bareos.sednal.lan:9103
@@ -322,7 +322,7 @@ sudo systemctl restart bareos-sd bareos-dir
 ss -lntp | grep 9103
 ````
 
-**RESULTAT ATTENDU**
+**RÉSULTAT ATTENDU**
 
 ````
 LISTEN 0  50  192.168.0.240:9103  0.0.0.0:*  users:(("bareos-sd",...))
@@ -449,7 +449,7 @@ sudo pvs -a
 df -h /var/lib/bareos/storage
 ````
 
-**RESULTAT ATTENDU**
+**RÉSULTAT ATTENDU**
 
 ````
 ata5: SATA link up 3.0 Gbps (SStatus 123 SControl 300)

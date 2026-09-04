@@ -1,4 +1,4 @@
-# 1️⃣ Execution des scripts OU et Users
+# 1️⃣ Exécution des scripts OU et Users
 # 2️⃣ Définition et Installation des GPO => 16 GPO's
 ## Classement des GPO par importance
 ## **SOMMAIRE**
@@ -31,14 +31,14 @@
 * ##### Politique de MDP :
 ![ad1](https://github.com/user-attachments/assets/dae7f4d0-aadc-4289-8945-ee5594fd34ca)
 #### 2.[⏫](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance) `Restriction d'installation de logiciel pour les utilisateurs non-administrateurs`
-* ###### Se rendre dans Sofware Restriction Policies => clic droit New Software Restriction Policies 
+* ###### Se rendre dans Software Restriction Policies => clic droit New Software Restriction Policies 
 ![ad2](https://github.com/user-attachments/assets/b1e9b43e-6b92-4db4-9dc8-a323ced558fe)
 ![ad1](https://github.com/user-attachments/assets/2f8d9141-3800-4f3e-9571-7c07be6fb0be)
-* ##### Edition de security level => Basic User => Set as Default
+* ##### Édition de security level => Basic User => Set as Default
 ![ad1](https://github.com/user-attachments/assets/8d655a4c-2389-4534-a085-718a2b88e0ef)
-* ##### Edition => Enforcement
+* ##### Édition => Enforcement
 ![ad1](https://github.com/user-attachments/assets/a490ebca-ae27-4554-963f-fa68345d1ed3)
-* ##### Edition => Dsignated File Types=> Rajouter VBS et PAF
+* ##### Édition => Dsignated File Types=> Rajouter VBS et PAF
 ![ad1](https://github.com/user-attachments/assets/b0619ccd-f449-4824-9bad-4eb2b5c61e76)
 * ##### Dans Additional Rules (règles éditées)⬇️
 ![ad2](https://github.com/user-attachments/assets/2b1d438f-da1c-4da7-9e64-2884de646c96)
@@ -201,7 +201,7 @@
 ![ad2](https://github.com/user-attachments/assets/7ed3a7dd-8686-4819-b423-0801c63178e2)
 * ##### Résultat 
 ![ad3](https://github.com/user-attachments/assets/64687da4-4725-4ae6-b76a-b727aebd3004)
-* ### 4) Rendre le script executable dans la GPO
+* ### 4) Rendre le script exécutable dans la GPO
 * ##### Computer Configuration => Windows Settings => Scripts => Startup
 ![ad1](https://github.com/user-attachments/assets/5a8b2bbf-b3eb-46bf-9ec6-2fb3ce2e554a)
 * ##### ⚠️Conserver le chemin présent à l'ouverture de la fenêtre
@@ -209,12 +209,12 @@
 * ##### Choisir Run Windows PowerShell script first
 ![ad1](https://github.com/user-attachments/assets/3ca8c003-a7f7-44c6-a9f9-fef41f157b5d)
 * ##### Modification de la politique d'exécution de la GPO
-* ##### Computer configuration => Policies => Administrative Templates => Windows Composents => Windows Powershell => Turn on Script Execution
+* ##### Computer configuration => Policies => Administrative Templates => Windows Components => Windows Powershell => Turn on Script Execution
 * ##### Allow local script and remote signed scripts
 ![ad1](https://github.com/user-attachments/assets/3122d858-badf-4f8a-8256-e75b53072631)
 #### 5.[⏫]([https://github.com/NALSED/Future-R-vision/edit/main/GPO/Securite.md#sommaire](https://github.com/NALSED/Future-R-vision/blob/main/GPO/Securite.md#classement-des-gpo-par-importance)) `Configuration des paramètres du navigateur`
 ### 1️⃣ Définir le navigateur par défaut
-* ##### Computer Configuration => Policies => Administrative Template => Windows Composents => File Explorer
+* ##### Computer Configuration => Policies => Administrative Template => Windows Components => File Explorer
 * #####  Set a default association configuration file
 * ##### Rentrer le chemin du partage et valider
 ![ad1](https://github.com/user-attachments/assets/2351a6ec-40d8-40cd-a299-e36d9df9bffd)

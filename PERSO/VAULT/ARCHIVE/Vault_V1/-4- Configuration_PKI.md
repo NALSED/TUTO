@@ -116,7 +116,7 @@ sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal_Root_R-1.crt
 - nom : `Sednal_Root_R-1`
 - (-field=certificate obtiens juste le PEM du certificat, pour redirection dans un fichier, Ici `Sednal_Root_R-1.crt`)
 
-`-1.3.` Génération et distibution de la CRL 
+`-1.3.` Génération et distribution de la CRL 
 ```
 vault write PKI_Sednal_Root_RSA/config/urls \
     issuing_certificates="https://vault.sednal.lan/v1/PKI_Sednal_Root_RSA/ca" \
@@ -176,7 +176,7 @@ sudo chown vault:vault /etc/vault/pki/cert_ca/root/Sednal_Root_E-1.crt
 - nom : `Sednal_Root_E-1`
 - (-field=certificate obtiens juste le PEM du certificat, pour redirection dans un fichier, Ici `Sednal_Root_E-1.crt`)
 
-`-1.6.` Génération et distibution de la CRL 
+`-1.6.` Génération et distribution de la CRL 
 ```
  vault write PKI_Sednal_Root_ECDSA/config/urls \
      issuing_certificates="https://vault.sednal.lan/v1/PKI_Sednal_Root_ECDSA/ca" \
@@ -227,7 +227,7 @@ révoquer et régénérer l'intermédiaire sans toucher à la Root CA.
 
 **=== RSA ===**
 
-`-2.1.` - Générer le certificat intermédiare 
+`-2.1.` - Générer le certificat intermédiaire 
 ```
 vault secrets enable -path=PKI_Sednal_Inter_RSA -max-lease-ttl=1825d pki
 ```
@@ -267,7 +267,7 @@ sudo chown vault:vault /etc/vault/pki/cert_ca/inter/Sednal_Inter_R-1.cert.pem
 
 **=== ECDSA ===**
 
-`-2.4.` Générer le certificat intermédiare 
+`-2.4.` Générer le certificat intermédiaire 
 ```
 vault secrets enable -path=PKI_Sednal_Inter_ECDSA -max-lease-ttl=1825d pki
 ```
@@ -412,7 +412,7 @@ vault write PKI_Sednal_Inter_ECDSA/roles/Cert_Inter_ECDSA \
 
 ## 5️⃣ **Renouvellement** 
 
-- Inscription à systemd avec timer pour execution tous les 80 jours, les certificats finaux on une TTL de 90 jours
+- Inscription à systemd avec timer pour exécution tous les 80 jours, les certificats finaux on une TTL de 90 jours
 
 `1.1` Éditer le Script
 ```
@@ -453,7 +453,7 @@ Group=vault
 WantedBy=multi-user.target
 ```
 
-`-1.3.` Edition timer
+`-1.3.` Édition timer
 ```
  sudo nano /etc/systemd/system/renew_cert_ssl.timer 
 ```

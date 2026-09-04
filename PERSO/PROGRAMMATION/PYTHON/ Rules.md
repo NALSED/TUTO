@@ -66,7 +66,7 @@
 
 #### 1️⃣ Snake case : my_variable_name
 #### 2️⃣ Ne pas utiliser le mots clés de python (else, if, for, while, return, True, False) 
-#### 3️⃣ [NOM VARIABLE] [OPERATEUR D'AFFECTATION] [VALEUR]
+#### 3️⃣ [NOM VARIABLE] [OPÉRATEUR D'AFFECTATION] [VALEUR]
 #### Portée Global🔴
 #### Portée Local🟢
 
@@ -349,10 +349,10 @@
       ip_range  = range(1,255)
       for ip in ip_range:
           print(ip)
-      # edite  les  chiffres  de 1 à 254
+      # édite  les  chiffres  de 1 à 254
       
       print(f"192.168.1.{ip}") ip_range  = range(1,255)
-     #Génére des adressess ip de 192.168.1.1  =>  192.168.1.254
+     #Génère des adresses ip de 192.168.1.1  =>  192.168.1.254
 
 
 </details>
@@ -400,7 +400,7 @@
                     "gateway" : "195.168.0.1",
                     "dns" : ["8.8.8.8","192.168.0.241"]
             }
-            # Extraction de l'adressse ip
+            # Extraction de l'adresse ip
             address_ip = config_net["ip"]
             # Extraction du mask
             netmask = config_net["mask"]
@@ -546,13 +546,13 @@
 ### `EXO 1`
 #### masque sous réseau => masque  inversé
 
-      #Defini le  maque daans une variable
+      #Définit le  masque dans une variable
       sub_net = 0b11111111111111111111111100000000
 
       #Inversion des bit
       wc = ~sub_net
       
-      #convertie en binaire et limite à 32 bit,et ajoute des  0 àgauche  pour avoir un format  32  bits
+      #convertie en binaire et limite à 32 bit,et ajoute des  0 à gauche  pour avoir un format  32  bits
       wc = (bin(wc & 0xFFFFFFFF))[2:].zfill(32)
       
       print(wc)
@@ -643,16 +643,16 @@
 # `IF/ELIF/ELSE :`
 
             if condition_1
-                  #code executé si condition_1 TRUE
+                  #code exécuté si condition_1 TRUE
             
             elif condition_2
-                  #code executé si condition_2 TRUE et condition_1 FALSE
+                  #code exécuté si condition_2 TRUE et condition_1 FALSE
             
             else:
                   #code exécuté si condition_1 et condition_2 FALSE
 
 
-            #Type accépté  
+            #Type accepté  
             * Bolean TRUE FALSE
             * Nombre (0 FALSE, reste TRUE )
             * Strings ("" FALSE,  reste TRUE)
@@ -664,7 +664,7 @@
 
             #Boucle les deux ont TRUE
             if user  == "admin" and pwd  == "admin123":
-                print("accés OK")
+                print("accès OK")
             
             #Boucle condition_1 TRUE condition_2 FALSE
             elif user == "admin":
@@ -672,7 +672,7 @@
             
             #Boucle condition_1 et condition_2 FALSE
             else:
-                print("accés refusé")
+                print("accès refusé")
 
 ---
 
@@ -683,7 +683,7 @@
 #### `EXEMPLE :`
 
             username = "admin"
-            access_status = "Accéss Ok. " if username == "admin"  else "Accés  NOK"
+            access_status = "Accéss Ok. " if username == "admin"  else "Accès  NOK"
             print(access_status)
 
 
@@ -698,7 +698,7 @@
 
             # Utilisation de ternaire pour la premiere boucle
             username = "admin"
-            access_status = "Accéss Ok. " if username == "admin"  else "Accés  NOK"
+            access_status = "Accéss Ok. " if username == "admin"  else "Accès  NOK"
             print(access_status)
 
             # Utilisation de in pour tester  la présence
@@ -734,8 +734,8 @@
 
 # `all` et `any`
 
-* #### `all` TRUE si tout les element  de l'iterable sont vrai.
-* #### `any` TRUE si un des element de l'iterable est vrai.
+* #### `all` TRUE si tout les éléments  de l'itérable sont vrai.
+* #### `any` TRUE si un des éléments de l'itérable est vrai.
 
 
 
@@ -750,12 +750,12 @@
             if all(condition):
                 print("ok")
             
-            # Variable accés
+            # Variable accès
             failed_attemps  = 2
             suspicious_activity_detected = False
 
              # condition pour FALSE FALSE donc any renvoie rien car FALSE FALSE
-             # Si FALSE TRUE lorss  sortie !!! access denied !!!
+             # Si FALSE TRUE lors  sortie !!! access denied !!!
             alert_condition = [failed_attemps > 3, suspicious_activity_detected]
             if any(alert_condition):
                 print("!!! access denied !!!")
@@ -787,7 +787,7 @@
       #entrer un des rôle demander match va comparer avec les case
       user_role = input("veuillez entrer  votre rôle : (guest, admin, user)")
 
-      #en fontion de  l'input une sortie  prévu à chaque  fois
+      #en fonction de  l'input une sortie  prévu à chaque  fois
       match user_role:
           case "admin":
               print("MDP admin")
@@ -876,7 +876,7 @@
             print(f"vérif {username} avec mdp {password}")
 
 ---
-#### Création d'Alerte échec ou  réussite de connection
+#### Création d'Alerte échec ou  réussite de connexion
 
             security_logs =[ 
                             {"ip": "192.168.1.10", "status": "failed"},
@@ -895,12 +895,12 @@
                     
                     #Incrémente de 1 le nombre d’échecs pour l’IP, en mettant 0 par défaut si l’IP n’existe pas encore dans le dictionnaire
                     failed_attempts[ip] = failed_attempts.get(ip,0) +1
-                    #Si erreur de connection sup 2 print
+                    #Si erreur de connexion sup 2 print
                     if failed_attempts[ip] > 2 :
                         print(f"Alerte : IP {ip} à  échoué")
                         break
                 else:
-                    print(f"connexion reussi  de  l'IP {log['ip']}")    
+                    print(f"connexion réussi  de  l'IP {log['ip']}")    
 
 
 
@@ -908,10 +908,10 @@
 #### Association de tuple dans une liste
       coordinates = [(1,2),(3,4),(5,6)]
       for x,y in coordinates:
-          print(f"coordonées : x = {x} et y = {y}")
-      #coordonées : x = 1 et y = 2
-      coordonées : x = 3 et y = 4
-      coordonées : x = 5 et y = 6
+          print(f"coordonnées : x = {x} et y = {y}")
+      #coordonnées : x = 1 et y = 2
+      coordonnées : x = 3 et y = 4
+      coordonnées : x = 5 et y = 6
 ---
 
 # `WHILE`
@@ -930,7 +930,7 @@
 
 ---
 
-#### "Détection" d'un nombre de tentative de connection
+#### "Détection" d'un nombre de tentative de connexion
       attempts  = 0
       max_attemps = 3
       while attempts < max_attemps:
@@ -938,7 +938,7 @@
           attempts += 1
 ---
 
-#### "Détection" d'un nombre de tentative de connection avec entrée dynamique
+#### "Détection" d'un nombre de tentative de connexion avec entrée dynamique
       attempts = 0
       max_attempts = 3
       
@@ -969,7 +969,7 @@
               print("Sortie")
               break
           elif ip == "192.168.0.1":
-              print("Accés refusé")
+              print("Accès refusé")
               continue
       
           print("Welcome")
@@ -983,7 +983,7 @@
               {"ip": ["192.168.0.2", "192.168.0.3", "192.168.0.4"], "status":"failed"},
       ]
       
-      # index = 0 sert à  parcourir logs avvec while
+      # index = 0 sert à  parcourir logs avec while
       index = 0
       
       # La boucle continue tant que index est inférieur à la longueur de la liste logs
@@ -1000,26 +1000,26 @@
       # Si la ligne  contient "failed"    
           if log["status"] == "failed":
               
-      # Ecrire dans le dico log la ligne définie par la clé ip         
-              print(f"Echec de la connection : {log['ip']}")
+      # Écrire dans le dico log la ligne définie par la clé ip         
+              print(f"Échec de la connexion : {log['ip']}")
       
           else:
-              print(f"connection OK : {log['ip']}")
+              print(f"connexion OK : {log['ip']}")
       # Permet  de passer au tour suivant 
           index +=1
 
 
 
-      connection OK : 192.168.0.1
-      Echec de la connection : ['192.168.0.2', '192.168.0.3', '192.168.0.4']
+      connexion OK : 192.168.0.1
+      Échec de la connexion : ['192.168.0.2', '192.168.0.3', '192.168.0.4']
 
 ####  ⚠️  A titre de comparaison même résultat avec  for
       for log in logs:
           if log["status"] == "failed":
               
-              print(f"Echec de la connection : {log['ip']}")
+              print(f"Échec de la connexion : {log['ip']}")
       
           else:
-              print(f"connection OK : {log['ip']}")
+              print(f"connexion OK : {log['ip']}")
 
 </details>

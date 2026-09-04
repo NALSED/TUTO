@@ -43,10 +43,10 @@
 ### Syntaxe fichier Nano
 
         table ip mon_filtreIPv4 { #Nom de la table et famille IP
-            chain input { # Chaine et la régles de cette chaine est entre {}
+            chain input { # Chaîne et la règles de cette chaîne est entre {}
                 type filter hook input priority filter; policy accept; # Type de filtre en input, avec priorité 0
-                tcp dport 80 accept # Régle sur le protocole TCP port 80 est accépté en input
-                tcp dport 443 accept # Régle sur le protocole TCP port 443 est accépté en input
+                tcp dport 80 accept # Règle sur le protocole TCP port 80 est accepté en input
+                tcp dport 443 accept # Règle sur le protocole TCP port 443 est accepté en input
                 drop # Pour finir la chaine
             }
 
@@ -121,7 +121,7 @@
 
 ### Si on peux rajouter des règle en respectant l'ordre en fonction de la contrainte des règle :
 
-                nft add rule mon_filtreIPv4 input position 5 tcp dport 22 accept # ajoute une régle qui accept, sur la chaine mon_filtreIPv4 en input , en 5 eme position, concernant le protocol tcp sur le port 22
+                nft add rule mon_filtreIPv4 input position 5 tcp dport 22 accept # ajoute une règle qui accept, sur la chaine mon_filtreIPv4 en input , en 5 eme position, concernant le protocol tcp sur le port 22
                 nft add rule mon_filtreIPv4 output position 8 tcp sport 22 accept
 
 ###  Avec `add` l'insertion de la règle se fera juste après la position ciblée
@@ -137,7 +137,7 @@
 
 ### Supprimer un règle
 
-                        nft -a list table ip mon_filtreIPv4 #lister les régle
+                        nft -a list table ip mon_filtreIPv4 #lister les règle
                         nft delete rule mon_filtreIPv4 output handle 22 # Supprimer
 
 ### Bannir via nftables
@@ -157,13 +157,13 @@
 ### Il est possible avec NFtables de réaliser plusieurs actions par règles
 ### Ici => Bloquer les communications avec 192.16.10.1 et au serveur DNS 8.8.8.8 => et mettre le tout dans les logs  `/var/log/kern.log`
 
-                        nft add rule mon_filtreIPv4 input ip saddr 192.168.10.1 log drop #Bloque les comunications avec 192.16.10.1
+                        nft add rule mon_filtreIPv4 input ip saddr 192.168.10.1 log drop #Bloque les communications avec 192.16.10.1
 
 
                                 table ip mon_filtre {
                                     chain output {
                                         type filter hook output priority filter; policy accept;
-                                        ip daddr 8.8.8.8 log drop #Bloquer les comunications au serveur DNS 8.8.8.8
+                                        ip daddr 8.8.8.8 log drop #Bloquer les communications au serveur DNS 8.8.8.8
                                     }
                                 }
 
@@ -214,7 +214,7 @@ Destination NAT
 
 ### Exemple :
 
-## En s'appuiyant sur le schema ci dessus créer la règle suivante :
+## En s'appuyant sur le schéma ci dessus créer la règle suivante :
 
 ### Grâce au destination NAT, les paquets arrivant sur le routeur Linux avec pour port destination le port 21 auront l'IP de destination 192.168.2.1. Nous allons donc créer une règle qui dit que quand l'IP de destination est 192.168.2.1 et que le port visé est le port 21, nous allons rediriger ces paquets vers l'IP 192.168.1.102, toujours sur le port 21
 

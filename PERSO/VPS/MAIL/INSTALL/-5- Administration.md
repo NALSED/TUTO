@@ -229,7 +229,7 @@ vim ~/DMS/Mail_Server/docker-data/dms/config/rspamd/override.d/dkim_signing.conf
 sign_local = true;
 ````
 
-- redemarrage
+- redémarrage
 ````
 cd ~/DMS/Mail_Server/
 sudo docker compose down

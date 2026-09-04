@@ -4,7 +4,7 @@
 #### Mettre les deux serveurs sur le même réseaux
 #### Partage du dossier (En ajoutant le symbole dollar « $ »après le nom de partage, vous cachez le nom de partage sur le réseau)
 ![image](https://github.com/user-attachments/assets/03825b23-c14e-4751-8267-e984aace983d)
-#### Éditer les permitions du dossier => Supprimer Everyone => Ajouter
+#### Éditer les permissions du dossier => Supprimer Everyone => Ajouter
 ![image](https://github.com/user-attachments/assets/2b30586e-2b3d-4a39-9a15-06bb1a9df291)
 #### Rentrer Administrator et Authenticated Users
 ![image](https://github.com/user-attachments/assets/037d604f-c966-40f4-921f-d10009d19204)

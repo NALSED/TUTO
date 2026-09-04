@@ -1,14 +1,14 @@
 # Sauvegarde de la  base de  données  PostGreSQL
 
 ---
-#### Ici on utilise le mecanisme natif de Bareos plutot que `cron`.
+#### Ici on utilise le mécanisme natif de Bareos plutôt que `cron`.
 
-Le Director declenche lui-meme le dump juste avant de sauvegarder le catalogue,
+Le Director déclenche lui-même le dump juste avant de sauvegarder le catalogue,
 via `RunBeforeJob`, puis efface le dump via `RunAfterJob`.
 
 Avantages sur une tache cron :
-- pas de probleme d'authentification PostgreSQL (le script lit `MyCatalog.conf`)
-- le dump est garanti frais au moment ou il est sauvegarde
+- pas de problème d'authentification PostgreSQL (le script lit `MyCatalog.conf`)
+- le dump est garanti frais au moment où il est sauvegardé
 - le dump ne reste pas sur le disque entre deux executions
 
 `[NOTE]` En Bareos 25 le script est `make_catalog_backup` (shell).
@@ -16,7 +16,7 @@ L'ancien `make_catalog_backup.pl` (Perl) n'existe plus.
 
 ---
 
-### 1) Verification prealable du script
+### 1) Vérification préalable du script
 
       sudo -u bareos /usr/lib/bareos/scripts/make_catalog_backup MyCatalog
       ls -la /var/lib/bareos/*.sql
@@ -60,11 +60,11 @@ L'ancien `make_catalog_backup.pl` (Perl) n'existe plus.
         Write Bootstrap = "/var/lib/bareos/%n.bsr"
       }
 
-`[NOTE]` `Priority = 30` : le catalogue est sauvegarde en dernier, apres les jobs
-LAN (10) et WAN (20), afin de refleter les jobs du jour.
+`[NOTE]` `Priority = 30` : le catalogue est sauvegardé en dernier, après les jobs
+LAN (10) et WAN (20), afin de refléter les jobs du jour.
 
 `[NOTE]` `Write Bootstrap` produit un fichier `.bsr` permettant de restaurer le
-catalogue meme si la base PostgreSQL est entierement perdue. Sans lui, la
+catalogue même si la base PostgreSQL est entièrement perdue. Sans lui, la
 sauvegarde du catalogue est difficilement exploitable.
 
 ---
@@ -78,17 +78,17 @@ sauvegarde du catalogue est difficilement exploitable.
 
 ### 5) Supprimer l'ancienne tache cron
 
-L'ancienne methode `pg_dump` lancee par `cron` est a retirer de la crontab root :
+L'ancienne méthode `pg_dump` lancée par `cron` est à retirer de la crontab root :
 
       sudo crontab -e
 
-      # ligne a supprimer :
+      # ligne à supprimer :
       55 11 * * 0 /usr/bin/pg_dump -U bareos -F c -b -v -f /home/sednal/BackUp_SQL_Bareos_$(date +\%F_\%H-\%M).backup bareos
 
 `[NOTE]` Cette ligne ne fonctionnait pas : `pg_dump -U bareos` lance par root est
-rejete par l'authentification `peer` de PostgreSQL, et le fichier etait ecrit
-**a cote** du dossier `/home/sednal/BackUp_SQL_Bareos/` (prefixe au lieu de chemin),
-donc hors du perimetre du FileSet.
+rejeté par l'authentification `peer` de PostgreSQL, et le fichier était écrit
+**à côté** du dossier `/home/sednal/BackUp_SQL_Bareos/` (préfixe au lieu de chemin),
+donc hors du périmètre du FileSet.
 
 
 

@@ -31,7 +31,7 @@
 ---
 
 ### Ce Tuto à pour but de créer une solution de sauvegarde et snapshot, centralisées pour windows et linux.
-### Via les solution `Bareos`, `Timeshift`(Snapshot Linux), `Cron` (automatisation des taches sur debian 12),`Rsync`(transfert de fichier) et `Protection System pour Windows`(Snatshoot windows).
+### Via les solution `Bareos`, `Timeshift`(Snapshot Linux), `Cron` (automatisation des tâches sur debian 12),`Rsync`(transfert de fichier) et `Protection System pour Windows`(Snatshoot windows).
 
 
 ---
@@ -52,7 +52,7 @@
 * ## `Serveur_Web :`
    * ### intranet, accès à GitHub et Services
 * ## `Serveur Sauvegarde :`
-   * ### Bareos : dipose d'un RAID1 => 2 x 1 To et un autre disque 1 To
+   * ### Bareos : dispose d'un RAID1 => 2 x 1 To et un autre disque 1 To
    * ### Plex.
 
 ---
@@ -103,7 +103,7 @@ Projet de Base
 ---
 
 * ## `DNS 1 :`
-    * ### Avant "recolte" par Bareos
+    * ### Avant "récolte" par Bareos
     * ### `BackUp` : /home/sednal/TotalDNS1/BackupDNS1
     * ### `Snapshot` : /home/sednal/TotalDNS1/SnapshotDNS1
       * ### Bareos

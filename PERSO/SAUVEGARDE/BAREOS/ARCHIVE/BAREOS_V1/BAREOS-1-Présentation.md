@@ -215,7 +215,7 @@
 
         Options {
           # Configurations suppl  mentaires
-          Signature = MD5        # Algorithme de signature pour verifier l'integrite   des fichiers
+          Signature = MD5        # Algorithme de signature pour vérifier l'intégrité   des fichiers
           IgnoreCase = yes       # Ignore la casse des noms de fichiers (utile sous Windows)
           noatime = yes          # Ne met pas a jour les horodatages d'accees des fichiers
         }
@@ -364,7 +364,7 @@
 
       Storage {
         Name = test
-        Address = 192.168.0.173  # Adresse du serveur ou lieux de stocage
+        Address = 192.168.0.173  # Adresse du serveur ou lieux de stockage
         Password = "<PASSWORD>"
         Device = RAID1
         Media Type = File
@@ -403,7 +403,7 @@
             Device {
             Name = RAID1
             Media Type = File
-            Archive Device = /mnt/backup # Chemin vers le RAID 1 precedement creeer
+            Archive Device = /mnt/backup # Chemin vers le RAID 1 précédemment créé
             Label Media = yes                  # lets Bareos label unlabeled media
             Random Access = yes
             Automatic Mount = yes              # when device opened, read it
@@ -436,7 +436,7 @@
 # III) `Bareos -FD`
 
 ###  Le File Daemon a pour rôle principal de collecter les données à sauvegarder, puis de les transmettre au Bareos Director pour qu'elles soient ensuite envoyées au Storage Daemon (SD), 
-### Les fichiers de configurations present dans /etc/bareos/bareos-fd.d on pour but  : 
+### Les fichiers de configurations présents dans /etc/bareos/bareos-fd.d on pour but  : 
 
 * ### client définir le nom de fd
 * ### director : dialoguer avec Bareos-dir

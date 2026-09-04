@@ -35,8 +35,8 @@
 
 ![image](https://github.com/user-attachments/assets/4b1d0080-35d9-44a7-9f38-d8304b374fb2)
 
-### 1.5) Edition partage NFS
-### Pour déclarer les partages NFS, edition du fichier /etc/exports
+### 1.5) Édition partage NFS
+### Pour déclarer les partages NFS, édition du fichier /etc/exports
       sudo nano /etc/exports
       /home/sednal/Plex/Film 192.168.0.141/24(rw,sync,anonuid=65534,anongid=65534,no_subtree_check)
 
@@ -100,7 +100,7 @@ no_subtree_check : désactiver la vérification des sous-dossiers, recommandé p
 ### 3.1) Utilisation du Script
           #!/bin/bash
 
-          # Variable en fontion des besoins
+          # Variable en fonction des besoins
           MOTDEPASSE=""
           UTILISATEUR=""
     
@@ -110,13 +110,13 @@ no_subtree_check : désactiver la vérification des sous-dossiers, recommandé p
           # Instal samba
           sudo apt-get install -y samba
 
-          # Démarre samba au démarage
+          # Démarre samba au démarrage
           sudo systemctl enable smbd
 
           # Créer le partage dans le fichier de conf de samba ? SI PBM remplacer users = $UTILISATEUR => users = nom d'utilisateur sans la variable
           sudo echo -e "[partage] \ncomment = Partage de données\npath = /mnt/plex/plexmedia\nguest ok = no\nread only = no\nbrowseable = yes\nvalid users = $UTILISATEUR" | sudo tee -a /etc/samba/smb.conf 
 
-          # Redémare SMB
+          # Redémarre SMB
           sudo systemctl restart smbd
 
           # Créer un MDP pour l'utilisateur 
@@ -125,7 +125,7 @@ no_subtree_check : désactiver la vérification des sous-dossiers, recommandé p
           # Autorise cet utilisateur à utiliser Samba
           sudo smbpasswd -e $UTILISATEUR 
 
- ### 3.2) Connection     
+ ### 3.2) Connexion     
  ### Entrer IP serveur dans la barre de recherche Windows:           
 ![image](https://github.com/user-attachments/assets/787e01be-08ae-4de5-9a14-423e81544337)
 

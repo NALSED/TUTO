@@ -15,7 +15,7 @@
 ![image](https://github.com/user-attachments/assets/d10bddad-6dd2-49b7-a52b-84ba5f389711)
 #### Cocher Predefined => Windows Remote Management et par la suite Remote Management(compatibility
 ![image](https://github.com/user-attachments/assets/58edd5e1-7735-46f4-a2cc-6db7c8ffd39f)
-#### Puis Profile => Domain, Pivate
+#### Puis Profile => Domain, Private
 ![image](https://github.com/user-attachments/assets/76f7488e-ccff-435e-ade2-fa8adb10d025)
 #### Allow Connection
 #### Clic droit sur Windows Remote Management (HTTP-In) => Properties
@@ -61,9 +61,9 @@
 ![image](https://github.com/user-attachments/assets/d81c7eac-4ab0-4632-808e-7db5ca8e13c3)
 #### 🔵 Renseigner le Nom du serveur collecteur et une description.
 #### 🔴 Ici le nom du journal dans lequel l'abonnement sera collecté.
-#### 🟢 Ici c'est le serveur collecteur qui est à l'initiative de la collecte, renseiger sont FQDN.
+#### 🟢 Ici c'est le serveur collecteur qui est à l'initiative de la collecte, renseigner son FQDN.
 ![image](https://github.com/user-attachments/assets/7a807ef6-f053-4f18-9adb-1f1c971a05d1)
-#### 🔵 Select Events... => Filtrages des Evenements
+#### 🔵 Select Events... => Filtrages des Événements
 #### 🔴 Event Level => Critical + Warning
 #### 🟢 By log(filtres) Secutity + System
 ![image](https://github.com/user-attachments/assets/d212babd-3845-4e77-8818-c4aefe5a830c)

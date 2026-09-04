@@ -13,7 +13,7 @@
 ### Deux options :
 * ### via la page `download page` et choisir pour la bonne distribution.
 ![image](https://github.com/user-attachments/assets/a9b3fb47-106d-48f5-8d8e-b5f1bc110d38)
-* ### Execution  du script
+* ### Exécution  du script
 ![image](https://github.com/user-attachments/assets/37990778-9ba4-4529-bced-88c5676c34c1)
 
 ### 1.4) tester l'écoute du ports 8220 sur le serveur ainsi que le client.
@@ -26,7 +26,7 @@
 ![image](https://github.com/user-attachments/assets/5c37f585-d9bc-4880-92fd-e123f6a08f0d)
 ### ⚠️  Problème 2 choses à faire 
 * ### 1️⃣ Créer une règle par feu sur le client pour autoriser le port 8220
-### 1.4.1) Règle trafic entrant => Nouvelle règle / Port / TCP + 8220 / Autoriser la connection / all / Nom +terminer.
+### 1.4.1) Règle trafic entrant => Nouvelle règle / Port / TCP + 8220 / Autoriser la connexion / all / Nom +terminer.
 
 * ### 2️⃣ Autoriser sur le pare-feu de `SO` l'IP du client.
 ### 1.4.2) Se rendre dans configuration

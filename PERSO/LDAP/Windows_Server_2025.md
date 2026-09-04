@@ -2,7 +2,7 @@
 
 ---
 
-Pour les besoins d'un test de connection via `Ldap` sur le logiciel [Vault](https://github.com/NALSED/TUTO/tree/main/PERSO/VAULT), mise en place d'un LDAPS, avec création de certificats Ssl avec le Role `ADCS`.
+Pour les besoins d'un test de connexion via `Ldap` sur le logiciel [Vault](https://github.com/NALSED/TUTO/tree/main/PERSO/VAULT), mise en place d'un LDAPS, avec création de certificats Ssl avec le Role `ADCS`.
 
 
 ---
@@ -219,7 +219,7 @@ Win + R
 ---
 
 
-### `II` **Edition du certificat**
+### `II` **Édition du certificat**
 
 `-1.` Retrouver le template
 
@@ -261,7 +261,7 @@ win + R
 
 
 `-6.` Renseigner le CN et DNS (ils doivent être les même que les enregistrement DNS de pfsense); ainsi que celui de l'adds.
-- La déclaration DNS resolver et le FQND du certificat doit être identique.
+- La déclaration DNS resolver et le FQDN du certificat doit être identique.
 
 - Ici
 
@@ -352,11 +352,11 @@ Dans => Add Roles and Features Wizard :
 
 <img width="773" height="332" alt="image" src="https://github.com/user-attachments/assets/c1178562-e58d-4922-9821-08690d21c6d8" />
 
-`-2.` Connection => Connect...
+`-2.` Connexion => Connect...
 
 <img width="189" height="229" alt="image" src="https://github.com/user-attachments/assets/193ddb60-0353-43b4-a1ad-e80325280cc8" />
 
-`-3.` Renseigner le FQND du serveur AD + Port LDAPS + SSL => OK
+`-3.` Renseigner le FQDN du serveur AD + Port LDAPS + SSL => OK
 
 -Résultat attendu :
 
@@ -444,7 +444,7 @@ Password => Azerty*
  
 <img width="1009" height="403" alt="image" src="https://github.com/user-attachments/assets/c0584058-96a7-4800-9199-f8ee1e4793f4" />
 
-`2.2.2` Test de Connection depuis la machine Win 10
+`2.2.2` Test de Connexion depuis la machine Win 10
 
 - pointer le serveur 192.168.0.250 (Linux debian 13)
 
@@ -455,7 +455,7 @@ Password => Azerty*
       vault login -method=ldap username=a.testos
 
 
--Resultat 
+-Résultat 
 
 <img width="837" height="415" alt="image" src="https://github.com/user-attachments/assets/0d98ae52-a409-4aeb-85f7-d04214e62209" />
 

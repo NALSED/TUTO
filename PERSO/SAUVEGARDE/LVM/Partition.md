@@ -35,7 +35,7 @@
 
 #### Ici 
       apt install parted
-      # wipefs deja present
+      # wipefs déjà présent
 
 
 * #### I) `parted`

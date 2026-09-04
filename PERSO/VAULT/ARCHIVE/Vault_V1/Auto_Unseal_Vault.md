@@ -36,7 +36,7 @@ Ce tutoriel à pour objectif :
 
 ---
 
-### === SCHEMA ===
+### === SCHÉMA ===
 ```
      === 192.168.0.241 ===                              === 192.168.0.238 ===
 ┌─────────────────────────────┐                    ┌─────────────────────────────┐
@@ -77,7 +77,7 @@ Ce tutoriel à pour objectif :
 
 - Optionnelle :
    - VSC comme éditeur de texte.
-   - ⚠️ Des commandes ssh sont présente,pour créer des connections ssh sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
+   - ⚠️ Des commandes ssh sont présente,pour créer des connexions ssh sans mdp. [VOIR ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/SSH/Multi_OS.md#ubuntu---ubuntu)
 
 ---
 
@@ -174,7 +174,7 @@ ici `vault.sednal.lan` = Vault_Root, et `vault.sednal.lan` = Vault_Auto.
 
        sudo nano /etc/Vault/CA_Vault/Config/CA_Vault.cnf
 
--Editer
+-Éditer
           
     [ req ]
     default_bits       = 4096
@@ -214,7 +214,7 @@ et sur 192.168.0.238
 
         sudo nano /etc/Vault/Vault_Auto/Config/Vault_Auto.cnf
 
--Editer
+-Éditer
 
     [ req ]
     default_bits       = 4096
@@ -250,7 +250,7 @@ et sur 192.168.0.238
 
        nano /etc/Vault/Vault_Auto/Config/Vault_Auto_ext.cnf
 
--Editer
+-Éditer
 
           [v3_req]
           subjectAltName     = @alt_names
@@ -292,7 +292,7 @@ et sur 192.168.0.238
 
    sudo nano /etc/Vault/Vault_Root/Config/Vault_Root.cnf
 
--Editer
+-Éditer
 
     [ req ]
     default_bits       = 4096
@@ -328,7 +328,7 @@ et sur 192.168.0.238
 
        sudo nano /etc/Vault/Vault_Root/Config/Vault_Root_ext.cnf
 
--Editer
+-Éditer
 
     [v3_req]
     subjectAltName     = @alt_names
@@ -466,7 +466,7 @@ et sur 192.168.0.238
 
        sudo nano /etc/Vault_Script/Script_Renouvelement/renew_vault_ssl.sh
 
--Editer
+-Éditer
 
  [Script de renouvellement automatique 192.168.0.241](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/AUTO_UNSEAL/-5-renouvelement_Vault_Auto.sh)
 
@@ -699,7 +699,7 @@ Le service sera déclenché par le timer.
 <img width="800" height="206" alt="image" src="https://github.com/user-attachments/assets/82a854db-1e70-4745-954d-a6a892573d83" />
 
 
--2. Pour éviter d'entrer les variables  `export VAULT_CACERT='/etc/Vault/CA_Vault/Cert/public/CA.crt'` et `export VAULT_ADDR='https://vault_2.sednal.lan:8100'` à chaque connection.
+-2. Pour éviter d'entrer les variables  `export VAULT_CACERT='/etc/Vault/CA_Vault/Cert/public/CA.crt'` et `export VAULT_ADDR='https://vault_2.sednal.lan:8100'` à chaque connexion.
 
 `=== VAULT_CACERT ===`
 
@@ -807,7 +807,7 @@ Sortie attendue
 
 -1. Éditer le fichier de configuration ci dessus ⬆️
 
--2. -2. Pour éviter d'entrer les variables  `export VAULT_CACERT='/etc/Vault/Vault_Root/Cert/public/CA.crt'` et `export VAULT_ADDR='https://vault.sednal.lan:8200'` à chaque connection.
+-2. -2. Pour éviter d'entrer les variables  `export VAULT_CACERT='/etc/Vault/Vault_Root/Cert/public/CA.crt'` et `export VAULT_ADDR='https://vault.sednal.lan:8200'` à chaque connexion.
 
 `=== VAULT_CACERT ===`
 

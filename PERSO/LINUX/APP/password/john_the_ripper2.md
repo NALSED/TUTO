@@ -87,7 +87,7 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 
 ## 3️⃣ `Rules`
 ### Les règles sont à éditer dans le fichier de conf de john et appeler ensuite pour le craquage.
-    sudo nano -c /etc/john/john.conf # _c pour avvoir la ligne => ligne 697
+    sudo nano -c /etc/john/john.conf # _c pour avoir la ligne => ligne 697
     EXEMPLE=[List.Rules:monTest]
 
 ### Éditer les règles en leurs donnant un nom qui sera appelé via la commande
@@ -263,12 +263,12 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 ### `N` : Rejeter le mot à moins qu'il ne fasse plus de N caractères.
 
 ### 📝 `EXEMPLE`
-    N=8        # Test les MDP d'une longueur mini de 8 caractéres, en dessous ils seront ignorés 
+    N=8        # Test les MDP d'une longueur mini de 8 caractères, en dessous ils seront ignorés 
 
 ### `'N` : Tronque le mot
 
 ### 📝 `EXEMPLE`
-    'N=8 tronquera le mot à 8 caractére.
+    'N=8 tronquera le mot à 8 caractère.
 
 
 ---
@@ -290,7 +290,7 @@ Il n'y a pas de valeur après le dernier `:` car ce dernier champ n'a pas d'util
 
 ### `xNM`	Extrait une sous-chaîne à partir de la position N, sur une longueur de M caractères.
 ### 📝 `EXEMPLE
-         x13 sur admin => dmi # A partir de la position 1 (a) on extrait les 3 caractére suivant (dmi)
+         x13 sur admin => dmi # A partir de la position 1 (a) on extrait les 3 caractère suivant (dmi)
 
 ### `iNX`	Insère le caractère X à la position N, les caractères suivants sont décalés.
 ### 📝 `EXEMPLE

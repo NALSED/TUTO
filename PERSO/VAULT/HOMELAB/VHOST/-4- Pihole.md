@@ -11,7 +11,7 @@ Avec `/admin/` dans le `proxy_pass`, nginx transmet `/admin/admin/` et le naviga
 sudo vim /etc/nginx/sites-available/pihole.conf
 ````
 
-- Edition fichier
+- Édition fichier
 ````
 server {
     listen 80;

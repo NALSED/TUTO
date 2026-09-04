@@ -137,14 +137,14 @@ Ici on ne met pas cette solution en place car le service OCSP et Vault devraient
 sudo /sbin/usermod -aG vault sednal
 ```
 
--2.1 Edition du script 
+-2.1 Édition du script 
 ```
 sudo nano /usr/local/bin/push-crl.sh
 ```
 
 `=>` - Éditer Script : [push-crl.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/SCRIPT/PKI/push-crl.sh)
 
-- Droits + Execution :
+- Droits + Exécution :
 ```
 sudo chown vault:vault /usr/local/bin/push-crl.sh
 ```
@@ -153,7 +153,7 @@ sudo chown vault:vault /usr/local/bin/push-crl.sh
 sudo chmod +x /usr/local/bin/push-crl.sh
 ```
 
--2.2. Edition du cron 
+-2.2. Édition du cron 
 ```
 crontab -e
 ```

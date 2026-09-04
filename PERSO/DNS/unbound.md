@@ -12,11 +12,11 @@
 ### 1️⃣ Installation
       sudo apt install unbound -y
 
-### 2️⃣ Configuration  avce PiHole      
-#### Fichié trouvé [ICI](https://docs.pi-hole.net/guides/dns/unbound/)
+### 2️⃣ Configuration  avec PiHole      
+#### Fichier trouvé [ICI](https://docs.pi-hole.net/guides/dns/unbound/)
 
         nano /etc/unbound/unbound.conf.d/pi-hole.conf
-Editer
+Éditer
 
         server:
             # If no logfile is specified, syslog is used
@@ -114,16 +114,16 @@ Editer
             +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                         +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-cette solution fonctionne, mais pose plusieurs probléme détaillé [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/TROUBLESHOOTING/pihole_unbound_pfsense.md)
+cette solution fonctionne, mais pose plusieurs problème détaillé [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/DNS/TROUBLESHOOTING/pihole_unbound_pfsense.md)
 
-donc priviligier la solution disponible dans le liens ci dessus.
+donc privilégier la solution disponible dans le liens ci dessus.
 
 
 ## `II) Ajout au fichier de configuration pour résolution de nom de domain en Local.`
 
 #### Au fichier de configuration précédent ajouter les ligne suivante:
-##### ⚠️ unbound ne prend en charge qu'un seul ficgier de configuration. ⚠️
-#### (Penser à adapter la configuration pour implémenter de la sécurité d'accés)
+##### ⚠️ unbound ne prend en charge qu'un seul fichier de configuration. ⚠️
+#### (Penser à adapter la configuration pour implémenter de la sécurité d'accès)
 
             # ouverture à tout le monde
             access-control: 0.0.0.0/0 allow

@@ -21,7 +21,7 @@
 ![image](https://github.com/user-attachments/assets/70ee5ff0-aaf7-4f9a-89c7-2a3095db920b)
 #### Disable inheritance
 ![image](https://github.com/user-attachments/assets/7ac730d9-0ac3-4382-8765-97479ea0aaf1)
-#### Converte inheritance ...
+#### Convert inheritance ...
 ![image](https://github.com/user-attachments/assets/0fe60816-19ba-40db-b768-542ebd1ca8c1)
 #### Supprimer User => OK
 ![image](https://github.com/user-attachments/assets/9cc0e51e-5a59-4d88-a78c-f395b0488a7f)

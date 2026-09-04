@@ -17,7 +17,7 @@
           Password = "f5YTRea7kMJN+vHuA6Biyfs0EKf+9HqGAH2z8fbkMoyw"
           }
 
-#### Edition Powershell en admin
+#### Édition Powershell en admin
 
                   New-NetFirewallRule -DisplayName "Bareos FD" -Direction Inbound -LocalPort 9102 -Protocol TCP -Action Allow
 

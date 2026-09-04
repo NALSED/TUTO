@@ -1,6 +1,6 @@
 ## Première configuration de pfSense
 ### 1️⃣Installer pfSense => [liens IT connect](https://www.it-connect.fr/comment-installer-pfsense-dans-virtualbox-pour-creer-un-lab-virtuel/)
-#### ⚠️Vérifier si les carte corespondent bien à LAN et WAN sinon menu 1
+#### ⚠️Vérifier si les carte correspondent bien à LAN et WAN sinon menu 1
 ### 2️⃣Configuration de pfSense en CLI
 * #### Menu Principale
 ![ad1](https://github.com/user-attachments/assets/6350b9b1-e3e9-46d7-8158-58c6d6c2087b)
@@ -36,7 +36,7 @@
 * ### `step 9`
    * #### finish ⬇️
 ![ad1](https://github.com/user-attachments/assets/099c2f4b-d737-484c-9acd-362150aa621e)
-### 4️⃣ Bloquer la connection sur le client
+### 4️⃣ Bloquer la connexion sur le client
    * #### Avant édition de règle
 ![ad1](https://github.com/user-attachments/assets/2f492a98-76e9-4658-939f-ed8812bbd22b)
    * #### Dans l'Interface GUI Firewall/Rules/Edit Puis ⬇️

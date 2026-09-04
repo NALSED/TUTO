@@ -80,7 +80,7 @@
 ### 📝 Les Pools sont une organisation logique des sauvegardes.
 
 ### Création d'un pool personnalisé, c'est à dire la manière dont on veux faire la sauvegarde :
-# ⚠️PENSER A DECLARER LES VOLUME( LOGIQUE)
+# ⚠️PENSER À DÉCLARER LES VOLUMES( LOGIQUE)
 * ### Full-Storage
 * ### Incremental-Storage
 * ### Differential-Storage
@@ -160,7 +160,7 @@
 
 [TUTO](https://docs.bareos.org/TasksAndConcepts/CatalogMaintenance.html#index-15) 
 
-### Le Job dans Bareos est une tâche qui définit le type d'opération à réaliser, comme une sauvegarde, une restauration, ou une verification des fichiers. Un Job est associé à un FileSet, un Schedule (planification), un Client, un Pool et un Storage.
+### Le Job dans Bareos est une tâche qui définit le type d'opération à réaliser, comme une sauvegarde, une restauration, ou une vérification des fichiers. Un Job est associé à un FileSet, un Schedule (planification), un Client, un Pool et un Storage.
 
 ### Éditer le fichier /etc/bareos/bareos-dir.d/job
     nano /etc/bareos/bareos-dir.d/job/windowsbackup.conf
@@ -188,7 +188,7 @@
 [TUTO](https://docs.bareos.org/Configuration/Director.html#schedule-resource)
 
 
-## Le fichier Schedule est le planing pour gérer la sauvvegarde.
+## Le fichier Schedule est le planing pour gérer la sauvegarde.
 ### Éditer le fichier : /etc/bareos/bareos-dir.d/schedule (créer son fichier de conf perso)
       nano  /etc/bareos/bareos-dir.d/schedule/first.conf
 ![image](https://github.com/user-attachments/assets/b3c1d43c-c584-4a59-a0ac-b2f38a158347)

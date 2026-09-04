@@ -72,7 +72,7 @@ sudo cp /opt/vault/tls/vault.key /opt/vault/tls/vault.key.selfsigned
 
 ### `- 1.3` Émission et bascule
 
-- Edition du certificat final pour `192.168.0.238`
+- Édition du certificat final pour `192.168.0.238`
 ````
 vault write -format=json PKI-Sednal-Inter-RSA/issue/infra \
      common_name="vault.sednal.lan" \
@@ -104,7 +104,7 @@ rm /tmp/cert.json
 sudo systemctl reload vault
 ````
 
-- Connection
+- Connexion
 ````
 export VAULT_ADDR=https://vault.sednal.lan:8100
 export VAULT_CACERT=/etc/ssl/nalsed/ca.crt
@@ -112,7 +112,7 @@ vault login
 vault status
 ````
 
-Pour rendre permanant inscription dans : `~/.bashrc`.
+Pour rendre permanente l'inscription dans : `~/.bashrc`.
 
 `[NOTE]`
 
@@ -134,14 +134,14 @@ vault auth enable approle
 sudo vim /etc/vault/pki/config/policy/Policy_Issue.hcl
 ````
 
-- Edition policy
+- Édition policy
 ````
 path "PKI-Sednal-Inter-RSA/issue/infra" {
   capabilities = [ "create", "update" ]
 }
 ````
 
-- Editer dans Vault
+- Éditer dans Vault
 ````
 vault policy write pki-issue /etc/vault/pki/config/policy/Policy_Issue.hcl
 ````
@@ -190,7 +190,7 @@ sudo mkdir -p /etc/vault-agent/templates
 sudo chmod 700 /etc/vault-agent
 ````
 
-- Création / Edition fichier `role_id` et `secret_id`
+- Création / Édition fichier `role_id` et `secret_id`
 ````
 sudo vim /etc/vault-agent/role_id
 sudo vim /etc/vault-agent/secret_id
@@ -216,7 +216,7 @@ sudo chmod 600 /etc/vault-agent/role_id
 sudo vim  /etc/vault-agent/templates/cert.tpl
 ````
 
-- Edition
+- Édition
 ````
 {{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=vault.sednal.lan" "ip_sans=192.168.0.238,127.0.0.1" "ttl=8760h" -}}
 {{ .Data.certificate }}
@@ -229,7 +229,7 @@ sudo vim  /etc/vault-agent/templates/cert.tpl
 sudo vim /etc/vault-agent/templates/key.tpl
 ````
 
-- Edition
+- Édition
 ````
 {{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=vault.sednal.lan" "ip_sans=192.168.0.238,127.0.0.1" "ttl=8760h" -}}
 {{ .Data.private_key }}
@@ -249,7 +249,7 @@ L'agent ne sait poser que les droits, pas le propriétaire : donc script.
 sudo vim /usr/local/bin/reload-vault.sh
 ````
 
-- Editer
+- Éditer
 ````
 #!/bin/bash
 set -euo pipefail
@@ -275,7 +275,7 @@ sudo chmod 700 /usr/local/bin/reload-vault.sh
 sudo vim /etc/vault-agent/agent.hcl
 ````
 
-- Edition fichier de configuration agent
+- Édition fichier de configuration agent
 ````
 pid_file = "/run/vault-agent.pid"
 
@@ -322,7 +322,7 @@ template {
 sudo vim /etc/systemd/system/vault-agent.service
 ````
 
-- Edition service
+- Édition service
 
 `[NOTE]`
 Il lance le processus vault agent et le maintient démarré, s'authentifie avec le role_id/secret_id, demande un certificat, l'écrit sur disque, lance le script de reload.
@@ -461,7 +461,7 @@ sudo mkdir -p /etc/vault-agent/templates
 sudo chmod 700 /etc/vault-agent
 ````
 
-- Création / Edition fichier `role_id` et `secret_id`
+- Création / Édition fichier `role_id` et `secret_id`
 ````
 sudo vim /etc/vault-agent/role_id
 sudo vim /etc/vault-agent/secret_id
@@ -493,7 +493,7 @@ puis `systemctl restart vault-agent`.
 sudo vim /etc/vault-agent/templates/cert.tpl
 ````
 
-- Edition
+- Édition
 ````
 {{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=infra.sednal.lan" "alt_names=pihole.sednal.lan,bareos.sednal.lan,cockpit.sednal.lan,proxmox.sednal.lan" "ip_sans=192.168.0.239" "ttl=8760h" -}}
 {{ .Data.certificate }}
@@ -506,7 +506,7 @@ sudo vim /etc/vault-agent/templates/cert.tpl
 sudo vim /etc/vault-agent/templates/key.tpl
 ````
 
-- Edition
+- Édition
 ````
 {{- with secret "PKI-Sednal-Inter-RSA/issue/infra" "common_name=infra.sednal.lan" "alt_names=pihole.sednal.lan,bareos.sednal.lan,cockpit.sednal.lan,proxmox.sednal.lan" "ip_sans=192.168.0.239" "ttl=8760h" -}}
 {{ .Data.private_key }}
@@ -526,7 +526,7 @@ L'agent ne sait poser que les droits, pas le propriétaire : donc script.
 sudo vim /usr/local/bin/reload-nginx.sh
 ````
 
-- Editer
+- Éditer
 ````
 #!/bin/bash
 set -euo pipefail
@@ -552,7 +552,7 @@ sudo chmod 700 /usr/local/bin/reload-nginx.sh
 sudo vim /etc/vault-agent/agent.hcl
 ````
 
-- Edition fichier de configuration agent
+- Édition fichier de configuration agent
 ````
 pid_file = "/run/vault-agent.pid"
 
@@ -599,7 +599,7 @@ template {
 sudo vim /etc/systemd/system/vault-agent.service
 ````
 
-- Edition service
+- Édition service
 
 `[NOTE]`
 Il lance le processus vault agent et le maintient démarré, s'authentifie avec le role_id/secret_id, demande un certificat, l'écrit sur disque, lance le script de reload.

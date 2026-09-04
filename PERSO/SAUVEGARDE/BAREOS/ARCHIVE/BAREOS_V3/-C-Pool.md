@@ -81,7 +81,7 @@
                   }
 
 `[NOTE]` `Storage_Remote` et non `Storage_Local` : les pools WAN sont les
-sauvegardes hors site, elles doivent ecrire sur le VPS.
+sauvegardes hors site, elles doivent écrire sur le VPS.
 
 
 

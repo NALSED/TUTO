@@ -48,7 +48,7 @@ Les problèmes sont apparus lorsque j’ai voulu implémenter des noms de domain
 
 ---
 
-### === Problémes ===
+### === Problèmes ===
 
 Impossible de résoudre ou d’effectuer des ping vers les domaines inscrits dans le résolveur DNS de pfSense (voir ci-dessous).
 
@@ -89,7 +89,7 @@ On voit ici que 192.168.0.241 ne peut pas pinguer le nom de domaine suivant (alo
 
       dig vault.sednal.lan @192.168.0.241 -p 53
 
-Resultat => `NXDOMAIN` et `QUERY: 1, ANSWER: 0`
+Résultat => `NXDOMAIN` et `QUERY: 1, ANSWER: 0`
 
 <img width="640" height="329" alt="image" src="https://github.com/user-attachments/assets/a5da0c51-ea7a-4820-a048-8688367cb10f" />
 
@@ -97,9 +97,9 @@ Resultat => `NXDOMAIN` et `QUERY: 1, ANSWER: 0`
 
       dig vault.sednal.lan @192.168.0.241 -p 5335
 
-Resultat => `NOERROR` ,`QUERY: 1, ANSWER: 1`, et `vault.sednal.lan.       3600    IN      A       192.168.0.238`
+Résultat => `NOERROR` ,`QUERY: 1, ANSWER: 1`, et `vault.sednal.lan.       3600    IN      A       192.168.0.238`
 
-Donc probléme entre Pihole et Unbound
+Donc problème entre Pihole et Unbound
 
 Confirmation ports utilisés
 
@@ -126,7 +126,7 @@ liste causes probable PiHole
 
 ## Dans le fichier de configuration `/etc/pihole/pihole.toml`
 
-        liste probleme potentiel
+        liste problème potentiel
 
         ---------------
         ---------------
@@ -279,7 +279,7 @@ liste causes probable PiHole
         
         - Niveau probable : a voire
          
-        Pour que seul pfsense gére ça 
+        Pour que seul pfsense gère ça 
         
         existant :
         
@@ -318,7 +318,7 @@ liste causes probable PiHole
 
 dans le ficher /etc/pihole/pihole.toml => [DNS] => Reverse server 
 
-par defaut
+par défaut
 
       revServers = [
                   "true,192.168.0.241/24,192.168.0.1,pihole.lan"

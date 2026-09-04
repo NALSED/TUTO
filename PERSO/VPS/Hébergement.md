@@ -29,7 +29,7 @@
 #### 1.1) Création d'une règle avec iptable sur le port `8080 TCP`
         sudo iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
 
-####  RESULTAT
+####  RÉSULTAT
 <img width="684" height="48" alt="image" src="https://github.com/user-attachments/assets/14f7a5f9-fea0-405f-b42c-240aff56362e" />
 
 #### 1.2) Pour rendre la règle permanente (sinon elle disparaît au reboot) :
@@ -68,7 +68,7 @@
 #### 2.2) Installer `AutoSSH` => un outil qui maintient automatiquement un tunnel SSH ouvert et le relance si la connexion tombe.
         sudo apt install autossh
 
-#### 2.3) Créer un connection sans MDP et Initier la connexion via autossh
+#### 2.3) Créer une connexion sans MDP et Initier la connexion via autossh
           ssh-copy-id -i /home/sednal/.ssh/id_ecdsa.pub debian@176.31.163.227
           nohup autossh -M 0 -N -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" \ -R 0.0.0.0:8080:localhost:3000 debian@176.31.163.227 > ~/autossh.log 2>&1 &
 
@@ -207,7 +207,7 @@
 
 ---
 
-### SCHEMA
+### SCHÉMA
 
             ┌─────────────┐
             │   Internet  │

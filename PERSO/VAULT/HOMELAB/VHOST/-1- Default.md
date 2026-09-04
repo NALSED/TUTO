@@ -17,7 +17,7 @@ sans réponse.
 sudo vim /etc/nginx/sites-available/default-ssl.conf
 ````
 
-- Edition
+- Édition
 ````
 server {
     listen 443 ssl default_server;

@@ -137,7 +137,7 @@
      sudo nano /etc/vault.d/vault.hcl
 
 
--congiguration mini sans certificat ssl
+-configuration mini sans certificat ssl
 
           disable_mlock = true
           ui = true

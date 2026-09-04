@@ -26,23 +26,23 @@
 ## Une ` Sauvegarde ciblée`  + ` Snapshot`  le 1er du mois de ` FEVRIER`  ` JUIN`  et ` OCTOBRE`. 
 * ## 3️⃣ `DNS1`
   * ### Snapshot : 2:10
-  * ## Récupération des dossier par Baréos de `WEB`  =>  `Snapshot` 9:00 // `BackUp` 9:30
-  * ## Récupération des dossier par Baréos de `DNS1` =>  `Snapshot`  12:30 // `BackUp` 12:30
+  * ## Récupération des dossier par Bareos de `WEB`  =>  `Snapshot` 9:00 // `BackUp` 9:30
+  * ## Récupération des dossier par Bareos de `DNS1` =>  `Snapshot`  12:30 // `BackUp` 12:30
 
 
 
 
 ---
-## Une ` Sauvegarde ciblée`  + ` Snapshot`  => Une Full 1er dimache du mois et une incrémentale les autres dimanches du mois
+## Une ` Sauvegarde ciblée`  + ` Snapshot`  => Une Full 1er dimanche du mois et une incrémentale les autres dimanches du mois
 * ## 4️⃣ `Serveur`
     * ### Snapshot : 2:10
-    * ## Récupération des dossier par Baréos de `Serveur` => `Snapshot` 12:00 // `BackUp` 12:30
+    * ## Récupération des dossier par Bareos de `Serveur` => `Snapshot` 12:00 // `BackUp` 12:30
 
 ---
-## Une ` Sauvegarde ciblée`  => Une Full 1er dimache du mois et une incrémentale les autres dimanches du mois
+## Une ` Sauvegarde ciblée`  => Une Full 1er dimanche du mois et une incrémentale les autres dimanches du mois
 * ## 5️⃣ `Admin`
    * ### Snapshot : 1er de chaque mois
-   * ## Récupération des dossier par Baréos de `Serveur` =>  `BackUp` 13:00
+   * ## Récupération des dossier par Bareos de `Serveur` =>  `BackUp` 13:00
 
 
 

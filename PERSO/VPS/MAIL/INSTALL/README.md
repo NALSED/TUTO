@@ -1,13 +1,13 @@
-## 🐋 Mise en place compléte de DockerMailServer. 🐋 
+## 🐋 Mise en place complète de DockerMailServer. 🐋 
 
 --- 
 
-Dans cette section est regroupé toutes les étapes pour obtenir, un service `Docker MailServer`, avec WebUi `SOGo`, et base de donnée `PostGreSQL`.
+Dans cette section est regroupé toutes les étapes pour obtenir, un service `Docker MailServer`, avec WebUi `SOGo`, et base de données `PostGreSQL`.
 
 
 `[RAPPEL]`
 
-Il est bon de lire cette partie de la documentation afin de bien comprendre le fonctionnement de la messagerie. => [Intro_Fonctionement](https://docker-mailserver.github.io/docker-mailserver/latest/introduction/)
+Il est bon de lire cette partie de la documentation afin de bien comprendre le fonctionnement de la messagerie. => [Intro_Fonctionnement](https://docker-mailserver.github.io/docker-mailserver/latest/introduction/)
 
 
 ---

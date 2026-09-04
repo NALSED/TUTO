@@ -106,7 +106,7 @@
 </h2>
 </summary>
 
-### 3.1) Sécuriser la connection => enable
+### 3.1) Sécuriser la connexion => enable
 ### Le mot de passe ne sera plus en claire dans run/start-config
             saiph(config)#service password-encryption 
 
@@ -131,7 +131,7 @@
 ### 3.2.4) Time out
             saiph(config)#ip ssh time-out 120 => en secondes .. ⚠️
 
-### 3.2.5) Configurer le nombre de tentatives de connection
+### 3.2.5) Configurer le nombre de tentatives de connexion
             saiph(config)#ip ssh authentication-retries 3
 
 ![image](https://github.com/user-attachments/assets/e9124b0b-5ecb-46ec-a527-df0120d4f6f8)
@@ -154,7 +154,7 @@
 ### Mettre un time out sur cette interface(si une utilisation inactive prolongée est détecté la session est fermé)
                  saiph(config-line)#exec-timeout 3 => en minutes
 
-### ⚠️Maintenant si on se connect avec le cable bleu sur le switch un login et un MDP sera demandé.
+### ⚠️Maintenant si on se connect avec le câble bleu sur le switch un login et un MDP sera demandé.
 
 ### 3.2.2) `VTY`
 ### Ici configuration du nombre de lignes dédiées à la gestion à distance du switch
@@ -174,7 +174,7 @@
 ### Qu'on ne puisse faire que du ssh  
             saiph(config-line)# transport output none
 
-### Sécuriser les autre line VTY (pas de connection)
+### Sécuriser les autre line VTY (pas de connexion)
             saiph(config)#line vty 3 15
             saiph(config-line)#no login
 

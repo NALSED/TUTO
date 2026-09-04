@@ -5,7 +5,7 @@
 
 ---
 
-Ce tuto explique comment autoriser la connection Serveur/Client
+Ce tuto explique comment autoriser la connexion Serveur/Client
 ---
 
 ## 1️⃣ `Ajout`
@@ -52,7 +52,7 @@ Ce tuto explique comment autoriser la connection Serveur/Client
 ### résultat attendu
 ![image](https://github.com/user-attachments/assets/63ba94b9-3f42-4d85-b492-38b3e371e3f8)
 
-### Test de connection client serveur
+### Test de connexion client serveur
             bconsole
             status client=nom_du_client-fd
 

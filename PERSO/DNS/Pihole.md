@@ -84,8 +84,8 @@
 *  #### Article + Ressources [SITE](https://avoidthehack.com/best-pihole-blocklists)
 * #### Black listes
     *  #### [Starter Pack](https://cdn.jsdelivr.net/gh/jerryn70/GoodbyeAds@master/Hosts/GoodbyeAds.txt)
-    * #### Propose des listes en foction de la politique de blocage souhaitée [GitHub](https://github.com/hagezi/dns-blocklists?tab=readme-ov-file#pro)
-    * #### Propose des listes en foction de ce que l'on veux  bloquer [SITE](https://firebog.net/)
+    * #### Propose des listes en fonction de la politique de blocage souhaitée [GitHub](https://github.com/hagezi/dns-blocklists?tab=readme-ov-file#pro)
+    * #### Propose des listes en fonction de ce que l'on veux  bloquer [SITE](https://firebog.net/)
 
 * #### Script pour bloquer pub Youtube => [GitHub](https://github.com/kboghdady/youTube_ads_4_pi-hole)
 ---

@@ -44,7 +44,7 @@
 * #### --dearmor retire l'enveloppe ASCII => -----BEGIN PGP PUBLIC KEY BLOCK----- et -----END PGP PUBLIC KEY BLOCK-----
 * #### -o output => donc la sortie vers
 
-### 1.4) changer permitions en lecture
+### 1.4) changer permissions en lecture
           sudo chmod a+r /etc/apt/keyrings/docker.gpg
 
 
@@ -97,7 +97,7 @@
 
 * #### docker-ce => le logiciel
 * #### docker-ce-cli => client
-* #### containerd.io  => daemond execution conteneur
+* #### containerd.io  => daemond exécution conteneur
 * #### docker-buildx-plugin => ajoute du support de création  de conteneur
 * #### docker-compose-plugin => Décrire l'architecture en .yaml 
 

@@ -68,7 +68,7 @@ ___
 ![image](https://github.com/user-attachments/assets/7958fc66-4b44-4e2a-8083-abb14e3bfcbd)
 
 ## 4️⃣ `Régles NAT`
-* ### EDITION :
+* ### ÉDITION :
 ___
 * ###  R-EDGE
 		nft add table ip table_NAT		
@@ -121,7 +121,7 @@ ___
 ### Si l'on ajoute la route suivante
 		
   		ip route add 10.0.1.0/24 via 10.0.99.253
-### Le ping depuis le cliens fonctionne depuis 10.0.1.1 => 8.8.8.8
+### Le ping depuis le clients fonctionne depuis 10.0.1.1 => 8.8.8.8
 
 ## ICI il est possible de pinger internet depuis le client
 

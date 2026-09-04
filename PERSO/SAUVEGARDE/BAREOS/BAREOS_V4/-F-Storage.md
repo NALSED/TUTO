@@ -24,5 +24,5 @@
               }
 
 `[NOTE]` L'adresse est celle du **tunnel SSH local**, pas celle du VPS.
-Le port 9203 est le port d'entree du tunnel sur 192.168.0.240, redirige vers
+Le port 9203 est le port d'entrée du tunnel sur 192.168.0.240, redirigé vers
 le 9103 du SD distant. Voir [-A-Configuration §III](./-A-Configuration.md).

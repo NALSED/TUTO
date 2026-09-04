@@ -58,7 +58,7 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 
 ## 3️⃣ `Régles NAT`
 ***
-* ### EDITION :
+* ### ÉDITION :
 
 * ###  R-EDGE
 		nft add table ip table_NAT		
@@ -96,7 +96,7 @@ Mise en place d'une infrastructure système et réseau composée des éléments 
 ### Si l'on ajoute la route suivante => /etc/network/interfaces
 		
   		up ip route add 10.0.0.0/22 via 10.0.99.253
-### Le ping depuis le cliens fonctionne depuis 10.0.1.1 => 8.8.8.8
+### Le ping depuis le clients fonctionne depuis 10.0.1.1 => 8.8.8.8
 ***
 ***
 ## 4️⃣ `protocole RIP avec FRRouting`

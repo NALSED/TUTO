@@ -29,17 +29,17 @@
             username = "admin"
             pwd =  "admin123"
             if username  == "admin" and pwd  == "admin123":
-                print("accés ok")
+                print("accès ok")
             else:
-                print("accées refusé")
+                print("accès refusé")
             
             #solution 2    
 
-            # Définition de  la fontion
+            # Définition de  la fonction
             def verif(username, pwd):
                 if username == "admin" and pwd == "admin123":
-                    return  "accés  ok"
-                return "accés refusé"
+                    return  "accès  ok"
+                return "accès refusé"
             # Appeler la fonction
             print(verif("admin", "admin123"))
 ---
@@ -181,7 +181,7 @@
                   # Si oui, appelle la fonction originale avec tous ses arguments
                   return fonction(*args, **kwargs)
               else:
-                  print("accés nok")
+                  print("accès nok")
           #appel la fonction wrapper
           return wrapper
       #@verrif_acces appel verrif_acces donc wrapper donc display_logs modifié
