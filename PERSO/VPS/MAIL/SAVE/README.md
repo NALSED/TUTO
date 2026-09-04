@@ -31,17 +31,17 @@ Cette Partie montre la sauvegarde de la base de donnée ainsi que les mails de `
 
 `SOMMAIRE`
 
--1- `Principes` => [Lien]()
+-1- `Principes` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-1-%20Principes.md)
 
--2- `Prérequis` => [Lien]() 
+-2- `Prérequis` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-2-%20Pr%C3%A9requis.md) 
 
--3- `Script sauvegarde sur VPS` => [Lien]()
+-3- `Script sauvegarde sur VPS` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-3-%20Script_sauvegarde_sur_VPS)
 
--4- `Script rapatriement sur serveur de sauvegarde` => [Lien]()
+-4- `Script rapatriement sur serveur de sauvegarde` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-4-%20Script_Sauvegarde_Serveur.md)
 
--5- `Configuration supplémentaire de Bareos` => [Lien]()
+-5- `Configuration supplémentaire de Bareos` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-5-%20R%C3%A9gle_Supl%C3%A9mentaire_Bareos.md)
 
--6- `Vérification` => [Lien]()
+-6- `Vérification` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-6-%20V%C3%A9rification.md)
 
--7- `Restauration` => [Lien]()
+-7- `Restauration` => [Lien](https://github.com/NALSED/TUTO/blob/main/PERSO/VPS/MAIL/SAVE/-7-%20Restauration.md)
 
