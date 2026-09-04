@@ -323,20 +323,21 @@ Ne jamais y mettre `bareos.sednal.lan`, qui pointe vers le reverse proxy 192.168
 
       Storage {
               Name = Storage_Local
-              Address = 192.168.0.240
+              Address = bareos-sd.sednal.lan
               SDPort = 9103
               Password = "fCQqLZbkIZ+IBMpXOWtCZWOjrnxuJWt9ApbKT6PW8U8n"
-              Device =  Local_Device
+              Device = Local_Device
               Media Type = File
               }
+
 
 ### 2.2) /etc/bareos/bareos-dir.d/storage/`Storage_Remote.conf`
 
       Storage {
               Name = Storage_Remote
-              Address = 176.31.163.227
-              SDPort = 9103
-              Password = "fCQqLZbkIZ+IBMpXOWtCZWOjrnxuJWt9ApbKT6PW8U8n"
+              Address = 192.168.0.240
+              SDPort = 9203
+              Password = "[PASSWORD]"
               Device = Remote_Device
               Media Type = File
               }
