@@ -2,111 +2,106 @@
 
 ---
 
-Procédure compléte de sauvegarde de la base de données et des mail depuis le `VPS 176.31.163.227`, via `PC ADMIN 192.168.0.235` sur le serveur de sauvegarde `BAREOS 192.168.0.240`
+Sauvegarde de la base de données et des mails du `VPS 176.31.163.227` vers le
+serveur de sauvegarde `BAREOS 192.168.0.240`.
 
 ---
 
 ## `-1-` Principe
 
-- Le Serveur DMS produit ses propres sauvegardes localement, puis les dépose dans `F:/save/VPS_Mail_BackUp` du
-PC Admin `192.168.0.235`.
+- Le VPS produit ses propres sauvegardes localement, chaque nuit.
 
-- Ce chemin étant déjà couvert par `Win_BackUp_FileSet_LAN` via `F:/save`, la sauvegarde Bareos du dimanche les embarque
-automatiquement vers le RAID10 du serveur `192.168.0.240`.
+- Le serveur Bareos les rapatrie juste avant sa sauvegarde du dimanche, via un
+`RunBeforeJob` du job `Lin_BackUp_Job_LAN`.
 
-- Le VPS n'est **pas** déclaré comme client Bareos : aucun port 9102 à ouvrir, aucune ressource `Client` à créer côté Director.
+- Le dossier de dépôt `/home/sednal/VPS_Mail_BackUp` est inclus dans
+`Lin_BackUp_FileSet_LAN`, il part donc sur le RAID10 dans la foulée.
+
+⚠️ `[ATTENTION]` ⚠️
+
+Le sens du transfert est imposé par le réseau : le VPS ne peut pas joindre une
+adresse privée du LAN. C'est `192.168.0.240` qui sort vers le VPS sur le port 22,
+sans redirection à créer sur pfSense.
+
+Le VPS n'est **pas** déclaré comme client Bareos : aucun port 9102 à ouvrir,
+aucune ressource `Client` à créer côté Director.
 
 ---
 
 ## `-2-` === Schema ===
 
 ````
-┌─────────────────────────────────────────────────────────────────┐
-│  VPS  176.31.163.227          (allume 24/7)                     │
-├─────────────────────────────────────────────────────────────────┤
-│  02:30  quotidien                                               │
-│    ├─ pg_dumpall du conteneur sogo-postgres                     │
-│    ├─ tar.gz de ~/DMS  (174 Mo)                                 │
-│    ├─ depot dans /home/debian/backup/                           │
-│    └─ purge des archives de plus de 7 jours                     │
-│                                                                 │
-│  11:05  dimanche                                                │
-│    └─ rsync /home/debian/backup/ ──────────┐                    │
-└────────────────────────────────────────────┼────────────────────┘
-                                             │ SSH
-                                             ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  PC Admin  192.168.0.235      (WOL a 11:00)                     │
-├─────────────────────────────────────────────────────────────────┤
-│  F:/save/VPS_Mail_BackUp/                                       │
-│    deja inclus dans Win_BackUp_FileSet_LAN via F:/save          │
-└────────────────────────────────────────────┬────────────────────┘
-                                             │ Bareos FD
-                                             ▼
-┌─────────────────────────────────────────────────────────────────┐
-│  Serveur Bareos  192.168.0.240   (WOL a 11:00)                  │
-├─────────────────────────────────────────────────────────────────┤
-│  12:10  Win_BackUp_Job_LAN  ->  RAID10 /var/lib/bareos/storage  │
-│  12:15  Win_BackUp_Job_WAN  ->  VPS via tunnel 9203             │
-└─────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────┐
+│  VPS  176.31.163.227                            (allumé 24/7)    │
+├──────────────────────────────────────────────────────────────────┤
+│  02:30 UTC quotidien — backup_mail.sh                            │
+│    ├─ pg_dumpall du conteneur sogo-postgres                      │
+│    ├─ tar.gz de ~/DMS                          (~174 Mo)         │
+│    ├─ dépôt dans /home/debian/backup/                            │
+│    └─ purge des archives de plus de 7 jours                      │
+└─────────────────────────────▲────────────────────────────────────┘
+                              │ rsync over SSH (240 tire)
+                              │ sortant, port 22, aucune ouverture
+┌─────────────────────────────┴────────────────────────────────────┐
+│  Bareos  192.168.0.240                        (WOL 11:00)        │
+├──────────────────────────────────────────────────────────────────┤
+│  12:00  Lin_BackUp_Job_LAN                                       │
+│    ├─ RunBeforeJob : pull_mail.sh                                │
+│    │    rsync VPS:/home/debian/backup/                           │
+│    │       -> /home/sednal/VPS_Mail_BackUp/                      │
+│    └─ sauvegarde du FileSet, VPS_Mail_BackUp inclus              │
+│                                                                  │
+│         -> RAID10  /var/lib/bareos/storage                       │
+└──────────────────────────────────────────────────────────────────┘
 ````
 
 ---
 
-## `-3-` Prérequis — clé SSH du VPS sur le PC Admin `192.168.0.235`
+## `-3-` Prérequis
 
-### 3.1) Recuperer la cle publique du VPS
-
-````
-ssh debian@176.31.163.227 'cat ~/.ssh/id_ecdsa.pub'
-````
-
-### 3.2) L'autoriser sur Pc Admin `192.168.0.235`
-
-- PowerShell en admin :
+### 3.1) Clé SSH de `sednal@192.168.0.240` autorisée sur le VPS
 
 ````
-notepad C:\Users\sednal\.ssh\authorized_keys
+ssh -o BatchMode=yes debian@176.31.163.227 "hostname"
 ````
 
-- Ajouter la clé sur une nouvelle ligne :
+**Sortie attendue**
 
 ````
-# === VPS 176.31.163.227 ===
-ecdsa-sha2-nistp256 AAAA... debian@vps-sednal
+vps-sednal
 ````
 
-### 3.3) Creer le dossier de depot
+### 3.2) `rsync` présent des deux côtés en `192.168.0.240` et `176.31.163.227`
 
+- Verification 
 ````
-mkdir F:\save\VPS_Mail_BackUp
+which rsync
 ````
 
-### 3.4) Tester depuis le VPS `176.31.163.227`
-
+- Le cas échéant
 ````
-ssh -o BatchMode=yes sednal@192.168.0.235 "echo OK"
+sudo apt install -y rsync
 ````
 
 ---
 
-## `-4-` Script de sauvegarde quotidienne sur le VPS  `176.31.163.227`
+## `-4-` Script de sauvegarde quotidienne sur le VPS `176.31.163.227`
 
-- Créer le dossier et le fichier
+- Créer les dossiers et le fichier
 
 ````
-mkdir -p /home/debian/script_dms
+mkdir -p /home/debian/script_dms /home/debian/backup
 vim /home/debian/script_dms/backup_mail.sh
 ````
 
-- Editer le fichier
+- Éditer
 
 ````bash
 #!/bin/bash
 # ==========================================================
 # Sauvegarde quotidienne du serveur mail (DMS + SoGo)
-# Depot local : /home/debian/backup
-# Retention   : 7 jours
+# Dépôt local : /home/debian/backup
+# Rétention   : 7 jours
 # ==========================================================
 
 set -eu
@@ -132,161 +127,281 @@ find "$DEST" -name "dms_*.tar.gz"         -mtime +$RETENTION -delete
 echo "$(date '+%F %T') sauvegarde OK" >> "$DEST/backup.log"
 ````
 
-- Rendre executable :
-
+- Rendre exécutable
 ````
 chmod +x /home/debian/script_dms/backup_mail.sh
 ````
 
 `[NOTE]`
 
-`pg_dumpall` evite d'avoir a connaitre le nom exact de la base SoGo et sauvegarde également les rôles et les mots de passe PostgreSQL.
-
-⚠️ `[ATTENTION]` ⚠️
-
-La syntaxe `tar -C /home/debian DMS` est impérative : `-C` change de répertoire, l'opérande `DMS` indique quoi archiver. Sans opérande, `tar` sort en erreur et `set -eu` interrompt le script.
+`pg_dumpall` évite d'avoir à connaître le nom exact de la base SoGo et sauvegarde
+également les rôles et les mots de passe PostgreSQL.
 
 ---
 
-## `-5-` Script de push depuis le VPS `176.31.163.227` => PC Admin `192.168.0.235`
-
-- Créer le fichier
-
-````
-vim /home/debian/script_dms/push_mail.sh
-````
-
-- Editer
-
-````bash
-#!/bin/bash
-# ==========================================================
-# Envoi des sauvegardes vers le PC Admin 192.168.0.235
-# Cible : F:/save/VPS_Mail_BackUp
-#         (inclus dans Win_BackUp_FileSet_LAN via F:/save)
-# ==========================================================
-
-set -eu
-
-SRC="/home/debian/backup/"
-CIBLE="sednal@192.168.0.235"
-DEST="F:/save/VPS_Mail_BackUp/"
-
-# Attendre que le PC soit joignable (WOL a 11:00, marge de 20 min)
-for i in $(seq 1 40); do
-    if ssh -o BatchMode=yes -o ConnectTimeout=5 "$CIBLE" "exit" 2>/dev/null; then
-        break
-    fi
-    sleep 30
-done
-
-rsync -az --delete -e "ssh -o BatchMode=yes" "$SRC" "$CIBLE:$DEST"
-
-echo "$(date '+%F %T') push OK" >> /home/debian/backup/backup.log
-````
-
-- Rendre executable :
-
-````
-chmod +x /home/debian/script_dms/push_mail.sh
-````
-
-`[NOTE]`
-
-La boucle d'attente couvre le délai de démarrage de Windows après le WOL : 40 tentatives espacées de 30 s, soit 20 minutes.
-
-`[NOTE]`
-
-Si `rsync` n'est pas disponible côté Windows, remplacer la ligne `rsync` par :
-
-````bash
-scp -o BatchMode=yes "$SRC"* "$CIBLE:$DEST"
-````
-
----
-
-## `-6-` Taches cron sur le VPS `176.31.163.227`
+## `-5-` Tâche cron sur le VPS `176.31.163.227`
 
 ````
 crontab -e
 ````
 
+- Éditer
 ````
 # Sauvegarde quotidienne du serveur mail
-30 2 * * * /home/debian/script_dms/backup_mail.sh >> /home/debian/backup/cron.log 2>&1
-
-# Envoi vers le PC Admin, le dimanche apres le WOL
-5 7 * * 0 /home/debian/script_dms/push_mail.sh >> /home/debian/backup/cron.log 2>&1
+30 2 * * * /home/debian/script_dms/backup_mail.sh >> /home/debian/script_dms/cron.log 2>&1
 ````
 
-⚠️ `[ATTENTION]` ⚠️
+`[NOTE]`
 
-Le VPS est en `Etc/UTC` alors que `192.168.0.240` et `192.168.0.241` sont en `Asia/Yerevan` (UTC+4). Les horaires du cron sont exprimes en **heure du
-VPS** : `07:05 UTC` correspond a `11:05` heure Yerevan.
+Le fichier `cron.log` est placé hors de `/home/debian/backup/` : ce dossier est synchronisé avec `--delete` vers le serveur Bareos.
 
-- Verifier la correspondance :
+---
+
+## `-6-` Script de rapatriement sur Bareos `192.168.0.240`
+
+- Créer les dossiers et le fichier
+````
+mkdir -p /home/sednal/VPS_Mail_BackUp /home/sednal/logs
+vim /home/sednal/pull_mail.sh
+````
+
+- Éditer
+
+````bash
+#!/bin/bash
+# ==========================================================
+# Rapatriement des sauvegardes mail depuis le VPS
+# Lancé par RunBeforeJob de Lin_BackUp_Job_LAN
+# Sortie toujours 0 : un échec ne doit pas annuler la sauvegarde
+# ==========================================================
+
+SRC="debian@176.31.163.227:/home/debian/backup/"
+DEST="/home/sednal/VPS_Mail_BackUp/"
+LOG="/home/sednal/logs/pull_mail.log"
+
+mkdir -p "$DEST" "$(dirname "$LOG")"
+
+if rsync -az --delete --timeout=120 \
+        -e "ssh -o BatchMode=yes -o ConnectTimeout=15" \
+        "$SRC" "$DEST" >> "$LOG" 2>&1
+then
+    echo "$(date '+%F %T') pull OK - $(du -sh "$DEST" | cut -f1)" >> "$LOG"
+    echo "Rapatriement des sauvegardes mail : OK"
+else
+    echo "$(date '+%F %T') pull ECHEC" >> "$LOG"
+    echo "ATTENTION : rapatriement en echec, les donnees du VPS peuvent etre anciennes"
+fi
+
+exit 0
+````
+
+- Droits
+````
+chmod +x /home/sednal/pull_mail.sh
+sudo chown root:root /home/sednal/pull_mail.sh
+sudo chmod 755 /home/sednal/pull_mail.sh
+````
+
+`[NOTE]`
+
+Le script sort systématiquement en code 0. Si le VPS est injoignable, la sauvegarde
+se poursuit avec les archives de la semaine précédente et un avertissement apparaît
+dans le journal du job.
+
+`[NOTE]`
+
+Le journal `pull_mail.log` est placé **hors** du dossier synchronisé, sinon
+`rsync --delete` l'effacerait à chaque passage.
+
+---
+
+## `-7-` Règle sudo pour le Director sur `192.168.0.240`
+
+`RunBeforeJob` est exécuté par le Director, sous l'utilisateur `bareos`. 
+
+La clé SSH autorisée sur le VPS étant celle de `sednal`, le script doit être lancé sous cette identité.
 
 ````
-date; TZ=Asia/Yerevan date
+sudo visudo -f /etc/sudoers.d/bareos-pull
+````
+
+- Éditer
+````
+bareos ALL=(sednal) NOPASSWD: /home/sednal/pull_mail.sh
+````
+
+- Tester
+````
+sudo -u bareos sudo -u sednal /home/sednal/pull_mail.sh
+ls -lh /home/sednal/VPS_Mail_BackUp/
+cat /home/sednal/logs/pull_mail.log
 ````
 
 ---
 
-## `-7-` Verification
+## `-8-` Configuration Bareos sur `192.168.0.240`
 
-### 7.1) Test manuel du dump
+### 8.1) /etc/bareos/bareos-dir.d/fileset/`Lin_BackUp_FileSet_LAN.conf`
+
+````
+FileSet {
+    # Nom du FileSet
+    Name = Lin_BackUp_FileSet_LAN
+    Include {
+        Options {
+            signature = SHA256
+            noatime = yes
+        }
+        File = "/etc/bareos"
+        File = "/home/sednal/.ssh"
+        File = "/home/sednal/.psql_history"
+        File = "/home/sednal/VPS_Mail_BackUp"
+    }
+    Exclude {
+        File = "/etc/bareos/.bash_logout"
+        File = "/home/sednal/.bconsole_history"
+        File = "/home/sednal/.lesshst"
+        File = "/home/sednal/.profile"
+        File = "/home/sednal/.vscode-server"
+        File = "/home/sednal/.bash_history"
+        File = "/home/sednal/.bashrc"
+        File = "/home/sednal/.cache"
+        File = "/home/sednal/.cache.dotnet"
+        File = "/home/sednal/.sudo_as_admin_successful"
+        File = "/home/sednal/.wget-hsts"
+    }
+}
+````
+
+### 8.2) /etc/bareos/bareos-dir.d/fileset/`Lin_BackUp_FileSet_WAN.conf`
+````
+FileSet {
+    # Nom du FileSet
+    Name = Lin_BackUp_FileSet_WAN
+    Include {
+        Options {
+            signature = SHA256
+            noatime = yes
+        }
+        File = "/etc/bareos"
+        File = "/home/sednal/.ssh"
+        File = "/home/sednal/.psql_history"
+    }
+    Exclude {
+        File = "/etc/bareos/.bash_logout"
+        File = "/home/sednal/.bconsole_history"
+        File = "/home/sednal/.lesshst"
+        File = "/home/sednal/.profile"
+        File = "/home/sednal/.vscode-server"
+        File = "/home/sednal/.bash_history"
+        File = "/home/sednal/.bashrc"
+        File = "/home/sednal/.cache"
+        File = "/home/sednal/.cache.dotnet"
+        File = "/home/sednal/.sudo_as_admin_successful"
+        File = "/home/sednal/.wget-hsts"
+    }
+}
+````
+
+⚠️ `[ATTENTION]` ⚠️
+
+Sans ce FileSet dédié, `Lin_BackUp_Job_WAN` renverrait les sauvegardes du VPS
+**sur le VPS lui-même** : aucun intérêt en hors-site, et volume transféré doublé.
+
+- Basculer le job WAN dessus
+
+````
+sudo sed -i 's/FileSet = Lin_BackUp_FileSet_LAN/FileSet = Lin_BackUp_FileSet_WAN/' \
+    /etc/bareos/bareos-dir.d/job/Lin_BackUp_Job_WAN.conf
+````
+
+### 8.3) /etc/bareos/bareos-dir.d/job/`Lin_BackUp_Job_LAN.conf`
+
+````
+Job {
+      Name = Lin_BackUp_Job_LAN
+      Type = Backup
+      Client = lin
+      FileSet = Lin_BackUp_FileSet_LAN
+      Schedule = Lin_Schedule_LAN
+      Storage = Storage_Local
+      Pool = Lin_BackUp_Pool_LAN
+      Messages = Standard
+      Priority = 10
+      RunBeforeJob = "/usr/bin/sudo -u sednal /home/sednal/pull_mail.sh"
+      }
+````
+
+### 8.4) Contrôle et rechargement
+
+````
+sudo bareos-dir -t -f
+printf "reload\nshow job=Lin_BackUp_Job_LAN\nquit\n" | sudo bconsole
+````
+
+---
+
+## `-9-` Vérification
+
+### 9.1) Test du dump sur le VPS `176.31.163.227`
 
 ````
 /home/debian/script_dms/backup_mail.sh
 ls -lh /home/debian/backup/
 ````
 
-### 7.2) Test manuel du push, PC Admin allumé
+### 9.2) Test complet du job sur `192.168.0.240`
 
 ````
-/home/debian/script_dms/push_mail.sh
+printf "run job=Lin_BackUp_Job_LAN level=Full yes\nquit\n" | sudo bconsole
+sleep 30
+printf "list jobs\nmessages\nquit\n" | sudo bconsole
 ````
 
-- Vérifier côté Windows :
+**RESULTAT ATTENDU**
 
+Le journal du job contient :
 ````
-dir F:\save\VPS_Mail_BackUp
-````
-
-### 7.3) Apres le premier dimanche, cote Bareos `192.168.0.240`
-
-````
-printf "list jobs\nquit\n" | sudo bconsole
+Rapatriement des sauvegardes mail : OK
 ````
 
-Le `jobbytes` de `Win_BackUp_Job_LAN` doit avoir augmente d'environ 200 Mo.
+Et `jobbytes` passe de quelques dizaines de Ko à environ 1,3 Go.
 
-### 7.4) Journaux du VPS `176.31.163.227`
+### 9.3) Journaux
 
 ````
-tail -20 /home/debian/backup/backup.log
-tail -40 /home/debian/backup/cron.log
+ls -lh /home/sednal/VPS_Mail_BackUp/
+cat /home/sednal/logs/pull_mail.log
+ssh debian@176.31.163.227 "tail -20 /home/debian/backup/backup.log"
 ````
 
 ---
 
-## `-8-` Restauration
+## `-10-` Restauration
 
-### 8.1) Recuperer les archives depuis Bareos `192.168.0.240`
+### 10.1) Récupérer les archives depuis Bareos `192.168.0.240`
 
 ````
-printf "restore client=win\nquit\n" | sudo bconsole
+printf "restore client=lin\nquit\n" | sudo bconsole
 ````
 
-Selectionner les fichiers sous `F:/save/VPS_Mail_BackUp/`.
+Sélectionner les fichiers sous `/home/sednal/VPS_Mail_BackUp/`.
 
-### 8.2) Restaurer les bases SoGo `176.31.163.227`
+### 10.2) Transférer vers le VPS `176.31.163.227`
+
+````
+scp /home/sednal/VPS_Mail_BackUp/dms_AAAA-MM-JJ.tar.gz \
+    /home/sednal/VPS_Mail_BackUp/sogo_pgdump_AAAA-MM-JJ.sql.gz \
+    debian@176.31.163.227:/home/debian/
+````
+
+### 10.3) Restaurer les bases SoGo
 
 ````
 gunzip -c sogo_pgdump_AAAA-MM-JJ.sql.gz | docker exec -i sogo-postgres psql -U postgres
 ````
 
-### 8.3) Restaurer le dossier DMS `176.31.163.227`
+### 10.4) Restaurer le dossier DMS
 
 ````
 docker compose -f /home/debian/DMS/compose.yml down
@@ -296,4 +411,22 @@ docker compose -f /home/debian/DMS/compose.yml up -d
 
 `[NOTE]`
 
-L'archive contient le dossier `DMS` lui-même : l'extraire dans `/home/debian` recrée `/home/debian/DMS`.
+L'archive contient le dossier `DMS` lui-même : l'extraire dans `/home/debian`
+recrée `/home/debian/DMS`.
+
+---
+
+## `-11-` Limites connues
+
+- Le dossier `/home/sednal/VPS_Mail_BackUp` n'est **pas** envoyé en hors-site :
+l'envoyer sur le VPS, d'où il provient, n'apporterait aucune protection. Le RAID10
+de `192.168.0.240` est le seul dépôt.
+
+- Les archives sont en clair sur les deux disques. Le transfert est chiffré par SSH,
+mais `sogo_pgdump_*.sql.gz` contient les hachages de mots de passe PostgreSQL et
+`dms_*.tar.gz` contient les mails.
+
+- Les archives rapatriées datent au plus du matin même (cron VPS à 02:30 UTC).
+
+- Volume : 7 jours de rétention à ~180 Mo par jeu, soit ~1,3 Go rapatriés chaque
+dimanche.
