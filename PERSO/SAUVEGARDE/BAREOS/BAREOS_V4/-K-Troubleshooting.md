@@ -471,3 +471,153 @@ sd 5:0:0:0: [sde] Attached SCSI disk
 ````
 sudo smartctl -A /dev/sde | grep -i UDMA_CRC_Error_Count
 ````
+
+---
+---
+---
+
+# `=== DATE 04/09/2026 ===`
+
+---
+---
+
+### `=== PROBLEME ===`
+
+#### - Le catalogue reference des volumes qui n'existent plus sur le storage.
+
+`list media` annonce 6 volumes cote LAN :
+
+````
+| mediaid | volumename                 | volstatus | volbytes        | storage       |
+|       3 | Local_BackUp_Vol-0003      | Error     | 389,015,950,096 | Storage_Local |
+|       5 | Local_Archive_Vol-0005     | Append    | 206,380,251,960 | Storage_Local |
+|       6 | Local_BackUp_Vol-0006      | Error     |               0 | Storage_Local |
+|       1 | Lin_Local_BackUp_Vol-0001  | Append    |          62,320 | Storage_Local |
+|       2 | Lin_Remote_BackUp_Vol-0002 | Append    |          49,526 | Storage_Local |
+|       7 | Win_BackUp_Vol_001         | Append    |  39,171,254,650 | Storage_Local |
+````
+
+Alors que le disque n'en contient qu'un seul :
+
+````
+ls -la /var/lib/bareos/storage/
+````
+
+````
+drwx------ 2 root   root         16384 lost+found
+-rw-r----- 1 bareos bareos 39171254650 Win_BackUp_Vol_001
+````
+
+#### - Deux volumes sont en statut `Error`, trois autres en `Append` sur des pools limites a `Maximum Volumes = 2`.
+
+---
+
+1) Comparer catalogue et storage :
+
+````
+printf "list media\nquit\n" | sudo bconsole
+ls -la /var/lib/bareos/storage/
+````
+
+2) Verifier quels jobs dependent de ces volumes :
+
+````
+printf "list jobs\nquit\n" | sudo bconsole
+````
+
+---
+---
+
+### `=== CAUSE ===`
+
+Desynchronisation entre le **catalogue PostgreSQL** (l'index) et le **storage**
+(les fichiers de volumes).
+
+Les volumes ont disparu lors de la recreation du volume group `vg_bareos`
+le 17/05/2026, mais leurs enregistrements sont restes dans le catalogue.
+
+⚠️ Consequence si rien n'est fait : les pools `Lin_BackUp_Pool_LAN` et
+`Lin_BackUp_Pool_WAN` ont `Maximum Volumes = 2` et un slot occupe par un volume
+fantome en statut `Append`. Au prochain job planifie, Bareos tente d'ecrire dans
+un fichier inexistant et le job echoue. Meme blocage cote Windows LAN avec les
+deux volumes en `Error`.
+
+⚠️ `Win_BackUp_Vol_001` est le seul volume local restant, mais il contient un job
+**Incremental** (JobId 33) dont le Full de reference etait `Local_BackUp_Vol-0003`,
+disparu. Une chaine incrementale sans son Full n'est pas restaurable : il n'existe
+donc plus aucune restauration possible en LAN. Seul le jeu du VPS
+(`VPS_Backup_Vol-0004`, JobId 34 = Full) reste exploitable.
+
+`[NOTE]` Ces volumes etaient deja irrecuperables avant la purge. Supprimer leur
+enregistrement ne detruit aucune donnee : cela retire seulement une reference morte.
+
+---
+---
+
+### `=== RESOLUTION ===`
+
+1) Supprimer du catalogue les volumes absents du storage
+
+`delete volume` supprime egalement les enregistrements de jobs associes.
+
+````
+printf "delete volume=Local_BackUp_Vol-0003 yes\n\
+delete volume=Local_BackUp_Vol-0006 yes\n\
+delete volume=Local_Archive_Vol-0005 yes\n\
+delete volume=Lin_Local_BackUp_Vol-0001 yes\n\
+delete volume=Lin_Remote_BackUp_Vol-0002 yes\n\
+quit\n" | sudo bconsole
+````
+
+**Sortie**
+
+````
+Deleted 6 jobs and associated records deleted from the catalog (jobids: 23,26,27,28,29,30).
+Volume Local_BackUp_Vol-0003 deleted.
+Volume Local_BackUp_Vol-0006 deleted.
+Deleted 1 jobs and associated records deleted from the catalog (jobids: 16).
+Volume Local_Archive_Vol-0005 deleted.
+Deleted 2 jobs and associated records deleted from the catalog (jobids: 6,25).
+Volume Lin_Local_BackUp_Vol-0001 deleted.
+Deleted 2 jobs and associated records deleted from the catalog (jobids: 7,11).
+Volume Lin_Remote_BackUp_Vol-0002 deleted.
+````
+
+2) Verification
+
+````
+printf "list media\nquit\n" | sudo bconsole
+````
+
+**RESULTAT ATTENDU**
+
+Seuls subsistent les volumes reellement presents sur disque, et les pools Linux
+et Archive sont vides — leurs slots sont donc de nouveau disponibles.
+
+````
+Pool: Win_Backup_Pool_WAN
+|       4 | VPS_Backup_Vol-0004 | Append | 108,203,970,236 | Storage_Remote |
+
+Pool: Win_BackUp_Pool_LAN
+|       7 | Win_BackUp_Vol_001  | Append |  39,171,254,650 | Storage_Local  |
+
+Pool: Win_Archive_Pool_LAN     No results to list.
+Pool: Lin_BackUp_Pool_WAN      No results to list.
+Pool: Lin_BackUp_Pool_LAN      No results to list.
+````
+
+3) Reconstruire une chaine de sauvegarde saine
+
+La chaine LAN n'ayant plus de Full de reference, un Full complet est necessaire.
+Il est lance automatiquement par le schedule du 1er dimanche du mois, ou
+manuellement :
+
+````
+printf "run job=Win_BackUp_Job_LAN level=Full yes\nquit\n" | sudo bconsole
+````
+
+4) Optionnel — nettoyer les jobs en echec restes au catalogue
+
+````
+printf "delete jobid=1,2,3,4,5,24,31,32\nquit\n" | sudo bconsole
+````
