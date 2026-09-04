@@ -40,7 +40,7 @@ Une extinction trop tôt coupe la sauvegarde en cours.
 
 #### ⚠️ Lancer poweroff avec `sudo` 
 
-      sudo contab -e
+      sudo crontab -e
 
 #### Éditer serveur Bareos `192.168.0.240`
 
@@ -48,7 +48,7 @@ Une extinction trop tôt coupe la sauvegarde en cours.
       00 19 * * 0 /sbin/poweroff
 
 
-### 3️⃣ Fenetre de sauvegarde complete
+### 3️⃣ Fenêtre de sauvegarde complète
 
 ````
 11:00  WOL PC Windows + serveur Bareos      (depuis 192.168.0.241)

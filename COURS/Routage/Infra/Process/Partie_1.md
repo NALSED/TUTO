@@ -118,7 +118,7 @@
 ### 3.2) `SSH`
 
 ### 3.2.1) Créer un utilisateur et mot de passe ici (131213)
-            saiph(config)#username admin1 sercret <MDP>
+            saiph(config)#username admin1 secret <MDP>
 
 ![image](https://github.com/user-attachments/assets/6bda7cbf-25ad-4a05-8af1-93c3e4578dfa)
 

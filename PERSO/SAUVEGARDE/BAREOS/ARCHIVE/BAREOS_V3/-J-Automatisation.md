@@ -40,7 +40,7 @@ Une extinction trop tôt coupe la sauvegarde en cours.
 
 #### ⚠️ Lancer poweroff avec `sudo` 
 
-      sudo contab -e
+      sudo crontab -e
 
 #### Éditer serveur Bareos `192.168.0.240`
 

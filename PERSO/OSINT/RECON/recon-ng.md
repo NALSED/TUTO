@@ -144,7 +144,7 @@
 
 ## 2.5) UTILISER UN MODULE 
 ### Dans le workspace
-                workspaces ceate test
+                workspaces create test
                 workspaces load test
 
 ### charger le module
