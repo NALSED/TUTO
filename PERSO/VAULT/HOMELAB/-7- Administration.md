@@ -7,9 +7,9 @@ sauvegarde, descellement et dépannage.
 
 ---
 
-## **SOMMAIRE**
+## SOMMAIRE
 
-### `-1-` **Sauvegarde**
+### `-1-` Sauvegarde
 
 ### `-2-` Descellement
 
@@ -169,11 +169,6 @@ vault operator unseal   # 3 fois, 3 cles differentes
 vault status
 ````
 
-- Attendu
-````
-Sealed          false
-````
-
 `[NOTE]`
 
 Tant que Vault est scellé, les agents échouent et redémarrent en boucle : c'est normal.
@@ -219,13 +214,11 @@ sudo systemctl start vault-agent
 `[NOTE]`
 
 L'auto-signé étant lui aussi à durée limitée, le régénérer si nécessaire avec la commande
-`openssl` de `-1-Installation-Lab.md` § 3.1 avant de relancer l'agent.
+`openssl` de `-1-Installation-Lab.md`  -3.1- avant de relancer l'agent.
 
 `[RAPPEL]`
 
-L'infra étant éteinte environ un mois tous les quatre mois, l'auto-signé doit être généré
-avec `-days 3650` et non `-days 90` : c'est le filet de sécurité, il ne doit jamais expirer
-avant le certificat qu'il remplace.
+
 
 ---
 
