@@ -10,7 +10,7 @@ sans réponse.
 
 `[NOTE]`
 
-⚠️Un seul `default_server` par port est autorisé : ne pas ajouter ce mot-clé dans un autre vhost.:warning
+⚠️Un seul `default_server` par port est autorisé : ne pas ajouter ce mot-clé dans un autre vhost. ⚠️
 
 - Création
 ````
