@@ -5,6 +5,7 @@
 
 `=== DATE ===`
 `=== PROBLEME ===`
+`=== CAUSE ===`
 `=== RESOLUTION ===`
 
 ---
@@ -150,9 +151,103 @@ Suppression de => `Address = 192.168.0.240`
        Sizes: boffset_t=8 size_t=8 int32_t=4 int64_t=8 bwlimit=0kB/s
 
 
+---
+---
 
+---
 
+### `=== DATE 04/09/2026 ===`
 
+---
+---
+
+### `=== PROBLEME ===`
+
+#### - `bareos-sd` démarre puis s'arrête seul au bout de ~15s, sans erreur systemd.
+
+`systemctl status bareos-sd :`
+
+      Active: inactive (dead)
+      Process: ExecStart=/usr/sbin/bareos-sd -f (code=exited, status=0/SUCCESS)
+
+#### - Port 9103 absent de `ss -lntp`, le Director reste bloqué sur `status storage=Storage_Local`.
+
+#### - `journalctl -u bareos-sd` ne remonte rien : l'arrêt est considéré comme normal par systemd.
+
+---
+
+1) Lancer le SD en avant-plan avec un niveau de debug élevé :
+
+      sudo -u bareos /usr/sbin/bareos-sd -f -d 200 2>&1 | tail -40
+
+**Sortie :**
+
+      Local-Sd (100): lib/bnet_server_tcp.cc:141-0 Addresses host[ipv4;192.168.0.239;9103]
+      Local-Sd (10): lib/bnet_server_tcp.cc:210-0 WARNING: Cannot bind address 192.168.0.239 port 9103 ERR=Cannot assign requested address. Retrying...
+      Local-Sd (10): lib/bnet_server_tcp.cc:246-0 ERROR: Cannot bind address 192.168.0.239 port 9103: ERR=Cannot assign requested address.
+
+2) Vérifier la résolution du nom déclaré dans `Address` :
+
+      getent hosts bareos.sednal.lan
+
+**Sortie :**
+
+      192.168.0.239   bareos.sednal.lan
+
+---
+---
+
+### `=== CAUSE ===`
+
+Le nom `bareos.sednal.lan` a été réattribué au reverse proxy nginx `192.168.0.239`
+lors de la mise en place de la PKI V2 (vhost WebUI Bareos).
+
+Or ce même nom était utilisé depuis le 26/01/2026 dans `Address` du Storage SD,
+qui indique au démon **sur quelle adresse locale se binder**.
+
+Le SD tente donc de se binder sur une IP qui ne lui appartient pas → `Cannot assign
+requested address` → arrêt du démon.
+
+⚠️ Un nom DNS utilisé par un vhost du reverse proxy ne doit jamais servir de
+`Address` à un démon Bareos.
+
+---
+---
+
+### `=== RESOLUTION ===`
+
+1) Créer un enregistrement DNS dédié au démon sur pfSense
+
+           bareos-sd.sednal.lan  ->  192.168.0.240
+
+2) `/etc/bareos/bareos-sd.d/storage/Local-Sd.conf`
+
+           Storage {
+                 Name = Local-Sd
+                 SDPort = 9103
+                 Address = bareos-sd.sednal.lan
+             }
+
+3) `/etc/bareos/bareos-dir.d/storage/Storage_Local.conf`
+
+           Storage {
+                 Name = Storage_Local
+                 SD Address = bareos-sd.sednal.lan
+                 SDPort = 9103
+                 Password = "[PASSWORD]"
+                 Device = Local_Device
+                 Media Type = File
+                 }
+
+4) Test et redémarrage
+
+           sudo bareos-sd -t -f && sudo bareos-dir -t -f
+           sudo systemctl restart bareos-sd bareos-dir
+           ss -lntp | grep 9103
+
+**RESULTAT ATTENDU**
+
+      LISTEN 0  50  192.168.0.240:9103  0.0.0.0:*  users:(("bareos-sd",...))
 
 
 
