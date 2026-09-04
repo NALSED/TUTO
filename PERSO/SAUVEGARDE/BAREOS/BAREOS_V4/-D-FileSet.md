@@ -41,7 +41,10 @@
     
             }
 
-
+`[NOTE]` `A:/save` couvre egalement `A:/save/VPS_Mail/`, ou le VPS depose chaque
+dimanche a 11h05 ses sauvegardes du serveur mail (archive de `~/DMS` et dump
+PostgreSQL de SoGo). Le VPS n'est donc pas declare comme client Bareos.
+Voir [Sauvegarde_Mail](../../../VPS/MAIL/Sauvegarde_Mail.md).
 
 ### 1.2) Archive WIN => /etc/bareos/bareos-dir.d/fileset/`Win_Archive_FileSet_LAN.conf`
     FileSet {
