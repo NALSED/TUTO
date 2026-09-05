@@ -10,7 +10,7 @@ Convention de nommage (identique à pihole et bareos) :
 
 ## `- 1.1` Filtrage sur le Pi2 (192.168.0.237)
 ````
-sudo nft add rule ip filter DOCKER-USER ip daddr 172.18.0.2 tcp dport 3001 ip saddr != 192.168.0.239 drop
+sudo nft add rule ip filter DOCKER-USER ip daddr 172.20.0.2 tcp dport 3001 ip saddr != 192.168.0.239 drop
 ````
 
 - ⚠️ La règle `DOCKER-USER` disparaît au reboot du Pi (ruleset nftables volatile, et`nftables.service` inutilisable ici : son `flush ruleset` effacerait les chaînes Docker).
@@ -37,7 +37,7 @@ sudo vim /usr/local/bin/kuma-filter.sh
 #!/bin/bash
 set -euo pipefail
 
-RULE='ip daddr 172.18.0.2 tcp dport 3001 ip saddr != 192.168.0.239 drop'
+RULE='ip daddr 172.20.0.2 tcp dport 3001 ip saddr != 192.168.0.239 drop'
 
 nft list chain ip filter DOCKER-USER | grep -qF "$RULE" \
   || nft add rule ip filter DOCKER-USER $RULE
