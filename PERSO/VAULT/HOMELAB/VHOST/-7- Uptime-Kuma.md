@@ -31,7 +31,7 @@ Résultat attendu : `PingSucceeded : True` et `TcpTestSucceeded : False`.
 
 ## `- 1.3` Certificat
 
-Ajouter `kuma.sednal.lan` dans `alt_names` des **deux** templates de `192.168.0.239` (voir `-4-Agent.md` => Section [- 4.3]()), Vault sur `192.168.0.238` allumé.
+Ajouter `kuma.sednal.lan` dans `alt_names` des **deux** templates de `192.168.0.239` (voir `-4-Agent.md` => Section [- 4.3](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/-4-Agent.md#--43-templates)), Vault sur `192.168.0.238` allumé.
 
 - Sur 192.168.0.239
 ````
