@@ -8,9 +8,11 @@
 
 === Lab ===
 
-- `IP` : 192.168.0.237
+- `IP_ADMIN` : 192.168.0.237:3001/setup-database
 
-- `HOSTNAME` : monitoring.sednal.lan
+- `HOSTNAME_ADMIN` : monitoring.sednal.lan
+
+- `Enregistrement_DNS_PROXY` : kuma.sednal.lan / 192.168.0.239
 
 - `CPU` : 900MHz Arm Cortex-A53 quad-core 64-bit processor 
 
