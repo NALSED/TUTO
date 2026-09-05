@@ -24,8 +24,21 @@
 
 `- 1.1` Installer docker via script => [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/DOCKERS/SCRIPTS/-1-docker_install.sh)
 
+`- 1.2` Créer dossier
+````
+mkdir -p $HOME/Uptime
 
-`- 1.2` Créer le docker compose
+# Allez dans le dossier
+cd $HOME/Uptime
+````
+
+`- 1.3`
+Créer le docker compose
+````
+vim docker-compose.yml
+````
+
+`- 1.4` Créer le docker compose
 
 [DOC](https://github.com/louislam/uptime-kuma/wiki/Environment-Variables)
 
@@ -41,7 +54,7 @@ services:
 ````
 
 
-`- 1.3` Vérification de la compatibilité d'architecture avant lancement :
+`- 1.5` Vérification de la compatibilité d'architecture avant lancement :
 ````
 docker manifest inspect louislam/uptime-kuma:2 | grep -A2 architecture
 ````
