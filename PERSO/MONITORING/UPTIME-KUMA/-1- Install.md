@@ -1,4 +1,4 @@
-## Instalation de `Uptime-Kuma`
+## Installation de `Uptime-Kuma`
 
 --
 
