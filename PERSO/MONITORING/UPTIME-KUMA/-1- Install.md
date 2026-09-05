@@ -61,8 +61,13 @@ docker manifest inspect louislam/uptime-kuma:2 | grep -A2 architecture
 ````
 
 
-Démarrage :
+`- 1.5` Démarrage :
 
 ````
 sudo docker compose up -d
+````
+
+`- 1.6` Connection 
+````
+http://monitoring.sednal.lan:3001/setup-database
 ````
