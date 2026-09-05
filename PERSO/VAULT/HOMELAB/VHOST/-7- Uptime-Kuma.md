@@ -13,6 +13,44 @@ Convention de nommage (identique à pihole et bareos) :
 sudo nft add rule ip filter DOCKER-USER ip daddr 172.18.0.2 tcp dport 3001 ip saddr != 192.168.0.239 drop
 ````
 
+- ⚠️ La règle `DOCKER-USER` disparaît au reboot du Pi (ruleset nftables volatile, et`nftables.service` inutilisable ici : son `flush ruleset` effacerait les chaînes Docker).
+
+- Les règles Docker (DNAT, publication du port) reviennent seules, mais le filtrage non :le port 3001 redevient joignable par tout le LAN sans alerte. Persistance à mettre en place via un `ExecStartPost` sur `docker.service`.
+
+## `- 1.1.1` Création service et édition
+````
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo vim /etc/systemd/system/docker.service.d/kuma-filter.conf
+````
+````
+[Service]
+ExecStartPost=/usr/local/bin/kuma-filter.sh
+````
+
+## `- 1.1.2` Création script
+````
+sudo vim /usr/local/bin/kuma-filter.sh
+````
+
+## `- 1.1.3` Edition script
+````
+#!/bin/bash
+set -euo pipefail
+
+RULE='ip daddr 172.18.0.2 tcp dport 3001 ip saddr != 192.168.0.239 drop'
+
+nft list chain ip filter DOCKER-USER | grep -qF "$RULE" \
+  || nft add rule ip filter DOCKER-USER $RULE
+````
+
+## `- 1.1.4` Droits + Test
+````
+sudo chmod 700 /usr/local/bin/kuma-filter.sh
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+sudo nft list chain ip filter DOCKER-USER
+````
+
 ## `- 1.2` Vérification depuis `192.168.0.239` :
 
 ````
