@@ -15,6 +15,7 @@ sauvegarde, descellement et dépannage.
 
 ### `-3-` Dépannage
 
+### `-4-` Ajout de service
 ---
 ---
 
@@ -268,3 +269,95 @@ Le seul recours immédiat est de retirer le certificat de la machine concernée.
 
 ---
 ---
+
+## `-4-` Ajout de service
+
+
+`- 4.1` Faire les régles de filtrages sur le device / service concerné.
+
+`- 4.2` Allumer le PKI Vault
+````
+vault operator unseal  
+vault login
+vault status
+````
+
+`- 4.3` 
+- Ajouter le nom du service déclaré dans pfsense AVEC l'adresse du reverse proxy.
+````
+=== EXEMPLE ===
+kuma.sednal.lan Déclaré 192.168.0.239 <=== pour le reverse proxy
+monitoring.sednal.lan Déclaré 192.168.0.237 <=== pour le Webui
+````
+
+- Dans les deux template `-4- Agent` voir [-4.3 Template](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/-4-Agent.md#--43-templates)
+````
+# Dans cette section
+"alt_names="
+````
+
+`- 4.4` Générer le certificats
+````
+sudo systemctl restart vault-agent
+openssl x509 -in /etc/ssl/nalsed/infra.crt -noout -ext subjectAltName
+````
+
+- Résultat attendu =>le SERViCE déclaré est présent dans la liste.
+
+`- 4.5` Créer le fichier du service conrespondant
+````
+sudo vim /etc/nginx/sites-available/SERVICE.conf
+````
+
+`- 4.6` Editer le fichier !!! (A ajuster en fonction ce fichier est un template) !!!
+````
+server {
+    listen 80;
+    server_name SERVICE.sednal.lan; <===
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name SERVICE.sednal.lan; <===
+
+    include snippets/ssl-nalsed.conf;
+
+    location / {
+        proxy_pass http://IP_SERVICE;
+
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade    $http_upgrade;
+        proxy_set_header Connection $connection_upgrade;
+
+        proxy_set_header Host              $host;
+        proxy_set_header X-Real-IP         $remote_addr;
+        proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+
+        proxy_read_timeout 3600s;
+        proxy_send_timeout 3600s;
+    }
+}
+````
+
+`- 4.7` Activation
+````
+cd /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/SERVICE.conf SERVICE.conf
+sudo nginx -t && sudo systemctl reload nginx
+````
+
+`- 4.8` Vérification
+````
+curl -I https://SERVICE.sednal.lan
+````
+
+Résultat attendu : HTTP/2 200, et l'interface ne doit pas rester bloquée sur « Connecting… » (signe que les en-têtes websocket ne passent pas).
+
+
+
+
+
+
+
