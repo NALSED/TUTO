@@ -1,7 +1,6 @@
 ## Uptime-Kuma `192.168.0.237:3001`
 
 ---
-
 Convention de nommage (identique à pihole et bareos) :
 
 | Nom                     | Cible           | Usage                     |
@@ -10,16 +9,9 @@ Convention de nommage (identique à pihole et bareos) :
 | `kuma.sednal.lan`       | 192.168.0.239   | Service, via reverse proxy|
 
 ## `- 1.1` Filtrage sur le Pi2 (192.168.0.237)
-
-Le port 3001 est publié par Docker : le trafic est DNATé en `PREROUTING` puis
-traverse `FORWARD`, jamais `INPUT`. Le filtrage se fait dans `DOCKER-USER`.
-
 ````
 sudo nft add rule ip filter DOCKER-USER ip daddr 172.18.0.2 tcp dport 3001 ip saddr != 192.168.0.239 drop
 ````
-
-⚠️ `DOCKER-USER` est vidée à chaque redémarrage du démon Docker.
-La persistance reste à mettre en place.
 
 ## `- 1.2` Vérification depuis `192.168.0.239` :
 
@@ -29,7 +21,7 @@ curl -I http://192.168.0.237:3001
 
 Résultat attendu : `HTTP/1.1 302 Found`.
 
-Depuis le PC admin `192.168.0.235` (PowerShell) :
+- Depuis le PC admin `192.168.0.235` (PowerShell) :
 
 ````
 Test-NetConnection 192.168.0.237 -Port 3001
@@ -37,31 +29,26 @@ Test-NetConnection 192.168.0.237 -Port 3001
 
 Résultat attendu : `PingSucceeded : True` et `TcpTestSucceeded : False`.
 
-⚠️ Un test lancé depuis le Pi lui-même ne prouve rien : le trafic local passe par
-`OUTPUT` et ne traverse jamais `DOCKER-USER`.
-
 ## `- 1.3` Certificat
 
-Ajouter `kuma.sednal.lan` dans `alt_names` des **deux** templates de
-`192.168.0.239` (voir `-4-Agent.md` § `4.3`), Vault sur `192.168.0.238` allumé.
+Ajouter `kuma.sednal.lan` dans `alt_names` des **deux** templates de `192.168.0.239` (voir `-4-Agent.md` => Section [`- 4.3`]()), Vault sur `192.168.0.238` allumé.
 
+- Sur 192.168.0.239
 ````
 sudo systemctl restart vault-agent
 openssl x509 -in /etc/ssl/nalsed/infra.crt -noout -ext subjectAltName
 ````
 
-Résultat attendu : `kuma.sednal.lan` présent dans la liste.
+- Résultat attendu : `kuma.sednal.lan` présent dans la liste.
 
-## Vhost sur 192.168.0.239
+## Vhost sur infra `192.168.0.239`
 
 ## `- 1.4` Créer fichier
-
 ````
 sudo vim /etc/nginx/sites-available/kuma.conf
 ````
 
 ## `- 1.5` Editer
-
 ````
 server {
     listen 80;
@@ -94,7 +81,6 @@ server {
 ````
 
 ## `- 1.6` Activation
-
 ````
 cd /etc/nginx/sites-enabled
 sudo ln -s /etc/nginx/sites-available/kuma.conf kuma.conf
