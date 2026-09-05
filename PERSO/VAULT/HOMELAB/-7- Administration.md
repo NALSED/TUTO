@@ -290,7 +290,7 @@ kuma.sednal.lan Déclaré 192.168.0.239 <=== pour le reverse proxy
 monitoring.sednal.lan Déclaré 192.168.0.237 <=== pour le Webui
 ````
 
-- Dans les deux template `-4- Agent` voir [-4.3 Template](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/-4-Agent.md#--43-templates)
+- Dans les deux template sur 192.168.0.239 ( !!! pas 192.168.0.238 !!!) `-4- Agent` voir [-4.3 Template](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/-4-Agent.md#--43-templates)
 ````
 # Dans cette section
 "alt_names="
