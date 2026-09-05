@@ -30,5 +30,25 @@
 [DOC](https://github.com/louislam/uptime-kuma/wiki/Environment-Variables)
 
 ````
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "3001:3001"
+````
 
+
+`- 1.3` Vérification de la compatibilité d'architecture avant lancement :
+````
+docker manifest inspect louislam/uptime-kuma:2 | grep -A2 architecture
+````
+
+
+Démarrage :
+
+````
+docker compose up -d
 ````
