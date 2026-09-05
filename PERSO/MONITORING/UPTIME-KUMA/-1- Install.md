@@ -73,3 +73,8 @@ sudo docker compose up -d
 ````
 http://monitoring.sednal.lan:3001/setup-database
 ````
+
+`- 1.7` Implémentation de certificat SSL pour le service Uptime-Kuma 
+
+
+
