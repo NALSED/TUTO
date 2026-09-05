@@ -72,6 +72,8 @@ sudo docker compose up -d
 `- 1.6` Connection 
 ````
 http://monitoring.sednal.lan:3001/setup-database
+
+# Choix db : SQlite
 ````
 
 `- 1.7` Implémentation de certificat SSL pour le service Uptime-Kuma 
