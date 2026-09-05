@@ -166,6 +166,7 @@ export VAULT_CACERT=/etc/ssl/nalsed/ca.crt
 
 vault status
 vault operator unseal   # 3 fois, 3 cles differentes
+vault login
 vault status
 ````
 
