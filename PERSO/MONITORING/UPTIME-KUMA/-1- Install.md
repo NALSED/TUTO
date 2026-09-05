@@ -16,6 +16,7 @@
 
 - `RAM` : 1GB RAM
 
+[DOC](https://www.crosstalksolutions.com/uptime-kuma-complete-setup-guide-on-digital-ocean-with-docker/)
 
 ---
 
