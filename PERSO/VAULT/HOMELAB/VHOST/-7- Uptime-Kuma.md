@@ -29,7 +29,7 @@ Test-NetConnection 192.168.0.237 -Port 3001
 
 Résultat attendu : `PingSucceeded : True` et `TcpTestSucceeded : False`.
 
-## `- 1.3` Certificat
+## `- 1.3` Certificat `192.168.0.239`
 
 Ajouter `kuma.sednal.lan` dans `alt_names` des **deux** templates sur `192.168.0.239` 
 
