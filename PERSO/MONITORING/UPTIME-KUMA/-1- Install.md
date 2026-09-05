@@ -26,6 +26,9 @@
 
 
 `- 1.2` Créer le docker compose
+
+[DOC](https://github.com/louislam/uptime-kuma/wiki/Environment-Variables)
+
 ````
 
 ````
