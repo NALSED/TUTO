@@ -57,13 +57,13 @@ services:
       - "3001:3001"
     networks:
       kuma_net:
-        ipv4_address: 172.18.0.2
+        ipv4_address: 172.20.0.2
 
 networks:
   kuma_net:
     ipam:
       config:
-        - subnet: 172.18.0.0/16
+        - subnet: 172.20.0.0/24
 ````
 
 
