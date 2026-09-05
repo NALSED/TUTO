@@ -273,9 +273,9 @@ Le seul recours immédiat est de retirer le certificat de la machine concernée.
 ## `-4-` Ajout de service
 
 
-`- 4.1` Faire les régles de filtrages sur le device / service concerné.
+`- 4.1` Faire les régles de filtrages sur le device / service concerné. `IP EN FONCTION`
 
-`- 4.2` Allumer le PKI Vault
+`- 4.2` Allumer le PKI Vault `192.168.0.238`
 ````
 vault operator unseal  
 vault login
@@ -283,20 +283,21 @@ vault status
 ````
 
 `- 4.3` 
-- Ajouter le nom du service déclaré dans pfsense AVEC l'adresse du reverse proxy.
+- Ajouter le nom du service concerné dans pfsense, avec son ip réél et celle du reverse proxy (192.168.0.239). `192.168.0.1`
 ````
 === EXEMPLE ===
 kuma.sednal.lan Déclaré 192.168.0.239 <=== pour le reverse proxy
 monitoring.sednal.lan Déclaré 192.168.0.237 <=== pour le Webui
 ````
 
-- Dans les deux template sur 192.168.0.239 ( !!! pas 192.168.0.238 !!!) `-4- Agent` voir [-4.3 Template](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/-4-Agent.md#--43-templates)
+- Dans les deux template des agents renseigner SERVICE.sednal.lan, dans la partie altname " " `192.168.0.239`  ( !!! pas 192.168.0.238 !!!)
+EXEMPLE ===> `-4- Agent` voir [-4.3 Template](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/-4-Agent.md#--43-templates)
 ````
 # Dans cette section
 "alt_names="
 ````
 
-`- 4.4` Générer le certificats
+`- 4.4` Générer le certificats + vérif `192.168.0.239`
 ````
 sudo systemctl restart vault-agent
 openssl x509 -in /etc/ssl/nalsed/infra.crt -noout -ext subjectAltName
@@ -304,12 +305,12 @@ openssl x509 -in /etc/ssl/nalsed/infra.crt -noout -ext subjectAltName
 
 - Résultat attendu =>le SERViCE déclaré est présent dans la liste.
 
-`- 4.5` Créer le fichier du service conrespondant
+`- 4.5` Créer le fichier du service conrespondant `192.168.0.239`
 ````
 sudo vim /etc/nginx/sites-available/SERVICE.conf
 ````
 
-`- 4.6` Editer le fichier !!! (A ajuster en fonction ce fichier est un template) !!!
+`- 4.6` Editer le fichier !!! (A ajuster en fonction ce fichier est un template) !!! `192.168.0.239`
 ````
 server {
     listen 80;
@@ -341,14 +342,14 @@ server {
 }
 ````
 
-`- 4.7` Activation
+`- 4.7` Activation `192.168.0.239`
 ````
 cd /etc/nginx/sites-enabled
 sudo ln -s /etc/nginx/sites-available/SERVICE.conf SERVICE.conf
 sudo nginx -t && sudo systemctl reload nginx
 ````
 
-`- 4.8` Vérification
+`- 4.8` Vérification `UNE AUTRE IP QUE 192.168.0.239`
 ````
 curl -I https://SERVICE.sednal.lan
 ````
