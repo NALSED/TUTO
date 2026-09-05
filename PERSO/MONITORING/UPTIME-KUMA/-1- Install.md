@@ -63,5 +63,5 @@ docker manifest inspect louislam/uptime-kuma:2 | grep -A2 architecture
 Démarrage :
 
 ````
-docker compose up -d
+sudo docker compose up -d
 ````
