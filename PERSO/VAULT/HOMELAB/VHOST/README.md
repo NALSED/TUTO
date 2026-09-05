@@ -20,6 +20,8 @@ Pour plus de clarté, et conservé l'ordre de déploiement, le fichier -6- vHost
 
 `-6-` [Proxmox](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/VHOST/-6-%20Proxmox.md)
 
+`-7-` [Uptime-Kuma](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/VHOST/-7-%20Uptime-Kuma.md)
+
 - [Activation](https://github.com/NALSED/TUTO/blob/main/PERSO/VAULT/HOMELAB/VHOST/Activation.md)
 
 
