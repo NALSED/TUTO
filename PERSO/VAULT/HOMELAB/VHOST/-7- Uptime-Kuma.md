@@ -13,7 +13,7 @@ Convention de nommage (identique à pihole et bareos) :
 ## `- 1.1` Filtrage sur le Pi2 (192.168.0.237)
 
 ```bash
-nft add rule inet filter input ip saddr 192.168.0.239 tcp dport 3001 accept
+sudo nft add rule ip filter DOCKER-USER ip daddr 172.18.0.2 tcp dport 3001 ip saddr != 192.168.0.239 drop
 nft add rule inet filter input tcp dport 3001 drop
 ```
 
