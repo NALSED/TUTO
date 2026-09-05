@@ -49,11 +49,21 @@ vim docker-compose.yml
 services:
   uptime-kuma:
     image: louislam/uptime-kuma:2
+    container_name: uptime-kuma
     restart: unless-stopped
     volumes:
       - ./data:/app/data
     ports:
       - "3001:3001"
+    networks:
+      kuma_net:
+        ipv4_address: 172.18.0.2
+
+networks:
+  kuma_net:
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
 ````
 
 
