@@ -29,7 +29,7 @@ Depuis toute autre machine, la connexion doit être rejetée.
 
 ## `- 1.3` Créer fichier
 ````
-/etc/nginx/conf.d/kuma.conf
+vim /etc/nginx/conf.d/kuma.conf
 ````
 
 ## `- 1.4` Editer
