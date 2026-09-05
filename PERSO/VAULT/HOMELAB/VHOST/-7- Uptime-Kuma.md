@@ -9,45 +9,78 @@ Convention de nommage (identique à pihole et bareos) :
 | `monitoring.sednal.lan` | 192.168.0.237   | Hôte (SSH, administration)|
 | `kuma.sednal.lan`       | 192.168.0.239   | Service, via reverse proxy|
 
-
 ## `- 1.1` Filtrage sur le Pi2 (192.168.0.237)
 
-```bash
+Le port 3001 est publié par Docker : le trafic est DNATé en `PREROUTING` puis
+traverse `FORWARD`, jamais `INPUT`. Le filtrage se fait dans `DOCKER-USER`.
+
+````
 sudo nft add rule ip filter DOCKER-USER ip daddr 172.18.0.2 tcp dport 3001 ip saddr != 192.168.0.239 drop
-nft add rule inet filter input tcp dport 3001 drop
-```
+````
+
+⚠️ `DOCKER-USER` est vidée à chaque redémarrage du démon Docker.
+La persistance reste à mettre en place.
 
 ## `- 1.2` Vérification depuis `192.168.0.239` :
+
 ````
 curl -I http://192.168.0.237:3001
 ````
 
 Résultat attendu : `HTTP/1.1 302 Found`.
-Depuis toute autre machine, la connexion doit être rejetée.
+
+Depuis le PC admin `192.168.0.235` (PowerShell) :
+
+````
+Test-NetConnection 192.168.0.237 -Port 3001
+````
+
+Résultat attendu : `PingSucceeded : True` et `TcpTestSucceeded : False`.
+
+⚠️ Un test lancé depuis le Pi lui-même ne prouve rien : le trafic local passe par
+`OUTPUT` et ne traverse jamais `DOCKER-USER`.
+
+## `- 1.3` Certificat
+
+Ajouter `kuma.sednal.lan` dans `alt_names` des **deux** templates de
+`192.168.0.239` (voir `-4-Agent.md` § `4.3`), Vault sur `192.168.0.238` allumé.
+
+````
+sudo systemctl restart vault-agent
+openssl x509 -in /etc/ssl/nalsed/infra.crt -noout -ext subjectAltName
+````
+
+Résultat attendu : `kuma.sednal.lan` présent dans la liste.
 
 ## Vhost sur 192.168.0.239
 
-## `- 1.3` Créer fichier
+## `- 1.4` Créer fichier
+
 ````
-vim /etc/nginx/conf.d/kuma.conf
+sudo vim /etc/nginx/sites-available/kuma.conf
 ````
 
-## `- 1.4` Editer
+## `- 1.5` Editer
+
 ````
 server {
-    listen 443 ssl;
-    http2 on;
+    listen 80;
+    server_name kuma.sednal.lan;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
     server_name kuma.sednal.lan;
 
-    ssl_certificate     /etc/nginx/tls/infra.crt;
-    ssl_certificate_key /etc/nginx/tls/infra.key;
+    include snippets/ssl-nalsed.conf;
 
     location / {
         proxy_pass http://192.168.0.237:3001;
 
         proxy_http_version 1.1;
         proxy_set_header Upgrade    $http_upgrade;
-        proxy_set_header Connection "upgrade";
+        proxy_set_header Connection $connection_upgrade;
 
         proxy_set_header Host              $host;
         proxy_set_header X-Real-IP         $remote_addr;
@@ -60,16 +93,19 @@ server {
 }
 ````
 
-## `- 1.5` Redemarrer nginx
-```bash
-nginx -t && systemctl reload nginx
-```
+## `- 1.6` Activation
 
-## `- 1.6` Vérification
+````
+cd /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/kuma.conf kuma.conf
+sudo nginx -t && sudo systemctl reload nginx
+````
 
-```bash
+## `- 1.7` Vérification
+
+````
 curl -I https://kuma.sednal.lan
-```
+````
 
 Résultat attendu : `HTTP/2 200`, et l'interface ne doit pas rester
 bloquée sur « Connecting… » (signe que les en-têtes websocket ne
