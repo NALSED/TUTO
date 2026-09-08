@@ -48,24 +48,22 @@ vim docker-compose.yml
 ````
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:2
+    image: louislam/uptime-kuma:1
     container_name: uptime-kuma
     restart: unless-stopped
     volumes:
       - ./data:/app/data
+      - ./certs/ca.crt:/etc/ssl/certs/Sednal-Root-RSA-1.pem:ro
+    environment:
+      - NODE_EXTRA_CA_CERTS=/etc/ssl/certs/Sednal-Root-RSA-1.pem
     ports:
       - "3001:3001"
-    networks:
-      kuma_net:
-        ipv4_address: 172.20.0.2
-
-networks:
-  kuma_net:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/24
 ````
 
+⚠️ Copier le CARoot au bonne endroit `/usr/local/share/ca-certificates/`
+````
+sudo update-ca-certificates
+````
 
 `- 1.5` Vérification de la compatibilité d'architecture avant lancement :
 ````
