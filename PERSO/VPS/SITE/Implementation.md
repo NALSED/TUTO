@@ -23,3 +23,23 @@ Ce document montre le procédé complet pour la mise en ligne du site `presentat
 ### `-3-` Hébergement du site
 
 
+`- 3.1` Créer un entrée `A`
+````
+presentation.nalsed.fr. IN A 176.31.163.227
+````
+
+`- 3.2` Cloner le repo dans le dossier corespondant sur `176.31.163.227`
+````
+cd ~/www/site
+````
+
+````
+git clone https://github.com/NALSED/presentation
+````
+
+`- 3.3` Recharger Caddy
+````
+
+````
+
+
