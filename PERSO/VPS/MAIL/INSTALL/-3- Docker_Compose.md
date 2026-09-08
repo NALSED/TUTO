@@ -268,7 +268,7 @@ vim ~/DMS/Caddy/conf.d/site.caddy
 ````
 ````
 # Editer
-site.nalsed.fr {
+presentation.nalsed.fr {
     root * /srv/site
     encode zstd gzip
     file_server
