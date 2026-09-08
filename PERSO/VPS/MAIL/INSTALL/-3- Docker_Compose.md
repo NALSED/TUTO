@@ -269,8 +269,15 @@ vim ~/DMS/Caddy/conf.d/site.caddy
 ````
 # Editer
 presentation.nalsed.fr {
-    root * /srv/site/presentation
+    root * /srv/site
     encode zstd gzip
+
+    @forbidden {
+        path /.git
+        path /.git/*
+    }
+    respond @forbidden 404
+
     file_server
 }
 ````
