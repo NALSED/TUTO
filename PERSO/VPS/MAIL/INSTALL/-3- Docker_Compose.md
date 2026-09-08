@@ -267,7 +267,6 @@ webmail.nalsed.fr {
 vim ~/DMS/Caddy/conf.d/site.caddy
 ````
 ````
--v2
 # Editer
 site.nalsed.fr {
     root * /srv/site
@@ -277,7 +276,11 @@ site.nalsed.fr {
 ````
 
 -v2
-`[NOTE]` Absence de directive `tls` : c'est ce qui déclenche l'obtention automatique du certificat par Caddy (challenge HTTP-01 sur le port 80). Le webmail conserve ses certificats certbot, les deux modes cohabitent sans conflit.
+
+
+`[NOTE]` 
+
+Absence de directive `tls` : c'est ce qui déclenche l'obtention automatique du certificat par Caddy (challenge HTTP-01 sur le port 80). Le webmail conserve ses certificats certbot, les deux modes cohabitent sans conflit.
 
 Pour le deployment du site voir [ICI]()
 
