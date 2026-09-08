@@ -146,9 +146,9 @@ POSTGRES_PASSWORD=<PASSWORD_DB>
 chmod 600 .env
 ````
 
-⚠️ Ne jamais committer ce fichier.
-
 `- 3.5` Caddy
+
+### - `=== Version 1 ===` => Sans le site de demande d'Alternance
 ````
 services:
   caddy:
@@ -172,13 +172,88 @@ networks:
   sogo-net:
     external: true
 ````
-
+-v1
 `[NOTE]` Le montage `/etc/letsencrypt/` complet est nécessaire : les fichiers de `live/` sont des liens symboliques vers `archive/`. Monter uniquement `live/` donnerait des liens cassés.
 
+-v1
 `- 3.6` Caddyfile
 ````
 vim ~/DMS/Caddy/Caddyfile
 
+-v1
+# Editer
+webmail.nalsed.fr {
+    tls /etc/letsencrypt/live/webmail.nalsed.fr/fullchain.pem /etc/letsencrypt/live/webmail.nalsed.fr/privkey.pem
+    redir / /SOGo permanent
+    reverse_proxy sogo:80
+}
+````
+-v1
+`[NOTE]` L'image SOGo embarque Apache, qui sert sa page d'accueil par défaut à la racine. Sans le `redir`, `https://webmail.nalsed.fr` affiche la page Apache au lieu du webmail. La redirection ne cible que la racine exacte, les autres chemins passent normalement au proxy.
+
+
+
+### - `=== Version 2 ===` => Avec le site de demande d'Alternance
+````
+services:
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./conf.d:/etc/caddy/conf.d:ro
+      - /home/debian/www/site:/srv/site:ro
+      - /etc/letsencrypt/:/etc/letsencrypt:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    restart: always
+    networks:
+      - sogo-net
+volumes:
+  caddy-data:
+  caddy-config:
+networks:
+  sogo-net:
+    external: true
+````
+
+- v2
+- Création dossier et fichier pour le site + backup config
+````
+mkdir -p ~/DMS/Caddy/conf.d ~/www/site
+cp ~/DMS/Caddy/Caddyfile ~/DMS/Caddy/Caddyfile.bak
+````
+
+-v2 Changement de l’arborescence fichier afin d'avoir deux configuration de `Caddy`.
+````
+~/DMS/Caddy/
+├── Caddyfile          # ne contient plus que l'import
+├── compose.yaml
+└── conf.d/
+    ├── webmail.caddy
+    └── site.caddy
+~/www/site/            # fichiers statiques, hors DMS
+└── index.html
+````
+
+-v2
+- Le `Caddyfile` ne contient plus que l'import
+````
+vim ~/DMS/Caddy/Caddyfile
+-v2
+# Remplacer tout le contenu par
+import /etc/caddy/conf.d/*.caddy
+````
+
+-v2
+- Editer bloc `Serveur Mail`
+````
+vim ~/DMS/Caddy/conf.d/webmail.caddy
+````
+````
 # Editer
 webmail.nalsed.fr {
     tls /etc/letsencrypt/live/webmail.nalsed.fr/fullchain.pem /etc/letsencrypt/live/webmail.nalsed.fr/privkey.pem
@@ -187,7 +262,28 @@ webmail.nalsed.fr {
 }
 ````
 
-`[NOTE]` L'image SOGo embarque Apache, qui sert sa page d'accueil par défaut à la racine. Sans le `redir`, `https://webmail.nalsed.fr` affiche la page Apache au lieu du webmail. La redirection ne cible que la racine exacte, les autres chemins passent normalement au proxy.
+
+-v2
+- Editer bloc du site statique
+````
+vim ~/DMS/Caddy/conf.d/site.caddy
+````
+````
+-v2
+# Editer
+site.nalsed.fr {
+    root * /srv/site
+    encode zstd gzip
+    file_server
+}
+````
+
+-v2
+`[NOTE]` Absence de directive `tls` : c'est ce qui déclenche l'obtention automatique du certificat par Caddy (challenge HTTP-01 sur le port 80). Le webmail conserve ses certificats certbot, les deux modes cohabitent sans conflit.
+
+Pour le deployment du site voir [ICI]()
+
+---
 
 `- 3.7` Forcer la sortie SMTP en IPv4
 
