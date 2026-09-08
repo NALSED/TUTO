@@ -172,8 +172,6 @@ networks:
   sogo-net:
     external: true
 ````
--v1
-`[NOTE]` Le montage `/etc/letsencrypt/` complet est nécessaire : les fichiers de `live/` sont des liens symboliques vers `archive/`. Monter uniquement `live/` donnerait des liens cassés.
 
 -v1
 `- 3.6` Caddyfile
