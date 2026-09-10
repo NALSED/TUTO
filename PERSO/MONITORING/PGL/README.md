@@ -10,6 +10,16 @@
    - `Promtail` 
    - `Consul`
 ---
+### === LAB ===
+
+- VM sur `192.168.0.235`
+
+   - HOSTNAME : pgl.sednal.lan
+   - IP : 192.168.0.10
+   - RAM : 8 Go
+   - CPU : 2 Core
+
+
 
 🟥  **X**
 
