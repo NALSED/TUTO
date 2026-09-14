@@ -1,3 +1,4 @@
 ## Rapport monitoring automatisés
 
-Cette section est destinée à accueillir, la centralisation du monitoring de l'infra, une analyse par ia et un compte rendu sur un media "mail, télégram ou autre"
+- Ici réalisation d'un pipe automatisé avec pour vérifier si les jobs `Bareos` programmés le dimanche, sont terminé, si ils le sont message sur `Win 11` et téléphone via telegram avec action requise .
+
