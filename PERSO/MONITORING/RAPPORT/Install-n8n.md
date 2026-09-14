@@ -24,8 +24,6 @@ services:
   n8n:
     image: n8nio/n8n:latest
     restart: always
-    ports:
-      - "127.0.0.1:5678:5678"
     environment:
       - N8N_HOST=n8n.nalsed.fr
       - N8N_PORT=5678
@@ -37,7 +35,7 @@ services:
       # Le password est dans un .env
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
-      - n8n_data:/home/sednal/.n8n
+      - n8n_data:/home/node/.n8n
     depends_on:
       - postgres
 
@@ -55,6 +53,10 @@ services:
 volumes:
   n8n_data:
   n8n_pg:
+
+networks:
+  default:
+    name: sogo-net
 ````
 
 ### -3- création du fichier `.env`
@@ -104,7 +106,7 @@ vim ~/DMS/Caddy/conf.d/n8n.caddy
 - Editer
 ````
 n8n.nalsed.fr {
-    reverse_proxy localhost:5678
+    reverse_proxy n8n:5678
 }
 ````
 
