@@ -117,7 +117,7 @@ n8n.nalsed.fr {
 
 - Reload
 ````
-sudo systemctl reload caddy
+sudo docker exec caddy caddy reload --config /etc/caddy/Caddyfile
 ````
 
 
