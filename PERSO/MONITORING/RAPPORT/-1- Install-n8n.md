@@ -59,6 +59,11 @@ networks:
     name: sogo-net
 ````
 
+- démarrer conatainer
+````
+sudo docker compose -d
+````
+
 ### -3- création du fichier `.env`
 ````
 cd $HOME/n8n
@@ -114,12 +119,5 @@ n8n.nalsed.fr {
 ````
 sudo systemctl reload caddy
 ````
-
-### -6- Démarrage container
-````
-sudo docker compose -d
-````
-
-
 
 
