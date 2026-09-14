@@ -115,7 +115,10 @@ n8n.nalsed.fr {
 sudo systemctl reload caddy
 ````
 
-
+### -6- Démarrage container
+````
+sudo docker compose -d
+````
 
 
 
