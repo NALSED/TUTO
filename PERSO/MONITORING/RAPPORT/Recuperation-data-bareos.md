@@ -47,6 +47,8 @@ Set objShell = CreateObject("WScript.Shell")
 result = objShell.Popup("Le job de sauvegarde est terminé avec succés. Fermer ce poste ?", 300, "Sauvegarde Bareos", 4 + 32)
 If result = 6 Or result = -1 Then
     objShell.Run "shutdown /s /t 300", 0, False
+ElseIf result = 7 Then
+    objShell.Run "shutdown /a", 0, False
 End If
 ````
 
@@ -59,5 +61,7 @@ Set objShell = CreateObject("WScript.Shell")
 result = objShell.Popup("Un probléme est survenue lors du BackUp sur Bareos-Server. Fermer ce poste ?", 300, "Sauvegarde Bareos", 4 + 32)
 If result = 6 Or result = -1 Then
     objShell.Run "shutdown /s /t 300", 0, False
+ElseIf result = 7 Then
+    objShell.Run "shutdown /a", 0, False
 End If
 ````
