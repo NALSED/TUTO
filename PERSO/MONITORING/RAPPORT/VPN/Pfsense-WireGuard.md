@@ -101,12 +101,12 @@ IPv4 Address : `10.100.0.2/24`
 
 => Deux régles :
 
-`-1-` WAN
-`-2-` WG_N8N
+`-1- WAN`
+`-2- WG_N8N`
 
 - Opérations à réaliser :
 
-### `-1-` WAN
+### `-1- WAN`
 ````
 Action              : Pass
 Disabled            : décoché (laisser actif)
@@ -128,7 +128,7 @@ Destination Port Range
 Description         : Autoriser Lan => n8n
 ````
 
-### `-2-` WG_N8N
+ ### `-2- WG_N8N`
 ````
 Action           : Pass
 Interface        : WG_N8N
@@ -137,12 +137,12 @@ Protocol         : TCP
 Source           : Address or Alias => 10.100.0.1
 Destination      : Address or Alias => 192.168.0.239
 Destination Port Range
-  From              : *
-  To                : *
+  From              : 22
+  To                : 22
 ````
 ---
 
-### `-5-`
+### `-5-` Configuration Client `176.31.163.227`
 
 Voir => [ICI](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/VPN/Client.md)
 ---
