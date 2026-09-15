@@ -52,9 +52,9 @@
 
 - `VPN/WireGuard/Tunnels/Edit/Tunnels`
 
-- Ici on changera le port d'écoute par défault et reintraindra le CIDR à 32.
+- Ici on changera le port d'écoute par défault .
 
-<img width="1147" height="636" alt="image" src="https://github.com/user-attachments/assets/bdd88d10-cd66-4f88-a788-727b1da5a07c" />
+<img width="1132" height="657" alt="image" src="https://github.com/user-attachments/assets/eec0598b-ea4d-43c2-aaaa-881f854b6471" />
 
 
 ---
@@ -67,11 +67,58 @@
 
 ---
 
-### `-4-` Régles Firewall
+### `-4-` Ajout interfaces et Régles Firewall
 
-- Dans le menu en haut Interface puis :
+### === Interfaces ===
 
-- `Firewall/Rules/WireGuard` + `Add`
+-`- 4.1` Dans le menu en haut Interfaces puis :
+
+- `InterfacesInterface/Assignments` + `Add`
+
+- `- 4.2` Sélectionner `tun_wg0(tun_wg0)`
+
+<img width="1146" height="392" alt="image" src="https://github.com/user-attachments/assets/9b685fc6-1e5d-4ecd-a760-4889ea696546" />
+
+- `- 4.3` Cliquer sur l'interface : Interfaces/OPT2 (tun_wg0)
+
+- Opérations à réaliser :
+````
+Description : `WG_N8N`
+   
+IPv4 Configuration Type : `Static IPv4`
+ 
+IPv4 Address : `10.100.0.2/24`
+````
+      
+- `Save + Apply Change`
+
+
+### `Firewall`
+
+`- 4.4` - Dans le menu en haut `Firewall`
+
+- Opérations à réaliser :
+
+````
+Action              : Pass
+Disabled            : décoché (laisser actif)
+Interface           : WAN
+Address Family      : IPv4
+Protocol            : UDP
+
+Source
+  Type              : Single host or alias
+  Address           : 176.31.163.227
+
+Destination
+  Type              : WAN address
+
+Destination Port Range
+  From              : Custom → 51900
+  To                : Custom → 51900
+
+Description         : Allow WireGuard from VPS n8n
+````
 
 ---
 
