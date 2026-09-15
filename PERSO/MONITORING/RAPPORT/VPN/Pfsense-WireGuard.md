@@ -69,7 +69,7 @@
 
 ### `-4-` Ajout interfaces et Régles Firewall
 
-### === Interfaces ===
+## === Interfaces ===
 
 -`- 4.1` Dans le menu en haut Interfaces puis :
 
@@ -95,7 +95,7 @@ IPv4 Address : `10.100.0.2/24`
 - `Save + Apply Change`
 
 
-### `Firewall`
+## `Firewall`
 
 `- 4.4` - Dans le menu en haut `Firewall`
 
@@ -142,7 +142,7 @@ Destination Port Range
 ````
 ---
 
-### `--`
+### `-5-`
 
 ---
 
