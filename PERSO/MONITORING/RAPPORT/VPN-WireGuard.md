@@ -122,8 +122,8 @@ Destination
   Type              : WAN address
 
 Destination Port Range
-  From              : Custom => *****
-  To                : Custom => *****
+  From              : Custom => *
+  To                : Custom => *
 
 Description         : Autoriser Lan => n8n
 ````
@@ -136,6 +136,9 @@ Address Family   : IPv4
 Protocol         : TCP
 Source           : Address or Alias => 10.100.0.1
 Destination      : Address or Alias => 192.168.0.239
+Destination Port Range
+  From              : *
+  To                : *
 ````
 ---
 
