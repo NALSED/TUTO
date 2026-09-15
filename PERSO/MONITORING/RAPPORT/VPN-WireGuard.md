@@ -83,6 +83,8 @@
 
 - Opérations à réaliser :
 ````
+Enable interface
+
 Description : `WG_N8N`
    
 IPv4 Configuration Type : `Static IPv4`
@@ -97,8 +99,14 @@ IPv4 Address : `10.100.0.2/24`
 
 `- 4.4` - Dans le menu en haut `Firewall`
 
+=> Deux régles :
+
+`-1-` WAN
+`-2-` WG_N8N
+
 - Opérations à réaliser :
 
+### `-1-` WAN
 ````
 Action              : Pass
 Disabled            : décoché (laisser actif)
@@ -108,18 +116,27 @@ Protocol            : UDP
 
 Source
   Type              : Single host or alias
-  Address           : 176.31.163.227
+  Address           : IP VPS
 
 Destination
   Type              : WAN address
 
 Destination Port Range
-  From              : Custom → 51900
-  To                : Custom → 51900
+  From              : Custom => *****
+  To                : Custom => *****
 
-Description         : Allow WireGuard from VPS n8n
+Description         : Autoriser Lan => n8n
 ````
 
+### `-2-` WG_N8N
+````
+Action           : Pass
+Interface        : WG_N8N
+Address Family   : IPv4
+Protocol         : TCP
+Source           : Address or Alias => 10.100.0.1
+Destination      : Address or Alias => 192.168.0.239
+````
 ---
 
 ### `--`
