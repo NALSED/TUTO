@@ -48,8 +48,7 @@ read LEVEL STATUS < /home/sednal/bconsole_result.log
 echo "LEVEL=$LEVEL STATUS=$STATUS"
 
 if [[ "$STATUS" == "T" || "$STATUS" == "W" ]]; then
-    scp /home/sednal/bconsole_result.log sednal@192.168.0.239:/home/sednal/bconsole_result.log
-    ssh sednal@192.168.0.235 "schtasks /run /tn BackupPopup"
+    scp /home/sednal/bconsole_result.log sednal@192.168.0.239:/home/sednal/bconsole_result_ok.log
 else
     echo "Problème, lors des Backup"
 fi
@@ -58,31 +57,68 @@ REMOTE_SCRIPT
 ````
 
 
-- Script pour tester la présence du fichier résultat et demande de validation extinction
+- Ce script pour tester la présence du fichier de résultat.
+
+- Si négative envoie une notification sur `192.168.0.235`, sur Telegram et demande validation pour extinction 
+- Si positive envoie une notification sur `192.168.0.235`, sur Telegram et demande validation pour extinction 
+
 ````
 $HOME/monitoring/script/test_presence.sh
 ````
+````
+#!/bin/bash
 
+heure=$(date +%H:%M:%S)
+fichier="/home/sednal/bconsole_result_ok.log"
+fichier="/home/sednal/bconsole_result_nok.log"
+
+while true
+do
+
+if [[ -s "$fichier" ]];then
+
+    if [[ "$fichier" == bconsole_result_ok ]] ;then
+        ssh sednal@192.168.0.235 "wscript C:\Scripts\popup_shutdown_ok.vbs"
+        curl
+    elif [[ "$fichier" == bconsole_result_nok  ]]
+        ssh sednal@192.168.0.235 "wscript C:\Scripts\popup_shutdown_nok.vbs"
+        curl
+
+    fi
+
+
+
+fi
+
+
+
+done
 ````
 
+---
+
+- Scripts sur 192.168.0.235, pour réussite / échec
+
+`=== réussite ===`
 ````
-
-
-
-
-
-
-
-
-
-- Sur 192.168.0.235
+C:\Scripts\popup_shutdown_ok.vbs
 ````
-C:\Scripts\popup_shutdown.vbs
-````
-
 ````
 Set objShell = CreateObject("WScript.Shell")
-result = objShell.Popup("Le job de sauvegarde est terminé. Fermer ce poste ?", 300, "Sauvegarde Bareos", 4 + 32)
+result = objShell.Popup("Le job de sauvegarde est terminé avec succés. Fermer ce poste ?", 300, "Sauvegarde Bareos", 4 + 32)
+If result = 6 Or result = -1 Then
+    ' Oui (6) ou pas de réponse après 300s (-1) -> extinction
+    objShell.Run "shutdown /s /t 300", 0, False
+End If
+````
+
+`=== Echec ===`
+````
+C:\Scripts\popup_shutdown_nok.vbs
+````
+````
+Set objShell = CreateObject("WScript.Shell")
+result = objShell.Popup("Un probléme est survenue lors du BackUp sur Bareos-Server. Fermer ce poste ?", 300, "Sauvegarde Bareos", 4 + 32)
 If result = 6 Or result = -1 Then
     ' Oui (6) ou pas de réponse après 300s (-1) -> extinction
     objShell.Run "shutdown /s /t 300", 0, False
