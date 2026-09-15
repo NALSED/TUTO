@@ -1,40 +1,14 @@
-## Récupération Données sur Bareos 
+## Récupération Données sur Bareos
 
 ---
+`[NOTE]`
 
-Ici un pipeline, récupérera les informations du job en cours ou termioniné et appliquera les actions suivantes:
-
-- Si job `T` Completed successfully ou `W` Terminated with warnings :
-
--1- eteint `192.168.0.240` 
-
--2- Envoi une demande sur `192.168.0.235`, "Voulez vous éteindre 192.168.0.235"
-
--3- Envoie une demande sur Telegram, idem "Voulez vous éteindre 192.168.0.235"
+Scripts côté Bareos et Windows, appelés par le pipeline n8n (voir [[Notification-shutdown-bareos]]).
 
 ---
-### -1-
-
-- Création path sur `192.168.0.239`
-````
-mkdir -p $HOME/monitoring/script
-mkdir -p $HOME/monitoring/<SI-BESOIN>
-````
-
-### -2- Récupération Data sur Bareos `.240` et Transfert vers Infra `.239`.
-
-- Script pour récupérer les status des job en cours / terminé
-
-- Création script sur `192.168.0.239`
+### -1- Script de récupération du statut (`192.168.0.240`)
 
 ````
-$HOME/monitoring/script/récupération.sh
-````
-````
-#!/bin/bash
-
-ssh sednal@192.168.0.240 'bash -s' <<'REMOTE_SCRIPT'
-
 bconsole <<END_OF_DATA
 wait
 @output /home/sednal/bconsole.log
@@ -43,61 +17,26 @@ list jobs
 quit
 END_OF_DATA
 
-tail -3 /home/sednal/bconsole.log | awk '{print $'15' , $'21' }' > /home/sedna1/bconsole_result.log
+tail -3 /home/sednal/bconsole.log | awk '{print $15 , $21}' > /home/sednal/bconsole_result.log
 read LEVEL STATUS < /home/sednal/bconsole_result.log
 echo "LEVEL=$LEVEL STATUS=$STATUS"
-
-if [[ "$STATUS" == "T" || "$STATUS" == "W" ]]; then
-    scp /home/sednal/bconsole_result.log sednal@192.168.0.239:/home/sednal/bconsole_result_ok.log
-else
-    echo "Problème, lors des Backup"
-fi
-
-REMOTE_SCRIPT
 ````
 
+`[NOTE]`
 
-- Ce script pour tester la présence du fichier de résultat.
-
-- Si négative envoie une notification sur `192.168.0.235`, sur Telegram et demande validation pour extinction 
-- Si positive envoie une notification sur `192.168.0.235`, sur Telegram et demande validation pour extinction 
-
-````
-$HOME/monitoring/script/test_presence.sh
-````
-````
-#!/bin/bash
-
-heure=$(date +%H:%M:%S)
-fichier="/home/sednal/bconsole_result_ok.log"
-fichier="/home/sednal/bconsole_result_nok.log"
-
-while true
-do
-
-if [[ -s "$fichier" ]];then
-
-    if [[ "$fichier" == bconsole_result_ok ]] ;then
-        ssh sednal@192.168.0.235 "wscript C:\Scripts\popup_shutdown_ok.vbs"
-        curl
-    elif [[ "$fichier" == bconsole_result_nok  ]]
-        ssh sednal@192.168.0.235 "wscript C:\Scripts\popup_shutdown_nok.vbs"
-        curl
-
-    fi
-
-
-
-fi
-
-
-
-done
-````
+Le node SSH n8n exécute cette commande directement sur `.240` et récupère `LEVEL=... STATUS=...` en sortie — c'est le IF node n8n qui décide ensuite OK/erreur, pas ce script.
 
 ---
+### -2- Scripts popup sur `192.168.0.235`
 
-- Scripts sur 192.168.0.235, pour réussite / échec
+Déclenchés par le node SSH n8n (voir [[Notification-shutdown-bareos]]) :
+````
+ssh sednal@192.168.0.235 "wscript C:\Scripts\popup_shutdown_ok.vbs"
+````
+ou
+````
+ssh sednal@192.168.0.235 "wscript C:\Scripts\popup_shutdown_nok.vbs"
+````
 
 `=== réussite ===`
 ````
@@ -107,7 +46,6 @@ C:\Scripts\popup_shutdown_ok.vbs
 Set objShell = CreateObject("WScript.Shell")
 result = objShell.Popup("Le job de sauvegarde est terminé avec succés. Fermer ce poste ?", 300, "Sauvegarde Bareos", 4 + 32)
 If result = 6 Or result = -1 Then
-    ' Oui (6) ou pas de réponse après 300s (-1) -> extinction
     objShell.Run "shutdown /s /t 300", 0, False
 End If
 ````
@@ -120,7 +58,6 @@ C:\Scripts\popup_shutdown_nok.vbs
 Set objShell = CreateObject("WScript.Shell")
 result = objShell.Popup("Un probléme est survenue lors du BackUp sur Bareos-Server. Fermer ce poste ?", 300, "Sauvegarde Bareos", 4 + 32)
 If result = 6 Or result = -1 Then
-    ' Oui (6) ou pas de réponse après 300s (-1) -> extinction
     objShell.Run "shutdown /s /t 300", 0, False
 End If
 ````
