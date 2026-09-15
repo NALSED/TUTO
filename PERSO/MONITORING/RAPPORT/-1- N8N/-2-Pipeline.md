@@ -12,11 +12,11 @@
 ---
 ### -1- Workflow principal (Schedule Trigger, dimanche)
 
--1- SSH → `192.168.0.240` : récupération du statut du job (script bconsole - Voir [Recuperation-data-bareos.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/Recuperation-data-bareos.md)
+-1- SSH → `192.168.0.240` : récupération du statut du job (script bconsole - Voir [-3- Scripts.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
 
 -2- IF : statut `T`/`W` (OK) → message succès ; sinon → message erreur
 
--3- SSH → `192.168.0.235` (fire-and-forget, ne bloque pas le workflow) : lance le popup local existant - Voir [Recuperation-data-bareos.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/Recuperation-data-bareos.md)
+-3- SSH → `192.168.0.235` (fire-and-forget, ne bloque pas le workflow) : lance le popup local existant - Voir [-3- Scripts.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
 
 -4- Telegram — Send and Wait for Response : "Éteindre ce poste (235) ?"
 
