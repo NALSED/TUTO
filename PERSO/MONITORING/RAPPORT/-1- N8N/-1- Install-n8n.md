@@ -58,6 +58,7 @@ volumes:
 networks:
   default:
     name: sogo-net
+    external: true
 ````
 
 - démarrer container
