@@ -10,11 +10,12 @@ Scripts côté Bareos et Windows, appelés par le pipeline n8n -voir [-2-Pipelin
 
 - se script est déclenché par `.service` et `.timer`
 
-- Créer le script
+`- 1.1` Créer le script
 ````
 vim $HOME/monitoring/script/recup-status-bareos.sh
 ````
 
+`- 1.2` Edition
 ````
 #!/bin/bash
 
@@ -69,49 +70,59 @@ curl -s -X POST \
   "$URL_N8N"
 ````
 
+`- 1.3` Execution
+````
+chmod +x $HOME/monitoring/script/recup-status-bareos.sh
+````
+
 ---
 
 ### -2- Déclenchement du script `` sur `192.168.0.240` via `.service` et `.timer`
 
 **.service**
 
-- Création
+`- 2.1` Création
 ````
 sudo vim /etc/systemd/system/bareos-status.service
 ````
 
-- Edition
+`- 2.2` Edition
 ````
 [Unit]
 Description= Permet de lancer le script de récupération status Bareos
 
 [Service]
+Type=oneshot
+User=sednal
 ExecStart=/home/sednal/monitoring/script/recup-status-bareos.sh
-
-[Install]
-WantedBy=multi-user.target
-
 ````
 
 
 
 **.timer**
 
-- Création
+`- 2.3` Création
 ````
 sudo vim /etc/systemd/system/bareos-status.timer
 ````
 
--Edition
+`- 2.4` Edition
 ````
 [Unit]
 Description=Démarre le service : bareos-status.service
 
 [Timer]
-OnCalendar= Sun *-*-* 12:00:00
+OnCalendar= Sun *-*-* 12:20:00
 
 [Install]
 WantedBy=multi-user.target
+````
+
+`- 2.5` Démarrage service + timer
+````
+sudo systemctl daemon-reload
+sudo systemctl enable --now bareos-status.service
+sudo systemctl enable --now bareos-status.timer
 ````
 
 
