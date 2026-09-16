@@ -38,15 +38,18 @@
 ````
 {{ $json.data?.approved !== false }}
 ````
-`true` → branche extinction (Approve explicite OU timeout)
-`false` → branche annulation : SSH `192.168.0.235` `shutdown /a` (uniquement si "Decline" est cliqué — annule une extinction que le popup local aurait pu programmer)
+
+`true` => branche extinction (Approve explicite OU timeout)
+
+`false` => branche annulation : SSH `192.168.0.235` `shutdown /a` 
 
 #### Actions d'extinction
-- Branche `235` (`true`) : SSH `192.168.0.235` →
+
+- Branche `235` (`true`) : SSH `192.168.0.235` 
 ````
 shutdown /s /t 300
 ````
-- Branche `240` (`true`) : SSH `192.168.0.240` →
+- Branche `240` (`true`) : SSH `192.168.0.240` 
 ````
 shutdown -h now
 ````
@@ -60,7 +63,7 @@ Tourne en continu, indépendant du workflow principal — permet d'annuler l'ext
 
 -2- IF : `{{$json.message.chat.id}}` = `<ton ID Telegram>` **ET** `{{$json.message.text}}` contient `annuler`
 
--3- SSH → `192.168.0.235` →
+-3- SSH → `192.168.0.235` 
 ````
 shutdown /a
 ````
@@ -69,4 +72,5 @@ shutdown /a
 ### -3- Limites connues
 
 - Le popup local (`235`) et le node Telegram (`235`) sont indépendants, sans synchronisation : le premier canal qui répond l'emporte en pratique, mais rien n'empêche les deux de déclencher un `shutdown` en parallèle (sans conséquence réelle)
-- `240` n'a pas de popup local, uniquement Telegram
+
+
