@@ -10,9 +10,9 @@
    - Récupèration du statut, notification sur `192.168.0.235` (popup local) et sur Telegram (`235` et `240` indépendamment), gestion de l'extinction.
 
 ---
-### -1- Workflow principal (Schedule Trigger, dimanche)
+### -1- Workflow principal 
 
--1- SSH → `192.168.0.240` : récupération du statut du **dernier job** (script bconsole - Voir [-3- Scripts.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
+-1- SSH → `192.168.0.240` : pousse son du statut du **dernier job** sur n8n (script bconsole - Voir [-3- Scripts.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
 
 -2- IF : statut `T`/`W` (OK) → message succès ; sinon → message erreur
 
@@ -41,9 +41,9 @@
 {{ $json.data?.approved == true }}
 ````
 
-`true` => branche extinction (Approve explicite OU timeout)
+`true` => Approve explicite uniquement => branche extinction
 
-`false` => branche annulation : SSH `192.168.0.235` `shutdown /a` 
+`false` => Disapprove OU timeout => branche `NON` 
 
 `[NOTE]`
 
