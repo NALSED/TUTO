@@ -11,7 +11,7 @@ n8n.nalsed.fr. IN A 176.31.163.227
 
 ### -2- Création docker compose
 
-- Le docker compose créera un container pour n8n et po
+- Le docker compose créera un container pour n8n et postgresql
 
 - Créer le fichier
 ````
@@ -61,7 +61,7 @@ networks:
 
 - démarrer conatainer
 ````
-sudo docker compose -d
+sudo docker compose up -d
 ````
 
 ### -3- création du fichier `.env`
