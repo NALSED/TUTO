@@ -46,8 +46,8 @@ AllowedIPs = 10.100.0.2/32, 192.168.0.239/32, 192.168.0.235/32, 192.168.0.240/32
 PersistentKeepalive = 25
 ````
 ````
-wg down wg0 && wg up wg0
-wg show wg0
+wg wg-quick down wg0 && wg-quick up wg0
+wg 
 ````
 
 - Sortie attendue
@@ -59,7 +59,7 @@ interface: wg0
 
 peer: <pub key>
   endpoint: 5.77.130.104:9376
-  allowed ips: 10.100.0.2/32, 192.168.0.239/32
+  allowed ips: 10.100.0.2/32, 192.168.0.239/32, 192.168.0.235/32, 192.168.0.240/32
   latest handshake: 3 seconds ago
   transfer: 180 B received, 272 B sent
   persistent keepalive: every 25 seconds
