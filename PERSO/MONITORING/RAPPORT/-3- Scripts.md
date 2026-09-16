@@ -109,7 +109,9 @@ Description=Démarre le service : bareos-status.service
 
 [Timer]
 OnCalendar= Sun *-*-* 12:00:00
-Persistent=yes
+
+[Install]
+WantedBy=multi-user.target
 ````
 
 
