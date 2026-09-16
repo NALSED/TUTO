@@ -115,7 +115,7 @@ shutdown /a
 
 - Branche `240` / `OUI` : SSH `192.168.0.240`
 ````
-shutdown -h now
+sudo /sbin/shutdown -h now
 ````
 
 - Branche `240` / `NON` : aucune action, extinction laissée au cron de 19h
