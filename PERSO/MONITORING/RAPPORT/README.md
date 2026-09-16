@@ -1,6 +1,6 @@
 ## Rapport monitoring automatisés
 
-- Ici réalisation d'un pipe automatisé avec pour vérifier si les jobs `Bareos` programmés le dimanche, sont terminé, si ils le sont message sur `Win 11` et téléphone via telegram avec action requise .
+- Ici réalisation d'un pipe automatisé pour vérifier si les jobs `Bareos` programmés le dimanche (déclenchement à 12:20) sont terminés. Dans les deux cas, succès ou erreur, un message part sur `Win 11` et sur le téléphone via Telegram, avec proposition d'extinction.
 
 ### `=== Fichier Flux ===`
 
@@ -33,7 +33,6 @@
             |    .240     |  |    .235     |
             |   Bareos    |  |   Win 11    |
             +-------------+  +-------------+
-
 .240 <- SSH : lecture statut (bconsole) + shutdown -h now
-.235 <- SSH : lance le popup .vbs (fire-and-forget)
+.235 <- SSH : popup .vbs (fire-and-forget) + shutdown /s /t 0 ou /a
 ````
