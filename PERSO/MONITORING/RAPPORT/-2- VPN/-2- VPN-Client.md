@@ -42,7 +42,7 @@ ListenPort = 51900
 [Peer]
 PublicKey = YKQXcztjuM9Y4iBk9FvIouHs1J+dkqGxlqA8bS0CpGI=
 Endpoint = 5.77.130.104:51900
-AllowedIPs = 10.100.0.2/32, 192.168.0.239/32
+AllowedIPs = 10.100.0.2/32, 192.168.0.239/32, 192.168.0.235/32, 192.168.0.234/32
 PersistentKeepalive = 25
 ````
 ````
