@@ -11,7 +11,7 @@ n8n.nalsed.fr. IN A 176.31.163.227
 
 ### -2- Création docker compose
 
-- Le docker compose créera un container pour n8n et postgresql
+-  Le docker compose créera un container pour n8n et un pour PostgreSQL
 
 - Créer le fichier
 ````
@@ -28,6 +28,7 @@ services:
       - N8N_HOST=n8n.nalsed.fr
       - N8N_PORT=5678
       - N8N_PROTOCOL=https
+      - WEBHOOK_URL=https://n8n.nalsed.fr/
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
       - DB_POSTGRESDB_DATABASE=n8n
@@ -59,7 +60,7 @@ networks:
     name: sogo-net
 ````
 
-- démarrer conatainer
+- démarrer container
 ````
 sudo docker compose up -d
 ````
