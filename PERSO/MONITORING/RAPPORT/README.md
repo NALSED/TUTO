@@ -14,6 +14,8 @@
 
 ### `=== Shémas Flux ===`
 ````
+### `=== Shémas Flux ===`
+````
                          INTERNET
                             |
                       [Telegram API]
@@ -22,17 +24,18 @@
                     +---------------+
                     |  VPS (n8n)    |
                     | 176.31.163.227|
-                    +-------+-------+
-                            |
-                            | tunnel WireGuard
-                            | (SSH direct)
-                    +-------+-------+
-                    |               |
-                    v               v
+                    +---+-------+---+
+                        |       ^
+        tunnel WireGuard|       | HTTPS (hors tunnel)
+              (SSH)     |       | POST /webhook
+                        v       |
+            +-------------+  +--+----------+
+            |    .235     |  |    .240     |
+            |   Win 11    |  |   Bareos    |
             +-------------+  +-------------+
-            |    .240     |  |    .235     |
-            |   Bareos    |  |   Win 11    |
-            +-------------+  +-------------+
-.240 <- SSH : lecture statut (bconsole) + shutdown -h now
-.235 <- SSH : popup .vbs (fire-and-forget) + shutdown /s /t 0 ou /a
+
+.240 -> HTTPS : timer systemd => recup-status-bareos.sh => POST vers n8n
+.240 <- SSH   : shutdown -h now
+.235 <- SSH   : popup .vbs (lancé par .240) + shutdown /s /t 0 ou /a
+````
 ````
