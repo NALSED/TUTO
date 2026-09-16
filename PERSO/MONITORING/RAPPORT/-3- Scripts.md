@@ -3,7 +3,7 @@
 ---
 `[NOTE]`
 
-Scripts côté Bareos et Windows, appelés par le pipeline n8n -voir [-2-Pipeline.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-1-%20N8N/-2-Pipeline.md).
+Scripts côté Bareos et Windows, pousse vers le pipeline n8n -voir [-2-Pipeline.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-1-%20N8N/-2-Pipeline.md).
 
 ---
 ### -1- Script de récupération du statut (`192.168.0.240`)
