@@ -28,10 +28,6 @@
 
 -5- IF sur l'approbation → `OUI` extinction immédiate de `240` / `NON` rien, le cron de 19h prend le relais
 
-`[NOTE]`
-
-- Il n'y a pas d'IF sur le statut de la sauvegarde : le script a déjà choisi le texte du message selon le couple `LEVEL` / `STATUS` et l'envoie dans le payload. Succès comme échec, l'extinction est proposée
-
 #### Config node Webhook
 ````
 HTTP Method    : POST
@@ -48,12 +44,12 @@ Value : <token aléatoire long>
 
 - URL de production :
 ````
-https://n8n.nalsed.fr/webhook/<chaine-aleatoire-longue>
+https://n8n.nalsed.fr/webhook/<chaine>
 ````
 
 - URL de test, active uniquement quand le workflow tourne en mode manuel :
 ````
-https://n8n.nalsed.fr/webhook-test/<chaine-aleatoire-longue>
+https://n8n.nalsed.fr/webhook-test/<chaine>
 ````
 
 - Corps envoyé par le script :
@@ -87,9 +83,6 @@ https://n8n.nalsed.fr/webhook-test/<chaine-aleatoire-longue>
 Souhaitez-vous éteindre [ 192.168.0.240 ] ?
 ````
 
-`[NOTE]`
-
-- `$json.body.text` ne fonctionne que dans le node **immédiatement après** le Webhook. Plus loin dans le workflow, référencer le node source explicitement avec `$('Webhook')`
 
 #### Comportement du timeout
 ````
