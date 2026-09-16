@@ -4,29 +4,70 @@
 
 `[NOTE]`
 
-- Le pipeline suivant à pour objectif de remplir les taches suivantes:  
+- Le pipeline suivant a pour objectif de remplir les tâches suivantes :
 
-   - À la fin des jobs Bareos programmés le dimanche.
-   - Récupèration du statut, notification sur `192.168.0.235` (popup local) et sur Telegram (`235` et `240` indépendamment), gestion de l'extinction.
+   - À la fin des jobs Bareos programmés le dimanche, récupérer le statut du dernier job.
+   - Notifier sur `192.168.0.235` (popup local) et sur Telegram, puis gérer l'extinction de `235` et de `240`.
+
+- Le déclenchement ne vient pas de n8n : c'est un timer systemd sur `192.168.0.240` qui lance le script, lequel pousse le résultat sur le webhook — voir [-3- Scripts.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
+
+- Le popup local de `235` est lancé par ce même script, pas par n8n
+
+- Les deux demandes d'extinction sont **séquentielles** : celle de `240` ne part qu'une fois celle de `235` résolue
 
 ---
-### -1- Workflow principal 
+### -1- Workflow principal (Webhook)
 
--1- SSH → `192.168.0.240` : pousse son du statut du **dernier job** sur n8n (script bconsole - Voir [-3- Scripts.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
+-1- Webhook — reçoit le statut poussé en HTTPS par `192.168.0.240`
 
--2- IF : statut `T`/`W` (OK) → message succès ; sinon → message erreur
+-2- Telegram — Send and Wait for Response : extinction de `235`
 
-   - Les deux branches continuent vers la proposition d'extinction : seul le texte du message change
+-3- IF sur l'approbation → `OUI` extinction immédiate de `235` / `NON` annulation du timer du popup
 
--3- SSH → `192.168.0.235` (fire-and-forget, ne bloque pas le workflow) : lance le popup local existant - Voir [-3- Scripts.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
+-4- Telegram — Send and Wait for Response : extinction de `240`
 
--4- Telegram — Send and Wait for Response : "Éteindre ce poste (235) ?"
+-5- IF sur l'approbation → `OUI` extinction immédiate de `240` / `NON` rien, le cron de 19h prend le relais
 
--5- IF sur l'approbation → `OUI` extinction immédiate de `235` / `NON` annulation du timer du popup
+`[NOTE]`
 
--6- Telegram — Send and Wait for Response : "Éteindre Bareos-Server (240) ?"
+- Il n'y a pas d'IF sur le statut de la sauvegarde : le script a déjà choisi le texte du message selon le couple `LEVEL` / `STATUS` et l'envoie dans le payload. Succès comme échec, l'extinction est proposée
 
--7- IF sur l'approbation → `OUI` extinction immédiate de `240` / `NON` rien, le cron de 19h prend le relais
+#### Config node Webhook
+````
+HTTP Method    : POST
+Path           : <chaine-aleatoire-longue>
+Authentication : Header Auth
+Respond        : Immediately
+````
+
+- Credential `Header Auth` :
+````
+Name  : X-Bareos-Token
+Value : <token aléatoire long>
+````
+
+- URL de production :
+````
+https://n8n.nalsed.fr/webhook/<chaine-aleatoire-longue>
+````
+
+- URL de test, active uniquement quand le workflow tourne en mode manuel :
+````
+https://n8n.nalsed.fr/webhook-test/<chaine-aleatoire-longue>
+````
+
+- Corps envoyé par le script :
+````
+{ "level": "I", "status": "T", "text": "=== Bareos [ 192.168.0.240 ] ===\n🟢 Sauvegarde ..." }
+````
+
+`[NOTE]`
+
+- `Respond : Immediately` est impératif. En `When Last Node Finishes`, le `curl` du script resterait bloqué jusqu'à la fin des deux attentes Telegram, soit plus de 10 minutes
+
+- Le chemin aléatoire **et** le header d'authentification : sans les deux, n'importe qui peut déclencher le pipeline d'extinction
+
+- Derrière Caddy, si l'URL affichée dans le node n'est pas la bonne, ajouter `WEBHOOK_URL=https://n8n.nalsed.fr/` au `compose.yml` — voir [-1- Install-n8n.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-1-%20N8N/-1-%20Install-n8n.md)
 
 #### Config node Telegram (x2 — un pour 235, un pour 240)
 - Resource : `Message`
@@ -36,14 +77,28 @@
 - Type of Approval : `Approve and Disapprove`
 - Limit Wait Time : `5` minutes
 
-#### Comportement du timeout 
+- Texte du message `235`, repris du payload :
+````
+{{ $('Webhook').item.json.body.text }}
+````
+
+- Texte du message `240` :
+````
+Souhaitez-vous éteindre [ 192.168.0.240 ] ?
+````
+
+`[NOTE]`
+
+- `$json.body.text` ne fonctionne que dans le node **immédiatement après** le Webhook. Plus loin dans le workflow, référencer le node source explicitement avec `$('Webhook')`
+
+#### Comportement du timeout
 ````
 {{ $json.data?.approved == true }}
 ````
 
 `true` => Approve explicite uniquement => branche extinction
 
-`false` => Disapprove OU timeout => branche `NON` 
+`false` => Disapprove OU timeout => branche `NON`
 
 `[NOTE]`
 
@@ -81,14 +136,9 @@ Tourne en continu, indépendant du workflow principal — permet d'annuler l'ext
 
 -2- IF : `{{$json.message.chat.id}}` = `<ton ID Telegram>` **ET** `{{$json.message.text}}` contient `annuler`
 
--3- SSH → `192.168.0.235` 
+-3- SSH → `192.168.0.235`
 ````
 shutdown /a
 ````
 
 ---
-### -3- Limites connues
-
-- Le popup local (`235`) et le node Telegram (`235`) sont indépendants, sans synchronisation : le premier canal qui répond l'emporte en pratique, mais rien n'empêche les deux de déclencher un `shutdown` en parallèle (sans conséquence réelle)
-
-
