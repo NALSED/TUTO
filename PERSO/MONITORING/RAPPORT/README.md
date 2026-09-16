@@ -14,8 +14,6 @@
 
 ### `=== Shémas Flux ===`
 ````
-### `=== Shémas Flux ===`
-````
                          INTERNET
                             |
                       [Telegram API]
@@ -37,5 +35,4 @@
 .240 -> HTTPS : timer systemd => recup-status-bareos.sh => POST vers n8n
 .240 <- SSH   : shutdown -h now
 .235 <- SSH   : popup .vbs (lancé par .240) + shutdown /s /t 0 ou /a
-````
 ````
