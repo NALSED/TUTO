@@ -38,7 +38,7 @@
 
 #### Comportement du timeout 
 ````
-{{ $json.data?.approved !== true }}
+{{ $json.data?.approved == true }}
 ````
 
 `true` => branche extinction (Approve explicite OU timeout)
@@ -48,16 +48,6 @@
 `[NOTE]`
 
 - Le timeout ne déclenche aucune extinction : sur `235` le popup local éteint déjà tout seul après 300 s, sur `240` le cron de 19h prend le relais
-
-#### Actions d'extinction
-
-- Branche `235` / `OUI` : SSH `192.168.0.235`
-````
-shutdown /s /t 0
-````
-
-#### Actions d'extinction
-
 
 #### Actions d'extinction
 
