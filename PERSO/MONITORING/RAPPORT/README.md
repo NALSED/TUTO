@@ -7,7 +7,7 @@
 - `1` [Installation de n8n](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-1-%20N8N/-1-%20Install-n8n.md)
 - `2` [Mise en place VPN sur Pfsense](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-2-%20VPN/-1-%20Pfsense-WireGuard.md)
 - `3` [Mise en place VPN sur VPS](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-2-%20VPN/-2-%20VPN-Client.md)
-- `4` [Edition Scipt](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
+- `4` [Edition Script](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
 - `5` [Pipeline](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-1-%20N8N/-2-Pipeline.md)
 
 ---
