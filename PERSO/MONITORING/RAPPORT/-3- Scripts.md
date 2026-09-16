@@ -121,8 +121,8 @@ WantedBy=multi-user.target
 `- 2.5` Démarrage service + timer
 ````
 sudo systemctl daemon-reload
-sudo systemctl enable --now bareos-status.service
 sudo systemctl enable --now bareos-status.timer
+systemctl list-timers bareos-status.timer
 ````
 
 
