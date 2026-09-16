@@ -129,6 +129,9 @@ Description         : Autoriser Lan => n8n
 ````
 
  ### `-2- WG_N8N`
+
+**-1-**
+
 ````
 Action           : Pass
 Interface        : WG_N8N
@@ -140,6 +143,35 @@ Destination Port Range
   From              : 22
   To                : 22
 ````
+
+**-2-**
+
+````
+Action           : Pass
+Interface        : WG_N8N
+Address Family   : IPv4
+Protocol         : TCP
+Source           : Address or Alias => 10.100.0.1
+Destination      : Address or Alias => 192.168.0.235
+Destination Port Range
+  From              : 22
+  To                : 22
+````
+
+**-3-**
+
+````
+Action           : Pass
+Interface        : WG_N8N
+Address Family   : IPv4
+Protocol         : TCP
+Source           : Address or Alias => 10.100.0.1
+Destination      : Address or Alias => 192.168.0.240
+Destination Port Range
+  From              : 22
+  To                : 22
+````
+
 ---
 
 ### `-5-` Configuration Client `176.31.163.227`
