@@ -35,8 +35,12 @@ Keep your token secure and store it safely, it can be used by anyone to control 
 For a description of the Bot API, see this page: https://core.telegram.org/bots/api
 ````
 
-### -2- Récupération ID
+### -2- Récupération ID USER
 
+`[NOTE]`
+
+- l'ID `bot` se trouve au début du `TOKEN` @BotFather
+ 
 `- 2.1` Dans un navigateur entrer l'URL :
 ````
 # LE token est celui généré avec @BotFather
