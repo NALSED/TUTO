@@ -115,7 +115,7 @@ Description=Démarre le service : bareos-status.service
 OnCalendar= Sun *-*-* 12:20:00
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=timer.target
 ````
 
 `- 2.5` Démarrage service + timer
