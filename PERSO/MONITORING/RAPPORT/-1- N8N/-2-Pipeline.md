@@ -41,39 +41,19 @@
 `- 1.1` En haut à droite `Create wrokflow` => `+` => `Webhook`
 
 `- 1.2` Configuration node Webhook :
-````
-HTTP Method    : POST
-Path           : !!! Doit être le même "URL_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
-Authentication : Header Auth
-Respond        : Immediately
-````
+
+- HTTP Method    : POST
+- Path           : !!! Doit être le même "URL_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
+- Authentication : Header Auth
+- Respond        : Immediately
+
 
 - Credential for `Header Auth` :
-````
-Name  : Bareos_Token
-Value :!!! Doit être le même "TOKEN_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
-````
 
-- URL de production :
-````
-https://n8n.nalsed.fr/webhook/<chaine>
-````
+- Name  : Bareos-Token
+- Value :!!! Doit être le même "TOKEN_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
 
-- URL de test, active uniquement quand le workflow tourne en mode manuel :
-````
-https://n8n.nalsed.fr/webhook-test/<chaine>
-````
 
-- Corps envoyé par le script :
-````
-{ "level": "I", "status": "T", "text": "=== Bareos [ 192.168.0.240 ] ===\n🟢 Sauvegarde ..." }
-````
-
-`[NOTE]`
-
-- `Respond : Immediately` est impératif. En `When Last Node Finishes`, le `curl` du script resterait bloqué jusqu'à la fin des deux attentes Telegram, soit plus de 10 minutes
-
-- Le chemin aléatoire **et** le header d'authentification : sans les deux, n'importe qui peut déclencher le pipeline d'extinction
 
 - Derrière Caddy, si l'URL affichée dans le node n'est pas la bonne, ajouter `WEBHOOK_URL=https://n8n.nalsed.fr/` au `compose.yml` — voir [-1- Install-n8n.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-1-%20N8N/-1-%20Install-n8n.md)
 
