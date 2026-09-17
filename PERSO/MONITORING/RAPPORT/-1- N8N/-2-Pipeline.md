@@ -11,10 +11,6 @@
 
 - Le déclenchement ne vient pas de n8n : c'est un timer systemd sur `192.168.0.240` qui lance le script, lequel pousse le résultat sur le webhook — voir [-3- Scripts.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md)
 
-- Le popup local de `235` est lancé par ce même script, pas par n8n
-
-- Les deux demandes d'extinction sont **séquentielles** : celle de `240` ne part qu'une fois celle de `235` résolue
-
 ---
 ### -1- Workflow principal (Webhook)
 
