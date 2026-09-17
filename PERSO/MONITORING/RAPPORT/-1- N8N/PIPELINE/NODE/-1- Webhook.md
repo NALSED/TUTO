@@ -18,12 +18,33 @@
 
    - Value :!!! Doit être le même "TOKEN_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
 
+`- 1.3` Test Node `WebHook `
+
+- A gauche cliquer sur `Listen  for test event`
+
+- Executer la commande
+````
+ curl -s -X POST \
+-H "Content-Type: application/json" \
+-H "Bareos-Token: <TOKEN_N8N> " \
+-d '{"level":"I","status":"T","text":"test"}' \
+"https://n8n.nalsed.fr/webhook-test/<URL_N8N>"
+````
+
+- Sortie attendu
+````
+{"message":"Workflow was started"}
+````
+
+---
 
 `[NOTE]`
 
 - Derrière Caddy, si l'URL affichée dans le node n'est pas la bonne, ajouter `WEBHOOK_URL=https://n8n.nalsed.fr/` au `compose.yml` — voir [-1- Install-n8n.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-1-%20N8N/-1-%20Install-n8n.md)
 
 ### ===> [SCREEN WEBHOOK](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-6-SCREEN.md#webhook) <===
+
+---
 
 - **FIN DE CONFIGURATION**
 
