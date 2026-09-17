@@ -15,7 +15,15 @@ Commande SSH exécutépour eteindre 192.168.0.240
 
 Credential => `SSH Private Key account`
 
-- Changement : !!! IP !!!
+`[NOTE]`
+
+Credential => créer un **nouveau** credential SSH (ne pas réutiliser celui de `.235`) :
+
+- Host : `192.168.0.240`
+- Port : `22`
+- Username : `sednal`
+- Private Key : celle du VPS
+
 
 ### `-2-` Parameters 
 
