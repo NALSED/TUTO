@@ -37,9 +37,13 @@ For a description of the Bot API, see this page: https://core.telegram.org/bots/
 
 ### -2- Récupération ID
 
-https://api.telegram.org/bot8605511258:AAERtzIUVQP6CkAJf6VcetyoFNoklF8TKKo/getUpdates
+`- 2.1` Dans un navigateur entrer l'URL :
+````
+# LE token est celui généré avec @BotFather
+https://api.telegram.org/bot<TOKEN>/getUpdates
+````
 
-
+`- 2.2` Récupérer l'`ID` et sauvegarder le.
 
 
 
