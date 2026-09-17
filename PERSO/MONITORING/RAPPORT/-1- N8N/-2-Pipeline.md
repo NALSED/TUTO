@@ -29,9 +29,6 @@
 
 ## === Configuration n8n ===
 
-[liens](https://n8n.nalsed.fr)
-
-
 ### `-1-` `Webhook`
 
 `- 1.1` En haut à droite `Create wrokflow` => `+` => `Webhook`
