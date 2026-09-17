@@ -1,4 +1,4 @@
-## Commande SSH
+## Commande SSH pour `true`
 
 ---
 
