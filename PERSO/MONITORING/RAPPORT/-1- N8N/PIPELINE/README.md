@@ -1,5 +1,18 @@
-## Pipeline notification + extinction (Bareos)
+# Pipeline notification + choix extinction 
 
+---
+
+## Cette partie détail la mise en place de chaque `node` séparément
+
+### `-1-` []()
+
+### `-2-` []()
+
+### `-3-` []()
+
+### `-4-` []()
+
+### `-5-` []()
 ---
 
 `[NOTE]`
