@@ -131,7 +131,7 @@ systemctl list-timers bareos-status.timer
 
 `=== réussite ===`
 ````
-C:\Scripts\popup_shutdown_ok.vbs
+notepad C:\Scripts\popup_shutdown_ok.vbs
 ````
 ````
 Set objShell = CreateObject("WScript.Shell")
@@ -145,7 +145,7 @@ End If
 
 `=== Echec ===`
 ````
-C:\Scripts\popup_shutdown_nok.vbs
+notepad C:\Scripts\popup_shutdown_nok.vbs
 ````
 ````
 Set objShell = CreateObject("WScript.Shell")
