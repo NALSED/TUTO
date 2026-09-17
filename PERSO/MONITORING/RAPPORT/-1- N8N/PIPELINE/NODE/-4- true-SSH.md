@@ -10,11 +10,11 @@
 
 `- 1.1` Passer de `Password` => `Private Key`
 
-`- 1.2` Host : `localhost`
+`- 1.2` Host : `192.168.0.235`
  
 `- 1.3` Port : 22
 
-`- 1.4` Username : `debian`
+`- 1.4` Username : `sednal`
 
 `- 1.5` Private Key : Celle du VPS
 
