@@ -58,7 +58,7 @@ esac
 
 # === Popup local sur 235 ===
 
-ssh sednal@192.168.0.235 "schtasks /run /tn Popup_Bareos_${POPUP}"
+ssh sednal@192.168.0.235 "ssh sednal@192.168.0.235 "schtasks /run /tn Popup_Bareos_${POPUP}""
 
 # === Envoi à n8n ===
 
