@@ -19,6 +19,12 @@
 
 ---
 
-### -2- Sans extinction
+## -2- Sans extinction
 
-#### `-2.1-` Lancer le script sur `192.168.0.240`
+### `-2.1-` Lancer le script sur `192.168.0.240`
+
+### `-2.2-` le pop-up sort bien
+
+<img width="409" height="156" alt="pop up" src="https://github.com/user-attachments/assets/26cec8b1-f5db-4f8d-be48-e15ed2881c5b" />
+
+
