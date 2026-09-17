@@ -1,7 +1,12 @@
 # Screen de la configuration de n8n.
 
 ---
+## **WEBHOOK**
 
+<img width="419" height="866" alt="image" src="https://github.com/user-attachments/assets/e223a36a-ea8a-46c7-b97c-17bed864238d" />
+
+
+---
 
 ## **CONFIGURATION NODE TELEGRAM 192.168.0.235**
 <img width="423" height="871" alt="image" src="https://github.com/user-attachments/assets/f17eb680-9073-49e7-80e4-2b6611d692e3" />
