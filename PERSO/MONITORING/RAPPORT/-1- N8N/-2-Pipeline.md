@@ -31,41 +31,58 @@
 
 ---
 
-### === Configuration n8n ===
+## === Configuration n8n ===
 
 [liens](https://n8n.nalsed.fr)
 
 
 ### `-1-` `Webhook`
 
+<img width="363" height="228" alt="image" src="https://github.com/user-attachments/assets/9858f638-2a3e-4722-a9f8-5a6d91ce1797" />
+
 `- 1.1` En haut à droite `Create wrokflow` => `+` => `Webhook`
 
 `- 1.2` Configuration node Webhook :
 
 - HTTP Method    : POST
-- Path           : !!! Doit être le même "URL_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
-- Authentication : Header Auth
-- Respond        : Immediately
 
+- Path           : !!! Doit être le même "URL_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
+
+- Authentication : Header Auth
+
+- Respond        : Immediately
 
 - Credential for `Header Auth` :
 
-- Name  : Bareos-Token
-- Value :!!! Doit être le même "TOKEN_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
+   - Name  : Bareos-Token
 
+   - Value :!!! Doit être le même "TOKEN_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
 
+`[NOTE]`
 
 - Derrière Caddy, si l'URL affichée dans le node n'est pas la bonne, ajouter `WEBHOOK_URL=https://n8n.nalsed.fr/` au `compose.yml` — voir [-1- Install-n8n.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-1-%20N8N/-1-%20Install-n8n.md)
 
-#### Config node Telegram (x2 — un pour 235, un pour 240)
-- Resource : `Message`
-- Operation : `Send and Wait for Response`
-- Chat ID : `<ton ID Telegram>`
-- Response Type : `Approval`
-- Type of Approval : `Approve and Disapprove`
-- Limit Wait Time : `5` minutes
+### `-2-` Config node Telegram 
 
-- Texte du message `235`, repris du payload :
+`[NOTE]`
+
+- A réaliser pour `192.168.0.235` et `192.1658.0.240`
+
+- `- 1.1` `+` => `Telegram` => ``
+
+- Resource : `MESSAGE ACTIONS`
+
+- Operation : `Send and Wait for Response` :
+
+   - Chat ID : `<ton ID Telegram>` [Procédure Telegram](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-4-%20Procedure-Telegram.md)
+
+   - Response Type : `Approval`
+
+   - Type of Approval : `Approve and Disapprove`
+
+   - Limit Wait Time : `5` minutes
+
+   - Texte du message `235`, repris du payload :
 ````
 {{ $('Webhook').item.json.body.text }}
 ````
