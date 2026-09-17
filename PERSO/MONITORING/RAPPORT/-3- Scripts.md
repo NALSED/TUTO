@@ -44,7 +44,8 @@ list jobs
 quit
 END_OF_DATA
 
-read -r LEVEL STATUS < <(tail -3 /home/sednal/bconsole.log | awk '{print $15, $21}')
+tail -3 /home/sednal/bconsole.log | awk '{print $15, $21}' > /home/sednal/bconsole_result.log
+read -r LEVEL STATUS < /home/sednal/bconsole_result.log
 
 # === Choix du message et du popup ===
 
