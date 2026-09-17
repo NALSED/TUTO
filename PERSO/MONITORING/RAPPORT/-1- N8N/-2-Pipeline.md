@@ -27,9 +27,9 @@
 
 ---
 
-## === Configuration n8n ===
+# === Configuration n8n ===
 
-### `-1-` `Webhook`
+## `-1-` `Webhook`
 
 `- 1.1` En haut à droite `Create wrokflow` => `+` => `Webhook`
 
@@ -61,7 +61,7 @@
 
 ---
 
-### `-2-` Config node Telegram 
+## `-2-` Config node Telegram 
 
 `[NOTE]`
 
