@@ -28,3 +28,8 @@
 <img width="409" height="156" alt="pop up" src="https://github.com/user-attachments/assets/26cec8b1-f5db-4f8d-be48-e15ed2881c5b" />
 
 
+### `-2.3-` tout est OK
+
+### `2.4` Final plan n8n
+
+<img width="1643" height="461" alt="image" src="https://github.com/user-attachments/assets/273eb2d6-39d9-4687-aa9c-e2cb9a95ab1a" />
