@@ -68,13 +68,17 @@
 
 - A réaliser pour `192.168.0.235` et `192.1658.0.240`
 
-- `- 1.1` `+` => `Telegram` => ``
+### **=== 192.168.0.235 ===**
+- `- 1.1` `+` => `Telegram` => `MESSAGE ACTIONS` =>  `Send and Wait for Response` :
 
-- Resource : `MESSAGE ACTIONS`
+   - credential : `Telegram account`
 
-- Operation : `Send and Wait for Response` :
+   - Resultat attendu avec le `TOKEN` de `@BotFather`
 
-   - Chat ID : `<ton ID Telegram>` [Procédure Telegram](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-4-%20Procedure-Telegram.md)
+   <img width="960" height="265" alt="image" src="https://github.com/user-attachments/assets/36e2e407-a99b-4dd1-9273-eb9843380f73" />
+
+
+   - Chat ID : `<ton ID Telegram>` Ici [Procédure Telegram](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-4-%20Procedure-Telegram.md) pour `Token` et `ID`
 
    - Response Type : `Approval`
 
@@ -86,6 +90,10 @@
 ````
 {{ $('Webhook').item.json.body.text }}
 ````
+
+
+
+
 
 - Texte du message `240` :
 ````
