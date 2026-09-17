@@ -25,7 +25,7 @@ Credential => `SSH Private Key account`
 
 `- 2.3` Command : 
 ````
-/sbin/shutdown now
+sudo /sbin/shutdown now
 ````
 
 `- 2.4` Working Directory :
