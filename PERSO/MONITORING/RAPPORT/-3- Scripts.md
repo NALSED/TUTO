@@ -64,7 +64,7 @@ ssh sednal@192.168.0.235 "wscript C:\Scripts\popup_shutdown_${POPUP}.vbs"
 
 curl -s -X POST \
   -H "Content-Type: application/json" \
-  -H "X-Bareos-Token: ${TOKEN_N8N}" \
+  -H "Bareos-Token: ${TOKEN_N8N}" \
   --data-raw "$(jq -n --arg l "$LEVEL" --arg s "$STATUS" --arg t "$TEXT" \
         '{level:$l, status:$s, text:$t}')" \
   "$URL_N8N"
