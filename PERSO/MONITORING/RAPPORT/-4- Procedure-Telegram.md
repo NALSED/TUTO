@@ -40,28 +40,25 @@ For a description of the Bot API, see this page: https://core.telegram.org/bots/
 `- 2.1` Dans un navigateur entrer l'URL :
 ````
 # LE token est celui généré avec @BotFather
-https://api.telegram.org/bot<TOKEN>/getMe
+https://api.telegram.org/bot<TOKEN>/getUpdates
 ````
 
 `- 2.2` Récupérer l'`ID` et sauvegarder le.
 ````
 ok	true
 result	
-id	<ID>
-is_bot	true
-first_name	"NAME"
-username	"USERNAME"
-can_read_all_group_messages	false
-supports_inline_queries	false
-supports_guest_queries	false
-can_connect_to_business	false
-has_main_web_app	false
-has_topics_enabled	false
-allows_users_to_create_topics	false
-can_manage_bots	false
-supports_join_request_queries	false
+0	
+update_id	********
+message	
+message_id	1
+from	
+id	<ID> <============= ICI
+is_bot	false
+first_name	"<NAME>"
+username	"<USERNAME>"
+language_code	"fr"
+chat	
 ````
-
 
 
 
