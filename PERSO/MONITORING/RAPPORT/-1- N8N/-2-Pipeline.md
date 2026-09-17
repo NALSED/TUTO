@@ -49,6 +49,7 @@
 
    - Value :!!! Doit être le même "TOKEN_N8N=" que dans le [recup-status-bareos.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-3-%20Scripts.md#-1--script-de-r%C3%A9cup%C3%A9ration-du-statut-1921680240) !!!
 
+
 `[NOTE]`
 
 - Derrière Caddy, si l'URL affichée dans le node n'est pas la bonne, ajouter `WEBHOOK_URL=https://n8n.nalsed.fr/` au `compose.yml` — voir [-1- Install-n8n.md](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-1-%20N8N/-1-%20Install-n8n.md)
@@ -69,7 +70,7 @@
 
 ### **=== 192.168.0.235 ===**
 
-- `- 1.1` `+` => `Telegram` => `MESSAGE ACTIONS` =>  `Send and Wait for Response` :
+- `- 2.1` `+` => `Telegram` => `MESSAGE ACTIONS` =>  `Send and Wait for Response` :
 
    - credential : `Telegram account`
 
@@ -78,27 +79,84 @@
    <img width="960" height="265" alt="image" src="https://github.com/user-attachments/assets/36e2e407-a99b-4dd1-9273-eb9843380f73" />
 
 
-   - Chat ID : `<ton ID Telegram>` Ici [Procédure Telegram](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-4-%20Procedure-Telegram.md) pour `Token` et `ID`
+   - Chat ID : `<!!! ID USER !!!>` Ici [Procédure Telegram](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-4-%20Procedure-Telegram.md) pour `Token` et `ID`
 
+   - Message :
+   ````
+   {{ $('Webhook').item.json.body.text }}
+   ````
+   
    - Response Type : `Approval`
 
-   - Type of Approval : `Approve and Disapprove`
+   - Approval Options : `Approve and Disapprove`
 
    - Limit Wait Time : `5` minutes
 
-   - Texte du message `235`, repris du payload :
+### ===> [SCREEN-192.168.0.235](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-6-SCREEN.md#configuration-node-telegram-1921680235) <===
+
+`- 2.2` Tester le node : `Execute step`
+
+- Le message doit arriver ET `Approved` doit renvoyer une URL n8n
+
+
+
+- **FIN DE CONFIGURATION**
+
+<img width="507" height="191" alt="image" src="https://github.com/user-attachments/assets/177d3734-4c7d-40e4-9e36-4b98b7414dcd" />
+
+---
+
+### **=== 192.168.0.240 ===**
+
+`- 2.3` `+` => `Telegram` => `MESSAGE ACTIONS` =>  `Send and Wait for Response` :
+
+ - credential : `Telegram account`
+
+ - Chat ID : `<!!! ID USER !!!>` Ici [Procédure Telegram](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-4-%20Procedure-Telegram.md) pour `Token` et `ID`
+
+ - Message :
 ````
 {{ $('Webhook').item.json.body.text }}
 ````
+   
+ - Response Type : `Approval`
+
+ - Approval Options : `Approve and Disapprove`
+
+ - Limit Wait Time : `5` minutes
+
+### ===> [SCREEN-192.168.0.240](https://github.com/NALSED/TUTO/blob/main/PERSO/MONITORING/RAPPORT/-6-SCREEN.md#configuration-node-telegram-1921680240) <===
+
+
+`- 2.4` Tester le node : `Execute step`
+
+- Le message doit arriver ET `Approved` doit renvoyer une URL n8n
+
+- **FIN DE CONFIGURATION**
+
+<img width="755" height="194" alt="image" src="https://github.com/user-attachments/assets/cf57336b-6d01-427f-813d-a130cd89967b" />
 
 
 
 
 
-- Texte du message `240` :
-````
-Souhaitez-vous éteindre [ 192.168.0.240 ] ?
-````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 #### Comportement du timeout
@@ -113,6 +171,11 @@ Souhaitez-vous éteindre [ 192.168.0.240 ] ?
 `[NOTE]`
 
 - Le timeout ne déclenche aucune extinction : sur `235` le popup local éteint déjà tout seul après 300 s, sur `240` le cron de 19h prend le relais
+
+
+
+
+
 
 #### Actions d'extinction
 
