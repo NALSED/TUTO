@@ -38,4 +38,8 @@ shutdown /a
 C:\Windows
 ````
 
+## **FIN DE CONFIGURATION**
+
+<img width="1361" height="481" alt="image" src="https://github.com/user-attachments/assets/9e71575e-576a-4adf-9423-aa7539793314" />
+
 
