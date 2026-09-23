@@ -1,39 +1,37 @@
-# Installation de l'agent Claude Code — trouver-sites
+## Installation de l'agent Claude Code sur VM
 ---
 
 
 ---
-## 1. Prérequis VM
+### -1- Prérequis VM
 
 VM Debian 13 existante sur Proxmox :
+
 - IP : 192.168.0.23/24
 - Passerelle : 192.168.0.1
 - DNS : 192.168.0.241
+- Options => Start at boot : Yes
+- Options => QEMU Guest Agent : Enabled
 
-Dans Proxmox, pour cette VM :
-- *Options → Start at boot* : Yes
-- *Options → QEMU Guest Agent* : Enabled
+`- 1.1` Installation des prérequis
+````
+sudo  -i
+apt update && apt full-upgrade -y
+apt install -y qemu-guest-agent ca-certificates curl jq
+systemctl enable --now qemu-guest-agent
+timedatectl set-timezone Asie/Erevan
+````
 
+### -2- Installation docker
 
+- Voir [-1- docker_install.sh](https://github.com/NALSED/TUTO/blob/main/PERSO/DOCKERS/SCRIPTS/-1-docker_install.sh)
 
-
-
-
-cest quoi cette agent
-
-C'est un petit service installé dans la VM, qui permet à Proxmox de communiquer avec l'OS invité par un canal virtuel interne (pas par le réseau).
-
-Ce qu'il apporte :
-
-Arrêt propre : un Shutdown depuis Proxmox déclenche un vrai arrêt de Debian. C'est utile pour tes coupures d'infra, sinon Proxmox finit par couper la VM brutalement.
-Sauvegardes cohérentes : lors d'un vzdump ou d'un snapshot, Proxmox demande à l'agent de figer les écritures disque (fs-freeze). La base SQLite est ainsi sauvegardée dans un état propre, et non en pleine écriture.
-Infos dans l'interface : l'IP de la VM s'affiche dans Summary.
-Il n'est pas indispensable au fonctionnement du pipeline. Mais pour un service qui tourne des semaines avec une base de données et des sauvegardes, c'est ce qui garantit des arrêts et des backups propres.
-
-
-
-
-
+- Ajout user => groupe docker + verrif
+````
+usermod -aG docker sednal
+docker --version
+docker compose version
+````
 
 
 
