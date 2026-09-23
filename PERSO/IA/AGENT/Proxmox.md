@@ -1,19 +1,44 @@
 # Installation de l'agent Claude Code — trouver-sites
 ---
 
-Labs Proxmox :
-
-- Debian 13
-
-- 192.168.0.23
-
-- RAM : 8Go
-
-- CPU : 4 cores
-
 
 ---
 ## 1. Prérequis VM
+
+VM Debian 13 existante sur Proxmox :
+- IP : 192.168.0.23/24
+- Passerelle : 192.168.0.1
+- DNS : 192.168.0.241
+
+Dans Proxmox, pour cette VM :
+- *Options → Start at boot* : Yes
+- *Options → QEMU Guest Agent* : Enabled
+
+
+
+
+
+
+cest quoi cette agent
+
+C'est un petit service installé dans la VM, qui permet à Proxmox de communiquer avec l'OS invité par un canal virtuel interne (pas par le réseau).
+
+Ce qu'il apporte :
+
+Arrêt propre : un Shutdown depuis Proxmox déclenche un vrai arrêt de Debian. C'est utile pour tes coupures d'infra, sinon Proxmox finit par couper la VM brutalement.
+Sauvegardes cohérentes : lors d'un vzdump ou d'un snapshot, Proxmox demande à l'agent de figer les écritures disque (fs-freeze). La base SQLite est ainsi sauvegardée dans un état propre, et non en pleine écriture.
+Infos dans l'interface : l'IP de la VM s'affiche dans Summary.
+Il n'est pas indispensable au fonctionnement du pipeline. Mais pour un service qui tourne des semaines avec une base de données et des sauvegardes, c'est ce qui garantit des arrêts et des backups propres.
+
+
+
+
+
+
+
+
+
+
 
 
 ## 2. Claude Code CLI
