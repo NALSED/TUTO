@@ -126,38 +126,32 @@ ss -tlnp | grep 3456
 
 
 ### -2- Configuration
-
-`- 2.1` Mise en place Providers
-````
-vim ~/.claude-code-router/config-router.json
-````
-````
-{
-  "Providers": [
-    {
-      "name": "openrouter",
-      "api_base_url": "https://openrouter.ai/api/v1/chat/completions",
-      "api_key": "API_KEY",
-      "models": ["openai/gpt-oss-120b:free"],
-      "transformer": {
-        "use": ["openrouter"]
-      }
-}
-
-````
-
 - Deux configuration différente :
 
    - 1 Si Claude Code Pro à encore des crédits
    - 2 Si claude code Pro ne dispose plus de crédit
 
-
-`- 2.2` Configuration avec crédit
+`- 2.1` Configuration avec crédit
 ````
 vim ~/.claude-code-router/config-pro.json
 ````
 ````
 {
+  "providers": [
+    {
+      "name": "openrouter",
+      "api_base_url": "https://openrouter.ai/api/v1/chat/completions",
+      "api_key": "VOTRE_CLE_API_OPENROUTER",
+      "models": [
+        "cohere/north-mini-code",
+        "nvidia/nemotron-3-ultra",
+        "thinkingmachines/inkling",
+        "poolside/laguna-s-2.1",
+        "google/gemini-2.5-flash:online",
+        "anthropic/claude-3.5-sonnet:online"
+      ]
+    }
+  ],
   "router": {
     "default": "anthropic,claude-3-7-sonnet",
     "background": "openrouter,cohere/north-mini-code",
@@ -166,14 +160,30 @@ vim ~/.claude-code-router/config-pro.json
     "webSearch": "openrouter,anthropic/claude-3.5-sonnet:online"
   }
 }
+
 ````
 
-`- 2.3` Configuration sans crédit
+
+`- 2.2` Configuration sans crédit
 ````
 vim ~/.claude-code-router/config-free.json
 ````
 ````
 {
+  "providers": [
+    {
+      "name": "openrouter",
+      "api_base_url": "https://openrouter.ai/api/v1/chat/completions",
+      "api_key": "VOTRE_CLE_API_OPENROUTER",
+      "models": [
+        "cohere/north-mini-code",
+        "nvidia/nemotron-3-ultra",
+        "thinkingmachines/inkling",
+        "poolside/laguna-s-2.1",
+        "google/gemini-2.5-flash:online"
+      ]
+    }
+  ],
   "router": {
     "default": "openrouter,poolside/laguna-s-2.1",
     "background": "openrouter,cohere/north-mini-code",
@@ -193,14 +203,14 @@ sudo vim .bashrc
 ````
 # Switch vers le mode Pro 
 cc-pro() {
-  cp ~/.claude-code-router/config.pro.json ~/.claude-code-router/config.json
+  cp ~/.claude-code-router/config-pro.json ~/.claude-code-router/config.json
   ccr restart
   echo "Mode Claude Pro ACTIF"
 }
 
 # Switch vers le mode 100% Gratuit 
 cc-free() {
-  cp ~/.claude-code-router/config.free.json ~/.claude-code-router/config.json
+  cp ~/.claude-code-router/config-free.json ~/.claude-code-router/config.json
   ccr restart
   echo "Mode 100% GRATUIT Actif (Quota Claude sauvé)"
 }
