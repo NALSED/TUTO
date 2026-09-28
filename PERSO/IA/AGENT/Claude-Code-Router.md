@@ -4,6 +4,9 @@
 
 - Mise en place du projet [https://github.com/musistudio/claude-code-router](https://github.com/musistudio/claude-code-router)
 
+- API sur [https://openrouter.ai/](https://openrouter.ai/)
+
+
 **=== Documentation ===**
 
 - [https://www.datacamp.com](https://www.datacamp.com/fr/tutorial/claude-code-router)
