@@ -45,7 +45,7 @@ sudo apt-get install -y nodejs
 
 ---
 
-### -2- Utilisateur natif Pro (ex. `sednal`)
+### -2- Utilisateur natif Pro (`sednal`)
 
 Rien à installer côté CCR. Juste s'assurer d'être connecté :
 
@@ -54,11 +54,11 @@ claude
 /login
 ```
 
-Vérifier la bannière : `Sonnet 5.5 · Claude Pro` (ou autre modèle Pro).
+Vérifier la bannière : `Sonnet 5.5 · Claude Pro`
 
 ---
 
-### -3- Utilisateur CCR / gratuit (ex. `sednal-free`)
+### -3- Utilisateur CCR / gratuit (`sednal-free`)
 
 ```
 sudo adduser sednal-free
