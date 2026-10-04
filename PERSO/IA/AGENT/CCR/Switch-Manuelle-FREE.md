@@ -94,48 +94,61 @@ ssh -L <port_local>:127.0.0.1:<port_distant> sednal-free@192.168.0.23
 ### -4- Configuration du provider (dans l'UI)
 
 1. **Choose provider** → preset **OpenRouter** → coller la clé API OpenRouter (régénérée, jamais celle d'un screenshot/chat).
-2. **Pick models** → chercher et ajouter les modèles gratuits voulus (liste -5-). Vérifier qu'aucun modèle `anthropic/...` (payant) ne traîne dans "Added models" — le supprimer si présent.
-3. **Verify connection** → cocher le(s) modèle(s), lancer "Start check". Doit afficher **Available / Connection verified**. Ne rien documenter comme fonctionnel sans ce test.
-4. **Connect agent** → Agent = Claude Code, Profile name = `Claude Code`, **Default model** = le modèle gratuit vérifié (ex. `OpenRouter/nvidia/nemotron-3-ultra-550b-a55b:free`). Laisser Opus/Sonnet/Fable/Haiku sur "Keep Claude Code default".
+2. **Pick models** → ajouter les modèles de la liste -5-. Vérifier qu'aucun modèle `anthropic/...` (payant) ne traîne dans "Added models".
+3. **Verify connection** → cocher tous les modèles → "Start check". Chaque modèle doit afficher **Available**. Ne rien documenter comme fonctionnel sans ce test — le token web expire à chaque `ccr start`, donc recharger l'URL avec le dernier token avant de tester, sinon erreur "CCR web authentication token is missing or invalid".
+4. **Connect agent** → Agent = Claude Code, Profile name = `Claude Code`, **Default model** = n'importe lequel des modèles vérifiés (peu importe lequel, voir -6-). Laisser Opus/Sonnet/Fable/Haiku sur "Keep Claude Code default".
 5. **Finish**.
 
-À la fin du wizard, CCR réécrit **globalement** `~/.claude/settings.json` de cet utilisateur (`apiKeyHelper`, `ANTHROPIC_BASE_URL=http://127.0.0.1:3456`, etc.). À partir de là, `claude` tout seul route aussi vers la gateway — c'est voulu, puisque cet utilisateur est dédié au gratuit.
+CCR réécrit **globalement** `~/.claude/settings.json` de cet utilisateur (`apiKeyHelper`, `ANTHROPIC_BASE_URL=http://127.0.0.1:3456`). `claude` seul route aussi vers la gateway — voulu, cet utilisateur est dédié au gratuit.
+
+**Ne pas créer plusieurs "Agent Profiles" pour simuler plusieurs rôles** — testé et non fonctionnel : un seul profil ("System default") contrôle réellement `settings.json`, peu importe le nom du profil invoqué avec `ccr "<profil>"`. Un seul profil suffit, le choix du modèle se fait autrement (-6-).
 
 ---
 
-### -5- Modèles gratuits (OpenRouter, `$0/M`)
+### -5- Modèles gratuits (OpenRouter, `$0/M`) — vérifiés en connexion live sur momo le 04/10/2026
 
-Connexion réellement vérifiée en live :
+- `nvidia/nemotron-3-ultra-550b-a55b:free` (1M contexte)
+- `cohere/north-mini-code:free` (256K)
+- `google/gemma-4-31b-it:free` (262K) — noter le suffixe `-it`, absent du nom "officiel" affiché ailleurs
 
-- `nvidia/nemotron-3-ultra-550b-a55b:free` (1M contexte) — rôle `default`
+Candidats non retenus :
 
-Présents dans le catalogue gratuit, **pas encore testés en connexion live** — à vérifier avant usage réel :
+- `thinkingmachines/inkling` et `inkling-small` : **HTTP 403 "only available on agentic harnesses"** — OpenRouter bloque ces modèles hors d'un vrai harnais agentique, y compris le test "Verify connection" de CCR. Ne pas utiliser.
+- `poolside/laguna-s-2.1` / `laguna-xs-2.1` : retirés le 31/10/2026.
+- `qwen/qwen3.8-27b` : n'existe pas / n'est pas gratuit.
+- `google/gemini-2.5-flash:online` (webSearch) : non testé, à vérifier avant usage.
 
-- `cohere/north-mini-code` (256K) — candidat `background`
-- `thinkingmachines/inkling` (1.05M) — candidat `longContext`
-- `google/gemma-4-31b` (262K) — candidat `think`
-- `nvidia/nemotron-3-super` (262K)
-- `google/gemma-4-26b-a4b` (262K)
-- `nvidia/nemotron-3-nano-omni` (256K)
-- `thinkingmachines/inkling-small` (1.05M)
-
-Retirés le 31/10/2026 : `poolside/laguna-s-2.1`, `poolside/laguna-xs-2.1` — ne pas les utiliser.
-
-**`qwen/qwen3.8-27b` n'existe pas / n'est pas gratuit — ne jamais l'utiliser.**
-
-`webSearch` (`google/gemini-2.5-flash:online` ou autre) : non vérifié, à tester avant d'être documenté comme acquis.
+Pas besoin de modèle dédié pour `longContext` : `nemotron-3-ultra` a déjà 1M de contexte, il couvre ce rôle aussi.
 
 ---
 
-### -6- Usage
+### -6- Usage et switch de modèle (méthode confirmée)
 
 ```
 ccr "Claude Code"
 ```
 
-Bannière attendue : `OpenRouter/<modèle>[...] · API Usage Billing`. **Ce libellé "API Usage Billing" est générique** (affiché même sur modèle `:free`) — il ne veut pas dire qu'une vraie facturation Anthropic a eu lieu.
+Une fois dans la session, changer de modèle **à la volée, sans redémarrage**, avec :
 
-Pour repasser côté Pro sur la même VM : se déconnecter de `sednal-free`, utiliser l'utilisateur natif (-2-). Pas de bascule de fichier, pas d'hybride dans une même session — chaque utilisateur garde sa config isolée dans son `$HOME`.
+```
+/model openrouter,cohere/north-mini-code
+/model openrouter,google/gemma-4-31b-it
+/model openrouter,nvidia/nemotron-3-ultra-550b-a55b
+```
+
+Format impératif : `/model <provider>,<modèle>` — nom du provider en minuscule exactement tel que configuré dans CCR (`openrouter`), séparé du modèle par une virgule, sans espace. **Le menu interactif `/model` (flèches + Enter/s) ne fonctionne pas pour ce switch** — il écrit dans une clé différente (`model`) qui entre en conflit avec le routage CCR (`env.ANTHROPIC_MODEL`) et produit `API Error 400`.
+
+Bannière attendue après switch : `openrouter,<modèle> · API Usage Billing`. Ce libellé est générique, pas une preuve de facturation Anthropic réelle.
+
+Pour un usage non-interactif (orchestrateur/script) :
+
+```
+claude -p "<tâche>" --model openrouter,<modèle>
+```
+
+Le flag `-p` saute aussi le prompt de confiance du dossier de travail (workspace trust), sinon redemandé à chaque nouveau dossier en session interactive.
+
+Pour repasser côté Pro sur la même VM : utiliser l'utilisateur natif (-2-), pas de bascule de fichier, pas d'hybride dans une même session.
 
 ---
 
@@ -146,3 +159,6 @@ Pour repasser côté Pro sur la même VM : se déconnecter de `sednal-free`, uti
 - Erreur `spawn claude ENOENT` → `@anthropic-ai/claude-code` pas installé dans cet utilisateur.
 - Erreur `libnode.so.XXX` → version Node changée après l'install de CCR : `npm uninstall -g @musistudio/claude-code-router && npm cache clean --force && npm install -g @musistudio/claude-code-router`.
 - Toujours vérifier `ps aux | grep claude-code-router` si comportement incohérent : un vieux process d'un autre utilisateur peut squatter le port.
+- **Plusieurs "Agent Profiles" ne permettent pas de router par rôle** — un seul profil, switch via `/model provider,model` en session (-6-).
+- Le token web CCR (`ccr_web_token`) change à chaque `ccr start` — toujours relire la dernière URL avant d'ouvrir l'UI, sinon "token missing or invalid".
+- Certains modèles gratuits OpenRouter refusent les requêtes hors harnais agentique (403) — toujours tester avec "Verify connection" avant de documenter un modèle comme utilisable.
