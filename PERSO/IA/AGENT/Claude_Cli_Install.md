@@ -1,8 +1,7 @@
 ## Installation de l'agent Claude Code sur VM
----
-
 
 ---
+
 ### -1- Prérequis VM
 
 VM Debian 13 existante sur Proxmox :
