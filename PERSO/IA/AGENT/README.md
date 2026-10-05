@@ -4,6 +4,9 @@
 
 - Cette section va porter sur la mise en place dans une VM sur proxmox, d'un agent `Claude CLI`, de `OpenRouter` (CCR), et `RTK AI`
 
+   - `Claude CLI` sera l'agent de programation
+   - `OpenRouter` Change de model IA en fonction des tâches à effectuer, afin de préserver des token.
+   - `RTK AI` Compresse les sortie de commandes du LLM, afin de préserver aussi des tokens. 
 
 **=== INSTALLATION ===**
 
