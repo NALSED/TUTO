@@ -59,7 +59,7 @@ sudo apt-get install -y nodejs
 
 - `claude` et `CCR` s’installe via `npm`.
 
-- - **Le `PATH` doit aller dans `~/.profile`, pas seulement dans `~/.bashrc`.** Le `.bashrc` de Debian commence par « si le shell n'est pas interactif, ne rien faire » : un appel non interactif (`bash -lc`) ne lit jamais la ligne ajoutée à la fin.
+- `~/.npm-global/bin` doit être dans `~/.profile` **ET** `~/.bashrc`. Le `.bashrc` de Debian commence par « si le shell n'est pas interactif, ne rien faire » : un appel non interactif (`bash -lc`) ne lit jamais la ligne ajoutée à la fin.
 
 - La suite à pour but de configurer les fichiers `.bashrc` et `.profile`, afin que `npm` fasse les installations dans $HOME et sans `sudo`. En effet l'utilisation de `sudo npm install -g`, installe une seconde copie, côté root. 
 
