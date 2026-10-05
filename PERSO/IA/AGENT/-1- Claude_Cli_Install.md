@@ -4,9 +4,9 @@
 
 ### -1- Prérequis VM
 
-VM Debian 13 existante sur Proxmox :
+VM Debian 13 dédiée sur Proxmox :
 
-- IP : 192.168.0.23/24
+- IP : 192.168.0.250/24
 - Passerelle : 192.168.0.1
 - DNS : 192.168.0.241
 - Options => Start at boot : Yes
