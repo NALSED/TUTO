@@ -24,3 +24,13 @@
 -5- [OpenRouter](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-5-%20Config_OpenRouter.md)
 
 -6- [RTK AI](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-6-%20Config_RTK-AI.md)
+
+
+---
+
+
+**=== Documentation ===**
+
+- [https://www.datacamp.com](https://www.datacamp.com/fr/tutorial/claude-code-router)
+- [https://www.morphllm.com](https://www.morphllm.com/claude-code-router)
+- [OpenRouter — Rate limits](https://openrouter.zendesk.com/hc/en-us/articles/39501163636379-OpenRouter-Rate-Limits-What-You-Need-to-Know)
