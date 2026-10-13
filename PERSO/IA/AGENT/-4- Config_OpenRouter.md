@@ -43,3 +43,7 @@
 
 <img width="1358" height="109" alt="image" src="https://github.com/user-attachments/assets/f77b1b17-2969-4881-841a-47c9a5fd69df" />
 
+- Après benchmark ET mes besoins choix `AI`
+````
+
+````
