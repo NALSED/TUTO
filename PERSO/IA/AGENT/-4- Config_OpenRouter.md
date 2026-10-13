@@ -45,5 +45,7 @@
 
 - Après benchmark ET mes besoins choix `AI`
 ````
-
+nvidia/nemotron-3-ultra-550b-a55b:free 
+cohere/north-mini-code:free
+google/gemma-4-31b-it:free
 ````
