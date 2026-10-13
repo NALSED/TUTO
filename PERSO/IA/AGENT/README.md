@@ -25,7 +25,7 @@
 
 -4- [OpenRouter](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-4-%20Config_OpenRouter.md)
 
--5- [Claude Code Router]()
+-5- [Claude Code Router](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-5-%20Config_Claude-Code-Router.md)
 
 -6- [Claude CLI](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-5-%20Config_Claude-CLI.md)
 
