@@ -2,10 +2,11 @@
 
 ---
 
-- Cette section va porter sur la mise en place dans une VM seur proxmox, d'un agent `Claude CLI`, de `OpenRouter` (CCR), et `RTK AI`
+- Cette section va porter sur la mise en place dans une VM sur proxmox, d'un agent `Claude CLI`, `Claude-Code-Router` (CCR), `OpenRouter`,  `RTK AI`
 
    - `Claude CLI` sera l'agent de programmation, il pourra switcher entre deux configuration de LLM.
-   - `OpenRouter` Fourni le pipeline à Claude CLI.
+   - `Claude-Code-Router` Permet à claude code d'avoir plusieur configuration IA et switcher avec celle proposé par Openrouter.
+   - `OpenRouter` Provider IA.
    - `RTK AI` Compresse les sortie de commandes du LLM, afin de préserver aussi des tokens. 
 
 
@@ -15,7 +16,7 @@
 
 -1- [Claude CLI](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-1-%20Claude-Cli_Install.md)
 
--2- [OpenRouter](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-2-%20Install_OpenRouter.md)
+-2- [Claude Code Router](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-2-%20Install_Claude-Caude-Router.md)
 
 -3- [RTK AI](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-3-%20Install_RTK-AI.md)
 
@@ -23,8 +24,6 @@
 **=== CONFIGURATION ===**
 
 -4- [OpenRouter](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-4-%20Config_OpenRouter.md)
-
--5 [Claude-Code-router]
 
 -5- [Claude CLI](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-5-%20Config_Claude-CLI.md)
 
