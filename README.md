@@ -1,2 +1,2 @@
 # COURS : compilation WCS
-# PERSO : INFRA
+# PERSO : Tuto 
