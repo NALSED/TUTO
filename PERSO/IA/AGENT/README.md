@@ -2,7 +2,7 @@
 
 ---
 
-- Cette section va porter sur la mise en place dans une VM sur proxmox, d'un agent `Claude CLI`, de `OpenRouter` (CCR), et `RTK AI`
+- Cette section va porter sur la mise en place dans une VM seur proxmox, d'un agent `Claude CLI`, de `OpenRouter` (CCR), et `RTK AI`
 
    - `Claude CLI` sera l'agent de programmation, il pourra switcher entre deux configuration de LLM.
    - `OpenRouter` Fourni le pipeline à Claude CLI.
