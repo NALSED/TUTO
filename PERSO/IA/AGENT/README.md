@@ -22,9 +22,9 @@
 
 **=== CONFIGURATION ===**
 
--4- [Claude CLI](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-4-%20Config_Claude-CLI.md)
+-4- [OpenRouter](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-4-%20Config_OpenRouter.md)
 
--5- [OpenRouter](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-5-%20Config_OpenRouter.md)
+-5- [Claude CLI](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-5-%20Config_Claude-CLI.md)
 
 -6- [RTK AI](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-6-%20Config_RTK-AI.md)
 
