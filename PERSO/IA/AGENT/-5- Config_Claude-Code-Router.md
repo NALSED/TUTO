@@ -20,7 +20,9 @@
 
 - `-2-` === CLI ===
    - `2.1` Fichier `Pro` / `Free`
-   - `2.2` Changement de 
+   - `2.2` Changement de `model`
+   - `2.3` `Usage non-interactif`
+   - `2.4` Changement de profil
 
 - `-3-` Point de vigilance
 
@@ -146,8 +148,45 @@ google/gemma-4-31b-it:free              256 K    réflexion, plan gratuit
 
 </details>
 
+---
+
+<details>
+<summary>
+<h2>
+=== CLI === 
+</h2>
+</summary>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</details>
 
 
 
