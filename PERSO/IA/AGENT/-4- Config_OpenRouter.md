@@ -26,7 +26,7 @@
 
 - Après la mise en place total du workflow, un `test` à été réalisé ou `certifier` que les `10$ ne bouge pas.
 
-- Suivi sur openrouter.ai => Activity. Relevé du 04/10/2026 après `mise au point complète` : $0.00 de dépense totale, modèles :free **confirmés gratuits**.
+- Suivi sur openrouter.ai => Activity. Relevé du 04/10/2026 après `mise au point complète` : $0.00 de dépense totale, lutilisation de modèles `:free` est **confirmés gratuits**.
 
 - Si par la suite utilisation de model payant avec nouveau provisionement du compte, une option sur la clé API permet de bloqué le seuil de dépense.
 
@@ -45,7 +45,10 @@
 
 - Après benchmark ET mes besoins choix `AI`
 ````
-nvidia/nemotron-3-ultra-550b-a55b:free 
-cohere/north-mini-code:free
-google/gemma-4-31b-it:free
+MODEL                                   CONTEXT  USAGE
+nvidia/nemotron-3-ultra-550b-a55b:free  1 M      général, gros contexte
+cohere/north-mini-code:free             256 K    doc, logs, commits, scan de dossier
+google/gemma-4-31b-it:free              256 K    réflexion, plan gratuit
 ````
+
+- Toujours écrire le suffixe **:free**. Sans lui, l'id désigne la variante payante du même modèle chez `OpenRouter`.
