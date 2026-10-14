@@ -27,6 +27,13 @@
 
 ---
 
+<details>
+<summary>
+<h2>
+=== UI ===
+</h2>
+</summary>
+
 ### `-1-` `CLI` => `UI`
 
 `- 1.1` Demande `URL` 
@@ -137,9 +144,7 @@ google/gemma-4-31b-it:free              256 K    réflexion, plan gratuit
 
 <img width="1735" height="557" alt="image" src="https://github.com/user-attachments/assets/12b53942-bd0e-45f9-8053-a57598ed50c2" />
 
-
-
-
+</details>
 
 
 
