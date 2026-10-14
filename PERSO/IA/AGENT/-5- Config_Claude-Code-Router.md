@@ -8,10 +8,10 @@
 [https://www.datacamp.com/fr/tutorial/claude-code-router](https://www.datacamp.com/fr/tutorial/claude-code-router)
 
 ## **=== SOMMAIRE ===**
-### - `-1-` UI
-###  - `-1.1-` `CLI` => `UI`
-###  - `-1.2-` `Provider`
-###  - `-1.3-` `Agent Profiles`
+- `-1-` UI
+  - `-1.1-` `CLI` => `UI`
+  - `-1.2-` `Provider`
+  - `-1.3-` `Agent Profiles`
 
 
 ---
