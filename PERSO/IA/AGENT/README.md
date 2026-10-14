@@ -28,6 +28,46 @@ Sur la VM 192.168.0.250, dans proxmox 192.168.0.242.
 
 - Et c'est `Claude CLI` sui choisi en fonction des tâches et des instructions qui lui sont données qui switch entre les utilisateurs et les models.
 
+- Journalisation des changement d'user et model + calcule des token économisés via scripts
+
+````
+┌─────────────────────────────────────────┐
+│  PC ADMIN                               │
+│  192.168.0.235                          │
+│                                         │
+│   - Navigateur (UI CCR via tunnel SSH)  │
+│   - Terminal SSH vers momo              │
+└───────────────┬─────────────────────────┘
+                │ ssh sednal-free@192.168.0.250   
+                │ -L 3458:127.0.0.1:3458          
+                v                                 
+┌─────────────────────────────────────────────────────────────────────────────────┐
+│                       PROXMOX                                                   │
+│                     192.168.0.242                                               │
+│                                                                                 │
+│   ┌─────────────────────────────────────────────────────────────────────────┐   │
+│   │  VM — Debian 13 CLI                                                     │   │
+│   │  192.168.0.250                                                          │   │
+│   │  - CCR                                                                  │   │
+│   │  ┌──────────────────────────────┐   ┌────────────────────────────────┐  │   │
+│   │  │ utilisateur sednal           │   │ utilisateur sednal-free        │  │   │
+│   │  │         === PRO ===          │   │        === FREE ===            │  │   │
+│   │  │                              │   │                                │  │   │
+│   │  │ - claude-opus-5              │   │ - nvidia/nemotron-3-ultra:free │  │   │ 
+│   │  │ - claude-opus-5-5            │   │ - cohere/north-mini-code:free  │  │   │
+│   │  │ - claude-sonnet-5            │   │ - google/gemma-4-31b-it:free   │  │   │
+│   │  │ - RTK                        │   │                                │  │   │
+│   │  └─────────────┬────────────────┘   └────────────────┬───────────────┘  │   │
+│   │                │ sudo -iu sednal-free                │                  │   │        
+│   │                └─────────────────────────────────────┘                  │   │
+│   │                                                                         │   │
+│   │ === JOURNALISATION ===                                                  │   │
+│   │  comparer_tokens.sh => token économisé                                  │   │
+│   │  log_ai.sh => Changement de model                                       │   │
+│   └─────────────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────────────┘
+
+````
 
 ---
 
