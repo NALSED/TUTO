@@ -8,10 +8,21 @@
 [https://www.datacamp.com/fr/tutorial/claude-code-router](https://www.datacamp.com/fr/tutorial/claude-code-router)
 
 ## **=== SOMMAIRE ===**
-- `-1-` UI
-  - `-1.1-` `CLI` => `UI`
-  - `-1.2-` `Provider`
-  - `-1.3-` `Agent Profiles`
+
+**- Cette partie traite de la configuration de CCR via son UI, le choix de AI.**
+
+- `-1-` === UI ===
+  - `1.1` `CLI` => `UI`
+  - `1.2` `Provider`
+  - `1.3` `Agent Profiles`
+
+**- Cette partie traite du changement de model AI, changement de profil utilisateur, l'usage non-interactif.**
+
+- `-2-` === CLI ===
+   - `2.1` Fichier `Pro` / `Free`
+   - `2.2` Changement de 
+
+- `-3-` Point de vigilance
 
 
 ---
