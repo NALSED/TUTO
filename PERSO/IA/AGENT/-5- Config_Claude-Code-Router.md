@@ -104,18 +104,26 @@ google/gemma-4-31b-it:free              256 K    réflexion, plan gratuit
 <img width="505" height="675" alt="image" src="https://github.com/user-attachments/assets/8ed3529a-9fad-4dbd-8214-c337dac60c04" />
 
 
+- **Done**
 
+<img width="1722" height="231" alt="image" src="https://github.com/user-attachments/assets/4d8f526c-1040-499e-b34e-764effa53164" />
 
 ---
 
 
 ### `-3-` Agent Profiles
 
+`- 3.1` Se rendre dans la section `Agent Profiles`
 
+<img width="271" height="549" alt="image" src="https://github.com/user-attachments/assets/91f921b6-2e74-4468-98fa-ce5bfe8d2130" />
 
+`- 3.2` `+ Add profile`
 
+- remplir les case `Required` => `+ Add`
 
+- **Résultat attendu** un profil agent par `AI` OpenRouter utilisé par CCR.
 
+<img width="1735" height="557" alt="image" src="https://github.com/user-attachments/assets/12b53942-bd0e-45f9-8053-a57598ed50c2" />
 
 
 
