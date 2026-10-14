@@ -2,15 +2,36 @@
 
 ---
 
+### `=== Présentation ===`
 - Cette section va porter sur la mise en place dans une VM sur proxmox, d'un agent `Claude CLI`, `Claude-Code-Router` (CCR), `OpenRouter`,  `RTK AI`
 
    - `Claude CLI` sera l'agent de programmation, il pourra switcher entre deux configuration de LLM.
-   - `Claude-Code-Router` Permet à claude code d'avoir plusieur configuration IA et switcher avec celle proposé par Openrouter.
+   - `Claude-Code-Router` Permet à claude code d'avoir plusieurs configuration IA et switcher avec celle proposé par Openrouter.
    - `OpenRouter` Provider IA.
    - `RTK AI` Compresse les sortie de commandes du LLM, afin de préserver aussi des tokens. 
 
+---
+
+### `=== Fonctionnement ===`
+
+Sur la VM 192.168.0.250, dans proxmox 192.168.0.242.
+
+- `OpenRouter` fourni à `CCR` des model AI, dans ce cas de figure des model gratuit, car en parralléle un compte `Claude Pro` est utilisé.
+
+- `Deux profils` d'AI sont créé via CCR et implémenté sur la VM (192.168.0.250). Après plusieurs test, `CCR` entre en confit avec le compte `Claude Pro` au niveau du fichier **~/.claude/settings.json**.
+
+- En effet ce fichier est réécris par `Claude` ET par `CCR` ce qui créé des conflits et des crash.
+
+- La solution retenu est la suivante, deux utilisateur créé sur la VM, `sednal` et `sednal-free` :
+   - Sur `sednal` le fichier **~/.claude/settings.json** de `Claude-Pro` est déployé.
+   - Sur `sednal-free` le fichier **~/.claude/settings.json** de `CCR` est déployé.  
+
+- Et c'est `Claude CLI` sui choisi en fonction des tâches et des instructions qui lui sont données qui switch entre les utilisateurs et les models.
+
 
 ---
+
+### **MISE EN PLACE**
 
 **=== INSTALLATION ===**
 
