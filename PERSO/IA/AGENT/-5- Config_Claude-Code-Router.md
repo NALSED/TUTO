@@ -57,19 +57,52 @@ http://127.0.0.1:3458/?ccr_web_token=znwn7lntCe8Awbfc7wM9W1t41nGPgP48EwTNEO8627Q
 
 ---
 
-### `-2-` Provider
+## `-2-` Provider
 
-`- 2.1` Ajouter un `provider`
+### `- 2.1` Ajouter un `provider`
 
 - Providers => + Add
 
 <img width="1714" height="201" alt="image" src="https://github.com/user-attachments/assets/5c07a53c-2378-4ae2-85f0-3c8ad98a223a" />
 
-`- 2.2`  Déclarer un `provider`
+### `- 2.2`  Déclarer un `provider`
 
-- Choisir `OpenRouter` + Name
+- Choisir `OpenRouter` + Name + Next
 
 <img width="569" height="217" alt="image" src="https://github.com/user-attachments/assets/e0beaaf7-67ed-4052-83a9-f9c4ace4d734" />
+
+### `- 2.3` Fournir la clé `API`
+
+<img width="573" height="214" alt="image" src="https://github.com/user-attachments/assets/372a325b-6001-4fd5-b8c9-fc9d1f84ec7b" />
+
+### `- 2.4` Choix des models `AI`
+
+- Retirer `anthropic/claude-sonnet-5.5`
+
+- Ajouter les model choisi sur `OpenRouter`, Ici:
+````
+MODEL                                   CONTEXT  USAGE
+nvidia/nemotron-3-ultra-550b-a55b:free  1 M      général, gros contexte
+cohere/north-mini-code:free             256 K    doc, logs, commits, scan de dossier
+google/gemma-4-31b-it:free              256 K    réflexion, plan gratuit
+````
+
+<img width="995" height="365" alt="image" src="https://github.com/user-attachments/assets/a649bd47-1c09-49fd-bfc4-c500a8da23d4" />
+
+
+### `- 2.5` Tester la connection
+
+- `CCR` test la disponibilité des `AI` chez `OpenRouter`
+
+- Check Connection + Start check
+
+<img width="520" height="407" alt="image" src="https://github.com/user-attachments/assets/7f103324-0490-4538-9501-6b84c6c86129" />
+
+
+- Résultat attendu => Tous les model en `Available`
+
+<img width="505" height="675" alt="image" src="https://github.com/user-attachments/assets/8ed3529a-9fad-4dbd-8214-c337dac60c04" />
+
 
 
 
