@@ -158,12 +158,13 @@ google/gemma-4-31b-it:free              256 K    réflexion, plan gratuit
 </summary>
 
 
-`[RAPPEL]`
+### `2.1` Fichier `Pro` / `Free`
 
 **Fichier Conf AI**
 
 - Un fichier de configuration par utilisateur sur la VM `192.168.0.250` : `sednal` / `sednal-free`
 
+- ces fichier sont gérer par `Claude` et `CCR`, cependant il est possible d'y ajouter un `hook` comme dans l'exemple ci dessous. 
 ````
 cat /home/sednal/.claude/settings.json
 ````
@@ -234,17 +235,80 @@ cat /home/sednal-free/.claude/settings.json
 }
 ````
 
+---
 
+### `2.2` Changement de `model`
 
+- Cette partie décris le changement de model **pour l'utilisateur sednal-free**  `manuellement`, avant de passer à un changement `automatique` (non-interactif) ou par script,  il est vital de `valider` le changement manuel et d'avancer par étape.
 
+- En effet durant les tests de mauvaises commandes ou configuration faisait `planter CCR silencieusement`, donc pour une utilisation non-interractive c'est inenvisageable.
 
+**`=== Mode opératoire incorrect ===`** 
 
+- **Le menu interactif `/model` (flèches + Entrée) ne fonctionne pas** pour ce switch !!!
+- Il écrit dans la clé `model` de `settings.json` sous une forme encodée (`anthropic/claude-ccr-h4f70…`) ce qui entre en conflit avec `env.ANTHROPIC_MODEL` posé par CCR, et produit `API Error: 400 All target providers failed` alors que la bannière affiche pourtant le bon modèle.
 
+**`Mode opératoire correct`**
 
+- Lancer ccr
+````
+ccr start
+````
 
+- Lancer Claude code via CCR (par defaut `nvidia/nemotron-3-ultra-550b-a55b:free[1m]` )
+````
+ccr "Claude Code"
+````
 
+<img width="1109" height="612" alt="image" src="https://github.com/user-attachments/assets/256f851a-2a36-471d-b3dd-90fc7a49252f" />
 
+- Pour changer lancer les commandes suivantes
+````
+/model openrouter,cohere/north-mini-code:free
+/model openrouter,google/gemma-4-31b-it:free
+/model openrouter,nvidia/nemotron-3-ultra-550b-a55b:free
+````
 
+- Format impératif : `/model <provider>,<modèle>` — nom du provider en **minuscule** exactement tel que configuré dans CCR (`openrouter`), séparé du modèle par une virgule, sans espace.
+
+---
+
+### `2.3` `Usage non-interactif`
+
+- C'est l'usage que l'on veux mettre en place l'objectif final **pour l'utilisateur sednal-free** (si effectué sur `sednal` conflit de fichier `.claude/settings.json` ).
+- Afin que `Claude Pro` puisse changer choisir entre tous les model à ça disposition.
+
+- Cet usage utilise `deux mécanismes` :
+   - La possibilité d'appeler les model en fonction des utilisateurs.
+   - Une commande pour appeler les models Gratuits.
+
+`[NOTE]`
+
+- Pour un usage non-interactif (orchestrateur, script), le flag `--model` **ne fonctionne pas** avec un modèle de la gateway, quelle que soit la forme essayée : Claude Code répond `unrecognized_model` et retombe silencieusement sur le modèle par défaut. Une variable d'environnement passée au shell est ignorée elle aussi, le bloc `env` du `settings.json` de CCR étant prioritaire.
+
+**=== Commande de changement de model ===**
+````
+claude -p "<tache>" --settings '{"env":{"ANTHROPIC_MODEL":"OpenRouter/<modele>:free"}}'
+````
+
+**=== Commande de appel d'utilisateur ===**
+````
+sudo -iu sednal-free bash -lc 'ccr "Claude Code"'
+````
+
+**=== Commande de changement FINAL ===**
+````
+sudo -iu sednal-free bash -lc 'claude -p "<tache>" --settings "{\"env\":{\"ANTHROPIC_MODEL\":\"OpenRouter/cohere/north-mini-code:free\"}}"'
+
+# Explication -p
+Le flag -p saute le prompt de confiance du dossier de travail (workspace trust), sinon reposé à chaque nouveau dossier en session interactive. 
+````
+
+⚠️ Etape obligatoir pour un agent autommatisé ⚠️
+````
+sudo visudo -f /etc/sudoers.d/agent-mapping
+sednal ALL=(sednal-free) NOPASSWD: ALL
+````
 
 
 
