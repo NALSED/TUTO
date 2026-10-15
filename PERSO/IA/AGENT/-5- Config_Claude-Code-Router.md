@@ -158,10 +158,81 @@ google/gemma-4-31b-it:free              256 K    réflexion, plan gratuit
 </summary>
 
 
+`[RAPPEL]`
+
+**Fichier Conf AI**
+
+- Un fichier de configuration par utilisateur sur la VM `192.168.0.250` : `sednal` / `sednal-free`
+
+````
+cat /home/sednal/.claude/settings.json
+````
+````
+{
+  "model": "sonnet",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [ ....................................... Ce hook est rajouté pour forcer claude pro à continuer. Voir -7- Scripts.md
+          {
+            "type": "command",
+            "command": "/opt/grappes/outils/continuer.sh"
+          }
+        ]
+      }
+    ]
+  },
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "high"
+    },
+    "claude-opus-5-5": {
+      "effortLevel": "xhigh"
+    },
+    "claude-sonnet-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
+  "agentPushNotifEnabled": true
+}
+````
 
 
-
-
+````
+cat /home/sednal-free/.claude/settings.json
+````
+````
+{
+  "apiKeyHelper": "/home/sednal-free/.claude-code-router/bin/ccr-claude-code-api-key-default-claude-code",
+  "env": {
+    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1",
+    "ANTHROPIC_BASE_URL": "http://127.0.0.1:3456",
+    "ANTHROPIC_API_BASE_URL": "http://127.0.0.1:3456",
+    "CLAUDE_AGENT_API_BASE_URL": "http://127.0.0.1:3456",
+    "NO_PROXY": "127.0.0.1,localhost,::1",
+    "no_proxy": "127.0.0.1,localhost,::1",
+    "CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT": "1",
+    "ANTHROPIC_MODEL": "OpenRouter/nvidia/nemotron-3-ultra-550b-a55b:free[1m]",
+    "CCR_CLAUDE_CODE_MODEL": "OpenRouter/nvidia/nemotron-3-ultra-550b-a55b:free[1m]",
+    "CODEXL_CLAUDE_CODE_MODEL": "OpenRouter/nvidia/nemotron-3-ultra-550b-a55b:free[1m]"
+  },
+  "model": "openrouter,google/gemma-4-31b-it",
+  "theme": "dark"
+}
+````
 
 
 
