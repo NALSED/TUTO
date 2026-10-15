@@ -316,3 +316,25 @@ sednal ALL=(sednal-free) NOPASSWD: ALL
 ### -3- Points de vigilences
 
 
+
+- Jamais de `sudo npm install -g` → mélange root/utilisateur et conflits de ports.
+- `ccr "<profil>"` ≠ sous-commande : `<profil>` doit être le nom exact donné dans le wizard (`Claude Code`), pas `code`.
+- Erreur `spawn claude ENOENT` → `@anthropic-ai/claude-code` pas installé dans cet utilisateur.
+- Erreur `libnode.so.XXX` → version de Node changée après l'installation de CCR :
+
+````
+npm uninstall -g @musistudio/claude-code-router
+npm cache clean --force
+npm install -g @musistudio/claude-code-router
+````
+
+- Comportement incohérent → vérifier qu'aucun vieux process ne squatte le port :
+
+````
+ps aux | grep -i claude-code-router
+sudo ss -tlnp | grep 3456
+````
+
+- Le token web CCR change à chaque `ccr start` — toujours relire la dernière URL avant d'ouvrir l'UI.
+- Plusieurs Agent Profiles ne permettent pas de router par rôle — un seul profil, switch via `/model provider,modèle:free`.
+- Certains modèles gratuits OpenRouter refusent les requêtes hors harnais agentique (403) — toujours passer par « Verify connection » avant de documenter un modèle comme utilisable.
