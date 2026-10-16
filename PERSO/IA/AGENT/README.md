@@ -88,12 +88,12 @@ Sur la VM 192.168.0.250, dans proxmox 192.168.0.242.
 
 -5- [Claude Code Router](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-5-%20Config_Claude-Code-Router.md)
 
--7- [Script](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-7-%20Scripts.md)
+-6- [Script](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-6-%20Scripts.md)
 
 
 **=== Utilisation ===**
 
--6- [Utilisation](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-6-%20Utilisation.md)
+-7- [Utilisation](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-7-%20Utilisation.md)
 
 ---
 
