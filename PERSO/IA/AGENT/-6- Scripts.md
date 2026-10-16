@@ -7,7 +7,7 @@
 
 - `log-ai.sh` => Journalsation des appels
 - `comparer_tokens.sh` => Compare les token `Pro` / `Free` pour calculer les économies
-- `continuer.sh` => Lu via un `[hook](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-5-%20Config_Claude-Code-Router.md#21-fichier-pro--free)` de `Claude Pro` pour le forcer à continuer à la fin d'un tache.
+- `continuer.sh` => Lu via un [hook](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-5-%20Config_Claude-Code-Router.md#21-fichier-pro--free) de `Claude Pro` pour le forcer à continuer à la fin d'un tache.
 
 ---
 
