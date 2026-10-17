@@ -24,6 +24,9 @@ exec "$@"
 ````
 
 comparer_tokens.sh
+- ⚠️ Créer une `Key Management dan open router`
+
+[https://openrouter.ai/settings/provisioning-keys](https://openrouter.ai/settings/provisioning-keys)  
 ````
 #!/bin/bash
 # Compare les tokens Pro (local, sednal) vs Gratuit (OpenRouter/sednal-free) pour une date.
