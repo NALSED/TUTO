@@ -64,7 +64,11 @@ language_code	"fr"
 chat	
 ````
 
+### -3- Si besoin le CHAT-ID
 
+````
+curl -s "https://api.telegram.org/bot<TOKEN>" | jq '.result[].message.chat | {id, type, title, username}'
+````
 
 
 
