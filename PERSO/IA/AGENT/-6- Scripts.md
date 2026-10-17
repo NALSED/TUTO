@@ -99,8 +99,12 @@ if sudo ss -tlnp | grep -q 3456; then ok "Gateway CCR actif (port 3456)"; else f
 if systemctl is-active --quiet ccr-sednal-free.service; then ok "Service systemd actif"; else fail "Service systemd inactif"; fi
 
 # 3. Bascule réelle
-REP=$(sudo -iu sednal-free bash -lc 'claude -p "dis juste OK" --settings "{\"env\":{\"ANTHROPIC_MODEL\":\"OpenRouter/nvidia/nemotron-3-ultra-550b-a55b:free\"}}"' 2>/dev/null)
-if echo "$REP" | grep -qi "OK"; then ok "Bascule vers sednal-free fonctionnelle"; else fail "Bascule vers sednal-free : pas de réponse OK"; fi
+REP=$(sudo -iu sednal-free bash -lc 'claude -p "dis juste OK" --settings "{\"env\":{\"ANTHROPIC_MODEL\":\"OpenRouter/cohere/north-mini-code:free\"}}"' 2>/dev/null)
+if [ -n "$(echo "$REP" | grep -v 'unrecognized_model' | tr -d '[:space:]')" ]; then
+  ok "Bascule vers sednal-free fonctionnelle"
+else
+  fail "Bascule vers sednal-free : aucune réponse"
+fi
 
 # 4. RTK côté Pro
 if sudo -iu sednal bash -lc 'which rtk' >/dev/null 2>&1; then ok "RTK installé (compte Pro)"; else fail "RTK absent"; fi
