@@ -80,6 +80,16 @@ exit
 ````
 
 `verif_ccr.sh`
+
+- Option Créer un `Alias`
+````
+vim /home/sednal/.bashrc
+````
+````
+alias test='/home/sednal/Scripts/verif_ccr.sh'
+source .bashrc
+````
+
 ````
 #!/bin/bash
 # Vérifie tous les points : CCR, bascule gratuite, RTK, journal, ccusage, OpenRouter, script tokens.
