@@ -310,6 +310,36 @@ sudo visudo -f /etc/sudoers.d/agent-mapping
 sednal ALL=(sednal-free) NOPASSWD: ALL
 ````
 
+### `2.4` Redémarrage Auto de CCR via SystemD
+
+````
+sudo vim /etc/systemd/system/ccr-sednal-free.service
+````
+````
+[Unit]
+Description=Claude Code Router (CCR) - gateway gratuit sednal-free
+After=network.target
+
+[Service]
+Type=forking
+User=sednal-free
+Environment=HOME=/home/sednal-free
+Environment=PATH=/home/sednal-free/.npm-global/bin:/usr/bin:/bin
+WorkingDirectory=/home/sednal-free
+ExecStart=/home/sednal-free/.npm-global/bin/ccr start
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+````
+````
+sudo systemctl daemon-reload
+sudo systemctl restart ccr-sednal-free.service
+sudo systemctl status ccr-sednal-free.service
+sudo ss -tlnp | grep 3456
+````
+
 
 </details>
 
