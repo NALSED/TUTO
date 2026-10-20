@@ -62,12 +62,14 @@ Sur la VM 192.168.0.250, dans proxmox 192.168.0.242.
 │   │                └─────────────────────────────────────┘                  │   │
 │   │                                                                         │   │
 │   │ === JOURNALISATION ===                                                  │   │
-│   │  comparer_tokens.sh => token économisé                                  │   │
-│   │  log_ai.sh => Changement de model                                       │   │
+│   │  appeler_gratuit.sh => journal des appels au gratuit (avant/après)      │   │
+│   │  comparer_tokens.sh + economies.py => jetons Pro vs gratuit, mesurés    │   │
 │   └─────────────────────────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────────────────────────┘
 
 ````
+
+- **Mesuré le 20/10/2026** (`economies.py`, base d'usage locale de CCR) : `nemotron` et `cohere` sont les deux modèles réellement utilisés (823 K jetons au total sur 97 requêtes, 27 % en échec — tous datés de la mise en place et d'essais de modèles, 0 échec depuis le 17/10). `gemma-4-31b-it` reste configuré mais n'a encore rendu aucun résultat exploitable (limite de débit OpenRouter, HTTP 429) : à vérifier avant de s'y fier.
 
 ---
 

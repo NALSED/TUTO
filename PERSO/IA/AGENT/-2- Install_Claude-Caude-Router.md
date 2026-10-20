@@ -105,7 +105,7 @@ source ~/.bashrc
 
 ---
 
-### -3- Installer `RCC`
+### -3- Installer `CCR`
 
 `[NOTE]`
 

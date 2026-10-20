@@ -164,7 +164,10 @@ google/gemma-4-31b-it:free              256 K    réflexion, plan gratuit
 
 - Un fichier de configuration par utilisateur sur la VM `192.168.0.250` : `sednal` / `sednal-free`
 
-- ces fichier sont gérer par `Claude` et `CCR`, cependant il est possible d'y ajouter un `hook` comme dans l'exemple ci dessous. 
+- ces fichier sont gérer par `Claude` et `CCR`, cependant il est possible d'y ajouter un `hook` comme dans l'exemple ci dessous.
+
+- Le hook `Stop` (`/opt/grappes/outils/continuer.sh`) force `Claude Pro` à continuer tant qu'une phase est en cours (détail et code à jour : [-6- Scripts.md](https://github.com/NALSED/TUTO/blob/main/PERSO/IA/AGENT/-6-%20Scripts.md)).
+
 ````
 cat /home/sednal/.claude/settings.json
 ````
@@ -185,7 +188,7 @@ cat /home/sednal/.claude/settings.json
     ],
     "Stop": [
       {
-        "hooks": [ ....................................... Ce hook est rajouté pour forcer claude pro à continuer. Voir -7- Scripts.md
+        "hooks": [
           {
             "type": "command",
             "command": "/opt/grappes/outils/continuer.sh"
@@ -230,10 +233,12 @@ cat /home/sednal-free/.claude/settings.json
     "CCR_CLAUDE_CODE_MODEL": "OpenRouter/nvidia/nemotron-3-ultra-550b-a55b:free[1m]",
     "CODEXL_CLAUDE_CODE_MODEL": "OpenRouter/nvidia/nemotron-3-ultra-550b-a55b:free[1m]"
   },
-  "model": "openrouter,google/gemma-4-31b-it",
+  "model": "openrouter,cohere/north-mini-code:free",
   "theme": "dark"
 }
 ````
+
+- `model` (hors `env`) est le modèle par défaut repris par le menu `/model` ; il peut diverger de `ANTHROPIC_MODEL` sans que ça gêne (voir `-2.2-`, le menu interactif ne pilote pas réellement la bascule).
 
 ---
 
