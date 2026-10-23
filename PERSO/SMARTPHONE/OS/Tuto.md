@@ -74,5 +74,5 @@ adb devices
 
 12) Installer suite `Google`
 ````
-adb sideload MindTheGapps-17.0.0-arm64-xxxxxxxx.zip
+adb sideload MindTheGapps-17.0.0-arm64-20260630_115006.zip
 ````
