@@ -1,6 +1,18 @@
+## Installer un `ROM` custom .
+
+---
+
+[https://github.com/realdtn2/xiaomi-unlocking-rooting-guide](https://github.com/realdtn2/xiaomi-unlocking-rooting-guide)
+[https://www.youtube.com/watch?v=HZwH7balEOw](https://www.youtube.com/watch?v=HZwH7balEOw)
+[https://xdaforums.com/t/how-to-unlock-redmi-note-12-5g.4770372/](https://xdaforums.com/t/how-to-unlock-redmi-note-12-5g.4770372/)
+[https://xdaforums.com/t/how-to-unlock-bootloader-on-xiaomi-hyperos-all-devices-except-cn.4654009/](https://xdaforums.com/t/how-to-unlock-bootloader-on-xiaomi-hyperos-all-devices-except-cn.4654009/)
+
+---
+
+
 1) créer un compte xiaomi sur internet => [ICI](https://account.xiaomi.com/fe/service/login/password?_locale=fr_FR&sid=passport&qs=%253F_locale%253Dfr_FR&callback=https%3A%2F%2Faccount.xiaomi.com&_sign=2%26V1_passport%26NFXEb4E9codBsffJwtOnKhopIhQ%3D&serviceParam=%7B%22checkSafePhone%22%3Afalse%2C%22checkSafeAddress%22%3Afalse%2C%22lsrp_score%22%3A0.0%7D&showActiveX=false&theme=&needTheme=false&bizDeviceType=)
 
-2) Instaler `minulock`
+3) Instaler `minulock`
 ````
 python3 -m venv ~/miunlock-env
 source ~/miunlock-env/bin/activate
