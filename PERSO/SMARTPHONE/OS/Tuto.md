@@ -13,9 +13,10 @@ pip install miunlock
 
 5) insérer une sim valide
 
-6) Se logger sur un compte `xiomi community`, et dans la section `Me` / ` Bootloader unlock`, le compte  xiomi doit être enregistré depuis au moins  **30** jours.
-- ⚠️ L'heure de la demande d'unlock est primordiale **00h00** Heure chinoise (Pour être sur => [Heure](https://time.is/GMT+8))  
-
+6) - Insérer un carte SIM valide.
+- Se logger sur un compte `xiomi community`, et dans la section `Me` / ` Bootloader unlock`, le compte  xiomi doit être enregistré depuis au moins  **30** jours (region global).
+- ⚠️ faire la demande à chinoise est primordiale **00h00** Heure chinoise (Pour être sur => [Heure](https://time.is/GMT+8) )
+- Parfoit de faux `application quota limit reached`, à chaque essaie de demande d'unlock, `déconnecter` le compte xiomi, `redémarrer` le téléphone, et essayer e tester =>    
 
 8) paramètre / paramètres supplémentaires / Options développeur /  Status du déverrouillage MI
 
