@@ -3,8 +3,11 @@
 ---
 
 [https://github.com/realdtn2/xiaomi-unlocking-rooting-guide](https://github.com/realdtn2/xiaomi-unlocking-rooting-guide)
+
 [https://www.youtube.com/watch?v=HZwH7balEOw](https://www.youtube.com/watch?v=HZwH7balEOw)
+
 [https://xdaforums.com/t/how-to-unlock-redmi-note-12-5g.4770372/](https://xdaforums.com/t/how-to-unlock-redmi-note-12-5g.4770372/)
+
 [https://xdaforums.com/t/how-to-unlock-bootloader-on-xiaomi-hyperos-all-devices-except-cn.4654009/](https://xdaforums.com/t/how-to-unlock-bootloader-on-xiaomi-hyperos-all-devices-except-cn.4654009/)
 
 ---
