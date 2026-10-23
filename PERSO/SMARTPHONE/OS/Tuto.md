@@ -35,7 +35,29 @@ miunlock
 - `crDroid.zip` [ICI](https://sourceforge.net/projects/crdroid/files/gemstone/13.x/crDroidAndroid-17.0-20261006-gemstone-v13.0-BETA.zip/download)
 - `MindTheGapps` (Intégration google) [ICI](https://github.com/MindTheGapps/17.0.0-arm64/releases)
 
-10) lancer le programme  Mi Unlock Tool et suivre les instruction
+9) Lancer l'instalation
+````
+fastboot flash boot boot.img
+fastboot flash vendor_boot vendor_boot.img
+fastboot flash dtbo dtbo.img
+````
 
-11) passer en fastboot => touche volume - + allumer pendant 5 seconde
+10) Installer le `ROM`
+````
+adb sideload crDroid.zip
+````
 
+11) Dans le menu sur le smartphone 
+````
+Apply update => Apply from ADB
+````
+- sur le PC
+````
+adb kill-server
+adb devices
+````
+
+12) Installer suite `Google`
+````
+adb sideload MindTheGapps-17.0.0-arm64-xxxxxxxx.zip
+````
