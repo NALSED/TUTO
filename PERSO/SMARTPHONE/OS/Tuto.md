@@ -1,15 +1,25 @@
-1) créer un compte xiaomi sur internet
-2) télécharger Mi Unlock Tool renseigner les identifiant du compte xiaomi https://xiaomitools.com/downloads/mi-unlock/
+1) créer un compte xiaomi sur internet => [ICI](https://account.xiaomi.com/fe/service/login/password?_locale=fr_FR&sid=passport&qs=%253F_locale%253Dfr_FR&callback=https%3A%2F%2Faccount.xiaomi.com&_sign=2%26V1_passport%26NFXEb4E9codBsffJwtOnKhopIhQ%3D&serviceParam=%7B%22checkSafePhone%22%3Afalse%2C%22checkSafeAddress%22%3Afalse%2C%22lsrp_score%22%3A0.0%7D&showActiveX=false&theme=&needTheme=false&bizDeviceType=)
 
-3) télécharger un ROM recovery officiel : ICI =>  https://miuirom.org/load?o=redmi-12-5g&v=2.0.217.0.VMWEUXM&l=en&t=Recovery
+2) Instaler `minulock`
+````
+python3 -m venv ~/miunlock-env
+source ~/miunlock-env/bin/activate
+pip install miunlock
+````
 
-4) activer le mode développeur, appuyer 7x sur la version de l'OS
+3) Télécharger un ROM recovery officiel (en cas de probléme) : [ICI](https://miuirom.org/load?o=redmi-12-5g&v=2.0.217.0.VMWEUXM&l=en&t=Recovery)
+
+4) Activer le mode développeur, appuyer 7x sur la version de l'OS
 
 5) insérer une sim valide
 
- 6) paramètre / paramètres supplémentaires / Options développeur /  Status du déverrouillage MI
+6) Se logger sur un compte `xiomi community`, et dans la section `Me` / ` Bootloader unlock`, le compte  xiomi doit être enregistré depuis au moins  **30** jours.
+- ⚠️ L'heure de la demande d'unlock est primordiale **00h00** Heure chinoise (Pour être sur => [Heure](https://time.is/GMT+8))  
 
-7) lancer le programme  Mi Unlock Tool et suivre les instruction
 
-8) passer en fastboot => touche volume - + allumer pendant 5 seconde
+8) paramètre / paramètres supplémentaires / Options développeur /  Status du déverrouillage MI
+
+9) lancer le programme  Mi Unlock Tool et suivre les instruction
+
+10) passer en fastboot => touche volume - + allumer pendant 5 seconde
 
