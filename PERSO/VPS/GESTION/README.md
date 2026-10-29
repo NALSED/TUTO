@@ -15,6 +15,11 @@ A faire
 
 ### `-1-` Ajout de règles **VPN** `Wireguard` sur le **VPS**
 
+- Ajout des `IP` de l'agent `AI` et `Grappes`
+
+   - **AI** : 192.168.0.250
+   - **Grappes** 192.168.0.A FIXER
+
 `- 1.1` configuration du fichier 
 ````
 vim /etc/wireguard/wg0.conf
@@ -27,8 +32,10 @@ interface: wg0
 
 peer: <pub key>
   endpoint: 5.77.130.104:9376
-  allowed ips: 10.100.0.2/32, 192.168.0.239/32, 192.168.0.235/32, 192.168.0.240/32, 192.168.0.242/32, 192.168.0.250/32, 192.168.0.253/32
+  allowed ips: 10.100.0.2/32, 192.168.0.239/32, 192.168.0.235/32, 192.168.0.240/32, 192.168.0.242/32, 192.168.0.250/32, <AJOUTER GRAPPES>
   latest handshake: 3 seconds ago
   transfer: 180 B received, 272 B sent
   persistent keepalive: every 25 seconds
 ````
+
+---
