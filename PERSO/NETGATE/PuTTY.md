@@ -3,7 +3,9 @@
 [DOC](https://docs.netgate.com/manuals/pfsense/en/latest/sg-1100-security-gateway-manual.pdf) ==> Page 34
 
 ### 1️⃣ Driver 
+
 [https://prolificusa.com/product/pl2303gl-8-pin-usb-uart-bridge-controller/](https://prolificusa.com/product/pl2303gl-8-pin-usb-uart-bridge-controller/) le driver correspondant.
+
 [Télécharger](https://prolificusa.com/wp-content/uploads/2019/06/PL23XX-M_LogoDriver_Setup_4900_20260306.exe_.zip)
 
 ### 2️⃣ Gestionnaire de périphériques
