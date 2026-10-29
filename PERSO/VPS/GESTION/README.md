@@ -12,3 +12,7 @@ A faire
 ````
 
 ---
+
+### `-1-` Ajout de règles **VPN** `Wireguard` sur le **VPS**
+
+`- 1.1` configuration
