@@ -17,4 +17,5 @@
 ### 3.2) Appuyer sur `Enter` et le menu du Netgate 1100 est maintenant accessible :
 
 <img width="751" height="573" alt="image" src="https://github.com/user-attachments/assets/6d6e8f35-b2b6-49da-9b29-46750ccc71d6" />
+
 ### 3.3) choisir 4 et Valider 
