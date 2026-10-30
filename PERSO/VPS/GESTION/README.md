@@ -39,3 +39,31 @@ peer: <pub key>
 ````
 
 ---
+
+### `-2-`  Ajout de règles **VPN** `Wireguard` sur le **Pfsense** 
+
+
+`- 2.1` Allez dans **Firewall/Rules/WG_N8N**
+
+<img width="1170" height="424" alt="image" src="https://github.com/user-attachments/assets/d4ee7164-4ba3-4ff2-baf1-3af62f1a2b69" />
+
+`- 2.2` **Add** et éditer
+````
+Action           : Pass
+Interface        : WG_N8N
+Address Family   : IPv4
+Protocol         : TCP
+Source           : Address or Alias => 10.100.0.1
+Destination      : Address or Alias => 192.168.0.242
+Destination Port Range
+  From              : 22
+  To                : 22
+````
+
+---
+
+### `-3-` Script de gestion sur le **VPS**.
+
+````
+
+````
