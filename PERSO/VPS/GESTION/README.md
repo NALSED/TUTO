@@ -102,7 +102,7 @@ PROXMOX_MAC="34:5A:60:E0:1C:72"
 
 #=== Momo ===
 AGENT_VMID=999
-
+AGENT_HOST="sednal@192.168.0.250"
 # Rad
 
 # ========== SOUS-MENUS ==========
@@ -133,18 +133,29 @@ menu_agent_ai() {
 
     case "$action" in
         "Allumer")
-            if ping -c 2 -W 2 "$PROXMOX_IP" > /dev/null; then
-                ssh "$PROXMOX_HOST" "qm start $AGENT_VMID"
-            else
-                gum style --foreground 196 "=== Proxmox n'est pas allumé. ==="
-                sleep 3
-            fi
+           if timeout 2 bash -c "</dev/tcp/192.168.0.242/22" 2>/dev/null; then
+            ssh "$PROXMOX_HOST" "qm start $AGENT_VMID"
+           else
+            gum style --foreground 196 "=== Proxmox n'est pas allumé. ==="
+            sleep 3
+           fi
             ;;
         "Eteindre")
             gum confirm "Éteindre Agent AI ?" && ssh "$PROXMOX_HOST" "qm shutdown $AGENT_VMID"
             ;;
-        "Générer une fenêtre Tmux + Claude code => /remote")
-            # TODO
+                "Générer une fenêtre Tmux + Claude code => /remote")
+            if ssh "$AGENT_HOST" 'tmux has-session -t claude 2>/dev/null'; then
+                gum style --foreground 214 "=== Session Claude déjà active ==="
+            else
+                ssh "$AGENT_HOST" '
+                    tmux new-session -d -s claude -c /opt/grappes "bash -lc claude"
+                    sleep 8
+                    tmux send-keys -t claude "/remote-control"
+                    sleep 1
+                    tmux send-keys -t claude Enter'
+                gum style --foreground 82 "=== Session Claude lancée en remote ==="
+            fi
+            sleep 2
             ;;
         "Retour") return ;;
     esac
