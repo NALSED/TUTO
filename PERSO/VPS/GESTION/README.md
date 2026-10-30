@@ -38,6 +38,14 @@ peer: <pub key>
   persistent keepalive: every 25 seconds
 ````
 
+`- 1.2` Rédemmarage service
+````
+sudo wg-quick down wg0 && wg-quick up wg0
+sudo wg 
+````
+
+- Les nouvelles `IP` doivent être ajoutées.
+
 ---
 
 ### `-2-`  Ajout de règles **VPN** `Wireguard` sur le **Pfsense** 
