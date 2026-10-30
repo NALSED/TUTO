@@ -55,7 +55,7 @@ sudo wg
 
 <img width="1170" height="424" alt="image" src="https://github.com/user-attachments/assets/d4ee7164-4ba3-4ff2-baf1-3af62f1a2b69" />
 
-`- 2.2` **Add** et éditer
+`- 2.2` **Add** et éditer pour `=== Proxmox ===`
 ````
 Action           : Pass
 Interface        : WG_N8N
@@ -63,6 +63,19 @@ Address Family   : IPv4
 Protocol         : TCP
 Source           : Address or Alias => 10.100.0.1
 Destination      : Address or Alias => 192.168.0.242
+Destination Port Range
+  From              : 22
+  To                : 22
+````
+
+`- 2.3` **Add** et éditer pour `=== Agent AI ===`
+````
+Action           : Pass
+Interface        : WG_N8N
+Address Family   : IPv4
+Protocol         : TCP
+Source           : Address or Alias => 10.100.0.1
+Destination      : Address or Alias => 192.168.0.250
 Destination Port Range
   From              : 22
   To                : 22
