@@ -22,7 +22,7 @@ A faire
 
 `- 1.1` configuration du fichier 
 ````
-vim /etc/wireguard/wg0.conf
+sudo vim /etc/wireguard/wg0.conf
 ````
 ````
 interface: wg0
