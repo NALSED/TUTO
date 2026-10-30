@@ -103,6 +103,8 @@ PROXMOX_MAC="34:5A:60:E0:1C:72"
 #=== Momo ===
 AGENT_VMID=999
 AGENT_HOST="sednal@192.168.0.250"
+AGENT_DIR="/opt/grappes"
+
 # Rad
 
 # ========== SOUS-MENUS ==========
@@ -128,32 +130,44 @@ menu_agent_ai() {
     action=$(gum choose --header "Agent AI" \
         "Allumer" \
         "Eteindre" \
-        "Générer une fenêtre Tmux + Claude code => /remote" \
+        "Ouvrir la session remote" \
+        "Fermer la session remote" \
         "Retour") || return
 
     case "$action" in
         "Allumer")
-           if timeout 2 bash -c "</dev/tcp/192.168.0.242/22" 2>/dev/null; then
-            ssh "$PROXMOX_HOST" "qm start $AGENT_VMID"
-           else
-            gum style --foreground 196 "=== Proxmox n'est pas allumé. ==="
-            sleep 3
-           fi
+            if timeout 2 bash -c "</dev/tcp/${PROXMOX_IP}/22" 2>/dev/null; then
+                ssh "$PROXMOX_HOST" "qm start $AGENT_VMID"
+            else
+                gum style --foreground 196 "=== Proxmox n'est pas allumé. ==="
+                sleep 3
+            fi
             ;;
         "Eteindre")
             gum confirm "Éteindre Agent AI ?" && ssh "$PROXMOX_HOST" "qm shutdown $AGENT_VMID"
             ;;
-                "Générer une fenêtre Tmux + Claude code => /remote")
+        "Ouvrir la session remote")
             if ssh "$AGENT_HOST" 'tmux has-session -t claude 2>/dev/null'; then
                 gum style --foreground 214 "=== Session Claude déjà active ==="
             else
-                ssh "$AGENT_HOST" '
-                    tmux new-session -d -s claude -c /opt/grappes "bash -lc claude"
+                ssh "$AGENT_HOST" "
+                    tmux new-session -d -s claude -c $AGENT_DIR 'bash -lc claude'
                     sleep 8
-                    tmux send-keys -t claude "/remote-control"
+                    tmux send-keys -t claude '/remote-control'
                     sleep 1
-                    tmux send-keys -t claude Enter'
+                    tmux send-keys -t claude Enter"
                 gum style --foreground 82 "=== Session Claude lancée en remote ==="
+            fi
+            sleep 2
+            ;;
+        "Fermer la session remote")
+            if ssh "$AGENT_HOST" 'tmux has-session -t claude 2>/dev/null'; then
+                if gum confirm "Fermer la session Claude ?"; then
+                    ssh "$AGENT_HOST" 'tmux kill-session -t claude'
+                    gum style --foreground 82 "=== Session Claude fermée ==="
+                fi
+            else
+                gum style --foreground 214 "=== Aucune session active ==="
             fi
             sleep 2
             ;;
