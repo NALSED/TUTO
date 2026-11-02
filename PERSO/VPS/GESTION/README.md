@@ -81,6 +81,21 @@ Destination Port Range
   To                : 22
 ````
 
+
+`- 2.4` **Add** et éditer pour `=== Agent OSINT ===`
+````
+Action           : Pass
+Interface        : WG_N8N
+Address Family   : IPv4
+Protocol         : TCP
+Source           : Address or Alias => 10.100.0.1
+Destination      : Address or Alias => 192.168.0.115
+Destination Port Range
+  From              : 22
+  To                : 22
+````
+
+
 ---
 
 ### `-3-` Script de gestion sur le **VPS**.
